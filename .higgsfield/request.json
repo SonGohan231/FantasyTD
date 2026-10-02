@@ -1,12 +1,13 @@
 {
   "enabled": true,
-  "generation_id": "map2-postapo-secret-relay-states-20261002-001",
-  "model_path": "recraft/v4.1/text-to-image",
+  "generation_id": "map2-postapo-miniboss-source-20261002-001",
+  "model_path": "higgsfield-ai/soul/v2/standard",
   "input": {
-    "prompt": "ORIGINAL production asset sheet for secret-map interactions in a colorful post-apocalyptic mobile tower-defense game. Same playful casual-game cartoon style: chunky simplified shapes, clean dark outlines, saturated colors, soft cel shading, no realism, no text, no logos.\n\nOn a warm off-white background, create TWO coherent interactive secret props, each shown in multiple states with identical camera/proportions.\n\nPROP 1 — MAINTENANCE TUNNEL:\n- concealed/closed wall panel overgrown with vines,\n- hinted state with faint green light from cracks,\n- open state with short tunnel visible.\n\nPROP 2 — RADIO RELAY NODE:\n- dormant small overgrown relay mast/dish with dead lights,\n- hinted state with one blinking amber indicator,\n- activated state with rotating dish and bright teal salvage-energy pulse.\n\nAll states must be isolated with clear spacing, top-down/3/4 game camera, mobile-readable silhouettes. No roads, no characters, no readable symbols/letters/numbers, no UI. Original IP only.",
-    "resolution": "1k",
+    "prompt": "ORIGINAL miniboss character design sheet for a colorful post-apocalyptic plant-defense tower-defense game. Character name concept: THE BUNKER MUTANT / \"Rootbreaker\" — an underground creature mutated by toxic runoff and invasive plant growth. Do not copy any existing monster or game character.\n\nDesign: bulky asymmetrical mutant emerging from sewer/bunker culture, squat powerful silhouette readable on a phone, one oversized arm protected by cracked concrete-like growth, smaller claw arm, mossy skin, fluorescent toxic sacs, roots/vines fused into back and shoulders, scavenged non-branded metal scraps embedded into body, expressive face that is menacing but still cartoonishly readable. Palette: moss green, dirty orange, toxic yellow-green glow, concrete gray, small teal accents.\n\nArt style: polished playful casual-game cartoon, chunky proportions, clean outline, soft cel shading, vivid colors, original IP, no realism, no gore, no text/logo.\n\nCreate one consistent top-down/3/4 sprite-source sheet on simple warm background:\n1) dormant/crouched state,\n2) awakening pose,\n3) active idle,\n4) heavy slam anticipation,\n5) slam impact,\n6) stagger/hit pose.\nKeep the same anatomy, proportions and camera angle across all poses so it can guide Unity animation.",
+    "resolution": "1080p",
     "aspect_ratio": "16:9",
-    "output_format": "png"
+    "batch_size": 1,
+    "enhance_prompt": true
   },
   "max_wait_seconds": 1200
 }
