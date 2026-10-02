@@ -1,10 +1,10 @@
 {
   "enabled": true,
-  "generation_id": "map2-postapo-miniboss-awaken-active-20261002-001",
+  "generation_id": "map2-postapo-radio-relay-activation-20261002-001",
   "model_path": "bytedance/seedance-2.5/image-to-video",
   "input": {
-    "image_url": "https://d3u0tzju9qaucj.cloudfront.net/9f95694a-f77a-4193-89ef-1c30149ba5ad/fa18d572-cb71-4f27-a698-0b2ede6e69b2.png",
-    "prompt": "Locked camera. Animate this exact original Rootbreaker / Bunker Mutant miniboss from dormant crouch to ACTIVE combat idle. Preserve character identity, anatomy, colors, concrete-growth arm, toxic sacs, roots/vines and casual-game cartoon style. Sequence: faint toxic sacs pulse; fingers twitch; roots tense; the creature raises its head; shifts weight; pushes itself upright into a squat combat stance; oversized concrete arm lifts defensively; toxic sacs brighten; end on a stable breathing ACTIVE idle pose for the final second. No attack yet, no extra characters, no text, no logo, no UI, no camera movement, no zoom, no cuts. Mobile-readable motion.",
+    "image_url": "https://d3u0tzju9qaucj.cloudfront.net/9f95694a-f77a-4193-89ef-1c30149ba5ad/fe7342ee-c39c-4032-b46f-1cd55be6a58f.png",
+    "prompt": "Locked camera. Use the exact secret relay prop design from the reference image. Animate ONLY the radio relay activation sequence for a mobile tower-defense game: dormant relay with dead lights -> one amber indicator blinks twice -> the small dish begins rotating slowly -> teal salvage-energy pulse travels through the relay -> active lights stabilize while the dish keeps a gentle loop. Preserve the same prop identity and casual cartoon style. No text, no extra objects, no characters, no camera movement, no zoom, no cuts. End on a stable active looping state.",
     "duration": 6,
     "resolution": "720p",
     "aspect_ratio": "16:9",
