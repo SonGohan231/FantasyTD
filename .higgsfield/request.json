@@ -1,10 +1,10 @@
 {
   "enabled": true,
-  "generation_id": "map2-postapo-bunker-open-anim-20261002-001",
+  "generation_id": "map2-postapo-miniboss-awaken-active-20261002-001",
   "model_path": "bytedance/seedance-2.5/image-to-video",
   "input": {
-    "image_url": "https://d3u0tzju9qaucj.cloudfront.net/9f95694a-f77a-4193-89ef-1c30149ba5ad/b756dd21-a307-491c-b367-e14f50d0d789.png",
-    "prompt": "Locked camera. Animate this exact closed bunker hatch into an OPEN secret entrance for an original colorful mobile tower-defense game. Preserve the hatch design, cracked concrete ring, surrounding vines and cartoon style. Sequence: amber indicator pulses twice; tiny dust particles shake loose; the circular hatch unlocks and rotates/lifts open; a short white steam burst escapes; warm yellow-green tunnel light rises; a short descending stair/tunnel becomes visible. End with the hatch fully open and stable for the final second. No new props, no text, no labels, no logo, no camera movement, no zoom, no cuts. Keep motion readable at mobile-game scale.",
+    "image_url": "https://d3u0tzju9qaucj.cloudfront.net/9f95694a-f77a-4193-89ef-1c30149ba5ad/fa18d572-cb71-4f27-a698-0b2ede6e69b2.png",
+    "prompt": "Locked camera. Animate this exact original Rootbreaker / Bunker Mutant miniboss from dormant crouch to ACTIVE combat idle. Preserve character identity, anatomy, colors, concrete-growth arm, toxic sacs, roots/vines and casual-game cartoon style. Sequence: faint toxic sacs pulse; fingers twitch; roots tense; the creature raises its head; shifts weight; pushes itself upright into a squat combat stance; oversized concrete arm lifts defensively; toxic sacs brighten; end on a stable breathing ACTIVE idle pose for the final second. No attack yet, no extra characters, no text, no logo, no UI, no camera movement, no zoom, no cuts. Mobile-readable motion.",
     "duration": 6,
     "resolution": "720p",
     "aspect_ratio": "16:9",
