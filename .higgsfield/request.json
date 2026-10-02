@@ -1,12 +1,14 @@
 {
   "enabled": true,
-  "generation_id": "map2-postapo-scenery-props-20261002-001",
-  "model_path": "recraft/v4.1/text-to-image",
+  "generation_id": "map2-postapo-ambient-overlay-20261002-001",
+  "model_path": "bytedance/seedance-2.5/text-to-video",
   "input": {
-    "prompt": "ORIGINAL production asset sheet for a colorful post-apocalyptic mobile tower-defense map. Playful casual-game cartoon style, chunky simplified shapes, clean dark outlines, bright saturated palette, soft cel shading, high readability on a phone, no realism, no Kingdom Rush imitation, no copied game assets.\n\nCreate an organized GAME PROP SHEET on a plain warm off-white background. Each prop isolated with clear empty spacing and a consistent top-down / 3/4 game-art camera. No readable text anywhere.\n\nInclude:\n1. small ruined blank-facade corner building with vines,\n2. broken bus shelter with plants,\n3. rusted compact car,\n4. rusted van,\n5. cracked concrete barrier,\n6. amber hazard beacon OFF,\n7. amber hazard beacon ON,\n8. radio antenna/dish,\n9. steam vent pipe,\n10. sewer drain outlet,\n11. closed circular bunker hatch,\n12. open bunker hatch,\n13. hidden maintenance tunnel doorway,\n14. overgrown radio relay node,\n15. rooftop garden planter,\n16. flowering vine cluster,\n17. loose paper/debris cluster,\n18. cracked asphalt/sidewalk corner,\n19. small water/sewer edge module,\n20. scrap pile suitable for special-tower unlock.\n\nNo roads, no characters, no enemies, no towers, no logos, no signs, no letters, no numbers, no labels. Assets must look mutually consistent and easy to cut into sprites.",
-    "resolution": "1k",
+    "prompt": "Locked-camera 16:9 ambient animation layer for an ORIGINAL colorful cartoon post-apocalyptic tower-defense city map. No characters, no roads, no UI, no text, no logos. Neutral dark transparent-like background substitute: plain near-black background intended for compositing. Animate ONLY isolated environmental effects spread across frame: two small steam puffs rising and dissipating, a few loose papers/leaves drifting slowly, tiny dust motes, one amber hazard beacon blinking gently, subtle wisps of smoke. Motion must be slow, loop-friendly, non-cinematic, no camera movement, no zoom, no scene cuts. Keep effects separated so they can be masked/composited in Unity.",
+    "duration": 6,
+    "resolution": "720p",
     "aspect_ratio": "16:9",
-    "output_format": "png"
+    "output_format": "mp4",
+    "generate_audio": false
   },
   "max_wait_seconds": 1200
 }
