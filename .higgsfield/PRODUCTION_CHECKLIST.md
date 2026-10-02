@@ -225,7 +225,7 @@ Production:
 - [ ] BASE_COMPOSITE_IN_UNITY_FROM_LOCKED_TOPOLOGY
 - [ ] BASE_FINAL_NEW_TOPOLOGY
 - [!] AMBIENT_LOOP attempt 1 — run **37025274825**, artifact **11234323555** — REJECTED (baked terrain, poor overlay separation)
-- [ ] AMBIENT_LOOP
+- [x] AMBIENT_LOOP — run **37031353770**, artifact **11238010932** — APPROVED after visual QA (clean near-black compositing overlay)
 - [x] PSY_V0_NORMAL — run **37025281280**, artifact **11235336865** — APPROVED
 - [x] PSY_V1_LIGHT_WARP — run **37025281280**, artifact **11235336865** — APPROVED
 - [x] PSY_V2_GRID_VISIBLE — run **37025281280**, artifact **11235336865** — APPROVED
@@ -240,15 +240,18 @@ Production:
 - [x] LAB_OPEN_ANIM — run **37025981397**, artifact **11234759621** — APPROVED
 - [!] MINIBOSS_SOURCE attempt 1 — run **37025292120**, artifact **11235206778** — REJECTED (3D/toy-like)
 - [x] MINIBOSS_SOURCE — run **37025985108**, artifact **11234892986** — APPROVED (clean 2D Mother Mycelium sheet)
-- [ ] MINIBOSS_DORMANT_SINGLE_SOURCE
-- [ ] MINIBOSS_ACTIVE_SINGLE_SOURCE
-- [ ] MINIBOSS_DORMANT
-- [ ] MINIBOSS_ACTIVE
-- [ ] MINIBOSS_AWAKEN_ANIM
-- [ ] MINIBOSS_ATTACK_ANIM
+- [x] MINIBOSS_DORMANT_SINGLE_SOURCE — run **37031359487**, artifact **11237770536** — APPROVED after visual QA
+- [x] MINIBOSS_ACTIVE_SINGLE_SOURCE — run **37031365533**, artifact **11237423117** — APPROVED after visual QA
+- [x] MINIBOSS_DORMANT — run **37031359487**, artifact **11237770536** — APPROVED
+- [x] MINIBOSS_ACTIVE — run **37031365533**, artifact **11237423117** — APPROVED
+- [!] MINIBOSS_AWAKEN_ANIM attempt 1 — run **37031386654** — FAILED terminal generation
+- [ ] MINIBOSS_AWAKEN_ANIM — retry after API top-up
+- [!] MINIBOSS_ATTACK_ANIM attempt 1 — run **37031389579** — FAILED terminal generation
+- [ ] MINIBOSS_ATTACK_ANIM — retry after API top-up
 - [!] SPECIAL_MUTATION_TOWER_SOURCE attempt 1 — run **37025297595**, artifact **11234752032** — FAILED generation
 - [x] SPECIAL_MUTATION_TOWER_SOURCE — run **37025989780**, artifact **11235363386** — APPROVED after visual QA
-- [ ] SPECIAL_MUTATION_TOWER_ACTIVE_SINGLE_SOURCE
+- [!] SPECIAL_MUTATION_TOWER_ACTIVE_SINGLE_SOURCE attempt 1 — run **37031370052**, artifact **11237536124** — REJECTED after visual QA (identity drift from approved source sheet)
+- [ ] SPECIAL_MUTATION_TOWER_ACTIVE_SINGLE_SOURCE — retry after API top-up
 - [ ] SPECIAL_MUTATION_TOWER_ACTIVATION_ANIM
 - [ ] SPECIAL_MUTATION_TOWER_IDLE_LOOP
 
@@ -273,8 +276,9 @@ Production:
 - [x] AMBIENT_LOOP — run **37026222266**, artifact **11235173326** — APPROVED after visual QA
 - [x] PANDA_SOURCE — run **37026226845**, artifact **11234419605** — APPROVED
 - [x] PANDA_ROLL_SOURCE — run **37026714289**, artifact **11235810368** — APPROVED
-- [ ] PANDA_ROLL
-- [ ] PANDA_STOP
+- [x] PANDA_ROLL — run **37031374566**, artifact **11237528090** — APPROVED after visual QA (rolling body cycle; route translation can be Unity-driven)
+- [!] PANDA_STOP attempt 1 — run **37031379099** — FAILED terminal generation
+- [ ] PANDA_STOP — retry after API top-up
 - [x] PANDA_HOSTILE_SOURCE — run **37026718211**, artifact **11235099906** — APPROVED
 - [ ] PANDA_TRANSFORM
 - [x] BAMBOO_LOG_HAZARD — run **37026248648**, artifact **11235547736** — APPROVED
@@ -291,8 +295,10 @@ Production:
 - [ ] MINIBOSS_ATTACK_ANIM
 - [x] SPECIAL_BAMBOO_TOWER_SOURCE — run **37026242264**, artifact **11235162980** — APPROVED
 - [x] SPECIAL_BAMBOO_TOWER_ACTIVE_SINGLE_SOURCE — run **37026740118**, artifact **11235615614** — APPROVED
-- [ ] SPECIAL_BAMBOO_TOWER_ACTIVATION_ANIM
-- [ ] SPECIAL_BAMBOO_TOWER_IDLE_LOOP
+- [!] SPECIAL_BAMBOO_TOWER_FOLDED_SINGLE attempt 1 — run **37031404666** — BLOCKED: Higgsfield HTTP 403 `not_enough_credits`
+- [ ] SPECIAL_BAMBOO_TOWER_ACTIVATION_ANIM — waiting for API top-up
+- [!] SPECIAL_BAMBOO_TOWER_IDLE_LOOP attempt 1 — run **37031409462** — FAILED terminal generation as credits were exhausted
+- [ ] SPECIAL_BAMBOO_TOWER_IDLE_LOOP — waiting for API top-up
 
 ## MAP 7 — Świątynia Słońca i Księżyca
 **Difficulty:** Hard / three routes + route mechanisms  
@@ -308,6 +314,7 @@ Previous API concept:
 
 Production:
 - [x] TOPOLOGY_SPEC_LOCKED — `.higgsfield/MAP7_TEMPLE_TOPOLOGY.json`, commit **5df4fbea** (3 routes, 2 gate states, 12 spots)
+- [!] INITIAL_HIGGSFIELD_BATCH — BLOCKED by API balance: HTTP 403 `not_enough_credits`; runs **37031636402, 37031642752, 37031647943, 37031651863, 37031658416, 37031662610, 37031667859, 37031672364, 37031677063**
 - [ ] SCENERY_PROP_PACK
 - [ ] BACKGROUND_TERRAIN_PLATE
 - [ ] BASE_COMPOSITE_IN_UNITY_FROM_LOCKED_TOPOLOGY
