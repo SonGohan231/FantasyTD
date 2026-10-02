@@ -1,9 +1,9 @@
 {
   "enabled": true,
-  "generation_id": "map2-postapo-radio-relay-single-source-20261002-001",
+  "generation_id": "map2-postapo-background-terrain-plate-20261002-001",
   "model_path": "recraft/v4.1/text-to-image",
   "input": {
-    "prompt": "ORIGINAL single interactive prop asset for a colorful post-apocalyptic mobile tower-defense game. ONE small overgrown radio relay station only, isolated on a warm off-white background. Design: squat orange-red salvage housing, small gray satellite dish on top, teal cables/vines, one tiny amber indicator light, a small teal energy core near the base. Playful casual-game cartoon style, chunky simplified shapes, clean dark outlines, saturated colors, soft cel shading, top-down/3/4 game camera, mobile-readable. The prop must look functional but improvised and reclaimed by plants. No text, no letters, no numbers, no symbols, no logo, no UI, no extra props, no characters. Original IP only. This exact asset will be used as the source frame for an activation animation.",
+    "prompt": "ORIGINAL 16:9 BACKGROUND TERRAIN PLATE for a colorful post-apocalyptic mobile tower-defense map. This background will sit UNDER a deterministic Unity road graph and build pads, so DO NOT draw any roads, lanes, arrows, build pads, towers, enemies, UI or text. Entire image should be a coherent top-down / restrained 3/4 cartoon environment with open negative space for roads to be composited later.\n\nTheme: playful overgrown abandoned city. Show broad muted concrete/asphalt ground zones, patches of grass and flowers, rooftop/low-building edges placed mostly near outer borders, sewer/water channels near lower areas, cracked plazas, small garden patches, vines, rubble, faded non-readable blank panels, a few parked rusted vehicles near edges, bunker district cue, radio district cue. Keep the center and major horizontal corridors visually calm so locked roads remain readable when overlaid.\n\nStyle: chunky simplified casual-game cartoon, clean dark outlines, bright but controlled saturated palette, soft cel shading, low texture noise, mobile readability, original IP. No realism, no Kingdom Rush imitation, no copied game assets. Absolutely no words, letters, numbers, logos, billboards, posters or road markings.",
     "resolution": "1k",
     "aspect_ratio": "16:9",
     "output_format": "png"
