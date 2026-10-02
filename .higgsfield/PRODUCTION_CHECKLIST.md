@@ -93,7 +93,7 @@ Production:
 
 ### MAP2 ANIMATION EXTRAS
 - [!] RADIO_RELAY_ACTIVATION_LOOP attempt — run **37009129944**, artifact **11226993880** — REJECTED (source sheet caused state-jumping between different props); dedicated single relay source required
-- [ ] RADIO_RELAY_ACTIVATION_LOOP
+- [x] RADIO_RELAY_ACTIVATION_LOOP — run **37010301111**, artifact **11227881216** — APPROVED after visual QA (single-prop source preserved; blink→core pulse→dish scan→signal pulse)
 - [x] MAINTENANCE_TUNNEL_OPEN_ANIM — run **37009133694**, artifact **11227182741** — APPROVED after visual QA (hint glow→panel open→stable tunnel)
 - [x] MINIBOSS_SLAM_ATTACK_ANIM — run **37009138087**, artifact **11226964130** — APPROVED after visual QA (wind-up→slam→impact/recovery readable)
 - [x] MINIBOSS_HIT_DEFEAT_ANIM — run **37009142068**, artifact **11226909606** — APPROVED after visual QA (hit→stagger→collapse→glow fade)
@@ -101,7 +101,8 @@ Production:
 - [x] RADIO_RELAY_SINGLE_SOURCE — run **37010048084**, artifact **11226614659** — APPROVED after visual QA
 - [x] BACKGROUND_TERRAIN_PLATE — run **37010052305**, artifact **11227178308** — APPROVED after visual QA (road-free environment plate for deterministic Unity composition)
 - [x] SPECIAL_SALVAGE_TOWER_SOURCE — run **37010305311**, artifact **11227492469** — APPROVED after visual QA
-- [ ] SPECIAL_SALVAGE_TOWER_ACTIVATION_ANIM
+- [x] SPECIAL_SALVAGE_TOWER_ACTIVATION_ANIM — run **37010704739**, artifact **11228146221** — APPROVED after visual QA (deploy→core light→vine/flower unfold→recycling pulse)
+- [!] SPECIAL_SALVAGE_TOWER_IDLE_LOOP attempt — run **37010710427**, artifact **11227567439** — FAILED: Higgsfield API reported credit balance too low
 - [ ] SPECIAL_SALVAGE_TOWER_IDLE_LOOP
 
 ## MAP 3 — Zmierzch
