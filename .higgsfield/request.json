@@ -1,15 +1,12 @@
 {
   "enabled": true,
-  "generation_id": "map6-bamboo-dojo-open-anim-20261002-001",
-  "model_path": "bytedance/seedance-2.5/image-to-video",
+  "generation_id": "map6-bamboo-panda-warrior-dormant-single-20261002-001",
+  "model_path": "recraft/v4.1/text-to-image",
   "input": {
-    "image_url": "https://d3u0tzju9qaucj.cloudfront.net/9f95694a-f77a-4193-89ef-1c30149ba5ad/b53fd5d9-9e57-4c10-9063-71e7b35c7243.png",
-    "prompt": "Locked camera. Animate THIS EXACT hidden bamboo dojo gate from closed to open while preserving the same bamboo posts, red lanterns, wooden circular door, leaves and cartoon style. Sequence: lanterns brighten -> nearby leaves shake -> circular wooden door unlocks and splits/slides open -> warm golden interior light appears -> a few leaves drift outward -> gate remains fully open and stable for final second. No extra characters, no text, no UI, no camera movement, no zoom, no cuts.",
-    "duration": 6,
-    "resolution": "720p",
+    "prompt": "ORIGINAL single gameplay source asset for \"Great Panda Warrior\", miniboss in a colorful bamboo-forest mobile tower-defense game. ONE character only, isolated on warm off-white background. Identity: large round panda, small red ceremonial scarf, mossy rope belt, bamboo/leaf shoulder accents, broken bamboo staff resting across lap, stern but calm face. Pose: seated meditation/dormant state with eyes closed, staff resting, body centered. Clean 2D cartoon, chunky proportions, crisp outlines, soft cel shading, top-down/3/4 game camera, mobile-readable. No text, no UI, no extra props beyond staff.",
+    "resolution": "1k",
     "aspect_ratio": "16:9",
-    "output_format": "mp4",
-    "generate_audio": false
+    "output_format": "png"
   },
   "max_wait_seconds": 1200
 }
