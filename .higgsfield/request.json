@@ -1,14 +1,15 @@
 {
   "enabled": true,
-  "generation_id": "map2-postapo-miniboss-dormant-source-20261002-001",
-  "model_path": "higgsfield-ai/soul/v2/image-to-image",
+  "generation_id": "map2-postapo-bunker-open-anim-20261002-001",
+  "model_path": "bytedance/seedance-2.5/image-to-video",
   "input": {
-    "image_url": "https://d3u0tzju9qaucj.cloudfront.net/9f95694a-f77a-4193-89ef-1c30149ba5ad/078ef707-8376-4dd0-a042-f4d0e1a4584a.png",
-    "prompt": "Use the reference only to preserve the ORIGINAL Rootbreaker/Bunker Mutant character design. Create ONE isolated dormant/crouched pose of that same miniboss, not a sheet and not multiple poses. He is asleep/hibernating near the ground, heavy concrete-growth arm folded beside the body, toxic sacs glowing faintly, roots and vines resting, no attack motion yet. Keep the same green/orange/gray/teal palette and same anatomy. Playful polished casual-game cartoon, chunky proportions, clean outline, soft cel shading, top-down/3/4 game camera, mobile-readable. Simple neutral warm background. No text, no logo, no UI, no extra characters. Original IP only. This will be the first frame for an awakening animation.",
-    "resolution": "1080p",
+    "image_url": "https://d3u0tzju9qaucj.cloudfront.net/9f95694a-f77a-4193-89ef-1c30149ba5ad/b756dd21-a307-491c-b367-e14f50d0d789.png",
+    "prompt": "Locked camera. Animate this exact closed bunker hatch into an OPEN secret entrance for an original colorful mobile tower-defense game. Preserve the hatch design, cracked concrete ring, surrounding vines and cartoon style. Sequence: amber indicator pulses twice; tiny dust particles shake loose; the circular hatch unlocks and rotates/lifts open; a short white steam burst escapes; warm yellow-green tunnel light rises; a short descending stair/tunnel becomes visible. End with the hatch fully open and stable for the final second. No new props, no text, no labels, no logo, no camera movement, no zoom, no cuts. Keep motion readable at mobile-game scale.",
+    "duration": 6,
+    "resolution": "720p",
     "aspect_ratio": "16:9",
-    "batch_size": 1,
-    "enhance_prompt": false
+    "output_format": "mp4",
+    "generate_audio": false
   },
   "max_wait_seconds": 1200
 }
