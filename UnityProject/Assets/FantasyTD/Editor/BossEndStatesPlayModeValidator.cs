@@ -941,12 +941,7 @@ namespace FantasyTD.CI
             if (CountNonBossEnemies() > 0)
                 return;
 
-            _bossFinalEssenceBefore = _session.Economy.Essence;
-            _bossFinalBaseBefore = _session.Base.Hp;
             _extraDefensePlantIndex = 0;
-
-            AddFact("victory.bossOnlyEssenceBefore", _bossFinalEssenceBefore);
-            AddFact("victory.bossOnlyBaseBefore", _bossFinalBaseBefore);
             _phase = Phase.VictoryExtraDefense;
         }
 
@@ -954,6 +949,11 @@ namespace FantasyTD.CI
         {
             if (_extraDefensePlantIndex >= ExtraDefenseSeedSpots.Length)
             {
+                _bossFinalEssenceBefore = _session.Economy.Essence;
+                _bossFinalBaseBefore = _session.Base.Hp;
+                AddFact("victory.bossOnlyEssenceBefore", _bossFinalEssenceBefore);
+                AddFact("victory.bossOnlyBaseBefore", _bossFinalBaseBefore);
+
                 Time.timeScale = 16f;
                 Time.maximumDeltaTime = 0.20f;
                 _phase = Phase.VictoryWait;
