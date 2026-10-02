@@ -74,6 +74,11 @@ namespace FantasyTD.CI
             PlantBehaviorsPlayModeValidator.Start();
         }
 
+        public static void EnemyWaveFlow()
+        {
+            EnemyWaveFlowPlayModeValidator.Start();
+        }
+
         public static void BuildAndroid()
         {
             Directory.CreateDirectory(ReportDirectory);
