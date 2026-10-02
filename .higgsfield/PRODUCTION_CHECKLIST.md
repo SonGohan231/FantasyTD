@@ -296,29 +296,47 @@ Production:
 
 ## MAP 7 — Świątynia Słońca i Księżyca
 **Difficulty:** Hard / three routes + route mechanisms  
-**Topology:** 3 routes; mechanisms open/close side transitions  
+**Topology:** shared entry → 3 routes → dynamic side transitions → shared exit  
 **Target build spots:** 12  
 **Ambient:** waterfalls, flame bowls, rotating disks, moving statues, light shafts  
-**Event:** mirrors rotate → beam sweeps → one gate closes → another opens → route changes  
-**Secret/miniboss:** guardian altar / awakened temple guardian  
-**Unlock:** light/support tower
+**Event:** mirrors rotate → beam sweeps → one gate closes → another opens → route state changes  
+**Secret/miniboss:** guardian sanctum / awakened temple guardian  
+**Unlock:** Sun-Moon support/light tower
 
 Previous API concept:
 - [!] Old static concept — run **36999563641** — REJECTED as final layout
 
 Production:
+- [x] TOPOLOGY_SPEC_LOCKED — `.higgsfield/MAP7_TEMPLE_TOPOLOGY.json`, commit **5df4fbea** (3 routes, 2 gate states, 12 spots)
+- [ ] SCENERY_PROP_PACK
+- [ ] BACKGROUND_TERRAIN_PLATE
+- [ ] BASE_COMPOSITE_IN_UNITY_FROM_LOCKED_TOPOLOGY
 - [ ] BASE_FINAL_NEW_TOPOLOGY
 - [ ] AMBIENT_LOOP
+- [ ] MIRROR_SINGLE_SOURCE
 - [ ] MIRROR_ROTATE
 - [ ] BEAM_SWEEP
+- [ ] GATE_A_SINGLE_SOURCE
+- [ ] GATE_B_SINGLE_SOURCE
 - [ ] GATE_A_CLOSE
 - [ ] GATE_B_OPEN
 - [ ] ROUTE_STATE_A
 - [ ] ROUTE_STATE_B
+- [ ] SANCTUM_SINGLE_SOURCE
 - [ ] SANCTUM_CLOSED
 - [ ] SANCTUM_OPEN
+- [ ] SANCTUM_OPEN_ANIM
+- [ ] MINIBOSS_SOURCE
+- [ ] MINIBOSS_DORMANT_SINGLE_SOURCE
+- [ ] MINIBOSS_ACTIVE_SINGLE_SOURCE
 - [ ] MINIBOSS_DORMANT
 - [ ] MINIBOSS_ACTIVE
+- [ ] MINIBOSS_AWAKEN_ANIM
+- [ ] MINIBOSS_ATTACK_ANIM
+- [ ] SPECIAL_LIGHT_TOWER_SOURCE
+- [ ] SPECIAL_LIGHT_TOWER_ACTIVE_SINGLE_SOURCE
+- [ ] SPECIAL_LIGHT_TOWER_ACTIVATION_ANIM
+- [ ] SPECIAL_LIGHT_TOWER_IDLE_LOOP
 
 ## MAP 8 — Lochy Smoka
 **Difficulty:** Hard+ / dynamic route network  
