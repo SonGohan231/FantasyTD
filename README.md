@@ -62,7 +62,7 @@ Nie należy za każdym razem wczytywać całego Full Design Document do prostego
 ## Role
 
 - **ChatGPT** — project manager, game design, kolejność ticketów.
-- **Astra Orchestrator** — reviewer/architect/debug/QA advisor.
+- **Dyrygent** — reviewer/architect/debug/QA advisor.
 - **Codex** — implementacja w repo i uruchamianie narzędzi.
 - **Unity/Android tooling** — źródło prawdy dla compile, Play Mode i buildów.
 - **Użytkownik** — właściciel produktu i ostateczna akceptacja.
@@ -88,3 +88,8 @@ Menu edytora przewidziane w projekcie:
 Aktualny projekt został przygotowany poza aktywnym Unity Editor, dlatego część jego zachowania nadal wymaga realnej walidacji w Unity.
 
 Nie traktuj deklaracji w dokumentacji jako dowodu, że Play Mode lub APK już działa.
+
+
+## Dyrygent Unity Executor
+
+Automatyczna walidacja Unity działa przez GitHub Actions w `.github/workflows/unity-executor.yml`. Szczegóły: `docs/Dyrygent_Unity_Executor.md`.
