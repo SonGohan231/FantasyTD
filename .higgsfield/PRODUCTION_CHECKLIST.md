@@ -54,6 +54,8 @@ Production:
 - [ ] AMBIENT_LOOP
 - [ ] SECRET_HINT
 - [ ] SECRET_OPEN
+- [ ] MINIBOSS_DORMANT_SINGLE_SOURCE
+- [ ] MINIBOSS_ACTIVE_SINGLE_SOURCE
 - [ ] MINIBOSS_DORMANT
 - [ ] MINIBOSS_ACTIVE
 
@@ -121,9 +123,11 @@ Previous API concept:
 - [!] Old static concept — run **36999547601** — REJECTED as final layout
 
 Production:
-- [ ] TOPOLOGY_SKETCH — early split, two persistent routes, late merge, 12 target pads
-- [ ] SCENERY_PROP_PACK
-- [ ] BACKGROUND_TERRAIN_PLATE
+- [!] TOPOLOGY_SKETCH attempt 1 — run **37020773970**, artifact **11233275363** — REJECTED (generated two separate entries/exits; no true shared entry→split→late merge)
+- [ ] TOPOLOGY_SKETCH — retry required
+- [x] SCENERY_PROP_PACK — run **37020777949**, artifact **11232579406** — APPROVED after visual QA
+- [!] BACKGROUND_TERRAIN_PLATE attempt 1 — run **37020783707**, artifact **11232965586** — REJECTED (generator inserted road/path shapes; deterministic topology must remain road-free)
+- [ ] BACKGROUND_TERRAIN_PLATE — retry required
 - [ ] BASE_COMPOSITE_IN_UNITY_FROM_LOCKED_TOPOLOGY
 - [ ] BASE_FINAL_NEW_TOPOLOGY
 - [ ] AMBIENT_LOOP
@@ -131,15 +135,17 @@ Production:
 - [ ] FOG_HIGH
 - [ ] FOG_END
 - [ ] BAT_SWARM_ANIM
+- [ ] MOON_GATE_SINGLE_SOURCE
 - [ ] MOON_GATE_CLOSED
 - [ ] MOON_GATE_OPEN
 - [ ] MOON_GATE_OPEN_ANIM
-- [ ] MINIBOSS_SOURCE
+- [x] MINIBOSS_SOURCE — run **37020787886**, artifact **11232839080** — APPROVED after visual QA
 - [ ] MINIBOSS_DORMANT
 - [ ] MINIBOSS_ACTIVE
 - [ ] MINIBOSS_AWAKEN_ANIM
 - [ ] MINIBOSS_ATTACK_ANIM
-- [ ] SPECIAL_NIGHT_TOWER_SOURCE
+- [x] SPECIAL_NIGHT_TOWER_SOURCE — run **37020792268**, artifact **11233385289** — APPROVED after visual QA
+- [ ] SPECIAL_NIGHT_TOWER_ACTIVE_SINGLE_SOURCE
 - [ ] SPECIAL_NIGHT_TOWER_ACTIVATION_ANIM
 
 ## MAP 4 — Dno oceaniczne
