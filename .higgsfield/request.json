@@ -1,9 +1,9 @@
 {
   "enabled": true,
-  "generation_id": "map7-temple-sanctum-source-20261002-001",
+  "generation_id": "map7-temple-guardian-source-20261002-001",
   "model_path": "recraft/v4.1/text-to-image",
   "input": {
-    "prompt": "ORIGINAL single secret interactive asset for a colorful Sun-and-Moon temple mobile tower-defense map. ONE guardian sanctum door only, isolated on warm off-white background. Design: round sealed stone door inset in a compact shrine facade, split visually into warm sun-gold upper half and cool moon-indigo lower half, central teal crystal lock, two small lotus planters, clean geometric ornament without writing. Playful premium casual-game cartoon, chunky shapes, clean outlines, soft cel shading, top-down/3/4 camera, mobile-readable. No text, no UI, no characters. This exact asset will be animated opening later.",
+    "prompt": "ORIGINAL 2D miniboss source sheet for \"Awakened Temple Guardian\" in a colorful Sun-and-Moon temple mobile tower-defense game. Pure flat/cartoon 2D, chunky imposing proportions, clean dark outlines, saturated sandstone/gold/indigo/teal palette, soft cel shading, high phone readability. No 3D, no realism.\n\nCharacter identity: ancient animated stone guardian with broad torso, two heavy stone arms, split sun/moon shoulder plates, teal crystal core in chest, simple expressive mask-like face carved into stone, trailing cloth ribbons in warm gold and cool indigo, no weapons.\nCreate 5 isolated consistent poses:\n1 dormant kneeling statue,\n2 awakening with crystal lighting,\n3 active combat idle,\n4 sweeping arm attack,\n5 ground-slam attack.\nSame anatomy/proportions/camera. No text, no UI, no extra characters.",
     "resolution": "1k",
     "aspect_ratio": "16:9",
     "output_format": "png"
