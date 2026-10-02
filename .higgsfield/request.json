@@ -1,14 +1,12 @@
 {
   "enabled": true,
-  "generation_id": "map7-temple-ambient-loop-20261002-001",
-  "model_path": "bytedance/seedance-2.5/text-to-video",
+  "generation_id": "map7-temple-mirror-source-20261002-001",
+  "model_path": "recraft/v4.1/text-to-image",
   "input": {
-    "prompt": "Locked-camera 16:9 ambient effects overlay for an ORIGINAL Sun-and-Moon temple tower-defense map. Plain near-black compositing background. Animate ONLY separated environmental effects: warm sun motes drifting in upper half, cool moon motes drifting in lower half, tiny waterfall mist wisps, soft flame-bowl flicker glows, slow rotating light-ring particles, a few lotus-petal motes. Keep most of frame dark/empty for Unity compositing. Slow loop-friendly motion, no terrain, no buildings, no text, no UI, no camera movement, no cuts.",
-    "duration": 4,
-    "resolution": "480p",
+    "prompt": "ORIGINAL single interactive temple mechanism asset for a colorful mobile tower-defense game. ONE mirror obelisk only, isolated on warm off-white background. Design: short carved sandstone pedestal with a large circular polished mirror set in a teal-and-gold rotating ring; sun motif implied only by geometric rays, no text/symbol writing; small blue crystal pivot; chunky premium casual-game cartoon, clean outlines, saturated gold/teal, soft cel shading, top-down/3/4 camera. Mirror faces slightly upward/right, ready to rotate. No extra props, no UI, no text.",
+    "resolution": "1k",
     "aspect_ratio": "16:9",
-    "output_format": "mp4",
-    "generate_audio": false
+    "output_format": "png"
   },
   "max_wait_seconds": 1200
 }
