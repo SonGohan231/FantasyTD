@@ -1,5 +1,5 @@
 {
-  "requestId": "t0005-enemy-wave-flow-r1-20261002-1145",
+  "requestId": "t0005-enemy-wave-flow-r2-20261002-1155",
   "mode": "enemy-wave-flow",
-  "note": "T0005 real Unity Play Mode validation for enemies and waves 1-5."
+  "note": "T0005 rerun after harness-only speed sample stabilization; no production behavior changes."
 }
