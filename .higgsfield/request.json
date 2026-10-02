@@ -1,12 +1,14 @@
 {
   "enabled": true,
-  "generation_id": "map5-fungal-background-terrain-20261002-001",
-  "model_path": "recraft/v4.1/text-to-image",
+  "generation_id": "map5-fungal-ambient-loop-20261002-001",
+  "model_path": "bytedance/seedance-2.5/text-to-video",
   "input": {
-    "prompt": "ORIGINAL 16:9 BACKGROUND TERRAIN PLATE for a colorful fungal-infected city mobile tower-defense map. This plate sits UNDER deterministic Unity roads and build pads: DO NOT draw any roads, lanes, paths, arrows, build circles, towers, enemies, UI or text.\n\nCreate a coherent top-down / restrained 3/4 cartoon city environment with clear open corridors for later road overlay. Theme: once-cheerful city consumed by giant mushrooms and glowing mycelium. Put low-rise building edges mostly around outer borders; use cracked plazas, patches of moss, bioluminescent fungal gardens, fluorescent runoff channels, rooftop mushroom clusters, vines, blank facades, colorful spores, broken concrete, sewers, lab district cue. Keep central and three broad left-to-right corridors visually calm/open to support a future 3-branch topology.\n\nStyle: playful casual-game cartoon, chunky shapes, clean dark outlines, bright magenta/cyan/lime/orange accents, soft cel shading, low texture noise, high mobile readability. No realism, no Kingdom Rush imitation, no copied assets. Absolutely no words, letters, numbers, logos, signs, posters, billboards or road markings.",
-    "resolution": "1k",
+    "prompt": "Locked-camera 16:9 ambient overlay for an ORIGINAL colorful fungal-infected city tower-defense map. Plain near-black compositing background. Animate ONLY separated environmental effects: slow drifting spores, a few softly pulsing magenta/cyan mycelium threads, tiny mushroom caps opening and closing, faint fluorescent runoff shimmer, occasional floating dust motes, one gentle bioluminescent pulse. Motion is slow, loop-friendly, playful, non-cinematic. No roads, no buildings, no characters, no text, no UI, no camera movement, no zoom, no cuts. Designed for additive/screen compositing over a static Unity map.",
+    "duration": 4,
+    "resolution": "480p",
     "aspect_ratio": "16:9",
-    "output_format": "png"
+    "output_format": "mp4",
+    "generate_audio": false
   },
   "max_wait_seconds": 1200
 }
