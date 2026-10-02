@@ -100,8 +100,9 @@ Production:
 - [x] TERRAIN_ROAD_TILE_KIT — run **37009161826**, artifact **11227420838** — APPROVED after visual QA (modular asphalt/curves/Y-junctions/sidewalk/water/props)
 - [x] RADIO_RELAY_SINGLE_SOURCE — run **37010048084**, artifact **11226614659** — APPROVED after visual QA
 - [x] BACKGROUND_TERRAIN_PLATE — run **37010052305**, artifact **11227178308** — APPROVED after visual QA (road-free environment plate for deterministic Unity composition)
-- [ ] SPECIAL_SALVAGE_TOWER_SOURCE
+- [x] SPECIAL_SALVAGE_TOWER_SOURCE — run **37010305311**, artifact **11227492469** — APPROVED after visual QA
 - [ ] SPECIAL_SALVAGE_TOWER_ACTIVATION_ANIM
+- [ ] SPECIAL_SALVAGE_TOWER_IDLE_LOOP
 
 ## MAP 3 — Zmierzch
 **Difficulty:** Medium- / two persistent routes  
