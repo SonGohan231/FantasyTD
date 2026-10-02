@@ -12,6 +12,7 @@ namespace FantasyTD.CI
     {
         private const string ReportDirectory = "Artifacts/UnityExecutor";
         private const string BaselineReport = ReportDirectory + "/baseline.txt";
+        private const string MapAIntegrityReport = ReportDirectory + "/map-a-integrity.txt";
         private const string AndroidReport = ReportDirectory + "/android-build.txt";
 
         public static void Baseline()
@@ -49,6 +50,18 @@ namespace FantasyTD.CI
                 throw new Exception("Expected MAP-A scene was not generated.");
             if (!sceneInBuildSettings)
                 throw new Exception("MAP-A scene is not enabled in Build Settings.");
+        }
+
+        public static void MapAIntegrity()
+        {
+            Directory.CreateDirectory(ReportDirectory);
+            MapAIntegrityValidator.Result result = MapAIntegrityValidator.Run();
+            string report = result.ToReportText();
+            File.WriteAllText(MapAIntegrityReport, report);
+            Debug.Log(report);
+
+            if (!result.Success)
+                throw new Exception("MAP-A integrity validation failed. See " + MapAIntegrityReport);
         }
 
         public static void BuildAndroid()
