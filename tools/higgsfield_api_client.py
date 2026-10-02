@@ -14,6 +14,7 @@ ALLOWED_MODELS = {
     "higgsfield-ai/soul/v2/standard": "image",
     "higgsfield-ai/soul/v2/image-to-image": "image",
     "z-image/turbo": "image",
+    "ideogram/v4.0": "image",
     "recraft/v4.1/text-to-image": "image",
     "bytedance/seedance-2.5/text-to-video": "video",
     "bytedance/seedance-2.5/image-to-video": "video",
