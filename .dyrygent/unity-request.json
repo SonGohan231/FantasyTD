@@ -1,5 +1,5 @@
 {
-  "requestId": "t0011-visual-layout-20261002-2019",
-  "mode": "mobile-layout",
-  "note": "T0011 visual production regression: render-capable 16:9, 20:9 and safe-area validation. Do not start T0009 or T0010."
+  "requestId": "t0011-android-candidate-20261002-2021",
+  "mode": "android-build",
+  "note": "T0011 visual production candidate Android APK build. T0009/T0010 remain untouched."
 }
