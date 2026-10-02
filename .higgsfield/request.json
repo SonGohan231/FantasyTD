@@ -1,12 +1,14 @@
 {
   "enabled": true,
-  "generation_id": "map2-postapo-topology-sketch-20261002-001",
-  "model_path": "recraft/v4.1/text-to-image",
+  "generation_id": "map2-postapo-base-soul-i2i-20261002-001",
+  "model_path": "higgsfield-ai/soul/v2/image-to-image",
   "input": {
-    "prompt": "Create a SIMPLE CLEAN 16:9 GAME-LEVEL TOPOLOGY DIAGRAM on a plain pale background. This is NOT final art. No buildings, no scenery, no text, no letters, no numbers.\n\nDraw one dark gray road graph only:\nLEFT ENTRY -> short shared road -> very obvious Y SPLIT -> TWO SEPARATE branches -> very obvious Y MERGE -> short shared road -> RIGHT EXIT.\n\nThe upper branch curves upward and across the top-middle.\nThe lower branch curves downward and across the bottom-middle.\nThere must be a LARGE empty gap between upper and lower branches through the middle.\nThe two branches must not touch or cross until the single merge near the right side.\nDo not make a loop. Do not make one snake/S-road. Do not add any extra road.\n\nAdd exactly 12 simple build-pad circles OFF the road:\n3 before the split,\n3 beside upper branch,\n3 beside lower branch,\n3 around merge/final segment.\nPads should be plain teal circles with dark outlines.\nEverything else blank. Clean vector-like diagram, crisp top-down layout, no perspective.",
-    "resolution": "1k",
+    "image_url": "https://d3u0tzju9qaucj.cloudfront.net/9f95694a-f77a-4193-89ef-1c30149ba5ad/901d6fdf-ff26-452c-b85c-fb5930edb19f.png",
+    "prompt": "Transform this topology diagram into a polished ORIGINAL mobile 2D tower-defense map while PRESERVING THE ROAD GEOMETRY AND ALL 12 BUILD-PAD POSITIONS from the reference as closely as possible.\n\nThe dark road network is authoritative:\n- left shared entry\n- obvious Y split\n- separate upper and lower branches with a large central gap\n- one merge on the right\n- short right shared exit\nDo not collapse the two branches. Do not create extra combat roads.\n\nTheme: colorful overgrown post-apocalyptic city reclaimed by plants.\nArt style: playful casual plant-defense readability, smooth chunky shapes, friendly cartoon proportions, clean outlines, bright saturated palette, soft cel shading, low texture noise, mobile readability. Original IP only. Do not imitate Kingdom Rush. Do not copy any existing map or characters.\n\nReplace the blank background with simplified ruined low-rise buildings, cracked sidewalks, colorful vines, flowers, rusted small cars, rooftop gardens, sewer channel and concrete debris. Keep the large central empty area useful for scenery/water rather than adding roads.\n\nConvert the 12 teal circles into exactly 12 obvious build clearings/pads placed where they are in the reference. No extra build pads.\n\nAnimation-ready props:\n- several separate amber warning beacons\n- one radio antenna/dish suitable for slow rotation\n- two steam vents\n- flowing canal/sewer water\n- loose leaves/papers\n- open atmospheric area for a later toxic dust-cloud overlay.\n\nSecrets:\n- closed circular bunker hatch near lower route\n- small maintenance tunnel entrance\n- hidden radio relay near upper route\n\nNo readable text, no letters, no numbers, no logos, no billboards, no posters, no road arrows, no UI. No enemies and no towers. BASE state only; no toxic storm active.",
+    "resolution": "1080p",
     "aspect_ratio": "16:9",
-    "output_format": "png"
+    "batch_size": 1,
+    "enhance_prompt": false
   },
   "max_wait_seconds": 1200
 }
