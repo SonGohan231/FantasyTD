@@ -1,12 +1,15 @@
 {
   "enabled": true,
-  "generation_id": "map2-postapo-background-terrain-plate-20261002-001",
-  "model_path": "recraft/v4.1/text-to-image",
+  "generation_id": "map2-postapo-radio-relay-activation-20261002-002",
+  "model_path": "bytedance/seedance-2.5/image-to-video",
   "input": {
-    "prompt": "ORIGINAL 16:9 BACKGROUND TERRAIN PLATE for a colorful post-apocalyptic mobile tower-defense map. This background will sit UNDER a deterministic Unity road graph and build pads, so DO NOT draw any roads, lanes, arrows, build pads, towers, enemies, UI or text. Entire image should be a coherent top-down / restrained 3/4 cartoon environment with open negative space for roads to be composited later.\n\nTheme: playful overgrown abandoned city. Show broad muted concrete/asphalt ground zones, patches of grass and flowers, rooftop/low-building edges placed mostly near outer borders, sewer/water channels near lower areas, cracked plazas, small garden patches, vines, rubble, faded non-readable blank panels, a few parked rusted vehicles near edges, bunker district cue, radio district cue. Keep the center and major horizontal corridors visually calm so locked roads remain readable when overlaid.\n\nStyle: chunky simplified casual-game cartoon, clean dark outlines, bright but controlled saturated palette, soft cel shading, low texture noise, mobile readability, original IP. No realism, no Kingdom Rush imitation, no copied game assets. Absolutely no words, letters, numbers, logos, billboards, posters or road markings.",
-    "resolution": "1k",
+    "image_url": "https://d3u0tzju9qaucj.cloudfront.net/9f95694a-f77a-4193-89ef-1c30149ba5ad/161be5e4-b329-4528-ac1a-b2861185b146.png",
+    "prompt": "Locked camera. Animate THIS EXACT single overgrown radio relay prop. Preserve its orange-red salvage housing, gray dish, teal cables/vines, amber indicator and cartoon design. Sequence: dormant still relay -> amber indicator blinks twice -> teal cable/core pulse activates -> satellite dish rotates smoothly about 35-45 degrees and eases into a slow gentle scanning loop -> a soft teal circular signal pulse radiates once -> active light stabilizes. Keep the prop centered and unchanged in identity. No extra objects, no characters, no text, no UI, no camera movement, no zoom, no cuts. End in a stable active looping state suitable for Unity.",
+    "duration": 6,
+    "resolution": "720p",
     "aspect_ratio": "16:9",
-    "output_format": "png"
+    "output_format": "mp4",
+    "generate_audio": false
   },
   "max_wait_seconds": 1200
 }
