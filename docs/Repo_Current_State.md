@@ -642,25 +642,25 @@ No production gameplay, balance, plant, enemy, wave, boss, map geometry or gamep
 
 ## T0008 — Android Build
 
-Status: **PASS candidate, pending final-HEAD rerun**
+Status: **PASS**
 
 Real Unity evidence:
-- Unity Executor run: `36999815943`
-- validated head before documentation commits: `f987f110c175198b689e0f19747be9f5f98febc5`
+- Unity Executor final run: `37001334070`
+- validated final head: `99351f43cce3039a38c64c7020de9e540a76b864`
 - Unity version: `6000.0.26f1 (ccb7c73d2c02)`
 - Android Build Support: `True`
 - active build target: `Android`
 - application identifier: `com.indie.fantasytd`
 - MAP-A present/enabled/in actual build options: **YES**
 - BuildReport result: `Succeeded`
-- BuildReport duration: `610.038 s`
+- BuildReport duration: `468.893 s`
 - BuildReport errors: `0`
 - BuildReport warnings: `0`
-- BuildReport total size: `336700126` bytes
+- BuildReport total size: `336700123` bytes
 - exact APK path: `Builds/Android/FantasyTD_MAP_A_v2.apk`
-- physical APK size: `18869167` bytes
-- APK SHA-256: `13029c48866753493aa23fe7aab321c2f94dd7e76e43de49791c5c243ccc8bb5`
-- artifact: `fantasy-td-android-36999815943` (ID `11223074737`)
+- physical APK size: `18869164` bytes
+- APK SHA-256: `b99b3f85b29453a76e2f698927183ad5fc8d1f5eb62e57079c86b7676b8c6c57`
+- artifact: `fantasy-td-android-37001334070` (ID `11224123199`)
 - artifact contains the APK plus executor report and Unity logs: **YES**
 
 Build tooling changes:
@@ -683,9 +683,9 @@ Scope exclusions:
 
 ## Build state
 
-Android build: **VERIFIED — PASS candidate pending final-HEAD rerun**.
+Android build: **VERIFIED — PASS**.
 
-A real APK was created at `Builds/Android/FantasyTD_MAP_A_v2.apk` in run `36999815943`. Device install/launch success is not claimed.
+A real APK was created at `Builds/Android/FantasyTD_MAP_A_v2.apk` in final run `37001334070`. Device install/launch success is not claimed.
 
 ## Input state
 
