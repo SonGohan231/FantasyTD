@@ -64,6 +64,11 @@ namespace FantasyTD.CI
                 throw new Exception("MAP-A integrity validation failed. See " + MapAIntegrityReport);
         }
 
+        public static void MobilePlanting()
+        {
+            MobilePlantingPlayModeValidator.Start();
+        }
+
         public static void BuildAndroid()
         {
             Directory.CreateDirectory(ReportDirectory);
