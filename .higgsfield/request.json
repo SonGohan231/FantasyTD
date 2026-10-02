@@ -1,9 +1,9 @@
 {
   "enabled": true,
-  "generation_id": "map4-abyssal-ambient-loop-20261002-001",
+  "generation_id": "map4-abyssal-hot-bubble-event-20261002-001",
   "model_path": "bytedance/seedance-2.5/text-to-video",
   "input": {
-    "prompt": "Locked-camera 16:9 AMBIENT OVERLAY for an ORIGINAL abyssal sea-floor tower-defense map. Plain near-black compositing background. Animate only isolated underwater effects: small bubble streams rising, drifting plankton particles, gentle kelp-tip silhouettes swaying at frame edges, tiny cyan bioluminescent motes, occasional small fish silhouettes crossing slowly. No roads, no map scenery, no characters, no text, no UI, no camera movement, no cuts. Restrained loop-friendly motion for Unity.",
+    "prompt": "Locked-camera 16:9 GAMEPLAY HAZARD OVERLAY for an ORIGINAL abyssal tower-defense map on plain near-black compositing background. Show a clear 4-second hydrothermal hot-bubble lifecycle: small orange-cyan bubble forms near lower-left vent zone -> grows rapidly while shimmering with heat -> detaches and drifts diagonally across the center as a large translucent bubble -> a few tiny incoming generic projectile streaks visibly enter and disappear inside it to communicate projectile absorption -> bubble flashes and bursts into harmless ring droplets near upper-right. No scenery, no characters, no text, no UI, no camera movement or cuts. Mobile readable.",
     "duration": 4,
     "resolution": "480p",
     "aspect_ratio": "16:9",
