@@ -19,17 +19,16 @@ Confidence: Confirmed as an evidence gap
 Severity: High for milestone readiness
 
 Evidence:
-T0001 verified the Editor/import/compile baseline. T0002 verified MAP-A scene/geometry. T0003 Unity Executor run `36986249467` entered real Play Mode and verified mobile planting/radial interaction for all 12 planting spots, UI/world input blocking, unavailable purchase state, occupied-spot blocking, and menu closing with zero T0003 validation errors.
+T0001 verified the Editor/import/compile baseline. T0002 verified MAP-A scene/geometry. T0003 Unity Executor run `36986249467` verified mobile planting/radial interaction. T0004 Unity Executor run `36988172698` entered real Play Mode and verified all four production plant behaviors, including projectile targeting/damage/resistance, repeated Essence income, normal/boss root control, and normal/boss Frost slow with expiry.
 
 Still unverified:
-- plant combat behavior,
 - enemy/wave runtime,
-- boss behavior,
+- boss wave/end-state behavior beyond the T0004 control-resistance fixture,
 - victory/defeat/restart,
 - physical Android device runtime.
 
 Impact:
-Play Mode is now proven for the T0003 interaction slice, but the full gameplay loop is not yet verified.
+Play Mode is now proven for planting/UI and the four plant behavior slice, but the full gameplay loop remains unverified.
 
 Action:
 Continue runtime verification only through separately activated tickets.
@@ -213,7 +212,7 @@ Confidence: Confirmed
 Severity: Informational until runtime works
 
 Evidence:
-Balance workbook is based on design mathematics and benchmark assumptions.
+Balance workbook is based on design mathematics and benchmark assumptions. T0004 verified that the current plant constants execute as implemented in runtime (damage, income interval, root and slow), but it did not evaluate overall game balance or playtest outcomes.
 
 Action:
 Do not change broad balance during technical stabilization.
@@ -241,6 +240,46 @@ Non-blocking. T0001 completed with zero C# compiler errors and the Unity Executo
 
 Action:
 Update the obsolete API in a separately scoped maintenance/fix ticket if desired. Do not modify source code during T0001 solely to remove this warning.
+
+---
+
+## T0004 verified evidence
+
+Unity Executor:
+- run: `36988172698`
+- branch: `codex/t0004-four-plant-behaviors`
+- validated head before documentation commits: `21cac36b4d2902451af65aa9134f4c9d0f4f8c90`
+- T0004 Play Mode job: **success**
+- executor report status: **PASS**
+- Play Mode entered: `True`
+- Unity: `6000.0.26f1 (ccb7c73d2c02)`
+- runtime warnings captured by harness: `0`
+- validation errors: `0`
+- C# compiler errors: `0`
+- existing unique compiler warning: `CS0618` in `MapAEditorSetup.cs:46`
+- artifact: `unity-executor-plant-behaviors-36988172698` (ID `11218576224`)
+
+Pędostrzał:
+- range/First targeting: **PASS**
+- projectile reaches intended target: **PASS**
+- unarmored physical damage `22`: **PASS**
+- Armored resistance `15%` reduced `22 → 18.7`: **PASS**
+
+Kwiat Esencji:
+- `+20` after first `20 s` game-time interval: **PASS**
+- another `+20` after the second interval: **PASS**
+
+Dębowy Strażnik:
+- normal root `1.75 s`, movement stop/resume: **PASS**
+- boss root `~0.6125 s` from `0.35×` multiplier: **PASS**
+
+Mroźny Pąk:
+- Frost damage `18`: **PASS**
+- normal slow `35%`, speed `0.8 → 0.52 → 0.8`: **PASS**
+- boss slow capped at `20%`, speed `0.3 → 0.24 → 0.3`: **PASS**
+- slow expiry normal/boss: **PASS**
+
+T0004 did not run wave sequencing, Android build/toolchain, device smoke, mobile aspect/layout tests, new plants, upgrades, or T0005+ implementation. No graphical asset changes were needed.
 
 ---
 

@@ -69,6 +69,11 @@ namespace FantasyTD.CI
             MobilePlantingPlayModeValidator.Start();
         }
 
+        public static void PlantBehaviors()
+        {
+            PlantBehaviorsPlayModeValidator.Start();
+        }
+
         public static void BuildAndroid()
         {
             Directory.CreateDirectory(ReportDirectory);
