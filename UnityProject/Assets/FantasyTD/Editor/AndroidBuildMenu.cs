@@ -12,6 +12,8 @@ namespace FantasyTD.MapA.Editor
     {
         public const string ApkPath = "Builds/Android/FantasyTD_MAP_A_v2.apk";
 
+        public static string[] LastBuildScenes { get; private set; }
+
         [MenuItem("Tools/Fantasy TD/Build Android APK")]
         public static BuildReport BuildApk()
         {
@@ -41,9 +43,10 @@ namespace FantasyTD.MapA.Editor
             if (File.Exists(ApkPath))
                 File.Delete(ApkPath);
 
+            LastBuildScenes = new[] { MapAEditorSetup.ScenePath };
             BuildPlayerOptions options = new BuildPlayerOptions
             {
-                scenes = new[] { MapAEditorSetup.ScenePath },
+                scenes = LastBuildScenes,
                 locationPathName = ApkPath,
                 target = BuildTarget.Android,
                 options = BuildOptions.None
