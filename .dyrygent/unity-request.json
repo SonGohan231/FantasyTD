@@ -1,5 +1,5 @@
 {
-  "requestId": "t0002-map-a-integrity-20261002-1005",
+  "requestId": "t0002-map-a-integrity-final-20261002-1010",
   "mode": "map-a-integrity",
-  "note": "T0002 MAP-A Scene and Geometry Integrity validation via real Unity Executor."
+  "note": "Final T0002 MAP-A integrity validation on PR head."
 }
