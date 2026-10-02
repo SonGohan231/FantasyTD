@@ -1,9 +1,9 @@
 {
   "enabled": true,
-  "generation_id": "map2-postapo-ambient-overlay-20261002-001",
+  "generation_id": "map2-postapo-toxic-overlay-20261002-001",
   "model_path": "bytedance/seedance-2.5/text-to-video",
   "input": {
-    "prompt": "Locked-camera 16:9 ambient animation layer for an ORIGINAL colorful cartoon post-apocalyptic tower-defense city map. No characters, no roads, no UI, no text, no logos. Neutral dark transparent-like background substitute: plain near-black background intended for compositing. Animate ONLY isolated environmental effects spread across frame: two small steam puffs rising and dissipating, a few loose papers/leaves drifting slowly, tiny dust motes, one amber hazard beacon blinking gently, subtle wisps of smoke. Motion must be slow, loop-friendly, non-cinematic, no camera movement, no zoom, no scene cuts. Keep effects separated so they can be masked/composited in Unity.",
+    "prompt": "Locked-camera 16:9 EVENT OVERLAY for an ORIGINAL colorful cartoon post-apocalyptic tower-defense map. No characters, no roads, no UI, no text, no logos, no buildings. Plain near-black compositing background. Create a 6-second loop-friendly toxic dust storm progression: start almost clear, yellow-green dust wisps enter from the upper-right, quickly intensify into a dense swirling cloud with airborne leaves/paper and small glowing toxic particles, then thin and recede toward the right by the end. The center/left remains more readable than the upper-right at peak. No camera movement, no zoom, no cuts. This is a screen/map hazard overlay to be blended over a static game board in Unity.",
     "duration": 6,
     "resolution": "720p",
     "aspect_ratio": "16:9",
