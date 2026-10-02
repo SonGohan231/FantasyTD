@@ -1,12 +1,14 @@
 {
   "enabled": true,
-  "generation_id": "map6-bamboo-special-tower-active-single-20261002-001",
-  "model_path": "recraft/v4.1/text-to-image",
+  "generation_id": "map5-fungal-ambient-loop-20261002-002",
+  "model_path": "bytedance/seedance-2.5/text-to-video",
   "input": {
-    "prompt": "ORIGINAL single active gameplay source asset for the unlockable \"Bamboo Burst\" rapid-fire tower in a colorful bamboo-forest mobile tower-defense game. ONE tower only, isolated on warm off-white background. Identity: living bamboo cluster rooted in mossy stone planter, three hollow bamboo tubes angled outward like organic seed launchers, leafy branches, central friendly glowing seed-core, natural rotating bamboo ring. Active idle hero pose, all three tubes open and readable. Clean 2D cartoon, chunky shapes, crisp outlines, saturated jade/gold palette, soft cel shading, top-down/3/4 game camera, mobile-readable. No metal gun parts, no text, no UI.",
-    "resolution": "1k",
+    "prompt": "Locked-camera 16:9 AMBIENT EFFECT OVERLAY for an ORIGINAL fungal-infected city tower-defense map. Plain near-black background only; absolutely NO terrain, NO roads, NO buildings, NO horizon. Animate separated floating effects: drifting spores, thin pulsing magenta/cyan mycelium filaments, tiny glowing mushroom-cap particles opening/closing, faint lime runoff shimmer streaks, a few dust motes. Keep most pixels dark/empty for easy screen/additive compositing in Unity. Slow loop-friendly motion, no camera movement, no cuts, no text, no UI.",
+    "duration": 4,
+    "resolution": "480p",
     "aspect_ratio": "16:9",
-    "output_format": "png"
+    "output_format": "mp4",
+    "generate_audio": false
   },
   "max_wait_seconds": 1200
 }
