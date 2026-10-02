@@ -104,7 +104,7 @@ Production:
 - [x] SPECIAL_SALVAGE_TOWER_ACTIVATION_ANIM — run **37010704739**, artifact **11228146221** — APPROVED after visual QA (deploy→core light→vine/flower unfold→recycling pulse)
 - [!] SPECIAL_SALVAGE_TOWER_IDLE_LOOP attempt 1 — run **37010710427**, artifact **11227567439** — FAILED: Higgsfield API reported credit balance too low
 - [!] SPECIAL_SALVAGE_TOWER_IDLE_LOOP attempt 2 — run **37011244408**, artifact **11227981779** — REJECTED after visual QA (multi-pose source sheet remained visible; unsuitable as gameplay idle)
-- [ ] SPECIAL_SALVAGE_TOWER_ACTIVE_SINGLE_SOURCE
+- [x] SPECIAL_SALVAGE_TOWER_ACTIVE_SINGLE_SOURCE — run **37011702634**, artifact **11227554403** — APPROVED after visual QA
 - [ ] SPECIAL_SALVAGE_TOWER_IDLE_LOOP
 
 ## MAP 3 — Zmierzch
