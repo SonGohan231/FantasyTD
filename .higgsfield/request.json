@@ -1,10 +1,10 @@
 {
   "enabled": true,
-  "generation_id": "map2-postapo-miniboss-slam-attack-20261002-001",
+  "generation_id": "map2-postapo-miniboss-hit-defeat-20261002-001",
   "model_path": "bytedance/seedance-2.5/image-to-video",
   "input": {
     "image_url": "https://d3u0tzju9qaucj.cloudfront.net/9f95694a-f77a-4193-89ef-1c30149ba5ad/fa18d572-cb71-4f27-a698-0b2ede6e69b2.png",
-    "prompt": "Locked camera. Animate the exact original Rootbreaker / Bunker Mutant character from the reference into one heavy slam attack for a mobile tower-defense game. Preserve anatomy, colors, oversized concrete-growth arm, toxic sacs, roots/vines and cartoon style. Sequence: active crouched combat stance -> wind-up with concrete arm raised -> toxic sacs brighten -> powerful downward slam -> brief dust/shockwave ring at impact -> recoil -> return to combat idle. No gore, no extra characters, no text, no UI, no camera movement, no zoom, no cuts. Keep the motion readable at small phone scale.",
+    "prompt": "Locked camera. Animate the exact original Rootbreaker / Bunker Mutant from the reference through a readable hit-and-defeat sequence for a mobile tower-defense game. Preserve identity and cartoon proportions. Sequence: strong hit reaction -> stagger backward -> toxic sacs flicker -> roots lose tension -> creature drops to one knee -> heavy body collapses sideways -> faint toxic glow fades -> final defeated pose remains still for the last second. No gore, no dismemberment, no extra characters, no text, no UI, no camera movement, no zoom, no cuts.",
     "duration": 6,
     "resolution": "720p",
     "aspect_ratio": "16:9",
