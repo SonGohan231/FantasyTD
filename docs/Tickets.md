@@ -17,7 +17,7 @@ Do not implement PLANNED tickets unless the PM/user explicitly activates them.
 
 # T0001 — Unity Project Baseline
 
-Status: **ACTIVE**
+Status: **DONE**
 
 ## Goal
 
@@ -123,7 +123,7 @@ Return:
 
 # T0002 — MAP-A Scene and Geometry Integrity
 
-Status: **PLANNED**
+Status: **DONE**
 
 Purpose:
 Validate the generated scene, path, spawn/base, 12 planting spots, map bounds, and editor validation command.
@@ -137,7 +137,7 @@ Do not implement mobile UI or combat in this ticket.
 
 # T0003 — Mobile Planting and Radial Menu
 
-Status: **PLANNED**
+Status: **ACTIVE**
 
 Purpose:
 Validate touch selection of all 12 spots, radial-menu placement, edge clamping, cost availability states, and safe interaction with UI.
