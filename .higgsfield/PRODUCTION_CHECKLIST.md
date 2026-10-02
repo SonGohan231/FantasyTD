@@ -54,7 +54,9 @@ Production:
 - [ ] AMBIENT_LOOP
 - [ ] SECRET_HINT
 - [ ] SECRET_OPEN
+- [!] MINIBOSS_DORMANT_SINGLE_SOURCE attempt 1 — run **37021346938**, artifact **11234095282** — FAILED generation
 - [ ] MINIBOSS_DORMANT_SINGLE_SOURCE
+- [!] MINIBOSS_ACTIVE_SINGLE_SOURCE attempt 1 — run **37021351122**, artifact **11233745986** — REJECTED after visual QA (identity drift from approved source sheet)
 - [ ] MINIBOSS_ACTIVE_SINGLE_SOURCE
 - [ ] MINIBOSS_DORMANT
 - [ ] MINIBOSS_ACTIVE
@@ -124,10 +126,10 @@ Previous API concept:
 
 Production:
 - [!] TOPOLOGY_SKETCH attempt 1 — run **37020773970**, artifact **11233275363** — REJECTED (generated two separate entries/exits; no true shared entry→split→late merge)
-- [ ] TOPOLOGY_SKETCH — retry required
+- [x] TOPOLOGY_SPEC_LOCKED — deterministic spec `.higgsfield/MAP3_TWILIGHT_TOPOLOGY.json`, commit **106607d8** (1 shared entry, early split, 2 persistent routes, late merge, 12 build spots)
 - [x] SCENERY_PROP_PACK — run **37020777949**, artifact **11232579406** — APPROVED after visual QA
 - [!] BACKGROUND_TERRAIN_PLATE attempt 1 — run **37020783707**, artifact **11232965586** — REJECTED (generator inserted road/path shapes; deterministic topology must remain road-free)
-- [ ] BACKGROUND_TERRAIN_PLATE — retry required
+- [x] BACKGROUND_TERRAIN_PLATE — run **37021337264**, artifact **11233790855** — APPROVED after visual QA (road-free, calm center, twilight edge scenery)
 - [ ] BASE_COMPOSITE_IN_UNITY_FROM_LOCKED_TOPOLOGY
 - [ ] BASE_FINAL_NEW_TOPOLOGY
 - [ ] AMBIENT_LOOP
@@ -135,8 +137,8 @@ Production:
 - [ ] FOG_HIGH
 - [ ] FOG_END
 - [ ] BAT_SWARM_ANIM
-- [ ] MOON_GATE_SINGLE_SOURCE
-- [ ] MOON_GATE_CLOSED
+- [x] MOON_GATE_SINGLE_SOURCE — run **37021341072**, artifact **11233805827** — APPROVED after visual QA
+- [x] MOON_GATE_CLOSED — run **37021341072**, artifact **11233805827** — APPROVED
 - [ ] MOON_GATE_OPEN
 - [ ] MOON_GATE_OPEN_ANIM
 - [x] MINIBOSS_SOURCE — run **37020787886**, artifact **11232839080** — APPROVED after visual QA
@@ -145,7 +147,7 @@ Production:
 - [ ] MINIBOSS_AWAKEN_ANIM
 - [ ] MINIBOSS_ATTACK_ANIM
 - [x] SPECIAL_NIGHT_TOWER_SOURCE — run **37020792268**, artifact **11233385289** — APPROVED after visual QA
-- [ ] SPECIAL_NIGHT_TOWER_ACTIVE_SINGLE_SOURCE
+- [x] SPECIAL_NIGHT_TOWER_ACTIVE_SINGLE_SOURCE — run **37021355425**, artifact **11233476155** — APPROVED after visual QA
 - [ ] SPECIAL_NIGHT_TOWER_ACTIVATION_ANIM
 
 ## MAP 4 — Dno oceaniczne
