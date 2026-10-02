@@ -1,0 +1,5 @@
+{
+  "requestId": "bootstrap",
+  "mode": "baseline",
+  "note": "Dyrygent/ChatGPT updates this file to trigger baseline, tests, or android-build."
+}

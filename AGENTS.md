@@ -5,12 +5,12 @@ This file is repository-level law for coding agents.
 ## Working model
 
 - ChatGPT is the user-facing project manager and game-design coordinator.
-- Astra Orchestrator may review architecture, ticket scope, debugging evidence, QA plans, and completion reports.
+- Dyrygent may review architecture, ticket scope, debugging evidence, QA plans, and completion reports.
 - Codex is the repository implementation agent.
 - Unity Editor / Android build tooling are the source of truth for compilation, Play Mode, build, and device behavior.
 - The user owns product decisions and visual/gameplay approval.
 
-Astra reviews are advisory. Do not change scope only because Astra suggests something. Scope changes require the active ticket or an explicit user/PM decision.
+Dyrygent reviews are advisory. Do not change scope only because Astra suggests something. Scope changes require the active ticket or an explicit user/PM decision.
 
 ## One-ticket rule
 

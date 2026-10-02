@@ -1,0 +1,183 @@
+name: Dyrygent Unity Executor
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: Unity action to execute
+        required: true
+        default: baseline
+        type: choice
+        options:
+          - baseline
+          - tests
+          - android-build
+  push:
+    branches:
+      - main
+      - 'codex/**'
+      - 'dyrygent/**'
+    paths:
+      - 'UnityProject/**'
+      - '.dyrygent/unity-request.json'
+      - '.github/workflows/unity-executor.yml'
+  pull_request:
+    paths:
+      - 'UnityProject/**'
+      - '.github/workflows/unity-executor.yml'
+
+concurrency:
+  group: unity-executor-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  checks: write
+
+env:
+  UNITY_VERSION: 6000.0.26f1
+  PROJECT_PATH: UnityProject
+
+jobs:
+  prepare:
+    name: Resolve executor mode
+    runs-on: ubuntu-latest
+    outputs:
+      mode: ${{ steps.resolve.outputs.mode }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - id: resolve
+        name: Resolve mode
+        shell: bash
+        run: |
+          MODE="baseline"
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            MODE="${{ inputs.mode }}"
+          elif [[ "${{ github.event_name }}" == "push" ]] && git diff --name-only HEAD^ HEAD 2>/dev/null | grep -qx '.dyrygent/unity-request.json'; then
+            REQUESTED="$(jq -r '.mode // "baseline"' .dyrygent/unity-request.json)"
+            case "$REQUESTED" in
+              baseline|tests|android-build) MODE="$REQUESTED" ;;
+              *) echo "Invalid Unity Executor mode: $REQUESTED"; exit 1 ;;
+            esac
+          fi
+          echo "mode=$MODE" >> "$GITHUB_OUTPUT"
+          echo "Dyrygent Unity Executor mode: $MODE"
+
+  baseline:
+    name: Unity baseline / compile
+    needs: prepare
+    if: needs.prepare.outputs.mode == 'baseline'
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          lfs: true
+      - name: Cache Unity Library
+        uses: actions/cache@v4
+        with:
+          path: UnityProject/Library
+          key: unity-library-${{ runner.os }}-${{ env.UNITY_VERSION }}-${{ hashFiles('UnityProject/Assets/**', 'UnityProject/Packages/**', 'UnityProject/ProjectSettings/**') }}
+          restore-keys: |
+            unity-library-${{ runner.os }}-${{ env.UNITY_VERSION }}-
+      - name: Run Dyrygent Unity baseline
+        uses: game-ci/unity-builder@v4
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        with:
+          projectPath: ${{ env.PROJECT_PATH }}
+          unityVersion: ${{ env.UNITY_VERSION }}
+          targetPlatform: StandaloneLinux64
+          buildMethod: FantasyTD.CI.UnityExecutorCi.Baseline
+          allowDirtyBuild: true
+      - name: Upload baseline report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: unity-executor-baseline-${{ github.run_id }}
+          if-no-files-found: warn
+          path: |
+            UnityProject/Artifacts/UnityExecutor/**
+            UnityProject/Logs/**
+
+  tests:
+    name: Unity EditMode + PlayMode tests
+    needs: prepare
+    if: needs.prepare.outputs.mode == 'tests'
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          lfs: true
+      - name: Run Unity tests
+        uses: game-ci/unity-test-runner@v4
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        with:
+          projectPath: ${{ env.PROJECT_PATH }}
+          unityVersion: ${{ env.UNITY_VERSION }}
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+      - name: Upload test artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: unity-executor-tests-${{ github.run_id }}
+          if-no-files-found: warn
+          path: |
+            artifacts/**
+            UnityProject/Artifacts/**
+            UnityProject/TestResults/**
+
+  android:
+    name: Unity Android APK
+    needs: prepare
+    if: needs.prepare.outputs.mode == 'android-build'
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          lfs: true
+      - name: Cache Unity Library
+        uses: actions/cache@v4
+        with:
+          path: UnityProject/Library
+          key: unity-android-${{ env.UNITY_VERSION }}-${{ hashFiles('UnityProject/Assets/**', 'UnityProject/Packages/**', 'UnityProject/ProjectSettings/**') }}
+          restore-keys: |
+            unity-android-${{ env.UNITY_VERSION }}-
+      - name: Build Android APK
+        uses: game-ci/unity-builder@v4
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        with:
+          projectPath: ${{ env.PROJECT_PATH }}
+          unityVersion: ${{ env.UNITY_VERSION }}
+          targetPlatform: Android
+          androidExportType: androidPackage
+          buildMethod: FantasyTD.CI.UnityExecutorCi.BuildAndroid
+          allowDirtyBuild: true
+      - name: Upload APK and executor report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: fantasy-td-android-${{ github.run_id }}
+          if-no-files-found: error
+          path: |
+            UnityProject/Builds/Android/*.apk
+            UnityProject/Artifacts/UnityExecutor/**
