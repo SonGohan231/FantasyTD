@@ -7,7 +7,7 @@ Dyrygent jest warstwą orkiestracji dla Fantasy TD. Użytkownik opisuje rezultat
 - GPT-6.1 Sol — cięższa analiza techniczna,
 - GPT-6 Luna — lekka/przepisowa praca,
 - GPT-5.3-Codex — implementacja, debugging i praca kodowa,
-- Unity Executor — realna walidacja Unity przez GitHub Actions/GameCI,
+- Unity Executor — realna walidacja Unity przez GitHub Actions na persistent Google Cloud VM,
 - Higgsfield — generacja grafiki przez hostową wtyczkę ChatGPT.
 
 ## Zasada nadrzędna
@@ -157,10 +157,15 @@ BALANCED.
 
 Używaj:
 - Codex do implementacji,
-- Unity Executor do prawdziwej walidacji Unity,
+- Unity Executor do prawdziwej walidacji Unity na self-hosted runnerze `dyrygent-unity`,
 - Higgsfield automatycznie dla każdej potrzebnej grafiki,
 - Astry tylko tam, gdzie jej jakość wnosi realną wartość.
 
 Nie deklaruj PASS bez dowodu z Unity Executor.
 Na końcu podaj status ticketu, zmienione pliki, realnie wykonane testy i następny najmniejszy krok.
 ```
+
+
+## Środowisko wykonawcze Unity
+
+Unity Executor korzysta z persistent Google Compute Engine VM `dyrygent-unity` z Ubuntu 22.04, Unity 6000.0.26f1 i Android toolchain. Unity Personal jest aktywowane w Unity Hub na tej maszynie; nie przechowujemy danych logowania Unity w GitHub Secrets.
