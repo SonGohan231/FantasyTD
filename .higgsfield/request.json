@@ -1,10 +1,10 @@
 {
   "enabled": true,
-  "generation_id": "map4-abyssal-crab-awaken-20261002-001",
+  "generation_id": "map4-abyssal-crab-attack-20261002-001",
   "model_path": "bytedance/seedance-2.5/image-to-video",
   "input": {
     "image_url": "https://d3u0tzju9qaucj.cloudfront.net/9f95694a-f77a-4193-89ef-1c30149ba5ad/8d4f7dcc-6408-4195-95df-443abdee8d27.png",
-    "prompt": "Locked camera. Animate THIS EXACT original Vent Crab miniboss from its dormant resting pose into an alert active combat idle while preserving identity, teal shell, orange crack, pink coral growth, cyan claws/legs and casual cartoon style. Sequence: small bubbles rise -> eyestalks wake -> legs tense -> body lifts -> both claws raise and open -> orange shell crack glows faintly -> end with stable active combat stance for the final second. No redesign, no extra coral, no extra limbs, no text, no UI, no camera movement, no cuts.",
+    "prompt": "Locked camera. Animate THIS EXACT original Vent Crab miniboss into a readable heavy claw attack while preserving identity and cartoon style. Start from a low alert crouch, body rises, right claw pulls back, hydrothermal bubbles build around the claw, then the crab slams/snaps the claw forward with a small underwater shock-bubble burst, recoils and returns toward its original stance. Same teal shell, orange crack, coral growth, cyan claws/legs. No redesign, no extra limbs, no text, no UI, no camera movement, no cuts.",
     "duration": 6,
     "resolution": "720p",
     "aspect_ratio": "16:9",
