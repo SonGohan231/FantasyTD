@@ -1,9 +1,9 @@
 {
   "enabled": true,
-  "generation_id": "map4-abyssal-scenery-props-20261002-001",
+  "generation_id": "map4-abyssal-background-terrain-20261002-001",
   "model_path": "recraft/v4.1/text-to-image",
   "input": {
-    "prompt": "ORIGINAL production asset sheet for a premium casual-cartoon ABYSSAL SEA FLOOR mobile tower-defense map. Warm off-white background, isolated sprite-ready props, consistent top-down/3-4 game camera, chunky simple shapes, clean outlines, saturated ocean palette, soft cel shading, mobile readability. No text, no logos, no UI.\n\nInclude:\n1 coral arch,\n2 kelp cluster,\n3 glowing anemone,\n4 shell cluster,\n5 pearl-like build-pad rim,\n6 hydrothermal vent CLOSED,\n7 vent GLOWING before eruption,\n8 hot bubble small,\n9 hot bubble large,\n10 bubble burst splash/ring,\n11 submerged ruin column,\n12 ancient pearl shrine CLOSED,\n13 ancient pearl shrine OPEN/glowing,\n14 crab cave entrance CLOSED,\n15 crab cave OPEN,\n16 bioluminescent rock cluster,\n17 sandy seabed rubble,\n18 treasure trench chest/coral cache,\n19 small fish silhouette school,\n20 bubble-resistant plant marker/upgrade relic.\n\nNo roads, no characters, no towers. Original IP only.",
+    "prompt": "ORIGINAL 16:9 ROAD-FREE BACKGROUND TERRAIN PLATE for an abyssal sea-floor mobile tower-defense map. This image sits UNDER deterministic Unity roads, so NO roads, NO lanes, NO arrows, NO build pads, NO UI, NO text.\n\nCreate a coherent underwater seabed viewed top-down / restrained 3/4: sandy and rocky blue-green floor, coral gardens toward edges, kelp groves, glowing anemones, shells, small submerged ruin fragments, dim hydrothermal vent zones near corners, pearl-shrine zone at one edge, crab-cave zone at another edge. Leave broad calm open terrain through the central 70% so two road branches and a shared chokepoint can later be overlaid clearly.\n\nStyle: playful premium casual-game cartoon, chunky simplified shapes, crisp silhouettes, luminous ocean palette, soft cel shading, high phone readability, low texture noise. Original IP, no realism, no existing-game imitation.",
     "resolution": "1k",
     "aspect_ratio": "16:9",
     "output_format": "png"
