@@ -1,15 +1,12 @@
 {
   "enabled": true,
-  "generation_id": "map2-postapo-miniboss-hit-defeat-20261002-001",
-  "model_path": "bytedance/seedance-2.5/image-to-video",
+  "generation_id": "map2-postapo-terrain-road-kit-20261002-001",
+  "model_path": "recraft/v4.1/text-to-image",
   "input": {
-    "image_url": "https://d3u0tzju9qaucj.cloudfront.net/9f95694a-f77a-4193-89ef-1c30149ba5ad/fa18d572-cb71-4f27-a698-0b2ede6e69b2.png",
-    "prompt": "Locked camera. Animate the exact original Rootbreaker / Bunker Mutant from the reference through a readable hit-and-defeat sequence for a mobile tower-defense game. Preserve identity and cartoon proportions. Sequence: strong hit reaction -> stagger backward -> toxic sacs flicker -> roots lose tension -> creature drops to one knee -> heavy body collapses sideways -> faint toxic glow fades -> final defeated pose remains still for the last second. No gore, no dismemberment, no extra characters, no text, no UI, no camera movement, no zoom, no cuts.",
-    "duration": 6,
-    "resolution": "720p",
+    "prompt": "ORIGINAL production tile/asset kit for a colorful post-apocalyptic mobile tower-defense map. This kit will be composited in Unity around a deterministic locked road topology. Playful casual-game cartoon style, chunky simplified shapes, clean dark outlines, bright saturated colors, soft cel shading, high phone readability, low texture noise. No realism, no text, no logos, no labels.\n\nCreate an organized sprite/tile sheet on a warm off-white background with isolated modular pieces:\n- cracked asphalt straight segment,\n- cracked asphalt gentle curve,\n- Y-split road junction,\n- Y-merge road junction,\n- road edge with weeds,\n- sidewalk edge straight,\n- sidewalk inside corner,\n- sidewalk outside corner,\n- sewer canal straight,\n- sewer canal bend,\n- puddle/flood patch,\n- overgrown concrete patch,\n- rooftop garden patch,\n- rubble corner,\n- vine-covered wall,\n- flower/weed cluster,\n- small rusted car top/3-4 view,\n- concrete barricade,\n- steam vent base,\n- amber beacon base.\nNo characters, towers, enemies, letters, numbers, symbols or UI. Keep camera and scale consistent so pieces can be cut out and assembled in Unity.",
+    "resolution": "1k",
     "aspect_ratio": "16:9",
-    "output_format": "mp4",
-    "generate_audio": false
+    "output_format": "png"
   },
   "max_wait_seconds": 1200
 }
