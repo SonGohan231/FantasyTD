@@ -1,5 +1,5 @@
 {
-  "requestId": "t0008-android-build-final-finalhead-20261002-1428",
-  "mode": "android-build",
-  "note": "Final T0008 Android APK build on the completion/documentation HEAD. No further code or docs changes after this run."
+  "requestId": "t0011-visual-layout-20261002-2019",
+  "mode": "mobile-layout",
+  "note": "T0011 visual production regression: render-capable 16:9, 20:9 and safe-area validation. Do not start T0009 or T0010."
 }
