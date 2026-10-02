@@ -1,5 +1,5 @@
 {
-  "requestId": "bootstrap",
+  "requestId": "t0001-baseline-20261002-0930",
   "mode": "baseline",
-  "note": "Dyrygent/ChatGPT updates this file to trigger baseline, tests, or android-build."
+  "note": "T0001 Unity Project Baseline real validation via Dyrygent Unity Executor."
 }
