@@ -1,13 +1,15 @@
 {
   "enabled": true,
-  "generation_id": "map2-postapo-special-salvage-tower-source-20261002-001",
-  "model_path": "higgsfield-ai/soul/v2/standard",
+  "generation_id": "map2-postapo-salvage-tower-activation-20261002-001",
+  "model_path": "bytedance/seedance-2.5/image-to-video",
   "input": {
-    "prompt": "ORIGINAL special unlockable tower design for a colorful post-apocalyptic mobile tower-defense game. This tower is unlocked by activating an overgrown radio relay / salvage secret. It must be original and fit a playful casual plant-defense cartoon world.\n\nDesign concept: SALVAGE BLOOM TOWER — a squat improvised eco-machine built from reclaimed scrap and living plants. Circular rusty salvage base, thick roots wrapping around metal panels, a central teal energy core, two small articulated plant-vine arms collecting nearby scrap, one flower-like emitter that periodically releases a teal-green recycling pulse. No guns, no realistic military hardware, no sci-fi sleekness. Looks handmade, funny, useful, and slightly magical.\n\nGameplay visual role: support/economy tower that recycles defeated-enemy scrap into small Essence/energy bonuses and occasionally emits a brief buff pulse to nearby plants. Silhouette must be distinct from normal towers and readable on a phone.\n\nCreate a clean source sheet on warm off-white background:\n1) final active idle hero pose,\n2) folded/inactive deployment pose,\n3) activation pose with teal core lighting up,\n4) recycling pulse pose,\n5) small upgrade visual variant with extra vine collector.\nKeep same top-down/3/4 camera and consistent proportions. Chunky casual-game cartoon, clean outlines, saturated colors, soft cel shading, original IP. No text, no logo, no labels, no UI.",
-    "resolution": "1080p",
+    "image_url": "https://d3u0tzju9qaucj.cloudfront.net/9f95694a-f77a-4193-89ef-1c30149ba5ad/93382cb8-ee1e-4457-ba90-1ff38f2b4cfe.png",
+    "prompt": "Locked camera. Animate the exact original Salvage Bloom special tower from the reference. Preserve its root-legged round reclaimed body, orange panels, teal crystal windows, green vine arms and teal flower emitter. Sequence: folded/dormant posture -> roots settle into the ground -> teal core windows illuminate from dim to bright -> vine arms unfold smoothly -> flower head rises and opens -> one clean teal-green recycling pulse expands outward -> tower settles into active idle. No extra characters, no text, no UI, no camera movement, no zoom, no cuts. Mobile-readable casual-game animation.",
+    "duration": 6,
+    "resolution": "720p",
     "aspect_ratio": "16:9",
-    "batch_size": 1,
-    "enhance_prompt": true
+    "output_format": "mp4",
+    "generate_audio": false
   },
   "max_wait_seconds": 1200
 }
