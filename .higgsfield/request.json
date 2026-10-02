@@ -1,11 +1,11 @@
 {
   "enabled": true,
-  "generation_id": "map5-fungal-ambient-loop-20261002-001",
+  "generation_id": "map5-fungal-psychedelic-surge-20261002-001",
   "model_path": "bytedance/seedance-2.5/text-to-video",
   "input": {
-    "prompt": "Locked-camera 16:9 ambient overlay for an ORIGINAL colorful fungal-infected city tower-defense map. Plain near-black compositing background. Animate ONLY separated environmental effects: slow drifting spores, a few softly pulsing magenta/cyan mycelium threads, tiny mushroom caps opening and closing, faint fluorescent runoff shimmer, occasional floating dust motes, one gentle bioluminescent pulse. Motion is slow, loop-friendly, playful, non-cinematic. No roads, no buildings, no characters, no text, no UI, no camera movement, no zoom, no cuts. Designed for additive/screen compositing over a static Unity map.",
-    "duration": 4,
-    "resolution": "480p",
+    "prompt": "Locked-camera 16:9 PSYCHEDELIC SPORE SURGE overlay for an ORIGINAL fungal city tower-defense map. Plain near-black compositing background. Create a clear seven-phase progression across 6 seconds: V0 almost normal/clear -> V1 slight chromatic warp -> V2 faint neon grid/mycelium lattice appears -> V3 stronger wavy distortion and color separation -> V4 peak psychedelic phase with pulsing cyan-magenta-green lattice, drifting spores and strong but still game-readable distortion -> V5 effect recedes -> V6 nearly clear again. No text, no UI, no characters, no roads, no camera movement, no cuts. This is an overlay used when tower placement/upgrades are temporarily blocked, so the peak must look disruptive but not fully opaque.",
+    "duration": 6,
+    "resolution": "720p",
     "aspect_ratio": "16:9",
     "output_format": "mp4",
     "generate_audio": false
