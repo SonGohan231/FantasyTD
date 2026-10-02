@@ -1,9 +1,9 @@
 {
   "enabled": true,
-  "generation_id": "map3-twilight-topology-sketch-20261002-001",
+  "generation_id": "map3-twilight-scenery-props-20261002-001",
   "model_path": "recraft/v4.1/text-to-image",
   "input": {
-    "prompt": "ORIGINAL clean 16:9 TOPOLOGY DIAGRAM for MAP 3 of a mobile tower-defense game. Plain pale background, no scenery, no text, no labels, no UI.\n\nDifficulty must be clearly harder than MAP2:\n- ONE left entry shared for only a very short distance.\n- EARLY Y-SPLIT into TWO persistent combat routes.\n- UPPER route makes two broad bends across the upper half.\n- LOWER route makes a different longer curve across the lower half.\n- Routes stay physically separate for about 65–70% of the battlefield.\n- Add ONE non-combat visual crossover bridge/underpass cue where the routes pass near each other, but enemies never switch branches.\n- Very LATE merge near the right edge.\n- Short shared final road to right exit/base.\n- Do not create extra combat branches, loops, crossings or an S-shaped single path.\n\nExactly 12 large build-pad circles off-road:\n2 before split,\n4 supporting upper route,\n4 supporting lower route,\n2 near late merge/final.\nNo pad should obviously cover both entire branches.\n\nDark gray roads, teal build circles, clean top-down vector-like diagram only.",
+    "prompt": "ORIGINAL production asset sheet for a premium casual-cartoon TWILIGHT GARDENS tower-defense map. Warm off-white background, isolated assets, consistent top-down/3-4 game camera, mobile-readable, chunky simple shapes, clean outlines, saturated twilight palette, soft cel shading. No text, no logos, no UI.\n\nInclude isolated sprite-ready props:\n1 lantern OFF,\n2 lantern ON,\n3 glowing moon flower closed,\n4 moon flower open,\n5 firefly cluster,\n6 twisted hedge corner,\n7 small moonlit pond edge,\n8 garden stone bridge,\n9 crooked tree silhouette,\n10 violet mist wisp,\n11 small bat swarm silhouette cluster,\n12 old garden mausoleum exterior,\n13 CLOSED moon gate,\n14 OPEN moon gate,\n15 star-flower shrine dormant,\n16 star-flower shrine active,\n17 crypt entrance closed,\n18 crypt entrance open,\n19 mossy stone statue,\n20 decorative night mushroom cluster.\n\nNo roads, no characters, no towers. Original IP only.",
     "resolution": "1k",
     "aspect_ratio": "16:9",
     "output_format": "png"
