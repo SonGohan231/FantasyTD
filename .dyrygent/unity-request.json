@@ -1,5 +1,5 @@
 {
-  "requestId": "t0003-mobile-planting-playmode-r3-20261002-1048",
+  "requestId": "t0003-mobile-planting-playmode-r4-20261002-1054",
   "mode": "mobile-planting",
-  "note": "T0003 Play Mode validation after uGUI GraphicRaycaster input blocking fix."
+  "note": "T0003 Play Mode validation using deterministic uGUI Graphic hit rules for UI/world blocking."
 }
