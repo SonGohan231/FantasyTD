@@ -315,6 +315,7 @@ Previous API concept:
 Production:
 - [x] TOPOLOGY_SPEC_LOCKED — `.higgsfield/MAP7_TEMPLE_TOPOLOGY.json`, commit **5df4fbea** (3 routes, 2 gate states, 12 spots)
 - [!] INITIAL_HIGGSFIELD_BATCH — BLOCKED by API balance: HTTP 403 `not_enough_credits`; runs **37031636402, 37031642752, 37031647943, 37031651863, 37031658416, 37031662610, 37031667859, 37031672364, 37031677063**
+- [!] CREDIT_RECHECK_2026-10-02 — run **37037420169** — still BLOCKED: Higgsfield HTTP 403 `not_enough_credits` on a low-cost Recraft image probe
 - [ ] SCENERY_PROP_PACK
 - [ ] BACKGROUND_TERRAIN_PLATE
 - [ ] BASE_COMPOSITE_IN_UNITY_FROM_LOCKED_TOPOLOGY
