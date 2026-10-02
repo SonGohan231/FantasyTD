@@ -1,15 +1,12 @@
 {
   "enabled": true,
-  "generation_id": "map2-postapo-salvage-tower-idle-loop-20261002-002",
-  "model_path": "bytedance/seedance-2.5/image-to-video",
+  "generation_id": "map2-postapo-salvage-tower-active-single-source-20261002-001",
+  "model_path": "recraft/v4.1/text-to-image",
   "input": {
-    "image_url": "https://d3u0tzju9qaucj.cloudfront.net/9f95694a-f77a-4193-89ef-1c30149ba5ad/93382cb8-ee1e-4457-ba90-1ff38f2b4cfe.png",
-    "prompt": "Locked camera. Very subtle ACTIVE IDLE loop for the exact Salvage Bloom tower. Preserve identity. Gentle root/body breathing, slight vine sway, soft teal core pulse, tiny flower-head movement. No transformation, no large effects, no extra objects, no camera movement, no text or UI. Loop-friendly mobile game motion.",
-    "duration": 4,
-    "resolution": "480p",
+    "prompt": "ORIGINAL single active gameplay pose of the special Salvage Bloom support tower for a colorful post-apocalyptic mobile tower-defense game. ONE tower only, isolated on a warm off-white background. Match this design consistently: round reclaimed orange-and-gray salvage body, glowing teal crystal windows/core, thick root legs planted in the ground, two green vine collector arms, one tall teal-green flower emitter on a stem, a few small leaf details. Playful chunky casual-game cartoon, clean dark outlines, saturated colors, soft cel shading, top-down/3-4 game camera, mobile-readable. Active idle stance: roots firmly planted, vine arms gently raised, flower fully open, teal core softly glowing. No extra variants, no second pose, no sheet, no text, no labels, no logo, no UI, no extra props. Original IP only. This exact single image will be used as the source for an idle animation.",
+    "resolution": "1k",
     "aspect_ratio": "16:9",
-    "output_format": "mp4",
-    "generate_audio": false
+    "output_format": "png"
   },
   "max_wait_seconds": 1200
 }
