@@ -45,6 +45,14 @@ Modes:
 
 Pushes to `main`, `codex/**` and `dyrygent/**` automatically run the baseline when Unity project files change.
 
+### Dispatch without a backend PAT
+
+Dyrygent/ChatGPT can request any executor mode by updating:
+
+`.dyrygent/unity-request.json`
+
+with a new `requestId` and one of the modes above. The commit itself triggers GitHub Actions. This is the preferred host-action path because the Cloud Run backend does not need a GitHub write token.
+
 ## One-time Unity license setup
 
 GitHub Actions must contain these repository secrets:
