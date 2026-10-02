@@ -1,15 +1,13 @@
 {
   "enabled": true,
-  "generation_id": "map3-twilight-night-tower-activation-20261002-001",
-  "model_path": "bytedance/seedance-2.5/image-to-video",
+  "generation_id": "map3-twilight-miniboss-dormant-ideogram-20261002-001",
+  "model_path": "ideogram/v4.0",
   "input": {
-    "image_url": "https://d3u0tzju9qaucj.cloudfront.net/9f95694a-f77a-4193-89ef-1c30149ba5ad/9f27f22e-18c2-4dc7-b1e5-7b80d0f479f4.png",
-    "prompt": "Locked camera. Animate THIS EXACT Starbloom Lantern special tower. Preserve large violet-blue flower petals, green stem/leaves, warm lantern core and tiny fireflies. Sequence: dormant slight droop -> lantern core warms brighter -> petals lift/open slightly -> stem straightens -> fireflies gather -> one soft circular violet-blue moonlight support pulse expands outward -> tower settles into active idle with gentle glow. No second tower, no text, no UI, no extra props, no camera movement, no zoom, no cuts. Mobile-readable.",
-    "duration": 4,
-    "resolution": "480p",
+    "image_url": "https://d3u0tzju9qaucj.cloudfront.net/9f95694a-f77a-4193-89ef-1c30149ba5ad/001f4ecf-7ffe-41dc-8a36-01d07d774e70.png",
+    "image_weight": 78,
     "aspect_ratio": "16:9",
-    "output_format": "mp4",
-    "generate_audio": false
+    "rendering_speed": "QUALITY",
+    "prompt": "Extract and preserve the SAME original Night Gardener creature design from the reference sheet, especially the purple crescent body, green leaf cluster, small central purple face with glowing lavender eyes, thin branch-like limbs and misty lower body. Produce ONE isolated dormant pose only on a warm neutral background. No sheet, no multiple poses. Dormant means the crescent body lowered close to the ground, branch arms folded inward, face/eyes dim, leaf cluster closed tighter, mist almost still. Keep identity and proportions from reference; do not invent a brown human-like face, torso, clothes or new anatomy. Playful mobile-game cartoon, clean silhouette. No text, no UI."
   },
   "max_wait_seconds": 1200
 }
