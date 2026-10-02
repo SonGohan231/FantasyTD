@@ -1,14 +1,12 @@
 {
   "enabled": true,
-  "generation_id": "map6-bamboo-ambient-loop-20261002-001",
-  "model_path": "bytedance/seedance-2.5/text-to-video",
+  "generation_id": "map6-bamboo-panda-source-20261002-001",
+  "model_path": "recraft/v4.1/text-to-image",
   "input": {
-    "prompt": "Locked-camera 16:9 ambient overlay for an ORIGINAL colorful bamboo-forest tower-defense map. Plain near-black compositing background. Animate ONLY separated environmental effects: bamboo leaves swaying gently, loose leaves drifting diagonally, a few lantern glows softly pulsing, small water ripples/koi shadows crossing, tiny firefly-like motes, one slow waterwheel silhouette rotation. Calm loop-friendly non-cinematic motion. No roads, buildings, characters, text, UI, camera movement, zoom or cuts. Designed for compositing over a static Unity map.",
-    "duration": 4,
-    "resolution": "480p",
+    "prompt": "ORIGINAL 2D character source sheet for a cute rolling panda environmental creature in a mobile tower-defense game. Flat/cartoon 2D only, chunky shapes, clean outlines, saturated but natural black/white with green bamboo accents, soft cel shading, high phone readability.\n\nCreate one consistent panda identity in 5 isolated poses on warm off-white background:\n1 standing friendly neutral,\n2 crouch preparing to roll,\n3 curled rolling ball pose,\n4 rolling fast with leaf trail,\n5 hostile transformed stance: same panda, eyes determined, bamboo-leaf shoulder tufts raised, slightly wider fighting stance, still cute not horror.\nSame proportions/camera in all poses. No text, no labels, no weapons, no UI, no extra characters.",
+    "resolution": "1k",
     "aspect_ratio": "16:9",
-    "output_format": "mp4",
-    "generate_audio": false
+    "output_format": "png"
   },
   "max_wait_seconds": 1200
 }
