@@ -84,6 +84,11 @@ namespace FantasyTD.CI
             BossEndStatesPlayModeValidator.Start();
         }
 
+        public static void MobileLayout()
+        {
+            MobileLayoutPlayModeValidator.Start();
+        }
+
         public static void BuildAndroid()
         {
             Directory.CreateDirectory(ReportDirectory);
