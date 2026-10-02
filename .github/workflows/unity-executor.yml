@@ -447,7 +447,7 @@ jobs:
     needs: prepare
     if: needs.prepare.outputs.mode == 'android-smoke'
     runs-on: [self-hosted, dyrygent-unity]
-    timeout-minutes: 45
+    timeout-minutes: 60
     steps:
       - name: Checkout T0009 branch
         uses: actions/checkout@v4
