@@ -1,5 +1,5 @@
 {
-  "requestId": "t0007-mobile-layout-r1-20261002-1235",
+  "requestId": "t0007-mobile-layout-r2-xvfb-20261002-1250",
   "mode": "mobile-layout",
-  "note": "T0007 real Unity Play Mode validation for 16:9, 20:9, synthetic safe area, HUD, radial menus, touch targets and full-map framing."
+  "note": "T0007 rerun using render-capable Xvfb after run 36997235403 proved -nographics cannot provide exact Game View evidence."
 }
