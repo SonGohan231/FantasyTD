@@ -13,8 +13,12 @@ Last updated: 2026-10-02
 - T0002 Unity geometry validation: **VERIFIED — PASS**
 - T0002 Unity Executor run: `36982186182`
 - T0002 artifact: `unity-executor-map-a-integrity-36982186182` (artifact ID `11215922210`)
-- Play Mode: **NOT RUN** (not required by T0002)
-- Android build: **NOT RUN** (out of scope for T0001)
+- T0003 Play Mode validation: **VERIFIED — PASS**
+- T0003 Unity Executor run: `36986249467`
+- T0003 validated head before documentation commits: `7b1ea26bf6d62aa268c21d5f59e3096cb2078dc8`
+- T0003 artifact: `unity-executor-mobile-planting-36986249467` (artifact ID `11217666657`)
+- Play Mode: **VERIFIED — PASS for T0003 scope**
+- Android build: **NOT RUN** (not required by T0003)
 - Device smoke test: **NOT RUN**
 
 ## Current milestone
@@ -23,11 +27,11 @@ MAP-A Android v2 vertical slice.
 
 ## Current active ticket
 
-T0002 — MAP-A Scene and Geometry Integrity.
+None.
 
-T0001 was completed and merged to `main` at `f76e66ce05862dc750e74b6110c7e6e31cba0073`.
+T0001, T0002 and T0003 are DONE. T0004 remains PLANNED and was not started.
 
-T0002 geometry acceptance evidence is recorded from Unity Executor run `36982186182` on branch `codex/t0002-map-a-integrity`, validated head `9976edd0643214572b96fe38cb8c5710b029b937`.
+T0003 acceptance evidence is recorded from real Unity Play Mode in Unity Executor run `36986249467` on branch `codex/t0003-mobile-planting-radial-menu`, validated head `7b1ea26bf6d62aa268c21d5f59e3096cb2078dc8`.
 
 ## Repository layout
 
@@ -229,6 +233,54 @@ T0002 did not modify or validate:
 
 Higgsfield was not used because T0002 required no new or changed art assets.
 
+## T0003 — Mobile Planting and Radial Menu
+
+Status: **PASS**
+
+Real Unity evidence:
+- Unity Executor run: `36986249467`
+- validated head before documentation commits: `7b1ea26bf6d62aa268c21d5f59e3096cb2078dc8`
+- Unity version: `6000.0.26f1 (ccb7c73d2c02)`
+- executor report: `status=PASS`
+- `playModeEntered=True`
+- Game View during this ticket: `640 × 480`
+- runtime warnings captured by T0003 harness: `0`
+- validation errors: `0`
+- C# compiler errors: `0`
+- one existing unique compiler warning remains: `CS0618` in `MapAEditorSetup.cs:46` (emitted twice)
+
+All 12 planting spots were exercised individually through the production screen-point input path. For every A1–A12:
+- the world press was accepted,
+- the expected spot became selected,
+- the selection ring changed to selected state,
+- the radial menu opened,
+- all four existing plant options were visible,
+- the complete radial button bounds remained inside the Game View,
+- the close button was invoked through uGUI pointer-click handling,
+- closing cleared both the radial menu and selected spot,
+- result: **PASS**.
+
+Edge/clamping evidence:
+- edge-classified spots exercised: A1, A8, A9, A11, A12,
+- all edge spots remained fully on-screen,
+- A9 required a clamp shift of `+6.389 px` on X,
+- A12 required a clamp shift of `-52.094 px` on X,
+- A1, A8 and A11 required no shift at this Game View size.
+
+Additional T0003 acceptance evidence:
+- unaffordable state: Essence was reduced through the authoritative Economy API to `50`; all four plant buttons were disabled; clicking a disabled option did not occupy A2 and did not change Essence,
+- UI/world blocking: a real runtime uGUI Button/Image was positioned over A3; its uGUI hit rules and click handler succeeded; the same screen press sent through production `TryHandleScreenPress` was rejected for world processing and did not select/open the spot beneath it,
+- occupied blocking: A1 was occupied once with Pędostrzał as a placement-state proof only; a second press did not reopen planting selection and no second plant was created.
+
+T0003 implementation changes were limited to:
+- routing touch/mouse through one explicit screen-point planting path,
+- conservative uGUI Graphic hit testing so any raycastable UI blocks world planting input,
+- clamping the radial menu from its actual calculated child bounds rather than a fixed magic margin,
+- stable radial button names/read-only state needed for evidence,
+- a ticket-specific Play Mode validator and Unity Executor mode.
+
+T0003 did not validate plant combat behavior, waves, Android build/toolchain, physical-device touch, 16:9/20:9 device layout, upgrades, new plants, balance, or T0004+ behavior. No graphical asset changes were required, so Higgsfield was not used.
+
 ## Build state
 
 Android build: **NOT RUN**.
@@ -239,9 +291,9 @@ No APK success is claimed.
 
 Current code uses legacy Unity `Input` touch APIs plus UGUI `StandaloneInputModule`.
 
-Actual gameplay touch behavior is still **NOT VERIFIED** because T0001 did not enter Play Mode or run a device test.
+T0003 verified the touch-style screen-point planting path and uGUI/world-input blocking in real Unity Play Mode. Actual physical Android touch/device behavior remains **NOT VERIFIED** and belongs to the later device smoke ticket.
 
-Do not migrate input systems until there is evidence that migration is necessary.
+Do not migrate input systems without device/runtime evidence that migration is necessary.
 
 ## Architecture state
 
@@ -273,4 +325,4 @@ See:
 
 Do not start another ticket automatically.
 
-After review/merge of the T0002 branch, T0003 may be activated only by the PM/user.
+T0004 remains PLANNED and requires separate PM/user activation after T0003 review/merge.
