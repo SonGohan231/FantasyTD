@@ -51,7 +51,7 @@ Existing API evidence:
 
 Production:
 - [ ] BASE_FINAL
-- [ ] AMBIENT_LOOP
+- [x] AMBIENT_LOOP — run **37021780748**, artifact **11233877408** — APPROVED after visual QA (lantern/firefly/petal/mist loop overlay)
 - [ ] SECRET_HINT
 - [ ] SECRET_OPEN
 - [!] MINIBOSS_DORMANT_SINGLE_SOURCE attempt 1 — run **37021346938**, artifact **11234095282** — FAILED generation
@@ -133,14 +133,14 @@ Production:
 - [ ] BASE_COMPOSITE_IN_UNITY_FROM_LOCKED_TOPOLOGY
 - [ ] BASE_FINAL_NEW_TOPOLOGY
 - [ ] AMBIENT_LOOP
-- [ ] FOG_START
-- [ ] FOG_HIGH
-- [ ] FOG_END
-- [ ] BAT_SWARM_ANIM
+- [x] FOG_START — run **37021787142**, artifact **11233812434** — APPROVED
+- [x] FOG_HIGH — run **37021787142**, artifact **11233812434** — APPROVED
+- [x] FOG_END — run **37021787142**, artifact **11233812434** — APPROVED
+- [x] BAT_SWARM_ANIM — run **37021790530**, artifact **11233777438** — APPROVED after visual QA
 - [x] MOON_GATE_SINGLE_SOURCE — run **37021341072**, artifact **11233805827** — APPROVED after visual QA
 - [x] MOON_GATE_CLOSED — run **37021341072**, artifact **11233805827** — APPROVED
-- [ ] MOON_GATE_OPEN
-- [ ] MOON_GATE_OPEN_ANIM
+- [x] MOON_GATE_OPEN — final state from run **37021796734**, artifact **11233697507** — APPROVED
+- [x] MOON_GATE_OPEN_ANIM — run **37021796734**, artifact **11233697507** — APPROVED after visual QA (glow→split→portal)
 - [x] MINIBOSS_SOURCE — run **37020787886**, artifact **11232839080** — APPROVED after visual QA
 - [ ] MINIBOSS_DORMANT
 - [ ] MINIBOSS_ACTIVE
@@ -148,7 +148,7 @@ Production:
 - [ ] MINIBOSS_ATTACK_ANIM
 - [x] SPECIAL_NIGHT_TOWER_SOURCE — run **37020792268**, artifact **11233385289** — APPROVED after visual QA
 - [x] SPECIAL_NIGHT_TOWER_ACTIVE_SINGLE_SOURCE — run **37021355425**, artifact **11233476155** — APPROVED after visual QA
-- [ ] SPECIAL_NIGHT_TOWER_ACTIVATION_ANIM
+- [x] SPECIAL_NIGHT_TOWER_ACTIVATION_ANIM — run **37021801076**, artifact **11233497480** — APPROVED after visual QA (core brighten→petal lift→moonlight pulse)
 
 ## MAP 4 — Dno oceaniczne
 **Difficulty:** Medium / two routes + shared crossing  
