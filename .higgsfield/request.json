@@ -1,12 +1,13 @@
 {
   "enabled": true,
-  "generation_id": "map3-twilight-background-terrain-20261002-001",
-  "model_path": "recraft/v4.1/text-to-image",
+  "generation_id": "map3-twilight-miniboss-source-20261002-001",
+  "model_path": "higgsfield-ai/soul/v2/standard",
   "input": {
-    "prompt": "ORIGINAL 16:9 BACKGROUND TERRAIN PLATE for a TWILIGHT GARDENS mobile tower-defense map. This plate will sit UNDER a deterministic Unity road graph, so DO NOT draw roads, lanes, arrows, build pads, towers, enemies, text or UI.\n\nShow a coherent dusk garden environment viewed top-down / restrained 3/4: violet-blue grass, moonlit pond areas, hedges and flower beds mostly toward edges, a few crooked trees, small mausoleum garden near upper side, star-flower shrine zone near lower side, soft stone terraces, glowing mushrooms, subtle fireflies, darker empty negative-space corridors where roads will later be composited. Keep center calm and readable.\n\nStyle: playful premium casual-game cartoon, chunky simplified forms, crisp silhouettes, saturated but controlled twilight palette, soft cel shading, high phone readability, low texture noise. Original IP, no realism, no Kingdom Rush imitation, no readable signs/letters/logos.",
-    "resolution": "1k",
+    "prompt": "ORIGINAL miniboss character design sheet for a twilight-garden mobile tower-defense game. Concept: THE NIGHT GARDENER, a mysterious but playful living shadow-gardener formed from hedge roots, moon flowers and drifting mist. Original IP; do not copy existing characters.\n\nDesign: tall slightly hunched silhouette, root-like legs, oversized pruning-claw hands made from dark branches rather than metal tools, crescent-shaped leaf collar, glowing lavender eyes, moon-flower buds growing from shoulders, wispy shadow cloak made from fog and leaves. Menacing but whimsical, readable at phone scale. Palette: deep violet, indigo, muted green, lavender glow, small warm lantern accents.\n\nCreate consistent top-down/3-4 sprite-source sheet:\n1 dormant crouched among hedge roots,\n2 awakening,\n3 active idle,\n4 branch-claw sweep anticipation,\n5 sweep attack,\n6 mist burst attack,\n7 hit/stagger.\nSame anatomy, proportions and camera angle throughout. Chunky casual-game cartoon, clean outlines, soft cel shading, no gore, no text, no logo, no UI.",
+    "resolution": "1080p",
     "aspect_ratio": "16:9",
-    "output_format": "png"
+    "batch_size": 1,
+    "enhance_prompt": true
   },
   "max_wait_seconds": 1200
 }
