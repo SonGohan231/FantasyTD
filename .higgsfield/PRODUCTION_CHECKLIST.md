@@ -177,37 +177,38 @@ Previous API concept:
 Production:
 - [x] TOPOLOGY_SPEC_LOCKED — `.higgsfield/MAP4_ABYSSAL_TOPOLOGY.json`, commit **10d03dc3** (13 spots)
 - [!] SCENERY_PROP_PACK attempt 1 — run **37023187009**, artifact **11233929092** — REJECTED (numeric labels)
-- [x] SCENERY_PROP_PACK — run **37023868008**, artifact **11234470479** — APPROVED after visual QA (clean underwater prop sheet, no numeric labels)
+- [x] SCENERY_PROP_PACK — run **37023868008**, artifact **11234470479** — APPROVED after visual QA
 - [x] BACKGROUND_TERRAIN_PLATE — run **37023191880**, artifact **11232874052** — APPROVED
 - [ ] BASE_COMPOSITE_IN_UNITY_FROM_LOCKED_TOPOLOGY
 - [ ] BASE_FINAL_NEW_TOPOLOGY
-- [x] AMBIENT_LOOP — run **37023891512**, artifact **11235070159** — APPROVED as compositing overlay (kelp/bubbles/particles, locked camera)
+- [x] AMBIENT_LOOP — run **37023891512**, artifact **11235070159** — APPROVED after visual QA
 - [x] BUBBLE_FORM — run **37023897016**, artifact **11234044723** — APPROVED
 - [x] BUBBLE_DRIFT — run **37023897016**, artifact **11234044723** — APPROVED
-- [x] BUBBLE_ABSORB — run **37023897016**, artifact **11234044723** — APPROVED (impact/spark cue before burst)
+- [x] BUBBLE_ABSORB — run **37023897016**, artifact **11234044723** — APPROVED
 - [x] BUBBLE_BURST — run **37023897016**, artifact **11234044723** — APPROVED
 - [x] BUBBLE_EVENT_ANIM — run **37023897016**, artifact **11234044723** — APPROVED after visual QA
 - [x] PEARL_SHRINE_SINGLE_SOURCE — run **37023197057**, artifact **11233644218** — APPROVED
 - [x] PEARL_SHRINE_CLOSED — run **37023197057**, artifact **11233644218** — APPROVED
 - [x] PEARL_SHRINE_OPEN — final state from run **37023903350**, artifact **11234391273** — APPROVED
-- [x] PEARL_SHRINE_OPEN_ANIM — run **37023903350**, artifact **11234391273** — APPROVED after visual QA (shell opens, pearl rises, ring pulse)
+- [x] PEARL_SHRINE_OPEN_ANIM — run **37023903350**, artifact **11234391273** — APPROVED
 - [x] MINIBOSS_SOURCE — run **37023204024**, artifact **11233674566** — APPROVED
-- [x] MINIBOSS_DORMANT_SINGLE_SOURCE — run **37026731003**, artifact **11234883925** — APPROVED after visual QA
-- [x] MINIBOSS_ACTIVE_SINGLE_SOURCE — run **37026734821**, artifact **11235118803** — APPROVED after visual QA
-- [x] MINIBOSS_DORMANT — run **37026731003**, artifact **11234883925** — APPROVED
-- [x] MINIBOSS_ACTIVE — run **37026734821**, artifact **11235118803** — APPROVED
-- [ ] MINIBOSS_AWAKEN_ANIM
-- [ ] MINIBOSS_ATTACK_ANIM
+- [x] MINIBOSS_DORMANT_SINGLE_SOURCE — run **37023874042**, artifact **11234650367** — APPROVED
+- [!] MINIBOSS_ACTIVE_SINGLE_SOURCE attempt 1 — run **37023879914**, artifact **11233164725** — REJECTED (identity drift)
+- [!] MINIBOSS_ACTIVE_SINGLE_SOURCE attempt 2 — run **37025032911**, artifact **11234986551** — REJECTED (3D/style drift)
+- [x] MINIBOSS_DORMANT — run **37023874042**, artifact **11234650367** — APPROVED
+- [x] MINIBOSS_ACTIVE — final state from awaken run **37025524146**, artifact **11234909637** — APPROVED
+- [x] MINIBOSS_AWAKEN_ANIM — run **37025524146**, artifact **11234909637** — APPROVED after visual QA
+- [x] MINIBOSS_ATTACK_ANIM — run **37025528882**, artifact **11235167715** — APPROVED after visual QA
 - [x] SPECIAL_AQUATIC_TOWER_SOURCE — run **37023208180**, artifact **11233419385** — APPROVED
-- [!] SPECIAL_AQUATIC_TOWER_SINGLE_SOURCE attempt 1 — run **37025038914**, artifact **11234227742** — REJECTED after visual QA (identity drift from approved tower)
-- [x] SPECIAL_AQUATIC_TOWER_SINGLE_SOURCE — final folded state from run **37025533799**, artifact **11235067913** — APPROVED after visual QA
-- [x] SPECIAL_AQUATIC_TOWER_ACTIVE_SINGLE_SOURCE — run **37023885079**, artifact **11233999401** — APPROVED after visual QA
-- [x] SPECIAL_AQUATIC_TOWER_ACTIVATION_ANIM — use reverse playback of approved fold animation run **37025533799**, artifact **11235067913**
-- [x] SPECIAL_AQUATIC_TOWER_IDLE_LOOP — run **37025045929**, artifact **11235446525** — APPROVED after visual QA (subtle bubbles/tendril sway/core bob; loop-friendly)
+- [!] SPECIAL_AQUATIC_TOWER_SINGLE_SOURCE attempt 1 — run **37025038914**, artifact **11234227742** — REJECTED (identity drift)
+- [x] SPECIAL_AQUATIC_TOWER_SINGLE_SOURCE — final folded state from run **37025533799**, artifact **11235067913** — APPROVED
+- [x] SPECIAL_AQUATIC_TOWER_ACTIVE_SINGLE_SOURCE — run **37023885079**, artifact **11233999401** — APPROVED
+- [x] SPECIAL_AQUATIC_TOWER_ACTIVATION_ANIM — reverse playback of approved fold run **37025533799**, artifact **11235067913**
+- [x] SPECIAL_AQUATIC_TOWER_IDLE_LOOP — run **37025045929**, artifact **11235446525** — APPROVED after visual QA
 
 ## MAP 5 — Grzybowe Zainfekowane Miasto
 **Difficulty:** Medium+ / route network  
-**Topology:** 2–3 branches; different enemy groups may choose different branches  
+**Topology:** shared entry → 3 persistent branches → late merge → shared exit  
 **Target build spots:** 12  
 **Ambient:** pulsing mycelium, spores, mushroom growth, fluorescent runoff  
 **Event:** psychedelic surge blocks placement/upgrades but existing towers keep firing  
@@ -219,12 +220,12 @@ Previous API concept:
 
 Production:
 - [x] TOPOLOGY_SPEC_LOCKED — `.higgsfield/MAP5_FUNGAL_TOPOLOGY.json`, commit **8e66fd09** (3 persistent branches, 12 spots)
-- [x] SCENERY_PROP_PACK — run **37025266321**, artifact **11234731952** — APPROVED after visual QA
-- [x] BACKGROUND_TERRAIN_PLATE — run **37025270764**, artifact **11234691977** — APPROVED after visual QA (road-free open corridors)
+- [x] SCENERY_PROP_PACK — run **37025266321**, artifact **11234731952** — APPROVED
+- [x] BACKGROUND_TERRAIN_PLATE — run **37025270764**, artifact **11234691977** — APPROVED
 - [ ] BASE_COMPOSITE_IN_UNITY_FROM_LOCKED_TOPOLOGY
 - [ ] BASE_FINAL_NEW_TOPOLOGY
-- [!] AMBIENT_LOOP attempt 1 — run **37025274825**, artifact **11234323555** — REJECTED after visual QA (too much baked terrain; unsuitable as compositing overlay)
-- [x] AMBIENT_LOOP — run **37026222266**, artifact **11235173326** — APPROVED after visual QA
+- [!] AMBIENT_LOOP attempt 1 — run **37025274825**, artifact **11234323555** — REJECTED (baked terrain, poor overlay separation)
+- [ ] AMBIENT_LOOP
 - [x] PSY_V0_NORMAL — run **37025281280**, artifact **11235336865** — APPROVED
 - [x] PSY_V1_LIGHT_WARP — run **37025281280**, artifact **11235336865** — APPROVED
 - [x] PSY_V2_GRID_VISIBLE — run **37025281280**, artifact **11235336865** — APPROVED
@@ -233,12 +234,12 @@ Production:
 - [x] PSY_V5_FADE — run **37025281280**, artifact **11235336865** — APPROVED
 - [x] PSY_V6_NORMAL — run **37025281280**, artifact **11235336865** — APPROVED
 - [x] PSYCHEDELIC_SURGE_ANIM — run **37025281280**, artifact **11235336865** — APPROVED after visual QA
-- [x] LAB_SINGLE_SOURCE — run **37025286566**, artifact **11235466241** — APPROVED after visual QA
+- [x] LAB_SINGLE_SOURCE — run **37025286566**, artifact **11235466241** — APPROVED
 - [x] LAB_CLOSED — run **37025286566**, artifact **11235466241** — APPROVED
 - [x] LAB_OPEN — final state from run **37025981397**, artifact **11234759621** — APPROVED
-- [x] LAB_OPEN_ANIM — run **37025981397**, artifact **11234759621** — APPROVED after visual QA
-- [!] MINIBOSS_SOURCE attempt 1 — run **37025292120**, artifact **11235206778** — REJECTED after visual QA (too 3D/toy-like vs 2D casual-game style)
-- [x] MINIBOSS_SOURCE — run **37025985108**, artifact **11234892986** — APPROVED after visual QA (clean 2D Mother Mycelium sheet)
+- [x] LAB_OPEN_ANIM — run **37025981397**, artifact **11234759621** — APPROVED
+- [!] MINIBOSS_SOURCE attempt 1 — run **37025292120**, artifact **11235206778** — REJECTED (3D/toy-like)
+- [x] MINIBOSS_SOURCE — run **37025985108**, artifact **11234892986** — APPROVED (clean 2D Mother Mycelium sheet)
 - [ ] MINIBOSS_DORMANT_SINGLE_SOURCE
 - [ ] MINIBOSS_ACTIVE_SINGLE_SOURCE
 - [ ] MINIBOSS_DORMANT
@@ -249,47 +250,49 @@ Production:
 - [x] SPECIAL_MUTATION_TOWER_SOURCE — run **37025989780**, artifact **11235363386** — APPROVED after visual QA
 - [ ] SPECIAL_MUTATION_TOWER_ACTIVE_SINGLE_SOURCE
 - [ ] SPECIAL_MUTATION_TOWER_ACTIVATION_ANIM
+- [ ] SPECIAL_MUTATION_TOWER_IDLE_LOOP
 
 ## MAP 6 — Las Bambusowy
 **Difficulty:** Hard- / three approach lanes  
-**Topology:** 3 entrances/branches with two merge points  
-**Target build spots:** 13 (compensation for surprise enemy pressure)  
+**Topology:** 3 entrances → upper+center merge → later lower merge → 1 exit  
+**Target build spots:** 13  
 **Ambient:** swaying bamboo, falling leaves, koi, waterwheel, lanterns  
 **Event:** pandas roll across map; some stop and transform into enemies; bamboo logs roll across marked lanes  
 **Secret/miniboss:** hidden dojo / Great Panda Warrior  
-**Unlock:** rapid-fire bamboo tower
+**Unlock:** rapid-fire Bamboo Burst tower
 
 Previous API concept:
 - [!] Old static concept — run **36999559587** — REJECTED as final layout
 
 Production:
 - [x] TOPOLOGY_SPEC_LOCKED — `.higgsfield/MAP6_BAMBOO_TOPOLOGY.json`, commit **2ac36d24** (3 entrances, 2 merge points, 13 spots)
-- [x] SCENERY_PROP_PACK — run **37026212309**, artifact **11235063190** — APPROVED after visual QA
-- [x] BACKGROUND_TERRAIN_PLATE — run **37026217305**, artifact **11235542085** — APPROVED after visual QA
+- [x] SCENERY_PROP_PACK — run **37026212309**, artifact **11235063190** — APPROVED
+- [x] BACKGROUND_TERRAIN_PLATE — run **37026217305**, artifact **11235542085** — APPROVED
 - [ ] BASE_COMPOSITE_IN_UNITY_FROM_LOCKED_TOPOLOGY
 - [ ] BASE_FINAL_NEW_TOPOLOGY
-- [ ] AMBIENT_LOOP
-- [x] PANDA_SOURCE — run **37026226845**, artifact **11234419605** — APPROVED after visual QA
-- [x] PANDA_ROLL_SOURCE — run **37026714289**, artifact **11235810368** — APPROVED after visual QA
+- [x] AMBIENT_LOOP — run **37026222266**, artifact **11235173326** — APPROVED after visual QA
+- [x] PANDA_SOURCE — run **37026226845**, artifact **11234419605** — APPROVED
+- [x] PANDA_ROLL_SOURCE — run **37026714289**, artifact **11235810368** — APPROVED
 - [ ] PANDA_ROLL
 - [ ] PANDA_STOP
-- [x] PANDA_HOSTILE_SOURCE — run **37026718211**, artifact **11235099906** — APPROVED after visual QA
+- [x] PANDA_HOSTILE_SOURCE — run **37026718211**, artifact **11235099906** — APPROVED
 - [ ] PANDA_TRANSFORM
-- [x] BAMBOO_LOG_HAZARD — run **37026248648**, artifact **11235547736** — APPROVED after visual QA
-- [x] DOJO_SINGLE_SOURCE — run **37026232465**, artifact **11235078130** — APPROVED after visual QA
+- [x] BAMBOO_LOG_HAZARD — run **37026248648**, artifact **11235547736** — APPROVED
+- [x] DOJO_SINGLE_SOURCE — run **37026232465**, artifact **11235078130** — APPROVED
 - [x] DOJO_CLOSED — run **37026232465**, artifact **11235078130** — APPROVED
 - [x] DOJO_OPEN — final state from run **37026724501**, artifact **11235710967** — APPROVED
-- [x] DOJO_OPEN_ANIM — run **37026724501**, artifact **11235710967** — APPROVED after visual QA
-- [x] MINIBOSS_SOURCE — run **37026237201**, artifact **11235542099** — APPROVED after visual QA
-- [ ] MINIBOSS_DORMANT_SINGLE_SOURCE
-- [ ] MINIBOSS_ACTIVE_SINGLE_SOURCE
-- [ ] MINIBOSS_DORMANT
-- [ ] MINIBOSS_ACTIVE
+- [x] DOJO_OPEN_ANIM — run **37026724501**, artifact **11235710967** — APPROVED
+- [x] MINIBOSS_SOURCE — run **37026237201**, artifact **11235542099** — APPROVED
+- [x] MINIBOSS_DORMANT_SINGLE_SOURCE — run **37026731003**, artifact **11234883925** — APPROVED
+- [x] MINIBOSS_ACTIVE_SINGLE_SOURCE — run **37026734821**, artifact **11235118803** — APPROVED
+- [x] MINIBOSS_DORMANT — run **37026731003**, artifact **11234883925** — APPROVED
+- [x] MINIBOSS_ACTIVE — run **37026734821**, artifact **11235118803** — APPROVED
 - [ ] MINIBOSS_AWAKEN_ANIM
 - [ ] MINIBOSS_ATTACK_ANIM
-- [x] SPECIAL_BAMBOO_TOWER_SOURCE — run **37026242264**, artifact **11235162980** — APPROVED after visual QA
-- [x] SPECIAL_BAMBOO_TOWER_ACTIVE_SINGLE_SOURCE — run **37026740118**, artifact **11235615614** — APPROVED after visual QA
+- [x] SPECIAL_BAMBOO_TOWER_SOURCE — run **37026242264**, artifact **11235162980** — APPROVED
+- [x] SPECIAL_BAMBOO_TOWER_ACTIVE_SINGLE_SOURCE — run **37026740118**, artifact **11235615614** — APPROVED
 - [ ] SPECIAL_BAMBOO_TOWER_ACTIVATION_ANIM
+- [ ] SPECIAL_BAMBOO_TOWER_IDLE_LOOP
 
 ## MAP 7 — Świątynia Słońca i Księżyca
 **Difficulty:** Hard / three routes + route mechanisms  
