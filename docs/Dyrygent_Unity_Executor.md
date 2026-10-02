@@ -19,7 +19,10 @@ ChatGPT / Dyrygent
         GitHub Actions
                 |
                 v
-        GameCI Unity 6000.0.26f1
+        self-hosted runner: dyrygent-unity
+                |
+                v
+        Unity 6000.0.26f1
                 |
                 +-- baseline / compile
                 +-- Unity tests
@@ -53,17 +56,14 @@ Dyrygent/ChatGPT can request any executor mode by updating:
 
 with a new `requestId` and one of the modes above. The commit itself triggers GitHub Actions. This is the preferred host-action path because the Cloud Run backend does not need a GitHub write token.
 
-## One-time Unity license setup
+## Unity license and runner
 
-GitHub Actions must contain these repository secrets:
+Unity runs on the persistent self-hosted runner `dyrygent-unity`.
 
-- `UNITY_LICENSE`
-- `UNITY_EMAIL`
-- `UNITY_PASSWORD`
+The Unity Personal license is activated once in Unity Hub on that VM. The GitHub Actions workflow does not require `UNITY_LICENSE`, `UNITY_EMAIL` or `UNITY_PASSWORD` repository secrets.
 
-For a Unity Personal license, activate the Personal license in Unity Hub, locate the generated `.ulf` license file and store its full contents as `UNITY_LICENSE`. Store the corresponding Unity account email/password in the other two secrets.
+The runner service must run as the same Linux user that activated Unity Personal, so the Editor sees the local license.
 
-Never commit these values to the repository.
 
 ## Evidence rules
 
