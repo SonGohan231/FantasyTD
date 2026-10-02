@@ -1,9 +1,9 @@
 {
   "enabled": true,
-  "generation_id": "map4-abyssal-giant-crab-miniboss-source-20261002-001",
+  "generation_id": "map4-abyssal-special-aquatic-tower-source-20261002-001",
   "model_path": "higgsfield-ai/soul/v2/standard",
   "input": {
-    "prompt": "ORIGINAL miniboss design sheet for an abyssal sea-floor mobile tower-defense game. Concept: THE VENT CRAB, a giant cartoon deep-sea crab that lives near hydrothermal vents and protects an ancient pearl. Original IP only.\n\nDesign: broad low crab body, oversized asymmetrical claws, coral and barnacle growths on shell, glowing cyan eyes, one magma-orange vent crack across shell, little anemones on back, thick segmented legs, cute but dangerous expression. Palette: dark teal shell, coral pink/red, cyan bioluminescence, small magma orange accents.\n\nCreate consistent top-down/3-4 source sheet:\n1 dormant half-buried in sand,\n2 awakening,\n3 active idle,\n4 claw slam anticipation,\n5 claw slam impact,\n6 bubble-blow/steam attack,\n7 hit/stagger.\nSame anatomy, proportions and camera angle. Chunky casual-game cartoon, clean outlines, soft cel shading, mobile-readable, no gore, no text, no UI.",
+    "prompt": "ORIGINAL unlockable special tower for an abyssal sea-floor mobile tower-defense game. Concept: PEARL LILY / TIDEBLOOM — a living coral-flower tower that fires a focused water/sonic pulse capable of piercing or popping hot bubbles that would normally absorb projectiles.\n\nDesign: rooted coral base, spiral shell core with luminous pearl, broad sea-lily petals, two flexible kelp arms, small bubbles orbiting the pearl. Friendly whimsical silhouette, no guns, no metal machinery. Palette: turquoise, pearl white, coral pink, deep blue, cyan glow.\n\nSource sheet on warm neutral background:\n1 folded/inactive,\n2 activation,\n3 active idle,\n4 bubble-piercing pulse,\n5 empowered pearl glow,\n6 upgrade variant.\nSame top-down/3-4 game camera, consistent proportions, chunky premium casual-game cartoon, clean outlines, soft cel shading, no text, no UI, original IP.",
     "resolution": "1080p",
     "aspect_ratio": "16:9",
     "batch_size": 1,
