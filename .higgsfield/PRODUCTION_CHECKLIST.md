@@ -55,7 +55,7 @@ Production:
 - [x] SECRET_HINT — run **37007483328**, artifact **11226805427** — APPROVED (maintenance tunnel states)
 - [ ] SECRET_OPEN
 - [~] MINIBOSS_DORMANT — source sheet run **37007487900**, artifact **11226875660** — APPROVED as design/source; dedicated animation source still required
-- [~] MINIBOSS_ACTIVE — source sheet run **37007487900**, artifact **11226875660** — APPROVED as design/source; animation still required
+- [x] MINIBOSS_ACTIVE — awakening animation run **37007997174**, artifact **11226746833** — APPROVED after visual QA (identity preserved; dormant→combat-idle transition readable)
 
 ## MAP 2 — Postapo
 **Difficulty:** Easy+ / first split  
@@ -85,7 +85,7 @@ Production:
 - [x] TOXIC_END — run **37001700869**, artifact **11223664631** — APPROVED
 - [!] BUNKER state sheet — run **37007479958**, artifact **11226826000** — REJECTED for final use (unwanted text labels); individual design is usable as reference
 - [ ] BUNKER_CLOSED
-- [ ] BUNKER_OPEN
+- [x] BUNKER_OPEN — run **37007991254**, artifact **11226332484** — APPROVED after visual QA (clear closed→open transition, steam, lit tunnel, stable final open state)
 - [ ] SECRET_HINT
 - [x] RADIO_RELAY_NODE — run **37007483328**, artifact **11226805427** — APPROVED (dormant/hint/active relay states)
 - [ ] MINIBOSS_DORMANT
