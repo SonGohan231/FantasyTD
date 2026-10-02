@@ -1,9 +1,9 @@
 {
   "enabled": true,
-  "generation_id": "map5-fungal-mother-mycelium-source-20261002-002",
+  "generation_id": "map5-fungal-mutation-tower-source-20261002-002",
   "model_path": "recraft/v4.1/text-to-image",
   "input": {
-    "prompt": "ORIGINAL 2D CHARACTER SOURCE SHEET for \"Mother Mycelium\", fungal-city miniboss in a playful mobile tower-defense game. Pure flat/cartoon 2D illustration, chunky shapes, clean dark outlines, saturated magenta/cyan/lime palette, soft cel shading, high phone readability. NO 3D render, NO realistic materials, NO toy/figurine look.\n\nCharacter identity: broad squat fungal queen rooted to cracked city pavement; large layered mushroom-cap crown, asymmetrical glowing spots, pale stem torso with expressive mischievous/menacing face, glowing mycelium core in chest/abdomen, four short root-tentacle lower limbs, two thicker mycelium arms ending in spore bulbs, dangling hyphae. Cute-weird rather than horror.\n\nCreate 5 isolated consistent poses on a warm off-white background with generous spacing:\n1 dormant rooted / cap lowered,\n2 awakening,\n3 active idle hero pose,\n4 spore-burst attack,\n5 hit/stagger.\nSame anatomy, same proportions, same camera in every pose. No text, no labels, no UI, no logo, no extra characters.",
+    "prompt": "ORIGINAL 2D SOURCE SHEET for an unlockable support tower called \"Mutation Bloom\" in a colorful fungal-city mobile tower-defense game. Playful casual-game cartoon, chunky simplified shapes, clean dark outlines, saturated cyan/magenta/lime palette, soft cel shading, high phone readability. No 3D render, no realism, no text.\n\nTower identity: cracked laboratory pod fused with a friendly living fungus. Short coral-pink fungal base, translucent lime mutation bulb/core, three asymmetrical cyan-magenta mushroom petals/caps, flexible mycelium tendrils, tiny floating spores. Visual role: status-resistance/support tower.\n\nCreate 5 isolated consistent poses/states on warm off-white background:\n1 dormant folded lab pod,\n2 activation opening,\n3 active idle hero pose,\n4 support pulse with ring of soft energy,\n5 upgraded variant with one extra mycelium branch and brighter core.\nSame proportions/camera. No labels, no UI, no extra characters.",
     "resolution": "1k",
     "aspect_ratio": "16:9",
     "output_format": "png"
