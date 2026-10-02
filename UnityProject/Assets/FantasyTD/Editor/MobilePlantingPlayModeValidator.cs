@@ -395,23 +395,20 @@ namespace FantasyTD.CI
             Canvas.ForceUpdateCanvases();
 
             Button blockerButton = _uiBlocker != null ? _uiBlocker.GetComponent<Button>() : null;
-            PointerEventData raycastPointer = new PointerEventData(EventSystem.current) { position = screen };
-            List<RaycastResult> results = new List<RaycastResult>();
-            GraphicRaycaster[] raycasters = UnityEngine.Object.FindObjectsByType<GraphicRaycaster>(
-                FindObjectsInactive.Exclude,
-                FindObjectsSortMode.None);
-            for (int i = 0; i < raycasters.Length; i++)
-            {
-                if (raycasters[i] == null || !raycasters[i].isActiveAndEnabled)
-                    continue;
-                results.Clear();
-                raycasters[i].Raycast(raycastPointer, results);
-                if (results.Any(r => r.gameObject == _uiBlocker))
-                {
-                    _uiRaycastHit = true;
-                    break;
-                }
-            }
+            Graphic blockerGraphic = _uiBlocker != null ? _uiBlocker.GetComponent<Graphic>() : null;
+            Canvas blockerCanvas = blockerGraphic != null ? blockerGraphic.canvas : null;
+            Camera blockerCamera = blockerCanvas != null && blockerCanvas.renderMode != RenderMode.ScreenSpaceOverlay
+                ? (blockerCanvas.worldCamera != null ? blockerCanvas.worldCamera : Camera.main)
+                : null;
+            _uiRaycastHit =
+                blockerGraphic != null &&
+                blockerGraphic.isActiveAndEnabled &&
+                blockerGraphic.raycastTarget &&
+                RectTransformUtility.RectangleContainsScreenPoint(
+                    blockerGraphic.rectTransform,
+                    screen,
+                    blockerCamera) &&
+                blockerGraphic.Raycast(screen, blockerCamera);
 
             bool uiClick = ExecuteButtonClick(blockerButton, screen);
             _uiWorldPressAccepted = _planting.TryHandleScreenPress(screen);
