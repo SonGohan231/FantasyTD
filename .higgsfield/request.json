@@ -1,13 +1,12 @@
 {
   "enabled": true,
-  "generation_id": "map2-postapo-base-ideogram-lock-20261002-002",
-  "model_path": "ideogram/v4.0",
+  "generation_id": "map2-postapo-scenery-props-20261002-001",
+  "model_path": "recraft/v4.1/text-to-image",
   "input": {
-    "prompt": "Keep the REFERENCE ROAD GRAPH clearly recognizable and preserve the same left entry, Y split, two separated middle branches, one right merge, right exit, and the same 12 build-pad locations. Stylize the rest aggressively into a finished ORIGINAL 2D mobile tower-defense map.\n\nTheme: bright colorful post-apocalyptic city reclaimed by plants. Chunky cartoon buildings, cracked sidewalks, vivid vines, flowers, rooftop gardens, small rusted cars, sewer channel, simple concrete debris, radio antenna, bunker hatch, steam pipes and amber hazard beacons. Friendly casual-game look with bold clean outlines, saturated colors, soft cel shading, simple shapes and high phone readability. No realism, no detailed painterly textures, no cinematic perspective, no Kingdom Rush imitation.\n\nThe two road branches MUST remain separate across the middle, with a large scenic gap between them. Build scenery around the roads, not over them. Keep exactly 12 obvious build pads.\n\nNo text, letters, numbers, logos, posters, signs, billboards, graffiti, UI, enemies or towers. BASE state only, no toxic storm.",
-    "image_url": "https://d3u0tzju9qaucj.cloudfront.net/9f95694a-f77a-4193-89ef-1c30149ba5ad/901d6fdf-ff26-452c-b85c-fb5930edb19f.png",
-    "image_weight": 60,
+    "prompt": "ORIGINAL production asset sheet for a colorful post-apocalyptic mobile tower-defense map. Playful casual-game cartoon style, chunky simplified shapes, clean dark outlines, bright saturated palette, soft cel shading, high readability on a phone, no realism, no Kingdom Rush imitation, no copied game assets.\n\nCreate an organized GAME PROP SHEET on a plain warm off-white background. Each prop isolated with clear empty spacing and a consistent top-down / 3/4 game-art camera. No readable text anywhere.\n\nInclude:\n1. small ruined blank-facade corner building with vines,\n2. broken bus shelter with plants,\n3. rusted compact car,\n4. rusted van,\n5. cracked concrete barrier,\n6. amber hazard beacon OFF,\n7. amber hazard beacon ON,\n8. radio antenna/dish,\n9. steam vent pipe,\n10. sewer drain outlet,\n11. closed circular bunker hatch,\n12. open bunker hatch,\n13. hidden maintenance tunnel doorway,\n14. overgrown radio relay node,\n15. rooftop garden planter,\n16. flowering vine cluster,\n17. loose paper/debris cluster,\n18. cracked asphalt/sidewalk corner,\n19. small water/sewer edge module,\n20. scrap pile suitable for special-tower unlock.\n\nNo roads, no characters, no enemies, no towers, no logos, no signs, no letters, no numbers, no labels. Assets must look mutually consistent and easy to cut into sprites.",
+    "resolution": "1k",
     "aspect_ratio": "16:9",
-    "rendering_speed": "QUALITY"
+    "output_format": "png"
   },
   "max_wait_seconds": 1200
 }
