@@ -1,15 +1,12 @@
 {
   "enabled": true,
-  "generation_id": "map4-abyssal-aquatic-tower-idle-loop-20261002-001",
-  "model_path": "bytedance/seedance-2.5/image-to-video",
+  "generation_id": "map5-fungal-scenery-props-20261002-001",
+  "model_path": "recraft/v4.1/text-to-image",
   "input": {
-    "image_url": "https://d3u0tzju9qaucj.cloudfront.net/9f95694a-f77a-4193-89ef-1c30149ba5ad/e32152d8-387c-4c55-85b9-2ce2c84a9e03.png",
-    "prompt": "Locked camera. Animate THIS EXACT aquatic special tower in a subtle active idle loop. Preserve identity and proportions. Motion only: teal petals gently sway, pearl-like face/core softly bobs, tiny bubbles rise and pop, green-striped tendrils drift like underwater plants, shell body barely breathes. No transformation, no attack, no new objects, no text, no UI, no camera movement, no cuts. End close to start for looping.",
-    "duration": 4,
-    "resolution": "480p",
+    "prompt": "ORIGINAL production prop sheet for MAP5 \"Fungal Infected City\", a colorful mobile 2D tower-defense game. Playful casual-game cartoon style, chunky simplified shapes, clean dark outlines, saturated magenta/cyan/lime/orange palette, soft cel shading, high phone readability, no realism, no text, no logos, no labels.\n\nCreate isolated modular props on a warm off-white background, consistent top-down / restrained 3/4 game camera:\n1 giant umbrella mushroom cluster,\n2 glowing shelf fungus on broken wall,\n3 pulsing mycelium cable bundle,\n4 fluorescent spore vent,\n5 cracked blank-facade apartment corner with fungal growth,\n6 bent street lamp overtaken by mushrooms,\n7 broken car covered in mold,\n8 sewer grate with bioluminescent runoff,\n9 fungal barricade,\n10 cracked pavement with mushroom sprouts,\n11 mycelium node dormant,\n12 mycelium node active/glowing,\n13 sealed laboratory hatch,\n14 open laboratory hatch,\n15 bio-luminescent puddle,\n16 spore cloud emitter plant,\n17 hidden upgrade capsule partly overgrown,\n18 mutation-tower unlock pod,\n19 small rooftop fungal garden,\n20 twisted traffic barrier with NO symbols or text.\nNo roads, no enemies, no towers, no readable symbols, no UI. Original IP only.",
+    "resolution": "1k",
     "aspect_ratio": "16:9",
-    "output_format": "mp4",
-    "generate_audio": false
+    "output_format": "png"
   },
   "max_wait_seconds": 1200
 }
