@@ -1,0 +1,272 @@
+{
+  "map_id": "MAP6_BAMBOO_FOREST",
+  "title": "Las Bambusowy",
+  "logical_size": {
+    "width": 30,
+    "height": 16
+  },
+  "difficulty": "Hard-",
+  "target_build_spots": 13,
+  "topology_description": "Three independent left-side entrances. Upper and center lanes merge first; lower lane stays separate longer and joins at a second merge. Final shared route exits right.",
+  "spawns": [
+    {
+      "id": "upper",
+      "x": 0,
+      "y": 13
+    },
+    {
+      "id": "center",
+      "x": 0,
+      "y": 8
+    },
+    {
+      "id": "lower",
+      "x": 0,
+      "y": 3
+    }
+  ],
+  "routes": {
+    "upper": [
+      [
+        0,
+        13
+      ],
+      [
+        4,
+        13
+      ],
+      [
+        8,
+        12
+      ],
+      [
+        11,
+        10.5
+      ],
+      [
+        13,
+        10
+      ]
+    ],
+    "center": [
+      [
+        0,
+        8
+      ],
+      [
+        4,
+        8
+      ],
+      [
+        8,
+        9
+      ],
+      [
+        11,
+        9.5
+      ],
+      [
+        13,
+        10
+      ]
+    ],
+    "lower": [
+      [
+        0,
+        3
+      ],
+      [
+        4,
+        3
+      ],
+      [
+        8,
+        4
+      ],
+      [
+        12,
+        5
+      ],
+      [
+        15,
+        6
+      ]
+    ],
+    "after_first_merge": [
+      [
+        13,
+        10
+      ],
+      [
+        17,
+        10
+      ],
+      [
+        20,
+        9
+      ],
+      [
+        22,
+        8
+      ]
+    ],
+    "after_second_merge": [
+      [
+        15,
+        6
+      ],
+      [
+        18,
+        6
+      ],
+      [
+        20,
+        7
+      ],
+      [
+        22,
+        8
+      ]
+    ],
+    "final": [
+      [
+        22,
+        8
+      ],
+      [
+        26,
+        8
+      ],
+      [
+        30,
+        8
+      ]
+    ]
+  },
+  "exit": {
+    "x": 30,
+    "y": 8
+  },
+  "merge_points": [
+    {
+      "id": "merge_A",
+      "x": 13,
+      "y": 10,
+      "joins": [
+        "upper",
+        "center"
+      ]
+    },
+    {
+      "id": "merge_B",
+      "x": 22,
+      "y": 8,
+      "joins": [
+        "after_first_merge",
+        "after_second_merge"
+      ]
+    }
+  ],
+  "build_spots": [
+    {
+      "id": "B1",
+      "x": 2.3,
+      "y": 15,
+      "zone": "upper_early"
+    },
+    {
+      "id": "B2",
+      "x": 5.8,
+      "y": 11.1,
+      "zone": "upper"
+    },
+    {
+      "id": "B3",
+      "x": 9.8,
+      "y": 14,
+      "zone": "upper"
+    },
+    {
+      "id": "B4",
+      "x": 2.5,
+      "y": 9.8,
+      "zone": "center_early"
+    },
+    {
+      "id": "B5",
+      "x": 6.3,
+      "y": 6.7,
+      "zone": "center"
+    },
+    {
+      "id": "B6",
+      "x": 10.1,
+      "y": 7.7,
+      "zone": "center"
+    },
+    {
+      "id": "B7",
+      "x": 2.4,
+      "y": 1.1,
+      "zone": "lower_early"
+    },
+    {
+      "id": "B8",
+      "x": 6.6,
+      "y": 5.4,
+      "zone": "lower"
+    },
+    {
+      "id": "B9",
+      "x": 11,
+      "y": 2.7,
+      "zone": "lower"
+    },
+    {
+      "id": "B10",
+      "x": 15.4,
+      "y": 12.4,
+      "zone": "merge_A_support"
+    },
+    {
+      "id": "B11",
+      "x": 17.2,
+      "y": 4.2,
+      "zone": "lower_late"
+    },
+    {
+      "id": "B12",
+      "x": 21.1,
+      "y": 10.9,
+      "zone": "merge_B_support"
+    },
+    {
+      "id": "B13",
+      "x": 25.5,
+      "y": 6.2,
+      "zone": "final"
+    }
+  ],
+  "dynamic_events": [
+    {
+      "id": "rolling_pandas",
+      "behavior": "2-4 pandas enter from bamboo side corridors. Some roll across and leave; some stop, stand up and convert into hostile enemies."
+    },
+    {
+      "id": "bamboo_logs",
+      "behavior": "Telegraphed rolling bamboo logs cross marked lanes and temporarily disrupt projectile lines/positioning."
+    }
+  ],
+  "secret": {
+    "id": "hidden_dojo",
+    "miniboss": "Great Panda Warrior",
+    "unlock": "Rapid-fire Bamboo Tower"
+  },
+  "constraints": [
+    "No single build spot may cover all three entrances.",
+    "Upper+center merge before lower lane joins, creating two distinct pressure windows.",
+    "Panda transformation event must be telegraphed before hostile state.",
+    "Rolling logs cannot produce unavoidable loss.",
+    "Exact route/build coordinates are deterministic Unity data."
+  ]
+}
