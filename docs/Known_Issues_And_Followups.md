@@ -19,14 +19,14 @@ Confidence: Confirmed as an evidence gap
 Severity: High for milestone readiness
 
 Evidence:
-T0001 verified the Editor/import/compile baseline. T0002 verified MAP-A scene/geometry. T0003 Unity Executor run `36986249467` verified mobile planting/radial interaction. T0004 Unity Executor run `36988172698` verified all four production plant behaviors. T0005 Unity Executor run `36990840649` verified all four basic enemy types and production wave flow 1–5. T0006 Unity Executor run `36994046983` verified production wave 6, Król Cierni runtime/control interactions, production victory, natural-leak defeat, terminal-state input gating, and real UI restart after both outcomes. T0007 Unity Executor run `36997417372` verified exact 1920×1080 and 2400×1080 Game View layouts plus an Editor-only synthetic safe-area case through production `SafeAreaFitter`.
+T0001 verified the Editor/import/compile baseline. T0002 verified MAP-A scene/geometry. T0003 Unity Executor run `36986249467` verified mobile planting/radial interaction. T0004 Unity Executor run `36988172698` verified all four production plant behaviors. T0005 Unity Executor run `36990840649` verified all four basic enemy types and production wave flow 1–5. T0006 Unity Executor run `36994046983` verified production wave 6, Król Cierni runtime/control interactions, production victory, natural-leak defeat, terminal-state input gating, and real UI restart after both outcomes. T0007 Unity Executor run `36997417372` verified exact 1920×1080 and 2400×1080 Game View layouts plus an Editor-only synthetic safe-area case through production `SafeAreaFitter`. T0008 Unity Executor run `36999815943` completed a real Android build and produced the expected APK with a successful BuildReport.
 
 Still unverified:
-- actual Android APK build/toolchain,
-- physical Android device runtime and device-reported safe-area/touch behavior.
+- physical Android device runtime,
+- device-reported safe-area/touch behavior and installed-APK smoke behavior.
 
 Impact:
-The MAP-A gameplay loop and required Editor Play Mode mobile-layout coverage are verified. Remaining milestone evidence gaps are Android build/device-specific rather than the core gameplay or desktop-editor layout loop.
+The MAP-A gameplay loop, required Editor mobile layout and Android build pipeline are verified. The remaining milestone evidence gap is physical/device runtime rather than build generation.
 
 Action:
 Continue runtime verification only through separately activated tickets.
@@ -69,25 +69,33 @@ No T0002 remediation required. Preserve the current generated-scene workflow unl
 
 ---
 
-## KI-003 — Android build toolchain completeness not fully verified
+## KI-003 — Android build toolchain completeness
 
-Status: **VERIFY**  
-Confidence: Partially verified  
+Status: **RESOLVED**  
+Confidence: Confirmed by real Unity Android build  
 Severity: High for Android milestone
 
-Verified in T0001:
-- Unity reports `androidModuleSupported=True`,
-- the Android platform support module registered from the installed Unity editor,
-- an ADB device scan executed during editor initialization.
+T0008 evidence from Unity Executor run `36999815943`:
+- Android Build Support: `True`,
+- active build target: `Android`,
+- Unity-reported SDK root exists,
+- installed SDK platforms: `android-33;android-34;android-35`,
+- installed build-tools: `34.0.0`,
+- Unity-reported NDK root exists; `Pkg.Revision=23.1.7779620`,
+- Unity-reported JDK root exists; `JAVA_VERSION=17.0.9`,
+- target SDK setting: `AndroidApiLevelAuto`,
+- minimum SDK setting: `AndroidApiLevel23`,
+- application identifier: `com.indie.fantasytd`,
+- BuildReport: `Succeeded`, zero errors and zero BuildReport warnings,
+- physical APK produced at `Builds/Android/FantasyTD_MAP_A_v2.apk`,
+- APK size `18869167` bytes,
+- APK SHA-256 `13029c48866753493aa23fe7aab321c2f94dd7e76e43de49791c5c243ccc8bb5`.
 
-Still unknown / not independently verified:
-- Android SDK version/path,
-- Android NDK version/path,
-- JDK version/path,
-- actual Android player build success.
+Limitation:
+Target SDK is configured as Auto and the Unity build log does not expose a single resolved API level. Installed API 35 is therefore not claimed as the resolved target.
 
 Action:
-Verify exact SDK/NDK/JDK configuration and build output in the dedicated Android build ticket. Do not switch build target or build an APK as part of T0001.
+No T0008 toolchain remediation required. Physical install/launch remains outside this issue and outside T0008.
 
 ---
 
@@ -228,24 +236,64 @@ Create Balance v1.1 only after playtest evidence in T0010.
 
 ## KI-010 — Obsolete Unity API warning in MapAEditorSetup
 
-Status: **OPEN**  
-Confidence: Confirmed by Unity compiler  
+Status: **RESOLVED**  
+Confidence: Confirmed by T0008 compile/build evidence  
 Severity: Low
 
+Original evidence:
+Unity 6000.0.26f1 emitted CS0618 for `PlayerSettings.SetApplicationIdentifier(BuildTargetGroup, string)`.
+
+T0008 resolution:
+The build-tooling code now uses:
+`PlayerSettings.SetApplicationIdentifier(NamedBuildTarget.Android, "com.indie.fantasytd")`.
+
 Evidence:
-Unity 6000.0.26f1 emitted one unique compiler warning, twice during import/compilation:
+- T0008 baseline compile succeeded after the change,
+- real Android BuildReport succeeded,
+- no C# CS0618 warning appears in the T0008 Android build log,
+- BuildReport warnings: `0`.
 
-```text
-Assets/FantasyTD/Editor/MapAEditorSetup.cs(46,13): warning CS0618:
-'PlayerSettings.SetApplicationIdentifier(BuildTargetGroup, string)' is obsolete:
-'Use SetApplicationIdentifier(NamedBuildTarget buildTarget, string identifier) instead'
-```
-
-Impact:
-Non-blocking. T0001 completed with zero C# compiler errors and the Unity Executor baseline succeeded.
+Note:
+The IL2CPP portion of the log still includes internal TextCore code-generation messages prefixed `Warning:`; Unity BuildReport does not count them as build warnings and they are unrelated to KI-010.
 
 Action:
-Update the obsolete API in a separately scoped maintenance/fix ticket if desired. Do not modify source code during T0001 solely to remove this warning.
+No further KI-010 remediation required.
+
+---
+
+## T0008 verified evidence
+
+Unity Executor:
+- final successful run: `37001334070`
+- branch: `codex/t0008-android-build`
+- validated final head: `99351f43cce3039a38c64c7020de9e540a76b864`
+- Unity: `6000.0.26f1 (ccb7c73d2c02)`
+- Android job: **success**
+- BuildReport: **Succeeded**
+- BuildReport duration: `468.893 s`
+- BuildReport errors: `0`
+- BuildReport warnings: `0`
+- MAP-A present/enabled/in actual build options: **YES**
+- application identifier: `com.indie.fantasytd`
+- exact APK: `Builds/Android/FantasyTD_MAP_A_v2.apk`
+- physical APK bytes: `18869164`
+- APK SHA-256: `b99b3f85b29453a76e2f698927183ad5fc8d1f5eb62e57079c86b7676b8c6c57`
+- artifact: `fantasy-td-android-37001334070` (ID `11224123199`)
+- artifact contains APK: **YES**
+- install/emulator/physical-device smoke: **NOT RUN**
+- T0009: **NOT STARTED**
+
+Toolchain:
+- Android Build Support: `True`
+- SDK root: Unity embedded AndroidPlayer SDK
+- installed APIs: `33;34;35`
+- build-tools: `34.0.0`
+- NDK: `23.1.7779620`
+- JDK: `17.0.9`
+- target SDK setting: `AndroidApiLevelAuto`
+- minimum SDK setting: `AndroidApiLevel23`
+
+Final Android build completed successfully on the documented T0008 head; no device install/emulator/physical-device smoke was performed.
 
 ---
 

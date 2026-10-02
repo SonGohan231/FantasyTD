@@ -469,7 +469,7 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p "$GITHUB_WORKSPACE/UnityProject/Logs"
-          "${{ steps.unity.outputs.bin }}"             -batchmode -nographics -quit             -projectPath "$GITHUB_WORKSPACE/UnityProject"             -executeMethod FantasyTD.CI.UnityExecutorCi.BuildAndroid             -logFile "$GITHUB_WORKSPACE/UnityProject/Logs/unity-android-build.log"
+          "${{ steps.unity.outputs.bin }}"             -batchmode -nographics -quit             -buildTarget Android             -projectPath "$GITHUB_WORKSPACE/UnityProject"             -executeMethod FantasyTD.CI.UnityExecutorCi.BuildAndroid             -logFile "$GITHUB_WORKSPACE/UnityProject/Logs/unity-android-build.log"
 
       - name: Upload APK and executor report
         if: always()
