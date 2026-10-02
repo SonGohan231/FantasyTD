@@ -1,10 +1,10 @@
 {
   "enabled": true,
-  "generation_id": "map3-twilight-moon-gate-open-20261002-001",
+  "generation_id": "map3-twilight-night-tower-activation-20261002-001",
   "model_path": "bytedance/seedance-2.5/image-to-video",
   "input": {
-    "image_url": "https://d3u0tzju9qaucj.cloudfront.net/9f95694a-f77a-4193-89ef-1c30149ba5ad/43e0ad3d-bcdf-4ef9-a3c3-a379d0aa140b.png",
-    "prompt": "Locked camera. Animate THIS EXACT closed Moon Gate secret prop. Preserve crescent shape, violet structure, dark green vines, two lavender bell flowers and bright star-flower leaves. Sequence: star leaves glow softly -> bell flowers sway -> silver seam brightens -> vines peel back -> crescent gate halves rotate/slide apart just enough to reveal a dark moonlit portal with lavender light -> tiny fireflies drift outward -> end with gate fully open and stable for the final second. No extra props, no text, no UI, no characters, no camera movement, no zoom, no cuts.",
+    "image_url": "https://d3u0tzju9qaucj.cloudfront.net/9f95694a-f77a-4193-89ef-1c30149ba5ad/9f27f22e-18c2-4dc7-b1e5-7b80d0f479f4.png",
+    "prompt": "Locked camera. Animate THIS EXACT Starbloom Lantern special tower. Preserve large violet-blue flower petals, green stem/leaves, warm lantern core and tiny fireflies. Sequence: dormant slight droop -> lantern core warms brighter -> petals lift/open slightly -> stem straightens -> fireflies gather -> one soft circular violet-blue moonlight support pulse expands outward -> tower settles into active idle with gentle glow. No second tower, no text, no UI, no extra props, no camera movement, no zoom, no cuts. Mobile-readable.",
     "duration": 4,
     "resolution": "480p",
     "aspect_ratio": "16:9",
