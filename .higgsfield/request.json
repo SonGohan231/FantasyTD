@@ -1,15 +1,12 @@
 {
   "enabled": true,
-  "generation_id": "map6-bamboo-tower-idle-loop-20261002-001",
-  "model_path": "bytedance/seedance-2.5/image-to-video",
+  "generation_id": "map7-temple-scenery-props-20261002-001",
+  "model_path": "recraft/v4.1/text-to-image",
   "input": {
-    "image_url": "https://d3u0tzju9qaucj.cloudfront.net/9f95694a-f77a-4193-89ef-1c30149ba5ad/9b6b3215-2646-44cc-94ba-071710b699cf.png",
-    "prompt": "Locked camera. Subtle active idle loop for THIS EXACT Bamboo Burst tower. Preserve identity. Motion only: leaves sway, bamboo tubes flex a few degrees, central seed-core softly pulses, natural bamboo ring rotates slightly then returns, tiny pollen/leaf motes rise and fade. No firing, no transformation, no extra objects, no text, no UI, no camera movement. End close to starting pose for looping.",
-    "duration": 4,
-    "resolution": "480p",
+    "prompt": "ORIGINAL production prop sheet for MAP7 \"Sun and Moon Temple\", a colorful mobile 2D tower-defense game. Playful premium casual-game cartoon, chunky simplified shapes, clean dark outlines, saturated gold/teal/indigo/coral palette, soft cel shading, high phone readability, no realism, no text, no logos, no labels.\n\nCreate isolated modular props on warm off-white background, consistent top-down / restrained 3/4 game camera:\n1 sun flame bowl,\n2 moon flame bowl,\n3 rotating sun disk pedestal,\n4 crescent moon disk pedestal,\n5 mirror obelisk,\n6 beam receiver crystal,\n7 closed golden temple gate,\n8 closed indigo moon gate,\n9 open golden gate,\n10 open moon gate,\n11 waterfall edge module,\n12 shallow reflecting pool,\n13 moving stone guardian statue,\n14 lotus planter,\n15 sun mosaic floor patch without symbols/text,\n16 moon mosaic floor patch without symbols/text,\n17 broken column,\n18 hanging lantern,\n19 guardian sanctum door closed,\n20 sanctum door open.\nNo roads, enemies, towers or UI. Original IP only.",
+    "resolution": "1k",
     "aspect_ratio": "16:9",
-    "output_format": "mp4",
-    "generate_audio": false
+    "output_format": "png"
   },
   "max_wait_seconds": 1200
 }
