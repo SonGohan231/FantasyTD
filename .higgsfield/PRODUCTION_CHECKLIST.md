@@ -51,11 +51,11 @@ Existing API evidence:
 
 Production:
 - [ ] BASE_FINAL
-- [x] AMBIENT_LOOP — run **37001697251**, artifact **11224247023** — APPROVED (steam, debris/leaves, beacon, smoke; loop-friendly overlay)
-- [x] SECRET_HINT — run **37007483328**, artifact **11226805427** — APPROVED (maintenance tunnel states)
+- [ ] AMBIENT_LOOP
+- [ ] SECRET_HINT
 - [ ] SECRET_OPEN
-- [~] MINIBOSS_DORMANT — source sheet run **37007487900**, artifact **11226875660** — APPROVED as design/source; dedicated animation source still required
-- [x] MINIBOSS_ACTIVE — awakening animation run **37007997174**, artifact **11226746833** — APPROVED after visual QA (identity preserved; dormant→combat-idle transition readable)
+- [ ] MINIBOSS_DORMANT
+- [ ] MINIBOSS_ACTIVE
 
 ## MAP 2 — Postapo
 **Difficulty:** Easy+ / first split  
@@ -121,15 +121,26 @@ Previous API concept:
 - [!] Old static concept — run **36999547601** — REJECTED as final layout
 
 Production:
+- [ ] TOPOLOGY_SKETCH — early split, two persistent routes, late merge, 12 target pads
+- [ ] SCENERY_PROP_PACK
+- [ ] BACKGROUND_TERRAIN_PLATE
+- [ ] BASE_COMPOSITE_IN_UNITY_FROM_LOCKED_TOPOLOGY
 - [ ] BASE_FINAL_NEW_TOPOLOGY
 - [ ] AMBIENT_LOOP
 - [ ] FOG_START
 - [ ] FOG_HIGH
 - [ ] FOG_END
+- [ ] BAT_SWARM_ANIM
 - [ ] MOON_GATE_CLOSED
 - [ ] MOON_GATE_OPEN
+- [ ] MOON_GATE_OPEN_ANIM
+- [ ] MINIBOSS_SOURCE
 - [ ] MINIBOSS_DORMANT
 - [ ] MINIBOSS_ACTIVE
+- [ ] MINIBOSS_AWAKEN_ANIM
+- [ ] MINIBOSS_ATTACK_ANIM
+- [ ] SPECIAL_NIGHT_TOWER_SOURCE
+- [ ] SPECIAL_NIGHT_TOWER_ACTIVATION_ANIM
 
 ## MAP 4 — Dno oceaniczne
 **Difficulty:** Medium / two routes + shared crossing  
