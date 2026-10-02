@@ -1,12 +1,12 @@
 {
   "enabled": true,
-  "generation_id": "map2-postapo-salvage-tower-idle-loop-20261002-001",
+  "generation_id": "map2-postapo-salvage-tower-idle-loop-20261002-002",
   "model_path": "bytedance/seedance-2.5/image-to-video",
   "input": {
     "image_url": "https://d3u0tzju9qaucj.cloudfront.net/9f95694a-f77a-4193-89ef-1c30149ba5ad/93382cb8-ee1e-4457-ba90-1ff38f2b4cfe.png",
-    "prompt": "Locked camera. Create a subtle seamless-feeling ACTIVE IDLE loop for the exact Salvage Bloom special tower from the reference. Preserve design and identity. Motion: gentle root/body breathing, very small vine-arm sway, teal core softly pulses, flower emitter opens/closes slightly, tiny floating teal motes appear and fade, one small scrap-attraction twitch from a vine. No attack, no transformation, no extra objects, no text, no UI, no camera movement, no zoom, no cuts. Keep motion restrained and loop-friendly for continuous Unity gameplay.",
-    "duration": 6,
-    "resolution": "720p",
+    "prompt": "Locked camera. Very subtle ACTIVE IDLE loop for the exact Salvage Bloom tower. Preserve identity. Gentle root/body breathing, slight vine sway, soft teal core pulse, tiny flower-head movement. No transformation, no large effects, no extra objects, no camera movement, no text or UI. Loop-friendly mobile game motion.",
+    "duration": 4,
+    "resolution": "480p",
     "aspect_ratio": "16:9",
     "output_format": "mp4",
     "generate_audio": false
