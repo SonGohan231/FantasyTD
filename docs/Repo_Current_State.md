@@ -2,12 +2,17 @@
 
 Last updated: 2026-10-02
 
-Evidence level:
+## Evidence level
+
 - Static repository inspection: AVAILABLE
-- Unity Editor compilation: NOT RUN in this handoff environment
-- Play Mode: NOT RUN
-- Android build: NOT RUN
-- Device smoke test: NOT RUN
+- Unity Editor import/compilation: **VERIFIED — PASS**
+- Unity Executor run: `36979277994`
+- Validated branch: `codex/t0001-unity-baseline-v2`
+- Validated head before documentation commits: `e6e91bc9a0835128165c0d8539f614163a546cf7`
+- Unity Executor artifact: `unity-executor-baseline-36979277994` (artifact ID `11214941802`)
+- Play Mode: **NOT RUN** (out of scope for T0001)
+- Android build: **NOT RUN** (out of scope for T0001)
+- Device smoke test: **NOT RUN**
 
 ## Current milestone
 
@@ -16,6 +21,8 @@ MAP-A Android v2 vertical slice.
 ## Current active ticket
 
 T0001 — Unity Project Baseline.
+
+T0001 baseline acceptance criteria are satisfied by real Unity Executor evidence. No T0002 work was started in this pass.
 
 ## Repository layout
 
@@ -27,23 +34,63 @@ Top level:
 - `UnityProject/`
 
 Unity root:
-- `UnityProject/`
+- repository-relative: `UnityProject/`
+- executor absolute path: `/opt/actions-runner/_work/FantasyTD/FantasyTD/UnityProject`
 
-## Declared Unity version
+## Unity Editor baseline
 
-From `UnityProject/ProjectSettings/ProjectVersion.txt`:
+Actual Editor used by the executor:
+
+`6000.0.26f1 (ccb7c73d2c02)`
+
+The repository's `UnityProject/ProjectSettings/ProjectVersion.txt` declares:
 
 `6000.0.26f1`
 
-The file also contains an all-zero revision field in the generated project handoff. Treat exact editor-revision compatibility as unverified until Unity opens the project.
+The previously placeholder-like all-zero revision in `ProjectVersion.txt` did not prevent the project from opening with the real editor. Exact runtime evidence comes from the Unity log, not from the placeholder revision field.
 
 ## Packages
 
-`UnityProject/Packages/manifest.json` currently declares:
-- `com.unity.ugui`
-- built-in Unity modules
+`UnityProject/Packages/manifest.json` declares:
 
-No committed `packages-lock.json` was present in the source handoff at the time this document was generated.
+- `com.unity.ugui` `2.0.0`
+- `com.unity.modules.animation` `1.0.0`
+- `com.unity.modules.audio` `1.0.0`
+- `com.unity.modules.imageconversion` `1.0.0`
+- `com.unity.modules.imgui` `1.0.0`
+- `com.unity.modules.jsonserialize` `1.0.0`
+- `com.unity.modules.physics2d` `1.0.0`
+- `com.unity.modules.ui` `1.0.0`
+- `com.unity.modules.uielements` `1.0.0`
+
+Unity Package Manager resolved the project during the baseline import.
+
+## Compile and Console baseline
+
+Unity Executor mode: `baseline`.
+
+Result:
+- workflow conclusion: **success**
+- `compileReachedExecutor=true`
+- C# compiler errors: **0**
+- unique C# compiler warnings: **1**
+- the warning was emitted twice during import/compilation
+
+Compiler warning:
+
+```text
+Assets/FantasyTD/Editor/MapAEditorSetup.cs(46,13): warning CS0618:
+'PlayerSettings.SetApplicationIdentifier(BuildTargetGroup, string)' is obsolete:
+'Use SetApplicationIdentifier(NamedBuildTarget buildTarget, string identifier) instead'
+```
+
+Non-blocking headless-runner messages were also observed:
+- 2 Gtk critical messages during startup,
+- ALSA/FM0D audio-device failures followed by `FMOD initialized on nosound output`,
+- a licensing access-token update message followed by successful license resolution/update,
+- `Curl error 42: Callback aborted` during shutdown.
+
+These messages did not prevent successful import, compilation, baseline execution, report generation, artifact upload, or successful batchmode exit.
 
 ## First-party source
 
@@ -68,74 +115,79 @@ Observed code includes:
 - editor scene/bootstrap tooling
 - Android build editor command
 
-## Implemented in source code, not runtime-verified
-
-The repository contains code intended to provide:
-
-### MAP-A
-- 24 × 14 RU logical bounds
-- route length target approximately 46.211 RU
-- 12 planting spots
-- portal-style spawn
-- tree-style base
-
-### Plants
-- Pędostrzał
-- Kwiat Esencji
-- Dębowy Strażnik
-- Mroźny Pąk
-
-### Enemies
-- Chochlik
-- Wichrowy Skrzat
-- Ogr Zarośli
-- Żelazny Goblin
-- Król Cierni
-
-### Waves
-Six hard-coded prototype waves in `WaveDirector.cs`.
-
-### Mobile
-- touch input path
-- Editor mouse fallback
-- safe area
-- CanvasScaler
-- landscape autorotation intent
-- Android build menu item
+These gameplay/runtime systems remain **not Play-Mode-verified** because T0001 explicitly excludes Play Mode validation.
 
 ## Scene state
 
-No committed MAP-A `.unity` scene existed in the source handoff before Unity Editor execution.
-
-`MapAEditorSetup.cs` is intended to create:
+The expected scene path is:
 
 `Assets/FantasyTD/Scenes/MAP_A_ANDROID_V2.unity`
 
-on Editor load if missing, and to add it to Build Settings.
+Real Unity Executor evidence:
+- `sceneExists=True`
+- `sceneEnabledInBuildSettings=True`
+- the scene was generated/imported and opened successfully by the existing editor bootstrap
 
-This behavior is NOT YET VERIFIED in Unity.
+The scene is generated by Editor code rather than treated here as a manually maintained committed scene. T0001 did not modify scene geometry or gameplay.
+
+## Build Settings state
+
+Unity Executor reported:
+
+- `sceneEnabledInBuildSettings=True`
+- `activeBuildTarget=StandaloneLinux64`
+
+T0001 did **not** change the active build target.
+
+## Android tooling state
+
+Unity Executor reported:
+
+- `androidModuleSupported=True`
+- Android platform support module registered from the Unity installation
+- ADB device scan executed during editor initialization
+
+This proves Android Build Support is available to Unity on the executor.
+
+Not independently verified in T0001:
+- exact SDK version/path
+- exact NDK version/path
+- exact JDK version/path
+- Android player build success
+
+Those checks remain for the Android build ticket; T0001 did not switch target or build an APK.
+
+## Git state used for validation
+
+Unity Executor checked out:
+
+- branch: `codex/t0001-unity-baseline-v2`
+- head: `e6e91bc9a0835128165c0d8539f614163a546cf7`
+
+The Actions checkout performed a clean/reset before the Unity run. The validation therefore ran from a clean repository checkout of that head. Unity-generated local files were not committed as part of T0001.
 
 ## Testing
 
-No first-party Unity automated tests were observed in the current source handoff.
+T0001 intentionally added no tests.
 
-This is acceptable for the first vertical-slice baseline but should be revisited after the project compiles and the architecture stabilizes.
+For run `36979277994`:
+- baseline/compile job: **success**
+- EditMode + PlayMode test job: **skipped**
+- Android APK job: **skipped**
+
+This matches the ticket's non-goals.
 
 ## Build state
 
-Editor code exists to build:
+Android build: **NOT RUN**.
 
-`Builds/Android/FantasyTD_MAP_A_v2.apk`
-
-Actual Android build success is NOT VERIFIED.
-
-Android Build Support / SDK / NDK / JDK availability is UNKNOWN.
+No APK success is claimed.
 
 ## Input state
 
 Current code uses legacy Unity `Input` touch APIs plus UGUI `StandaloneInputModule`.
 
-Actual project input settings and Unity 6 Android behavior are NOT VERIFIED.
+Actual gameplay touch behavior is still **NOT VERIFIED** because T0001 did not enter Play Mode or run a device test.
 
 Do not migrate input systems until there is evidence that migration is necessary.
 
@@ -143,17 +195,30 @@ Do not migrate input systems until there is evidence that migration is necessary
 
 Current architecture is intentionally small and centralized around `GameSession`.
 
-No assembly definitions are present in the source handoff.
+No architecture rewrite is justified by T0001, and none was performed.
 
-No architecture rewrite is currently justified.
+## T0001 outcome
 
-## Current known blockers
+**PASS**
 
-None confirmed because Unity Editor has not yet been run against this handoff.
+Evidence:
+- real Unity 6000.0.26f1 editor process executed,
+- import and compilation completed,
+- no C# compiler errors,
+- Console/log baseline preserved,
+- MAP-A scene exists,
+- MAP-A is enabled in Build Settings,
+- Android module support is confirmed,
+- branch/head and clean checkout are recorded,
+- only T0001 diagnostic/documentation scope was performed.
 
 See:
-`docs/Known_Issues_And_Followups.md`
+- Unity Executor run `36979277994`
+- artifact `unity-executor-baseline-36979277994`
+- `docs/Known_Issues_And_Followups.md`
 
 ## Next recommended action
 
-Complete T0001 only.
+Do not start another ticket automatically.
+
+After review/merge of the T0001 documentation branch, the PM/user may mark T0001 done and separately activate T0002.
