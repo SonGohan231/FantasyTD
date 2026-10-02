@@ -1,10 +1,10 @@
 {
   "enabled": true,
-  "generation_id": "map2-postapo-maintenance-tunnel-open-20261002-001",
+  "generation_id": "map2-postapo-miniboss-slam-attack-20261002-001",
   "model_path": "bytedance/seedance-2.5/image-to-video",
   "input": {
-    "image_url": "https://d3u0tzju9qaucj.cloudfront.net/9f95694a-f77a-4193-89ef-1c30149ba5ad/fe7342ee-c39c-4032-b46f-1cd55be6a58f.png",
-    "prompt": "Locked camera. Use the exact maintenance tunnel secret design from the reference image. Animate ONLY the tunnel opening sequence: concealed vine-covered wall panel -> faint green light appears in cracks -> vines twitch and pull aside -> hidden panel slides/hinges open -> a short dark maintenance tunnel with soft teal-green light is revealed -> dust settles. Preserve the same cartoon game-art style and design. No text, no extra props, no characters, no camera movement, no zoom, no cuts. End with the secret tunnel fully open and stable.",
+    "image_url": "https://d3u0tzju9qaucj.cloudfront.net/9f95694a-f77a-4193-89ef-1c30149ba5ad/fa18d572-cb71-4f27-a698-0b2ede6e69b2.png",
+    "prompt": "Locked camera. Animate the exact original Rootbreaker / Bunker Mutant character from the reference into one heavy slam attack for a mobile tower-defense game. Preserve anatomy, colors, oversized concrete-growth arm, toxic sacs, roots/vines and cartoon style. Sequence: active crouched combat stance -> wind-up with concrete arm raised -> toxic sacs brighten -> powerful downward slam -> brief dust/shockwave ring at impact -> recoil -> return to combat idle. No gore, no extra characters, no text, no UI, no camera movement, no zoom, no cuts. Keep the motion readable at small phone scale.",
     "duration": 6,
     "resolution": "720p",
     "aspect_ratio": "16:9",
