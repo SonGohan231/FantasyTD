@@ -1,15 +1,12 @@
 {
   "enabled": true,
-  "generation_id": "map6-bamboo-warrior-attack-20261002-001",
-  "model_path": "bytedance/seedance-2.5/image-to-video",
+  "generation_id": "map6-bamboo-tower-folded-single-20261002-001",
+  "model_path": "recraft/v4.1/text-to-image",
   "input": {
-    "image_url": "https://d3u0tzju9qaucj.cloudfront.net/9f95694a-f77a-4193-89ef-1c30149ba5ad/7b79924d-5625-4feb-8a8a-10e27b3a7e48.png",
-    "prompt": "Locked camera. Animate THIS EXACT Great Panda Warrior performing one readable bamboo-staff slam attack. Preserve identity and 2D cartoon style. Sequence: combat idle -> staff pulls back -> panda steps forward -> powerful downward/diagonal slam -> small leaves/dust burst at impact -> recoil -> return to guard. No morphing, no extra characters, no text, no UI, no camera movement, no cuts.",
-    "duration": 6,
-    "resolution": "720p",
+    "prompt": "ORIGINAL single dormant/deployment gameplay sprite for the Bamboo Burst tower in a colorful bamboo-forest mobile tower-defense game. ONE tower only on warm off-white background. Same identity as active design: mossy stone planter, living bamboo cluster, three hollow bamboo tubes, leafy branches, friendly glowing seed-core, natural bamboo ring.\nPOSE: folded young state — tubes lowered and clustered inward, leaves tucked, core dim, overall shorter compact silhouette ready to grow/activate. Clean 2D cartoon, crisp outlines, saturated jade/gold palette, soft cel shading, top-down/3/4 camera. No metal weapons, no text, no UI.",
+    "resolution": "1k",
     "aspect_ratio": "16:9",
-    "output_format": "mp4",
-    "generate_audio": false
+    "output_format": "png"
   },
   "max_wait_seconds": 1200
 }
