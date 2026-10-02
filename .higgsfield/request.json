@@ -1,9 +1,9 @@
 {
   "enabled": true,
-  "generation_id": "map6-bamboo-panda-warrior-active-single-20261002-001",
+  "generation_id": "map6-bamboo-special-tower-active-single-20261002-001",
   "model_path": "recraft/v4.1/text-to-image",
   "input": {
-    "prompt": "ORIGINAL single gameplay source asset for \"Great Panda Warrior\", miniboss in a colorful bamboo-forest mobile tower-defense game. ONE character only, isolated on warm off-white background. SAME identity: large round panda, small red ceremonial scarf, mossy rope belt, bamboo/leaf shoulder accents, broken bamboo staff. Pose: active combat idle, standing wide, staff held diagonally ready, determined brows, sturdy grounded stance. Clean 2D cartoon, chunky proportions, crisp outlines, soft cel shading, top-down/3/4 game camera, mobile-readable. No text, no UI, no extra characters.",
+    "prompt": "ORIGINAL single active gameplay source asset for the unlockable \"Bamboo Burst\" rapid-fire tower in a colorful bamboo-forest mobile tower-defense game. ONE tower only, isolated on warm off-white background. Identity: living bamboo cluster rooted in mossy stone planter, three hollow bamboo tubes angled outward like organic seed launchers, leafy branches, central friendly glowing seed-core, natural rotating bamboo ring. Active idle hero pose, all three tubes open and readable. Clean 2D cartoon, chunky shapes, crisp outlines, saturated jade/gold palette, soft cel shading, top-down/3/4 game camera, mobile-readable. No metal gun parts, no text, no UI.",
     "resolution": "1k",
     "aspect_ratio": "16:9",
     "output_format": "png"
