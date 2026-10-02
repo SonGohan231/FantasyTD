@@ -1,13 +1,13 @@
 {
   "enabled": true,
-  "generation_id": "map3-twilight-miniboss-dormant-ideogram-20261002-001",
+  "generation_id": "map3-twilight-miniboss-active-ideogram-20261002-001",
   "model_path": "ideogram/v4.0",
   "input": {
     "image_url": "https://d3u0tzju9qaucj.cloudfront.net/9f95694a-f77a-4193-89ef-1c30149ba5ad/001f4ecf-7ffe-41dc-8a36-01d07d774e70.png",
     "image_weight": 78,
     "aspect_ratio": "16:9",
     "rendering_speed": "QUALITY",
-    "prompt": "Extract and preserve the SAME original Night Gardener creature design from the reference sheet, especially the purple crescent body, green leaf cluster, small central purple face with glowing lavender eyes, thin branch-like limbs and misty lower body. Produce ONE isolated dormant pose only on a warm neutral background. No sheet, no multiple poses. Dormant means the crescent body lowered close to the ground, branch arms folded inward, face/eyes dim, leaf cluster closed tighter, mist almost still. Keep identity and proportions from reference; do not invent a brown human-like face, torso, clothes or new anatomy. Playful mobile-game cartoon, clean silhouette. No text, no UI."
+    "prompt": "Extract and preserve the SAME original Night Gardener creature design from the reference sheet, especially the purple crescent body, green leaf cluster, small central purple face with glowing lavender eyes, thin branch-like limbs and misty lower body. Produce ONE isolated active combat-idle pose only on a warm neutral background. No sheet, no multiple poses. Active means upright crescent body, branch-claw hands spread, lavender eyes bright, leaf cluster slightly open, subtle mist around feet. Keep identity and proportions from reference; do not invent a brown human-like face, torso, clothes or new anatomy. Playful mobile-game cartoon, clean silhouette. No text, no UI."
   },
   "max_wait_seconds": 1200
 }
