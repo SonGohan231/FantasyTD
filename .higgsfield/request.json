@@ -1,9 +1,10 @@
 {
   "enabled": true,
-  "generation_id": "map4-abyssal-hot-bubble-event-20261002-001",
-  "model_path": "bytedance/seedance-2.5/text-to-video",
+  "generation_id": "map4-abyssal-pearl-shrine-open-20261002-001",
+  "model_path": "bytedance/seedance-2.5/image-to-video",
   "input": {
-    "prompt": "Locked-camera 16:9 GAMEPLAY HAZARD OVERLAY for an ORIGINAL abyssal tower-defense map on plain near-black compositing background. Show a clear 4-second hydrothermal hot-bubble lifecycle: small orange-cyan bubble forms near lower-left vent zone -> grows rapidly while shimmering with heat -> detaches and drifts diagonally across the center as a large translucent bubble -> a few tiny incoming generic projectile streaks visibly enter and disappear inside it to communicate projectile absorption -> bubble flashes and bursts into harmless ring droplets near upper-right. No scenery, no characters, no text, no UI, no camera movement or cuts. Mobile readable.",
+    "image_url": "https://d3u0tzju9qaucj.cloudfront.net/9f95694a-f77a-4193-89ef-1c30149ba5ad/301daeeb-9a7d-4e5d-85c9-393c4cd89a3f.png",
+    "prompt": "Locked camera. Animate THIS EXACT ancient pearl shrine from closed to open. Preserve coral-covered shell design, turquoise rings, cyan seam glow and sand base. Sequence: cyan seams pulse -> tiny bubbles escape -> coral shell halves slowly separate/open -> brilliant pearl rises/appears inside -> soft cyan light expands -> a few bubbles spiral around pearl -> end with shrine fully open and stable. No extra props, no characters, no text, no UI, no camera movement, no zoom, no cuts.",
     "duration": 4,
     "resolution": "480p",
     "aspect_ratio": "16:9",
