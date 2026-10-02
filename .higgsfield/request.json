@@ -1,12 +1,13 @@
 {
   "enabled": true,
-  "generation_id": "map4-abyssal-pearl-shrine-source-20261002-001",
-  "model_path": "recraft/v4.1/text-to-image",
+  "generation_id": "map4-abyssal-giant-crab-miniboss-source-20261002-001",
+  "model_path": "higgsfield-ai/soul/v2/standard",
   "input": {
-    "prompt": "ORIGINAL single secret interaction prop for an abyssal mobile tower-defense game. ONE CLOSED ANCIENT PEARL SHRINE only, isolated on warm neutral background. Design: clam-like stone shrine with coral-covered shell halves closed around a large pearl, turquoise carved rings, tiny anemones, soft cyan light leaking through seams, small sand-and-shell base. Playful chunky cartoon, clean outlines, luminous teal/blue/pink palette, top-down/3-4 game camera, mobile-readable. No text, no symbols, no logo, no UI, no extra props, no characters. This exact asset will be source for an opening animation.",
-    "resolution": "1k",
+    "prompt": "ORIGINAL miniboss design sheet for an abyssal sea-floor mobile tower-defense game. Concept: THE VENT CRAB, a giant cartoon deep-sea crab that lives near hydrothermal vents and protects an ancient pearl. Original IP only.\n\nDesign: broad low crab body, oversized asymmetrical claws, coral and barnacle growths on shell, glowing cyan eyes, one magma-orange vent crack across shell, little anemones on back, thick segmented legs, cute but dangerous expression. Palette: dark teal shell, coral pink/red, cyan bioluminescence, small magma orange accents.\n\nCreate consistent top-down/3-4 source sheet:\n1 dormant half-buried in sand,\n2 awakening,\n3 active idle,\n4 claw slam anticipation,\n5 claw slam impact,\n6 bubble-blow/steam attack,\n7 hit/stagger.\nSame anatomy, proportions and camera angle. Chunky casual-game cartoon, clean outlines, soft cel shading, mobile-readable, no gore, no text, no UI.",
+    "resolution": "1080p",
     "aspect_ratio": "16:9",
-    "output_format": "png"
+    "batch_size": 1,
+    "enhance_prompt": true
   },
   "max_wait_seconds": 1200
 }
