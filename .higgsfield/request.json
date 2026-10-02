@@ -1,14 +1,12 @@
 {
   "enabled": true,
-  "generation_id": "map6-bamboo-log-hazard-overlay-20261002-001",
-  "model_path": "bytedance/seedance-2.5/text-to-video",
+  "generation_id": "map6-bamboo-panda-roll-single-20261002-001",
+  "model_path": "recraft/v4.1/text-to-image",
   "input": {
-    "prompt": "Locked-camera 16:9 hazard overlay for an ORIGINAL bamboo-forest tower-defense map. Plain near-black compositing background. Show one thick stylized bamboo log entering from the left, rolling horizontally across the frame with readable rotation, scattering a few bamboo leaves, then exiting right. A second smaller log follows on a slightly different vertical lane after a short delay. Keep motion playful and clearly telegraphed, no camera movement, no cuts, no text, no UI, no characters. Designed for compositing over marked Unity lanes.",
-    "duration": 5,
-    "resolution": "480p",
+    "prompt": "ORIGINAL single gameplay source asset for a cute panda in a colorful bamboo-forest mobile tower-defense game. ONE panda only, isolated on warm off-white background. Same identity as the approved panda source: round compact body, black ears/arms/legs, white face/belly, small green bamboo-leaf accent, clean 2D cartoon outlines, soft cel shading.\n\nPose: panda curled tightly into a rolling ball, face partly visible, paws tucked, one or two green bamboo leaves trailing. Clear readable circular silhouette for fast rolling animation. Top-down/3/4 game camera, mobile-readable. No text, no labels, no UI, no extra panda, no scenery.",
+    "resolution": "1k",
     "aspect_ratio": "16:9",
-    "output_format": "mp4",
-    "generate_audio": false
+    "output_format": "png"
   },
   "max_wait_seconds": 1200
 }
