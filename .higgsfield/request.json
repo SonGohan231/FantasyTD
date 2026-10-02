@@ -1,9 +1,9 @@
 {
   "enabled": true,
-  "generation_id": "map6-bamboo-panda-warrior-source-20261002-001",
+  "generation_id": "map6-bamboo-special-tower-source-20261002-001",
   "model_path": "recraft/v4.1/text-to-image",
   "input": {
-    "prompt": "ORIGINAL 2D miniboss source sheet for \"Great Panda Warrior\" in a colorful bamboo-forest mobile tower-defense game. Pure flat/cartoon 2D, chunky proportions, clean dark outlines, soft cel shading, high phone readability. No 3D, no realism, no text.\n\nIdentity: large round panda with leaf-and-bamboo shoulder armor, mossy rope belt, one broken bamboo staff carried like a heavy club, expressive stern eyebrows, small red ceremonial scarf, sturdy paws. Cute but imposing, original IP.\n\nCreate 5 consistent isolated poses on warm off-white background:\n1 dormant seated meditation,\n2 awakening/standing,\n3 active combat idle,\n4 rolling charge attack,\n5 heavy bamboo-staff slam.\nSame anatomy/proportions/camera throughout. No labels, no UI, no extra characters.",
+    "prompt": "ORIGINAL 2D source sheet for an unlockable rapid-fire support/attack tower in a colorful bamboo-forest mobile tower-defense game. Tower concept: \"Bamboo Burst\". Playful plant-defense cartoon, chunky clean shapes, crisp outlines, saturated jade/gold palette, soft cel shading, phone-readable.\n\nIdentity: living bamboo cluster rooted in a mossy stone planter, three hollow bamboo tubes angled outward like organic seed launchers, flexible leaves, small friendly glowing seed-core at center, rotating bamboo-ring mechanism made from natural stems, no metal gun parts.\n\nCreate 5 isolated consistent states on warm off-white background:\n1 folded young bamboo,\n2 growth/activation,\n3 active idle hero pose,\n4 rapid seed/bamboo-pea burst firing pose,\n5 upgraded variant with an extra tube and brighter core.\nNo text, no UI, no extra characters, original IP.",
     "resolution": "1k",
     "aspect_ratio": "16:9",
     "output_format": "png"
