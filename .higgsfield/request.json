@@ -1,15 +1,14 @@
 {
   "enabled": true,
-  "generation_id": "map4-abyssal-pearl-shrine-open-20261002-001",
-  "model_path": "bytedance/seedance-2.5/image-to-video",
+  "generation_id": "map4-abyssal-crab-active-single-20261002-002",
+  "model_path": "higgsfield-ai/soul/v2/image-to-image",
   "input": {
-    "image_url": "https://d3u0tzju9qaucj.cloudfront.net/9f95694a-f77a-4193-89ef-1c30149ba5ad/301daeeb-9a7d-4e5d-85c9-393c4cd89a3f.png",
-    "prompt": "Locked camera. Animate THIS EXACT ancient pearl shrine from closed to open. Preserve coral-covered shell design, turquoise rings, cyan seam glow and sand base. Sequence: cyan seams pulse -> tiny bubbles escape -> coral shell halves slowly separate/open -> brilliant pearl rises/appears inside -> soft cyan light expands -> a few bubbles spiral around pearl -> end with shrine fully open and stable. No extra props, no characters, no text, no UI, no camera movement, no zoom, no cuts.",
-    "duration": 4,
-    "resolution": "480p",
+    "image_url": "https://d3u0tzju9qaucj.cloudfront.net/9f95694a-f77a-4193-89ef-1c30149ba5ad/8d4f7dcc-6408-4195-95df-443abdee8d27.png",
+    "prompt": "Preserve this exact ORIGINAL Vent Crab miniboss identity and style. Same rounded teal shell, same orange crack, same pink coral growth, same cyan claws/legs, same proportions and casual-game cartoon rendering. Change ONLY the pose from dormant/resting to ACTIVE combat idle: body raised higher, both claws lifted and open, eyestalks alert, legs planted wide, small hydrothermal bubbles around feet. One crab only, isolated on warm neutral background, same top-down/3/4 camera. No redesign, no extra coral species, no extra limbs, no text, no UI, no second pose.",
+    "resolution": "1080p",
     "aspect_ratio": "16:9",
-    "output_format": "mp4",
-    "generate_audio": false
+    "batch_size": 1,
+    "enhance_prompt": false
   },
   "max_wait_seconds": 1200
 }
