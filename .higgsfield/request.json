@@ -1,12 +1,15 @@
 {
   "enabled": true,
-  "generation_id": "map2-postapo-salvage-tower-active-single-source-20261002-001",
-  "model_path": "recraft/v4.1/text-to-image",
+  "generation_id": "map2-postapo-salvage-tower-idle-loop-20261002-003",
+  "model_path": "bytedance/seedance-2.5/image-to-video",
   "input": {
-    "prompt": "ORIGINAL single active gameplay pose of the special Salvage Bloom support tower for a colorful post-apocalyptic mobile tower-defense game. ONE tower only, isolated on a warm off-white background. Match this design consistently: round reclaimed orange-and-gray salvage body, glowing teal crystal windows/core, thick root legs planted in the ground, two green vine collector arms, one tall teal-green flower emitter on a stem, a few small leaf details. Playful chunky casual-game cartoon, clean dark outlines, saturated colors, soft cel shading, top-down/3-4 game camera, mobile-readable. Active idle stance: roots firmly planted, vine arms gently raised, flower fully open, teal core softly glowing. No extra variants, no second pose, no sheet, no text, no labels, no logo, no UI, no extra props. Original IP only. This exact single image will be used as the source for an idle animation.",
-    "resolution": "1k",
+    "image_url": "https://d3u0tzju9qaucj.cloudfront.net/9f95694a-f77a-4193-89ef-1c30149ba5ad/94d2a17e-16ab-4afe-a044-bc9e1cba4bfe.png",
+    "prompt": "Locked camera. Animate THIS EXACT single Salvage Bloom tower into a very subtle active idle loop. Preserve the same body, flower, crystal windows, root legs, orange panels and two leafy vine arms. Motion only: gentle body/root breathing, tiny vine sway, flower head softly bobs and opens a little, teal crystal core brightness pulses once, a few tiny teal leaf-energy motes rise and fade. Keep the tower centered and same scale. No transformation, no second tower, no extra props, no text, no UI, no camera movement, no zoom, no cuts. End close to the starting pose for looping.",
+    "duration": 4,
+    "resolution": "480p",
     "aspect_ratio": "16:9",
-    "output_format": "png"
+    "output_format": "mp4",
+    "generate_audio": false
   },
   "max_wait_seconds": 1200
 }
