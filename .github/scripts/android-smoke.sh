@@ -135,7 +135,9 @@ if [[ -z "$SERIAL" ]]; then
   if [[ ! -x "$EMULATOR" && -n "$SDKMANAGER" ]]; then
     {
       echo "Installing emulator package into Unity-reported SDK root..."
+      set +o pipefail
       yes | "$SDKMANAGER" --sdk_root="$SDK_ROOT" "emulator"
+      set -o pipefail
     } >> "$PROBE" 2>&1 || true
   fi
 
@@ -149,8 +151,13 @@ if [[ -z "$SERIAL" ]]; then
     SYSTEM_IMAGE="system-images;android-35;google_apis;x86_64"
     {
       echo "Installing $SYSTEM_IMAGE into Unity-reported SDK root..."
+      set +o pipefail
       yes | "$SDKMANAGER" --sdk_root="$SDK_ROOT" "$SYSTEM_IMAGE"
-    } >> "$PROBE" 2>&1 || SYSTEM_IMAGE=""
+      set -o pipefail
+    } >> "$PROBE" 2>&1 || true
+    if [[ ! -d "$SDK_ROOT/system-images/android-35/google_apis/x86_64" ]]; then
+      SYSTEM_IMAGE=""
+    fi
   fi
 
   if [[ -x "$EMULATOR" && -n "$AVDMANAGER" && -n "$SYSTEM_IMAGE" ]]; then
