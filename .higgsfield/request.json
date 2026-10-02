@@ -1,13 +1,12 @@
 {
   "enabled": true,
-  "generation_id": "map2-postapo-miniboss-source-20261002-001",
-  "model_path": "higgsfield-ai/soul/v2/standard",
+  "generation_id": "map2-postapo-bunker-closed-source-20261002-001",
+  "model_path": "recraft/v4.1/text-to-image",
   "input": {
-    "prompt": "ORIGINAL miniboss character design sheet for a colorful post-apocalyptic plant-defense tower-defense game. Character name concept: THE BUNKER MUTANT / \"Rootbreaker\" — an underground creature mutated by toxic runoff and invasive plant growth. Do not copy any existing monster or game character.\n\nDesign: bulky asymmetrical mutant emerging from sewer/bunker culture, squat powerful silhouette readable on a phone, one oversized arm protected by cracked concrete-like growth, smaller claw arm, mossy skin, fluorescent toxic sacs, roots/vines fused into back and shoulders, scavenged non-branded metal scraps embedded into body, expressive face that is menacing but still cartoonishly readable. Palette: moss green, dirty orange, toxic yellow-green glow, concrete gray, small teal accents.\n\nArt style: polished playful casual-game cartoon, chunky proportions, clean outline, soft cel shading, vivid colors, original IP, no realism, no gore, no text/logo.\n\nCreate one consistent top-down/3/4 sprite-source sheet on simple warm background:\n1) dormant/crouched state,\n2) awakening pose,\n3) active idle,\n4) heavy slam anticipation,\n5) slam impact,\n6) stagger/hit pose.\nKeep the same anatomy, proportions and camera angle across all poses so it can guide Unity animation.",
-    "resolution": "1080p",
+    "prompt": "ORIGINAL single game asset for a colorful post-apocalyptic mobile tower-defense map. One CLOSED underground bunker hatch only, isolated on a warm off-white background. Circular reinforced metal hatch embedded in a small cracked concrete ring with a few stylized vines and leaves, one tiny amber indicator light, chunky playful cartoon proportions, clean dark outlines, bright casual-game palette, soft cel shading, top-down/3/4 game camera, mobile-readable silhouette. No labels, no text, no letters, no numbers, no symbols, no logo, no UI, no extra objects. Original IP only. The asset must be suitable as the starting frame for an opening animation.",
+    "resolution": "1k",
     "aspect_ratio": "16:9",
-    "batch_size": 1,
-    "enhance_prompt": true
+    "output_format": "png"
   },
   "max_wait_seconds": 1200
 }
