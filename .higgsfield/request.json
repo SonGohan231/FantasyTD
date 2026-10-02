@@ -1,12 +1,15 @@
 {
   "enabled": true,
-  "generation_id": "map6-bamboo-tower-folded-single-20261002-001",
-  "model_path": "recraft/v4.1/text-to-image",
+  "generation_id": "map6-bamboo-tower-idle-loop-20261002-001",
+  "model_path": "bytedance/seedance-2.5/image-to-video",
   "input": {
-    "prompt": "ORIGINAL single dormant/deployment gameplay sprite for the Bamboo Burst tower in a colorful bamboo-forest mobile tower-defense game. ONE tower only on warm off-white background. Same identity as active design: mossy stone planter, living bamboo cluster, three hollow bamboo tubes, leafy branches, friendly glowing seed-core, natural bamboo ring.\nPOSE: folded young state — tubes lowered and clustered inward, leaves tucked, core dim, overall shorter compact silhouette ready to grow/activate. Clean 2D cartoon, crisp outlines, saturated jade/gold palette, soft cel shading, top-down/3/4 camera. No metal weapons, no text, no UI.",
-    "resolution": "1k",
+    "image_url": "https://d3u0tzju9qaucj.cloudfront.net/9f95694a-f77a-4193-89ef-1c30149ba5ad/9b6b3215-2646-44cc-94ba-071710b699cf.png",
+    "prompt": "Locked camera. Subtle active idle loop for THIS EXACT Bamboo Burst tower. Preserve identity. Motion only: leaves sway, bamboo tubes flex a few degrees, central seed-core softly pulses, natural bamboo ring rotates slightly then returns, tiny pollen/leaf motes rise and fade. No firing, no transformation, no extra objects, no text, no UI, no camera movement. End close to starting pose for looping.",
+    "duration": 4,
+    "resolution": "480p",
     "aspect_ratio": "16:9",
-    "output_format": "png"
+    "output_format": "mp4",
+    "generate_audio": false
   },
   "max_wait_seconds": 1200
 }
