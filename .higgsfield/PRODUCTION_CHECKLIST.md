@@ -59,7 +59,8 @@ Production:
 - [ ] MINIBOSS_DORMANT_SINGLE_SOURCE
 - [!] MINIBOSS_ACTIVE_SINGLE_SOURCE attempt 1 — run **37021351122**, artifact **11233745986** — REJECTED after visual QA (identity drift from approved source sheet)
 - [!] MINIBOSS_ACTIVE_SINGLE_SOURCE attempt 2 — run **37022707850**, artifact **11233838292** — REJECTED (Ideogram preserved full source sheet instead of isolating one pose)
-- [ ] MINIBOSS_ACTIVE_SINGLE_SOURCE
+- [!] MINIBOSS_ACTIVE_SINGLE_SOURCE attempt 2 — run **37025032911**, artifact **11234986551** — REJECTED after visual QA (3D/style and identity drift)
+- [ ] MINIBOSS_ACTIVE_SINGLE_SOURCE — use awakening final state as reference if static isolation keeps drifting
 - [x] MINIBOSS_DORMANT_SINGLE_SOURCE — run **37023874042**, artifact **11234650367** — APPROVED after visual QA
 - [!] MINIBOSS_ACTIVE_SINGLE_SOURCE attempt 1 — run **37023879914**, artifact **11233164725** — REJECTED (identity drift vs approved source/dormant design)
 - [ ] MINIBOSS_ACTIVE_SINGLE_SOURCE
@@ -198,9 +199,11 @@ Production:
 - [ ] MINIBOSS_AWAKEN_ANIM
 - [ ] MINIBOSS_ATTACK_ANIM
 - [x] SPECIAL_AQUATIC_TOWER_SOURCE — run **37023208180**, artifact **11233419385** — APPROVED
-- [ ] SPECIAL_AQUATIC_TOWER_SINGLE_SOURCE
+- [!] SPECIAL_AQUATIC_TOWER_SINGLE_SOURCE attempt 1 — run **37025038914**, artifact **11234227742** — REJECTED after visual QA (identity drift from approved tower)
+- [ ] SPECIAL_AQUATIC_TOWER_SINGLE_SOURCE — may use reversed fold animation from approved active source
 - [x] SPECIAL_AQUATIC_TOWER_ACTIVE_SINGLE_SOURCE — run **37023885079**, artifact **11233999401** — APPROVED after visual QA
 - [ ] SPECIAL_AQUATIC_TOWER_ACTIVATION_ANIM
+- [ ] SPECIAL_AQUATIC_TOWER_IDLE_LOOP
 
 ## MAP 5 — Grzybowe Zainfekowane Miasto
 **Difficulty:** Medium+ / route network  
