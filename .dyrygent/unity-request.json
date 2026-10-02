@@ -1,1 +1,1 @@
-{"requestId":"t0009-android-smoke-r2-20261002-1603","mode":"android-smoke","note":"Retry T0009 real Android runtime smoke test with corrected runner Java environment."}
+{"requestId":"t0009-android-smoke-r3-20261002-1608","mode":"android-smoke","note":"Retry exact T0008 APK after sdkmanager install result handling fix."}
