@@ -29,8 +29,12 @@ Last updated: 2026-10-02
 - T0006 Unity Executor run: `36994046983`
 - T0006 validated head before documentation commits: `c391c72cf7b23db613e5efd418b5df83aac29e22`
 - T0006 artifact: `unity-executor-boss-end-states-36994046983` (artifact ID `11220923927`)
-- Play Mode: **VERIFIED — PASS for T0003 through T0006 scope**
-- Android build: **NOT RUN** (not required by T0006)
+- T0007 mobile-layout validation: **VERIFIED — PASS**
+- T0007 Unity Executor run: `36997417372`
+- T0007 validated head before documentation commits: `7b99c11501a81a3f1526d57958d7c2d72ab386e4`
+- T0007 artifact: `unity-executor-mobile-layout-36997417372` (artifact ID `11222780203`)
+- Play Mode: **VERIFIED — PASS for T0003 through T0007 scope**
+- Android build: **NOT RUN** (T0008 not started)
 - Device smoke test: **NOT RUN**
 
 ## Current milestone
@@ -41,9 +45,9 @@ MAP-A Android v2 vertical slice.
 
 None.
 
-T0001 through T0006 are DONE. T0007 remains PLANNED and was not started.
+T0001 through T0007 are DONE. T0008 remains PLANNED and was not started.
 
-T0006 acceptance evidence is recorded from real Unity Play Mode in Unity Executor run `36994046983` on branch `codex/t0006-boss-win-lose-restart`, validated head `c391c72cf7b23db613e5efd418b5df83aac29e22`.
+T0007 acceptance evidence is recorded from real Unity Play Mode in Unity Executor run `36997417372` on branch `codex/t0007-android-ui-device-layout`, validated head `7b99c11501a81a3f1526d57958d7c2d72ab386e4`.
 
 ## Repository layout
 
@@ -136,7 +140,7 @@ Observed code includes:
 - editor scene/bootstrap tooling
 - Android build editor command
 
-Play Mode evidence now exists for T0003 mobile planting/radial interaction, T0004 four-plant behavior, T0005 basic-enemy/waves 1–5 runtime flow, and T0006 wave 6/boss/victory/defeat/restart. Android layout/build/device behavior and later-ticket functionality remain separately unverified.
+Play Mode evidence now exists for T0003 mobile planting/radial interaction, T0004 four-plant behavior, T0005 basic-enemy/waves 1–5 runtime flow, T0006 wave 6/boss/victory/defeat/restart, and T0007 16:9/20:9 mobile layout plus synthetic safe-area behavior. Android APK build/toolchain and physical-device behavior remain separately unverified.
 
 ## Scene state
 
@@ -550,6 +554,84 @@ T0006 used an Editor-only persistent Play Mode driver. Waves 1–5 were started 
 
 No production boss, wave, GameSession, BaseHealth, Economy, MobileHud, plant balance or map behavior was changed. No graphical asset changes were required; Higgsfield was not used.
 
+## T0007 — Android UI and Device Layout
+
+Status: **PASS**
+
+Real Unity evidence:
+- Unity Executor run: `36997417372`
+- validated head before documentation commits: `7b99c11501a81a3f1526d57958d7c2d72ab386e4`
+- Unity version: `6000.0.26f1 (ccb7c73d2c02)`
+- Play Mode: `True`
+- executor report: `status=PASS`
+- runtime warnings captured by T0007 harness: `0`
+- validation errors: `0`
+- Android APK build: **NOT RUN**
+- T0008: **NOT STARTED**
+
+Render-capable executor:
+The first dedicated run `36997235403` failed before meaningful layout evidence because `-nographics` left Unity without a graphics device and `Screen` stayed at `640×480`. This was an executor-environment failure, not a production UI failure. The T0007 executor mode was changed only to use `xvfb-run` with a 2560×1440 virtual display and no `-nographics`. The subsequent run `36997417372` observed the exact requested Game View resolutions and passed.
+
+16:9 native case:
+- requested/observed resolution: `1920×1080`
+- aspect ratio: `1.778`
+- native/effective/actual safe area: `0,0,1920,1080`
+- full MAP-A visible: **PASS**
+- camera world bounds: `-1.422,-0.55,26.844,15.1`
+- camera centered: **PASS**
+- camera panning required: **NO**
+- HUD inside safe area: **PASS**
+- wave button: **PASS**
+- wave button measured rect: `300×126 px`
+- all 12 planting spots accessible through production `TryHandleScreenPress`: **PASS**
+- edge radial menus A1/A8/A9/A11/A12: **PASS**
+- text overlap: **none**
+- text clipping: **none detected**
+- smallest measured interactive target: `RadialCloseButton 74×74 px`
+- Console/runtime validation errors: `0`
+
+20:9 native case:
+- requested/observed resolution: `2400×1080`
+- aspect ratio: `2.222`
+- native/effective/actual safe area: `0,0,2400,1080`
+- full MAP-A visible: **PASS**
+- camera world bounds: `-4.778,-0.55,33.556,15.1`
+- camera centered: **PASS**
+- camera panning required: **NO**
+- HUD inside safe area: **PASS**
+- wave button: **PASS**
+- wave button measured rect: `335.41×140.872 px`
+- all 12 planting spots accessible: **PASS**
+- edge radial menus A1/A8/A9/A11/A12: **PASS**
+- text overlap/clipping: **none detected**
+- smallest measured interactive target: `RadialCloseButton 82.735×82.735 px`
+- Console/runtime validation errors: `0`
+
+20:9 synthetic safe-area case:
+- requested/observed resolution: `2400×1080`
+- native Editor safe area: full screen
+- synthetic effective safe area: `Rect(120,0,2160,1080)`
+- actual SafeArea RectTransform after production `SafeAreaFitter`: exactly `120,0,2160,1080`
+- full MAP-A visible: **PASS**
+- camera centered: **PASS**
+- camera panning required: **NO**
+- HUD inside synthetic safe area: **PASS**
+- wave button: **PASS**
+- wave button measured rect: `335.41×140.872 px`
+- all 12 planting spots accessible: **PASS**
+- edge radial menus A1/A8/A9/A11/A12 inside synthetic safe area: **PASS**
+- text overlap/clipping: **none detected**
+- smallest measured interactive target: `RadialCloseButton 82.735×82.735 px`
+- Console/runtime validation errors: `0`
+
+Safe-area limitation:
+The repository does not contain `com.unity.device-simulator`, so T0007 does **not** claim a Device Simulator test. The notch/cutout case used an explicit Editor-only synthetic safe-area override routed through the production `SafeAreaFitter` normalization/anchor logic. Android/player builds remain on the native `Screen.safeArea` path. This validates layout response to the tested inset but does not prove a specific physical Android device reports that inset.
+
+Touch target sizing:
+The repository defines no numeric minimum touch-target threshold. T0007 therefore records measured screen-pixel sizes rather than inventing one. The measured controls were active, reachable, nonzero and unclipped in every tested layout. The smallest target was the radial close button at `74×74 px` in 16:9 and `82.735×82.735 px` in 20:9.
+
+No production gameplay, balance, plant, enemy, wave, boss, map geometry or gameplay art changes were required. No graphical assets were generated.
+
 ## Build state
 
 Android build: **NOT RUN**.
@@ -594,4 +676,4 @@ See:
 
 Do not start another ticket automatically.
 
-T0007 remains PLANNED and requires separate PM/user activation after T0006 review/merge.
+T0008 remains PLANNED and requires separate PM/user activation after T0007 review/merge.

@@ -179,7 +179,7 @@ Validate Król Cierni, wave 6 completion, victory, defeat, and restart.
 
 # T0007 — Android UI and Device Layout
 
-Status: **PLANNED**
+Status: **DONE**
 
 Purpose:
 Validate 16:9, 20:9, safe area, touch target sizing, full-map framing, and mobile usability.
