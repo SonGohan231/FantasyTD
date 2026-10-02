@@ -55,8 +55,10 @@ Production:
 - [ ] SECRET_HINT
 - [ ] SECRET_OPEN
 - [!] MINIBOSS_DORMANT_SINGLE_SOURCE attempt 1 — run **37021346938**, artifact **11234095282** — FAILED generation
+- [!] MINIBOSS_DORMANT_SINGLE_SOURCE attempt 2 — run **37022703183**, artifact **11233853514** — REJECTED (Ideogram preserved full source sheet instead of isolating one pose)
 - [ ] MINIBOSS_DORMANT_SINGLE_SOURCE
 - [!] MINIBOSS_ACTIVE_SINGLE_SOURCE attempt 1 — run **37021351122**, artifact **11233745986** — REJECTED after visual QA (identity drift from approved source sheet)
+- [!] MINIBOSS_ACTIVE_SINGLE_SOURCE attempt 2 — run **37022707850**, artifact **11233838292** — REJECTED (Ideogram preserved full source sheet instead of isolating one pose)
 - [ ] MINIBOSS_ACTIVE_SINGLE_SOURCE
 - [ ] MINIBOSS_DORMANT
 - [ ] MINIBOSS_ACTIVE
