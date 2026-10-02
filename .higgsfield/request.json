@@ -1,9 +1,9 @@
 {
   "enabled": true,
-  "generation_id": "map7-temple-scenery-props-20261002-001",
+  "generation_id": "map7-temple-background-terrain-20261002-001",
   "model_path": "recraft/v4.1/text-to-image",
   "input": {
-    "prompt": "ORIGINAL production prop sheet for MAP7 \"Sun and Moon Temple\", a colorful mobile 2D tower-defense game. Playful premium casual-game cartoon, chunky simplified shapes, clean dark outlines, saturated gold/teal/indigo/coral palette, soft cel shading, high phone readability, no realism, no text, no logos, no labels.\n\nCreate isolated modular props on warm off-white background, consistent top-down / restrained 3/4 game camera:\n1 sun flame bowl,\n2 moon flame bowl,\n3 rotating sun disk pedestal,\n4 crescent moon disk pedestal,\n5 mirror obelisk,\n6 beam receiver crystal,\n7 closed golden temple gate,\n8 closed indigo moon gate,\n9 open golden gate,\n10 open moon gate,\n11 waterfall edge module,\n12 shallow reflecting pool,\n13 moving stone guardian statue,\n14 lotus planter,\n15 sun mosaic floor patch without symbols/text,\n16 moon mosaic floor patch without symbols/text,\n17 broken column,\n18 hanging lantern,\n19 guardian sanctum door closed,\n20 sanctum door open.\nNo roads, enemies, towers or UI. Original IP only.",
+    "prompt": "ORIGINAL 16:9 BACKGROUND TERRAIN PLATE for a colorful Sun-and-Moon temple mobile tower-defense map. This plate sits UNDER deterministic Unity routes and build pads: DO NOT draw roads, lanes, paths, arrows, build pads, towers, enemies, UI or text.\n\nCreate a majestic top-down / restrained 3/4 temple complex: open sandstone courtyards, teal reflecting pools, small waterfalls at outer edges, golden sun terrace upper side, indigo moon garden lower side, columns and statues around borders, clean open central corridors for three future route overlays, subtle light shafts, lotus ponds, polished stone plazas. Keep center readable and not cluttered.\n\nStyle: playful polished casual-game cartoon, chunky shapes, crisp outlines, saturated gold/teal/indigo accents, soft cel shading, mobile readability. No realism, no copied game assets, no words/letters/numbers/logos.",
     "resolution": "1k",
     "aspect_ratio": "16:9",
     "output_format": "png"
