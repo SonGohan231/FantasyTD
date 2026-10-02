@@ -70,6 +70,8 @@ Previous API concept:
 Production:
 - [!] BASE attempt run **37000229167** — REJECTED (style too realistic, pseudo-text/signage, no clear Y split)
 - [!] BASE attempt run **37000430159** — REJECTED (still no proper Y split, too much pseudo-signage / wrong style)
+- [~] TOPOLOGY_SKETCH — run **37000812091** — PASS as route reference (clear Y split + merge, 12 pads)
+- [!] Soul I2I render — run **37000967282** — REJECTED (did not preserve topology closely enough)
 - [ ] BASE_FINAL_NEW_TOPOLOGY
 - [ ] AMBIENT_LOOP
 - [ ] TOXIC_START
