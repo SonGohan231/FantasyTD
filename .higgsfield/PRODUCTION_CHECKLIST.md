@@ -92,11 +92,14 @@ Production:
 - [x] MINIBOSS_ACTIVE — run **37007997174**, artifact **11226746833** — APPROVED after visual QA (dormant→active combat-idle awakening)
 
 ### MAP2 ANIMATION EXTRAS
+- [!] RADIO_RELAY_ACTIVATION_LOOP attempt — run **37009129944**, artifact **11226993880** — REJECTED (source sheet caused state-jumping between different props); dedicated single relay source required
 - [ ] RADIO_RELAY_ACTIVATION_LOOP
-- [ ] MAINTENANCE_TUNNEL_OPEN_ANIM
-- [ ] MINIBOSS_SLAM_ATTACK_ANIM
-- [ ] MINIBOSS_HIT_DEFEAT_ANIM
-- [ ] TERRAIN_ROAD_TILE_KIT
+- [x] MAINTENANCE_TUNNEL_OPEN_ANIM — run **37009133694**, artifact **11227182741** — APPROVED after visual QA (hint glow→panel open→stable tunnel)
+- [x] MINIBOSS_SLAM_ATTACK_ANIM — run **37009138087**, artifact **11226964130** — APPROVED after visual QA (wind-up→slam→impact/recovery readable)
+- [x] MINIBOSS_HIT_DEFEAT_ANIM — run **37009142068**, artifact **11226909606** — APPROVED after visual QA (hit→stagger→collapse→glow fade)
+- [x] TERRAIN_ROAD_TILE_KIT — run **37009161826**, artifact **11227420838** — APPROVED after visual QA (modular asphalt/curves/Y-junctions/sidewalk/water/props)
+- [ ] RADIO_RELAY_SINGLE_SOURCE
+- [ ] BACKGROUND_TERRAIN_PLATE
 
 ## MAP 3 — Zmierzch
 **Difficulty:** Medium- / two persistent routes  
