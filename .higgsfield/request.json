@@ -1,9 +1,9 @@
 {
   "enabled": true,
-  "generation_id": "map4-abyssal-scenery-props-20261002-002",
+  "generation_id": "map4-abyssal-crab-dormant-single-20261002-001",
   "model_path": "recraft/v4.1/text-to-image",
   "input": {
-    "prompt": "ORIGINAL production PROP SHEET for a premium casual-cartoon ABYSSAL SEA FLOOR tower-defense map. Warm off-white background, isolated sprite-ready props, consistent top-down/3-4 camera, chunky simplified shapes, clean outlines, luminous ocean palette, soft cel shading. NO TEXT, NO NUMBERS, NO LETTERS, NO LABELS, NO SYMBOLS placed next to assets.\n\nArrange a clean unlabeled grid of isolated assets with generous spacing:\ncoral arch; kelp cluster; glowing anemone; shell cluster; pearl build-rim; hydrothermal vent dormant; hydrothermal vent glowing; hot bubble small; hot bubble large; bubble burst ring; submerged ruin column; pearl shrine closed; pearl shrine open; crab cave closed; crab cave open; bioluminescent rocks; sandy rubble; treasure trench cache; small fish school silhouette; bubble-resistant upgrade relic.\n\nDo NOT print item numbers or names. No roads, no characters, no towers, no UI. Original IP only.",
+    "prompt": "ORIGINAL single DORMANT pose of the Vent Crab miniboss for a colorful abyssal mobile tower-defense game. ONE creature only on warm neutral background. Broad low deep-sea crab body, dark teal shell, oversized asymmetrical claws tucked in, coral/barnacle growths, cyan eye stalks dimmed, one magma-orange vent crack across shell glowing faintly, tiny anemones on back, thick segmented legs mostly buried in sand. Half-buried sleeping/hibernating pose with a few bubbles. Chunky playful casual-game cartoon, clean outlines, soft cel shading, top-down/3-4 camera, mobile-readable. No text, no UI, no extra creatures, no gore.",
     "resolution": "1k",
     "aspect_ratio": "16:9",
     "output_format": "png"
