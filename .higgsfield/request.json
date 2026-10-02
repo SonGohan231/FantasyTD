@@ -1,9 +1,9 @@
 {
   "enabled": true,
-  "generation_id": "map6-bamboo-panda-roll-single-20261002-001",
+  "generation_id": "map6-bamboo-panda-hostile-single-20261002-001",
   "model_path": "recraft/v4.1/text-to-image",
   "input": {
-    "prompt": "ORIGINAL single gameplay source asset for a cute panda in a colorful bamboo-forest mobile tower-defense game. ONE panda only, isolated on warm off-white background. Same identity as the approved panda source: round compact body, black ears/arms/legs, white face/belly, small green bamboo-leaf accent, clean 2D cartoon outlines, soft cel shading.\n\nPose: panda curled tightly into a rolling ball, face partly visible, paws tucked, one or two green bamboo leaves trailing. Clear readable circular silhouette for fast rolling animation. Top-down/3/4 game camera, mobile-readable. No text, no labels, no UI, no extra panda, no scenery.",
+    "prompt": "ORIGINAL single gameplay source asset for the SAME cute panda environmental creature after it transforms into a hostile enemy in a colorful bamboo-forest mobile tower-defense game. ONE panda only, isolated on warm off-white background. Preserve round black-and-white identity and green bamboo-leaf accents. Hostile state: standing wide, determined eyebrows, paws raised, leaf shoulder tufts slightly flared, still cute and non-horror. No armor, no weapons. Clean 2D cartoon outlines, soft cel shading, mobile-readable top-down/3/4 game camera. No text, no labels, no UI, no extra panda.",
     "resolution": "1k",
     "aspect_ratio": "16:9",
     "output_format": "png"
