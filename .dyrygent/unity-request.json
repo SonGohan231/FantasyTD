@@ -1,5 +1,5 @@
 {
-  "requestId": "t0008-android-build-r1-20261002-1315",
+  "requestId": "t0008-android-build-final-20261002-1330",
   "mode": "android-build",
-  "note": "T0008 real Unity Android APK build with toolchain, BuildReport, exact output and SHA-256 evidence."
+  "note": "Final T0008 real Android APK build on completion/documentation HEAD. No T0009."
 }
