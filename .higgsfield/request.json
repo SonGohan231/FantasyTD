@@ -1,14 +1,12 @@
 {
   "enabled": true,
-  "generation_id": "map5-fungal-psychedelic-surge-20261002-001",
-  "model_path": "bytedance/seedance-2.5/text-to-video",
+  "generation_id": "map5-fungal-lab-secret-source-20261002-001",
+  "model_path": "recraft/v4.1/text-to-image",
   "input": {
-    "prompt": "Locked-camera 16:9 PSYCHEDELIC SPORE SURGE overlay for an ORIGINAL fungal city tower-defense map. Plain near-black compositing background. Create a clear seven-phase progression across 6 seconds: V0 almost normal/clear -> V1 slight chromatic warp -> V2 faint neon grid/mycelium lattice appears -> V3 stronger wavy distortion and color separation -> V4 peak psychedelic phase with pulsing cyan-magenta-green lattice, drifting spores and strong but still game-readable distortion -> V5 effect recedes -> V6 nearly clear again. No text, no UI, no characters, no roads, no camera movement, no cuts. This is an overlay used when tower placement/upgrades are temporarily blocked, so the peak must look disruptive but not fully opaque.",
-    "duration": 6,
-    "resolution": "720p",
+    "prompt": "ORIGINAL single secret interactive asset for a colorful fungal-infected city mobile tower-defense map. ONE sealed underground laboratory entrance only, isolated on warm off-white background. Design: round/oval reinforced lab hatch partly swallowed by glowing mushrooms and mycelium, cracked concrete rim, teal security light, magenta fungus veins, one small glass observation slit glowing sickly lime. Playful chunky casual-game cartoon, clean dark outlines, saturated colors, soft cel shading, top-down/3/4 game camera, mobile-readable. No text, no letters, no numbers, no warning symbols, no logo, no UI, no extra props. Original IP only. This exact asset will be the source for a later open animation.",
+    "resolution": "1k",
     "aspect_ratio": "16:9",
-    "output_format": "mp4",
-    "generate_audio": false
+    "output_format": "png"
   },
   "max_wait_seconds": 1200
 }
