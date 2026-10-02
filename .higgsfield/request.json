@@ -1,12 +1,15 @@
 {
   "enabled": true,
-  "generation_id": "map5-fungal-mutation-tower-active-single-20261002-001",
-  "model_path": "recraft/v4.1/text-to-image",
+  "generation_id": "map6-bamboo-panda-roll-anim-20261002-001",
+  "model_path": "bytedance/seedance-2.5/image-to-video",
   "input": {
-    "prompt": "ORIGINAL single active gameplay sprite source for the Mutation Bloom support tower in a colorful fungal-city mobile tower-defense game. ONE tower only on warm off-white background. Clean 2D casual-game cartoon.\n\nExact design: coral-pink fungal base fused with a cracked laboratory pod; central translucent lime mutation bulb/core; three asymmetrical cyan-magenta mushroom petals/caps around the core; flexible mycelium tendrils; tiny floating spores. ACTIVE IDLE pose: petals open, lime core glowing, tendrils gently raised, readable support-tower silhouette. Chunky shapes, crisp dark outlines, saturated colors, soft cel shading. No text, no UI, no extra variants.",
-    "resolution": "1k",
+    "image_url": "https://d3u0tzju9qaucj.cloudfront.net/9f95694a-f77a-4193-89ef-1c30149ba5ad/c3060a27-bc8c-4459-8c0d-26bd4554d7c6.png",
+    "prompt": "Locked camera. Animate THIS EXACT curled panda as a rolling environmental creature. Preserve black-white-green cartoon identity. The panda spins/rolls smoothly left-to-right across a small local distance while staying centered enough for sprite extraction; body rotation is readable, a few green leaves trail behind, then motion eases near the end. No morphing, no extra panda, no text, no UI, no camera movement or cuts.",
+    "duration": 4,
+    "resolution": "480p",
     "aspect_ratio": "16:9",
-    "output_format": "png"
+    "output_format": "mp4",
+    "generate_audio": false
   },
   "max_wait_seconds": 1200
 }
