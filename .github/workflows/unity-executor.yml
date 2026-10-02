@@ -423,7 +423,11 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p "$GITHUB_WORKSPACE/UnityProject/Logs"
-          "${{ steps.unity.outputs.bin }}"             -batchmode -nographics             -projectPath "$GITHUB_WORKSPACE/UnityProject"             -executeMethod FantasyTD.CI.UnityExecutorCi.MobileLayout             -logFile "$GITHUB_WORKSPACE/UnityProject/Logs/unity-mobile-layout.log"
+          if ! command -v xvfb-run >/dev/null 2>&1; then
+            echo "xvfb-run is required for render-capable T0007 Game View validation."
+            exit 1
+          fi
+          xvfb-run -a -s "-screen 0 2560x1440x24"             "${{ steps.unity.outputs.bin }}"             -batchmode             -projectPath "$GITHUB_WORKSPACE/UnityProject"             -executeMethod FantasyTD.CI.UnityExecutorCi.MobileLayout             -logFile "$GITHUB_WORKSPACE/UnityProject/Logs/unity-mobile-layout.log"
 
       - name: Upload T0007 mobile layout report
         if: always()
