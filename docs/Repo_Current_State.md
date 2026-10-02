@@ -21,8 +21,12 @@ Last updated: 2026-10-02
 - T0004 Unity Executor run: `36988172698`
 - T0004 validated head before documentation commits: `21cac36b4d2902451af65aa9134f4c9d0f4f8c90`
 - T0004 artifact: `unity-executor-plant-behaviors-36988172698` (artifact ID `11218576224`)
-- Play Mode: **VERIFIED — PASS for T0003 and T0004 scope**
-- Android build: **NOT RUN** (not required by T0004)
+- T0005 enemy/wave validation: **VERIFIED — PASS**
+- T0005 Unity Executor run: `36990840649`
+- T0005 validated head before documentation commits: `a11ceba14b55c84d586881ac45baf356c0018daf`
+- T0005 artifact: `unity-executor-enemy-wave-flow-36990840649` (artifact ID `11219706930`)
+- Play Mode: **VERIFIED — PASS for T0003, T0004 and T0005 scope**
+- Android build: **NOT RUN** (not required by T0005)
 - Device smoke test: **NOT RUN**
 
 ## Current milestone
@@ -33,9 +37,9 @@ MAP-A Android v2 vertical slice.
 
 None.
 
-T0001, T0002, T0003 and T0004 are DONE. T0005 remains PLANNED and was not started.
+T0001, T0002, T0003, T0004 and T0005 are DONE. T0006 remains PLANNED and was not started.
 
-T0004 acceptance evidence is recorded from real Unity Play Mode in Unity Executor run `36988172698` on branch `codex/t0004-four-plant-behaviors`, validated head `21cac36b4d2902451af65aa9134f4c9d0f4f8c90`.
+T0005 acceptance evidence is recorded from real Unity Play Mode in Unity Executor run `36990840649` on branch `codex/t0005-enemy-runtime-wave-flow`, validated head `a11ceba14b55c84d586881ac45baf356c0018daf`.
 
 ## Repository layout
 
@@ -128,7 +132,7 @@ Observed code includes:
 - editor scene/bootstrap tooling
 - Android build editor command
 
-Play Mode evidence now exists for T0003 mobile planting/radial interaction and T0004 four-plant behavior scope. Enemy/wave flow, boss end-state flow, Android device behavior and later-ticket functionality remain separately unverified.
+Play Mode evidence now exists for T0003 mobile planting/radial interaction, T0004 four-plant behavior, and T0005 basic-enemy/waves 1–5 runtime flow. Full boss/wave-6 end-state flow, victory/defeat/restart, Android device behavior and later-ticket functionality remain separately unverified.
 
 ## Scene state
 
@@ -351,6 +355,93 @@ The T0004 harness entered genuine Unity Play Mode and instantiated the actual pr
 
 T0004 did not modify production plant balance/behavior. It added only ticket-specific Play Mode validation/executor infrastructure and documentation. T0005 enemy/wave flow, T0006 full boss/end states, Android build/toolchain, device smoke, mobile layout and later tickets were not started. No graphical changes were required; Higgsfield was not used.
 
+## T0005 — Enemy Runtime and Wave Flow
+
+Status: **PASS**
+
+Real Unity evidence:
+- Unity Executor run: `36990840649`
+- validated head before documentation commits: `a11ceba14b55c84d586881ac45baf356c0018daf`
+- Unity version: `6000.0.26f1 (ccb7c73d2c02)`
+- executor report: `status=PASS`
+- `playModeEntered=True`
+- runtime warnings captured by T0005 harness: `0`
+- validation errors: `0`
+- C# compiler errors: `0`
+- existing unique compiler warning remains: `CS0618` in `MapAEditorSetup.cs:46` (emitted twice)
+- Android build/toolchain validation: **NOT RUN**
+- boss wave 6: **NOT STARTED**
+- victory/defeat/restart: **NOT RUN**
+
+Enemy evidence from normal production wave flow:
+
+Chochlik / Wanderer:
+- HP: `170`
+- configured speed: `0.8 RU/s`
+- measured speed: `0.875 RU/s` (within T0005 tolerance `±0.08`)
+- reward: `12 Essence`
+- reward observation: `300 → 312`
+- base damage: `1`
+- physical resistance: `0`
+- natural leak: progress `0 → 46.08 RU`, Base `20 → 19`
+
+Wichrowy Skrzat / Runner:
+- HP: `110`
+- configured/measured speed: `1.15 / 1.15 RU/s`
+- reward: `12 Essence`
+- reward observation: `408 → 420`
+- base damage: `1`
+- physical resistance: `0`
+- natural leak: progress `0 → 46.0 RU`, Base `19 → 18`
+
+Ogr Zarośli / Brute:
+- HP: `550`
+- configured/measured speed: `0.45 / 0.45 RU/s`
+- reward: `26 Essence`
+- reward observation: `642 → 668`
+- base damage: `2`
+- physical resistance: `0`
+- natural leak: progress `0 → 46.2 RU`, Base `17 → 15`
+
+Żelazny Goblin / Armored:
+- HP: `260`
+- configured/measured speed: `0.55 / 0.55 RU/s`
+- reward: `22 Essence`
+- reward observation: `504 → 526`
+- base damage: `1`
+- physical resistance: `0.15`
+- physical resistance proof: raw physical damage `100`, HP `260 → 175`, final damage `85`
+- natural leak: progress `0 → 46.2 RU`, Base `18 → 17`
+
+Wave-flow evidence:
+- wave 1: `6 × Wanderer` — observed exactly
+- wave 2: `4 × Wanderer + 4 × Runner` — observed exactly
+- wave 3: `5 × Wanderer + 4 × Armored` — observed exactly
+- wave 4: `6 × Runner + 3 × Brute + 4 × Wanderer` — observed exactly
+- wave 5: `4 × Armored + 3 × Brute + 8 × Runner` — observed exactly
+- total production spawns observed: `51`
+- controlled reward/cleanup deaths through production `EnemyUnit.Die`: `47`
+- natural production leaks through `ReachBase`: `4`
+- boss observed: `False`
+- Base: `20 → 15`
+- Essence: `300 → 1004`
+- after wave 5: `CurrentWave=5`, wave 6 ready but not started, `sessionFinished=False`
+
+Next-wave button and HUD:
+- every wave 1–5 was started through the production HUD button using uGUI pointer-click dispatch
+- before each wave: `ReadyForNextWave=True`, button active/interactable
+- while each wave was running: `ReadyForNextWave=False`, button inactive
+- after each wave completed: ready/button active again
+- active-enemy HUD showed a positive count in every wave and returned to `WROGOWIE  0`
+- final wave HUD: `FALA  5/6`
+
+Validation method:
+The T0005 harness entered genuine Unity Play Mode. All 51 acceptance enemies were spawned by the production `WaveDirector` through normal waves 1–5. It exercised production `EnemyUnit.Update` movement, `TakeDamage`, `Die`, `ReachBase`, `Economy`, `BaseHealth`, HUD refresh and the production next-wave button. No acceptance enemy was injected or teleported. One untouched specimen of each enemy kind traversed the full path naturally to the base.
+
+The first dedicated run `36990073053` failed only one harness timing measurement: the first Chochlik speed sample included the startup/time-scale transition and measured `1.073`. Codex review identified this as a first-frame sampling artifact because later enemy speeds and full-path movement were correct. The harness was changed only to arm the speed sample after the first full player frame. No production enemy, wave, stat or balance code was modified. The subsequent run `36990840649` passed.
+
+T0005 did not start wave 6, validate full boss behavior, victory, defeat, restart, Android build/toolchain, device smoke, mobile layout, or T0006+. No graphical changes were required; Higgsfield was not used.
+
 ## Build state
 
 Android build: **NOT RUN**.
@@ -395,4 +486,4 @@ See:
 
 Do not start another ticket automatically.
 
-T0005 remains PLANNED and requires separate PM/user activation after T0004 review/merge.
+T0006 remains PLANNED and requires separate PM/user activation after T0005 review/merge.
