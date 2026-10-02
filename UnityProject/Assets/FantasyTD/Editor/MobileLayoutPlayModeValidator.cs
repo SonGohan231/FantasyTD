@@ -73,7 +73,6 @@ namespace FantasyTD.CI
         private static LayoutResult _current;
         private static int _caseErrorStart;
         private static int _caseWarningStart;
-        private static bool _currentSpotOpened;
         private static bool _currentSpotCloseClicked;
 
         static MobileLayoutPlayModeValidator()
@@ -338,7 +337,6 @@ namespace FantasyTD.CI
             _current.ActualSafeAreaRect = actualSafe;
             _current.SafeAreaApplied = RectApproximately(actualSafe, effective, 2.5f);
             _spotIndex = 0;
-            _currentSpotOpened = false;
             _currentSpotCloseClicked = false;
             _stage = Stage.ValidateStatic;
         }
@@ -447,7 +445,6 @@ namespace FantasyTD.CI
 
             Button close = FindRadialCloseButton();
             _currentSpotCloseClicked = close != null && DispatchPointerClick(close);
-            _currentSpotOpened = true;
             _settleFrames = 0;
             _stage = Stage.CloseSpot;
         }
@@ -473,7 +470,6 @@ namespace FantasyTD.CI
                            ".closeClickNotDispatched");
 
             _spotIndex++;
-            _currentSpotOpened = false;
             _currentSpotCloseClicked = false;
             _stage = Stage.OpenSpot;
         }
@@ -933,7 +929,6 @@ namespace FantasyTD.CI
             _waveButton = null;
             _waveButtonText = null;
             _current = null;
-            _currentSpotOpened = false;
             _currentSpotCloseClicked = false;
         }
 
