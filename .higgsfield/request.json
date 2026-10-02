@@ -1,9 +1,9 @@
 {
   "enabled": true,
-  "generation_id": "map7-temple-special-light-tower-source-20261002-001",
+  "generation_id": "map7-temple-mirror-source-20261002-002",
   "model_path": "recraft/v4.1/text-to-image",
   "input": {
-    "prompt": "ORIGINAL 2D source sheet for an unlockable Sun-Moon support tower in a colorful temple mobile tower-defense game. Tower concept: \"Eclipse Lotus\". Playful plant-defense cartoon, chunky clean shapes, crisp outlines, saturated gold/teal/indigo palette, soft cel shading, mobile-readable.\n\nIdentity: living lotus rooted in a small circular sandstone planter; alternating warm-gold and cool-indigo petals around a teal crystal seed; two floating crescent leaf-orbs circling the flower; emits support light that can alternate between a warm attack-speed buff and cool defensive/status-resistance aura.\nCreate 5 isolated consistent states:\n1 folded dormant lotus,\n2 activation/opening,\n3 active idle,\n4 warm sun pulse,\n5 cool moon shield pulse.\nNo text, no labels, no UI, no extra characters.",
+    "prompt": "ORIGINAL single interactive temple mechanism asset for a colorful mobile tower-defense game. ONE mirror obelisk only, isolated on warm off-white background. Short carved sandstone pedestal with a large circular polished mirror in a teal-and-gold rotating ring, small blue crystal pivot, chunky polished casual-game cartoon, clean dark outlines, saturated gold/teal, soft cel shading, top-down/3/4 camera. No text, no UI, no extra props. Original IP only.",
     "resolution": "1k",
     "aspect_ratio": "16:9",
     "output_format": "png"
