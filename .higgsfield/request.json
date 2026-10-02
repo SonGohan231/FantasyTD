@@ -1,12 +1,14 @@
 {
   "enabled": true,
-  "generation_id": "map6-bamboo-background-terrain-20261002-001",
-  "model_path": "recraft/v4.1/text-to-image",
+  "generation_id": "map6-bamboo-ambient-loop-20261002-001",
+  "model_path": "bytedance/seedance-2.5/text-to-video",
   "input": {
-    "prompt": "ORIGINAL 16:9 BACKGROUND TERRAIN PLATE for a colorful bamboo-forest mobile tower-defense map. This plate sits UNDER deterministic Unity routes/build pads: DO NOT draw any roads, lanes, paths, arrows, build pads, towers, enemies, UI or text.\n\nCreate a lush top-down / restrained 3/4 cartoon valley with bamboo groves concentrated around outer borders, open grass/earth clearings through upper/center/lower corridors, streams and koi-water pockets, mossy rocks, tea-garden terraces, small bridge anchor zones, lantern posts, waterwheel district and hidden-dojo area. Keep the center readable/open enough for three route overlays and two merge points.\n\nStyle: playful casual-game cartoon, chunky clean shapes, crisp outlines, saturated greens with warm red/gold accents, soft cel shading, high mobile readability, low texture noise. No realism, no copied game assets, no words/letters/numbers/logos.",
-    "resolution": "1k",
+    "prompt": "Locked-camera 16:9 ambient overlay for an ORIGINAL colorful bamboo-forest tower-defense map. Plain near-black compositing background. Animate ONLY separated environmental effects: bamboo leaves swaying gently, loose leaves drifting diagonally, a few lantern glows softly pulsing, small water ripples/koi shadows crossing, tiny firefly-like motes, one slow waterwheel silhouette rotation. Calm loop-friendly non-cinematic motion. No roads, buildings, characters, text, UI, camera movement, zoom or cuts. Designed for compositing over a static Unity map.",
+    "duration": 4,
+    "resolution": "480p",
     "aspect_ratio": "16:9",
-    "output_format": "png"
+    "output_format": "mp4",
+    "generate_audio": false
   },
   "max_wait_seconds": 1200
 }
