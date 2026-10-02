@@ -17,8 +17,12 @@ Last updated: 2026-10-02
 - T0003 Unity Executor run: `36986249467`
 - T0003 validated head before documentation commits: `7b1ea26bf6d62aa268c21d5f59e3096cb2078dc8`
 - T0003 artifact: `unity-executor-mobile-planting-36986249467` (artifact ID `11217666657`)
-- Play Mode: **VERIFIED — PASS for T0003 scope**
-- Android build: **NOT RUN** (not required by T0003)
+- T0004 plant behavior validation: **VERIFIED — PASS**
+- T0004 Unity Executor run: `36988172698`
+- T0004 validated head before documentation commits: `21cac36b4d2902451af65aa9134f4c9d0f4f8c90`
+- T0004 artifact: `unity-executor-plant-behaviors-36988172698` (artifact ID `11218576224`)
+- Play Mode: **VERIFIED — PASS for T0003 and T0004 scope**
+- Android build: **NOT RUN** (not required by T0004)
 - Device smoke test: **NOT RUN**
 
 ## Current milestone
@@ -29,9 +33,9 @@ MAP-A Android v2 vertical slice.
 
 None.
 
-T0001, T0002 and T0003 are DONE. T0004 remains PLANNED and was not started.
+T0001, T0002, T0003 and T0004 are DONE. T0005 remains PLANNED and was not started.
 
-T0003 acceptance evidence is recorded from real Unity Play Mode in Unity Executor run `36986249467` on branch `codex/t0003-mobile-planting-radial-menu`, validated head `7b1ea26bf6d62aa268c21d5f59e3096cb2078dc8`.
+T0004 acceptance evidence is recorded from real Unity Play Mode in Unity Executor run `36988172698` on branch `codex/t0004-four-plant-behaviors`, validated head `21cac36b4d2902451af65aa9134f4c9d0f4f8c90`.
 
 ## Repository layout
 
@@ -124,7 +128,7 @@ Observed code includes:
 - editor scene/bootstrap tooling
 - Android build editor command
 
-These gameplay/runtime systems remain **not Play-Mode-verified** because T0001 explicitly excludes Play Mode validation.
+Play Mode evidence now exists for T0003 mobile planting/radial interaction and T0004 four-plant behavior scope. Enemy/wave flow, boss end-state flow, Android device behavior and later-ticket functionality remain separately unverified.
 
 ## Scene state
 
@@ -281,6 +285,72 @@ T0003 implementation changes were limited to:
 
 T0003 did not validate plant combat behavior, waves, Android build/toolchain, physical-device touch, 16:9/20:9 device layout, upgrades, new plants, balance, or T0004+ behavior. No graphical asset changes were required, so Higgsfield was not used.
 
+## T0004 — Four Plant Behaviors
+
+Status: **PASS**
+
+Real Unity evidence:
+- Unity Executor run: `36988172698`
+- validated head before documentation commits: `21cac36b4d2902451af65aa9134f4c9d0f4f8c90`
+- Unity version: `6000.0.26f1 (ccb7c73d2c02)`
+- executor report: `status=PASS`
+- `playModeEntered=True`
+- runtime warnings captured by T0004 harness: `0`
+- validation errors: `0`
+- C# compiler errors: `0`
+- existing unique compiler warning remains: `CS0618` in `MapAEditorSetup.cs:46` (emitted twice)
+- Android build/toolchain validation: **NOT RUN**
+- wave flow: **NOT RUN**
+
+Pędostrzał evidence:
+- attack range: `3.2 RU`
+- in-range First candidate: distance `2.236 RU`, progress `4.5`
+- second in-range candidate: distance `1.414 RU`, progress `1.5`
+- out-of-range candidate: distance `3.64 RU`, progress `10`
+- projectile targeted the highest-progress in-range enemy and excluded the higher-progress out-of-range enemy
+- projectile speed: `7 RU/s`
+- raw physical damage: `22`
+- unarmored HP: `170 → 148` (final damage `22`)
+- back and out-of-range enemies remained `170 → 170`
+- Armored HP: `260 → 241.3`
+- Armored physical resistance: `0.15`
+- expected/final resisted damage: `18.7`
+
+Kwiat Esencji evidence:
+- income: `+20 Essence`
+- configured interval: `20 game seconds`
+- Essence: `300 → 320 → 340`
+- first payout: `20.133 game seconds`
+- second payout: `40.133 game seconds`
+- measured second interval: `20.0 game seconds`
+- only this timing scenario used `Time.timeScale=8` to reduce wall-clock CI duration; game-time cadence remained production-driven.
+
+Dębowy Strażnik evidence:
+- range: `2.4 RU`, fixture distance `2.0 RU`
+- normal enemy HP: `170 → 162`, damage `8`
+- normal root: configured/observed `1.75 s / 1.75 s`
+- normal speed: `0.8 → 0.0 during root → 0.8 after root`
+- boss HP: `2200 → 2192`, damage `8`
+- boss control multiplier: `0.35`
+- boss expected/observed root: `0.6125 s / 0.612 s`
+- boss speed: `0.3 → 0.0 during root → 0.3 after root`
+
+Mroźny Pąk evidence:
+- range: `3.2 RU`, fixture distance `2.0 RU`
+- normal HP: `170 → 152`, raw/final Frost damage `18 / 18`
+- normal slow: `35%` for `2.5 s`
+- normal speed: `0.8 → 0.52 during slow → 0.8 after expiry`
+- boss HP: `2200 → 2182`, raw/final Frost damage `18 / 18`
+- boss physical resistance: `0.20`, correctly irrelevant to Frost damage
+- requested slow `35%`, boss-applied slow cap `20%`
+- boss slow duration: `2.5 s`
+- boss speed: `0.3 → 0.24 during slow → 0.3 after expiry`
+
+Validation method:
+The T0004 harness entered genuine Unity Play Mode and instantiated the actual production plant components, production `SeedProjectile`, production `EnemyUnit`, `Economy`, `Targeting`, and `GameSession.SpawnEnemy`. Reflection was used only for deterministic fixture placement/state setup and evidence reads of private runtime fields; it did not call `TakeDamage`, `ApplyRoot`, or `ApplySlow` in place of plant behavior.
+
+T0004 did not modify production plant balance/behavior. It added only ticket-specific Play Mode validation/executor infrastructure and documentation. T0005 enemy/wave flow, T0006 full boss/end states, Android build/toolchain, device smoke, mobile layout and later tickets were not started. No graphical changes were required; Higgsfield was not used.
+
 ## Build state
 
 Android build: **NOT RUN**.
@@ -325,4 +395,4 @@ See:
 
 Do not start another ticket automatically.
 
-T0004 remains PLANNED and requires separate PM/user activation after T0003 review/merge.
+T0005 remains PLANNED and requires separate PM/user activation after T0004 review/merge.
