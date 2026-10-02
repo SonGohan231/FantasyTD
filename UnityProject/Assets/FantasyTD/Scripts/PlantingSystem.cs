@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace FantasyTD.MapA
 {
@@ -9,6 +10,8 @@ namespace FantasyTD.MapA
         private GameSession _session;
         private readonly List<PlantingSpot> _spots = new List<PlantingSpot>();
         private PlantingSpot _selected;
+
+        public PlantingSpot SelectedSpot => _selected;
 
         public void Initialize(GameSession session, List<PlantingSpot> spots)
         {
@@ -23,21 +26,58 @@ namespace FantasyTD.MapA
             if (Input.touchCount > 0)
             {
                 Touch touch = Input.GetTouch(0);
-                if (touch.phase == TouchPhase.Ended && !IsOverUi(touch.fingerId))
-                    HandleScreenTap(touch.position);
+                if (touch.phase == TouchPhase.Ended)
+                    TryHandleScreenPress(touch.position);
             }
 #if UNITY_EDITOR || UNITY_STANDALONE
-            if (Input.GetMouseButtonDown(0) && !IsOverUi())
-                HandleScreenTap(Input.mousePosition);
+            if (Input.GetMouseButtonDown(0))
+                TryHandleScreenPress(Input.mousePosition);
 #endif
         }
 
-        private bool IsOverUi(int fingerId = -1)
+        public bool TryHandleScreenPress(Vector2 screenPoint)
         {
-            if (EventSystem.current == null) return false;
-            return fingerId >= 0
-                ? EventSystem.current.IsPointerOverGameObject(fingerId)
-                : EventSystem.current.IsPointerOverGameObject();
+            if (_session == null || _session.IsFinished)
+                return false;
+
+            if (IsOverUiAt(screenPoint))
+                return false;
+
+            HandleScreenTap(screenPoint);
+            return true;
+        }
+
+        private static bool IsOverUiAt(Vector2 screenPoint)
+        {
+            Graphic[] graphics = Object.FindObjectsByType<Graphic>(
+                FindObjectsInactive.Exclude,
+                FindObjectsSortMode.None);
+
+            for (int i = 0; i < graphics.Length; i++)
+            {
+                Graphic graphic = graphics[i];
+                if (graphic == null || !graphic.isActiveAndEnabled || !graphic.raycastTarget)
+                    continue;
+
+                Canvas canvas = graphic.canvas;
+                if (canvas == null || !canvas.isActiveAndEnabled)
+                    continue;
+
+                Camera eventCamera = canvas.renderMode == RenderMode.ScreenSpaceOverlay
+                    ? null
+                    : (canvas.worldCamera != null ? canvas.worldCamera : Camera.main);
+
+                if (!RectTransformUtility.RectangleContainsScreenPoint(
+                        graphic.rectTransform,
+                        screenPoint,
+                        eventCamera))
+                    continue;
+
+                if (graphic.Raycast(screenPoint, eventCamera))
+                    return true;
+            }
+
+            return false;
         }
 
         private void HandleScreenTap(Vector2 screenPoint)
