@@ -69,6 +69,7 @@ Previous API concept:
 
 Production:
 - [!] BASE attempt run **37000229167** — REJECTED (style too realistic, pseudo-text/signage, no clear Y split)
+- [!] BASE attempt run **37000430159** — REJECTED (still no proper Y split, too much pseudo-signage / wrong style)
 - [ ] BASE_FINAL_NEW_TOPOLOGY
 - [ ] AMBIENT_LOOP
 - [ ] TOXIC_START
