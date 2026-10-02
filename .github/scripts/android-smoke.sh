@@ -75,9 +75,12 @@ report "apkIdentityVerified=True"
 
 UNITY_BIN="$(find "$HOME" /opt -type f -path '*/6000.0.26f1/Editor/Unity' -perm -111 2>/dev/null | head -n 1)"
 if [[ -n "$UNITY_BIN" ]]; then
-  SDK_ROOT="$(dirname "$UNITY_BIN")/Data/PlaybackEngines/AndroidPlayer/SDK"
+  UNITY_EDITOR_DIR="$(dirname "$UNITY_BIN")"
+  SDK_ROOT="$UNITY_EDITOR_DIR/Data/PlaybackEngines/AndroidPlayer/SDK"
+  JDK_ROOT="$UNITY_EDITOR_DIR/Data/PlaybackEngines/AndroidPlayer/OpenJDK"
 else
   SDK_ROOT=""
+  JDK_ROOT=""
 fi
 ADB=""
 if [[ -n "$SDK_ROOT" && -x "$SDK_ROOT/platform-tools/adb" ]]; then
@@ -94,9 +97,16 @@ SDKMANAGER="$(find "$SDK_ROOT" -type f -name sdkmanager -perm -111 2>/dev/null |
 AVDMANAGER="$(find "$SDK_ROOT" -type f -name avdmanager -perm -111 2>/dev/null | head -n 1)"
 export ANDROID_SDK_ROOT="$SDK_ROOT"
 export ANDROID_HOME="$SDK_ROOT"
+if [[ -n "$JDK_ROOT" && -x "$JDK_ROOT/bin/java" ]]; then
+  export JAVA_HOME="$JDK_ROOT"
+  export PATH="$JAVA_HOME/bin:$PATH"
+fi
 
 {
   echo "sdkRoot=$SDK_ROOT"
+  echo "jdkRoot=$JDK_ROOT"
+  echo "javaHome=${JAVA_HOME:-}"
+  [[ -x "${JAVA_HOME:-}/bin/java" ]] && "$JAVA_HOME/bin/java" -version 2>&1 || true
   echo "adb=$ADB"
   "$ADB" version || true
   echo "emulator=$EMULATOR"
@@ -147,7 +157,7 @@ if [[ -z "$SERIAL" ]]; then
     AVD_NAME="fantasytd_t0009_${GITHUB_RUN_ID:-local}"
     {
       echo "Creating AVD $AVD_NAME using $SYSTEM_IMAGE"
-      echo "no" | "$AVDMANAGER" create avd -n "$AVD_NAME" -k "$SYSTEM_IMAGE" --device "pixel_6" --force
+      echo "no" | "$AVDMANAGER" create avd -n "$AVD_NAME" -k "$SYSTEM_IMAGE" --force
     } >> "$PROBE" 2>&1 || true
 
     ACCEL_ARGS=()
