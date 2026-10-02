@@ -1,10 +1,10 @@
 {
   "enabled": true,
-  "generation_id": "map2-postapo-radio-relay-activation-20261002-001",
+  "generation_id": "map2-postapo-maintenance-tunnel-open-20261002-001",
   "model_path": "bytedance/seedance-2.5/image-to-video",
   "input": {
     "image_url": "https://d3u0tzju9qaucj.cloudfront.net/9f95694a-f77a-4193-89ef-1c30149ba5ad/fe7342ee-c39c-4032-b46f-1cd55be6a58f.png",
-    "prompt": "Locked camera. Use the exact secret relay prop design from the reference image. Animate ONLY the radio relay activation sequence for a mobile tower-defense game: dormant relay with dead lights -> one amber indicator blinks twice -> the small dish begins rotating slowly -> teal salvage-energy pulse travels through the relay -> active lights stabilize while the dish keeps a gentle loop. Preserve the same prop identity and casual cartoon style. No text, no extra objects, no characters, no camera movement, no zoom, no cuts. End on a stable active looping state.",
+    "prompt": "Locked camera. Use the exact maintenance tunnel secret design from the reference image. Animate ONLY the tunnel opening sequence: concealed vine-covered wall panel -> faint green light appears in cracks -> vines twitch and pull aside -> hidden panel slides/hinges open -> a short dark maintenance tunnel with soft teal-green light is revealed -> dust settles. Preserve the same cartoon game-art style and design. No text, no extra props, no characters, no camera movement, no zoom, no cuts. End with the secret tunnel fully open and stable.",
     "duration": 6,
     "resolution": "720p",
     "aspect_ratio": "16:9",
