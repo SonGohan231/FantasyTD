@@ -347,7 +347,7 @@ Production:
 
 ## MAP 8 — Lochy Smoka
 **Difficulty:** Hard+ / dynamic route network  
-**Topology:** 3–4 routes, multiple gates/bridges, two route-change events  
+**Topology:** 4 early corridors → 3 mid routes → two scripted route changes → shared vault approach  
 **Target build spots:** 13  
 **Ambient:** lava, embers, chains, mine carts, crystals, treasure light  
 **Event:** dragon wakes and changes passages exactly 2× during the level  
@@ -358,8 +358,16 @@ Previous API concept:
 - [!] Old static concept — run **36999345781** — REJECTED as final layout
 
 Production:
+- [x] TOPOLOGY_SPEC_LOCKED — `.higgsfield/MAP8_DRAGON_DUNGEONS_TOPOLOGY.json`, commit **c9a029ef** (4 corridors, states A/B/C, 13 spots)
+- [>] HIGGSFIELD_BATCH_READY — prompts should resume only after API top-up; current gate is HTTP 403 `not_enough_credits`
+- [ ] SCENERY_PROP_PACK
+- [ ] BACKGROUND_TERRAIN_PLATE
+- [ ] BASE_COMPOSITE_IN_UNITY_FROM_LOCKED_TOPOLOGY
 - [ ] BASE_FINAL_NEW_TOPOLOGY
 - [ ] AMBIENT_LOOP
+- [ ] DRAGON_SOURCE
+- [ ] DRAGON_DORMANT_SINGLE_SOURCE
+- [ ] DRAGON_ACTIVE_SINGLE_SOURCE
 - [ ] DRAGON_WAKE
 - [ ] DRAGON_FLY
 - [ ] ROUTE_CHANGE_1
@@ -367,10 +375,16 @@ Production:
 - [ ] DRAGON_FLY_2
 - [ ] ROUTE_CHANGE_2
 - [ ] ROUTE_STATE_C
+- [ ] VAULT_SINGLE_SOURCE
 - [ ] VAULT_CLOSED
 - [ ] VAULT_OPEN
+- [ ] VAULT_OPEN_ANIM
 - [ ] MINIBOSS_DORMANT
 - [ ] MINIBOSS_ACTIVE
+- [ ] SPECIAL_DRAGON_TOWER_SOURCE
+- [ ] SPECIAL_DRAGON_TOWER_ACTIVE_SINGLE_SOURCE
+- [ ] SPECIAL_DRAGON_TOWER_ACTIVATION_ANIM
+
 
 ---
 
