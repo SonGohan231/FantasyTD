@@ -1,15 +1,12 @@
 {
   "enabled": true,
-  "generation_id": "map2-postapo-salvage-tower-idle-loop-20261002-003",
-  "model_path": "bytedance/seedance-2.5/image-to-video",
+  "generation_id": "map3-twilight-topology-sketch-20261002-001",
+  "model_path": "recraft/v4.1/text-to-image",
   "input": {
-    "image_url": "https://d3u0tzju9qaucj.cloudfront.net/9f95694a-f77a-4193-89ef-1c30149ba5ad/94d2a17e-16ab-4afe-a044-bc9e1cba4bfe.png",
-    "prompt": "Locked camera. Animate THIS EXACT single Salvage Bloom tower into a very subtle active idle loop. Preserve the same body, flower, crystal windows, root legs, orange panels and two leafy vine arms. Motion only: gentle body/root breathing, tiny vine sway, flower head softly bobs and opens a little, teal crystal core brightness pulses once, a few tiny teal leaf-energy motes rise and fade. Keep the tower centered and same scale. No transformation, no second tower, no extra props, no text, no UI, no camera movement, no zoom, no cuts. End close to the starting pose for looping.",
-    "duration": 4,
-    "resolution": "480p",
+    "prompt": "ORIGINAL clean 16:9 TOPOLOGY DIAGRAM for MAP 3 of a mobile tower-defense game. Plain pale background, no scenery, no text, no labels, no UI.\n\nDifficulty must be clearly harder than MAP2:\n- ONE left entry shared for only a very short distance.\n- EARLY Y-SPLIT into TWO persistent combat routes.\n- UPPER route makes two broad bends across the upper half.\n- LOWER route makes a different longer curve across the lower half.\n- Routes stay physically separate for about 65–70% of the battlefield.\n- Add ONE non-combat visual crossover bridge/underpass cue where the routes pass near each other, but enemies never switch branches.\n- Very LATE merge near the right edge.\n- Short shared final road to right exit/base.\n- Do not create extra combat branches, loops, crossings or an S-shaped single path.\n\nExactly 12 large build-pad circles off-road:\n2 before split,\n4 supporting upper route,\n4 supporting lower route,\n2 near late merge/final.\nNo pad should obviously cover both entire branches.\n\nDark gray roads, teal build circles, clean top-down vector-like diagram only.",
+    "resolution": "1k",
     "aspect_ratio": "16:9",
-    "output_format": "mp4",
-    "generate_audio": false
+    "output_format": "png"
   },
   "max_wait_seconds": 1200
 }
