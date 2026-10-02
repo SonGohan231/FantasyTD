@@ -19,16 +19,15 @@ Confidence: Confirmed as an evidence gap
 Severity: High for milestone readiness
 
 Evidence:
-T0001 verified the Editor/import/compile baseline. T0002 verified MAP-A scene/geometry. T0003 Unity Executor run `36986249467` verified mobile planting/radial interaction. T0004 Unity Executor run `36988172698` entered real Play Mode and verified all four production plant behaviors, including projectile targeting/damage/resistance, repeated Essence income, normal/boss root control, and normal/boss Frost slow with expiry.
+T0001 verified the Editor/import/compile baseline. T0002 verified MAP-A scene/geometry. T0003 Unity Executor run `36986249467` verified mobile planting/radial interaction. T0004 Unity Executor run `36988172698` verified all four production plant behaviors. T0005 Unity Executor run `36990840649` entered real Play Mode and verified all four basic enemy types plus production wave flow 1–5, death rewards, natural base leaks, Armored physical resistance, next-wave HUD state, and active-enemy HUD count.
 
 Still unverified:
-- enemy/wave runtime,
-- boss wave/end-state behavior beyond the T0004 control-resistance fixture,
+- full boss/wave-6 runtime and boss end-state behavior beyond T0004 control-resistance fixtures,
 - victory/defeat/restart,
 - physical Android device runtime.
 
 Impact:
-Play Mode is now proven for planting/UI and the four plant behavior slice, but the full gameplay loop remains unverified.
+Play Mode is now proven for planting/UI, four plant behaviors, basic enemy runtime and waves 1–5. The full milestone gameplay loop still lacks the separately scoped boss/end-state and device evidence.
 
 Action:
 Continue runtime verification only through separately activated tickets.
@@ -240,6 +239,49 @@ Non-blocking. T0001 completed with zero C# compiler errors and the Unity Executo
 
 Action:
 Update the obsolete API in a separately scoped maintenance/fix ticket if desired. Do not modify source code during T0001 solely to remove this warning.
+
+---
+
+## T0005 verified evidence
+
+Unity Executor:
+- run: `36990840649`
+- branch: `codex/t0005-enemy-runtime-wave-flow`
+- validated head before documentation commits: `a11ceba14b55c84d586881ac45baf356c0018daf`
+- T0005 Play Mode job: **success**
+- executor report status: **PASS**
+- Play Mode entered: `True`
+- Unity: `6000.0.26f1 (ccb7c73d2c02)`
+- runtime warnings captured by harness: `0`
+- validation errors: `0`
+- C# compiler errors: `0`
+- existing unique compiler warning: `CS0618` in `MapAEditorSetup.cs:46`
+- artifact: `unity-executor-enemy-wave-flow-36990840649` (ID `11219706930`)
+
+Basic enemies:
+- Chochlik: HP `170`, measured speed `0.875` vs configured `0.8`, reward `12`, leak damage `1`, resistance `0`: **PASS**
+- Wichrowy Skrzat: HP `110`, speed `1.15`, reward `12`, leak damage `1`, resistance `0`: **PASS**
+- Ogr Zarośli: HP `550`, speed `0.45`, reward `26`, leak damage `2`, resistance `0`: **PASS**
+- Żelazny Goblin: HP `260`, speed `0.55`, reward `22`, leak damage `1`, resistance `0.15`: **PASS**
+- Armored raw physical damage `100` resolved to `85`, HP `260 → 175`: **PASS**
+- one untouched specimen of every basic kind traversed the production route naturally and leaked to the base: **PASS**
+
+Waves:
+- W1: 6 Wanderer — **PASS**
+- W2: 4 Wanderer + 4 Runner — **PASS**
+- W3: 5 Wanderer + 4 Armored — **PASS**
+- W4: 6 Runner + 3 Brute + 4 Wanderer — **PASS**
+- W5: 4 Armored + 3 Brute + 8 Runner — **PASS**
+- total observed production spawns: `51`
+- exact observed sequence/counts: **PASS**
+- production next-wave button state before/during/after each wave: **PASS**
+- active-enemy HUD count positive during every wave and final `WROGOWIE  0`: **PASS**
+- Base `20 → 15`, Essence `300 → 1004`
+- wave 6 ready but not started; Boss not observed; `sessionFinished=False`
+
+The first dedicated run `36990073053` failed only a first-frame harness speed measurement for Chochlik (`1.073`). Codex review and subsequent evidence identified it as a sampling artifact around the time-scale/spawn startup boundary. Only the harness sample timing was adjusted; no production enemy/wave behavior or balance was changed. Run `36990840649` passed.
+
+T0005 did not start wave 6 or validate full boss behavior, victory/defeat/restart, Android build/toolchain, device smoke, mobile layout, or T0006+. No graphical assets changed.
 
 ---
 
