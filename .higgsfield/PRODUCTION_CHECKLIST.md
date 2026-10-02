@@ -3,6 +3,8 @@
 > Source of truth for generated visual assets.  
 > **Only assets with a GitHub Actions run ID from `Higgsfield API Asset Generator` count as Higgsfield API output.**  
 > ChatGPT Images/DALL-E concepts do not count toward this checklist and are never marked READY.
+>
+> **Topology-locked composition rule:** final gameplay routes/build pads are deterministic Unity/vector layers. Higgsfield generates scenery, props, ambient loops, event overlays, secrets and miniboss visuals around that locked topology. A beautiful AI image is never allowed to change the route graph.
 
 ## Status legend
 - [ ] PLANNED — not generated yet
@@ -73,6 +75,9 @@ Production:
 - [~] TOPOLOGY_SKETCH — run **37000812091** — PASS as route reference (clear Y split + merge, 12 pads)
 - [!] Soul I2I render — run **37000967282** — REJECTED (did not preserve topology closely enough)
 - [!] Ideogram weight-95 render — run **37001202601** — REJECTED as final art (preserved topology but barely stylized)
+- [!] Ideogram weight-60 render — run **37001433593** — REJECTED as final art (still mostly schematic; proves geometry should remain deterministic)
+- [ ] SCENERY_PROP_PACK
+- [ ] BASE_COMPOSITE_IN_UNITY_FROM_LOCKED_TOPOLOGY
 - [ ] BASE_FINAL_NEW_TOPOLOGY
 - [ ] AMBIENT_LOOP
 - [ ] TOXIC_START
