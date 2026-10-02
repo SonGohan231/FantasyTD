@@ -155,9 +155,9 @@ Production:
 - [!] MINIBOSS_ACTIVE_SINGLE_SOURCE attempt 2 — run **37022707850**, artifact **11233838292** — REJECTED (full sheet preserved)
 - [ ] MINIBOSS_ACTIVE_SINGLE_SOURCE
 - [ ] MINIBOSS_DORMANT
-- [ ] MINIBOSS_ACTIVE
-- [ ] MINIBOSS_AWAKEN_ANIM
-- [ ] MINIBOSS_ATTACK_ANIM
+- [x] MINIBOSS_ACTIVE — final active state from awaken run **37025524146**, artifact **11234909637** — APPROVED after visual QA
+- [x] MINIBOSS_AWAKEN_ANIM — run **37025524146**, artifact **11234909637** — APPROVED after visual QA
+- [x] MINIBOSS_ATTACK_ANIM — run **37025528882**, artifact **11235167715** — APPROVED after visual QA
 - [x] SPECIAL_NIGHT_TOWER_SOURCE — run **37020792268**, artifact **11233385289** — APPROVED
 - [x] SPECIAL_NIGHT_TOWER_ACTIVE_SINGLE_SOURCE — run **37021355425**, artifact **11233476155** — APPROVED
 - [x] SPECIAL_NIGHT_TOWER_ACTIVATION_ANIM — run **37021801076**, artifact **11233497480** — APPROVED
@@ -192,17 +192,17 @@ Production:
 - [x] PEARL_SHRINE_OPEN — final state from run **37023903350**, artifact **11234391273** — APPROVED
 - [x] PEARL_SHRINE_OPEN_ANIM — run **37023903350**, artifact **11234391273** — APPROVED after visual QA (shell opens, pearl rises, ring pulse)
 - [x] MINIBOSS_SOURCE — run **37023204024**, artifact **11233674566** — APPROVED
-- [ ] MINIBOSS_DORMANT_SINGLE_SOURCE
-- [ ] MINIBOSS_ACTIVE_SINGLE_SOURCE
-- [ ] MINIBOSS_DORMANT
-- [ ] MINIBOSS_ACTIVE
+- [x] MINIBOSS_DORMANT_SINGLE_SOURCE — run **37026731003**, artifact **11234883925** — APPROVED after visual QA
+- [x] MINIBOSS_ACTIVE_SINGLE_SOURCE — run **37026734821**, artifact **11235118803** — APPROVED after visual QA
+- [x] MINIBOSS_DORMANT — run **37026731003**, artifact **11234883925** — APPROVED
+- [x] MINIBOSS_ACTIVE — run **37026734821**, artifact **11235118803** — APPROVED
 - [ ] MINIBOSS_AWAKEN_ANIM
 - [ ] MINIBOSS_ATTACK_ANIM
 - [x] SPECIAL_AQUATIC_TOWER_SOURCE — run **37023208180**, artifact **11233419385** — APPROVED
 - [!] SPECIAL_AQUATIC_TOWER_SINGLE_SOURCE attempt 1 — run **37025038914**, artifact **11234227742** — REJECTED after visual QA (identity drift from approved tower)
-- [ ] SPECIAL_AQUATIC_TOWER_SINGLE_SOURCE — may use reversed fold animation from approved active source
+- [x] SPECIAL_AQUATIC_TOWER_SINGLE_SOURCE — final folded state from run **37025533799**, artifact **11235067913** — APPROVED after visual QA
 - [x] SPECIAL_AQUATIC_TOWER_ACTIVE_SINGLE_SOURCE — run **37023885079**, artifact **11233999401** — APPROVED after visual QA
-- [ ] SPECIAL_AQUATIC_TOWER_ACTIVATION_ANIM
+- [x] SPECIAL_AQUATIC_TOWER_ACTIVATION_ANIM — use reverse playback of approved fold animation run **37025533799**, artifact **11235067913**
 - [x] SPECIAL_AQUATIC_TOWER_IDLE_LOOP — run **37025045929**, artifact **11235446525** — APPROVED after visual QA (subtle bubbles/tendril sway/core bob; loop-friendly)
 
 ## MAP 5 — Grzybowe Zainfekowane Miasto
@@ -223,19 +223,20 @@ Production:
 - [x] BACKGROUND_TERRAIN_PLATE — run **37025270764**, artifact **11234691977** — APPROVED after visual QA (road-free open corridors)
 - [ ] BASE_COMPOSITE_IN_UNITY_FROM_LOCKED_TOPOLOGY
 - [ ] BASE_FINAL_NEW_TOPOLOGY
-- [ ] AMBIENT_LOOP
-- [ ] PSY_V0_NORMAL
-- [ ] PSY_V1_LIGHT_WARP
-- [ ] PSY_V2_GRID_VISIBLE
-- [ ] PSY_V3_STRONG
-- [ ] PSY_V4_PEAK
-- [ ] PSY_V5_FADE
-- [ ] PSY_V6_NORMAL
-- [ ] PSYCHEDELIC_SURGE_ANIM
+- [!] AMBIENT_LOOP attempt 1 — run **37025274825**, artifact **11234323555** — REJECTED after visual QA (too much baked terrain; unsuitable as compositing overlay)
+- [x] AMBIENT_LOOP — run **37026222266**, artifact **11235173326** — APPROVED after visual QA
+- [x] PSY_V0_NORMAL — run **37025281280**, artifact **11235336865** — APPROVED
+- [x] PSY_V1_LIGHT_WARP — run **37025281280**, artifact **11235336865** — APPROVED
+- [x] PSY_V2_GRID_VISIBLE — run **37025281280**, artifact **11235336865** — APPROVED
+- [x] PSY_V3_STRONG — run **37025281280**, artifact **11235336865** — APPROVED
+- [x] PSY_V4_PEAK — run **37025281280**, artifact **11235336865** — APPROVED
+- [x] PSY_V5_FADE — run **37025281280**, artifact **11235336865** — APPROVED
+- [x] PSY_V6_NORMAL — run **37025281280**, artifact **11235336865** — APPROVED
+- [x] PSYCHEDELIC_SURGE_ANIM — run **37025281280**, artifact **11235336865** — APPROVED after visual QA
 - [x] LAB_SINGLE_SOURCE — run **37025286566**, artifact **11235466241** — APPROVED after visual QA
 - [x] LAB_CLOSED — run **37025286566**, artifact **11235466241** — APPROVED
-- [ ] LAB_OPEN
-- [ ] LAB_OPEN_ANIM
+- [x] LAB_OPEN — final state from run **37025981397**, artifact **11234759621** — APPROVED
+- [x] LAB_OPEN_ANIM — run **37025981397**, artifact **11234759621** — APPROVED after visual QA
 - [!] MINIBOSS_SOURCE attempt 1 — run **37025292120**, artifact **11235206778** — REJECTED after visual QA (too 3D/toy-like vs 2D casual-game style)
 - [x] MINIBOSS_SOURCE — run **37025985108**, artifact **11234892986** — APPROVED after visual QA (clean 2D Mother Mycelium sheet)
 - [ ] MINIBOSS_DORMANT_SINGLE_SOURCE
@@ -245,7 +246,7 @@ Production:
 - [ ] MINIBOSS_AWAKEN_ANIM
 - [ ] MINIBOSS_ATTACK_ANIM
 - [!] SPECIAL_MUTATION_TOWER_SOURCE attempt 1 — run **37025297595**, artifact **11234752032** — FAILED generation
-- [ ] SPECIAL_MUTATION_TOWER_SOURCE
+- [x] SPECIAL_MUTATION_TOWER_SOURCE — run **37025989780**, artifact **11235363386** — APPROVED after visual QA
 - [ ] SPECIAL_MUTATION_TOWER_ACTIVE_SINGLE_SOURCE
 - [ ] SPECIAL_MUTATION_TOWER_ACTIVATION_ANIM
 
@@ -269,14 +270,16 @@ Production:
 - [ ] BASE_FINAL_NEW_TOPOLOGY
 - [ ] AMBIENT_LOOP
 - [x] PANDA_SOURCE — run **37026226845**, artifact **11234419605** — APPROVED after visual QA
+- [x] PANDA_ROLL_SOURCE — run **37026714289**, artifact **11235810368** — APPROVED after visual QA
 - [ ] PANDA_ROLL
 - [ ] PANDA_STOP
+- [x] PANDA_HOSTILE_SOURCE — run **37026718211**, artifact **11235099906** — APPROVED after visual QA
 - [ ] PANDA_TRANSFORM
-- [ ] BAMBOO_LOG_HAZARD
+- [x] BAMBOO_LOG_HAZARD — run **37026248648**, artifact **11235547736** — APPROVED after visual QA
 - [x] DOJO_SINGLE_SOURCE — run **37026232465**, artifact **11235078130** — APPROVED after visual QA
 - [x] DOJO_CLOSED — run **37026232465**, artifact **11235078130** — APPROVED
-- [ ] DOJO_OPEN
-- [ ] DOJO_OPEN_ANIM
+- [x] DOJO_OPEN — final state from run **37026724501**, artifact **11235710967** — APPROVED
+- [x] DOJO_OPEN_ANIM — run **37026724501**, artifact **11235710967** — APPROVED after visual QA
 - [x] MINIBOSS_SOURCE — run **37026237201**, artifact **11235542099** — APPROVED after visual QA
 - [ ] MINIBOSS_DORMANT_SINGLE_SOURCE
 - [ ] MINIBOSS_ACTIVE_SINGLE_SOURCE
@@ -285,7 +288,7 @@ Production:
 - [ ] MINIBOSS_AWAKEN_ANIM
 - [ ] MINIBOSS_ATTACK_ANIM
 - [x] SPECIAL_BAMBOO_TOWER_SOURCE — run **37026242264**, artifact **11235162980** — APPROVED after visual QA
-- [ ] SPECIAL_BAMBOO_TOWER_ACTIVE_SINGLE_SOURCE
+- [x] SPECIAL_BAMBOO_TOWER_ACTIVE_SINGLE_SOURCE — run **37026740118**, artifact **11235615614** — APPROVED after visual QA
 - [ ] SPECIAL_BAMBOO_TOWER_ACTIVATION_ANIM
 
 ## MAP 7 — Świątynia Słońca i Księżyca
