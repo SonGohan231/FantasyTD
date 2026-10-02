@@ -1,9 +1,9 @@
 {
   "enabled": true,
-  "generation_id": "map5-fungal-mutation-tower-source-20261002-002",
+  "generation_id": "map6-bamboo-scenery-props-20261002-001",
   "model_path": "recraft/v4.1/text-to-image",
   "input": {
-    "prompt": "ORIGINAL 2D SOURCE SHEET for an unlockable support tower called \"Mutation Bloom\" in a colorful fungal-city mobile tower-defense game. Playful casual-game cartoon, chunky simplified shapes, clean dark outlines, saturated cyan/magenta/lime palette, soft cel shading, high phone readability. No 3D render, no realism, no text.\n\nTower identity: cracked laboratory pod fused with a friendly living fungus. Short coral-pink fungal base, translucent lime mutation bulb/core, three asymmetrical cyan-magenta mushroom petals/caps, flexible mycelium tendrils, tiny floating spores. Visual role: status-resistance/support tower.\n\nCreate 5 isolated consistent poses/states on warm off-white background:\n1 dormant folded lab pod,\n2 activation opening,\n3 active idle hero pose,\n4 support pulse with ring of soft energy,\n5 upgraded variant with one extra mycelium branch and brighter core.\nSame proportions/camera. No labels, no UI, no extra characters.",
+    "prompt": "ORIGINAL production prop sheet for MAP6 \"Bamboo Forest\", a colorful mobile 2D tower-defense game. Playful casual-game cartoon, chunky simplified shapes, clean dark outlines, saturated jade/green/gold/red palette, soft cel shading, high phone readability, no realism, no text, no logos, no labels.\n\nCreate isolated modular props on warm off-white background:\n1 bamboo cluster,\n2 bamboo wall segment,\n3 cut bamboo stump,\n4 curved wooden/bamboo bridge module,\n5 small stream edge,\n6 koi pond patch,\n7 mossy stone cluster,\n8 hanging paper charm with NO writing or symbols,\n9 red lantern,\n10 bamboo waterwheel,\n11 tea pavilion corner,\n12 panda burrow entrance,\n13 rolling bamboo log,\n14 log warning marker made only of colored stones/rope with no symbols,\n15 hidden dojo gate closed,\n16 hidden dojo gate open,\n17 bamboo shrine pedestal,\n18 bamboo tower unlock seed/relic,\n19 leaf pile,\n20 flowering bamboo/grass patch.\nConsistent top-down/3/4 game camera, isolated spacing. No roads, enemies, towers or UI. Original IP only.",
     "resolution": "1k",
     "aspect_ratio": "16:9",
     "output_format": "png"
