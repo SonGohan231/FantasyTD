@@ -1,0 +1,13 @@
+{
+  "enabled": false,
+  "generation_id": "replace-with-unique-id",
+  "model_path": "higgsfield-ai/soul/v2/standard",
+  "input": {
+    "prompt": "FantasyTD style-lock placeholder. Replace before enabling.",
+    "resolution": "720p",
+    "aspect_ratio": "16:9",
+    "batch_size": 1,
+    "enhance_prompt": true
+  },
+  "max_wait_seconds": 1200
+}
