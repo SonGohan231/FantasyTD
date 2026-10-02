@@ -98,8 +98,10 @@ Production:
 - [x] MINIBOSS_SLAM_ATTACK_ANIM — run **37009138087**, artifact **11226964130** — APPROVED after visual QA (wind-up→slam→impact/recovery readable)
 - [x] MINIBOSS_HIT_DEFEAT_ANIM — run **37009142068**, artifact **11226909606** — APPROVED after visual QA (hit→stagger→collapse→glow fade)
 - [x] TERRAIN_ROAD_TILE_KIT — run **37009161826**, artifact **11227420838** — APPROVED after visual QA (modular asphalt/curves/Y-junctions/sidewalk/water/props)
-- [ ] RADIO_RELAY_SINGLE_SOURCE
-- [ ] BACKGROUND_TERRAIN_PLATE
+- [x] RADIO_RELAY_SINGLE_SOURCE — run **37010048084**, artifact **11226614659** — APPROVED after visual QA
+- [x] BACKGROUND_TERRAIN_PLATE — run **37010052305**, artifact **11227178308** — APPROVED after visual QA (road-free environment plate for deterministic Unity composition)
+- [ ] SPECIAL_SALVAGE_TOWER_SOURCE
+- [ ] SPECIAL_SALVAGE_TOWER_ACTIVATION_ANIM
 
 ## MAP 3 — Zmierzch
 **Difficulty:** Medium- / two persistent routes  
