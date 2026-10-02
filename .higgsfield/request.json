@@ -1,9 +1,9 @@
 {
   "enabled": true,
-  "generation_id": "map5-fungal-mother-active-single-20261002-001",
+  "generation_id": "map5-fungal-mutation-tower-active-single-20261002-001",
   "model_path": "recraft/v4.1/text-to-image",
   "input": {
-    "prompt": "ORIGINAL single gameplay sprite source for Mother Mycelium, miniboss in a colorful fungal-city mobile tower-defense game. ONE character only on warm off-white background. Clean flat 2D cartoon, chunky shapes, dark outlines, saturated magenta/cyan/lime palette, soft cel shading.\n\nSame exact identity: broad squat fungal queen rooted to cracked pavement; huge layered mushroom cap crown with glowing spots; pale stem torso; glowing lime mycelium core; four root-tentacle lower limbs; two thick arms ending in spore bulbs; playful eerie face.\nPOSE: ACTIVE COMBAT IDLE — cap lifted/open, eyes alert, arms spread slightly, core bright, roots braced, spore bulbs ready.\nNo text, no UI, no extra characters, no sheet, no multiple poses.",
+    "prompt": "ORIGINAL single active gameplay sprite source for the Mutation Bloom support tower in a colorful fungal-city mobile tower-defense game. ONE tower only on warm off-white background. Clean 2D casual-game cartoon.\n\nExact design: coral-pink fungal base fused with a cracked laboratory pod; central translucent lime mutation bulb/core; three asymmetrical cyan-magenta mushroom petals/caps around the core; flexible mycelium tendrils; tiny floating spores. ACTIVE IDLE pose: petals open, lime core glowing, tendrils gently raised, readable support-tower silhouette. Chunky shapes, crisp dark outlines, saturated colors, soft cel shading. No text, no UI, no extra variants.",
     "resolution": "1k",
     "aspect_ratio": "16:9",
     "output_format": "png"
