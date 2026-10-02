@@ -1,15 +1,12 @@
 {
   "enabled": true,
-  "generation_id": "map5-fungal-lab-open-anim-20261002-001",
-  "model_path": "bytedance/seedance-2.5/image-to-video",
+  "generation_id": "map5-fungal-mother-mycelium-source-20261002-002",
+  "model_path": "recraft/v4.1/text-to-image",
   "input": {
-    "image_url": "https://d3u0tzju9qaucj.cloudfront.net/9f95694a-f77a-4193-89ef-1c30149ba5ad/393e4cfb-d6bc-42ea-b78b-20df2fe3825a.png",
-    "prompt": "Locked camera. Animate THIS EXACT sealed fungal laboratory hatch into an open secret entrance while preserving design and 2D cartoon style. Sequence: teal circular indicator pulses -> magenta fungal veins brighten -> nearby mushrooms twitch -> hatch unlocks and rolls/slides open -> lime-teal laboratory light and a short mist/spore puff escape -> dark descending interior becomes visible -> end fully open and stable. No extra props, no characters, no text, no UI, no camera movement, no cuts.",
-    "duration": 6,
-    "resolution": "720p",
+    "prompt": "ORIGINAL 2D CHARACTER SOURCE SHEET for \"Mother Mycelium\", fungal-city miniboss in a playful mobile tower-defense game. Pure flat/cartoon 2D illustration, chunky shapes, clean dark outlines, saturated magenta/cyan/lime palette, soft cel shading, high phone readability. NO 3D render, NO realistic materials, NO toy/figurine look.\n\nCharacter identity: broad squat fungal queen rooted to cracked city pavement; large layered mushroom-cap crown, asymmetrical glowing spots, pale stem torso with expressive mischievous/menacing face, glowing mycelium core in chest/abdomen, four short root-tentacle lower limbs, two thicker mycelium arms ending in spore bulbs, dangling hyphae. Cute-weird rather than horror.\n\nCreate 5 isolated consistent poses on a warm off-white background with generous spacing:\n1 dormant rooted / cap lowered,\n2 awakening,\n3 active idle hero pose,\n4 spore-burst attack,\n5 hit/stagger.\nSame anatomy, same proportions, same camera in every pose. No text, no labels, no UI, no logo, no extra characters.",
+    "resolution": "1k",
     "aspect_ratio": "16:9",
-    "output_format": "mp4",
-    "generate_audio": false
+    "output_format": "png"
   },
   "max_wait_seconds": 1200
 }
