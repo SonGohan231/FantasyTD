@@ -1,0 +1,38 @@
+{
+  "status": "WAITING_FOR_HIGGSFIELD_TOPUP",
+  "last_credit_probe": {
+    "run_id": 37037420169,
+    "result": "HTTP 403 not_enough_credits",
+    "model": "recraft/v4.1/text-to-image",
+    "generation_id": "map7-temple-mirror-source-20261002-002"
+  },
+  "resume_order": [
+    "MAP5 Mother Mycelium awaken animation",
+    "MAP5 Mother Mycelium attack animation",
+    "MAP5 Mutation Bloom active single source retry",
+    "MAP5 Mutation Bloom activation animation",
+    "MAP5 Mutation Bloom idle loop",
+    "MAP6 Panda stop/unroll animation retry",
+    "MAP6 Panda transform-to-hostile animation",
+    "MAP6 Great Panda Warrior awaken animation retry",
+    "MAP6 Great Panda Warrior attack animation retry",
+    "MAP6 Bamboo Burst folded single source",
+    "MAP6 Bamboo Burst activation animation",
+    "MAP6 Bamboo Burst idle loop",
+    "MAP7 scenery prop pack",
+    "MAP7 background terrain plate",
+    "MAP7 ambient loop",
+    "MAP7 mirror source",
+    "MAP7 mirror rotate + beam sweep animation",
+    "MAP7 gates source + gate transitions",
+    "MAP7 sanctum source + opening animation",
+    "MAP7 temple guardian sources + awaken/attack animations",
+    "MAP7 Eclipse Lotus source + activation/idle animations",
+    "MAP8 scenery/background/ambient",
+    "MAP8 dragon source + wake/fly animations",
+    "MAP8 route-change visual states A/B/C",
+    "MAP8 vault source + opening animation",
+    "MAP8 miniboss and dragon-fire tower assets"
+  ],
+  "rule": "Generate only through GitHub Actions -> HF_API_KEY -> Higgsfield API; never mark APPROVED without visual QA."
+}
