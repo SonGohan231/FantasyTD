@@ -1,14 +1,12 @@
 {
   "enabled": true,
-  "generation_id": "map2-postapo-toxic-overlay-20261002-001",
-  "model_path": "bytedance/seedance-2.5/text-to-video",
+  "generation_id": "map2-postapo-bunker-states-20261002-001",
+  "model_path": "recraft/v4.1/text-to-image",
   "input": {
-    "prompt": "Locked-camera 16:9 EVENT OVERLAY for an ORIGINAL colorful cartoon post-apocalyptic tower-defense map. No characters, no roads, no UI, no text, no logos, no buildings. Plain near-black compositing background. Create a 6-second loop-friendly toxic dust storm progression: start almost clear, yellow-green dust wisps enter from the upper-right, quickly intensify into a dense swirling cloud with airborne leaves/paper and small glowing toxic particles, then thin and recede toward the right by the end. The center/left remains more readable than the upper-right at peak. No camera movement, no zoom, no cuts. This is a screen/map hazard overlay to be blended over a static game board in Unity.",
-    "duration": 6,
-    "resolution": "720p",
+    "prompt": "ORIGINAL production asset sheet for a colorful post-apocalyptic mobile tower-defense map. Playful casual-game cartoon style, chunky simple shapes, clean dark outlines, saturated colors, soft cel shading, high phone readability, no realism, no text, no logos, no labels.\n\nCreate a clean state sheet on warm off-white background for ONE underground bunker secret entrance, consistent across all states and camera angle:\nA) CLOSED: circular reinforced hatch embedded in cracked concrete and plants, dim amber indicator.\nB) HINT: same hatch, faint pulsing amber seams, tiny dust particles and subtle vine movement cue.\nC) OPENING: hatch mechanically lifted/rotated halfway with warm light and steam escaping.\nD) OPEN: hatch fully open, short descending stair/tunnel visible with warm yellow-green light.\nE) CLEARED/REWARD: open hatch with soft green salvage-energy glow and small scrap crate.\n\nKeep the exact same hatch design and top-down/3/4 game camera in every state. Isolated assets with generous spacing, no roads, no characters, no signs, no words, no UI. Original IP only.",
+    "resolution": "1k",
     "aspect_ratio": "16:9",
-    "output_format": "mp4",
-    "generate_audio": false
+    "output_format": "png"
   },
   "max_wait_seconds": 1200
 }
