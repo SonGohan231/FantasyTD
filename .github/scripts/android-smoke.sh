@@ -224,7 +224,7 @@ if [[ $INSTALL_RC -ne 0 ]]; then
   fail "adb install failed."
 fi
 
-PACKAGE_PATH="$("$ADB" -s "$SERIAL" shell pm path "$PACKAGE" 2>/dev/null | tr -d '\r')"
+PACKAGE_PATH="$("$ADB" -s "$SERIAL" shell pm path "$PACKAGE" 2>/dev/null | tr -d '\r' || true)"
 report "packagePath=$PACKAGE_PATH"
 if [[ "$PACKAGE_PATH" != package:* ]]; then
   fail "Package $PACKAGE is not installed after adb install."
@@ -247,8 +247,8 @@ if [[ $LAUNCH_RC -ne 0 ]]; then
 fi
 
 sleep 10
-PID_START="$("$ADB" -s "$SERIAL" shell pidof "$PACKAGE" 2>/dev/null | tr -d '\r')"
-FOREGROUND_START="$("$ADB" -s "$SERIAL" shell dumpsys activity activities 2>/dev/null | grep -m1 'mResumedActivity' | tr -d '\r')"
+PID_START="$("$ADB" -s "$SERIAL" shell pidof "$PACKAGE" 2>/dev/null | tr -d '\r' || true)"
+FOREGROUND_START="$("$ADB" -s "$SERIAL" shell dumpsys activity activities 2>/dev/null | grep -m1 'mResumedActivity' | tr -d '\r' || true)"
 report "pidAfterLaunch=$PID_START"
 report "foregroundAfterLaunch=$FOREGROUND_START"
 if [[ -z "$PID_START" ]]; then
@@ -354,9 +354,9 @@ RESP_DIMS="$(screenshot wave2-touch-responsive.png)"
 report "responsivenessScreenshot=wave2-touch-responsive.png"
 report "responsivenessScreenshotDimensions=$RESP_DIMS"
 
-PID_END="$("$ADB" -s "$SERIAL" shell pidof "$PACKAGE" 2>/dev/null | tr -d '\r')"
-FOREGROUND_END="$("$ADB" -s "$SERIAL" shell dumpsys activity activities 2>/dev/null | grep -m1 'mResumedActivity' | tr -d '\r')"
-ROTATION_INFO="$("$ADB" -s "$SERIAL" shell dumpsys window displays 2>/dev/null | grep -E -m2 'mCurrentFocus|rotation|Rotation' | tr '\n' ';' | tr -d '\r')"
+PID_END="$("$ADB" -s "$SERIAL" shell pidof "$PACKAGE" 2>/dev/null | tr -d '\r' || true)"
+FOREGROUND_END="$("$ADB" -s "$SERIAL" shell dumpsys activity activities 2>/dev/null | grep -m1 'mResumedActivity' | tr -d '\r' || true)"
+ROTATION_INFO="$("$ADB" -s "$SERIAL" shell dumpsys window displays 2>/dev/null | grep -E -m2 'mCurrentFocus|rotation|Rotation' | tr '\n' ';' | tr -d '\r' || true)"
 report "pidAfterScenario=$PID_END"
 report "foregroundAfterScenario=$FOREGROUND_END"
 report "rotationInfo=$ROTATION_INFO"
