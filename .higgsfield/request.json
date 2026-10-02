@@ -1,10 +1,10 @@
 {
   "enabled": true,
-  "generation_id": "map4-abyssal-crab-active-single-20261002-002",
+  "generation_id": "map4-abyssal-aquatic-tower-inactive-single-20261002-001",
   "model_path": "higgsfield-ai/soul/v2/image-to-image",
   "input": {
-    "image_url": "https://d3u0tzju9qaucj.cloudfront.net/9f95694a-f77a-4193-89ef-1c30149ba5ad/8d4f7dcc-6408-4195-95df-443abdee8d27.png",
-    "prompt": "Preserve this exact ORIGINAL Vent Crab miniboss identity and style. Same rounded teal shell, same orange crack, same pink coral growth, same cyan claws/legs, same proportions and casual-game cartoon rendering. Change ONLY the pose from dormant/resting to ACTIVE combat idle: body raised higher, both claws lifted and open, eyestalks alert, legs planted wide, small hydrothermal bubbles around feet. One crab only, isolated on warm neutral background, same top-down/3/4 camera. No redesign, no extra coral species, no extra limbs, no text, no UI, no second pose.",
+    "image_url": "https://d3u0tzju9qaucj.cloudfront.net/9f95694a-f77a-4193-89ef-1c30149ba5ad/e32152d8-387c-4c55-85b9-2ce2c84a9e03.png",
+    "prompt": "Preserve this exact ORIGINAL aquatic special tower identity: same pink coral base, same spiral shell body, same teal flower petals, same green-striped side tendrils and pearl-like center. Change ONLY to a folded INACTIVE/deployment state: teal petals gently closed around the pearl core, tendrils tucked closer, pearl dim and sleepy, base unchanged. One tower only, isolated on warm neutral background, same top-down/3/4 game camera, same proportions and palette. No redesign, no extra props, no text, no UI, no second pose.",
     "resolution": "1080p",
     "aspect_ratio": "16:9",
     "batch_size": 1,
