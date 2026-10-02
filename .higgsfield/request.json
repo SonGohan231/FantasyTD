@@ -1,14 +1,12 @@
 {
   "enabled": true,
-  "generation_id": "map5-fungal-ambient-loop-20261002-002",
-  "model_path": "bytedance/seedance-2.5/text-to-video",
+  "generation_id": "map5-fungal-mother-dormant-single-20261002-001",
+  "model_path": "recraft/v4.1/text-to-image",
   "input": {
-    "prompt": "Locked-camera 16:9 AMBIENT EFFECT OVERLAY for an ORIGINAL fungal-infected city tower-defense map. Plain near-black background only; absolutely NO terrain, NO roads, NO buildings, NO horizon. Animate separated floating effects: drifting spores, thin pulsing magenta/cyan mycelium filaments, tiny glowing mushroom-cap particles opening/closing, faint lime runoff shimmer streaks, a few dust motes. Keep most pixels dark/empty for easy screen/additive compositing in Unity. Slow loop-friendly motion, no camera movement, no cuts, no text, no UI.",
-    "duration": 4,
-    "resolution": "480p",
+    "prompt": "ORIGINAL single gameplay sprite source for Mother Mycelium, miniboss in a colorful fungal-city mobile tower-defense game. ONE character only on warm off-white background. Clean flat 2D cartoon, chunky shapes, dark outlines, saturated magenta/cyan/lime palette, soft cel shading.\n\nExact identity: broad squat fungal queen rooted to a broken pavement chunk; huge layered mushroom cap crown with irregular glowing spots; pale stem torso; glowing lime mycelium core in chest; four short root-tentacle lower limbs; two thick mycelium arms ending in spore bulbs; playful eerie face.\nPOSE: DORMANT — cap lowered like a protective umbrella, eyes closed, arms tucked, roots relaxed, glow dim.\nNo text, no UI, no extra characters, no sheet, no multiple poses.",
+    "resolution": "1k",
     "aspect_ratio": "16:9",
-    "output_format": "mp4",
-    "generate_audio": false
+    "output_format": "png"
   },
   "max_wait_seconds": 1200
 }
