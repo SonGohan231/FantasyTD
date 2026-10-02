@@ -12,6 +12,7 @@ import urllib.request
 API_BASE = "https://api.higgsfield.ai"
 ALLOWED_MODELS = {
     "higgsfield-ai/soul/v2/standard": "image",
+    "higgsfield-ai/soul/v2/image-to-image": "image",
     "z-image/turbo": "image",
     "recraft/v4.1/text-to-image": "image",
     "bytedance/seedance-2.5/text-to-video": "video",
