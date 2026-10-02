@@ -1,10 +1,10 @@
 {
   "enabled": true,
-  "generation_id": "map3-twilight-miniboss-active-single-20261002-001",
+  "generation_id": "map3-twilight-night-tower-active-single-20261002-001",
   "model_path": "higgsfield-ai/soul/v2/image-to-image",
   "input": {
-    "image_url": "https://d3u0tzju9qaucj.cloudfront.net/9f95694a-f77a-4193-89ef-1c30149ba5ad/001f4ecf-7ffe-41dc-8a36-01d07d774e70.png",
-    "prompt": "Preserve the exact original Night Gardener miniboss identity from the reference sheet but output ONE isolated ACTIVE COMBAT IDLE pose only. No sheet, no extra poses. Tall slightly hunched stance, crescent body upright, branch-claw hands open, lavender eyes bright, shoulder moon-flower buds partly open, subtle mist around legs. Same anatomy, palette and casual-game cartoon style. Top-down/3-4 game camera, warm neutral plain background, mobile readable. No text, no UI, no extra characters.",
+    "image_url": "https://d3u0tzju9qaucj.cloudfront.net/9f95694a-f77a-4193-89ef-1c30149ba5ad/e0003381-815b-4b16-bbac-65d5581375ce.png",
+    "prompt": "Preserve the exact original Starbloom Lantern special tower identity from the reference sheet but output ONE isolated ACTIVE gameplay pose only. No sheet, no extra variants. One rooted green stem on circular leaf/stone base, large open five-point violet-blue star flower, warm lantern core visible at center, tiny fireflies around it, gentle empowered moonlight glow. Same anatomy and palette, playful chunky casual-game cartoon style, top-down/3-4 camera, warm neutral background, mobile readable. No text, no UI, no extra props.",
     "resolution": "1080p",
     "aspect_ratio": "16:9",
     "batch_size": 1,
