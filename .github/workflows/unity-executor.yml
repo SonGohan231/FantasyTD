@@ -11,6 +11,7 @@ on:
         options:
           - baseline
           - tests
+          - map-a-integrity
           - android-build
   push:
     branches:
@@ -59,7 +60,7 @@ jobs:
           elif [[ "${{ github.event_name }}" == "push" ]] && git diff --name-only HEAD^ HEAD 2>/dev/null | grep -qx '.dyrygent/unity-request.json'; then
             REQUESTED="$(jq -r '.mode // "baseline"' .dyrygent/unity-request.json)"
             case "$REQUESTED" in
-              baseline|tests|android-build) MODE="$REQUESTED" ;;
+              baseline|tests|map-a-integrity|android-build) MODE="$REQUESTED" ;;
               *) echo "Invalid Unity Executor mode: $REQUESTED"; exit 1 ;;
             esac
           fi
@@ -157,6 +158,51 @@ jobs:
           if-no-files-found: warn
           path: |
             UnityProject/TestResults/**
+            UnityProject/Logs/**
+
+
+  map_a_integrity:
+    name: MAP-A scene / geometry integrity
+    needs: prepare
+    if: needs.prepare.outputs.mode == 'map-a-integrity'
+    runs-on: [self-hosted, dyrygent-unity]
+    timeout-minutes: 45
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          lfs: true
+
+      - name: Locate Unity Editor
+        id: unity
+        shell: bash
+        run: |
+          set -euo pipefail
+          UNITY_BIN="$(find "$HOME" /opt -type f -path "*/6000.0.26f1/Editor/Unity" -perm -111 2>/dev/null | head -n 1)"
+          if [[ -z "$UNITY_BIN" ]]; then
+            echo "Unity 6000.0.26f1 executable not found."
+            exit 1
+          fi
+          echo "bin=$UNITY_BIN" >> "$GITHUB_OUTPUT"
+          echo "Using Unity: $UNITY_BIN"
+          "$UNITY_BIN" -version
+
+      - name: Run MAP-A integrity validation
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$GITHUB_WORKSPACE/UnityProject/Logs"
+          "${{ steps.unity.outputs.bin }}"             -batchmode -nographics -quit             -projectPath "$GITHUB_WORKSPACE/UnityProject"             -executeMethod FantasyTD.CI.UnityExecutorCi.MapAIntegrity             -logFile "$GITHUB_WORKSPACE/UnityProject/Logs/unity-map-a-integrity.log"
+
+      - name: Upload MAP-A integrity report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: unity-executor-map-a-integrity-${{ github.run_id }}
+          if-no-files-found: error
+          path: |
+            UnityProject/Artifacts/UnityExecutor/**
             UnityProject/Logs/**
 
   android:
