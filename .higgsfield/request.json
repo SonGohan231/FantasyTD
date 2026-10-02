@@ -1,14 +1,14 @@
 {
   "enabled": true,
-  "generation_id": "map3-twilight-night-tower-active-single-20261002-001",
-  "model_path": "higgsfield-ai/soul/v2/image-to-image",
+  "generation_id": "map3-twilight-ambient-loop-20261002-001",
+  "model_path": "bytedance/seedance-2.5/text-to-video",
   "input": {
-    "image_url": "https://d3u0tzju9qaucj.cloudfront.net/9f95694a-f77a-4193-89ef-1c30149ba5ad/e0003381-815b-4b16-bbac-65d5581375ce.png",
-    "prompt": "Preserve the exact original Starbloom Lantern special tower identity from the reference sheet but output ONE isolated ACTIVE gameplay pose only. No sheet, no extra variants. One rooted green stem on circular leaf/stone base, large open five-point violet-blue star flower, warm lantern core visible at center, tiny fireflies around it, gentle empowered moonlight glow. Same anatomy and palette, playful chunky casual-game cartoon style, top-down/3-4 camera, warm neutral background, mobile readable. No text, no UI, no extra props.",
-    "resolution": "1080p",
+    "prompt": "Locked-camera 16:9 ambient overlay for an ORIGINAL twilight-garden mobile tower-defense map. Plain near-black compositing background. Animate ONLY isolated environmental effects: small warm lantern flickers, tiny firefly clusters drifting slowly, a few violet flower petals floating, subtle low ground mist wisps, faint moonlight sparkle motes. No scenery, no characters, no roads, no text, no UI, no camera movement, no zoom, no cuts. Motion restrained and loop-friendly for continuous Unity gameplay.",
+    "duration": 4,
+    "resolution": "480p",
     "aspect_ratio": "16:9",
-    "batch_size": 1,
-    "enhance_prompt": false
+    "output_format": "mp4",
+    "generate_audio": false
   },
   "max_wait_seconds": 1200
 }
