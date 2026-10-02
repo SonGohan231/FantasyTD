@@ -1,13 +1,12 @@
 {
   "enabled": true,
-  "generation_id": "map3-twilight-miniboss-active-ideogram-20261002-001",
-  "model_path": "ideogram/v4.0",
+  "generation_id": "map4-abyssal-scenery-props-20261002-001",
+  "model_path": "recraft/v4.1/text-to-image",
   "input": {
-    "image_url": "https://d3u0tzju9qaucj.cloudfront.net/9f95694a-f77a-4193-89ef-1c30149ba5ad/001f4ecf-7ffe-41dc-8a36-01d07d774e70.png",
-    "image_weight": 78,
+    "prompt": "ORIGINAL production asset sheet for a premium casual-cartoon ABYSSAL SEA FLOOR mobile tower-defense map. Warm off-white background, isolated sprite-ready props, consistent top-down/3-4 game camera, chunky simple shapes, clean outlines, saturated ocean palette, soft cel shading, mobile readability. No text, no logos, no UI.\n\nInclude:\n1 coral arch,\n2 kelp cluster,\n3 glowing anemone,\n4 shell cluster,\n5 pearl-like build-pad rim,\n6 hydrothermal vent CLOSED,\n7 vent GLOWING before eruption,\n8 hot bubble small,\n9 hot bubble large,\n10 bubble burst splash/ring,\n11 submerged ruin column,\n12 ancient pearl shrine CLOSED,\n13 ancient pearl shrine OPEN/glowing,\n14 crab cave entrance CLOSED,\n15 crab cave OPEN,\n16 bioluminescent rock cluster,\n17 sandy seabed rubble,\n18 treasure trench chest/coral cache,\n19 small fish silhouette school,\n20 bubble-resistant plant marker/upgrade relic.\n\nNo roads, no characters, no towers. Original IP only.",
+    "resolution": "1k",
     "aspect_ratio": "16:9",
-    "rendering_speed": "QUALITY",
-    "prompt": "Extract and preserve the SAME original Night Gardener creature design from the reference sheet, especially the purple crescent body, green leaf cluster, small central purple face with glowing lavender eyes, thin branch-like limbs and misty lower body. Produce ONE isolated active combat-idle pose only on a warm neutral background. No sheet, no multiple poses. Active means upright crescent body, branch-claw hands spread, lavender eyes bright, leaf cluster slightly open, subtle mist around feet. Keep identity and proportions from reference; do not invent a brown human-like face, torso, clothes or new anatomy. Playful mobile-game cartoon, clean silhouette. No text, no UI."
+    "output_format": "png"
   },
   "max_wait_seconds": 1200
 }
