@@ -1,9 +1,9 @@
 {
   "enabled": true,
-  "generation_id": "map6-bamboo-dojo-source-20261002-001",
+  "generation_id": "map6-bamboo-panda-warrior-source-20261002-001",
   "model_path": "recraft/v4.1/text-to-image",
   "input": {
-    "prompt": "ORIGINAL single secret interactive asset for a colorful bamboo-forest tower-defense map. ONE hidden panda dojo gate only, isolated on warm off-white background. Design: compact bamboo-and-wood ceremonial gate half-hidden by bamboo leaves, two red lanterns, mossy stone base, central circular wooden door with a simple paw-like geometric relief that contains NO letters or text. Playful chunky casual-game cartoon, clean outlines, saturated green/red/gold palette, soft cel shading, top-down/3/4 game camera, mobile-readable. No text, no UI, no extra characters. This exact asset will be animated opening later.",
+    "prompt": "ORIGINAL 2D miniboss source sheet for \"Great Panda Warrior\" in a colorful bamboo-forest mobile tower-defense game. Pure flat/cartoon 2D, chunky proportions, clean dark outlines, soft cel shading, high phone readability. No 3D, no realism, no text.\n\nIdentity: large round panda with leaf-and-bamboo shoulder armor, mossy rope belt, one broken bamboo staff carried like a heavy club, expressive stern eyebrows, small red ceremonial scarf, sturdy paws. Cute but imposing, original IP.\n\nCreate 5 consistent isolated poses on warm off-white background:\n1 dormant seated meditation,\n2 awakening/standing,\n3 active combat idle,\n4 rolling charge attack,\n5 heavy bamboo-staff slam.\nSame anatomy/proportions/camera throughout. No labels, no UI, no extra characters.",
     "resolution": "1k",
     "aspect_ratio": "16:9",
     "output_format": "png"
