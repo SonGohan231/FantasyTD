@@ -1,5 +1,5 @@
 {
-  "requestId": "t0007-mobile-layout-final-20261002-1300",
-  "mode": "mobile-layout",
-  "note": "Final T0007 render-capable Unity Play Mode validation on completion/documentation HEAD."
+  "requestId": "t0008-android-build-r1-20261002-1315",
+  "mode": "android-build",
+  "note": "T0008 real Unity Android APK build with toolchain, BuildReport, exact output and SHA-256 evidence."
 }
