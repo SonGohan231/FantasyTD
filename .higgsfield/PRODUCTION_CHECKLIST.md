@@ -165,16 +165,29 @@ Previous API concept:
 - [!] Old static concept — run **36999551504** — REJECTED as final layout
 
 Production:
+- [x] TOPOLOGY_SPEC_LOCKED — deterministic spec `.higgsfield/MAP4_ABYSSAL_TOPOLOGY.json`, commit **10d03dc3** (split → 2 routes → shared mid chokepoint → re-split → late merge; 13 build spots)
+- [ ] SCENERY_PROP_PACK
+- [ ] BACKGROUND_TERRAIN_PLATE
+- [ ] BASE_COMPOSITE_IN_UNITY_FROM_LOCKED_TOPOLOGY
 - [ ] BASE_FINAL_NEW_TOPOLOGY
 - [ ] AMBIENT_LOOP
 - [ ] BUBBLE_FORM
 - [ ] BUBBLE_DRIFT
 - [ ] BUBBLE_ABSORB
 - [ ] BUBBLE_BURST
+- [ ] BUBBLE_EVENT_ANIM
+- [ ] PEARL_SHRINE_SINGLE_SOURCE
 - [ ] PEARL_SHRINE_CLOSED
 - [ ] PEARL_SHRINE_OPEN
+- [ ] PEARL_SHRINE_OPEN_ANIM
+- [ ] MINIBOSS_SOURCE
 - [ ] MINIBOSS_DORMANT
 - [ ] MINIBOSS_ACTIVE
+- [ ] MINIBOSS_AWAKEN_ANIM
+- [ ] MINIBOSS_ATTACK_ANIM
+- [ ] SPECIAL_AQUATIC_TOWER_SOURCE
+- [ ] SPECIAL_AQUATIC_TOWER_ACTIVE_SINGLE_SOURCE
+- [ ] SPECIAL_AQUATIC_TOWER_ACTIVATION_ANIM
 
 ## MAP 5 — Grzybowe Zainfekowane Miasto
 **Difficulty:** Medium+ / route network  
