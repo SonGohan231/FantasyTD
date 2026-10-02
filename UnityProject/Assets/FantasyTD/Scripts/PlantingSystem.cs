@@ -10,6 +10,8 @@ namespace FantasyTD.MapA
         private readonly List<PlantingSpot> _spots = new List<PlantingSpot>();
         private PlantingSpot _selected;
 
+        public PlantingSpot SelectedSpot => _selected;
+
         public void Initialize(GameSession session, List<PlantingSpot> spots)
         {
             _session = session;
@@ -23,21 +25,38 @@ namespace FantasyTD.MapA
             if (Input.touchCount > 0)
             {
                 Touch touch = Input.GetTouch(0);
-                if (touch.phase == TouchPhase.Ended && !IsOverUi(touch.fingerId))
-                    HandleScreenTap(touch.position);
+                if (touch.phase == TouchPhase.Ended)
+                    TryHandleScreenPress(touch.position);
             }
 #if UNITY_EDITOR || UNITY_STANDALONE
-            if (Input.GetMouseButtonDown(0) && !IsOverUi())
-                HandleScreenTap(Input.mousePosition);
+            if (Input.GetMouseButtonDown(0))
+                TryHandleScreenPress(Input.mousePosition);
 #endif
         }
 
-        private bool IsOverUi(int fingerId = -1)
+        public bool TryHandleScreenPress(Vector2 screenPoint)
+        {
+            if (_session == null || _session.IsFinished)
+                return false;
+
+            if (IsOverUiAt(screenPoint))
+                return false;
+
+            HandleScreenTap(screenPoint);
+            return true;
+        }
+
+        private static bool IsOverUiAt(Vector2 screenPoint)
         {
             if (EventSystem.current == null) return false;
-            return fingerId >= 0
-                ? EventSystem.current.IsPointerOverGameObject(fingerId)
-                : EventSystem.current.IsPointerOverGameObject();
+
+            PointerEventData pointer = new PointerEventData(EventSystem.current)
+            {
+                position = screenPoint
+            };
+            List<RaycastResult> results = new List<RaycastResult>();
+            EventSystem.current.RaycastAll(pointer, results);
+            return results.Count > 0;
         }
 
         private void HandleScreenTap(Vector2 screenPoint)
