@@ -1,9 +1,9 @@
 {
   "enabled": true,
-  "generation_id": "map3-twilight-background-terrain-20261002-002",
+  "generation_id": "map3-twilight-moon-gate-single-source-20261002-001",
   "model_path": "recraft/v4.1/text-to-image",
   "input": {
-    "prompt": "ORIGINAL 16:9 ROAD-FREE BACKGROUND TERRAIN PLATE for a twilight-garden mobile tower-defense map. This image must contain NO roads, NO paths, NO paving strips, NO curved walkways, NO lanes, NO build pads, NO bridges crossing the center, NO UI, NO text.\n\nThink of this as a decorative environment UNDERLAY only. Fill the canvas with coherent purple-blue nighttime terrain and edge scenery while leaving broad calm open grass/soil areas where Unity will later draw two separate deterministic roads.\n\nAllowed elements, kept mostly near edges/corners:\n- violet-blue grass and soil,\n- moonlit pond pockets,\n- flower beds,\n- dark hedges,\n- crooked trees,\n- glowing mushrooms,\n- tiny firefly lights,\n- low mausoleum garden at one corner,\n- star-flower shrine zone at another corner,\n- scattered stones and roots.\n\nThe middle 70% of the image must stay visually calm and mostly flat terrain so roads can be composited later. No white stone ribbons, no tiled walkways, no road-like negative spaces.\n\nStyle: playful premium casual-game cartoon, chunky simplified forms, crisp silhouettes, saturated twilight palette, soft cel shading, high mobile readability, original IP, no realism, no Kingdom Rush imitation.",
+    "prompt": "ORIGINAL single secret interaction asset for a twilight-garden mobile tower-defense game. ONE CLOSED MOON GATE only, isolated on a warm neutral background. Design: circular garden gate made from dark violet wood/stone, crescent-moon arch, curling hedge roots, two small lavender lantern buds, a faint sealed silver seam in the center, a few star-flower leaves at the base. Playful casual-game cartoon, chunky shapes, clean outlines, saturated twilight colors, top-down/3-4 game camera, mobile readable. No text, no symbols, no logo, no UI, no extra props, no characters. This exact asset will be source for an opening animation.",
     "resolution": "1k",
     "aspect_ratio": "16:9",
     "output_format": "png"
