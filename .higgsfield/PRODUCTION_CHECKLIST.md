@@ -52,10 +52,10 @@ Existing API evidence:
 Production:
 - [ ] BASE_FINAL
 - [x] AMBIENT_LOOP — run **37001697251**, artifact **11224247023** — APPROVED (steam, debris/leaves, beacon, smoke; loop-friendly overlay)
-- [ ] SECRET_HINT
+- [x] SECRET_HINT — run **37007483328**, artifact **11226805427** — APPROVED (maintenance tunnel states)
 - [ ] SECRET_OPEN
-- [ ] MINIBOSS_DORMANT
-- [ ] MINIBOSS_ACTIVE
+- [~] MINIBOSS_DORMANT — source sheet run **37007487900**, artifact **11226875660** — APPROVED as design/source; dedicated animation source still required
+- [~] MINIBOSS_ACTIVE — source sheet run **37007487900**, artifact **11226875660** — APPROVED as design/source; animation still required
 
 ## MAP 2 — Postapo
 **Difficulty:** Easy+ / first split  
@@ -83,10 +83,11 @@ Production:
 - [x] TOXIC_START — run **37001700869**, artifact **11223664631** — APPROVED
 - [x] TOXIC_HIGH — run **37001700869**, artifact **11223664631** — APPROVED
 - [x] TOXIC_END — run **37001700869**, artifact **11223664631** — APPROVED
+- [!] BUNKER state sheet — run **37007479958**, artifact **11226826000** — REJECTED for final use (unwanted text labels); individual design is usable as reference
 - [ ] BUNKER_CLOSED
 - [ ] BUNKER_OPEN
 - [ ] SECRET_HINT
-- [ ] RADIO_RELAY_NODE
+- [x] RADIO_RELAY_NODE — run **37007483328**, artifact **11226805427** — APPROVED (dormant/hint/active relay states)
 - [ ] MINIBOSS_DORMANT
 - [ ] MINIBOSS_ACTIVE
 
