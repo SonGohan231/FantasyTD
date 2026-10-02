@@ -10,7 +10,10 @@ Last updated: 2026-10-02
 - Validated branch: `codex/t0001-unity-baseline-v2`
 - Validated head before documentation commits: `e6e91bc9a0835128165c0d8539f614163a546cf7`
 - Unity Executor artifact: `unity-executor-baseline-36979277994` (artifact ID `11214941802`)
-- Play Mode: **NOT RUN** (out of scope for T0001)
+- T0002 Unity geometry validation: **VERIFIED — PASS**
+- T0002 Unity Executor run: `36982186182`
+- T0002 artifact: `unity-executor-map-a-integrity-36982186182` (artifact ID `11215922210`)
+- Play Mode: **NOT RUN** (not required by T0002)
 - Android build: **NOT RUN** (out of scope for T0001)
 - Device smoke test: **NOT RUN**
 
@@ -20,9 +23,11 @@ MAP-A Android v2 vertical slice.
 
 ## Current active ticket
 
-T0001 — Unity Project Baseline.
+T0002 — MAP-A Scene and Geometry Integrity.
 
-T0001 baseline acceptance criteria are satisfied by real Unity Executor evidence. No T0002 work was started in this pass.
+T0001 was completed and merged to `main` at `f76e66ce05862dc750e74b6110c7e6e31cba0073`.
+
+T0002 geometry acceptance evidence is recorded from Unity Executor run `36982186182` on branch `codex/t0002-map-a-integrity`, validated head `9976edd0643214572b96fe38cb8c5710b029b937`.
 
 ## Repository layout
 
@@ -177,6 +182,53 @@ For run `36979277994`:
 
 This matches the ticket's non-goals.
 
+## T0002 — MAP-A scene and geometry integrity
+
+Status: **PASS**
+
+Real Unity evidence:
+- Unity Executor run: `36982186182`
+- validated head: `9976edd0643214572b96fe38cb8c5710b029b937`
+- Unity version: `6000.0.26f1 (ccb7c73d2c02)`
+- executor report status: `PASS`
+- validation Console errors/exceptions/asserts: `0`
+
+Acceptance evidence:
+- MAP-A scene opened at `Assets/FantasyTD/Scenes/MAP_A_ANDROID_V2.unity`
+- `Tools → Fantasy TD → Validate MAP-A` logic was invoked and emitted PASS
+- logical map size: `24 × 14 RU`
+- path length: `46.211 RU`
+- all route waypoints are inside logical bounds
+- all planting definitions are inside logical bounds
+- grass renderer matches the logical 24 × 14 RU bounds
+- three road LineRenderers are present, enabled, material-backed, and the primary road geometry matches all waypoints
+- portal/spawn visual exists at route start `(0,11)`
+- home/base tree visual exists at route end `(24,2)`
+- route endpoints span opposite sides of the map
+- exactly `12` runtime `PlantingSpot` components exist
+- planting IDs are unique and runtime positions/renderers match all 12 definitions
+- no Grid/GridLayout component or visible Grid-named renderer is present
+- MAP-A camera is orthographic, centered on the logical map and contains all logical bounds in the executor Game View
+- executor Game View: `640 × 480`, aspect `1.333`, orthographic size `9.55`
+
+Validation method:
+The executor opened the generated MAP-A scene in a real Unity process and invoked the same geometry-building methods used by `MapABootstrap` (`BuildCamera`, `BuildMap`, `BuildPlantingSpots`) in editor validation context. This intentionally validates scene/geometry without entering gameplay Play Mode, mobile UI interaction, waves, combat, or Android build.
+
+Compiler/runner notes:
+- C# compiler errors: `0`
+- existing warning remains: `CS0618` in `MapAEditorSetup.cs:46`
+- non-blocking headless runner messages remain consistent with T0001 (licensing token refresh message followed by successful license update, Gtk warnings, FMOD no-device fallback)
+- batchmode exited successfully
+
+T0002 did not modify or validate:
+- mobile planting/radial interaction (T0003)
+- combat/plants/enemies/waves
+- Android SDK/NDK/JDK or APK build
+- gameplay balance
+- graphical assets
+
+Higgsfield was not used because T0002 required no new or changed art assets.
+
 ## Build state
 
 Android build: **NOT RUN**.
@@ -221,4 +273,4 @@ See:
 
 Do not start another ticket automatically.
 
-After review/merge of the T0001 documentation branch, the PM/user may mark T0001 done and separately activate T0002.
+After review/merge of the T0002 branch, T0003 may be activated only by the PM/user.
