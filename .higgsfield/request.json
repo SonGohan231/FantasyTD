@@ -1,10 +1,10 @@
 {
   "enabled": true,
-  "generation_id": "map3-twilight-miniboss-dormant-single-20261002-001",
+  "generation_id": "map3-twilight-miniboss-active-single-20261002-001",
   "model_path": "higgsfield-ai/soul/v2/image-to-image",
   "input": {
     "image_url": "https://d3u0tzju9qaucj.cloudfront.net/9f95694a-f77a-4193-89ef-1c30149ba5ad/001f4ecf-7ffe-41dc-8a36-01d07d774e70.png",
-    "prompt": "Preserve the exact original Night Gardener miniboss identity from the reference sheet but output ONE isolated DORMANT pose only. No sheet, no extra poses. The creature is crouched low and partially folded into hedge roots, crescent body lowered, branch arms tucked inward, lavender eyes dim, fog cloak nearly still, moon-flower shoulder buds closed. Same anatomy, palette and casual-game cartoon style. Top-down/3-4 game camera, warm neutral plain background, mobile readable. No text, no UI, no extra characters.",
+    "prompt": "Preserve the exact original Night Gardener miniboss identity from the reference sheet but output ONE isolated ACTIVE COMBAT IDLE pose only. No sheet, no extra poses. Tall slightly hunched stance, crescent body upright, branch-claw hands open, lavender eyes bright, shoulder moon-flower buds partly open, subtle mist around legs. Same anatomy, palette and casual-game cartoon style. Top-down/3-4 game camera, warm neutral plain background, mobile readable. No text, no UI, no extra characters.",
     "resolution": "1080p",
     "aspect_ratio": "16:9",
     "batch_size": 1,
