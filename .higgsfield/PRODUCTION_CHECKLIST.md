@@ -118,59 +118,65 @@ Production:
 
 ## MAP 3 — Zmierzch
 **Difficulty:** Medium- / two persistent routes  
-**Topology:** 2 routes split enemy traffic and reconnect late  
+**Topology:** 1 shared entry → early split → 2 persistent routes → late merge → 1 exit  
 **Target build spots:** 12  
 **Ambient:** lanterns, fireflies, moonlit water, opening night flowers, moving shadows  
 **Event:** bat swarm + shadow fog reduces visibility in moving map zones  
-**Secret/miniboss:** moon gate / night gardener or living shadow  
-**Unlock:** night-event tower
+**Secret/miniboss:** moon gate / Night Gardener  
+**Unlock:** Starbloom Lantern night-event tower
 
 Previous API concept:
 - [!] Old static concept — run **36999547601** — REJECTED as final layout
 
 Production:
-- [!] TOPOLOGY_SKETCH attempt 1 — run **37020773970**, artifact **11233275363** — REJECTED (generated two separate entries/exits; no true shared entry→split→late merge)
-- [x] TOPOLOGY_SPEC_LOCKED — deterministic spec `.higgsfield/MAP3_TWILIGHT_TOPOLOGY.json`, commit **106607d8** (1 shared entry, early split, 2 persistent routes, late merge, 12 build spots)
-- [x] SCENERY_PROP_PACK — run **37020777949**, artifact **11232579406** — APPROVED after visual QA
-- [!] BACKGROUND_TERRAIN_PLATE attempt 1 — run **37020783707**, artifact **11232965586** — REJECTED (generator inserted road/path shapes; deterministic topology must remain road-free)
-- [x] BACKGROUND_TERRAIN_PLATE — run **37021337264**, artifact **11233790855** — APPROVED after visual QA (road-free, calm center, twilight edge scenery)
+- [!] TOPOLOGY_SKETCH attempt 1 — run **37020773970**, artifact **11233275363** — REJECTED (two separate entries/exits; no true shared entry→split→late merge)
+- [x] TOPOLOGY_SPEC_LOCKED — `.higgsfield/MAP3_TWILIGHT_TOPOLOGY.json`, commit **106607d8** (12 spots, persistent split)
+- [x] SCENERY_PROP_PACK — run **37020777949**, artifact **11232579406** — APPROVED
+- [!] BACKGROUND_TERRAIN_PLATE attempt 1 — run **37020783707**, artifact **11232965586** — REJECTED (road-like paths inserted)
+- [x] BACKGROUND_TERRAIN_PLATE — run **37021337264**, artifact **11233790855** — APPROVED
 - [ ] BASE_COMPOSITE_IN_UNITY_FROM_LOCKED_TOPOLOGY
 - [ ] BASE_FINAL_NEW_TOPOLOGY
-- [ ] AMBIENT_LOOP
+- [x] AMBIENT_LOOP — run **37021780748**, artifact **11233877408** — APPROVED
 - [x] FOG_START — run **37021787142**, artifact **11233812434** — APPROVED
 - [x] FOG_HIGH — run **37021787142**, artifact **11233812434** — APPROVED
 - [x] FOG_END — run **37021787142**, artifact **11233812434** — APPROVED
-- [x] BAT_SWARM_ANIM — run **37021790530**, artifact **11233777438** — APPROVED after visual QA
-- [x] MOON_GATE_SINGLE_SOURCE — run **37021341072**, artifact **11233805827** — APPROVED after visual QA
+- [x] BAT_SWARM_ANIM — run **37021790530**, artifact **11233777438** — APPROVED
+- [x] MOON_GATE_SINGLE_SOURCE — run **37021341072**, artifact **11233805827** — APPROVED
 - [x] MOON_GATE_CLOSED — run **37021341072**, artifact **11233805827** — APPROVED
 - [x] MOON_GATE_OPEN — final state from run **37021796734**, artifact **11233697507** — APPROVED
-- [x] MOON_GATE_OPEN_ANIM — run **37021796734**, artifact **11233697507** — APPROVED after visual QA (glow→split→portal)
-- [x] MINIBOSS_SOURCE — run **37020787886**, artifact **11232839080** — APPROVED after visual QA
+- [x] MOON_GATE_OPEN_ANIM — run **37021796734**, artifact **11233697507** — APPROVED
+- [x] MINIBOSS_SOURCE — run **37020787886**, artifact **11232839080** — APPROVED
+- [!] MINIBOSS_DORMANT_SINGLE_SOURCE attempt 1 — run **37021346938**, artifact **11234095282** — FAILED generation
+- [!] MINIBOSS_DORMANT_SINGLE_SOURCE attempt 2 — run **37022703183**, artifact **11233853514** — REJECTED (full sheet preserved)
+- [ ] MINIBOSS_DORMANT_SINGLE_SOURCE
+- [!] MINIBOSS_ACTIVE_SINGLE_SOURCE attempt 1 — run **37021351122**, artifact **11233745986** — REJECTED (identity drift)
+- [!] MINIBOSS_ACTIVE_SINGLE_SOURCE attempt 2 — run **37022707850**, artifact **11233838292** — REJECTED (full sheet preserved)
+- [ ] MINIBOSS_ACTIVE_SINGLE_SOURCE
 - [ ] MINIBOSS_DORMANT
 - [ ] MINIBOSS_ACTIVE
 - [ ] MINIBOSS_AWAKEN_ANIM
 - [ ] MINIBOSS_ATTACK_ANIM
-- [x] SPECIAL_NIGHT_TOWER_SOURCE — run **37020792268**, artifact **11233385289** — APPROVED after visual QA
-- [x] SPECIAL_NIGHT_TOWER_ACTIVE_SINGLE_SOURCE — run **37021355425**, artifact **11233476155** — APPROVED after visual QA
-- [x] SPECIAL_NIGHT_TOWER_ACTIVATION_ANIM — run **37021801076**, artifact **11233497480** — APPROVED after visual QA (core brighten→petal lift→moonlight pulse)
+- [x] SPECIAL_NIGHT_TOWER_SOURCE — run **37020792268**, artifact **11233385289** — APPROVED
+- [x] SPECIAL_NIGHT_TOWER_ACTIVE_SINGLE_SOURCE — run **37021355425**, artifact **11233476155** — APPROVED
+- [x] SPECIAL_NIGHT_TOWER_ACTIVATION_ANIM — run **37021801076**, artifact **11233497480** — APPROVED
 
 ## MAP 4 — Dno oceaniczne
-**Difficulty:** Medium / two routes + shared crossing  
-**Topology:** 2 parallel routes with one shared crossover/chokepoint  
+**Difficulty:** Medium / split→shared chokepoint→re-split  
+**Topology:** 1 entry → 2 routes → shared mid chokepoint → 2 routes → late merge → 1 exit  
 **Target build spots:** 13 (compensation for projectile denial)  
 **Ambient:** kelp, fish, particles, coral, hydrothermal vents  
 **Event:** hot bubbles emerge, drift across lanes, absorb projectiles, then burst  
-**Secret/miniboss:** ancient pearl / giant crab cave  
-**Unlock:** aquatic tower or bubble-piercing attack
+**Secret/miniboss:** ancient pearl shrine / Vent Crab  
+**Unlock:** Pearl Lily / Tidebloom bubble-piercing tower
 
 Previous API concept:
 - [!] Old static concept — run **36999551504** — REJECTED as final layout
 
 Production:
-- [x] TOPOLOGY_SPEC_LOCKED — deterministic spec `.higgsfield/MAP4_ABYSSAL_TOPOLOGY.json`, commit **10d03dc3** (split → 2 routes → shared mid chokepoint → re-split → late merge; 13 build spots)
-- [!] SCENERY_PROP_PACK attempt 1 — run **37023187009**, artifact **11233929092** — REJECTED (unwanted numeric labels on sheet)
+- [x] TOPOLOGY_SPEC_LOCKED — `.higgsfield/MAP4_ABYSSAL_TOPOLOGY.json`, commit **10d03dc3** (13 spots)
+- [!] SCENERY_PROP_PACK attempt 1 — run **37023187009**, artifact **11233929092** — REJECTED (numeric labels)
 - [ ] SCENERY_PROP_PACK
-- [x] BACKGROUND_TERRAIN_PLATE — run **37023191880**, artifact **11232874052** — APPROVED after visual QA
+- [x] BACKGROUND_TERRAIN_PLATE — run **37023191880**, artifact **11232874052** — APPROVED
 - [ ] BASE_COMPOSITE_IN_UNITY_FROM_LOCKED_TOPOLOGY
 - [ ] BASE_FINAL_NEW_TOPOLOGY
 - [ ] AMBIENT_LOOP
@@ -179,16 +185,18 @@ Production:
 - [ ] BUBBLE_ABSORB
 - [ ] BUBBLE_BURST
 - [ ] BUBBLE_EVENT_ANIM
-- [x] PEARL_SHRINE_SINGLE_SOURCE — run **37023197057**, artifact **11233644218** — APPROVED after visual QA
+- [x] PEARL_SHRINE_SINGLE_SOURCE — run **37023197057**, artifact **11233644218** — APPROVED
 - [x] PEARL_SHRINE_CLOSED — run **37023197057**, artifact **11233644218** — APPROVED
 - [ ] PEARL_SHRINE_OPEN
 - [ ] PEARL_SHRINE_OPEN_ANIM
-- [x] MINIBOSS_SOURCE — run **37023204024**, artifact **11233674566** — APPROVED after visual QA (Vent Crab design/source)
+- [x] MINIBOSS_SOURCE — run **37023204024**, artifact **11233674566** — APPROVED
+- [ ] MINIBOSS_DORMANT_SINGLE_SOURCE
+- [ ] MINIBOSS_ACTIVE_SINGLE_SOURCE
 - [ ] MINIBOSS_DORMANT
 - [ ] MINIBOSS_ACTIVE
 - [ ] MINIBOSS_AWAKEN_ANIM
 - [ ] MINIBOSS_ATTACK_ANIM
-- [x] SPECIAL_AQUATIC_TOWER_SOURCE — run **37023208180**, artifact **11233419385** — APPROVED as design/source after visual QA
+- [x] SPECIAL_AQUATIC_TOWER_SOURCE — run **37023208180**, artifact **11233419385** — APPROVED
 - [ ] SPECIAL_AQUATIC_TOWER_SINGLE_SOURCE
 - [ ] SPECIAL_AQUATIC_TOWER_ACTIVE_SINGLE_SOURCE
 - [ ] SPECIAL_AQUATIC_TOWER_ACTIVATION_ANIM
