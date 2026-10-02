@@ -188,7 +188,7 @@ Validate 16:9, 20:9, safe area, touch target sizing, full-map framing, and mobil
 
 # T0008 — Android Build
 
-Status: **PLANNED**
+Status: **ACTIVE**
 
 Purpose:
 Configure/verify Android build prerequisites and create a real APK.
