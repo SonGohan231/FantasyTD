@@ -1,12 +1,14 @@
 {
   "enabled": true,
-  "generation_id": "map7-temple-mirror-source-20261002-001",
-  "model_path": "recraft/v4.1/text-to-image",
+  "generation_id": "map7-temple-mirror-beam-event-20261002-001",
+  "model_path": "bytedance/seedance-2.5/text-to-video",
   "input": {
-    "prompt": "ORIGINAL single interactive temple mechanism asset for a colorful mobile tower-defense game. ONE mirror obelisk only, isolated on warm off-white background. Design: short carved sandstone pedestal with a large circular polished mirror set in a teal-and-gold rotating ring; sun motif implied only by geometric rays, no text/symbol writing; small blue crystal pivot; chunky premium casual-game cartoon, clean outlines, saturated gold/teal, soft cel shading, top-down/3/4 camera. Mirror faces slightly upward/right, ready to rotate. No extra props, no UI, no text.",
-    "resolution": "1k",
+    "prompt": "Locked-camera 16:9 route-mechanism event overlay for an ORIGINAL Sun-and-Moon temple tower-defense map. Plain near-black compositing background. Show a golden circular mirror disk near left-center rotating about 90 degrees, catching a bright warm beam, then sweeping a narrow gold-white beam across the frame toward a teal receiver point on the right. Beam glows strongly for a moment, then dims. Add subtle dust/light motes. No terrain, no buildings, no text, no UI, no camera movement, no cuts. Clear readable sequence: MIRROR_ROTATE -> BEAM_SWEEP.",
+    "duration": 5,
+    "resolution": "720p",
     "aspect_ratio": "16:9",
-    "output_format": "png"
+    "output_format": "mp4",
+    "generate_audio": false
   },
   "max_wait_seconds": 1200
 }
