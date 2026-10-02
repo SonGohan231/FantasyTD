@@ -215,3 +215,40 @@ Purpose:
 Use actual runtime evidence to revise only the MAP-A vertical-slice balance.
 
 Do not expand the roster.
+
+---
+
+# T0011 — MAP-A Visual Production Pass + Release APK
+
+Status: **ACTIVE**
+
+Purpose:
+Replace prototype-looking MAP-A visuals with a cohesive original organic-fantasy production pass while preserving validated gameplay, balance, path geometry, planting coordinates, touch behavior, wave flow and combat values.
+
+Scope:
+- authored-looking terrain/path dressing without changing gameplay geometry,
+- polished silhouettes for all 4 plants,
+- polished silhouettes for all 4 basic enemies and Król Cierni,
+- readable projectile/control VFX,
+- cohesive HUD, radial menu, planting indicators and victory/defeat presentation,
+- retain Android landscape support at 16:9 and 20:9,
+- add ticket-specific render-capable Play Mode visual smoke validation when practical,
+- create a final Android APK from the final T0011 head.
+
+Constraints:
+- no balance changes,
+- no wave changes,
+- no map-coordinate/path/spot changes,
+- no new gameplay roster or upgrade systems,
+- no T0009 device smoke test,
+- no T0010 balance pass,
+- no automatic merge.
+
+Acceptance:
+- gameplay invariants remain unchanged,
+- all plants/enemies/boss are visually distinct and readable,
+- MAP-A no longer reads as debug/prototype geometry,
+- UI remains touch-safe and unclipped,
+- Unity compile/Play Mode validation passes with no introduced errors,
+- final Android BuildReport succeeds on Unity 6000.0.26f1,
+- final APK artifact is downloadable with recorded checksum.
