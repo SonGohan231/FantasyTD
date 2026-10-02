@@ -206,19 +206,23 @@ namespace FantasyTD.CI
                     _stage = 4;
                     break;
                 case 4:
-                    RunUiWorldBlockingValidation();
+                    CreateUiBlockerFixture();
                     _stage = 5;
                     break;
                 case 5:
-                    CleanupUiBlocker();
-                    BeginUnaffordableValidation();
+                    RunUiWorldBlockingValidation();
                     _stage = 6;
                     break;
                 case 6:
-                    VerifyUnaffordableValidation();
+                    CleanupUiBlocker();
+                    BeginUnaffordableValidation();
                     _stage = 7;
                     break;
                 case 7:
+                    VerifyUnaffordableValidation();
+                    _stage = 8;
+                    break;
+                case 8:
                     VerifyUnaffordableCloseAndFinish();
                     break;
             }
@@ -348,7 +352,7 @@ namespace FantasyTD.CI
                 Errors.Add("occupied.secondPlantWasCreated");
         }
 
-        private static void RunUiWorldBlockingValidation()
+        private static void CreateUiBlockerFixture()
         {
             PlantingSpot spot = FindSpot("A3");
             Vector2 screen = Camera.main.WorldToScreenPoint(spot.transform.position);
@@ -379,7 +383,15 @@ namespace FantasyTD.CI
             blockerButton.onClick.AddListener(delegate { _uiBlockerClicks++; });
 
             Canvas.ForceUpdateCanvases();
+        }
 
+        private static void RunUiWorldBlockingValidation()
+        {
+            PlantingSpot spot = FindSpot("A3");
+            Vector2 screen = Camera.main.WorldToScreenPoint(spot.transform.position);
+            Canvas.ForceUpdateCanvases();
+
+            Button blockerButton = _uiBlocker != null ? _uiBlocker.GetComponent<Button>() : null;
             PointerEventData raycastPointer = new PointerEventData(EventSystem.current) { position = screen };
             List<RaycastResult> results = new List<RaycastResult>();
             EventSystem.current.RaycastAll(raycastPointer, results);
