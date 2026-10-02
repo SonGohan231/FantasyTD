@@ -1,9 +1,9 @@
 {
   "enabled": true,
-  "generation_id": "map7-temple-guardian-source-20261002-001",
+  "generation_id": "map7-temple-special-light-tower-source-20261002-001",
   "model_path": "recraft/v4.1/text-to-image",
   "input": {
-    "prompt": "ORIGINAL 2D miniboss source sheet for \"Awakened Temple Guardian\" in a colorful Sun-and-Moon temple mobile tower-defense game. Pure flat/cartoon 2D, chunky imposing proportions, clean dark outlines, saturated sandstone/gold/indigo/teal palette, soft cel shading, high phone readability. No 3D, no realism.\n\nCharacter identity: ancient animated stone guardian with broad torso, two heavy stone arms, split sun/moon shoulder plates, teal crystal core in chest, simple expressive mask-like face carved into stone, trailing cloth ribbons in warm gold and cool indigo, no weapons.\nCreate 5 isolated consistent poses:\n1 dormant kneeling statue,\n2 awakening with crystal lighting,\n3 active combat idle,\n4 sweeping arm attack,\n5 ground-slam attack.\nSame anatomy/proportions/camera. No text, no UI, no extra characters.",
+    "prompt": "ORIGINAL 2D source sheet for an unlockable Sun-Moon support tower in a colorful temple mobile tower-defense game. Tower concept: \"Eclipse Lotus\". Playful plant-defense cartoon, chunky clean shapes, crisp outlines, saturated gold/teal/indigo palette, soft cel shading, mobile-readable.\n\nIdentity: living lotus rooted in a small circular sandstone planter; alternating warm-gold and cool-indigo petals around a teal crystal seed; two floating crescent leaf-orbs circling the flower; emits support light that can alternate between a warm attack-speed buff and cool defensive/status-resistance aura.\nCreate 5 isolated consistent states:\n1 folded dormant lotus,\n2 activation/opening,\n3 active idle,\n4 warm sun pulse,\n5 cool moon shield pulse.\nNo text, no labels, no UI, no extra characters.",
     "resolution": "1k",
     "aspect_ratio": "16:9",
     "output_format": "png"
