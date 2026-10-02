@@ -1,5 +1,5 @@
 {
-  "requestId": "t0003-mobile-planting-playmode-r2-20261002-1042",
+  "requestId": "t0003-mobile-planting-playmode-r3-20261002-1048",
   "mode": "mobile-planting",
-  "note": "T0003 rerun after allowing uGUI blocker fixture one frame to register before raycast."
+  "note": "T0003 Play Mode validation after uGUI GraphicRaycaster input blocking fix."
 }
