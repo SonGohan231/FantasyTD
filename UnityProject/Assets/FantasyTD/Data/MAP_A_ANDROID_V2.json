@@ -1,0 +1,292 @@
+{
+  "id": "MAP_A_ANDROID_V2",
+  "name": "Zielony Trakt",
+  "theme": "fantasy-organic / colorful hand-painted placeholder",
+  "platform": "Android landscape",
+  "units": "1 RU = 1 Unity world unit",
+  "bounds": [
+    0,
+    0,
+    24,
+    14
+  ],
+  "roadWidth": 1.0,
+  "spawn": [
+    0,
+    11
+  ],
+  "exit": [
+    24,
+    2
+  ],
+  "waypoints": [
+    [
+      0,
+      11
+    ],
+    [
+      5,
+      11
+    ],
+    [
+      10,
+      11
+    ],
+    [
+      13,
+      9
+    ],
+    [
+      13,
+      6
+    ],
+    [
+      10,
+      4
+    ],
+    [
+      5,
+      4
+    ],
+    [
+      5,
+      2
+    ],
+    [
+      10,
+      2
+    ],
+    [
+      16,
+      2
+    ],
+    [
+      22,
+      2
+    ],
+    [
+      24,
+      2
+    ]
+  ],
+  "plantingSpots": [
+    {
+      "id": "A1",
+      "position": [
+        4,
+        10
+      ],
+      "epc": 6.08
+    },
+    {
+      "id": "A2",
+      "position": [
+        11,
+        9
+      ],
+      "epc": 7.6
+    },
+    {
+      "id": "A3",
+      "position": [
+        12,
+        7
+      ],
+      "epc": 8.19
+    },
+    {
+      "id": "A4",
+      "position": [
+        9,
+        5.5
+      ],
+      "epc": 6.47
+    },
+    {
+      "id": "A5",
+      "position": [
+        7,
+        3
+      ],
+      "epc": 12.08
+    },
+    {
+      "id": "A6",
+      "position": [
+        12.5,
+        3.5
+      ],
+      "epc": 10.58
+    },
+    {
+      "id": "A7",
+      "position": [
+        18,
+        3.5
+      ],
+      "epc": 5.65
+    },
+    {
+      "id": "A8",
+      "position": [
+        21,
+        4
+      ],
+      "epc": 5.0
+    },
+    {
+      "id": "A9",
+      "position": [
+        2.5,
+        12.5
+      ],
+      "epc": 5.2
+    },
+    {
+      "id": "A10",
+      "position": [
+        15,
+        4.4
+      ],
+      "epc": 6.4
+    },
+    {
+      "id": "A11",
+      "position": [
+        2.8,
+        8.5
+      ],
+      "epc": 5.1
+    },
+    {
+      "id": "A12",
+      "position": [
+        22.2,
+        5.1
+      ],
+      "epc": 4.8
+    }
+  ],
+  "obstacles": [
+    {
+      "id": "A-O1",
+      "type": "pond",
+      "center": [
+        18.5,
+        10.5
+      ],
+      "radius": 1.5
+    },
+    {
+      "id": "A-O2",
+      "type": "rocks",
+      "center": [
+        2.2,
+        6.5
+      ],
+      "radius": 1.0
+    },
+    {
+      "id": "A-O3",
+      "type": "rocks",
+      "center": [
+        16.0,
+        6.2
+      ],
+      "radius": 0.9
+    },
+    {
+      "id": "A-O4",
+      "type": "grove",
+      "center": [
+        22.0,
+        7.0
+      ],
+      "radius": 1.1
+    }
+  ],
+  "resource": {
+    "name": "Esencja",
+    "start": 300
+  },
+  "baseHp": 20,
+  "plants": [
+    {
+      "roleId": "Pulsator",
+      "displayName": "Pędostrzał",
+      "cost": 100,
+      "damage": 22,
+      "cooldown": 1.0,
+      "range": 3.2
+    },
+    {
+      "roleId": "Generator",
+      "displayName": "Kwiat Esencji",
+      "cost": 100,
+      "income": 20,
+      "interval": 20.0
+    },
+    {
+      "roleId": "Bastion",
+      "displayName": "Dębowy Strażnik",
+      "cost": 100,
+      "rootDuration": 1.75,
+      "cooldown": 5.0,
+      "range": 2.4
+    },
+    {
+      "roleId": "Cryo",
+      "displayName": "Mroźny Pąk",
+      "cost": 150,
+      "damage": 18,
+      "cooldown": 1.0,
+      "range": 3.2,
+      "slow": 0.35,
+      "slowDuration": 2.5
+    }
+  ],
+  "enemies": [
+    {
+      "id": "Wanderer",
+      "displayName": "Chochlik",
+      "hp": 170,
+      "speed": 0.8,
+      "reward": 12,
+      "baseDamage": 1
+    },
+    {
+      "id": "Runner",
+      "displayName": "Wichrowy Skrzat",
+      "hp": 110,
+      "speed": 1.15,
+      "reward": 12,
+      "baseDamage": 1
+    },
+    {
+      "id": "Brute",
+      "displayName": "Ogr Zarośli",
+      "hp": 550,
+      "speed": 0.45,
+      "reward": 26,
+      "baseDamage": 2
+    },
+    {
+      "id": "Armored",
+      "displayName": "Żelazny Goblin",
+      "hp": 260,
+      "speed": 0.55,
+      "reward": 22,
+      "baseDamage": 1,
+      "physicalResistance": 0.15
+    },
+    {
+      "id": "Boss",
+      "displayName": "Król Cierni",
+      "hp": 2200,
+      "speed": 0.3,
+      "reward": 150,
+      "baseDamage": 5,
+      "physicalResistance": 0.2
+    }
+  ]
+}
