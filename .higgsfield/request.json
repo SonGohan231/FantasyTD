@@ -1,14 +1,13 @@
 {
   "enabled": true,
-  "generation_id": "map2-postapo-base-soul-i2i-20261002-001",
-  "model_path": "higgsfield-ai/soul/v2/image-to-image",
+  "generation_id": "map2-postapo-base-ideogram-lock-20261002-001",
+  "model_path": "ideogram/v4.0",
   "input": {
+    "prompt": "EDIT THIS REFERENCE INTO FINAL GAME ART WHILE PRESERVING THE REFERENCE LAYOUT ALMOST EXACTLY.\n\nThe reference road graph and 12 pad circles are authoritative. Preserve:\n- left shared entry,\n- the exact Y split,\n- the large separation between upper and lower branches,\n- the exact single merge near the right,\n- the short shared exit,\n- all 12 build-pad positions.\nDo NOT turn the graph into a loop, rectangle, S-road, single road, extra road, or crossing.\n\nTheme: ORIGINAL colorful post-apocalyptic city reclaimed by plants for a premium mobile 2D tower-defense game.\nRendering: playful casual-game cartoon, clean dark outlines, chunky simplified shapes, bright colors, soft cel shading, high phone-scale readability, low texture noise, friendly adventurous tone. Original IP only. Do not imitate Kingdom Rush or copy any existing game's assets.\n\nBuild environment AROUND the locked roads: small ruined blank-facade buildings, cracked sidewalks, vines and flowers, rusted cars, sewer canal, rooftop greenery, bunker hatch, radio tower, steam pipes, colored hazard beacons. Keep the central gap between branches visually open and usable for scenery/water.\n\nConvert the 12 teal circles into 12 clean circular build platforms/clearings in the same places. Add no additional build pads.\n\nNo readable text, no letters, no numbers, no logos, no billboards, no posters, no road labels, no UI, no enemies, no towers.\nBASE state: no toxic storm active.",
     "image_url": "https://d3u0tzju9qaucj.cloudfront.net/9f95694a-f77a-4193-89ef-1c30149ba5ad/901d6fdf-ff26-452c-b85c-fb5930edb19f.png",
-    "prompt": "Transform this topology diagram into a polished ORIGINAL mobile 2D tower-defense map while PRESERVING THE ROAD GEOMETRY AND ALL 12 BUILD-PAD POSITIONS from the reference as closely as possible.\n\nThe dark road network is authoritative:\n- left shared entry\n- obvious Y split\n- separate upper and lower branches with a large central gap\n- one merge on the right\n- short right shared exit\nDo not collapse the two branches. Do not create extra combat roads.\n\nTheme: colorful overgrown post-apocalyptic city reclaimed by plants.\nArt style: playful casual plant-defense readability, smooth chunky shapes, friendly cartoon proportions, clean outlines, bright saturated palette, soft cel shading, low texture noise, mobile readability. Original IP only. Do not imitate Kingdom Rush. Do not copy any existing map or characters.\n\nReplace the blank background with simplified ruined low-rise buildings, cracked sidewalks, colorful vines, flowers, rusted small cars, rooftop gardens, sewer channel and concrete debris. Keep the large central empty area useful for scenery/water rather than adding roads.\n\nConvert the 12 teal circles into exactly 12 obvious build clearings/pads placed where they are in the reference. No extra build pads.\n\nAnimation-ready props:\n- several separate amber warning beacons\n- one radio antenna/dish suitable for slow rotation\n- two steam vents\n- flowing canal/sewer water\n- loose leaves/papers\n- open atmospheric area for a later toxic dust-cloud overlay.\n\nSecrets:\n- closed circular bunker hatch near lower route\n- small maintenance tunnel entrance\n- hidden radio relay near upper route\n\nNo readable text, no letters, no numbers, no logos, no billboards, no posters, no road arrows, no UI. No enemies and no towers. BASE state only; no toxic storm active.",
-    "resolution": "1080p",
+    "image_weight": 95,
     "aspect_ratio": "16:9",
-    "batch_size": 1,
-    "enhance_prompt": false
+    "rendering_speed": "QUALITY"
   },
   "max_wait_seconds": 1200
 }
