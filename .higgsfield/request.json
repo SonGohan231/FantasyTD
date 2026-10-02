@@ -1,10 +1,10 @@
 {
   "enabled": true,
-  "generation_id": "map6-bamboo-warrior-awaken-20261002-001",
+  "generation_id": "map6-bamboo-warrior-attack-20261002-001",
   "model_path": "bytedance/seedance-2.5/image-to-video",
   "input": {
-    "image_url": "https://d3u0tzju9qaucj.cloudfront.net/9f95694a-f77a-4193-89ef-1c30149ba5ad/524078f9-e058-483c-92a2-71d720c2749e.png",
-    "prompt": "Locked camera. Animate THIS EXACT Great Panda Warrior from seated meditation to active combat stance. Preserve panda identity, red scarf, rope belt, bamboo/leaf accents and broken bamboo staff. Sequence: eyes open -> scarf/leaves stir -> grips staff -> rises heavily -> plants feet wide -> lifts staff diagonally into guard -> end stable active idle. No redesign, no extra characters, no text, no UI, no camera movement, no cuts.",
+    "image_url": "https://d3u0tzju9qaucj.cloudfront.net/9f95694a-f77a-4193-89ef-1c30149ba5ad/7b79924d-5625-4feb-8a8a-10e27b3a7e48.png",
+    "prompt": "Locked camera. Animate THIS EXACT Great Panda Warrior performing one readable bamboo-staff slam attack. Preserve identity and 2D cartoon style. Sequence: combat idle -> staff pulls back -> panda steps forward -> powerful downward/diagonal slam -> small leaves/dust burst at impact -> recoil -> return to guard. No morphing, no extra characters, no text, no UI, no camera movement, no cuts.",
     "duration": 6,
     "resolution": "720p",
     "aspect_ratio": "16:9",
