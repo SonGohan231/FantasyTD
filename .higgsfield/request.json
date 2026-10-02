@@ -1,9 +1,9 @@
 {
   "enabled": true,
-  "generation_id": "map3-twilight-scenery-props-20261002-001",
+  "generation_id": "map3-twilight-background-terrain-20261002-001",
   "model_path": "recraft/v4.1/text-to-image",
   "input": {
-    "prompt": "ORIGINAL production asset sheet for a premium casual-cartoon TWILIGHT GARDENS tower-defense map. Warm off-white background, isolated assets, consistent top-down/3-4 game camera, mobile-readable, chunky simple shapes, clean outlines, saturated twilight palette, soft cel shading. No text, no logos, no UI.\n\nInclude isolated sprite-ready props:\n1 lantern OFF,\n2 lantern ON,\n3 glowing moon flower closed,\n4 moon flower open,\n5 firefly cluster,\n6 twisted hedge corner,\n7 small moonlit pond edge,\n8 garden stone bridge,\n9 crooked tree silhouette,\n10 violet mist wisp,\n11 small bat swarm silhouette cluster,\n12 old garden mausoleum exterior,\n13 CLOSED moon gate,\n14 OPEN moon gate,\n15 star-flower shrine dormant,\n16 star-flower shrine active,\n17 crypt entrance closed,\n18 crypt entrance open,\n19 mossy stone statue,\n20 decorative night mushroom cluster.\n\nNo roads, no characters, no towers. Original IP only.",
+    "prompt": "ORIGINAL 16:9 BACKGROUND TERRAIN PLATE for a TWILIGHT GARDENS mobile tower-defense map. This plate will sit UNDER a deterministic Unity road graph, so DO NOT draw roads, lanes, arrows, build pads, towers, enemies, text or UI.\n\nShow a coherent dusk garden environment viewed top-down / restrained 3/4: violet-blue grass, moonlit pond areas, hedges and flower beds mostly toward edges, a few crooked trees, small mausoleum garden near upper side, star-flower shrine zone near lower side, soft stone terraces, glowing mushrooms, subtle fireflies, darker empty negative-space corridors where roads will later be composited. Keep center calm and readable.\n\nStyle: playful premium casual-game cartoon, chunky simplified forms, crisp silhouettes, saturated but controlled twilight palette, soft cel shading, high phone readability, low texture noise. Original IP, no realism, no Kingdom Rush imitation, no readable signs/letters/logos.",
     "resolution": "1k",
     "aspect_ratio": "16:9",
     "output_format": "png"
