@@ -1,5 +1,5 @@
 {
-  "requestId": "t0008-android-build-final-finalhead-20261002-1428",
-  "mode": "android-build",
-  "note": "Final T0008 Android APK build on the completion/documentation HEAD. No further code or docs changes after this run."
+  "requestId": "t0009-android-smoke-r1-20261002-1555",
+  "mode": "android-smoke",
+  "note": "T0009 real Android APK smoke test of immutable T0008 artifact via ADB emulator/device. No Unity Play Mode and no APK rebuild."
 }
