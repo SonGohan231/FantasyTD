@@ -70,6 +70,7 @@ namespace FantasyTD.CI
             public int BornFrame;
             public float SampleStartTime;
             public float SampleStartProgress;
+            public bool SampleArmed;
             public bool SpeedMeasured;
             public bool Resolved;
         }
@@ -93,6 +94,7 @@ namespace FantasyTD.CI
             public float HpInitial;
             public float SpeedConfigured;
             public float SpeedMeasured;
+            public float SpeedSampleStartProgress;
             public int RewardConfigured;
             public int BaseDamageConfigured;
             public float ResistanceConfigured;
@@ -508,6 +510,18 @@ namespace FantasyTD.CI
                     continue;
                 }
 
+                if (!track.SampleArmed)
+                {
+                    if (Time.frameCount <= track.BornFrame)
+                        continue;
+
+                    track.SampleStartTime = Time.time;
+                    track.SampleStartProgress = track.Enemy.ProgressDistance;
+                    kindRecord.SpeedSampleStartProgress = track.SampleStartProgress;
+                    track.SampleArmed = true;
+                    continue;
+                }
+
                 if (!track.SpeedMeasured)
                 {
                     float elapsed = Time.time - track.SampleStartTime;
@@ -736,6 +750,7 @@ namespace FantasyTD.CI
                 AddFact(p + "hpInitial", r.HpInitial);
                 AddFact(p + "speedConfigured", r.SpeedConfigured);
                 AddFact(p + "speedMeasured", r.SpeedMeasured);
+                AddFact(p + "speedSampleStartProgress", r.SpeedSampleStartProgress);
                 AddFact(p + "reward", r.RewardConfigured);
                 AddFact(p + "baseDamage", r.BaseDamageConfigured);
                 AddFact(p + "physicalResistance", r.ResistanceConfigured);
