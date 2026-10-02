@@ -68,6 +68,7 @@ Previous API concept:
 - [!] Old static concept — run **36999324448** — REJECTED as final layout (topology too similar to prior maps)
 
 Production:
+- [!] BASE attempt run **37000229167** — REJECTED (style too realistic, pseudo-text/signage, no clear Y split)
 - [ ] BASE_FINAL_NEW_TOPOLOGY
 - [ ] AMBIENT_LOOP
 - [ ] TOXIC_START
