@@ -8,6 +8,22 @@ namespace FantasyTD.MapA
         private RectTransform _rect;
         private Rect _last;
 
+#if UNITY_EDITOR
+        private static Rect? _editorOverrideSafeArea;
+
+        public static Rect? EditorOverrideSafeArea => _editorOverrideSafeArea;
+
+        public static void SetEditorOverrideSafeArea(Rect safeArea)
+        {
+            _editorOverrideSafeArea = safeArea;
+        }
+
+        public static void ClearEditorOverrideSafeArea()
+        {
+            _editorOverrideSafeArea = null;
+        }
+#endif
+
         private void Awake()
         {
             _rect = GetComponent<RectTransform>();
@@ -16,12 +32,22 @@ namespace FantasyTD.MapA
 
         private void Update()
         {
-            if (_last != Screen.safeArea) Apply();
+            Rect effective = EffectiveSafeArea();
+            if (_last != effective) Apply();
+        }
+
+        private static Rect EffectiveSafeArea()
+        {
+#if UNITY_EDITOR
+            if (_editorOverrideSafeArea.HasValue)
+                return _editorOverrideSafeArea.Value;
+#endif
+            return Screen.safeArea;
         }
 
         private void Apply()
         {
-            _last = Screen.safeArea;
+            _last = EffectiveSafeArea();
             Vector2 min = _last.position;
             Vector2 max = _last.position + _last.size;
             min.x /= Screen.width;
