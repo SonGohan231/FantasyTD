@@ -1,9 +1,9 @@
 {
   "enabled": true,
-  "generation_id": "map6-bamboo-panda-warrior-dormant-single-20261002-001",
+  "generation_id": "map6-bamboo-panda-warrior-active-single-20261002-001",
   "model_path": "recraft/v4.1/text-to-image",
   "input": {
-    "prompt": "ORIGINAL single gameplay source asset for \"Great Panda Warrior\", miniboss in a colorful bamboo-forest mobile tower-defense game. ONE character only, isolated on warm off-white background. Identity: large round panda, small red ceremonial scarf, mossy rope belt, bamboo/leaf shoulder accents, broken bamboo staff resting across lap, stern but calm face. Pose: seated meditation/dormant state with eyes closed, staff resting, body centered. Clean 2D cartoon, chunky proportions, crisp outlines, soft cel shading, top-down/3/4 game camera, mobile-readable. No text, no UI, no extra props beyond staff.",
+    "prompt": "ORIGINAL single gameplay source asset for \"Great Panda Warrior\", miniboss in a colorful bamboo-forest mobile tower-defense game. ONE character only, isolated on warm off-white background. SAME identity: large round panda, small red ceremonial scarf, mossy rope belt, bamboo/leaf shoulder accents, broken bamboo staff. Pose: active combat idle, standing wide, staff held diagonally ready, determined brows, sturdy grounded stance. Clean 2D cartoon, chunky proportions, crisp outlines, soft cel shading, top-down/3/4 game camera, mobile-readable. No text, no UI, no extra characters.",
     "resolution": "1k",
     "aspect_ratio": "16:9",
     "output_format": "png"
