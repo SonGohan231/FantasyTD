@@ -12,31 +12,27 @@ Do not list speculative issues as confirmed defects.
 
 ---
 
-## KI-001 — Unity gameplay runtime has not been verified
+## KI-001 — Unity gameplay runtime is only partially verified
 
 Status: **VERIFY**  
 Confidence: Confirmed as an evidence gap  
 Severity: High for milestone readiness
 
 Evidence:
-T0001 verified the real Unity Editor baseline through Unity Executor run `36979277994`:
-- Unity 6000.0.26f1 opened the project,
-- import/compilation completed,
-- C# compiler errors: 0,
-- MAP-A scene generation and Build Settings presence were verified.
+T0001 verified the Editor/import/compile baseline. T0002 verified MAP-A scene/geometry. T0003 Unity Executor run `36986249467` entered real Play Mode and verified mobile planting/radial interaction for all 12 planting spots, UI/world input blocking, unavailable purchase state, occupied-spot blocking, and menu closing with zero T0003 validation errors.
 
 Still unverified:
-- Play Mode gameplay behavior,
-- touch interaction,
-- wave/combat runtime,
-- victory/defeat flow,
-- device runtime.
+- plant combat behavior,
+- enemy/wave runtime,
+- boss behavior,
+- victory/defeat/restart,
+- physical Android device runtime.
 
 Impact:
-Editor/compile baseline is now proven, but gameplay runtime remains outside T0001 scope.
+Play Mode is now proven for the T0003 interaction slice, but the full gameplay loop is not yet verified.
 
 Action:
-Continue runtime verification only through separately activated tickets. Do not treat T0001 as Play Mode evidence.
+Continue runtime verification only through separately activated tickets.
 
 ---
 
@@ -98,43 +94,51 @@ Verify exact SDK/NDK/JDK configuration and build output in the dedicated Android
 
 ---
 
-## KI-004 — Touch/input configuration unverified
+## KI-004 — Touch/input configuration and UI/world routing
 
 Status: **VERIFY**  
-Confidence: Likely risk  
+Confidence: Partially verified in real Unity Play Mode  
 Severity: Medium
 
-Evidence:
-Runtime code uses legacy `Input` touch APIs and UGUI `StandaloneInputModule`.
+T0003 evidence:
+Unity Executor run `36986249467` entered Play Mode and verified:
+- all 12 planting spots through the production screen-point planting path,
+- uGUI interaction blocks the underlying world planting press,
+- radial close interaction clears selection,
+- occupied spots do not reopen planting selection.
 
-Unknown:
-Project-level active input handling and Android runtime behavior.
+T0003 also replaced dependence on EventSystem/GraphicRaycaster registration for world-input blocking with direct active uGUI Graphic hit rules because headless Play Mode evidence showed the raycaster registry did not report the temporary runtime control reliably.
+
+Still unknown:
+- physical Android touch behavior,
+- device-specific input handling.
 
 Action:
-Validate in T0003/T0009.
-
-Do not migrate input packages without evidence.
+Keep T0003 Play Mode evidence as PASS. Validate actual device touch in T0009. Do not migrate input packages without device evidence.
 
 ---
 
-## KI-005 — Mobile UI has not been visually inspected in Unity
+## KI-005 — Mobile UI device-layout verification remains incomplete
 
 Status: **VERIFY**  
-Confidence: Confirmed as an evidence gap  
+Confidence: Partially verified in real Unity Play Mode  
 Severity: Medium
 
-Evidence:
-HUD and radial UI are runtime-generated in code.
+T0003 evidence:
+Unity Executor run `36986249467` verified the runtime radial menu at Game View `640 × 480`:
+- all 12 spots opened the menu,
+- all four options remained visible,
+- every radial menu stayed within Game View bounds,
+- edge spots A1, A8, A9, A11 and A12 were exercised,
+- A9 and A12 required and received clamp shifts.
 
-Risks:
-- edge clamping,
-- aspect ratios,
-- safe area,
-- text sizing,
-- touch target sizing.
+Still unverified:
+- required 16:9 and approximately 20:9 layouts,
+- safe-area/notch cases,
+- final text/touch-target usability on device.
 
 Action:
-T0003 and T0007.
+Keep those device-layout checks for T0007.
 
 ---
 
@@ -237,6 +241,35 @@ Non-blocking. T0001 completed with zero C# compiler errors and the Unity Executo
 
 Action:
 Update the obsolete API in a separately scoped maintenance/fix ticket if desired. Do not modify source code during T0001 solely to remove this warning.
+
+---
+
+## T0003 verified evidence
+
+Unity Executor:
+- run: `36986249467`
+- branch: `codex/t0003-mobile-planting-radial-menu`
+- validated head before documentation commits: `7b1ea26bf6d62aa268c21d5f59e3096cb2078dc8`
+- T0003 Play Mode job: **success**
+- executor report status: **PASS**
+- Play Mode entered: `True`
+- Unity: `6000.0.26f1 (ccb7c73d2c02)`
+- Game View: `640 × 480`
+- 12/12 planting spots: **PASS**
+- edge clamping: **PASS**
+- unavailable state/purchase blocking: **PASS**
+- UI/world input blocking: **PASS**
+- occupied-spot second placement blocking: **PASS**
+- runtime warnings captured by harness: `0`
+- validation errors: `0`
+- C# compiler errors: `0`
+- existing unique compiler warning: `CS0618` in `MapAEditorSetup.cs:46`
+- artifact: `unity-executor-mobile-planting-36986249467` (ID `11217666657`)
+- Android build/toolchain validation: **NOT RUN**
+- plant combat validation: **NOT RUN**
+- no graphical asset changes were needed
+
+No T0004 implementation was performed.
 
 ---
 
