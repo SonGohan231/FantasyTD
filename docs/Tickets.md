@@ -159,7 +159,7 @@ Do not add other towers.
 
 # T0005 — Enemy Runtime and Wave Flow
 
-Status: **PLANNED**
+Status: **ACTIVE**
 
 Purpose:
 Validate Chochlik, Wichrowy Skrzat, Ogr Zarośli, Żelazny Goblin, wave sequencing, base leaks, and rewards.
