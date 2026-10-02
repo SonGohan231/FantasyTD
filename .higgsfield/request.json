@@ -1,9 +1,10 @@
 {
   "enabled": true,
-  "generation_id": "map3-twilight-bat-swarm-overlay-20261002-001",
-  "model_path": "bytedance/seedance-2.5/text-to-video",
+  "generation_id": "map3-twilight-moon-gate-open-20261002-001",
+  "model_path": "bytedance/seedance-2.5/image-to-video",
   "input": {
-    "prompt": "Locked-camera 16:9 overlay animation for an ORIGINAL twilight-garden tower-defense map. Plain near-black compositing background. Animate a stylized swarm of small cartoon bat silhouettes entering from left/top-left, crossing diagonally in a loose wave, briefly clustering through the middle, then exiting right/bottom-right. Keep bats small enough not to cover the whole battlefield. Subtle violet rim light, no scenery, no characters other than bats, no text, no UI, no camera movement, no zoom, no cuts. Loop-friendly event layer.",
+    "image_url": "https://d3u0tzju9qaucj.cloudfront.net/9f95694a-f77a-4193-89ef-1c30149ba5ad/43e0ad3d-bcdf-4ef9-a3c3-a379d0aa140b.png",
+    "prompt": "Locked camera. Animate THIS EXACT closed Moon Gate secret prop. Preserve crescent shape, violet structure, dark green vines, two lavender bell flowers and bright star-flower leaves. Sequence: star leaves glow softly -> bell flowers sway -> silver seam brightens -> vines peel back -> crescent gate halves rotate/slide apart just enough to reveal a dark moonlit portal with lavender light -> tiny fireflies drift outward -> end with gate fully open and stable for the final second. No extra props, no text, no UI, no characters, no camera movement, no zoom, no cuts.",
     "duration": 4,
     "resolution": "480p",
     "aspect_ratio": "16:9",
