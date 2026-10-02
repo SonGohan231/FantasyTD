@@ -1,9 +1,9 @@
 {
   "enabled": true,
-  "generation_id": "map3-twilight-miniboss-source-20261002-001",
+  "generation_id": "map3-twilight-night-tower-source-20261002-001",
   "model_path": "higgsfield-ai/soul/v2/standard",
   "input": {
-    "prompt": "ORIGINAL miniboss character design sheet for a twilight-garden mobile tower-defense game. Concept: THE NIGHT GARDENER, a mysterious but playful living shadow-gardener formed from hedge roots, moon flowers and drifting mist. Original IP; do not copy existing characters.\n\nDesign: tall slightly hunched silhouette, root-like legs, oversized pruning-claw hands made from dark branches rather than metal tools, crescent-shaped leaf collar, glowing lavender eyes, moon-flower buds growing from shoulders, wispy shadow cloak made from fog and leaves. Menacing but whimsical, readable at phone scale. Palette: deep violet, indigo, muted green, lavender glow, small warm lantern accents.\n\nCreate consistent top-down/3-4 sprite-source sheet:\n1 dormant crouched among hedge roots,\n2 awakening,\n3 active idle,\n4 branch-claw sweep anticipation,\n5 sweep attack,\n6 mist burst attack,\n7 hit/stagger.\nSame anatomy, proportions and camera angle throughout. Chunky casual-game cartoon, clean outlines, soft cel shading, no gore, no text, no logo, no UI.",
+    "prompt": "ORIGINAL unlockable special tower for a twilight-garden mobile tower-defense game. Concept: STARBLOOM LANTERN — a living night flower growing around a small stone lantern. It becomes stronger during shadow/fog events and emits a gentle moonlight support pulse.\n\nDesign: rooted circular stone base, curling dark-green stems, one large star-shaped violet-blue flower canopy, warm lantern core under the petals, tiny floating fireflies, crescent leaf details. Friendly whimsical silhouette, clearly not a normal attack gun. Mobile-readable, playful premium casual-game cartoon, chunky shapes, clean outlines, saturated twilight colors, soft cel shading, original IP.\n\nSource sheet on warm neutral background:\n1 folded/inactive,\n2 activation with petals opening,\n3 active idle,\n4 moonlight pulse,\n5 empowered fog-event state,\n6 upgrade variant with extra flower.\nSame top-down/3-4 camera, consistent proportions. No text, no logo, no UI.",
     "resolution": "1080p",
     "aspect_ratio": "16:9",
     "batch_size": 1,
