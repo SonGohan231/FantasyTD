@@ -36,6 +36,7 @@ namespace FantasyTD.MapA
 
             if (Vector2.Distance(next,target) <= 0.10f)
             {
+                RuntimeVfx.Impact(next, _type);
                 _target.TakeDamage(_damage,_type);
                 if (_slow > 0f) _target.ApplySlow(_slow,_slowDuration);
                 Destroy(gameObject);
