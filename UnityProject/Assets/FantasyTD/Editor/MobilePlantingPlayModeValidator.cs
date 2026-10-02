@@ -215,14 +215,17 @@ namespace FantasyTD.CI
                     break;
                 case 6:
                     CleanupUiBlocker();
-                    BeginUnaffordableValidation();
                     _stage = 7;
                     break;
                 case 7:
-                    VerifyUnaffordableValidation();
+                    BeginUnaffordableValidation();
                     _stage = 8;
                     break;
                 case 8:
+                    VerifyUnaffordableValidation();
+                    _stage = 9;
+                    break;
+                case 9:
                     VerifyUnaffordableCloseAndFinish();
                     break;
             }
@@ -394,8 +397,21 @@ namespace FantasyTD.CI
             Button blockerButton = _uiBlocker != null ? _uiBlocker.GetComponent<Button>() : null;
             PointerEventData raycastPointer = new PointerEventData(EventSystem.current) { position = screen };
             List<RaycastResult> results = new List<RaycastResult>();
-            EventSystem.current.RaycastAll(raycastPointer, results);
-            _uiRaycastHit = results.Any(r => r.gameObject == _uiBlocker);
+            GraphicRaycaster[] raycasters = UnityEngine.Object.FindObjectsByType<GraphicRaycaster>(
+                FindObjectsInactive.Exclude,
+                FindObjectsSortMode.None);
+            for (int i = 0; i < raycasters.Length; i++)
+            {
+                if (raycasters[i] == null || !raycasters[i].isActiveAndEnabled)
+                    continue;
+                results.Clear();
+                raycasters[i].Raycast(raycastPointer, results);
+                if (results.Any(r => r.gameObject == _uiBlocker))
+                {
+                    _uiRaycastHit = true;
+                    break;
+                }
+            }
 
             bool uiClick = ExecuteButtonClick(blockerButton, screen);
             _uiWorldPressAccepted = _planting.TryHandleScreenPress(screen);
