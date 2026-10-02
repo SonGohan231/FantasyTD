@@ -1,12 +1,15 @@
 {
   "enabled": true,
-  "generation_id": "map6-bamboo-panda-hostile-single-20261002-001",
-  "model_path": "recraft/v4.1/text-to-image",
+  "generation_id": "map6-bamboo-dojo-open-anim-20261002-001",
+  "model_path": "bytedance/seedance-2.5/image-to-video",
   "input": {
-    "prompt": "ORIGINAL single gameplay source asset for the SAME cute panda environmental creature after it transforms into a hostile enemy in a colorful bamboo-forest mobile tower-defense game. ONE panda only, isolated on warm off-white background. Preserve round black-and-white identity and green bamboo-leaf accents. Hostile state: standing wide, determined eyebrows, paws raised, leaf shoulder tufts slightly flared, still cute and non-horror. No armor, no weapons. Clean 2D cartoon outlines, soft cel shading, mobile-readable top-down/3/4 game camera. No text, no labels, no UI, no extra panda.",
-    "resolution": "1k",
+    "image_url": "https://d3u0tzju9qaucj.cloudfront.net/9f95694a-f77a-4193-89ef-1c30149ba5ad/b53fd5d9-9e57-4c10-9063-71e7b35c7243.png",
+    "prompt": "Locked camera. Animate THIS EXACT hidden bamboo dojo gate from closed to open while preserving the same bamboo posts, red lanterns, wooden circular door, leaves and cartoon style. Sequence: lanterns brighten -> nearby leaves shake -> circular wooden door unlocks and splits/slides open -> warm golden interior light appears -> a few leaves drift outward -> gate remains fully open and stable for final second. No extra characters, no text, no UI, no camera movement, no zoom, no cuts.",
+    "duration": 6,
+    "resolution": "720p",
     "aspect_ratio": "16:9",
-    "output_format": "png"
+    "output_format": "mp4",
+    "generate_audio": false
   },
   "max_wait_seconds": 1200
 }
