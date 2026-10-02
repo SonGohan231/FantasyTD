@@ -75,21 +75,21 @@ Production:
 - [~] TOPOLOGY_SKETCH — run **37000812091** — PASS as route reference (clear Y split + merge, 12 pads)
 - [!] Soul I2I render — run **37000967282** — REJECTED (did not preserve topology closely enough)
 - [!] Ideogram weight-95 render — run **37001202601** — REJECTED as final art (preserved topology but barely stylized)
-- [!] Ideogram weight-60 render — run **37001433593** — REJECTED as final art (still mostly schematic; proves geometry should remain deterministic)
-- [x] SCENERY_PROP_PACK — run **37001692492**, artifact **11223803916** — APPROVED (clean cartoon prop sheet, animation-ready parts)
+- [!] Ideogram weight-60 render — run **37001433593** — REJECTED as final art (still mostly schematic; geometry stays deterministic)
+- [x] SCENERY_PROP_PACK — run **37001692492**, artifact **11223803916** — APPROVED after visual QA
 - [ ] BASE_COMPOSITE_IN_UNITY_FROM_LOCKED_TOPOLOGY
 - [ ] BASE_FINAL_NEW_TOPOLOGY
-- [ ] AMBIENT_LOOP
-- [x] TOXIC_START — run **37001700869**, artifact **11223664631** — APPROVED
-- [x] TOXIC_HIGH — run **37001700869**, artifact **11223664631** — APPROVED
-- [x] TOXIC_END — run **37001700869**, artifact **11223664631** — APPROVED
-- [!] BUNKER state sheet — run **37007479958**, artifact **11226826000** — REJECTED for final use (unwanted text labels); individual design is usable as reference
-- [ ] BUNKER_CLOSED
-- [x] BUNKER_OPEN — run **37007991254**, artifact **11226332484** — APPROVED after visual QA (clear closed→open transition, steam, lit tunnel, stable final open state)
-- [ ] SECRET_HINT
-- [x] RADIO_RELAY_NODE — run **37007483328**, artifact **11226805427** — APPROVED (dormant/hint/active relay states)
-- [ ] MINIBOSS_DORMANT
-- [ ] MINIBOSS_ACTIVE
+- [x] AMBIENT_LOOP — run **37001697251**, artifact **11224247023** — APPROVED after visual QA
+- [x] TOXIC_START — run **37001700869**, artifact **11223664631** — APPROVED after visual QA
+- [x] TOXIC_HIGH — run **37001700869**, artifact **11223664631** — APPROVED after visual QA
+- [x] TOXIC_END — run **37001700869**, artifact **11223664631** — APPROVED after visual QA
+- [!] BUNKER state sheet — run **37007479958**, artifact **11226826000** — REJECTED for final use (unwanted text labels); usable only as design reference
+- [x] BUNKER_CLOSED — run **37007753837**, artifact **11226696907** — APPROVED after visual QA
+- [x] BUNKER_OPEN — run **37007991254**, artifact **11226332484** — APPROVED after visual QA (closed→open transition, steam, lit tunnel, stable final open state)
+- [x] SECRET_HINT — run **37007483328**, artifact **11226805427** — APPROVED after visual QA (maintenance tunnel hidden→hint→open states)
+- [x] RADIO_RELAY_NODE — run **37007483328**, artifact **11226805427** — APPROVED after visual QA (dormant→hint→active relay states)
+- [x] MINIBOSS_DORMANT — run **37007759601**, artifact **11226217050** — APPROVED after visual QA
+- [x] MINIBOSS_ACTIVE — run **37007997174**, artifact **11226746833** — APPROVED after visual QA (dormant→active combat-idle awakening)
 
 ## MAP 3 — Zmierzch
 **Difficulty:** Medium- / two persistent routes  
