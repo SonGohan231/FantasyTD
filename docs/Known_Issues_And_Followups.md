@@ -19,14 +19,14 @@ Confidence: Confirmed as an evidence gap
 Severity: High for milestone readiness
 
 Evidence:
-T0001 verified the Editor/import/compile baseline. T0002 verified MAP-A scene/geometry. T0003 Unity Executor run `36986249467` verified mobile planting/radial interaction. T0004 Unity Executor run `36988172698` verified all four production plant behaviors. T0005 Unity Executor run `36990840649` verified all four basic enemy types and production wave flow 1–5. T0006 Unity Executor run `36994046983` verified production wave 6, Król Cierni runtime/control interactions, production victory, natural-leak defeat, terminal-state input gating, and real UI restart after both outcomes.
+T0001 verified the Editor/import/compile baseline. T0002 verified MAP-A scene/geometry. T0003 Unity Executor run `36986249467` verified mobile planting/radial interaction. T0004 Unity Executor run `36988172698` verified all four production plant behaviors. T0005 Unity Executor run `36990840649` verified all four basic enemy types and production wave flow 1–5. T0006 Unity Executor run `36994046983` verified production wave 6, Król Cierni runtime/control interactions, production victory, natural-leak defeat, terminal-state input gating, and real UI restart after both outcomes. T0007 Unity Executor run `36997417372` verified exact 1920×1080 and 2400×1080 Game View layouts plus an Editor-only synthetic safe-area case through production `SafeAreaFitter`.
 
 Still unverified:
-- physical Android device runtime,
-- Android layout/build/device-specific behavior covered by later tickets.
+- actual Android APK build/toolchain,
+- physical Android device runtime and device-reported safe-area/touch behavior.
 
 Impact:
-The MAP-A gameplay loop is now verified in real Unity Play Mode through wave 6, victory, defeat and restart. Remaining milestone evidence gaps are Android-specific rather than the core Editor Play Mode loop.
+The MAP-A gameplay loop and required Editor Play Mode mobile-layout coverage are verified. Remaining milestone evidence gaps are Android build/device-specific rather than the core gameplay or desktop-editor layout loop.
 
 Action:
 Continue runtime verification only through separately activated tickets.
@@ -115,27 +115,35 @@ Keep T0003 Play Mode evidence as PASS. Validate actual device touch in T0009. Do
 
 ---
 
-## KI-005 — Mobile UI device-layout verification remains incomplete
+## KI-005 — Mobile UI device-layout verification
 
-Status: **VERIFY**  
-Confidence: Partially verified in real Unity Play Mode  
+Status: **RESOLVED**  
+Confidence: Confirmed for T0007 Editor Play Mode acceptance  
 Severity: Medium
 
 T0003 evidence:
-Unity Executor run `36986249467` verified the runtime radial menu at Game View `640 × 480`:
-- all 12 spots opened the menu,
-- all four options remained visible,
-- every radial menu stayed within Game View bounds,
-- edge spots A1, A8, A9, A11 and A12 were exercised,
-- A9 and A12 required and received clamp shifts.
+Unity Executor run `36986249467` verified the runtime radial menu at Game View `640 × 480` and exercised all 12 spots plus edge clamping.
 
-Still unverified:
-- required 16:9 and approximately 20:9 layouts,
-- safe-area/notch cases,
-- final text/touch-target usability on device.
+T0007 evidence:
+Unity Executor run `36997417372` entered real Play Mode with a render-capable Xvfb Game View and verified:
+- exact `1920×1080` 16:9 layout,
+- exact `2400×1080` approximately 20:9 layout,
+- full MAP-A framing with no panning required,
+- HUD and wave button contained and reachable,
+- all 12 planting spots accessible through production screen-point input,
+- edge radial menus A1, A8, A9, A11 and A12 fully contained,
+- no independent text overlap or clipping detected,
+- measured touch-target sizes recorded rather than judged against an invented threshold,
+- zero runtime validation errors.
+
+Safe-area limitation:
+The project does not include `com.unity.device-simulator`. The T0007 notch/cutout case therefore used an explicit Editor-only synthetic safe area `Rect(120,0,2160,1080)` routed through the production `SafeAreaFitter`. The SafeArea RectTransform matched that effective rect exactly and all required UI/radial checks passed.
+
+Impact:
+The layout evidence gap scoped to T0007 is closed. This does not prove physical-device inset reporting or real Android touch; those remain device-smoke concerns.
 
 Action:
-Keep those device-layout checks for T0007.
+No T0007 production-layout remediation required. Preserve the current UI/layout unless later Android-device evidence identifies a concrete defect.
 
 ---
 
@@ -238,6 +246,55 @@ Non-blocking. T0001 completed with zero C# compiler errors and the Unity Executo
 
 Action:
 Update the obsolete API in a separately scoped maintenance/fix ticket if desired. Do not modify source code during T0001 solely to remove this warning.
+
+---
+
+## T0007 verified evidence
+
+Unity Executor:
+- successful run: `36997417372`
+- branch: `codex/t0007-android-ui-device-layout`
+- validated head before documentation commits: `7b99c11501a81a3f1526d57958d7c2d72ab386e4`
+- Unity: `6000.0.26f1 (ccb7c73d2c02)`
+- Play Mode entered: `True`
+- executor report: **PASS**
+- runtime warnings captured by harness: `0`
+- validation errors: `0`
+- Android APK build: **NOT RUN**
+- T0008: **NOT STARTED**
+- artifact: `unity-executor-mobile-layout-36997417372` (ID `11222780203`)
+
+16:9 native:
+- observed exact `1920×1080`
+- map fully visible / camera centered / no panning: **PASS**
+- HUD and wave button: **PASS**
+- all 12 planting spots accessible: **PASS**
+- A1/A8/A9/A11/A12 radial menus: **PASS**
+- text overlap/clipping: **PASS**
+- smallest measured target: `74×74 px` radial close button
+- Console validation errors: `0`
+
+20:9 native:
+- observed exact `2400×1080`
+- map fully visible / camera centered / no panning: **PASS**
+- HUD and wave button: **PASS**
+- all 12 planting spots accessible: **PASS**
+- A1/A8/A9/A11/A12 radial menus: **PASS**
+- text overlap/clipping: **PASS**
+- smallest measured target: `82.735×82.735 px`
+- Console validation errors: `0`
+
+20:9 synthetic safe area:
+- observed exact `2400×1080`
+- synthetic effective safe area `Rect(120,0,2160,1080)`
+- actual SafeArea RectTransform matched exactly
+- map/HUD/wave/all spots/edge radials/text checks: **PASS**
+- no panning required
+- Console validation errors: `0`
+
+The first run `36997235403` failed only because the executor used `-nographics`, which left Unity without a graphics device and prevented exact Game View sizing. The executor was changed to render-capable Xvfb; no production UI change was made from that failure.
+
+The Device Simulator package is absent, so the safe-area case is explicitly synthetic Editor-only validation rather than Device Simulator evidence.
 
 ---
 
