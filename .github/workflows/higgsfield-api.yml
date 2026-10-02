@@ -11,7 +11,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: higgsfield-prepaid-generation
+  group: higgsfield-prepaid-generation-${{ github.sha }}
   cancel-in-progress: false
 
 jobs:
