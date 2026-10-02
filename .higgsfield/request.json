@@ -1,11 +1,11 @@
 {
   "enabled": true,
-  "generation_id": "map4-abyssal-crab-attack-20261002-001",
+  "generation_id": "map4-abyssal-aquatic-tower-fold-deactivation-20261002-001",
   "model_path": "bytedance/seedance-2.5/image-to-video",
   "input": {
-    "image_url": "https://d3u0tzju9qaucj.cloudfront.net/9f95694a-f77a-4193-89ef-1c30149ba5ad/8d4f7dcc-6408-4195-95df-443abdee8d27.png",
-    "prompt": "Locked camera. Animate THIS EXACT original Vent Crab miniboss into a readable heavy claw attack while preserving identity and cartoon style. Start from a low alert crouch, body rises, right claw pulls back, hydrothermal bubbles build around the claw, then the crab slams/snaps the claw forward with a small underwater shock-bubble burst, recoils and returns toward its original stance. Same teal shell, orange crack, coral growth, cyan claws/legs. No redesign, no extra limbs, no text, no UI, no camera movement, no cuts.",
-    "duration": 6,
+    "image_url": "https://d3u0tzju9qaucj.cloudfront.net/9f95694a-f77a-4193-89ef-1c30149ba5ad/e32152d8-387c-4c55-85b9-2ce2c84a9e03.png",
+    "prompt": "Locked camera. Animate THIS EXACT aquatic special tower from active into a folded dormant deployment state while preserving identity exactly. Sequence: tiny bubbles fade -> pearl face/core dims -> teal flower petals slowly close inward around the pearl -> green-striped tendrils curl closer to shell body -> flower lowers slightly -> end fully folded and stable. No redesign, no extra objects, no text, no UI, no camera movement, no cuts. This animation will be reversed in Unity to serve as the activation sequence.",
+    "duration": 5,
     "resolution": "720p",
     "aspect_ratio": "16:9",
     "output_format": "mp4",
