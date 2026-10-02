@@ -1,5 +1,5 @@
 {
-  "requestId": "t0006-boss-end-states-final-20261002-1225",
-  "mode": "boss-end-states",
-  "note": "Final T0006 real Unity Play Mode validation on completion/documentation HEAD."
+  "requestId": "t0007-mobile-layout-r1-20261002-1235",
+  "mode": "mobile-layout",
+  "note": "T0007 real Unity Play Mode validation for 16:9, 20:9, synthetic safe area, HUD, radial menus, touch targets and full-map framing."
 }
