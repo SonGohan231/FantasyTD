@@ -1,1 +1,1 @@
-{"requestId":"t0009-android-smoke-r3-20261002-1608","mode":"android-smoke","note":"Retry exact T0008 APK after sdkmanager install result handling fix."}
+{"requestId":"t0009-android-smoke-r4-hosted-kvm-20261002-1628","mode":"android-smoke","note":"Run immutable T0008 APK on real Android emulator using hosted KVM-capable runner."}
