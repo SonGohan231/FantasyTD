@@ -1,14 +1,12 @@
 {
   "enabled": true,
-  "generation_id": "map7-temple-mirror-beam-event-20261002-001",
-  "model_path": "bytedance/seedance-2.5/text-to-video",
+  "generation_id": "map7-temple-gates-source-20261002-001",
+  "model_path": "recraft/v4.1/text-to-image",
   "input": {
-    "prompt": "Locked-camera 16:9 route-mechanism event overlay for an ORIGINAL Sun-and-Moon temple tower-defense map. Plain near-black compositing background. Show a golden circular mirror disk near left-center rotating about 90 degrees, catching a bright warm beam, then sweeping a narrow gold-white beam across the frame toward a teal receiver point on the right. Beam glows strongly for a moment, then dims. Add subtle dust/light motes. No terrain, no buildings, no text, no UI, no camera movement, no cuts. Clear readable sequence: MIRROR_ROTATE -> BEAM_SWEEP.",
-    "duration": 5,
-    "resolution": "720p",
+    "prompt": "ORIGINAL 2D game asset sheet for TWO route-control gates in a colorful Sun-and-Moon temple mobile tower-defense game. Warm off-white background, isolated objects, same top-down/3/4 camera and scale.\n\nGATE A: golden sandstone sun gate, twin short columns, warm amber crystal lock, closed state and open state beside it.\nGATE B: indigo-teal moon gate, crescent-shaped arch geometry without text, cool blue crystal lock, closed state and open state beside it.\nChunky casual-game cartoon, clean dark outlines, saturated gold/teal/indigo palette, soft cel shading. No labels, no letters, no UI, no extra props.",
+    "resolution": "1k",
     "aspect_ratio": "16:9",
-    "output_format": "mp4",
-    "generate_audio": false
+    "output_format": "png"
   },
   "max_wait_seconds": 1200
 }
