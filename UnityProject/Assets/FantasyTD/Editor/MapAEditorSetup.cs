@@ -2,6 +2,7 @@
 using System.IO;
 using FantasyTD.MapA;
 using UnityEditor;
+using UnityEditor.Build;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -43,7 +44,7 @@ namespace FantasyTD.MapA.Editor
             PlayerSettings.allowedAutorotateToPortraitUpsideDown = false;
             PlayerSettings.allowedAutorotateToLandscapeLeft = true;
             PlayerSettings.allowedAutorotateToLandscapeRight = true;
-            PlayerSettings.SetApplicationIdentifier(BuildTargetGroup.Android,"com.indie.fantasytd");
+            PlayerSettings.SetApplicationIdentifier(NamedBuildTarget.Android,"com.indie.fantasytd");
             Debug.Log("Fantasy TD: Android landscape settings applied.");
         }
 
@@ -88,7 +89,18 @@ namespace FantasyTD.MapA.Editor
             bool found = false;
             var scenes = EditorBuildSettings.scenes;
             for (int i=0;i<scenes.Length;i++)
-                if (scenes[i].path == ScenePath) found = true;
+            {
+                if (scenes[i].path != ScenePath)
+                    continue;
+
+                found = true;
+                if (!scenes[i].enabled)
+                {
+                    scenes[i] = new EditorBuildSettingsScene(ScenePath,true);
+                    EditorBuildSettings.scenes = scenes;
+                }
+                break;
+            }
 
             if (!found)
             {
