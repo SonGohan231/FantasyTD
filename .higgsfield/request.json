@@ -1,9 +1,9 @@
 {
   "enabled": true,
-  "generation_id": "map4-abyssal-crab-dormant-single-20261002-001",
+  "generation_id": "map4-abyssal-crab-active-single-20261002-001",
   "model_path": "recraft/v4.1/text-to-image",
   "input": {
-    "prompt": "ORIGINAL single DORMANT pose of the Vent Crab miniboss for a colorful abyssal mobile tower-defense game. ONE creature only on warm neutral background. Broad low deep-sea crab body, dark teal shell, oversized asymmetrical claws tucked in, coral/barnacle growths, cyan eye stalks dimmed, one magma-orange vent crack across shell glowing faintly, tiny anemones on back, thick segmented legs mostly buried in sand. Half-buried sleeping/hibernating pose with a few bubbles. Chunky playful casual-game cartoon, clean outlines, soft cel shading, top-down/3-4 camera, mobile-readable. No text, no UI, no extra creatures, no gore.",
+    "prompt": "ORIGINAL single ACTIVE combat-idle pose of the Vent Crab miniboss for a colorful abyssal mobile tower-defense game. ONE creature only on warm neutral background. Broad low deep-sea crab, dark teal shell, oversized asymmetrical claws raised, coral/barnacle growths, bright cyan eye stalks, magma-orange vent crack glowing across shell, tiny anemones on back, thick segmented legs. Alert angry-cute expression, balanced active stance ready to slam. Chunky playful casual-game cartoon, clean outlines, soft cel shading, top-down/3-4 camera, mobile-readable. No text, no UI, no extra creatures, no gore.",
     "resolution": "1k",
     "aspect_ratio": "16:9",
     "output_format": "png"
