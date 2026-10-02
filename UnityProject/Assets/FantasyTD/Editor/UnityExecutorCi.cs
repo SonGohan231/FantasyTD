@@ -79,6 +79,11 @@ namespace FantasyTD.CI
             EnemyWaveFlowPlayModeValidator.Start();
         }
 
+        public static void BossEndStates()
+        {
+            BossEndStatesPlayModeValidator.Start();
+        }
+
         public static void BuildAndroid()
         {
             Directory.CreateDirectory(ReportDirectory);
