@@ -36,6 +36,7 @@ permissions:
 
 env:
   UNITY_VERSION: 6000.0.26f1
+  UNITY_BIN: /opt/unity/editors/6000.0.26f1/Editor/Unity
   PROJECT_PATH: UnityProject
 
 jobs:
@@ -70,7 +71,7 @@ jobs:
     name: Unity baseline / compile
     needs: prepare
     if: needs.prepare.outputs.mode == 'baseline'
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, linux, x64, dyrygent-unity]
     timeout-minutes: 45
     steps:
       - name: Checkout
@@ -78,26 +79,17 @@ jobs:
         with:
           fetch-depth: 0
           lfs: true
-      - name: Cache Unity Library
-        uses: actions/cache@v4
-        with:
-          path: UnityProject/Library
-          key: unity-library-${{ runner.os }}-${{ env.UNITY_VERSION }}-${{ hashFiles('UnityProject/Assets/**', 'UnityProject/Packages/**', 'UnityProject/ProjectSettings/**') }}
-          restore-keys: |
-            unity-library-${{ runner.os }}-${{ env.UNITY_VERSION }}-
+      - name: Verify Unity installation
+        shell: bash
+        run: |
+          test -x "$UNITY_BIN"
+          "$UNITY_BIN" -version
       - name: Run Dyrygent Unity baseline
-        uses: game-ci/unity-builder@v4
-        env:
-          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
-          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
-        with:
-          projectPath: ${{ env.PROJECT_PATH }}
-          unityVersion: ${{ env.UNITY_VERSION }}
-          targetPlatform: StandaloneLinux64
-          buildMethod: FantasyTD.CI.UnityExecutorCi.Baseline
-          allowDirtyBuild: true
-      - name: Upload baseline report
+        shell: bash
+        run: |
+          mkdir -p UnityProject/Logs UnityProject/Artifacts/UnityExecutor
+          "$UNITY_BIN"             -batchmode             -nographics             -quit             -projectPath "$GITHUB_WORKSPACE/$PROJECT_PATH"             -executeMethod FantasyTD.CI.UnityExecutorCi.Baseline             -logFile "$GITHUB_WORKSPACE/UnityProject/Logs/unity-baseline.log"
+      - name: Upload baseline evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
@@ -111,7 +103,7 @@ jobs:
     name: Unity EditMode + PlayMode tests
     needs: prepare
     if: needs.prepare.outputs.mode == 'tests'
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, linux, x64, dyrygent-unity]
     timeout-minutes: 45
     steps:
       - name: Checkout
@@ -119,32 +111,35 @@ jobs:
         with:
           fetch-depth: 0
           lfs: true
-      - name: Run Unity tests
-        uses: game-ci/unity-test-runner@v4
-        env:
-          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
-          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
-        with:
-          projectPath: ${{ env.PROJECT_PATH }}
-          unityVersion: ${{ env.UNITY_VERSION }}
-          githubToken: ${{ secrets.GITHUB_TOKEN }}
-      - name: Upload test artifacts
+      - name: Verify Unity installation
+        shell: bash
+        run: |
+          test -x "$UNITY_BIN"
+          "$UNITY_BIN" -version
+      - name: Run EditMode tests
+        shell: bash
+        run: |
+          mkdir -p UnityProject/Logs UnityProject/TestResults
+          "$UNITY_BIN"             -batchmode             -nographics             -projectPath "$GITHUB_WORKSPACE/$PROJECT_PATH"             -runTests             -testPlatform EditMode             -testResults "$GITHUB_WORKSPACE/UnityProject/TestResults/editmode.xml"             -logFile "$GITHUB_WORKSPACE/UnityProject/Logs/unity-editmode.log"
+      - name: Run PlayMode tests
+        shell: bash
+        run: |
+          "$UNITY_BIN"             -batchmode             -nographics             -projectPath "$GITHUB_WORKSPACE/$PROJECT_PATH"             -runTests             -testPlatform PlayMode             -testResults "$GITHUB_WORKSPACE/UnityProject/TestResults/playmode.xml"             -logFile "$GITHUB_WORKSPACE/UnityProject/Logs/unity-playmode.log"
+      - name: Upload test evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: unity-executor-tests-${{ github.run_id }}
           if-no-files-found: warn
           path: |
-            artifacts/**
-            UnityProject/Artifacts/**
             UnityProject/TestResults/**
+            UnityProject/Logs/**
 
   android:
     name: Unity Android APK
     needs: prepare
     if: needs.prepare.outputs.mode == 'android-build'
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, linux, x64, dyrygent-unity]
     timeout-minutes: 60
     steps:
       - name: Checkout
@@ -152,27 +147,17 @@ jobs:
         with:
           fetch-depth: 0
           lfs: true
-      - name: Cache Unity Library
-        uses: actions/cache@v4
-        with:
-          path: UnityProject/Library
-          key: unity-android-${{ env.UNITY_VERSION }}-${{ hashFiles('UnityProject/Assets/**', 'UnityProject/Packages/**', 'UnityProject/ProjectSettings/**') }}
-          restore-keys: |
-            unity-android-${{ env.UNITY_VERSION }}-
+      - name: Verify Unity installation
+        shell: bash
+        run: |
+          test -x "$UNITY_BIN"
+          "$UNITY_BIN" -version
       - name: Build Android APK
-        uses: game-ci/unity-builder@v4
-        env:
-          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
-          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
-        with:
-          projectPath: ${{ env.PROJECT_PATH }}
-          unityVersion: ${{ env.UNITY_VERSION }}
-          targetPlatform: Android
-          androidExportType: androidPackage
-          buildMethod: FantasyTD.CI.UnityExecutorCi.BuildAndroid
-          allowDirtyBuild: true
-      - name: Upload APK and executor report
+        shell: bash
+        run: |
+          mkdir -p UnityProject/Logs UnityProject/Artifacts/UnityExecutor
+          "$UNITY_BIN"             -batchmode             -nographics             -quit             -buildTarget Android             -projectPath "$GITHUB_WORKSPACE/$PROJECT_PATH"             -executeMethod FantasyTD.CI.UnityExecutorCi.BuildAndroid             -logFile "$GITHUB_WORKSPACE/UnityProject/Logs/unity-android-build.log"
+      - name: Upload APK and build evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
@@ -181,3 +166,4 @@ jobs:
           path: |
             UnityProject/Builds/Android/*.apk
             UnityProject/Artifacts/UnityExecutor/**
+            UnityProject/Logs/**
