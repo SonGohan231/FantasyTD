@@ -19,15 +19,14 @@ Confidence: Confirmed as an evidence gap
 Severity: High for milestone readiness
 
 Evidence:
-T0001 verified the Editor/import/compile baseline. T0002 verified MAP-A scene/geometry. T0003 Unity Executor run `36986249467` verified mobile planting/radial interaction. T0004 Unity Executor run `36988172698` verified all four production plant behaviors. T0005 Unity Executor run `36990840649` entered real Play Mode and verified all four basic enemy types plus production wave flow 1–5, death rewards, natural base leaks, Armored physical resistance, next-wave HUD state, and active-enemy HUD count.
+T0001 verified the Editor/import/compile baseline. T0002 verified MAP-A scene/geometry. T0003 Unity Executor run `36986249467` verified mobile planting/radial interaction. T0004 Unity Executor run `36988172698` verified all four production plant behaviors. T0005 Unity Executor run `36990840649` verified all four basic enemy types and production wave flow 1–5. T0006 Unity Executor run `36994046983` verified production wave 6, Król Cierni runtime/control interactions, production victory, natural-leak defeat, terminal-state input gating, and real UI restart after both outcomes.
 
 Still unverified:
-- full boss/wave-6 runtime and boss end-state behavior beyond T0004 control-resistance fixtures,
-- victory/defeat/restart,
-- physical Android device runtime.
+- physical Android device runtime,
+- Android layout/build/device-specific behavior covered by later tickets.
 
 Impact:
-Play Mode is now proven for planting/UI, four plant behaviors, basic enemy runtime and waves 1–5. The full milestone gameplay loop still lacks the separately scoped boss/end-state and device evidence.
+The MAP-A gameplay loop is now verified in real Unity Play Mode through wave 6, victory, defeat and restart. Remaining milestone evidence gaps are Android-specific rather than the core Editor Play Mode loop.
 
 Action:
 Continue runtime verification only through separately activated tickets.
@@ -239,6 +238,72 @@ Non-blocking. T0001 completed with zero C# compiler errors and the Unity Executo
 
 Action:
 Update the obsolete API in a separately scoped maintenance/fix ticket if desired. Do not modify source code during T0001 solely to remove this warning.
+
+---
+
+## T0006 verified evidence
+
+Unity Executor:
+- run: `36994046983`
+- branch: `codex/t0006-boss-win-lose-restart`
+- validated head before documentation commits: `c391c72cf7b23db613e5efd418b5df83aac29e22`
+- T0006 Play Mode job: **success**
+- executor report status: **PASS**
+- Play Mode entered: `True`
+- Unity: `6000.0.26f1 (ccb7c73d2c02)`
+- runtime warnings captured by harness: `0`
+- validation errors: `0`
+- C# compiler errors: `0`
+- existing unique compiler warning: `CS0618` in `MapAEditorSetup.cs:46`
+- artifact: `unity-executor-boss-end-states-36994046983` (ID `11220923927`)
+- Android build/toolchain/layout: **NOT RUN**
+
+Wave 6:
+- started through production uGUI next-wave button: **PASS**
+- CurrentWave `5 → 6`: **PASS**
+- exact observed sequence `Armored×4 → Runner×5 → Brute×2 → Boss×1`: **PASS**
+- boss included in active-enemy HUD (`WROGOWIE  12` at registration): **PASS**
+- wave 7 unavailable after completion: **PASS**
+
+Król Cierni:
+- HP `2200`
+- configured/measured speed `0.3 / 0.318 RU/s`
+- reward `150`
+- base damage `5`
+- physical resistance `0.20`
+- Seed physical raw `22` resolved to `17.6`: **PASS**
+- Frost raw/final `18 / 18`, requested slow `35%`, boss-applied `20%`, speed `0.318 → 0.24 → 0.3`: **PASS**
+- Oak root expected/observed `0.6125 / 0.596 s`, speed `0.318 → 0 → 0.3`: **PASS**
+
+Victory:
+- boss was defeated by production plant/projectile behavior: **PASS**
+- isolated boss reward `+150`, Base unchanged `20 → 20`
+- final state: `IsFinished=True`, `IsVictory=True`, `CurrentWave=6`, enemies `0`, Ready false, Running false
+- HUD `WROGOWIE  0`, `FALA  6/6`
+- victory EndPanel/title/restart: **PASS**
+- no wave 7: **PASS**
+
+Restart after victory:
+- actual EndPanel restart pointer click: **PASS**
+- genuinely new GameSession: **PASS**
+- Base/Essence/wave/ready/HUD reset: **PASS**
+- occupied spots/plants/projectiles/enemy objects cleared: **PASS**
+- wave 1 starts again through production button: **PASS**
+
+Defeat:
+- generated only through natural production movement + `ReachBase`, no direct Base HP assignment/damage by harness
+- `20` natural leaks, Base `20 → 0`
+- defeat occurred during wave `3`
+- final leak Armored at progress `46.2 RU` on `46.211 RU` path
+- `IsFinished=True`, `IsVictory=False`, Ready false, wave button inactive, planting input blocked
+- defeat EndPanel/title/restart: **PASS**
+
+Restart after defeat:
+- actual restart click and new GameSession: **PASS**
+- full gameplay/UI/occupancy/combat reset: **PASS**
+- second-session wave 1 start and positive enemy HUD: **PASS**
+
+Waves 1–5 were fast-forwarded with direct Root kills only as T0006 setup after being independently validated by T0005. Wave 6 acceptance enemies were never direct-damaged by the T0006 harness.
 
 ---
 

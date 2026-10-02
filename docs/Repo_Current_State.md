@@ -25,8 +25,12 @@ Last updated: 2026-10-02
 - T0005 Unity Executor run: `36990840649`
 - T0005 validated head before documentation commits: `a11ceba14b55c84d586881ac45baf356c0018daf`
 - T0005 artifact: `unity-executor-enemy-wave-flow-36990840649` (artifact ID `11219706930`)
-- Play Mode: **VERIFIED — PASS for T0003, T0004 and T0005 scope**
-- Android build: **NOT RUN** (not required by T0005)
+- T0006 boss/end-state validation: **VERIFIED — PASS**
+- T0006 Unity Executor run: `36994046983`
+- T0006 validated head before documentation commits: `c391c72cf7b23db613e5efd418b5df83aac29e22`
+- T0006 artifact: `unity-executor-boss-end-states-36994046983` (artifact ID `11220923927`)
+- Play Mode: **VERIFIED — PASS for T0003 through T0006 scope**
+- Android build: **NOT RUN** (not required by T0006)
 - Device smoke test: **NOT RUN**
 
 ## Current milestone
@@ -37,9 +41,9 @@ MAP-A Android v2 vertical slice.
 
 None.
 
-T0001, T0002, T0003, T0004 and T0005 are DONE. T0006 remains PLANNED and was not started.
+T0001 through T0006 are DONE. T0007 remains PLANNED and was not started.
 
-T0005 acceptance evidence is recorded from real Unity Play Mode in Unity Executor run `36990840649` on branch `codex/t0005-enemy-runtime-wave-flow`, validated head `a11ceba14b55c84d586881ac45baf356c0018daf`.
+T0006 acceptance evidence is recorded from real Unity Play Mode in Unity Executor run `36994046983` on branch `codex/t0006-boss-win-lose-restart`, validated head `c391c72cf7b23db613e5efd418b5df83aac29e22`.
 
 ## Repository layout
 
@@ -132,7 +136,7 @@ Observed code includes:
 - editor scene/bootstrap tooling
 - Android build editor command
 
-Play Mode evidence now exists for T0003 mobile planting/radial interaction, T0004 four-plant behavior, and T0005 basic-enemy/waves 1–5 runtime flow. Full boss/wave-6 end-state flow, victory/defeat/restart, Android device behavior and later-ticket functionality remain separately unverified.
+Play Mode evidence now exists for T0003 mobile planting/radial interaction, T0004 four-plant behavior, T0005 basic-enemy/waves 1–5 runtime flow, and T0006 wave 6/boss/victory/defeat/restart. Android layout/build/device behavior and later-ticket functionality remain separately unverified.
 
 ## Scene state
 
@@ -442,6 +446,110 @@ The first dedicated run `36990073053` failed only one harness timing measurement
 
 T0005 did not start wave 6, validate full boss behavior, victory, defeat, restart, Android build/toolchain, device smoke, mobile layout, or T0006+. No graphical changes were required; Higgsfield was not used.
 
+## T0006 — Boss, Win/Lose, Restart
+
+Status: **PASS**
+
+Real Unity evidence:
+- Unity Executor run: `36994046983`
+- validated head before documentation commits: `c391c72cf7b23db613e5efd418b5df83aac29e22`
+- Unity version: `6000.0.26f1 (ccb7c73d2c02)`
+- executor report: `status=PASS`
+- `playModeEntered=True`
+- runtime warnings captured by T0006 harness: `0`
+- validation errors: `0`
+- C# compiler errors: `0`
+- existing unique compiler warning remains: `CS0618` in `MapAEditorSetup.cs:46` (emitted twice)
+- Android build/toolchain validation: **NOT RUN**
+- T0007 layout validation: **NOT RUN**
+
+Wave 6 evidence:
+- started through the production uGUI next-wave button
+- `CurrentWave: 5 → 6`
+- exact observed production spawn count: `12`
+- exact observed order: `Armored ×4 → Runner ×5 → Brute ×2 → Boss ×1`
+- boss registration HUD: `WROGOWIE  12`
+- maximum active enemy count observed: `12`
+- while wave 6 was active: `ReadyForNextWave=False`, next-wave button inactive
+- no wave 7 became available after the final wave
+
+Król Cierni runtime evidence:
+- kind: `Boss`
+- initial HP: `2200`
+- configured movement speed: `0.3 RU/s`
+- measured baseline speed: `0.318 RU/s`
+- reward: `150 Essence`
+- base damage: `5`
+- physical resistance: `0.20`
+- spawn progress: `0`
+
+Boss damage/control evidence through production plants/projectiles:
+- Pędostrzał at A9: distance `2.692 RU`, actual `MagicSeed`, projectile speed `7 RU/s`, raw Physical `22`, boss HP `2200 → 2182.4`, final damage `17.6`
+- Mroźny Pąk at A1: distance `1.372 RU`, boss HP `2182.4 → 2164.4`, raw/final Frost damage `18 / 18`, requested slow `35%`, boss-applied slow `20%`, requested duration `2.5 s`, observed remaining duration at impact `2.483 s`, speed `0.318 → 0.24 → 0.3`, slow expired
+- Dębowy Strażnik at A2: distance `2.25 RU`, boss HP `2164.4 → 2156.4`, root damage `8`, expected boss root `0.6125 s`, observed `0.596 s`, speed `0.318 → 0 → 0.3`
+
+Victory evidence:
+- wave 6 acceptance enemies were not direct-damaged by the harness; final boss kill and wave-6 cleanup came from production plant/projectile behavior
+- isolated boss reward: Essence `126 → 276`, delta `+150`
+- Base remained `20 → 20` while the boss was defeated
+- `bossDefeatedByProduction=True`
+- `sessionFinished=True`
+- `isVictory=True`
+- `CurrentWave=6`
+- `ReadyForNextWave=False`
+- `Running=False`
+- active enemies: `0`
+- HUD: `WROGOWIE  0`, `FALA  6/6`
+- victory `EndPanel` present with title `ZIELONY TRAKT OBRONIONY!`
+- restart button present
+- next-wave button inactive
+- `wave7Available=False`
+
+Restart after victory:
+- restart invoked through the real `ZAGRAJ PONOWNIE` uGUI button
+- old/new GameSession instance IDs differed
+- before restart: `11` occupied planting spots and `8` live plants
+- after restart: `sessionFinished=False`, `isVictory=False`, Base `20`, Essence `300`, `CurrentWave=0`, ready `True`, active enemies `0`
+- HUD restored to `WROGOWIE  0` and `FALA  0/6`
+- occupied planting spots: `0`
+- plant/projectile/enemy-object counts: `0 / 0 / 0`
+- EndPanel absent
+- wave button active
+- production wave 1 could be started again through the real button
+
+Natural defeat evidence:
+- fresh restarted session, no plants used for defeat
+- defeat came only through production enemy movement and `ReachBase`; Base HP was never directly assigned/damaged by the harness
+- natural leak count: `20`
+- Base: `20 → 0`
+- defeat occurred during wave `3`
+- waves started through production button: `1, 2, 3`
+- final leaking enemy: `Armored`
+- final observed progress: `46.2 RU` vs MAP-A path `46.211 RU`
+- `sessionFinished=True`
+- `isVictory=False`
+- `ReadyForNextWave=False`
+- `Running=False`
+- wave button inactive
+- planting input rejected after defeat
+- defeat EndPanel present with title `KRÓL CIERNI PRZEDARŁ SIĘ DO BAZY`
+- restart button present
+
+Restart after defeat:
+- restart invoked through the real EndPanel button
+- a new GameSession instance was created
+- Base `20`, Essence `300`, `CurrentWave=0`, ready `True`, active enemies `0`
+- HUD restored to `WROGOWIE  0`, `FALA  0/6`
+- occupied spots/plants/projectiles/enemy objects: `0 / 0 / 0 / 0`
+- EndPanel absent
+- wave button active
+- wave 1 restarted successfully through the production button and HUD showed `WROGOWIE  1`, proving the second restarted session was playable
+
+Validation method:
+T0006 used an Editor-only persistent Play Mode driver. Waves 1–5 were started through the real next-wave button and were fast-forwarded with direct Root damage only as setup for the already-verified T0005 scope. Wave 6 acceptance enemies were not direct-damaged by the validation harness. Boss resistance/control evidence came from real Pędostrzał, Mroźny Pąk and Dębowy Strażnik production paths. Victory used production plant/projectile damage and normal `EnemyUnit.Die`/WaveDirector/GameSession flow. Defeat used only natural movement and `ReachBase`. Both restarts used the actual EndPanel restart button and scene reload.
+
+No production boss, wave, GameSession, BaseHealth, Economy, MobileHud, plant balance or map behavior was changed. No graphical asset changes were required; Higgsfield was not used.
+
 ## Build state
 
 Android build: **NOT RUN**.
@@ -486,4 +594,4 @@ See:
 
 Do not start another ticket automatically.
 
-T0006 remains PLANNED and requires separate PM/user activation after T0005 review/merge.
+T0007 remains PLANNED and requires separate PM/user activation after T0006 review/merge.

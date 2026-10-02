@@ -170,7 +170,7 @@ Boss validation may be split into T0006 if this ticket becomes too large.
 
 # T0006 — Boss, Win/Lose, Restart
 
-Status: **PLANNED**
+Status: **DONE**
 
 Purpose:
 Validate Król Cierni, wave 6 completion, victory, defeat, and restart.
