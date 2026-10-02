@@ -60,6 +60,8 @@ Production:
 - [!] MINIBOSS_ACTIVE_SINGLE_SOURCE attempt 1 — run **37021351122**, artifact **11233745986** — REJECTED after visual QA (identity drift from approved source sheet)
 - [!] MINIBOSS_ACTIVE_SINGLE_SOURCE attempt 2 — run **37022707850**, artifact **11233838292** — REJECTED (Ideogram preserved full source sheet instead of isolating one pose)
 - [ ] MINIBOSS_ACTIVE_SINGLE_SOURCE
+- [ ] MINIBOSS_DORMANT_SINGLE_SOURCE
+- [ ] MINIBOSS_ACTIVE_SINGLE_SOURCE
 - [ ] MINIBOSS_DORMANT
 - [ ] MINIBOSS_ACTIVE
 
@@ -166,8 +168,9 @@ Previous API concept:
 
 Production:
 - [x] TOPOLOGY_SPEC_LOCKED — deterministic spec `.higgsfield/MAP4_ABYSSAL_TOPOLOGY.json`, commit **10d03dc3** (split → 2 routes → shared mid chokepoint → re-split → late merge; 13 build spots)
+- [!] SCENERY_PROP_PACK attempt 1 — run **37023187009**, artifact **11233929092** — REJECTED (unwanted numeric labels on sheet)
 - [ ] SCENERY_PROP_PACK
-- [ ] BACKGROUND_TERRAIN_PLATE
+- [x] BACKGROUND_TERRAIN_PLATE — run **37023191880**, artifact **11232874052** — APPROVED after visual QA
 - [ ] BASE_COMPOSITE_IN_UNITY_FROM_LOCKED_TOPOLOGY
 - [ ] BASE_FINAL_NEW_TOPOLOGY
 - [ ] AMBIENT_LOOP
@@ -176,16 +179,17 @@ Production:
 - [ ] BUBBLE_ABSORB
 - [ ] BUBBLE_BURST
 - [ ] BUBBLE_EVENT_ANIM
-- [ ] PEARL_SHRINE_SINGLE_SOURCE
-- [ ] PEARL_SHRINE_CLOSED
+- [x] PEARL_SHRINE_SINGLE_SOURCE — run **37023197057**, artifact **11233644218** — APPROVED after visual QA
+- [x] PEARL_SHRINE_CLOSED — run **37023197057**, artifact **11233644218** — APPROVED
 - [ ] PEARL_SHRINE_OPEN
 - [ ] PEARL_SHRINE_OPEN_ANIM
-- [ ] MINIBOSS_SOURCE
+- [x] MINIBOSS_SOURCE — run **37023204024**, artifact **11233674566** — APPROVED after visual QA (Vent Crab design/source)
 - [ ] MINIBOSS_DORMANT
 - [ ] MINIBOSS_ACTIVE
 - [ ] MINIBOSS_AWAKEN_ANIM
 - [ ] MINIBOSS_ATTACK_ANIM
-- [ ] SPECIAL_AQUATIC_TOWER_SOURCE
+- [x] SPECIAL_AQUATIC_TOWER_SOURCE — run **37023208180**, artifact **11233419385** — APPROVED as design/source after visual QA
+- [ ] SPECIAL_AQUATIC_TOWER_SINGLE_SOURCE
 - [ ] SPECIAL_AQUATIC_TOWER_ACTIVE_SINGLE_SOURCE
 - [ ] SPECIAL_AQUATIC_TOWER_ACTIVATION_ANIM
 
