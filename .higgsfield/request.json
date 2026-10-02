@@ -1,9 +1,9 @@
 {
   "enabled": true,
-  "generation_id": "map3-twilight-fog-event-overlay-20261002-001",
+  "generation_id": "map3-twilight-bat-swarm-overlay-20261002-001",
   "model_path": "bytedance/seedance-2.5/text-to-video",
   "input": {
-    "prompt": "Locked-camera 16:9 EVENT OVERLAY for an ORIGINAL twilight-garden tower-defense map on a plain near-black compositing background. Create one readable 4-second shadow-fog cycle: start nearly clear -> lavender-violet ground fog enters from upper-left and lower-right -> fog thickens into two moving bands that obscure selected map zones at peak -> tiny shadow particles swirl -> fog begins thinning by the end. Keep center partially readable; no full-screen blackout. No scenery, no roads, no characters, no text, no UI, no camera movement, no cuts. Designed to be alpha/blend composited in Unity.",
+    "prompt": "Locked-camera 16:9 overlay animation for an ORIGINAL twilight-garden tower-defense map. Plain near-black compositing background. Animate a stylized swarm of small cartoon bat silhouettes entering from left/top-left, crossing diagonally in a loose wave, briefly clustering through the middle, then exiting right/bottom-right. Keep bats small enough not to cover the whole battlefield. Subtle violet rim light, no scenery, no characters other than bats, no text, no UI, no camera movement, no zoom, no cuts. Loop-friendly event layer.",
     "duration": 4,
     "resolution": "480p",
     "aspect_ratio": "16:9",
