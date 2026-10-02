@@ -91,6 +91,13 @@ Production:
 - [x] MINIBOSS_DORMANT — run **37007759601**, artifact **11226217050** — APPROVED after visual QA
 - [x] MINIBOSS_ACTIVE — run **37007997174**, artifact **11226746833** — APPROVED after visual QA (dormant→active combat-idle awakening)
 
+### MAP2 ANIMATION EXTRAS
+- [ ] RADIO_RELAY_ACTIVATION_LOOP
+- [ ] MAINTENANCE_TUNNEL_OPEN_ANIM
+- [ ] MINIBOSS_SLAM_ATTACK_ANIM
+- [ ] MINIBOSS_HIT_DEFEAT_ANIM
+- [ ] TERRAIN_ROAD_TILE_KIT
+
 ## MAP 3 — Zmierzch
 **Difficulty:** Medium- / two persistent routes  
 **Topology:** 2 routes split enemy traffic and reconnect late  
