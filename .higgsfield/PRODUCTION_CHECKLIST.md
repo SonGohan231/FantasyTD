@@ -51,7 +51,7 @@ Existing API evidence:
 
 Production:
 - [ ] BASE_FINAL
-- [ ] AMBIENT_LOOP
+- [x] AMBIENT_LOOP — run **37001697251**, artifact **11224247023** — APPROVED (steam, debris/leaves, beacon, smoke; loop-friendly overlay)
 - [ ] SECRET_HINT
 - [ ] SECRET_OPEN
 - [ ] MINIBOSS_DORMANT
@@ -76,15 +76,17 @@ Production:
 - [!] Soul I2I render — run **37000967282** — REJECTED (did not preserve topology closely enough)
 - [!] Ideogram weight-95 render — run **37001202601** — REJECTED as final art (preserved topology but barely stylized)
 - [!] Ideogram weight-60 render — run **37001433593** — REJECTED as final art (still mostly schematic; proves geometry should remain deterministic)
-- [ ] SCENERY_PROP_PACK
+- [x] SCENERY_PROP_PACK — run **37001692492**, artifact **11223803916** — APPROVED (clean cartoon prop sheet, animation-ready parts)
 - [ ] BASE_COMPOSITE_IN_UNITY_FROM_LOCKED_TOPOLOGY
 - [ ] BASE_FINAL_NEW_TOPOLOGY
 - [ ] AMBIENT_LOOP
-- [ ] TOXIC_START
-- [ ] TOXIC_HIGH
-- [ ] TOXIC_END
+- [x] TOXIC_START — run **37001700869**, artifact **11223664631** — APPROVED
+- [x] TOXIC_HIGH — run **37001700869**, artifact **11223664631** — APPROVED
+- [x] TOXIC_END — run **37001700869**, artifact **11223664631** — APPROVED
 - [ ] BUNKER_CLOSED
 - [ ] BUNKER_OPEN
+- [ ] SECRET_HINT
+- [ ] RADIO_RELAY_NODE
 - [ ] MINIBOSS_DORMANT
 - [ ] MINIBOSS_ACTIVE
 
