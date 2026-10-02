@@ -1,5 +1,5 @@
 {
-  "requestId": "t0003-mobile-planting-playmode-20261002-1035",
+  "requestId": "t0003-mobile-planting-playmode-r2-20261002-1042",
   "mode": "mobile-planting",
-  "note": "T0003 Mobile Planting and Radial Menu real Unity Play Mode validation."
+  "note": "T0003 rerun after allowing uGUI blocker fixture one frame to register before raycast."
 }
