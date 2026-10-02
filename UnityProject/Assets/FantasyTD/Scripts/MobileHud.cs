@@ -23,6 +23,9 @@ namespace FantasyTD.MapA
         private Action _onClose;
         private Coroutine _essencePulse;
 
+        public RectTransform RadialRoot => _radialRoot;
+        public RectTransform SafeArea => _safe;
+
         public void Initialize(GameSession session)
         {
             _session = session;
@@ -58,11 +61,6 @@ namespace FantasyTD.MapA
             Vector2 local;
             Vector3 screen = Camera.main.WorldToScreenPoint(spot.transform.position);
             RectTransformUtility.ScreenPointToLocalPointInRectangle(_safe,new Vector2(screen.x,screen.y),null,out local);
-
-            float maxX = _safe.rect.width * 0.5f - 170f;
-            float maxY = _safe.rect.height * 0.5f - 170f;
-            local.x = Mathf.Clamp(local.x,-maxX,maxX);
-            local.y = Mathf.Clamp(local.y,-maxY,maxY);
             _radialRoot.anchoredPosition = local;
 
             CreateRadialButton(PlantKind.SeedShooter,new Vector2(-125f,0f),new Color(0.28f,0.64f,0.20f));
@@ -71,12 +69,17 @@ namespace FantasyTD.MapA
             CreateRadialButton(PlantKind.FrostBud,new Vector2(0f,-125f),new Color(0.24f,0.62f,0.82f));
 
             Button close = RuntimeArt.CreateButton(_radialRoot,"×",new Color(0.25f,0.16f,0.10f,0.95f),38);
+            close.gameObject.name = "RadialCloseButton";
             RectTransform cr = close.GetComponent<RectTransform>();
             cr.sizeDelta = new Vector2(74f,74f);
             cr.anchoredPosition = Vector2.zero;
             close.onClick.AddListener(delegate {
                 if (_onClose != null) _onClose();
             });
+
+            Canvas.ForceUpdateCanvases();
+            ClampRadialToSafeArea();
+            Canvas.ForceUpdateCanvases();
         }
 
         public void CloseBuildRadial()
@@ -177,6 +180,22 @@ namespace FantasyTD.MapA
             hint.text = "Dotknij kręgu ziemi, aby posadzić obrońcę.";
         }
 
+        private void ClampRadialToSafeArea()
+        {
+            if (_safe == null || _radialRoot == null) return;
+
+            Bounds bounds = RectTransformUtility.CalculateRelativeRectTransformBounds(_safe,_radialRoot);
+            Rect safeRect = _safe.rect;
+            Vector2 shift = Vector2.zero;
+
+            if (bounds.min.x < safeRect.xMin) shift.x += safeRect.xMin - bounds.min.x;
+            if (bounds.max.x > safeRect.xMax) shift.x -= bounds.max.x - safeRect.xMax;
+            if (bounds.min.y < safeRect.yMin) shift.y += safeRect.yMin - bounds.min.y;
+            if (bounds.max.y > safeRect.yMax) shift.y -= bounds.max.y - safeRect.yMax;
+
+            _radialRoot.anchoredPosition += shift;
+        }
+
         private void CreateTopPill(out Text text, string name, Vector2 pos, Vector2 size, TextAnchor align, float anchorX = 0f)
         {
             GameObject panel = new GameObject(name + "Panel",typeof(RectTransform),typeof(CanvasRenderer),typeof(Image));
@@ -203,6 +222,7 @@ namespace FantasyTD.MapA
             int cost = Balance.Cost(kind);
             string label = Balance.DisplayName(kind) + "\n" + cost;
             Button button = RuntimeArt.CreateButton(_radialRoot,label,color,24);
+            button.gameObject.name = "PlantOption_" + kind;
             RectTransform r = button.GetComponent<RectTransform>();
             r.sizeDelta = new Vector2(185f,112f);
             r.anchoredPosition = offset;
