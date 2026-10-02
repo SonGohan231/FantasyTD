@@ -1,9 +1,9 @@
 {
   "enabled": true,
-  "generation_id": "map5-fungal-mother-mycelium-source-20261002-001",
+  "generation_id": "map5-fungal-mutation-tower-source-20261002-001",
   "model_path": "higgsfield-ai/soul/v2/standard",
   "input": {
-    "prompt": "ORIGINAL miniboss character design sheet for a colorful fungal-infected city mobile tower-defense game. Character: MOTHER MYCELIUM. Original IP, do not copy any existing mushroom monster.\n\nDesign: broad squat fungal queen rooted to a broken chunk of city pavement; large layered mushroom cap crown with magenta/cyan/lime bioluminescent spots; pale stem-like torso; four short root-tentacle limbs; two thicker mycelium arms ending in spore bulbs; glowing core visible through cracked fungal bark; expressive face that is eerie but playful, readable at phone scale. She should look like the source of the city's infection.\n\nCreate a consistent top-down/3/4 sprite-source sheet on a warm neutral background:\n1 dormant rooted/cap-closed state,\n2 awakening,\n3 active idle with cap raised,\n4 spore-burst anticipation,\n5 spore-burst attack,\n6 hit/stagger pose.\nSame anatomy, proportions and palette across poses. Chunky casual-game cartoon, clean outlines, saturated colors, soft cel shading. No gore, no text, no logo, no UI.",
+    "prompt": "ORIGINAL unlockable special support tower for a colorful fungal-infected city mobile tower-defense game. Character/tower concept: MUTATION BLOOM. Original IP, playful plant-defense cartoon.\n\nDesign: a friendly but strange tower grown from a cracked laboratory capsule: short coral-pink fungal base, translucent lime mutation bulb in center, three asymmetrical mushroom petals/caps in cyan-magenta, flexible mycelium tendrils, tiny floating spores. Visual role: support tower that increases nearby plants' resistance to status effects and can periodically mutate one nearby tower with a temporary bonus. Cute, weird, readable at phone scale, not horror.\n\nCreate a consistent source sheet on warm neutral background:\n1 dormant folded capsule,\n2 activation/opening,\n3 active idle hero pose,\n4 support pulse,\n5 temporary mutation buff pose.\nSame camera/proportions. Chunky casual-game cartoon, clean outlines, saturated colors, soft cel shading. No text, no logo, no UI.",
     "resolution": "1080p",
     "aspect_ratio": "16:9",
     "batch_size": 1,
