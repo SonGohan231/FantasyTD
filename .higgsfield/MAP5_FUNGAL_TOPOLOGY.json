@@ -1,0 +1,221 @@
+{
+  "map_id": "MAP5_FUNGAL_CITY",
+  "title": "Grzybowe Zainfekowane Miasto",
+  "logical_size": {
+    "width": 28,
+    "height": 16
+  },
+  "difficulty": "Medium+",
+  "target_build_spots": 12,
+  "topology_description": "Shared left entry -> 3 persistent branches (upper / central / lower) -> late merge -> shared right exit. Different enemy groups may choose different branches.",
+  "spawn": {
+    "x": 0,
+    "y": 8
+  },
+  "exit": {
+    "x": 28,
+    "y": 8
+  },
+  "shared_entry": [
+    [
+      0,
+      8
+    ],
+    [
+      3,
+      8
+    ],
+    [
+      5,
+      8
+    ]
+  ],
+  "branches": {
+    "upper": [
+      [
+        5,
+        8
+      ],
+      [
+        7,
+        12
+      ],
+      [
+        11,
+        13
+      ],
+      [
+        15,
+        12
+      ],
+      [
+        18,
+        10
+      ],
+      [
+        22,
+        9
+      ]
+    ],
+    "center": [
+      [
+        5,
+        8
+      ],
+      [
+        9,
+        8
+      ],
+      [
+        13,
+        8
+      ],
+      [
+        17,
+        8
+      ],
+      [
+        22,
+        9
+      ]
+    ],
+    "lower": [
+      [
+        5,
+        8
+      ],
+      [
+        7,
+        4
+      ],
+      [
+        11,
+        3
+      ],
+      [
+        15,
+        4
+      ],
+      [
+        18,
+        6
+      ],
+      [
+        22,
+        9
+      ]
+    ]
+  },
+  "shared_exit": [
+    [
+      22,
+      9
+    ],
+    [
+      25,
+      9
+    ],
+    [
+      28,
+      8
+    ]
+  ],
+  "build_spots": [
+    {
+      "id": "F1",
+      "x": 2.4,
+      "y": 10.7,
+      "zone": "pre_split"
+    },
+    {
+      "id": "F2",
+      "x": 3.1,
+      "y": 5.8,
+      "zone": "pre_split"
+    },
+    {
+      "id": "F3",
+      "x": 8.6,
+      "y": 14.1,
+      "zone": "upper"
+    },
+    {
+      "id": "F4",
+      "x": 14,
+      "y": 13.8,
+      "zone": "upper"
+    },
+    {
+      "id": "F5",
+      "x": 9.9,
+      "y": 9.7,
+      "zone": "center"
+    },
+    {
+      "id": "F6",
+      "x": 16.5,
+      "y": 9.7,
+      "zone": "center"
+    },
+    {
+      "id": "F7",
+      "x": 8.5,
+      "y": 1.9,
+      "zone": "lower"
+    },
+    {
+      "id": "F8",
+      "x": 14.6,
+      "y": 2.2,
+      "zone": "lower"
+    },
+    {
+      "id": "F9",
+      "x": 20,
+      "y": 11.6,
+      "zone": "merge_support"
+    },
+    {
+      "id": "F10",
+      "x": 20.2,
+      "y": 6.6,
+      "zone": "merge_support"
+    },
+    {
+      "id": "F11",
+      "x": 24.2,
+      "y": 11.5,
+      "zone": "final"
+    },
+    {
+      "id": "F12",
+      "x": 25.2,
+      "y": 6.2,
+      "zone": "final"
+    }
+  ],
+  "dynamic_event": {
+    "id": "psychedelic_spore_surge",
+    "phases": [
+      "V0_NORMAL",
+      "V1_LIGHT_WARP",
+      "V2_GRID_VISIBLE",
+      "V3_STRONG",
+      "V4_PEAK",
+      "V5_FADE",
+      "V6_NORMAL"
+    ],
+    "gameplay_effect": "During V3-V5 tower placement and upgrades are blocked; existing towers continue firing."
+  },
+  "secret": {
+    "id": "underground_lab",
+    "miniboss": "Mother Mycelium",
+    "unlock": "Mutation tower or permanent status-resistance upgrade"
+  },
+  "constraints": [
+    "No single build spot may cover all three branches.",
+    "All three branches remain visually separated until late merge.",
+    "Map must fit entirely on one landscape phone screen.",
+    "Final route and build-spot coordinates are deterministic Unity data, not image-generation output."
+  ]
+}
