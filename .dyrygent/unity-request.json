@@ -1,5 +1,5 @@
 {
-  "requestId": "t0011-android-candidate-20261002-2021",
-  "mode": "android-build",
-  "note": "T0011 visual production candidate Android APK build. T0009/T0010 remain untouched."
+  "requestId": "t0011-map-integrity-20261002-2032",
+  "mode": "map-a-integrity",
+  "note": "T0011 regression: verify MAP-A geometry after visual dressing. No T0009/T0010 work."
 }
