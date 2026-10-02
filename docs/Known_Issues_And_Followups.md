@@ -264,21 +264,21 @@ No further KI-010 remediation required.
 ## T0008 verified evidence
 
 Unity Executor:
-- candidate successful run: `36999815943`
+- final successful run: `37001334070`
 - branch: `codex/t0008-android-build`
-- validated head before documentation commits: `f987f110c175198b689e0f19747be9f5f98febc5`
+- validated final head: `99351f43cce3039a38c64c7020de9e540a76b864`
 - Unity: `6000.0.26f1 (ccb7c73d2c02)`
 - Android job: **success**
 - BuildReport: **Succeeded**
-- BuildReport duration: `610.038 s`
+- BuildReport duration: `468.893 s`
 - BuildReport errors: `0`
 - BuildReport warnings: `0`
 - MAP-A present/enabled/in actual build options: **YES**
 - application identifier: `com.indie.fantasytd`
 - exact APK: `Builds/Android/FantasyTD_MAP_A_v2.apk`
-- physical APK bytes: `18869167`
-- APK SHA-256: `13029c48866753493aa23fe7aab321c2f94dd7e76e43de49791c5c243ccc8bb5`
-- artifact: `fantasy-td-android-36999815943` (ID `11223074737`)
+- physical APK bytes: `18869164`
+- APK SHA-256: `b99b3f85b29453a76e2f698927183ad5fc8d1f5eb62e57079c86b7676b8c6c57`
+- artifact: `fantasy-td-android-37001334070` (ID `11224123199`)
 - artifact contains APK: **YES**
 - install/emulator/physical-device smoke: **NOT RUN**
 - T0009: **NOT STARTED**
@@ -293,7 +293,7 @@ Toolchain:
 - target SDK setting: `AndroidApiLevelAuto`
 - minimum SDK setting: `AndroidApiLevel23`
 
-A final full Android build is required after the T0008 documentation commits so the final user-facing verdict comes from the final HEAD.
+Final Android build completed successfully on the documented T0008 head; no device install/emulator/physical-device smoke was performed.
 
 ---
 
