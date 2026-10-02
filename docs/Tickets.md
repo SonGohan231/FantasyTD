@@ -148,7 +148,7 @@ Do not implement new plants or upgrades.
 
 # T0004 — Four Plant Behaviors
 
-Status: **PLANNED**
+Status: **ACTIVE**
 
 Purpose:
 Validate Pędostrzał, Kwiat Esencji, Dębowy Strażnik and Mroźny Pąk individually against acceptance criteria.
