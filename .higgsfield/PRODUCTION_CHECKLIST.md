@@ -203,7 +203,7 @@ Production:
 - [ ] SPECIAL_AQUATIC_TOWER_SINGLE_SOURCE — may use reversed fold animation from approved active source
 - [x] SPECIAL_AQUATIC_TOWER_ACTIVE_SINGLE_SOURCE — run **37023885079**, artifact **11233999401** — APPROVED after visual QA
 - [ ] SPECIAL_AQUATIC_TOWER_ACTIVATION_ANIM
-- [ ] SPECIAL_AQUATIC_TOWER_IDLE_LOOP
+- [x] SPECIAL_AQUATIC_TOWER_IDLE_LOOP — run **37025045929**, artifact **11235446525** — APPROVED after visual QA (subtle bubbles/tendril sway/core bob; loop-friendly)
 
 ## MAP 5 — Grzybowe Zainfekowane Miasto
 **Difficulty:** Medium+ / route network  
@@ -219,8 +219,8 @@ Previous API concept:
 
 Production:
 - [x] TOPOLOGY_SPEC_LOCKED — `.higgsfield/MAP5_FUNGAL_TOPOLOGY.json`, commit **8e66fd09** (3 persistent branches, 12 spots)
-- [ ] SCENERY_PROP_PACK
-- [ ] BACKGROUND_TERRAIN_PLATE
+- [x] SCENERY_PROP_PACK — run **37025266321**, artifact **11234731952** — APPROVED after visual QA
+- [x] BACKGROUND_TERRAIN_PLATE — run **37025270764**, artifact **11234691977** — APPROVED after visual QA (road-free open corridors)
 - [ ] BASE_COMPOSITE_IN_UNITY_FROM_LOCKED_TOPOLOGY
 - [ ] BASE_FINAL_NEW_TOPOLOGY
 - [ ] AMBIENT_LOOP
@@ -232,10 +232,11 @@ Production:
 - [ ] PSY_V5_FADE
 - [ ] PSY_V6_NORMAL
 - [ ] PSYCHEDELIC_SURGE_ANIM
-- [ ] LAB_SINGLE_SOURCE
-- [ ] LAB_CLOSED
+- [x] LAB_SINGLE_SOURCE — run **37025286566**, artifact **11235466241** — APPROVED after visual QA
+- [x] LAB_CLOSED — run **37025286566**, artifact **11235466241** — APPROVED
 - [ ] LAB_OPEN
 - [ ] LAB_OPEN_ANIM
+- [!] MINIBOSS_SOURCE attempt 1 — run **37025292120**, artifact **11235206778** — REJECTED after visual QA (too 3D/toy-like vs 2D casual-game style)
 - [ ] MINIBOSS_SOURCE
 - [ ] MINIBOSS_DORMANT_SINGLE_SOURCE
 - [ ] MINIBOSS_ACTIVE_SINGLE_SOURCE
@@ -243,6 +244,7 @@ Production:
 - [ ] MINIBOSS_ACTIVE
 - [ ] MINIBOSS_AWAKEN_ANIM
 - [ ] MINIBOSS_ATTACK_ANIM
+- [!] SPECIAL_MUTATION_TOWER_SOURCE attempt 1 — run **37025297595**, artifact **11234752032** — FAILED generation
 - [ ] SPECIAL_MUTATION_TOWER_SOURCE
 - [ ] SPECIAL_MUTATION_TOWER_ACTIVE_SINGLE_SOURCE
 - [ ] SPECIAL_MUTATION_TOWER_ACTIVATION_ANIM
