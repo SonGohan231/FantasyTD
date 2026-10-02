@@ -1,9 +1,9 @@
 {
   "enabled": true,
-  "generation_id": "map3-twilight-ambient-loop-20261002-001",
+  "generation_id": "map3-twilight-fog-event-overlay-20261002-001",
   "model_path": "bytedance/seedance-2.5/text-to-video",
   "input": {
-    "prompt": "Locked-camera 16:9 ambient overlay for an ORIGINAL twilight-garden mobile tower-defense map. Plain near-black compositing background. Animate ONLY isolated environmental effects: small warm lantern flickers, tiny firefly clusters drifting slowly, a few violet flower petals floating, subtle low ground mist wisps, faint moonlight sparkle motes. No scenery, no characters, no roads, no text, no UI, no camera movement, no zoom, no cuts. Motion restrained and loop-friendly for continuous Unity gameplay.",
+    "prompt": "Locked-camera 16:9 EVENT OVERLAY for an ORIGINAL twilight-garden tower-defense map on a plain near-black compositing background. Create one readable 4-second shadow-fog cycle: start nearly clear -> lavender-violet ground fog enters from upper-left and lower-right -> fog thickens into two moving bands that obscure selected map zones at peak -> tiny shadow particles swirl -> fog begins thinning by the end. Keep center partially readable; no full-screen blackout. No scenery, no roads, no characters, no text, no UI, no camera movement, no cuts. Designed to be alpha/blend composited in Unity.",
     "duration": 4,
     "resolution": "480p",
     "aspect_ratio": "16:9",
