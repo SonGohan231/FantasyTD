@@ -49,26 +49,31 @@ namespace FantasyTD.MapA
 
         private static bool IsOverUiAt(Vector2 screenPoint)
         {
-            if (EventSystem.current == null) return false;
-
-            PointerEventData pointer = new PointerEventData(EventSystem.current)
-            {
-                position = screenPoint
-            };
-            List<RaycastResult> results = new List<RaycastResult>();
-            GraphicRaycaster[] raycasters = Object.FindObjectsByType<GraphicRaycaster>(
+            Graphic[] graphics = Object.FindObjectsByType<Graphic>(
                 FindObjectsInactive.Exclude,
                 FindObjectsSortMode.None);
 
-            for (int i = 0; i < raycasters.Length; i++)
+            for (int i = 0; i < graphics.Length; i++)
             {
-                GraphicRaycaster raycaster = raycasters[i];
-                if (raycaster == null || !raycaster.isActiveAndEnabled)
+                Graphic graphic = graphics[i];
+                if (graphic == null || !graphic.isActiveAndEnabled || !graphic.raycastTarget)
                     continue;
 
-                results.Clear();
-                raycaster.Raycast(pointer, results);
-                if (results.Count > 0)
+                Canvas canvas = graphic.canvas;
+                if (canvas == null || !canvas.isActiveAndEnabled)
+                    continue;
+
+                Camera eventCamera = canvas.renderMode == RenderMode.ScreenSpaceOverlay
+                    ? null
+                    : (canvas.worldCamera != null ? canvas.worldCamera : Camera.main);
+
+                if (!RectTransformUtility.RectangleContainsScreenPoint(
+                        graphic.rectTransform,
+                        screenPoint,
+                        eventCamera))
+                    continue;
+
+                if (graphic.Raycast(screenPoint, eventCamera))
                     return true;
             }
 
