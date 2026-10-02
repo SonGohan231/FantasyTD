@@ -1,12 +1,14 @@
 {
   "enabled": true,
-  "generation_id": "map4-abyssal-aquatic-tower-active-single-20261002-001",
-  "model_path": "recraft/v4.1/text-to-image",
+  "generation_id": "map4-abyssal-ambient-loop-20261002-001",
+  "model_path": "bytedance/seedance-2.5/text-to-video",
   "input": {
-    "prompt": "ORIGINAL single ACTIVE gameplay pose of the Pearl Lily / Tidebloom special tower for an abyssal mobile tower-defense game. ONE tower only, isolated on warm neutral background. Rooted coral base, large turquoise sea-lily flower, luminous pearl-white center, spiral shell details, two flexible kelp arms, small cyan bubbles orbiting the pearl. Friendly whimsical face subtly integrated into pearl center, no human arms/hands, no weapons, no metal machinery. Active pose with petals fully open and pearl glowing. Chunky premium casual-game cartoon, clean outlines, soft cel shading, top-down/3-4 camera, mobile-readable. No text, no UI, no extra variants.",
-    "resolution": "1k",
+    "prompt": "Locked-camera 16:9 AMBIENT OVERLAY for an ORIGINAL abyssal sea-floor tower-defense map. Plain near-black compositing background. Animate only isolated underwater effects: small bubble streams rising, drifting plankton particles, gentle kelp-tip silhouettes swaying at frame edges, tiny cyan bioluminescent motes, occasional small fish silhouettes crossing slowly. No roads, no map scenery, no characters, no text, no UI, no camera movement, no cuts. Restrained loop-friendly motion for Unity.",
+    "duration": 4,
+    "resolution": "480p",
     "aspect_ratio": "16:9",
-    "output_format": "png"
+    "output_format": "mp4",
+    "generate_audio": false
   },
   "max_wait_seconds": 1200
 }
