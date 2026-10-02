@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace FantasyTD.MapA
 {
@@ -55,8 +56,23 @@ namespace FantasyTD.MapA
                 position = screenPoint
             };
             List<RaycastResult> results = new List<RaycastResult>();
-            EventSystem.current.RaycastAll(pointer, results);
-            return results.Count > 0;
+            GraphicRaycaster[] raycasters = Object.FindObjectsByType<GraphicRaycaster>(
+                FindObjectsInactive.Exclude,
+                FindObjectsSortMode.None);
+
+            for (int i = 0; i < raycasters.Length; i++)
+            {
+                GraphicRaycaster raycaster = raycasters[i];
+                if (raycaster == null || !raycaster.isActiveAndEnabled)
+                    continue;
+
+                results.Clear();
+                raycaster.Raycast(pointer, results);
+                if (results.Count > 0)
+                    return true;
+            }
+
+            return false;
         }
 
         private void HandleScreenTap(Vector2 screenPoint)
