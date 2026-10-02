@@ -1,9 +1,9 @@
 {
   "enabled": true,
-  "generation_id": "map6-bamboo-scenery-props-20261002-001",
+  "generation_id": "map6-bamboo-background-terrain-20261002-001",
   "model_path": "recraft/v4.1/text-to-image",
   "input": {
-    "prompt": "ORIGINAL production prop sheet for MAP6 \"Bamboo Forest\", a colorful mobile 2D tower-defense game. Playful casual-game cartoon, chunky simplified shapes, clean dark outlines, saturated jade/green/gold/red palette, soft cel shading, high phone readability, no realism, no text, no logos, no labels.\n\nCreate isolated modular props on warm off-white background:\n1 bamboo cluster,\n2 bamboo wall segment,\n3 cut bamboo stump,\n4 curved wooden/bamboo bridge module,\n5 small stream edge,\n6 koi pond patch,\n7 mossy stone cluster,\n8 hanging paper charm with NO writing or symbols,\n9 red lantern,\n10 bamboo waterwheel,\n11 tea pavilion corner,\n12 panda burrow entrance,\n13 rolling bamboo log,\n14 log warning marker made only of colored stones/rope with no symbols,\n15 hidden dojo gate closed,\n16 hidden dojo gate open,\n17 bamboo shrine pedestal,\n18 bamboo tower unlock seed/relic,\n19 leaf pile,\n20 flowering bamboo/grass patch.\nConsistent top-down/3/4 game camera, isolated spacing. No roads, enemies, towers or UI. Original IP only.",
+    "prompt": "ORIGINAL 16:9 BACKGROUND TERRAIN PLATE for a colorful bamboo-forest mobile tower-defense map. This plate sits UNDER deterministic Unity routes/build pads: DO NOT draw any roads, lanes, paths, arrows, build pads, towers, enemies, UI or text.\n\nCreate a lush top-down / restrained 3/4 cartoon valley with bamboo groves concentrated around outer borders, open grass/earth clearings through upper/center/lower corridors, streams and koi-water pockets, mossy rocks, tea-garden terraces, small bridge anchor zones, lantern posts, waterwheel district and hidden-dojo area. Keep the center readable/open enough for three route overlays and two merge points.\n\nStyle: playful casual-game cartoon, chunky clean shapes, crisp outlines, saturated greens with warm red/gold accents, soft cel shading, high mobile readability, low texture noise. No realism, no copied game assets, no words/letters/numbers/logos.",
     "resolution": "1k",
     "aspect_ratio": "16:9",
     "output_format": "png"
