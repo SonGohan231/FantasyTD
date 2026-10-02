@@ -60,9 +60,10 @@ Production:
 - [!] MINIBOSS_ACTIVE_SINGLE_SOURCE attempt 1 — run **37021351122**, artifact **11233745986** — REJECTED after visual QA (identity drift from approved source sheet)
 - [!] MINIBOSS_ACTIVE_SINGLE_SOURCE attempt 2 — run **37022707850**, artifact **11233838292** — REJECTED (Ideogram preserved full source sheet instead of isolating one pose)
 - [ ] MINIBOSS_ACTIVE_SINGLE_SOURCE
-- [ ] MINIBOSS_DORMANT_SINGLE_SOURCE
+- [x] MINIBOSS_DORMANT_SINGLE_SOURCE — run **37023874042**, artifact **11234650367** — APPROVED after visual QA
+- [!] MINIBOSS_ACTIVE_SINGLE_SOURCE attempt 1 — run **37023879914**, artifact **11233164725** — REJECTED (identity drift vs approved source/dormant design)
 - [ ] MINIBOSS_ACTIVE_SINGLE_SOURCE
-- [ ] MINIBOSS_DORMANT
+- [x] MINIBOSS_DORMANT — run **37023874042**, artifact **11234650367** — APPROVED
 - [ ] MINIBOSS_ACTIVE
 
 ## MAP 2 — Postapo
@@ -175,20 +176,20 @@ Previous API concept:
 Production:
 - [x] TOPOLOGY_SPEC_LOCKED — `.higgsfield/MAP4_ABYSSAL_TOPOLOGY.json`, commit **10d03dc3** (13 spots)
 - [!] SCENERY_PROP_PACK attempt 1 — run **37023187009**, artifact **11233929092** — REJECTED (numeric labels)
-- [ ] SCENERY_PROP_PACK
+- [x] SCENERY_PROP_PACK — run **37023868008**, artifact **11234470479** — APPROVED after visual QA (clean underwater prop sheet, no numeric labels)
 - [x] BACKGROUND_TERRAIN_PLATE — run **37023191880**, artifact **11232874052** — APPROVED
 - [ ] BASE_COMPOSITE_IN_UNITY_FROM_LOCKED_TOPOLOGY
 - [ ] BASE_FINAL_NEW_TOPOLOGY
-- [ ] AMBIENT_LOOP
-- [ ] BUBBLE_FORM
-- [ ] BUBBLE_DRIFT
-- [ ] BUBBLE_ABSORB
-- [ ] BUBBLE_BURST
-- [ ] BUBBLE_EVENT_ANIM
+- [x] AMBIENT_LOOP — run **37023891512**, artifact **11235070159** — APPROVED as compositing overlay (kelp/bubbles/particles, locked camera)
+- [x] BUBBLE_FORM — run **37023897016**, artifact **11234044723** — APPROVED
+- [x] BUBBLE_DRIFT — run **37023897016**, artifact **11234044723** — APPROVED
+- [x] BUBBLE_ABSORB — run **37023897016**, artifact **11234044723** — APPROVED (impact/spark cue before burst)
+- [x] BUBBLE_BURST — run **37023897016**, artifact **11234044723** — APPROVED
+- [x] BUBBLE_EVENT_ANIM — run **37023897016**, artifact **11234044723** — APPROVED after visual QA
 - [x] PEARL_SHRINE_SINGLE_SOURCE — run **37023197057**, artifact **11233644218** — APPROVED
 - [x] PEARL_SHRINE_CLOSED — run **37023197057**, artifact **11233644218** — APPROVED
-- [ ] PEARL_SHRINE_OPEN
-- [ ] PEARL_SHRINE_OPEN_ANIM
+- [x] PEARL_SHRINE_OPEN — final state from run **37023903350**, artifact **11234391273** — APPROVED
+- [x] PEARL_SHRINE_OPEN_ANIM — run **37023903350**, artifact **11234391273** — APPROVED after visual QA (shell opens, pearl rises, ring pulse)
 - [x] MINIBOSS_SOURCE — run **37023204024**, artifact **11233674566** — APPROVED
 - [ ] MINIBOSS_DORMANT_SINGLE_SOURCE
 - [ ] MINIBOSS_ACTIVE_SINGLE_SOURCE
@@ -198,7 +199,7 @@ Production:
 - [ ] MINIBOSS_ATTACK_ANIM
 - [x] SPECIAL_AQUATIC_TOWER_SOURCE — run **37023208180**, artifact **11233419385** — APPROVED
 - [ ] SPECIAL_AQUATIC_TOWER_SINGLE_SOURCE
-- [ ] SPECIAL_AQUATIC_TOWER_ACTIVE_SINGLE_SOURCE
+- [x] SPECIAL_AQUATIC_TOWER_ACTIVE_SINGLE_SOURCE — run **37023885079**, artifact **11233999401** — APPROVED after visual QA
 - [ ] SPECIAL_AQUATIC_TOWER_ACTIVATION_ANIM
 
 ## MAP 5 — Grzybowe Zainfekowane Miasto
