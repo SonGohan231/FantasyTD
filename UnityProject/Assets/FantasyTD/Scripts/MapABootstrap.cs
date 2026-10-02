@@ -417,7 +417,7 @@ namespace FantasyTD.MapA
                 new Vector2(0.86f, 1.42f),
                 new Color(0.09f, 0.065f, 0.035f), 2);
             RuntimeArt.SpriteObject(
-                "HomeTrunk", null, p + new Vector2(0f, -0.08f),
+                "HomeTrunk", null, p + new Vector2(0f, -0.18f),
                 new Vector2(0.72f, 1.30f),
                 new Color(0.45f, 0.27f, 0.10f), 3);
 
