@@ -1,13 +1,12 @@
 {
   "enabled": true,
-  "generation_id": "map4-abyssal-special-aquatic-tower-source-20261002-001",
-  "model_path": "higgsfield-ai/soul/v2/standard",
+  "generation_id": "map4-abyssal-scenery-props-20261002-002",
+  "model_path": "recraft/v4.1/text-to-image",
   "input": {
-    "prompt": "ORIGINAL unlockable special tower for an abyssal sea-floor mobile tower-defense game. Concept: PEARL LILY / TIDEBLOOM — a living coral-flower tower that fires a focused water/sonic pulse capable of piercing or popping hot bubbles that would normally absorb projectiles.\n\nDesign: rooted coral base, spiral shell core with luminous pearl, broad sea-lily petals, two flexible kelp arms, small bubbles orbiting the pearl. Friendly whimsical silhouette, no guns, no metal machinery. Palette: turquoise, pearl white, coral pink, deep blue, cyan glow.\n\nSource sheet on warm neutral background:\n1 folded/inactive,\n2 activation,\n3 active idle,\n4 bubble-piercing pulse,\n5 empowered pearl glow,\n6 upgrade variant.\nSame top-down/3-4 game camera, consistent proportions, chunky premium casual-game cartoon, clean outlines, soft cel shading, no text, no UI, original IP.",
-    "resolution": "1080p",
+    "prompt": "ORIGINAL production PROP SHEET for a premium casual-cartoon ABYSSAL SEA FLOOR tower-defense map. Warm off-white background, isolated sprite-ready props, consistent top-down/3-4 camera, chunky simplified shapes, clean outlines, luminous ocean palette, soft cel shading. NO TEXT, NO NUMBERS, NO LETTERS, NO LABELS, NO SYMBOLS placed next to assets.\n\nArrange a clean unlabeled grid of isolated assets with generous spacing:\ncoral arch; kelp cluster; glowing anemone; shell cluster; pearl build-rim; hydrothermal vent dormant; hydrothermal vent glowing; hot bubble small; hot bubble large; bubble burst ring; submerged ruin column; pearl shrine closed; pearl shrine open; crab cave closed; crab cave open; bioluminescent rocks; sandy rubble; treasure trench cache; small fish school silhouette; bubble-resistant upgrade relic.\n\nDo NOT print item numbers or names. No roads, no characters, no towers, no UI. Original IP only.",
+    "resolution": "1k",
     "aspect_ratio": "16:9",
-    "batch_size": 1,
-    "enhance_prompt": true
+    "output_format": "png"
   },
   "max_wait_seconds": 1200
 }
