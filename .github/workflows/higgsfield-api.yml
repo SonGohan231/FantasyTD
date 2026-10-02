@@ -1,0 +1,41 @@
+name: Higgsfield API Asset Generator
+
+on:
+  push:
+    branches:
+      - 'visual/higgsfield-api-bridge'
+    paths:
+      - '.higgsfield/request.json'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: higgsfield-prepaid-generation
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    if: ${{ github.run_attempt == 1 }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Generate via separate Higgsfield API
+        env:
+          HF_API_KEY: ${{ secrets.HF_API_KEY }}
+          HF_OUTPUT_DIR: higgsfield-output
+        run: python3 tools/higgsfield_api_client.py .higgsfield/request.json
+
+      - name: Upload generation artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: higgsfield-api-${{ github.run_id }}
+          path: higgsfield-output/
+          if-no-files-found: error
+          retention-days: 14
