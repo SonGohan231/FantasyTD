@@ -18,12 +18,14 @@ on:
           - boss-end-states
           - mobile-layout
           - playable-release
+          - visual-acceptance
           - android-build
   push:
     branches:
       - main
       - 'codex/**'
       - 'dyrygent/**'
+      - 'recovery/**'
     paths:
       - 'UnityProject/**'
       - '.dyrygent/unity-request.json'
@@ -67,7 +69,7 @@ jobs:
           elif [[ "${{ github.event_name }}" == "push" ]] && git diff --name-only HEAD^ HEAD 2>/dev/null | grep -qx '.dyrygent/unity-request.json'; then
             REQUESTED="$(jq -r '.mode // "baseline"' .dyrygent/unity-request.json)"
             case "$REQUESTED" in
-              baseline|tests|map-a-integrity|mobile-planting|plant-behaviors|enemy-wave-flow|boss-end-states|mobile-layout|playable-release|android-build) MODE="$REQUESTED" ;;
+              baseline|tests|map-a-integrity|mobile-planting|plant-behaviors|enemy-wave-flow|boss-end-states|mobile-layout|playable-release|visual-acceptance|android-build) MODE="$REQUESTED" ;;
               *) echo "Invalid Unity Executor mode: $REQUESTED"; exit 1 ;;
             esac
           fi
@@ -545,6 +547,65 @@ jobs:
           path: |
             UnityProject/Artifacts/UnityExecutor/**
             UnityProject/Logs/**
+
+
+  visual_acceptance:
+    name: Product visual acceptance screenshots
+    needs: prepare
+    if: needs.prepare.outputs.mode == 'visual-acceptance'
+    runs-on: [self-hosted, dyrygent-unity]
+    timeout-minutes: 45
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          lfs: true
+
+      - name: Materialize Higgsfield art
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: bash .github/scripts/materialize-higgsfield-art.sh
+
+      - name: Locate Unity Editor
+        id: unity
+        shell: bash
+        run: |
+          set -euo pipefail
+          UNITY_BIN="$(find "$HOME" /opt -type f -path "*/6000.0.26f1/Editor/Unity" -perm -111 2>/dev/null | head -n 1)"
+          if [[ -z "$UNITY_BIN" ]]; then
+            echo "Unity 6000.0.26f1 executable not found."
+            exit 1
+          fi
+          echo "bin=$UNITY_BIN" >> "$GITHUB_OUTPUT"
+
+      - name: Capture product visual acceptance evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$GITHUB_WORKSPACE/UnityProject/Logs"
+          if ! command -v xvfb-run >/dev/null 2>&1; then
+            echo "xvfb-run is required for render-capable visual acceptance."
+            exit 1
+          fi
+          xvfb-run -a -s "-screen 0 2560x1440x24" \
+            "${{ steps.unity.outputs.bin }}" \
+            -batchmode \
+            -projectPath "$GITHUB_WORKSPACE/UnityProject" \
+            -executeMethod FantasyTD.CI.UnityExecutorCi.VisualAcceptance \
+            -logFile "$GITHUB_WORKSPACE/UnityProject/Logs/unity-visual-acceptance.log"
+
+      - name: Upload visual acceptance evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: product-visual-acceptance-${{ github.run_id }}
+          if-no-files-found: error
+          path: |
+            UnityProject/Artifacts/UnityExecutor/visual-acceptance.txt
+            UnityProject/Artifacts/UnityExecutor/VisualAcceptance/*.png
+            UnityProject/Logs/unity-visual-acceptance.log
 
 
   android:
