@@ -77,6 +77,21 @@ def list_success_runs(repo, branch, token):
     runs.sort(key=lambda r: r.get("created_at", ""))
     return runs
 
+def run_may_match_scope(run, scope):
+    title = (run.get("display_title") or "").lower()
+    if scope == "map-a":
+        return (
+            "map-a" in title
+            or "mapa-" in title
+            or "pędostrzał" in title
+            or "pedostrzal" in title
+            or "chochlik" in title
+            or "style-lock" in title
+        )
+    if scope == "maps-2-6":
+        return any(f"map{i}" in title for i in range(2, 7))
+    return True
+
 def select_scope(generation_id, scope):
     gid = generation_id.lower()
     if scope == "map-a":
@@ -161,6 +176,8 @@ def main():
     latest_topology = None
 
     for run in runs:
+        if not run_may_match_scope(run, scope):
+            continue
         artifacts = api_json(f"{API}/repos/{repo}/actions/runs/{run['id']}/artifacts?per_page=100", token).get("artifacts", [])
         artifacts = [a for a in artifacts if not a.get("expired")]
         if not artifacts:
