@@ -1,5 +1,5 @@
 {
-  "requestId": "recovery-visual-acceptance-20261003-01",
+  "requestId": "recovery-visual-acceptance-20261003-02",
   "mode": "visual-acceptance",
-  "note": "Recovery product gate: render main menu, campaign selection, real Higgsfield MAP-A, HP bar, tower UPGRADE/SELL panel, and victory state. Do not claim DONE without screenshots."
+  "note": "Visual QA rerun after fixing tower-level clipping, portal/home-tree framing, and preserving all MAP-A runtime Higgsfield PNGs."
 }
