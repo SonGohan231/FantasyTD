@@ -7,6 +7,7 @@ import shutil
 import sys
 import tempfile
 import urllib.request
+import urllib.parse
 import zipfile
 from pathlib import Path
 
@@ -37,12 +38,25 @@ def api_json(url, token):
     with urllib.request.urlopen(req, timeout=120) as response:
         return json.loads(response.read().decode("utf-8"))
 
+class StripGithubAuthOnRedirect(urllib.request.HTTPRedirectHandler):
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        redirected = super().redirect_request(req, fp, code, msg, headers, newurl)
+        if redirected is not None:
+            old_host = urllib.parse.urlparse(req.full_url).hostname
+            new_host = urllib.parse.urlparse(newurl).hostname
+            if old_host == "api.github.com" and new_host != "api.github.com":
+                redirected.remove_header("Authorization")
+                redirected.remove_header("X-GitHub-Api-Version")
+                redirected.remove_header("Accept")
+        return redirected
+
 def api_bytes(url, token):
     req = urllib.request.Request(url)
     req.add_header("Authorization", f"Bearer {token}")
     req.add_header("Accept", "application/vnd.github+json")
     req.add_header("X-GitHub-Api-Version", "2022-11-28")
-    with urllib.request.urlopen(req, timeout=180) as response:
+    opener = urllib.request.build_opener(StripGithubAuthOnRedirect())
+    with opener.open(req, timeout=180) as response:
         return response.read()
 
 def list_success_runs(repo, branch, token):
