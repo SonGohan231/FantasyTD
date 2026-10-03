@@ -65,6 +65,13 @@ namespace FantasyTD.MapA
 
         private static void SeedShooter(Transform root)
         {
+            Sprite higgsfield = HiggsfieldSpriteFactory.SeedShooter;
+            if (higgsfield != null)
+            {
+                AddHiggsfieldVisual(root, higgsfield, 1.65f, new Vector2(0f, -0.46f), 18);
+                return;
+            }
+
             Color dark = new Color(0.10f, 0.32f, 0.09f);
             Color green = new Color(0.30f, 0.72f, 0.18f);
             Color lime = new Color(0.57f, 0.88f, 0.24f);
@@ -222,6 +229,14 @@ namespace FantasyTD.MapA
 
         private static void Wanderer(Transform root)
         {
+            Sprite higgsfield = HiggsfieldSpriteFactory.Wanderer;
+            if (higgsfield != null)
+            {
+                EnemyShadow(root, 0.84f);
+                AddHiggsfieldVisual(root, higgsfield, 1.18f, new Vector2(0f, -0.48f), 24);
+                return;
+            }
+
             float s = 0.66f;
             Color body = new Color(0.36f, 0.64f, 0.16f);
             EnemyShadow(root, 0.72f);
@@ -392,6 +407,30 @@ namespace FantasyTD.MapA
                 new Vector2(0.26f, 0.20f), new Color(0.92f, 0.42f, 1f, 0.34f), 30, true, RuntimeArt.SoftCircle);
             RuntimeArt.SpriteObject("EyeGlowR", root, new Vector2(0.18f, 0.20f),
                 new Vector2(0.26f, 0.20f), new Color(0.92f, 0.42f, 1f, 0.34f), 30, true, RuntimeArt.SoftCircle);
+        }
+
+
+        private static void AddHiggsfieldVisual(
+            Transform root,
+            Sprite sprite,
+            float targetHeight,
+            Vector2 localPosition,
+            int sortingOrder)
+        {
+            if (sprite == null) return;
+
+            GameObject visual = new GameObject("HiggsfieldVisual");
+            visual.transform.SetParent(root, false);
+            visual.transform.localPosition = new Vector3(localPosition.x, localPosition.y, 0f);
+
+            SpriteRenderer renderer = visual.AddComponent<SpriteRenderer>();
+            renderer.sprite = sprite;
+            renderer.sortingOrder = sortingOrder;
+            renderer.color = Color.white;
+
+            float height = Mathf.Max(0.001f, sprite.bounds.size.y);
+            float scale = targetHeight / height;
+            visual.transform.localScale = new Vector3(scale, scale, 1f);
         }
 
         private static void EnemyShadow(Transform root, float width)
