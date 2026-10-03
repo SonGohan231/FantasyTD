@@ -280,3 +280,67 @@ Completion evidence:
 - T0009 device/emulator smoke: **NOT RUN**
 - T0010 balance pass: **NOT STARTED**
 - no automatic merge
+
+
+---
+
+# T0012 — Higgsfield Asset Integration + Playable Systems
+
+Status: **ACTIVE**
+
+Depends on:
+- T0011 completion head `63b9b678f574a428ea6c1f79ec41af0d5848d8bf`
+
+Purpose:
+Replace procedural/runtime-placeholder presentation with actual previously generated Higgsfield art and make the resulting content operational in Unity. MAP-A must become the first fully integrated playable map using Higgsfield environment, towers, enemies and boss. Missing core mobile-TD interactions are included because the user explicitly requires a playable game rather than a visual prototype.
+
+Required MAP-A integration:
+- use real Higgsfield MAP-A environment art as rendered map presentation,
+- preserve authoritative `MapAData` route and planting coordinates underneath the art,
+- use real Higgsfield art for all four current towers, all four basic enemies, Król Cierni, spawn portal and base/home-tree,
+- no procedural stand-in where an approved Higgsfield asset exists,
+- regenerate or use an approved Higgsfield derivative for required MAP-A assets whose previous generation failed,
+- world-space enemy HP bars bound to live health,
+- planted-tower selection,
+- visible tower level and current stats,
+- Upgrade action with minimal provisional Lv1→Lv2→Lv3 progression for the existing four MAP-A towers only,
+- Sell action with provisional refund equal to floor(70% of total Essence invested) unless stronger repository design authority is found,
+- upgrades/sell must remain separate from T0010 balance work and be clearly documented as provisional gameplay scaffolding,
+- preserve tower role identity and existing wave/map topology.
+
+Higgsfield asset pipeline:
+- inventory every successful Higgsfield workflow artifact and provenance,
+- distinguish source sheets, single-state images, overlays and animation/video outputs,
+- import/normalize usable assets into Unity,
+- convert source sheets into playable sprite derivatives where necessary,
+- retain source provenance in project documentation,
+- use transparent/cleaned derivatives for characters/towers where required,
+- provide reusable content registry/import structure for MAP2–MAP6 generated art,
+- MAP2–MAP6 may be imported and registered but must not be claimed playable until their routes/waves/interactions actually exist,
+- MAP7 remains incomplete unless its failed generation set is successfully regenerated.
+
+Known generated content families:
+- MAP-A style-lock environment, Pędostrzał sheet, Chochlik sheet, plus MAP-A unit generations,
+- MAP2 Postapo environment/props/events/miniboss/bunker/radio-relay/salvage-tower assets and animations,
+- MAP3 Twilight environment/props/events/moon-gate/miniboss/night-tower assets and animations,
+- MAP4 Abyssal environment/props/events/pearl-shrine/giant-crab/aquatic-tower assets and animations,
+- MAP5 Fungal environment/props/events/secret-lab/fungal-mother/mutation-tower assets and animations,
+- MAP6 Bamboo environment/props/log-hazard/panda/dojo/panda-warrior/special-tower assets and animations,
+- MAP7 Temple generation remains incomplete.
+
+Validation:
+- Unity 6000.0.26f1 compile evidence,
+- MAP-A geometry remains valid against authoritative waypoints/spots,
+- live enemy HP bars update correctly,
+- build/select/upgrade/sell flows work in Play Mode,
+- four MAP-A towers preserve core role behavior after upgrading,
+- all MAP-A enemy/boss visuals are real Higgsfield-derived assets,
+- mobile layout remains usable at 16:9 and ~20:9,
+- final Android APK only after relevant Play Mode regressions pass.
+
+Constraints:
+- T0009 remains PLANNED,
+- T0010 remains PLANNED,
+- do not auto-merge,
+- do not claim MAP2–MAP6 gameplay complete merely because art is imported,
+- do not silently fall back to procedural art for a required Higgsfield asset.
