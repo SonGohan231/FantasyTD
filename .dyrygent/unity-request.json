@@ -1,5 +1,5 @@
 {
-  "requestId": "t0012-map2-natural-wave-20261003-03",
+  "requestId": "t0012-map2-resource-diagnostic-20261003-04",
   "mode": "playable-release",
-  "note": "Fix observed37130031212 failure: product scenes must be explicitly generated/registered before EnterPlaymode rather than relying on deferred editor initialization. Recheck MAP1 and actual MAP2 firstwave."
+  "note": "Capture actual runtime Resources index and AssetDatabase texture availability for missing MAP2 terrain seen37130407013; no runtime AssetDatabase fallback."
 }
