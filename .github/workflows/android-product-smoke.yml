@@ -1,0 +1,49 @@
+name: FantasyTD Android product smoke
+
+on:
+  push:
+    branches:
+      - recovery/t0012-higgsfield-product-completeness
+    paths:
+      - .dyrygent/android-smoke-request.json
+      - .github/scripts/android-product-smoke.sh
+      - .github/workflows/android-product-smoke.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  android-smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download exact T0012 candidate APK
+        uses: actions/download-artifact@v4
+        with:
+          run-id: 37124504578
+          name: fantasy-td-android-37124504578
+          path: ${{ runner.temp }}/fantasytd-candidate
+          github-token: ${{ github.token }}
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - name: Boot Android and exercise product flow
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 35
+          target: google_apis
+          arch: x86_64
+          profile: pixel_7_pro
+          script: bash .github/scripts/android-product-smoke.sh "${{ runner.temp }}/fantasytd-candidate" "$GITHUB_WORKSPACE/AndroidSmoke"
+      - name: Upload runtime evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: fantasytd-android-product-smoke-${{ github.run_id }}
+          if-no-files-found: warn
+          path: AndroidSmoke/**
