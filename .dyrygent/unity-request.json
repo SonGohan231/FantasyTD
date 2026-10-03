@@ -1,5 +1,5 @@
 {
-  "requestId": "t0012-regression-enemies-20261003-1233",
-  "mode": "enemy-wave-flow",
-  "note": "T0012 regression: enemy movement, rewards, leaks and waves 1-5 with Higgsfield units."
+  "requestId": "t0012-regression-boss-20261003-1235",
+  "mode": "boss-end-states",
+  "note": "T0012 regression: wave 6, Higgsfield boss, victory, defeat and restart."
 }
