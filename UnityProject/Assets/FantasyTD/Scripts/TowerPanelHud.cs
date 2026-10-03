@@ -59,7 +59,7 @@ namespace FantasyTD.MapA
             _panel.anchoredPosition = new Vector2(-28f, 28f);
 
             Image bg = panelGo.GetComponent<Image>();
-            bg.sprite = RuntimeArt.Circle;
+            bg.sprite = null;
             bg.color = new Color(0.045f, 0.085f, 0.035f, 0.97f);
             bg.raycastTarget = true;
 
@@ -67,8 +67,15 @@ namespace FantasyTD.MapA
             outline.effectColor = new Color(0.78f, 0.66f, 0.25f, 0.62f);
             outline.effectDistance = new Vector2(3f, -3f);
 
+            Image portrait = RuntimeArt.CreateArtImage(panelGo.transform, "TowerPortrait", HiggsfieldSpriteFactory.Plant(tower.Kind));
+            SetRect(portrait.rectTransform, new Vector2(0.03f, 0.73f), new Vector2(0.17f, 0.96f));
+
             _title = RuntimeArt.CreateText(panelGo.transform, "TowerName", 34, TextAnchor.MiddleLeft, Color.white);
-            SetRect(_title.rectTransform, new Vector2(0.07f, 0.73f), new Vector2(0.60f, 0.94f));
+            SetRect(_title.rectTransform, new Vector2(0.19f, 0.73f), new Vector2(0.59f, 0.94f));
+
+            _title.resizeTextForBestFit = true;
+            _title.resizeTextMinSize = 18;
+            _title.resizeTextMaxSize = 34;
 
             _level = RuntimeArt.CreateText(panelGo.transform, "TowerLevel", 27, TextAnchor.MiddleRight, new Color(1f, 0.84f, 0.28f));
             SetRect(_level.rectTransform, new Vector2(0.58f, 0.73f), new Vector2(0.82f, 0.94f));

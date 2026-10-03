@@ -96,26 +96,11 @@ namespace FantasyTD.MapA
             {
                 PlantingSpotDefinition def = MapAData.PlantingSpots[i];
 
-                GameObject soil = RuntimeArt.SpriteObject(
-                    "PlantingSpot_" + def.Id,
-                    null,
-                    def.Position,
-                    new Vector2(1.15f, 0.88f),
-                    new Color(1f, 1f, 1f, 0f),
-                    5);
-
-                GameObject ring = RuntimeArt.SpriteObject(
-                    "Ring",
-                    soil.transform,
-                    Vector2.zero,
-                    new Vector2(1.28f, 0.98f),
-                    new Color(1f, 0.86f, 0.34f, 0.26f),
-                    6,
-                    true,
-                    RuntimeArt.Ring);
-                ring.transform.localPosition = Vector3.zero;
-
-                PlantingSpot spot = soil.AddComponent<PlantingSpot>();
+                // Soil is authored in MAP_A. A logical anchor retains the
+                // production PlantingSystem distance-based touch hit testing.
+                GameObject anchor = new GameObject("PlantingSpot_" + def.Id);
+                anchor.transform.position = new Vector3(def.Position.x, def.Position.y, 0f);
+                PlantingSpot spot = anchor.AddComponent<PlantingSpot>();
                 spot.Initialize(def.Id, def.Epc);
                 _spots.Add(spot);
             }

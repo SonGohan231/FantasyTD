@@ -288,6 +288,10 @@ Completion evidence:
 
 Status: **ACTIVE**
 
+## User continuation 2026-10-03
+
+The user explicitly authorizes autonomous implementation and parallel Codex work coordinated by Dyrygent, toward the full FantasyTD campaign APK. TO99 is obsolete. No new image/video generation or paid art procurement is authorized. Existing approved media must be imported and connected to real gameplay. MAP-A completion remains the immediate release gate; subsequent campaign integrations must use verified sources and locked topology rather than unlock placeholder entries. Source preservation, animation hookup and removal of procedural decorative art are included in this active recovery scope. User validation is not required between these reversible implementation/test steps. A full-game completion claim still requires actual campaign and Android evidence.
+
 Purpose:
 Replace the rejected tech-demo presentation with the real Higgsfield MAP-A artwork and complete the minimum gameplay interactions expected from a playable tower-defense level.
 

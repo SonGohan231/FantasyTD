@@ -34,7 +34,6 @@ namespace FantasyTD.MapA
 
             Shoot(
                 target,
-                new Color(0.57f,0.86f,0.20f),
                 TowerUpgradeBalance.SeedDamage(Level),
                 DamageType.Physical,
                 0f,
@@ -42,11 +41,10 @@ namespace FantasyTD.MapA
             _cooldown = TowerUpgradeBalance.SeedCooldown(Level);
         }
 
-        private void Shoot(EnemyUnit target, Color color, float damage, DamageType type, float slow, float slowDuration)
+        private void Shoot(EnemyUnit target, float damage, DamageType type, float slow, float slowDuration)
         {
-            GameObject seed = RuntimeArt.SpriteObject(
-                "MagicSeed", null, transform.position, new Vector2(0.18f,0.18f), color, 50);
-            RuntimeVfx.AttachProjectile(seed, color, false);
+            GetComponent<HiggsfieldUnitAnimation>()?.PlayAction();
+            GameObject seed = RuntimeVfx.CreateProjectile("MagicSeed", transform.position, false);
             SeedProjectile projectile = seed.AddComponent<SeedProjectile>();
             projectile.Initialize(target,damage,7f,type,slow,slowDuration);
         }
@@ -64,7 +62,7 @@ namespace FantasyTD.MapA
 
             int income = TowerUpgradeBalance.FlowerIncome(Level);
             Session.Economy.Add(income);
-            RuntimeVfx.EssencePulse(transform.position);
+            GetComponent<HiggsfieldUnitAnimation>()?.PlayAction();
             Session.Hud.ShowFloatingMessage(
                 transform.position,
                 "+" + income + " Esencji",
@@ -101,7 +99,7 @@ namespace FantasyTD.MapA
 
             target.ApplyRoot(TowerUpgradeBalance.OakRootDuration(Level));
             target.TakeDamage(TowerUpgradeBalance.OakDamage(Level), DamageType.Root);
-            RuntimeVfx.RootBurst(target.transform.position);
+            GetComponent<HiggsfieldUnitAnimation>()?.PlayAction();
             Session.Hud.ShowFloatingMessage(
                 target.transform.position,
                 "KORZENIE!",
@@ -126,10 +124,8 @@ namespace FantasyTD.MapA
                 TowerUpgradeBalance.FrostRange(Level));
             if (target == null) return;
 
-            Color frost = new Color(0.50f,0.90f,1f);
-            GameObject seed = RuntimeArt.SpriteObject(
-                "FrostSeed", null, transform.position, new Vector2(0.18f,0.18f), frost, 50);
-            RuntimeVfx.AttachProjectile(seed, frost, true);
+            GetComponent<HiggsfieldUnitAnimation>()?.PlayAction();
+            GameObject seed = RuntimeVfx.CreateProjectile("FrostSeed", transform.position, true);
             SeedProjectile projectile = seed.AddComponent<SeedProjectile>();
             projectile.Initialize(
                 target,

@@ -56,7 +56,7 @@ namespace FantasyTD.Product
             RectTransform shadeRt = shadeGo.GetComponent<RectTransform>();
             Stretch(shadeRt);
             Image shade = shadeGo.GetComponent<Image>();
-            shade.sprite = RuntimeArt.White;
+            shade.sprite = null;
             shade.color = new Color(0.018f, 0.040f, 0.020f, 0.78f);
             shade.raycastTarget = false;
 

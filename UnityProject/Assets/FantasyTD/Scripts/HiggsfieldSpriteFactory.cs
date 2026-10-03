@@ -16,6 +16,22 @@ namespace FantasyTD.MapA
         private static Sprite _boss;
         private static Sprite _portal;
         private static Sprite _homeTree;
+        private static Sprite[] _wandererWalk;
+        private static Sprite _seedShot;
+
+        // Authored locomotion poses on the bottom row of artifact 11219935723.
+        // The last pose faces left in the source, so it is mirrored to match the others.
+        public static Sprite[] WandererWalk => _wandererWalk ??= new[]
+        {
+            CreateCutout("Higgsfield/WANDERER_SHEET", 0.455f, 0f, 0.635f, 0.47f, "Chochlik_Walk_0", false, true),
+            CreateCutout("Higgsfield/WANDERER_SHEET", 0.635f, 0f, 0.808f, 0.47f, "Chochlik_Walk_1", false, true),
+            CreateCutout("Higgsfield/WANDERER_SHEET", 0.808f, 0f, 1f, 0.47f, "Chochlik_Walk_2", true, true)
+        };
+
+        // The isolated flying seed above the small bud in artifact 11219567888.
+        // This is a source crop, not a generated primitive or a new illustration.
+        public static Sprite SeedShot => _seedShot ??= CreateCutout(
+            "Higgsfield/SEED_SHOOTER_SHEET", 0.70f, 0.458f, 0.719f, 0.496f, "Pedostrzal_AuthoredSeedShot");
 
         public static Sprite SeedShooter => _seedShooter ??= CreateCutout(
             "Higgsfield/SEED_SHOOTER_SHEET", 0f, 0f, 0.515f, 1f, "Higgsfield_Pedostrzal");
@@ -88,6 +104,8 @@ namespace FantasyTD.MapA
             Require(Boss, "Król Cierni");
             Require(Portal, "Portal");
             Require(HomeTree, "Baza-drzewo");
+            Require(SeedShot, "Źródłowy pocisk nasienny");
+            foreach (Sprite frame in WandererWalk) Require(frame, "Źródłowa poza chodu Chochlika");
         }
 
         private static void Require(Sprite sprite, string label)
@@ -102,7 +120,9 @@ namespace FantasyTD.MapA
             float yMinN,
             float xMaxN,
             float yMaxN,
-            string name)
+            string name,
+            bool mirror = false,
+            bool isolateForeground = false)
         {
             Texture2D sheet = Resources.Load<Texture2D>(resourcePath);
             if (sheet == null)
@@ -163,6 +183,19 @@ namespace FantasyTD.MapA
                 }
             }
 
+            if (isolateForeground)
+            {
+                KeepLargestForeground(cropped, width, height);
+                minX = width; minY = height; maxX = -1; maxY = -1;
+                for (int y = 0; y < height; y++)
+                for (int x = 0; x < width; x++)
+                {
+                    if (cropped[y * width + x].a < 48) continue;
+                    minX = Mathf.Min(minX, x); minY = Mathf.Min(minY, y);
+                    maxX = Mathf.Max(maxX, x); maxY = Mathf.Max(maxY, y);
+                }
+            }
+
             if (maxX < minX || maxY < minY)
             {
                 Debug.LogError("Higgsfield cutout produced no foreground pixels: " + resourcePath);
@@ -188,7 +221,7 @@ namespace FantasyTD.MapA
                 int sourceRow = (minY + y) * width;
                 int targetRow = y * finalWidth;
                 for (int x = 0; x < finalWidth; x++)
-                    finalPixels[targetRow + x] = cropped[sourceRow + minX + x];
+                    finalPixels[targetRow + x] = cropped[sourceRow + minX + (mirror ? finalWidth - 1 - x : x)];
             }
 
             result.SetPixels32(finalPixels);
@@ -201,6 +234,52 @@ namespace FantasyTD.MapA
                 100f);
             sprite.name = name;
             return sprite;
+        }
+
+        // Remove disconnected fragments of neighboring drawings, never repair/synthesize pixels.
+        private static void KeepLargestForeground(Color32[] pixels, int width, int height)
+        {
+            int[] labels = new int[pixels.Length];
+            int[] queue = new int[pixels.Length];
+            int label = 0, largestLabel = 0, largestCount = 0;
+            for (int start = 0; start < pixels.Length; start++)
+            {
+                if (pixels[start].a < 48 || labels[start] != 0) continue;
+                label++;
+                int read = 0, count = 1;
+                queue[0] = start; labels[start] = label;
+                while (read < count)
+                {
+                    int index = queue[read++], px = index % width, py = index / width;
+                    for (int dy = -1; dy <= 1; dy++)
+                    for (int dx = -1; dx <= 1; dx++)
+                    {
+                        int x = px + dx, y = py + dy;
+                        if (x < 0 || x >= width || y < 0 || y >= height) continue;
+                        int next = y * width + x;
+                        if (pixels[next].a < 48 || labels[next] != 0) continue;
+                        labels[next] = label; queue[count++] = next;
+                    }
+                }
+                if (count > largestCount) { largestCount = count; largestLabel = label; }
+            }
+            for (int y = 0; y < height; y++)
+            for (int x = 0; x < width; x++)
+            {
+                int index = y * width + x;
+                if (labels[index] == largestLabel) continue;
+                bool edge = false;
+                // Retain only the original antialias fringe adjoining the retained figure.
+                if (pixels[index].a < 48)
+                    for (int dy = -1; dy <= 1; dy++)
+                    for (int dx = -1; dx <= 1; dx++)
+                    {
+                        int nx = x + dx, ny = y + dy;
+                        if (nx >= 0 && nx < width && ny >= 0 && ny < height &&
+                            labels[ny * width + nx] == largestLabel) edge = true;
+                    }
+                if (!edge) pixels[index].a = 0;
+            }
         }
 
         private static Color AverageBackground(

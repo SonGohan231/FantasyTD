@@ -64,8 +64,6 @@ namespace FantasyTD.MapA
                 _safe, new Vector2(screen.x, screen.y), null, out local);
             _radialRoot.anchoredPosition = local;
 
-            CreateRadialBackdrop();
-
             CreateRadialButton(PlantKind.SeedShooter, new Vector2(-125f, 0f), new Color(0.28f, 0.64f, 0.20f));
             CreateRadialButton(PlantKind.EssenceFlower, new Vector2(0f, 125f), new Color(0.92f, 0.64f, 0.12f));
             CreateRadialButton(PlantKind.OakGuardian, new Vector2(125f, 0f), new Color(0.42f, 0.26f, 0.10f));
@@ -123,7 +121,7 @@ namespace FantasyTD.MapA
             pr.sizeDelta = new Vector2(760f, 400f);
 
             Image panelImage = panel.GetComponent<Image>();
-            panelImage.sprite = RuntimeArt.Circle;
+            panelImage.sprite = null;
             panelImage.color = victory
                 ? new Color(0.075f, 0.18f, 0.075f, 0.97f)
                 : new Color(0.20f, 0.075f, 0.055f, 0.97f);
@@ -133,8 +131,6 @@ namespace FantasyTD.MapA
                 ? new Color(0.58f, 0.78f, 0.22f, 0.72f)
                 : new Color(0.72f, 0.28f, 0.13f, 0.72f);
             outline.effectDistance = new Vector2(4f, -4f);
-
-            CreateEndPanelDecor(panel.transform, victory);
 
             Text title = RuntimeArt.CreateText(
                 panel.transform, "Result", 54, TextAnchor.MiddleCenter, Color.white);
@@ -227,8 +223,6 @@ namespace FantasyTD.MapA
             _waveButtonText = _waveButton.GetComponentInChildren<Text>();
             _waveButton.onClick.AddListener(delegate { _session.Waves.StartNextWave(); });
 
-            AddButtonLeaf(_waveButton.transform);
-
             Text hint = RuntimeArt.CreateText(
                 _safe, "Hint", 24, TextAnchor.LowerRight,
                 new Color(1f, 1f, 1f, 0.86f));
@@ -238,7 +232,7 @@ namespace FantasyTD.MapA
             hr.pivot = new Vector2(1f, 0f);
             hr.sizeDelta = new Vector2(600f, 100f);
             hr.anchoredPosition = new Vector2(-28f, 30f);
-            hint.text = "Dotknij kręgu ziemi, aby posadzić obrońcę.";
+            hint.text = "Dotknij grządki, aby posadzić obrońcę.";
             Shadow hintShadow = hint.gameObject.AddComponent<Shadow>();
             hintShadow.effectColor = new Color(0f, 0f, 0f, 0.74f);
             hintShadow.effectDistance = new Vector2(2f, -2f);
@@ -257,36 +251,9 @@ namespace FantasyTD.MapA
             rt.anchoredPosition = Vector2.zero;
 
             Image image = shadeGo.GetComponent<Image>();
-            image.sprite = RuntimeArt.White;
+            image.sprite = null;
             image.color = new Color(0.025f, 0.055f, 0.025f, 0.28f);
             image.raycastTarget = false;
-        }
-
-        private void CreateRadialBackdrop()
-        {
-            GameObject glowGo = new GameObject(
-                "RadialBackdrop", typeof(RectTransform), typeof(CanvasRenderer), typeof(Image));
-            glowGo.transform.SetParent(_radialRoot, false);
-            RectTransform glowRt = glowGo.GetComponent<RectTransform>();
-            glowRt.sizeDelta = new Vector2(320f, 320f);
-            glowRt.anchoredPosition = Vector2.zero;
-
-            Image glow = glowGo.GetComponent<Image>();
-            glow.sprite = RuntimeArt.SoftCircle;
-            glow.color = new Color(0.055f, 0.10f, 0.045f, 0.78f);
-            glow.raycastTarget = false;
-
-            GameObject ringGo = new GameObject(
-                "RadialOrnament", typeof(RectTransform), typeof(CanvasRenderer), typeof(Image));
-            ringGo.transform.SetParent(_radialRoot, false);
-            RectTransform ringRt = ringGo.GetComponent<RectTransform>();
-            ringRt.sizeDelta = new Vector2(238f, 238f);
-            ringRt.anchoredPosition = Vector2.zero;
-
-            Image ring = ringGo.GetComponent<Image>();
-            ring.sprite = RuntimeArt.Ring;
-            ring.color = new Color(0.88f, 0.72f, 0.30f, 0.30f);
-            ring.raycastTarget = false;
         }
 
         private void ClampRadialToSafeArea()
@@ -325,25 +292,12 @@ namespace FantasyTD.MapA
             pr.anchoredPosition = pos;
 
             Image panelImage = panel.GetComponent<Image>();
-            panelImage.sprite = RuntimeArt.Circle;
+            panelImage.sprite = null;
             panelImage.color = new Color(0.065f, 0.115f, 0.055f, 0.94f);
 
             Outline outline = panel.GetComponent<Outline>();
             outline.effectColor = new Color(0.65f, 0.53f, 0.21f, 0.42f);
             outline.effectDistance = new Vector2(2f, -2f);
-
-            GameObject shineGo = new GameObject(
-                name + "Shine", typeof(RectTransform), typeof(CanvasRenderer), typeof(Image));
-            shineGo.transform.SetParent(panel.transform, false);
-            RectTransform shineRt = shineGo.GetComponent<RectTransform>();
-            shineRt.anchorMin = new Vector2(0.07f, 0.58f);
-            shineRt.anchorMax = new Vector2(0.93f, 0.88f);
-            shineRt.offsetMin = Vector2.zero;
-            shineRt.offsetMax = Vector2.zero;
-            Image shine = shineGo.GetComponent<Image>();
-            shine.sprite = RuntimeArt.Circle;
-            shine.color = new Color(1f, 0.95f, 0.72f, 0.06f);
-            shine.raycastTarget = false;
 
             text = RuntimeArt.CreateText(panel.transform, name + "Text", 30, align, Color.white);
             RectTransform tr = text.rectTransform;
@@ -369,6 +323,16 @@ namespace FantasyTD.MapA
             r.sizeDelta = new Vector2(185f, 112f);
             r.anchoredPosition = offset;
 
+            Image portrait = RuntimeArt.CreateArtImage(button.transform, "PlantPortrait", HiggsfieldSpriteFactory.Plant(kind));
+            RectTransform portraitRect = portrait.rectTransform;
+            portraitRect.anchorMin = new Vector2(0.03f, 0.13f);
+            portraitRect.anchorMax = new Vector2(0.31f, 0.87f);
+            portraitRect.offsetMin = portraitRect.offsetMax = Vector2.zero;
+            Text optionLabel = button.GetComponentInChildren<Text>();
+            optionLabel.rectTransform.anchorMin = new Vector2(0.32f, 0f);
+            optionLabel.rectTransform.offsetMin = new Vector2(3f, 8f);
+            optionLabel.rectTransform.offsetMax = new Vector2(-6f, -8f);
+
             bool affordable = _session.Economy.Essence >= cost;
             button.interactable = affordable;
 
@@ -377,66 +341,6 @@ namespace FantasyTD.MapA
             {
                 if (_onBuild != null) _onBuild(captured);
             });
-        }
-
-        private void AddButtonLeaf(Transform button)
-        {
-            GameObject leafGo = new GameObject(
-                "LeafEmblem", typeof(RectTransform), typeof(CanvasRenderer), typeof(Image));
-            leafGo.transform.SetParent(button, false);
-
-            RectTransform rt = leafGo.GetComponent<RectTransform>();
-            rt.anchorMin = new Vector2(0f, 0.5f);
-            rt.anchorMax = new Vector2(0f, 0.5f);
-            rt.pivot = new Vector2(0.5f, 0.5f);
-            rt.sizeDelta = new Vector2(42f, 62f);
-            rt.anchoredPosition = new Vector2(30f, 0f);
-            rt.localRotation = Quaternion.Euler(0f, 0f, -28f);
-
-            Image image = leafGo.GetComponent<Image>();
-            image.sprite = RuntimeArt.Leaf;
-            image.color = new Color(0.94f, 0.80f, 0.28f, 0.72f);
-            image.raycastTarget = false;
-        }
-
-        private static void CreateEndPanelDecor(Transform panel, bool victory)
-        {
-            Color glow = victory
-                ? new Color(0.55f, 0.84f, 0.20f, 0.18f)
-                : new Color(0.88f, 0.22f, 0.12f, 0.18f);
-
-            GameObject glowGo = new GameObject(
-                "ResultGlow", typeof(RectTransform), typeof(CanvasRenderer), typeof(Image));
-            glowGo.transform.SetParent(panel, false);
-            RectTransform gr = glowGo.GetComponent<RectTransform>();
-            gr.anchorMin = new Vector2(0.12f, 0.18f);
-            gr.anchorMax = new Vector2(0.88f, 0.92f);
-            gr.offsetMin = Vector2.zero;
-            gr.offsetMax = Vector2.zero;
-            Image gi = glowGo.GetComponent<Image>();
-            gi.sprite = RuntimeArt.SoftCircle;
-            gi.color = glow;
-            gi.raycastTarget = false;
-
-            for (int i = 0; i < 4; i++)
-            {
-                bool left = i < 2;
-                GameObject leafGo = new GameObject(
-                    "ResultLeaf_" + i, typeof(RectTransform), typeof(CanvasRenderer), typeof(Image));
-                leafGo.transform.SetParent(panel, false);
-                RectTransform lr = leafGo.GetComponent<RectTransform>();
-                lr.anchorMin = new Vector2(left ? 0.06f : 0.94f, i % 2 == 0 ? 0.30f : 0.68f);
-                lr.anchorMax = lr.anchorMin;
-                lr.sizeDelta = new Vector2(70f, 110f);
-                lr.anchoredPosition = Vector2.zero;
-                lr.localRotation = Quaternion.Euler(0f, 0f, left ? -42f : 42f);
-                Image li = leafGo.GetComponent<Image>();
-                li.sprite = RuntimeArt.Leaf;
-                li.color = victory
-                    ? new Color(0.37f, 0.68f, 0.18f, 0.62f)
-                    : new Color(0.48f, 0.22f, 0.11f, 0.62f);
-                li.raycastTarget = false;
-            }
         }
 
         private IEnumerator PulseText()

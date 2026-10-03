@@ -1,0 +1,200 @@
+{
+  "map_id": "MAP3_TWILIGHT",
+  "logical_size": {
+    "width": 24,
+    "height": 14
+  },
+  "difficulty_step": 3,
+  "topology_type": "shared_entry_early_split_two_persistent_routes_late_merge_shared_exit",
+  "shared_entry": [
+    [
+      0,
+      7
+    ],
+    [
+      1.5,
+      7
+    ],
+    [
+      3,
+      7
+    ]
+  ],
+  "split": [
+    3,
+    7
+  ],
+  "upper_route": [
+    [
+      3,
+      7
+    ],
+    [
+      6,
+      10.5
+    ],
+    [
+      11,
+      11.5
+    ],
+    [
+      15,
+      9.5
+    ],
+    [
+      19,
+      8.8
+    ],
+    [
+      22,
+      7
+    ]
+  ],
+  "lower_route": [
+    [
+      3,
+      7
+    ],
+    [
+      6,
+      3.5
+    ],
+    [
+      10,
+      2.5
+    ],
+    [
+      14,
+      4
+    ],
+    [
+      18,
+      5.2
+    ],
+    [
+      22,
+      7
+    ]
+  ],
+  "merge": [
+    22,
+    7
+  ],
+  "shared_exit": [
+    [
+      22,
+      7
+    ],
+    [
+      24,
+      7
+    ]
+  ],
+  "build_spots": [
+    {
+      "id": "T1",
+      "pos": [
+        1.5,
+        9.2
+      ],
+      "zone": "pre_split"
+    },
+    {
+      "id": "T2",
+      "pos": [
+        2,
+        4.8
+      ],
+      "zone": "pre_split"
+    },
+    {
+      "id": "T3",
+      "pos": [
+        6.8,
+        8.6
+      ],
+      "zone": "upper"
+    },
+    {
+      "id": "T4",
+      "pos": [
+        10,
+        9.4
+      ],
+      "zone": "upper"
+    },
+    {
+      "id": "T5",
+      "pos": [
+        14,
+        12.2
+      ],
+      "zone": "upper"
+    },
+    {
+      "id": "T6",
+      "pos": [
+        18.2,
+        10.6
+      ],
+      "zone": "upper"
+    },
+    {
+      "id": "T7",
+      "pos": [
+        6.2,
+        5.5
+      ],
+      "zone": "lower"
+    },
+    {
+      "id": "T8",
+      "pos": [
+        9.5,
+        4.8
+      ],
+      "zone": "lower"
+    },
+    {
+      "id": "T9",
+      "pos": [
+        14.2,
+        2.1
+      ],
+      "zone": "lower"
+    },
+    {
+      "id": "T10",
+      "pos": [
+        18.2,
+        3.4
+      ],
+      "zone": "lower"
+    },
+    {
+      "id": "T11",
+      "pos": [
+        21,
+        9.6
+      ],
+      "zone": "late_merge"
+    },
+    {
+      "id": "T12",
+      "pos": [
+        22.3,
+        4.9
+      ],
+      "zone": "late_merge"
+    }
+  ],
+  "constraints": {
+    "one_entry": true,
+    "one_exit": true,
+    "enemies_cannot_switch_branches": true,
+    "persistent_branch_fraction_target": "~65-70%",
+    "required_build_spot_count": 12,
+    "no_camera_scroll": true,
+    "unity_is_authoritative": true
+  }
+}

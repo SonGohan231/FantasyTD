@@ -257,17 +257,13 @@ namespace FantasyTD.CI
                 PlantingSpot spot;
                 if (!byId.TryGetValue(def.Id, out spot))
                     return false;
-                SpriteRenderer sr = spot.GetComponent<SpriteRenderer>();
-                Transform ring = spot.transform.Find("Ring");
-                SpriteRenderer ringRenderer = ring != null ? ring.GetComponent<SpriteRenderer>() : null;
                 return Vector2.Distance(spot.transform.position, def.Position) <= 0.001f &&
-                       sr != null && sr.enabled && sr.sprite != null &&
-                       ringRenderer != null && ringRenderer.enabled && ringRenderer.sprite != null;
+                       spot.GetComponentsInChildren<Renderer>(true).Length == 0;
             });
 
             result.Check("plantingSpotIdsUnique", unique, "Runtime planting spot IDs are not unique.");
-            result.Check("plantingSpotsMatchDefinitionsAndAreVisible", allMatch,
-                "Runtime planting spots do not exactly match all definitions/positions or lack visible renderers.");
+            result.Check("plantingSpotsMatchAuthoredPatchAnchors", allMatch,
+                "Runtime planting spot anchors do not match the authored patch definitions or contain generated overlay renderers.");
         }
 
         private static void ValidateGridAbsence(Result result)

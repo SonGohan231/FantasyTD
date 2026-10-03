@@ -45,14 +45,13 @@ namespace FantasyTD.CI
             EnemyKind.Boss
         };
 
-        private static readonly string[] PreDefenseSeedSpots = { "A3", "A7", "A11" };
-        // T0012 uses a shorter art-aligned route than the original prototype.
-        // The victory fixture spends the remaining setup Essence on additional
-        // production SeedShooters so the boss-kill assertion still validates
-        // EnemyUnit.Die/reward flow rather than accidentally testing a sparse
-        // defense against a materially shorter route.
+        private static readonly string[] PreDefenseSeedSpots = { "A11", "A12" };
+        // Art-aligned pads A1/A5/A9 supply the measured root/seed/frost
+        // scenarios in route order. A11/A12 defend downstream throughout.
+        // Rebuild tested pads through production planting after the samples;
+        // retain the boss kill/reward/base assertions even if balance now fails.
         private static readonly string[] ExtraDefenseSeedSpots =
-            { "A2", "A4", "A6", "A8", "A10", "A12" };
+            { "A1", "A5", "A7", "A9" };
 
         private enum Phase
         {
@@ -666,19 +665,19 @@ namespace FantasyTD.CI
             AddFact("boss.speedMeasured", _bossSpeedMeasured);
             CheckApprox(_bossSpeedMeasured, _bossSpeedConfigured, 0.05f, "boss baseline speed");
 
-            _phase = Phase.SeedWaitRange;
+            _phase = Phase.OakWaitRange;
         }
 
         private static void RunSeedWaitRange()
         {
             EnsureBossAlive("seed range");
-            PlantingSpot spot = FindSpot("A1");
+            PlantingSpot spot = FindSpot("A5");
             float distance = Vector2.Distance(_boss.transform.position, spot.transform.position);
             if (distance > 3.05f)
                 return;
 
             bool planted = TryPlantThroughProductionUi(spot, PlantKind.SeedShooter);
-            Check(planted, "failed to plant SeedShooter A1 for boss physical evidence");
+            Check(planted, "failed to plant SeedShooter A5 for boss physical evidence");
             if (!planted) return;
 
             AddFact("boss.seed.spot", spot.Id);
@@ -689,7 +688,7 @@ namespace FantasyTD.CI
         private static void RunSeedWaitProjectile()
         {
             EnsureBossAlive("seed projectile");
-            PlantingSpot spot = FindSpot("A1");
+            PlantingSpot spot = FindSpot("A5");
             SeedProjectile projectile = FindProjectileTargetingBoss("MagicSeed", spot.transform.position, 0.75f);
             if (projectile == null)
                 return;
@@ -740,7 +739,7 @@ namespace FantasyTD.CI
         private static void RunFrostWaitRange()
         {
             EnsureBossAlive("frost range");
-            PlantingSpot spot = FindSpot("A5");
+            PlantingSpot spot = FindSpot("A9");
             float distance = Vector2.Distance(_boss.transform.position, spot.transform.position);
             if (distance > 3.05f)
             {
@@ -750,7 +749,7 @@ namespace FantasyTD.CI
 
             Time.timeScale = 1f;
             bool planted = TryPlantThroughProductionUi(spot, PlantKind.FrostBud);
-            Check(planted, "failed to plant FrostBud A5 for boss slow evidence");
+            Check(planted, "failed to plant FrostBud A9 for boss slow evidence");
             if (!planted) return;
 
             AddFact("boss.frost.spot", spot.Id);
@@ -761,7 +760,7 @@ namespace FantasyTD.CI
         private static void RunFrostWaitProjectile()
         {
             EnsureBossAlive("frost projectile");
-            PlantingSpot spot = FindSpot("A5");
+            PlantingSpot spot = FindSpot("A9");
             SeedProjectile projectile = FindProjectileTargetingBoss("FrostSeed", spot.transform.position, 0.75f);
             if (projectile == null)
                 return;
@@ -855,21 +854,21 @@ namespace FantasyTD.CI
             CheckApprox(_frostSpeedAfter, _bossSpeedConfigured, 0.05f, "boss speed after Frost");
 
             Time.timeScale = 8f;
-            _phase = Phase.OakWaitRange;
+            _phase = Phase.VictoryWaitNonBoss;
         }
 
         private static void RunOakWaitRange()
         {
             EnsureBossAlive("oak range");
-            PlantingSpot spot = FindSpot("A9");
+            PlantingSpot spot = FindSpot("A1");
             float distance = Vector2.Distance(_boss.transform.position, spot.transform.position);
-            if (distance > 2.25f || AnyNonBossWithin(spot.transform.position, 2.4f))
+            if (distance > 2.39f || AnyNonBossWithin(spot.transform.position, 2.4f))
                 return;
 
             Time.timeScale = 1f;
             _oakHpBefore = ReadEnemyFloat(_boss, "_hp");
             bool planted = TryPlantThroughProductionUi(spot, PlantKind.OakGuardian);
-            Check(planted, "failed to plant OakGuardian A9 for boss root evidence");
+            Check(planted, "failed to plant OakGuardian A1 for boss root evidence");
             if (!planted) return;
 
             AddFact("boss.oak.spot", spot.Id);
@@ -891,7 +890,7 @@ namespace FantasyTD.CI
             _oakRootUntil = rootUntil;
             _oakRootObservedDuration = _oakRootUntil - Time.time;
 
-            DestroyPlantAt<OakGuardianPlant>(FindSpot("A9"));
+            DestroyPlantAt<OakGuardianPlant>(FindSpot("A1"));
 
             AddFact("boss.oak.hpAfter", _oakHpAfter);
             AddFact("boss.oak.damage", _oakDamage);
@@ -943,8 +942,8 @@ namespace FantasyTD.CI
             AddFact("boss.oak.speedAfter", _oakSpeedAfter);
             CheckApprox(_oakSpeedAfter, _bossSpeedConfigured, 0.05f, "boss speed after root");
 
-            Time.timeScale = 8f;
-            _phase = Phase.VictoryWaitNonBoss;
+            Time.timeScale = 1f;
+            _phase = Phase.SeedWaitRange;
         }
 
         private static void RunVictoryWaitNonBoss()
@@ -1443,7 +1442,15 @@ namespace FantasyTD.CI
                 T plant = plants[i];
                 if (plant != null && Vector2.Distance(plant.transform.position, spot.transform.position) < 0.15f)
                 {
-                    UnityEngine.Object.Destroy(plant.gameObject);
+                    // Sell through production so the sampled authored pad can
+                    // be rebuilt later, with the normal refund and occupancy flow.
+                    if (spot.Tower != null)
+                        spot.Tower.Sell();
+                    else
+                    {
+                        spot.ClearTower(null);
+                        UnityEngine.Object.Destroy(plant.gameObject);
+                    }
                     return;
                 }
             }

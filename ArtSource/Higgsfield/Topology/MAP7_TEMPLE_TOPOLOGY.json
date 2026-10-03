@@ -1,0 +1,268 @@
+{
+  "map_id": "MAP7_SUN_MOON_TEMPLE",
+  "title": "Świątynia Słońca i Księżyca",
+  "logical_size": {
+    "width": 30,
+    "height": 17
+  },
+  "difficulty": "Hard",
+  "target_build_spots": 12,
+  "topology_description": "One shared entry splits into three temple routes. Two side-transition gates and mirror mechanisms dynamically alter which cross-connections are open; all three primary lanes remain solvable across route states.",
+  "spawn": {
+    "x": 0,
+    "y": 8.5
+  },
+  "split": {
+    "x": 5,
+    "y": 8.5
+  },
+  "exit": {
+    "x": 30,
+    "y": 8.5
+  },
+  "primary_routes": {
+    "upper": [
+      [
+        0,
+        8.5
+      ],
+      [
+        5,
+        8.5
+      ],
+      [
+        7,
+        13.5
+      ],
+      [
+        12,
+        14
+      ],
+      [
+        17,
+        13
+      ],
+      [
+        22,
+        11
+      ],
+      [
+        25,
+        8.5
+      ],
+      [
+        30,
+        8.5
+      ]
+    ],
+    "center": [
+      [
+        0,
+        8.5
+      ],
+      [
+        5,
+        8.5
+      ],
+      [
+        9,
+        8.5
+      ],
+      [
+        14,
+        8.5
+      ],
+      [
+        19,
+        8.5
+      ],
+      [
+        25,
+        8.5
+      ],
+      [
+        30,
+        8.5
+      ]
+    ],
+    "lower": [
+      [
+        0,
+        8.5
+      ],
+      [
+        5,
+        8.5
+      ],
+      [
+        7,
+        3.5
+      ],
+      [
+        12,
+        3
+      ],
+      [
+        17,
+        4
+      ],
+      [
+        22,
+        6
+      ],
+      [
+        25,
+        8.5
+      ],
+      [
+        30,
+        8.5
+      ]
+    ]
+  },
+  "dynamic_links": {
+    "gate_A": {
+      "from": [
+        12,
+        14
+      ],
+      "to": [
+        14,
+        8.5
+      ],
+      "initial": "open"
+    },
+    "gate_B": {
+      "from": [
+        14,
+        8.5
+      ],
+      "to": [
+        17,
+        4
+      ],
+      "initial": "closed"
+    },
+    "mirror_bridge": {
+      "from": [
+        17,
+        13
+      ],
+      "to": [
+        19,
+        8.5
+      ],
+      "state_A": "open",
+      "state_B": "closed"
+    }
+  },
+  "route_states": {
+    "A": {
+      "gate_A": "open",
+      "gate_B": "closed",
+      "mirror_bridge": "open"
+    },
+    "B": {
+      "gate_A": "closed",
+      "gate_B": "open",
+      "mirror_bridge": "closed"
+    }
+  },
+  "build_spots": [
+    {
+      "id": "T1",
+      "x": 2.8,
+      "y": 11.2,
+      "zone": "pre_split"
+    },
+    {
+      "id": "T2",
+      "x": 3,
+      "y": 5.8,
+      "zone": "pre_split"
+    },
+    {
+      "id": "T3",
+      "x": 8.8,
+      "y": 15.5,
+      "zone": "upper"
+    },
+    {
+      "id": "T4",
+      "x": 14.8,
+      "y": 15.2,
+      "zone": "upper"
+    },
+    {
+      "id": "T5",
+      "x": 9.5,
+      "y": 10.2,
+      "zone": "center"
+    },
+    {
+      "id": "T6",
+      "x": 16,
+      "y": 10.3,
+      "zone": "center"
+    },
+    {
+      "id": "T7",
+      "x": 8.8,
+      "y": 1.5,
+      "zone": "lower"
+    },
+    {
+      "id": "T8",
+      "x": 15.2,
+      "y": 1.8,
+      "zone": "lower"
+    },
+    {
+      "id": "T9",
+      "x": 20.5,
+      "y": 13.3,
+      "zone": "upper_late"
+    },
+    {
+      "id": "T10",
+      "x": 20.5,
+      "y": 4,
+      "zone": "lower_late"
+    },
+    {
+      "id": "T11",
+      "x": 24.5,
+      "y": 11.2,
+      "zone": "final"
+    },
+    {
+      "id": "T12",
+      "x": 25,
+      "y": 5.8,
+      "zone": "final"
+    }
+  ],
+  "dynamic_event": {
+    "sequence": [
+      "MIRROR_ROTATE",
+      "BEAM_SWEEP",
+      "GATE_A_CLOSE",
+      "GATE_B_OPEN",
+      "ROUTE_STATE_B",
+      "MIRROR_RESET",
+      "ROUTE_STATE_A"
+    ],
+    "requirement": "All route changes are telegraphed before enemies reach affected junctions."
+  },
+  "secret": {
+    "id": "guardian_sanctum",
+    "miniboss": "Awakened Temple Guardian",
+    "unlock": "Sun-Moon support/light tower"
+  },
+  "constraints": [
+    "No build spot covers all three lanes.",
+    "No gate state may create an unavoidable dead-end for enemies already committed to a route.",
+    "Mirror beam is telegraphed and non-lethal to player structures unless explicitly balanced later.",
+    "Exact route/build coordinates are deterministic Unity data, independent of generated artwork."
+  ]
+}

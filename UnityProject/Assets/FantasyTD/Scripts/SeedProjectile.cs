@@ -33,6 +33,9 @@ namespace FantasyTD.MapA
             Vector2 target = _target.transform.position;
             Vector2 next = Vector2.MoveTowards(current,target,_speed*Time.deltaTime);
             transform.position = new Vector3(next.x,next.y,-0.35f);
+            Vector2 direction = target - current;
+            if (direction.sqrMagnitude > 0.0001f)
+                transform.rotation = Quaternion.Euler(0f, 0f, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f);
 
             if (Vector2.Distance(next,target) <= 0.10f)
             {

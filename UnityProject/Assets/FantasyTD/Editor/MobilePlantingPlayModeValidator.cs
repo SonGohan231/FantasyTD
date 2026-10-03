@@ -244,7 +244,7 @@ namespace FantasyTD.CI
             record.Screen = screen;
             record.WorldPressAccepted = accepted;
             record.Selected = _planting.SelectedSpot == spot;
-            record.RingSelected = IsRingSelected(spot);
+            record.SelectionStateSelected = IsSpotSelected(spot);
             record.RadialOpen = _hud.RadialRoot != null;
 
             Button[] optionButtons = GetPlantOptionButtons();
@@ -272,7 +272,7 @@ namespace FantasyTD.CI
             record.EdgeSpot = screen.x < Screen.width * 0.25f || screen.x > Screen.width * 0.75f ||
                               screen.y < Screen.height * 0.25f || screen.y > Screen.height * 0.75f;
 
-            bool preClose = accepted && record.Selected && record.RingSelected && record.RadialOpen &&
+            bool preClose = accepted && record.Selected && record.SelectionStateSelected && record.RadialOpen &&
                             record.OptionCount == 4 && record.AllFourOptionsVisible && record.InGameView;
             if (!preClose)
                 Errors.Add("spot." + spot.Id + ".preCloseValidationFailed");
@@ -293,12 +293,12 @@ namespace FantasyTD.CI
             _currentSpotRecord.CloseSuccess =
                 _hud.RadialRoot == null &&
                 _planting.SelectedSpot == null &&
-                !IsRingSelected(spot);
+                !IsSpotSelected(spot);
 
             _currentSpotRecord.Pass =
                 _currentSpotRecord.WorldPressAccepted &&
                 _currentSpotRecord.Selected &&
-                _currentSpotRecord.RingSelected &&
+                _currentSpotRecord.SelectionStateSelected &&
                 _currentSpotRecord.RadialOpen &&
                 _currentSpotRecord.OptionCount == 4 &&
                 _currentSpotRecord.AllFourOptionsVisible &&
@@ -547,7 +547,7 @@ namespace FantasyTD.CI
                 sb.AppendLine(prefix + "screen=" + F(record.Screen.x) + "," + F(record.Screen.y));
                 sb.AppendLine(prefix + "worldPressAccepted=" + record.WorldPressAccepted);
                 sb.AppendLine(prefix + "selected=" + record.Selected);
-                sb.AppendLine(prefix + "ringSelected=" + record.RingSelected);
+                sb.AppendLine(prefix + "selectionStateSelected=" + record.SelectionStateSelected);
                 sb.AppendLine(prefix + "radialOpen=" + record.RadialOpen);
                 sb.AppendLine(prefix + "optionCount=" + record.OptionCount);
                 sb.AppendLine(prefix + "allFourOptionsVisible=" + record.AllFourOptionsVisible);
@@ -678,17 +678,9 @@ namespace FantasyTD.CI
             return result;
         }
 
-        private static bool IsRingSelected(PlantingSpot spot)
+        private static bool IsSpotSelected(PlantingSpot spot)
         {
-            Transform ring = spot.transform.Find("Ring");
-            SpriteRenderer renderer = ring != null ? ring.GetComponent<SpriteRenderer>() : null;
-            if (renderer == null) return false;
-            Color expected = new Color(1f,0.94f,0.36f,0.95f);
-            Color actual = renderer.color;
-            return Mathf.Abs(actual.r - expected.r) < 0.02f &&
-                   Mathf.Abs(actual.g - expected.g) < 0.02f &&
-                   Mathf.Abs(actual.b - expected.b) < 0.02f &&
-                   Mathf.Abs(actual.a - expected.a) < 0.02f;
+            return spot != null && spot.IsSelected;
         }
 
         private static int CountPlantsAt(Vector2 position)
@@ -780,7 +772,7 @@ namespace FantasyTD.CI
             internal Vector2 Screen;
             internal bool WorldPressAccepted;
             internal bool Selected;
-            internal bool RingSelected;
+            internal bool SelectionStateSelected;
             internal bool RadialOpen;
             internal int OptionCount;
             internal bool AllFourOptionsVisible;

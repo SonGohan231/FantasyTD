@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace FantasyTD.MapA
 {
@@ -74,26 +75,26 @@ namespace FantasyTD.MapA
             if (_levelMarkers != null)
                 Destroy(_levelMarkers.gameObject);
 
-            GameObject root = new GameObject("LevelMarkers");
+            GameObject root = new GameObject("LevelMarkers", typeof(RectTransform), typeof(Canvas));
             root.transform.SetParent(transform, false);
-            root.transform.localPosition = new Vector3(0f, 0.68f, 0f);
+            root.transform.localPosition = new Vector3(0f, 1.16f, 0f);
+            root.transform.localScale = Vector3.one * 0.01f;
             _levelMarkers = root.transform;
+            Canvas canvas = root.GetComponent<Canvas>();
+            canvas.renderMode = RenderMode.WorldSpace;
+            canvas.overrideSorting = true;
+            canvas.sortingOrder = 90;
+            root.GetComponent<RectTransform>().sizeDelta = new Vector2(84f, 28f);
 
-            float spacing = 0.18f;
-            float start = -(Level - 1) * spacing * 0.5f;
-            for (int i = 0; i < Level; i++)
-            {
-                RuntimeArt.SpriteObject(
-                    "LevelLeaf_" + (i + 1),
-                    _levelMarkers,
-                    new Vector2(start + i * spacing, 0f),
-                    new Vector2(0.13f, 0.19f),
-                    new Color(1f, 0.82f, 0.20f, 0.95f),
-                    90,
-                    true,
-                    RuntimeArt.Leaf,
-                    i % 2 == 0 ? -18f : 18f);
-            }
+            Text label = RuntimeArt.CreateText(root.transform, "TowerLevelLabel", 22, TextAnchor.MiddleCenter, new Color(1f, 0.88f, 0.35f));
+            label.text = "L" + Level;
+            label.fontStyle = FontStyle.Bold;
+            label.rectTransform.anchorMin = Vector2.zero;
+            label.rectTransform.anchorMax = Vector2.one;
+            label.rectTransform.offsetMin = label.rectTransform.offsetMax = Vector2.zero;
+            Shadow shadow = label.gameObject.AddComponent<Shadow>();
+            shadow.effectColor = new Color(0f, 0f, 0f, 0.9f);
+            shadow.effectDistance = new Vector2(1.5f, -1.5f);
         }
     }
 }

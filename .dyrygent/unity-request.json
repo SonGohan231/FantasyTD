@@ -1,5 +1,1 @@
-{
-  "requestId": "recovery-android-candidate-20261003-01",
-  "mode": "android-build",
-  "note": "Build candidate APK after visual acceptance and playable-release pass; not a device-tested or complete campaign release."
-}
+{"requestId":"t0012-authored-assets-integration-20261003-01","mode":"playable-release","note":"Validate source walk poses/root pause/authored projectile, UI HP and tower lifecycle after genuine patch alignment and removal of procedural decorative art."}

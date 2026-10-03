@@ -19,6 +19,7 @@ namespace FantasyTD.MapA
         private bool _dead;
         private float _progressDistance;
         private EnemyHealthBar _healthBar;
+        private HiggsfieldUnitAnimation _animation;
 
         public bool IsDead => _dead;
         public float ProgressDistance => _progressDistance;
@@ -33,6 +34,7 @@ namespace FantasyTD.MapA
         {
             _session = session;
             _kind = kind;
+            _animation = GetComponent<HiggsfieldUnitAnimation>();
             Configure(kind);
             _maxHp = _hp;
             _segmentIndex = 0;
@@ -67,7 +69,12 @@ namespace FantasyTD.MapA
 
         private void Update()
         {
-            if (_dead || _session == null || _session.IsFinished) return;
+            if (_dead || _session == null) return;
+            if (_session.IsFinished)
+            {
+                _animation?.SetMovement(Vector2.zero, 0f);
+                return;
+            }
 
             float speedMultiplier = 1f;
             if (Time.time < _rootUntil)
@@ -75,6 +82,9 @@ namespace FantasyTD.MapA
             else if (Time.time < _slowUntil)
                 speedMultiplier = 1f - _slowStrength;
 
+            Vector2 direction = _segmentIndex < MapAData.Waypoints.Length - 1
+                ? MapAData.Waypoints[_segmentIndex + 1] - (Vector2)transform.position : Vector2.zero;
+            _animation?.SetMovement(direction, speedMultiplier);
             Move(_speed * speedMultiplier * Time.deltaTime);
         }
 
@@ -103,6 +113,7 @@ namespace FantasyTD.MapA
             if (damageType == DamageType.Physical)
                 amount *= 1f - _physicalResistance;
 
+            _animation?.PlayHit();
             _hp -= amount;
             if (_healthBar != null)
                 _healthBar.Refresh();
@@ -149,7 +160,11 @@ namespace FantasyTD.MapA
             _dead = true;
             _session.Economy.Add(_reward);
             _session.UnregisterEnemy(this);
-            Destroy(gameObject);
+            if (_healthBar != null)
+                foreach (Canvas canvas in GetComponentsInChildren<Canvas>()) canvas.gameObject.SetActive(false);
+            _animation?.PlayDeath();
+            // Gameplay removal/reward is immediate; only imported visual art fades out.
+            Destroy(gameObject, _animation != null ? 0.24f : 0f);
         }
 
         private void ReachBase()

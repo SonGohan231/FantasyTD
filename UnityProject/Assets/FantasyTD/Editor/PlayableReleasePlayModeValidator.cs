@@ -159,6 +159,9 @@ namespace FantasyTD.CI
 
             ValidateMapArt();
 
+            IEnumerator animation = HiggsfieldAnimationValidation.Run(_session, Check, text => Facts.Add(text));
+            while (animation.MoveNext()) yield return null;
+
             IEnumerator hp = ValidateEnemyHpAndControl();
             while (hp.MoveNext()) yield return null;
 
@@ -219,7 +222,7 @@ namespace FantasyTD.CI
             yield return null;
 
             EnemyHealthBar bar = enemy != null ? enemy.GetComponent<EnemyHealthBar>() : null;
-            Transform fill = enemy != null ? enemy.transform.Find("HpBarFill") : null;
+            Transform fill = bar != null ? bar.FillTransform : null;
 
             float beforeHp = enemy != null ? enemy.CurrentHp : -1f;
             float maxHp = enemy != null ? enemy.MaxHp : -1f;
