@@ -1,5 +1,5 @@
 {
-  "requestId": "t0012-playable-higgsfield-rerun-20261003-1228",
-  "mode": "playable-release",
-  "note": "Rerun T0012 full Higgsfield playable-release validation after Game View harness fix."
+  "requestId": "t0012-regression-plants-20261003-1231",
+  "mode": "plant-behaviors",
+  "note": "T0012 regression: four plant behaviors after Higgsfield + upgrade/sell integration."
 }
