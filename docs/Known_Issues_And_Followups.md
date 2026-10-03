@@ -592,3 +592,25 @@ One issue was found and resolved during T0011:
 No new known gameplay defect was introduced by T0011 evidence.
 
 T0009 device smoke and T0010 balance remain intentionally outside T0011.
+
+
+---
+
+## T0011 — Visual production follow-up status
+
+Status: **NO OPEN T0011 BLOCKER**
+
+Observed during validation:
+- the first MAP-A integrity regression after visual dressing caught a HomeTree presentation anchor offset from the authoritative route endpoint;
+- the visual anchor was corrected without changing `MapAData`;
+- corrected MAP-A integrity then passed in run `37104978893`;
+- plant behavior regression passed in run `37062061398`;
+- boss/victory/defeat/restart regression passed in run `37105044037`;
+- corrected Android BuildReport passed in run `37105211817` with 0 errors and 0 warnings.
+
+External generation:
+Higgsfield asset generation was unavailable on the connected account (`Requires basic plan or higher`). This is not a runtime/release blocker because T0011's original visual pass is implemented in-project with cached procedural sprites and lightweight VFX.
+
+Remaining planned work is outside T0011:
+- T0009 Android install/launch smoke test,
+- T0010 balance v1.1 playtest pass.
