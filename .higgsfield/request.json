@@ -1,13 +1,13 @@
 {
   "enabled": true,
-  "generation_id": "mapa-topology-locked-production-20261003-001",
-  "model_path": "ideogram/v4.0",
+  "generation_id": "mapa-essence-flower-unit-20261003-001",
+  "model_path": "higgsfield-ai/soul/v2/standard",
   "input": {
-    "prompt": "Preserve the REFERENCE ROAD GRAPH and build-pad topology exactly: one authored route enters from the left upper band, runs right, bends down-right, drops through the center, turns back left across the middle-lower band, drops near left-center, then turns right for a long lower exit run. Preserve all 12 marked build clearings at their guide positions. Replace only the flat guide rendering with a finished ORIGINAL premium mobile 2D tower-defense environment. Theme: lush magical meadow and woodland edge, crooked wooden fences, mossy stones, roots, wildflowers, mushrooms, tiny ponds away from combat lanes, soft natural shadows, colorful hand-painted/cartoon organic fantasy, high phone readability, top-down / restrained 3/4 orthographic. No characters, towers, enemies, text, labels, UI, numbers, logos or grid. Road and 12 planting clearings must stay unobstructed and clearly readable. Original IP only.",
-    "image_url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3JGQx06i0dP8dCxeDB39wmIRZBq/8bace3db-4d7c-489f-93c4-df7b75a22803.png",
-    "image_weight": 80,
-    "aspect_ratio": "16:9",
-    "rendering_speed": "QUALITY"
+    "prompt": "Original single production asset for KWIAT ESENCJI, a botanical economy tower in FantasyTD. Match the existing organic hand-painted style-lock: rooted plant, broad green leaves, elegant golden-yellow flower with a luminous amber essence core, subtle magical pollen sparkle implied in the design, friendly but strategic silhouette, chunky readable proportions at Android phone scale, top-down 3/4 orthographic game-art view, soft painterly shading, crisp dark organic outline. Isolated ONE final idle pose on simple warm off-white background, centered with generous empty margin for Unity cutout. No text, no UI, no scenery, no extra pose sheet, no pot, no metal, no technology, original IP only.",
+    "resolution": "1080p",
+    "aspect_ratio": "1:1",
+    "batch_size": 1,
+    "enhance_prompt": true
   },
   "max_wait_seconds": 1200
 }
