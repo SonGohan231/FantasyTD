@@ -47,5 +47,7 @@ jobs:
             echo "No new Higgsfield assets to commit."
           else
             git commit -m "T0012: import Higgsfield assets into Unity"
+            git fetch origin codex/t0012-higgsfield-integration
+            git rebase origin/codex/t0012-higgsfield-integration
             git push origin HEAD:codex/t0012-higgsfield-integration
           fi
