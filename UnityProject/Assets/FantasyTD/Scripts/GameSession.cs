@@ -29,6 +29,9 @@ namespace FantasyTD.MapA
 
             Hud.Initialize(this);
             TowerPanel.Initialize(this, Hud.SafeArea);
+            FantasyTD.Product.GameplayNavigationHud navigation =
+                gameObject.AddComponent<FantasyTD.Product.GameplayNavigationHud>();
+            navigation.Initialize(Hud.SafeArea);
             Economy.Initialize(Balance.StartEssence);
             Economy.Changed += delegate
             {
