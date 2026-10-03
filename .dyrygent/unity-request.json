@@ -1,5 +1,5 @@
 {
-  "requestId": "t0011-plant-behaviors-20261002-2040",
-  "mode": "plant-behaviors",
-  "note": "T0011 regression: verify four production plant behaviors and VFX integration. No T0009/T0010 work."
+  "requestId": "t0011-map-integrity-final-20261003-0902",
+  "mode": "map-a-integrity",
+  "note": "T0011 visual production final MAP-A geometry regression. T0009/T0010 remain untouched."
 }
