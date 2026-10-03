@@ -53,10 +53,10 @@ namespace FantasyTD.MapA.Editor
         {
             bool ok = true;
             float length = MapAData.TotalPathLength;
-            if (Mathf.Abs(length - 46.2111f) > 0.02f)
+            if (Mathf.Abs(length - 26.6607f) > 0.02f)
             {
                 ok = false;
-                Debug.LogError("MAP-A path length mismatch: " + length);
+                Debug.LogError("MAP-A Higgsfield-aligned path length mismatch: " + length);
             }
 
             if (MapAData.PlantingSpots.Length != 12)
