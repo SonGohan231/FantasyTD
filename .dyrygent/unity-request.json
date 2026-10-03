@@ -1,5 +1,5 @@
 {
-  "requestId": "recovery-playable-release-20261003-01",
-  "mode": "playable-release",
-  "note": "Verify tower HP, selection, L1-L3 upgrade, sell/refund, rebuild and gameplay after visual placement correction."
+  "requestId": "recovery-android-candidate-20261003-01",
+  "mode": "android-build",
+  "note": "Build candidate APK after visual acceptance and playable-release pass; not a device-tested or complete campaign release."
 }
