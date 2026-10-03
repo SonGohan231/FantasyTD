@@ -136,7 +136,17 @@ namespace FantasyTD.CI
 
         private static IEnumerator RunFlow()
         {
-            Screen.SetResolution(1920, 1080, false);
+            string gameViewDetails;
+            bool gameViewConfigured = GameViewResolutionHelper.SetFixedResolution(
+                1920, 1080, "T0012 1920x1080", out gameViewDetails);
+            AddFact("gameViewConfiguration", gameViewDetails);
+            Check(gameViewConfigured, "Could not configure T0012 Game View: " + gameViewDetails);
+
+            Screen.SetResolution(1920, 1080, FullScreenMode.Windowed);
+            for (int i = 0; i < 120 && (Screen.width != 1920 || Screen.height != 1080); i++)
+                yield return null;
+
+            Canvas.ForceUpdateCanvases();
             for (int i = 0; i < 8; i++) yield return null;
 
             AddFact("screenWidth", Screen.width);
