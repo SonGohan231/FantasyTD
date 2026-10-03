@@ -1,5 +1,5 @@
 {
-  "requestId": "t0012-map-integrity-20261003-1012",
-  "mode": "map-a-integrity",
-  "note": "T0012 validate Higgsfield MAP-A background plus art-aligned invisible route and 12 planting hotspots. T0009/T0010 remain untouched."
+  "requestId": "t0012-playable-release-20261003-1015",
+  "mode": "playable-release",
+  "note": "T0012 render-capable Play Mode: Higgsfield MAP-A, enemy HP/control cues, occupied tower selection, L2/L3 upgrades, sell/refund and rebuild. T0009/T0010 untouched."
 }
