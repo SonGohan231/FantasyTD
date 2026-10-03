@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace FantasyTD.MapA
@@ -5,44 +6,95 @@ namespace FantasyTD.MapA
     public static class HiggsfieldSpriteFactory
     {
         private static Sprite _seedShooter;
+        private static Sprite _essenceFlower;
+        private static Sprite _oakGuardian;
+        private static Sprite _frostBud;
         private static Sprite _wanderer;
-        private static bool _seedAttempted;
-        private static bool _wandererAttempted;
+        private static Sprite _runner;
+        private static Sprite _brute;
+        private static Sprite _armored;
+        private static Sprite _boss;
+        private static Sprite _portal;
+        private static Sprite _homeTree;
 
-        public static Sprite SeedShooter
+        public static Sprite SeedShooter => _seedShooter ??= CreateCutout(
+            "Higgsfield/SEED_SHOOTER_SHEET", 0f, 0f, 0.515f, 1f, "Higgsfield_Pedostrzal");
+
+        public static Sprite EssenceFlower => _essenceFlower ??= CreateCutout(
+            "Higgsfield/ESSENCE_FLOWER", 0f, 0f, 1f, 1f, "Higgsfield_KwiatEsencji");
+
+        public static Sprite OakGuardian => _oakGuardian ??= CreateCutout(
+            "Higgsfield/OAK_GUARDIAN", 0f, 0f, 1f, 1f, "Higgsfield_DebowyStraznik");
+
+        public static Sprite FrostBud => _frostBud ??= CreateCutout(
+            "Higgsfield/FROST_BUD", 0f, 0f, 1f, 1f, "Higgsfield_MroznyPak");
+
+        public static Sprite Wanderer => _wanderer ??= CreateCutout(
+            "Higgsfield/WANDERER_SHEET", 0f, 0f, 0.455f, 1f, "Higgsfield_Chochlik");
+
+        public static Sprite Runner => _runner ??= CreateCutout(
+            "Higgsfield/RUNNER", 0f, 0f, 1f, 1f, "Higgsfield_WichrowySkrzat");
+
+        public static Sprite Brute => _brute ??= CreateCutout(
+            "Higgsfield/BRUTE", 0f, 0f, 1f, 1f, "Higgsfield_OgrZarosli");
+
+        public static Sprite Armored => _armored ??= CreateCutout(
+            "Higgsfield/ARMORED", 0f, 0f, 1f, 1f, "Higgsfield_ZelaznyGoblin");
+
+        public static Sprite Boss => _boss ??= CreateCutout(
+            "Higgsfield/BOSS", 0f, 0f, 1f, 1f, "Higgsfield_KrolCierni");
+
+        public static Sprite Portal => _portal ??= CreateCutout(
+            "Higgsfield/PORTAL", 0f, 0f, 1f, 1f, "Higgsfield_Portal");
+
+        public static Sprite HomeTree => _homeTree ??= CreateCutout(
+            "Higgsfield/HOME_TREE", 0f, 0f, 1f, 1f, "Higgsfield_HomeTree");
+
+        public static Sprite Plant(PlantKind kind)
         {
-            get
+            return kind switch
             {
-                if (!_seedAttempted)
-                {
-                    _seedAttempted = true;
-                    _seedShooter = CreateCutout(
-                        "Higgsfield/SEED_SHOOTER_SHEET",
-                        0f, 0f, 0.515f, 1f,
-                        "Higgsfield_Pedostrzal");
-                }
-                return _seedShooter;
-            }
+                PlantKind.SeedShooter => SeedShooter,
+                PlantKind.EssenceFlower => EssenceFlower,
+                PlantKind.OakGuardian => OakGuardian,
+                PlantKind.FrostBud => FrostBud,
+                _ => throw new ArgumentOutOfRangeException(nameof(kind), kind, null)
+            };
         }
 
-        public static Sprite Wanderer
+        public static Sprite Enemy(EnemyKind kind)
         {
-            get
+            return kind switch
             {
-                if (!_wandererAttempted)
-                {
-                    _wandererAttempted = true;
-                    _wanderer = CreateCutout(
-                        "Higgsfield/WANDERER_SHEET",
-                        0f, 0f, 0.455f, 1f,
-                        "Higgsfield_Chochlik");
-                }
-                return _wanderer;
-            }
+                EnemyKind.Wanderer => Wanderer,
+                EnemyKind.Runner => Runner,
+                EnemyKind.Brute => Brute,
+                EnemyKind.Armored => Armored,
+                EnemyKind.Boss => Boss,
+                _ => throw new ArgumentOutOfRangeException(nameof(kind), kind, null)
+            };
         }
 
-        public static bool HasSeedShooter => SeedShooter != null;
-        public static bool HasWanderer => Wanderer != null;
+        public static void ValidateProductionAssets()
+        {
+            Require(SeedShooter, "Pędostrzał");
+            Require(EssenceFlower, "Kwiat Esencji");
+            Require(OakGuardian, "Dębowy Strażnik");
+            Require(FrostBud, "Mroźny Pąk");
+            Require(Wanderer, "Chochlik");
+            Require(Runner, "Wichrowy Skrzat");
+            Require(Brute, "Ogr Zarośli");
+            Require(Armored, "Żelazny Goblin");
+            Require(Boss, "Król Cierni");
+            Require(Portal, "Portal");
+            Require(HomeTree, "Baza-drzewo");
+        }
+
+        private static void Require(Sprite sprite, string label)
+        {
+            if (sprite == null)
+                throw new InvalidOperationException("Missing required Higgsfield production sprite: " + label);
+        }
 
         private static Sprite CreateCutout(
             string resourcePath,
@@ -54,11 +106,14 @@ namespace FantasyTD.MapA
         {
             Texture2D sheet = Resources.Load<Texture2D>(resourcePath);
             if (sheet == null)
+            {
+                Debug.LogError("Required Higgsfield texture missing: " + resourcePath);
                 return null;
+            }
 
             if (!sheet.isReadable)
             {
-                Debug.LogError("Higgsfield sheet is not readable: " + resourcePath);
+                Debug.LogError("Higgsfield texture is not readable: " + resourcePath);
                 return null;
             }
 
@@ -90,9 +145,9 @@ namespace FantasyTD.MapA
                         (c.g - bg.g) * (c.g - bg.g) +
                         (c.b - bg.b) * (c.b - bg.b));
 
-                    float alpha = Mathf.InverseLerp(0.07f, 0.18f, distance);
+                    float alpha = Mathf.InverseLerp(0.055f, 0.17f, distance);
                     alpha = Mathf.Clamp01(alpha);
-                    alpha *= alpha * (3f - 2f * alpha);
+                    alpha = alpha * alpha * (3f - 2f * alpha);
 
                     Color32 output = c;
                     output.a = (byte)Mathf.RoundToInt(alpha * 255f);
@@ -109,9 +164,12 @@ namespace FantasyTD.MapA
             }
 
             if (maxX < minX || maxY < minY)
+            {
+                Debug.LogError("Higgsfield cutout produced no foreground pixels: " + resourcePath);
                 return null;
+            }
 
-            const int padding = 10;
+            const int padding = 12;
             minX = Mathf.Max(0, minX - padding);
             minY = Mathf.Max(0, minY - padding);
             maxX = Mathf.Min(width - 1, maxX + padding);
