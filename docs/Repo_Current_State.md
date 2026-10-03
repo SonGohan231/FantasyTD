@@ -776,3 +776,48 @@ Device boundary:
 - APK installation/emulator/physical-device smoke was **NOT RUN**.
 - T0009 remains PLANNED.
 - Balance v1.1 was **NOT RUN**; T0010 remains PLANNED.
+
+
+## T0011 — MAP-A Visual Production Pass + Release APK
+
+Status: **PASS / DONE**
+
+Branch:
+`codex/t0011-visual-production`
+
+Scope completed:
+- replaced prototype-like runtime circles/rectangles with a cohesive original organic-fantasy presentation built from cached procedural sprites and layered runtime art,
+- redesigned all four plants with distinct silhouettes,
+- redesigned all four basic enemies plus Król Cierni with distinct silhouettes and boss-specific premium treatment,
+- added authored terrain dressing, road details, foliage, pond/rocks/grove/mushrooms, portal and home-tree presentation while preserving authoritative `MapAData` path and planting coordinates,
+- polished HUD, radial menu and victory/defeat panels while preserving touch target sizes and production input routing,
+- added lightweight projectile, Frost, Root and Essence VFX without changing production damage, cooldown, movement, reward, slow or root values.
+
+Geometry correction:
+The first post-visual MAP-A integrity run exposed one presentation regression: the HomeTree visual anchor was offset from the exact route endpoint. The visual anchor was restored to the route-end position without changing `MapAData`. The corrected geometry regression passed.
+
+Validation:
+- mobile layout: run `37059744377` — PASS
+- MAP-A geometry after anchor correction: run `37104978893` — PASS
+- plant behavior regression after VFX integration: run `37062061398` — PASS
+- boss/end-state regression: run `37105044037` — PASS
+- corrected Android build: run `37105211817` — PASS
+- Unity `6000.0.26f1`
+- corrected Android head: `98539046e3cab8ff24572d6b401cd61579f895b0`
+- BuildReport: `Succeeded`
+- BuildReport errors: `0`
+- BuildReport warnings: `0`
+- APK bytes: `18888441`
+- APK SHA-256: `aaccb09c2e8a358eeaf814a4f07d110e770ebf7bb5d8d547dc3d54f52673b6f1`
+- artifact: `fantasy-td-android-37105211817` (ID `11267512151`)
+
+External art-generation note:
+A Higgsfield image-generation request was attempted for an art-direction reference, but the connected account rejected generation with `Requires basic plan or higher`. T0011 therefore used original procedural/vector-like runtime art implemented directly in Unity and introduced no paid external asset dependency.
+
+Scope exclusions remain:
+- T0009 install/emulator/physical-device smoke was not started,
+- T0010 balance v1.1 was not started,
+- gameplay values, wave definitions and authoritative map coordinates were not changed,
+- no new gameplay content or upgrade systems were added.
+
+A final Android build is run after documentation closure so the user-facing APK can be tied to the final T0011 branch HEAD.
