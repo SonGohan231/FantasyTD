@@ -1,5 +1,5 @@
 {
-  "requestId": "t0012-regression-boss-final-20261003-1249",
-  "mode": "boss-end-states",
-  "note": "T0012 boss/end-state regression after route-order and free-extra-defense fixture fixes."
+  "requestId": "recovery-visual-acceptance-20261003-01",
+  "mode": "visual-acceptance",
+  "note": "Recovery product gate: render main menu, campaign selection, real Higgsfield MAP-A, HP bar, tower UPGRADE/SELL panel, and victory state. Do not claim DONE without screenshots."
 }
