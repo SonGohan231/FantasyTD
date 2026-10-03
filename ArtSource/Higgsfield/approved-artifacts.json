@@ -1,0 +1,2498 @@
+{
+  "schemaVersion": 1,
+  "sourceBranch": "visual/higgsfield-api-bridge",
+  "sourceChecklist": ".higgsfield/PRODUCTION_CHECKLIST.md",
+  "generationAllowed": false,
+  "uniqueArtifactCount": 68,
+  "artifacts": [
+    {
+      "artifactId": 11223664631,
+      "archiveSha256": "670d01aa47a91949a852c144876b2006ba7f4b829ff5d7b0170a26d71928d6b2",
+      "maps": [
+        "MAP2"
+      ],
+      "roles": [
+        "TOXIC_START",
+        "TOXIC_HIGH",
+        "TOXIC_END"
+      ],
+      "members": [
+        {
+          "name": "final.json",
+          "bytes": 436,
+          "sha256": "86e159b12827ccb62e31b7e1093481aab06535af763422cbcc5e345a04954977"
+        },
+        {
+          "name": "manifest.json",
+          "bytes": 238,
+          "sha256": "3fcf2ac7d4e521bfbf702d5c50f99245c5545ea4a010d83e71e06ef26252b94c"
+        },
+        {
+          "name": "asset_01.mp4",
+          "bytes": 5288482,
+          "sha256": "2022704311117fb7ad31633d206505bbcbcc90057431ac96302652af86319f36"
+        },
+        {
+          "name": "submit.json",
+          "bytes": 286,
+          "sha256": "fa30193baab24a5c786058fa8b12c9de3aa579a614170f8e324079f2afeb1678"
+        }
+      ],
+      "assetPaths": [
+        "UnityProject/Assets/FantasyTD/Art/ApprovedSources/11223664631/asset_01.mp4"
+      ],
+      "runtimeIntegrated": false
+    },
+    {
+      "artifactId": 11223803916,
+      "archiveSha256": "c58a1f277f1ad541892d08ee9d0513f2c83b2ffb42e5caaad5bedc257c1ba7e4",
+      "maps": [
+        "MAP2"
+      ],
+      "roles": [
+        "SCENERY_PROP_PACK"
+      ],
+      "members": [
+        {
+          "name": "asset_01.png",
+          "bytes": 1333586,
+          "sha256": "04c70eb0bcfea74527e76547b3539ffc579854c705be17bf682b2edf4797c49f"
+        },
+        {
+          "name": "final.json",
+          "bytes": 451,
+          "sha256": "3493771a2cc2a2e3dcc89512182b7471cc49704191e9de3cb1a2d13216a7a08d"
+        },
+        {
+          "name": "manifest.json",
+          "bytes": 228,
+          "sha256": "2e4d7b38e28943408bbd50f71d87fd74ceff6eaa0fc4934631521613df735842"
+        },
+        {
+          "name": "submit.json",
+          "bytes": 286,
+          "sha256": "c06f81ddc65dfacfb3d3063232814a267dc6eec201cb22270c3745ad680b80c0"
+        }
+      ],
+      "assetPaths": [
+        "UnityProject/Assets/FantasyTD/Art/ApprovedSources/11223803916/asset_01.png"
+      ],
+      "runtimeIntegrated": false
+    },
+    {
+      "artifactId": 11224247023,
+      "archiveSha256": "6ad900358d6fc800cc7fa250edc71de195947cf4dd3dbd5313b0c3ee3c09ca75",
+      "maps": [
+        "MAP2"
+      ],
+      "roles": [
+        "AMBIENT_LOOP"
+      ],
+      "members": [
+        {
+          "name": "asset_01.mp4",
+          "bytes": 2468635,
+          "sha256": "c15d0ef9258e15fa897a966e74879d362043bb9f814738d2403680f2b586699a"
+        },
+        {
+          "name": "final.json",
+          "bytes": 436,
+          "sha256": "4b8752ff6c1be6f7c14bb88830dcf6a24f2c11aa06fa2e4372fc767bc9cb1fce"
+        },
+        {
+          "name": "manifest.json",
+          "bytes": 240,
+          "sha256": "8b121bfa352dffad6a78b3c2d04f0f63bb5ef4612119cd33c849b95bb68bedf2"
+        },
+        {
+          "name": "submit.json",
+          "bytes": 286,
+          "sha256": "96c29cd8b194808d64ef3a68c53f909eff6eb58f93ec3115f232ef48ab654ceb"
+        }
+      ],
+      "assetPaths": [
+        "UnityProject/Assets/FantasyTD/Art/ApprovedSources/11224247023/asset_01.mp4"
+      ],
+      "runtimeIntegrated": false
+    },
+    {
+      "artifactId": 11226217050,
+      "archiveSha256": "565bc8e4d2706dcb6ee5844890e07312c3660bf4ffcc27c2ec15c4bbbec7c616",
+      "maps": [
+        "MAP2"
+      ],
+      "roles": [
+        "MINIBOSS_DORMANT"
+      ],
+      "members": [
+        {
+          "name": "asset_01.png",
+          "bytes": 2886985,
+          "sha256": "9e6caf515cf4450d0a195616e343c02029015ab5c4d072d374fbfa26962e2966"
+        },
+        {
+          "name": "final.json",
+          "bytes": 451,
+          "sha256": "4b5fd5335642091c54a16c6396f3e336463e821999e1c488b510575ad80fc357"
+        },
+        {
+          "name": "manifest.json",
+          "bytes": 248,
+          "sha256": "3e41a7adcfc780ac9746aec243aa7f600acc6e81874d476108103528040e710c"
+        },
+        {
+          "name": "submit.json",
+          "bytes": 286,
+          "sha256": "2fdf1005f09182445fec81bc05ccbcd6351ff4c4e07b2b889d67cc0a6401db90"
+        }
+      ],
+      "assetPaths": [
+        "UnityProject/Assets/FantasyTD/Art/ApprovedSources/11226217050/asset_01.png"
+      ],
+      "runtimeIntegrated": false
+    },
+    {
+      "artifactId": 11226332484,
+      "archiveSha256": "5726c4e6f32199f1039ee736d56ae4d841e0f7e0ecd61df87298f52fef139cad",
+      "maps": [
+        "MAP2"
+      ],
+      "roles": [
+        "BUNKER_OPEN"
+      ],
+      "members": [
+        {
+          "name": "final.json",
+          "bytes": 436,
+          "sha256": "0087c61a2b7a8dbdeeabcaeb1bd5e1b72537549b1b69cc1a9df2e93021d331bc"
+        },
+        {
+          "name": "manifest.json",
+          "bytes": 242,
+          "sha256": "1b14dedfd7dd7afd624487e7c85dd7b4a1bb5178678410e017e28ebfbf491a4e"
+        },
+        {
+          "name": "asset_01.mp4",
+          "bytes": 2478208,
+          "sha256": "a551a54536c0f910a3e3eccaec924761c3f3041d6c6575ef8fb7fc666813be74"
+        },
+        {
+          "name": "submit.json",
+          "bytes": 286,
+          "sha256": "46fc8172d4a4f130dcdf83de80630ad1a7d4594234bc58b5291a2fcc4becfd30"
+        }
+      ],
+      "assetPaths": [
+        "UnityProject/Assets/FantasyTD/Art/ApprovedSources/11226332484/asset_01.mp4"
+      ],
+      "runtimeIntegrated": false
+    },
+    {
+      "artifactId": 11226614659,
+      "archiveSha256": "54b924fa0c9cd636e750c9b4fdbd66aad79fc1483254b6f9a1cacb74e8010e58",
+      "maps": [
+        "MAP2"
+      ],
+      "roles": [
+        "RADIO_RELAY_SINGLE_SOURCE"
+      ],
+      "members": [
+        {
+          "name": "asset_01.png",
+          "bytes": 972709,
+          "sha256": "eb0b637ce760ce3ee3e1b8d2aa45f78fce9bbe4c61f9127482dcfcfca0afd93e"
+        },
+        {
+          "name": "final.json",
+          "bytes": 451,
+          "sha256": "e48847a30d87868b6fb60dcfe679d9418149e911c8d5e7f10a256b1f926f6ca8"
+        },
+        {
+          "name": "manifest.json",
+          "bytes": 240,
+          "sha256": "2b8b377b48c31f4e605a7260ac9f65a2e7258876fe0c7cb65b624270fb8a0780"
+        },
+        {
+          "name": "submit.json",
+          "bytes": 286,
+          "sha256": "200ad273670531ed06b8415dd874847efffa3b6167675eecc1d93808c528e006"
+        }
+      ],
+      "assetPaths": [
+        "UnityProject/Assets/FantasyTD/Art/ApprovedSources/11226614659/asset_01.png"
+      ],
+      "runtimeIntegrated": false
+    },
+    {
+      "artifactId": 11226696907,
+      "archiveSha256": "e1087bcd8856f0255a89b113c1cecf8154c30c052533eef48a2bc7e979038ce3",
+      "maps": [
+        "MAP2"
+      ],
+      "roles": [
+        "BUNKER_CLOSED"
+      ],
+      "members": [
+        {
+          "name": "asset_01.png",
+          "bytes": 1140399,
+          "sha256": "afff46e0dfaaa22d69e13a3d27b4235cfaf33864b3e55e6ee620f223093f88e8"
+        },
+        {
+          "name": "final.json",
+          "bytes": 451,
+          "sha256": "b314e9f5e68c2dbb4925c0b844bf4ffd247213175e4cf9016491750d62309c69"
+        },
+        {
+          "name": "manifest.json",
+          "bytes": 235,
+          "sha256": "c41f788e6656eeb17a86bb5160636d4c68fc4d7f267f28bd2b112f276b399fe5"
+        },
+        {
+          "name": "submit.json",
+          "bytes": 286,
+          "sha256": "6b1f12ed22c23d554fef6f72e837eff245347e61747669a98ecf6056f6bcfc23"
+        }
+      ],
+      "assetPaths": [
+        "UnityProject/Assets/FantasyTD/Art/ApprovedSources/11226696907/asset_01.png"
+      ],
+      "runtimeIntegrated": false
+    },
+    {
+      "artifactId": 11226746833,
+      "archiveSha256": "d34180fd690978d7f9e54c5a41c604bdfdf5221267d0fa19cc66d1071df23d44",
+      "maps": [
+        "MAP2"
+      ],
+      "roles": [
+        "MINIBOSS_ACTIVE"
+      ],
+      "members": [
+        {
+          "name": "asset_01.mp4",
+          "bytes": 3811245,
+          "sha256": "6f5ed8f24fe5ad223ead2c63e881dc4ffacd7e020a285dc26e8f90fa064b4754"
+        },
+        {
+          "name": "final.json",
+          "bytes": 436,
+          "sha256": "819ff417ce475092b1d79f3dee2c082327ec71799dcf6eeac23a310e2dde2f1a"
+        },
+        {
+          "name": "manifest.json",
+          "bytes": 248,
+          "sha256": "698e128669dd6ebf6e36d53c8714e7c78bffe9b6c6f685db5d9390e94f648c95"
+        },
+        {
+          "name": "submit.json",
+          "bytes": 286,
+          "sha256": "8d018141f2527b2cb9282eafc4a39ca2a72e9d1be5bb93fd0fe8cd83b7c35e2f"
+        }
+      ],
+      "assetPaths": [
+        "UnityProject/Assets/FantasyTD/Art/ApprovedSources/11226746833/asset_01.mp4"
+      ],
+      "runtimeIntegrated": false
+    },
+    {
+      "artifactId": 11226805427,
+      "archiveSha256": "8807a62b4cd19e701d90199a76a0b9b10039154f777ead9d3b67887a3d9a3d52",
+      "maps": [
+        "MAP2"
+      ],
+      "roles": [
+        "SECRET_HINT",
+        "RADIO_RELAY_NODE"
+      ],
+      "members": [
+        {
+          "name": "asset_01.png",
+          "bytes": 1254748,
+          "sha256": "f561a3af374746c1545893ed2a705df3a163125964a3bd9b5812a442b8c38bba"
+        },
+        {
+          "name": "final.json",
+          "bytes": 451,
+          "sha256": "b960246730d725e87186b070b7ce76ec4e7a70d410f9079aabca110f6f3d7128"
+        },
+        {
+          "name": "manifest.json",
+          "bytes": 234,
+          "sha256": "0246429b05aeafa3879c11a11a6037f8f0d3bcf5dbc9463367925b5b172f0b4b"
+        },
+        {
+          "name": "submit.json",
+          "bytes": 286,
+          "sha256": "596a273ea0245636f4c7f5277d078be23fe9764b3d6d74fddb3ccf56beb46c24"
+        }
+      ],
+      "assetPaths": [
+        "UnityProject/Assets/FantasyTD/Art/ApprovedSources/11226805427/asset_01.png"
+      ],
+      "runtimeIntegrated": false
+    },
+    {
+      "artifactId": 11226909606,
+      "archiveSha256": "d156bde8b3f6e8f806a1b34d05dc7a96427111694fc229f84fc156def2fdaf6f",
+      "maps": [
+        "MAP2"
+      ],
+      "roles": [
+        "MINIBOSS_HIT_DEFEAT_ANIM"
+      ],
+      "members": [
+        {
+          "name": "asset_01.mp4",
+          "bytes": 4867151,
+          "sha256": "41333afa9db2773b156f535d3c745413a5f6c0b7d7cad98eb766d39eab0f9d56"
+        },
+        {
+          "name": "final.json",
+          "bytes": 436,
+          "sha256": "08b44bd4892efd06d24c8d34a92496ea560b4ace696ffcaa396f45ec84552fc7"
+        },
+        {
+          "name": "manifest.json",
+          "bytes": 245,
+          "sha256": "9d79ee43b3f80de4af3ff37e041eeade4ecd40074fd62a2d15621716ac479348"
+        },
+        {
+          "name": "submit.json",
+          "bytes": 286,
+          "sha256": "d0f1482f6d7c79ab1cab4a9ab1c8575ddba4d5d42563709f265e26cee939ea2d"
+        }
+      ],
+      "assetPaths": [
+        "UnityProject/Assets/FantasyTD/Art/ApprovedSources/11226909606/asset_01.mp4"
+      ],
+      "runtimeIntegrated": false
+    },
+    {
+      "artifactId": 11226964130,
+      "archiveSha256": "bd12d0514ca3c055646a9b3d865d7d4949a12d22fb24bf3f663ff225b55434a8",
+      "maps": [
+        "MAP2"
+      ],
+      "roles": [
+        "MINIBOSS_SLAM_ATTACK_ANIM"
+      ],
+      "members": [
+        {
+          "name": "asset_01.mp4",
+          "bytes": 4405719,
+          "sha256": "96d5a72d10f568fa77ebd12990fbc59272b2c8999300ef343d97bd218aebc60b"
+        },
+        {
+          "name": "final.json",
+          "bytes": 436,
+          "sha256": "a494384962df2f6f430475014fb110f864eef888f803633bb25bb4de4b614483"
+        },
+        {
+          "name": "manifest.json",
+          "bytes": 246,
+          "sha256": "cd7a53244aeb0a7ce922412782ab0aa76a73e0ffc16ba32ca1e0fac1ff96c0ea"
+        },
+        {
+          "name": "submit.json",
+          "bytes": 286,
+          "sha256": "c643225616963d232c2a37f92a18ac8f2dbfe0f1a753d7f9f144d63c86e76a0f"
+        }
+      ],
+      "assetPaths": [
+        "UnityProject/Assets/FantasyTD/Art/ApprovedSources/11226964130/asset_01.mp4"
+      ],
+      "runtimeIntegrated": false
+    },
+    {
+      "artifactId": 11227178308,
+      "archiveSha256": "91f3afc2161a1e84100e017e07bb8a414ef6e910b61a8fd08b488d6f1f4f1c3d",
+      "maps": [
+        "MAP2"
+      ],
+      "roles": [
+        "BACKGROUND_TERRAIN_PLATE"
+      ],
+      "members": [
+        {
+          "name": "asset_01.png",
+          "bytes": 1490173,
+          "sha256": "2dd9fdf69f2463ca5f840fc918ecc308a4680967d9a97e83d851deabe3ac30e8"
+        },
+        {
+          "name": "manifest.json",
+          "bytes": 239,
+          "sha256": "968755ebdb1f81a1ee5b07795d9102f448b27cb3ea30d57aeae3d6188663a61a"
+        },
+        {
+          "name": "final.json",
+          "bytes": 451,
+          "sha256": "9b85e8a5f29d901e91893d12f0f9a8a81f3bf5bc5088888dc2715a178eb4ef28"
+        },
+        {
+          "name": "submit.json",
+          "bytes": 286,
+          "sha256": "65c056e255b72a11ff6fd3980cfab48853264204fbc3a66c990a38da4abecc52"
+        }
+      ],
+      "assetPaths": [
+        "UnityProject/Assets/FantasyTD/Art/ApprovedSources/11227178308/asset_01.png"
+      ],
+      "runtimeIntegrated": false
+    },
+    {
+      "artifactId": 11227182741,
+      "archiveSha256": "dee2c623c75a5d22b0d74b35036c8102f9b5ef2a0b333829327ee18cf5523159",
+      "maps": [
+        "MAP2"
+      ],
+      "roles": [
+        "MAINTENANCE_TUNNEL_OPEN_ANIM"
+      ],
+      "members": [
+        {
+          "name": "asset_01.mp4",
+          "bytes": 3347751,
+          "sha256": "57ac86eef6962cda2c12a88bf008d3fc1c6311fc6823eb8a6b3220ee5f6a5df8"
+        },
+        {
+          "name": "final.json",
+          "bytes": 436,
+          "sha256": "7db52c5fbb77d89a9fcee91c2b70af2e4e0c06146452bc37fe3a152c69848a15"
+        },
+        {
+          "name": "manifest.json",
+          "bytes": 249,
+          "sha256": "b616be34296c19a4670944c003539069beafed74386b38d05bf3bd0fe24fa565"
+        },
+        {
+          "name": "submit.json",
+          "bytes": 286,
+          "sha256": "6998bef6550fc04dc3afc3d5f2aa5efda13908d2733a1f34dfe10880e3264237"
+        }
+      ],
+      "assetPaths": [
+        "UnityProject/Assets/FantasyTD/Art/ApprovedSources/11227182741/asset_01.mp4"
+      ],
+      "runtimeIntegrated": false
+    },
+    {
+      "artifactId": 11227420838,
+      "archiveSha256": "f04ac2c5dfe65252c6b0df91be8f86dc804f93cd85e0c7f4427c888a45323211",
+      "maps": [
+        "MAP2"
+      ],
+      "roles": [
+        "TERRAIN_ROAD_TILE_KIT"
+      ],
+      "members": [
+        {
+          "name": "asset_01.png",
+          "bytes": 1180659,
+          "sha256": "8cdd313cf6de9120911f2d233ca0f2a07f5146bd6317fbf886dbb9847b08c99a"
+        },
+        {
+          "name": "final.json",
+          "bytes": 451,
+          "sha256": "2b8c1cd83afa8ce42ac95cfe2f7321b867758ec1b401ee1a693e8c73e885d354"
+        },
+        {
+          "name": "manifest.json",
+          "bytes": 231,
+          "sha256": "7743d1c77b88e63b0fda481c934018ff7409aa29d49731c72d0e3b19b3cb4a18"
+        },
+        {
+          "name": "submit.json",
+          "bytes": 286,
+          "sha256": "3d944aa6763e66687cf8dd12f1294a8126da35938dd7844651cf11bb2fc9fe57"
+        }
+      ],
+      "assetPaths": [
+        "UnityProject/Assets/FantasyTD/Art/ApprovedSources/11227420838/asset_01.png"
+      ],
+      "runtimeIntegrated": false
+    },
+    {
+      "artifactId": 11227492469,
+      "archiveSha256": "002da207585d9d4470400226bab2cd8e7e55a3e73cf350ed65afa738bbfd6468",
+      "maps": [
+        "MAP2"
+      ],
+      "roles": [
+        "SPECIAL_SALVAGE_TOWER_SOURCE"
+      ],
+      "members": [
+        {
+          "name": "asset_01.png",
+          "bytes": 2842323,
+          "sha256": "2211042e82870e20ea80c11b566829a24ef10615ab78eff6eff620b02e29e468"
+        },
+        {
+          "name": "final.json",
+          "bytes": 451,
+          "sha256": "2f711a2ad02c31a70f9df21b51e95c541788d56b1fc13dc2407389c05daac2e9"
+        },
+        {
+          "name": "manifest.json",
+          "bytes": 247,
+          "sha256": "a3f8cd8630a3503955b1ec42621f41f1b09ae3b7c4dfccf219ca2d760c1a89ae"
+        },
+        {
+          "name": "submit.json",
+          "bytes": 286,
+          "sha256": "37e2f096d9cefed1ef74ccaf9bda4fd96043f02c68fc7bd02a7ad755001333fe"
+        }
+      ],
+      "assetPaths": [
+        "UnityProject/Assets/FantasyTD/Art/ApprovedSources/11227492469/asset_01.png"
+      ],
+      "runtimeIntegrated": false
+    },
+    {
+      "artifactId": 11227554403,
+      "archiveSha256": "a4f145cc7ac69197d6c0bbdc7f12a1b3343b5b9ff360cf2577b6d2a2eebd4e67",
+      "maps": [
+        "MAP2"
+      ],
+      "roles": [
+        "SPECIAL_SALVAGE_TOWER_ACTIVE_SINGLE_SOURCE"
+      ],
+      "members": [
+        {
+          "name": "asset_01.png",
+          "bytes": 1164915,
+          "sha256": "afd7aa36584d7177302732ab9725ddbba9c5e71d33aeb7cd0c60500c46c3d1ef"
+        },
+        {
+          "name": "final.json",
+          "bytes": 451,
+          "sha256": "0be15a76f6a26d1404bba453ee6fda61af9050a789eb4671a122cfe0f6dc0c12"
+        },
+        {
+          "name": "manifest.json",
+          "bytes": 249,
+          "sha256": "92a23ddd3eb348229eadaa89dd56c0da12b019375e4f56655d6af3cb1d4a6b34"
+        },
+        {
+          "name": "submit.json",
+          "bytes": 286,
+          "sha256": "4952daec31c906ce689661b2efd19226647436e68a05a881ebf6bea37fa305d8"
+        }
+      ],
+      "assetPaths": [
+        "UnityProject/Assets/FantasyTD/Art/ApprovedSources/11227554403/asset_01.png"
+      ],
+      "runtimeIntegrated": false
+    },
+    {
+      "artifactId": 11227881216,
+      "archiveSha256": "a25024f840ed76a7f355f83933a001f95afb65bdc212d6ffe82b8f58319991d1",
+      "maps": [
+        "MAP2"
+      ],
+      "roles": [
+        "RADIO_RELAY_ACTIVATION_LOOP"
+      ],
+      "members": [
+        {
+          "name": "asset_01.mp4",
+          "bytes": 2607395,
+          "sha256": "b69db244125d78c75073c95fed8f565dd7fcee2bca9a7d8ff42c700dfd49a5d4"
+        },
+        {
+          "name": "final.json",
+          "bytes": 436,
+          "sha256": "f431fafb4f43238b4238ae7029f4b53fa21eb6146277b69b298226bc2f1af5c8"
+        },
+        {
+          "name": "manifest.json",
+          "bytes": 248,
+          "sha256": "58c3123919233bdef651b9c89090dc5cb355244bca78d857ba73a245f8359466"
+        },
+        {
+          "name": "submit.json",
+          "bytes": 286,
+          "sha256": "d6e01eca05d77f9352f6f495c799a24a5f4e7f4414309b5bafbe823454f2eb3b"
+        }
+      ],
+      "assetPaths": [
+        "UnityProject/Assets/FantasyTD/Art/ApprovedSources/11227881216/asset_01.mp4"
+      ],
+      "runtimeIntegrated": false
+    },
+    {
+      "artifactId": 11228146221,
+      "archiveSha256": "acd192b5115a7020c7e5bd141ab2662f1e376c8b86395e5856e799aca2c77047",
+      "maps": [
+        "MAP2"
+      ],
+      "roles": [
+        "SPECIAL_SALVAGE_TOWER_ACTIVATION_ANIM"
+      ],
+      "members": [
+        {
+          "name": "asset_01.mp4",
+          "bytes": 2950732,
+          "sha256": "b3ff64ad4ef7ced4436d712d4d8145043a358d761e1bd8f78495a9db64f3b430"
+        },
+        {
+          "name": "final.json",
+          "bytes": 436,
+          "sha256": "f189e055a92e076c74ad61f3bc5d2cf4119fdd14cde03e634607d584429b9b82"
+        },
+        {
+          "name": "manifest.json",
+          "bytes": 250,
+          "sha256": "4583418e5c2ce08bf65d7249a5c065dffc2bbd54baebf2cf699e897daa726666"
+        },
+        {
+          "name": "submit.json",
+          "bytes": 286,
+          "sha256": "93fc722b687adb08ce0fb1a21d16c50dc2ea53cbbaeefae9aca8a43b21a483ea"
+        }
+      ],
+      "assetPaths": [
+        "UnityProject/Assets/FantasyTD/Art/ApprovedSources/11228146221/asset_01.mp4"
+      ],
+      "runtimeIntegrated": false
+    },
+    {
+      "artifactId": 11232579406,
+      "archiveSha256": "fa00d6b57dae09027155e3c90b278acb5fccce1bd0338ccbd84dc40d97b36a87",
+      "maps": [
+        "MAP3"
+      ],
+      "roles": [
+        "SCENERY_PROP_PACK"
+      ],
+      "members": [
+        {
+          "name": "final.json",
+          "bytes": 451,
+          "sha256": "3702bf6416ea2f5218cd7d9a654c3030beab69792508c4a3b4d4f8e1d201b754"
+        },
+        {
+          "name": "asset_01.png",
+          "bytes": 1115553,
+          "sha256": "c00054f9d2cb32d95e458567091adc43787e4ee1ad81289cdcc0b590cfc74579"
+        },
+        {
+          "name": "manifest.json",
+          "bytes": 229,
+          "sha256": "003d719064b3d0ab0c5cd8739fd63b3a4ab8e3ce7bd3b8d7ef00d415404658b7"
+        },
+        {
+          "name": "submit.json",
+          "bytes": 286,
+          "sha256": "1f50f6ec7d9a21e9a1e35ee279ad8f69de03ab99681c336e82e630e9b58224c8"
+        }
+      ],
+      "assetPaths": [
+        "UnityProject/Assets/FantasyTD/Art/ApprovedSources/11232579406/asset_01.png"
+      ],
+      "runtimeIntegrated": false
+    },
+    {
+      "artifactId": 11232839080,
+      "archiveSha256": "aad0f2102138f6736a2178aa3981e2cbee73901e73cd044649ef27ecea5e7ad7",
+      "maps": [
+        "MAP3"
+      ],
+      "roles": [
+        "MINIBOSS_SOURCE"
+      ],
+      "members": [
+        {
+          "name": "asset_01.png",
+          "bytes": 2164121,
+          "sha256": "de132b2421daa052b6e90a49b47a417ea5129ba55f0d9b265ba7fa8914de7f32"
+        },
+        {
+          "name": "final.json",
+          "bytes": 451,
+          "sha256": "d46a29fed9aa4999b52997d6b012a0459b99689585aa2d6861540984076ff267"
+        },
+        {
+          "name": "manifest.json",
+          "bytes": 235,
+          "sha256": "d0aed24ad2dc1a64005e164360007f3989e02600f9ab9162cd8dbd2d478c5035"
+        },
+        {
+          "name": "submit.json",
+          "bytes": 286,
+          "sha256": "e375e789d0115ad12e2c296121f2bb166972ec18c8f1189d1b430af3091b2a31"
+        }
+      ],
+      "assetPaths": [
+        "UnityProject/Assets/FantasyTD/Art/ApprovedSources/11232839080/asset_01.png"
+      ],
+      "runtimeIntegrated": false
+    },
+    {
+      "artifactId": 11232874052,
+      "archiveSha256": "d6da2026682ca17b2f6c8f3559423ca16f2e7617d582bef45de146c72fc59664",
+      "maps": [
+        "MAP4"
+      ],
+      "roles": [
+        "BACKGROUND_TERRAIN_PLATE"
+      ],
+      "members": [
+        {
+          "name": "asset_01.png",
+          "bytes": 1691228,
+          "sha256": "f1deabfe4bc8d718f135c3afe5c689896c076aa1f395aa27fe8fdc2422558d85"
+        },
+        {
+          "name": "final.json",
+          "bytes": 451,
+          "sha256": "fd03426b1a730017b0d1d895ed4ae48f615fe7368e2cf3cf8de2b5251777a1c2"
+        },
+        {
+          "name": "manifest.json",
+          "bytes": 233,
+          "sha256": "1d299e111789f2f31235d5d8283c2b462461910011936eabad75d17e1f3b8518"
+        },
+        {
+          "name": "submit.json",
+          "bytes": 286,
+          "sha256": "8dc294b740a5661c4a4b07b2fd52ff146d08968d4d1c3ff8ed9dce441a9a6109"
+        }
+      ],
+      "assetPaths": [
+        "UnityProject/Assets/FantasyTD/Art/ApprovedSources/11232874052/asset_01.png"
+      ],
+      "runtimeIntegrated": false
+    },
+    {
+      "artifactId": 11233385289,
+      "archiveSha256": "2fbd0bf13644e15d537fd13908e244087fd88593755dc769100b54952419cb6e",
+      "maps": [
+        "MAP3"
+      ],
+      "roles": [
+        "SPECIAL_NIGHT_TOWER_SOURCE"
+      ],
+      "members": [
+        {
+          "name": "asset_01.png",
+          "bytes": 2370128,
+          "sha256": "a9b813e4a72cf7c1c71323b3031a16f0fd4373294ea90f7a6d1b5f6ec3419469"
+        },
+        {
+          "name": "final.json",
+          "bytes": 451,
+          "sha256": "e428e417167fde92225b40051c68f2833e26f633e675231e2f0e38b11ec09c16"
+        },
+        {
+          "name": "manifest.json",
+          "bytes": 238,
+          "sha256": "65215c7296080080ee723e77bb00edf6d4a076612cda41460ae6cbf268c51501"
+        },
+        {
+          "name": "submit.json",
+          "bytes": 286,
+          "sha256": "f33bfc8d4df49b1291a6c5813840c118cb07d34b7e4b34ab57afa361830505aa"
+        }
+      ],
+      "assetPaths": [
+        "UnityProject/Assets/FantasyTD/Art/ApprovedSources/11233385289/asset_01.png"
+      ],
+      "runtimeIntegrated": false
+    },
+    {
+      "artifactId": 11233419385,
+      "archiveSha256": "21340e60637b4273398d4320eeff4a3abe5570aa64fc322e6c168f457910f6e6",
+      "maps": [
+        "MAP4"
+      ],
+      "roles": [
+        "SPECIAL_AQUATIC_TOWER_SOURCE"
+      ],
+      "members": [
+        {
+          "name": "asset_01.png",
+          "bytes": 3683990,
+          "sha256": "1d866d43bc81087f1ea0f36ee54575d7d43c0990497796c3769381d9a2b822d2"
+        },
+        {
+          "name": "final.json",
+          "bytes": 451,
+          "sha256": "c600e8400c6c7ae7bebd5d9d2563fa89b1b5d10ee2dc94046ddacb7eeb74329b"
+        },
+        {
+          "name": "manifest.json",
+          "bytes": 247,
+          "sha256": "7010def7a41b8c32277a33d11c0f2bcec80b4dcc6973f185207079c946898e7f"
+        },
+        {
+          "name": "submit.json",
+          "bytes": 286,
+          "sha256": "09b59e0f598bad6a367baa905253f1a9802d1095eb51d6b21763ee2ecbecfb76"
+        }
+      ],
+      "assetPaths": [
+        "UnityProject/Assets/FantasyTD/Art/ApprovedSources/11233419385/asset_01.png"
+      ],
+      "runtimeIntegrated": false
+    },
+    {
+      "artifactId": 11233476155,
+      "archiveSha256": "8be5aeb2e63319978ebec07cc36e862d999d050549eec5eadeef59b4109fb269",
+      "maps": [
+        "MAP3"
+      ],
+      "roles": [
+        "SPECIAL_NIGHT_TOWER_ACTIVE_SINGLE_SOURCE"
+      ],
+      "members": [
+        {
+          "name": "asset_01.png",
+          "bytes": 1304640,
+          "sha256": "9126851dc70778d6f8f084307a7bd63769933b93bef90c92069b6fbf59f2ddd7"
+        },
+        {
+          "name": "final.json",
+          "bytes": 451,
+          "sha256": "14185337b4242ba4e0754498e43f98a6e3f25572684900d34e61778a8ff45bfb"
+        },
+        {
+          "name": "manifest.json",
+          "bytes": 251,
+          "sha256": "98b5adf36b0afd453d7f80b50ee9d58eab30e761a10ff416caa4d0eabe057d59"
+        },
+        {
+          "name": "submit.json",
+          "bytes": 286,
+          "sha256": "5c873a32b38415860f6874e2d50f7ac00aa0b266dd030df376ad827979df7372"
+        }
+      ],
+      "assetPaths": [
+        "UnityProject/Assets/FantasyTD/Art/ApprovedSources/11233476155/asset_01.png"
+      ],
+      "runtimeIntegrated": false
+    },
+    {
+      "artifactId": 11233497480,
+      "archiveSha256": "6a0395e0c059ea1d8152cd5cf53132db9262b042f1151ed22994f8c800307f45",
+      "maps": [
+        "MAP3"
+      ],
+      "roles": [
+        "SPECIAL_NIGHT_TOWER_ACTIVATION_ANIM"
+      ],
+      "members": [
+        {
+          "name": "asset_01.mp4",
+          "bytes": 1122357,
+          "sha256": "c4ebebeb1b511eed3a267203fff84b528bebdc847ff5352b263e2a752d9205ca"
+        },
+        {
+          "name": "final.json",
+          "bytes": 436,
+          "sha256": "c1b77dd25d634426026b046a30c84150dffdb59104cae4d71c9bd3348477b6c2"
+        },
+        {
+          "name": "manifest.json",
+          "bytes": 249,
+          "sha256": "6f58d610f2d0db7a12cd26b2806926dea1c5035837f949984d42d0f7341f26f1"
+        },
+        {
+          "name": "submit.json",
+          "bytes": 286,
+          "sha256": "a84c9bbb9a09523c90ad1f34880c6bb819c9fa7aa3584949e049ff1b3b0561eb"
+        }
+      ],
+      "assetPaths": [
+        "UnityProject/Assets/FantasyTD/Art/ApprovedSources/11233497480/asset_01.mp4"
+      ],
+      "runtimeIntegrated": false
+    },
+    {
+      "artifactId": 11233644218,
+      "archiveSha256": "5a063a8bfd4090d1071648aba63858a4b564558ed9825ee761e1203a86503466",
+      "maps": [
+        "MAP4"
+      ],
+      "roles": [
+        "PEARL_SHRINE_SINGLE_SOURCE",
+        "PEARL_SHRINE_CLOSED"
+      ],
+      "members": [
+        {
+          "name": "asset_01.png",
+          "bytes": 977707,
+          "sha256": "b29e8d3df3b54284c99736195f67802bdbb1c8ca8f58da2125347dfae83d358b"
+        },
+        {
+          "name": "final.json",
+          "bytes": 451,
+          "sha256": "d04659f8058211d7a119bbf140b8bfb432c95a4d70a4f68f24d63851d97ccfac"
+        },
+        {
+          "name": "manifest.json",
+          "bytes": 234,
+          "sha256": "9c5cbb5cc49b0a378674829030f942cc765c0839a8872ebb048400b2074bd7fc"
+        },
+        {
+          "name": "submit.json",
+          "bytes": 286,
+          "sha256": "d7f33b2f10d72b55dc6cc6511cca516e43e8616939b12a1b2cffbbe2522ee2dc"
+        }
+      ],
+      "assetPaths": [
+        "UnityProject/Assets/FantasyTD/Art/ApprovedSources/11233644218/asset_01.png"
+      ],
+      "runtimeIntegrated": false
+    },
+    {
+      "artifactId": 11233674566,
+      "archiveSha256": "8b3c4ec30a113ea46e9deb0a2ceacaf2f1a0c87d85322f0d862a1aef12c35698",
+      "maps": [
+        "MAP4"
+      ],
+      "roles": [
+        "MINIBOSS_SOURCE"
+      ],
+      "members": [
+        {
+          "name": "asset_01.png",
+          "bytes": 3537818,
+          "sha256": "cb345bb2fb7a0fb862558dc080b87d089b20bd7bd4a443866cd732feb120ff22"
+        },
+        {
+          "name": "final.json",
+          "bytes": 451,
+          "sha256": "06f04b33826c11d16fad89e4a8e997b16ad8d0153032a476903e5acd8ebc4686"
+        },
+        {
+          "name": "manifest.json",
+          "bytes": 245,
+          "sha256": "c505cdff16673c92b8523e74f073906e560cf71b659ebf0c8463886d29d79a45"
+        },
+        {
+          "name": "submit.json",
+          "bytes": 286,
+          "sha256": "a70b8fdc16596dda8e66fe53a7993bd492bcc5713c79ce523eeee4cdede075ad"
+        }
+      ],
+      "assetPaths": [
+        "UnityProject/Assets/FantasyTD/Art/ApprovedSources/11233674566/asset_01.png"
+      ],
+      "runtimeIntegrated": false
+    },
+    {
+      "artifactId": 11233697507,
+      "archiveSha256": "6b269b0d64a23e8db9cef0776dba3cb281f1c2fca8e193c8d3b1ee251dc9d39b",
+      "maps": [
+        "MAP3"
+      ],
+      "roles": [
+        "MOON_GATE_OPEN",
+        "MOON_GATE_OPEN_ANIM"
+      ],
+      "members": [
+        {
+          "name": "asset_01.mp4",
+          "bytes": 1068282,
+          "sha256": "b86be4560a979cdb0c67a0caaabbee6ccab126791e5446667e3b64e6e3ce8d72"
+        },
+        {
+          "name": "final.json",
+          "bytes": 436,
+          "sha256": "8e5d0eb9bd8195436689e008e295c87f6774b55bd6713940ccc6d24f78fe4883"
+        },
+        {
+          "name": "manifest.json",
+          "bytes": 241,
+          "sha256": "8688383cfdbfa7626cb0c45e89f358a34d1befc066367c022277305fe0f69093"
+        },
+        {
+          "name": "submit.json",
+          "bytes": 286,
+          "sha256": "babb5e532ada2e12eba7e01557a1e864356f153ae4ddd1ba54bf959b3b714f7c"
+        }
+      ],
+      "assetPaths": [
+        "UnityProject/Assets/FantasyTD/Art/ApprovedSources/11233697507/asset_01.mp4"
+      ],
+      "runtimeIntegrated": false
+    },
+    {
+      "artifactId": 11233777438,
+      "archiveSha256": "28d0417161f529f29c1106511557d31117c4c7962fde6cf59f5c754d69ea25cb",
+      "maps": [
+        "MAP3"
+      ],
+      "roles": [
+        "BAT_SWARM_ANIM"
+      ],
+      "members": [
+        {
+          "name": "asset_01.mp4",
+          "bytes": 1052438,
+          "sha256": "452990e7b2b54e097d9f1de6cfaec600ee15d110eb4fdcc485aac80cca58caf3"
+        },
+        {
+          "name": "final.json",
+          "bytes": 436,
+          "sha256": "16c6d5a9bac93ef77ed0a6a1f065316ca512cabad95ebf60962a0635b9870c64"
+        },
+        {
+          "name": "manifest.json",
+          "bytes": 243,
+          "sha256": "0f13f29ebfcd4b649a8847381aa46033725df243b8d8046ff534e65207f1e7de"
+        },
+        {
+          "name": "submit.json",
+          "bytes": 286,
+          "sha256": "36310ba17a2083a4de97520f4bf5ea7a8073dcf0259417c3a22fb4791d1ee85d"
+        }
+      ],
+      "assetPaths": [
+        "UnityProject/Assets/FantasyTD/Art/ApprovedSources/11233777438/asset_01.mp4"
+      ],
+      "runtimeIntegrated": false
+    },
+    {
+      "artifactId": 11233790855,
+      "archiveSha256": "93134b498a514b57c524442fe6e00d50c9c997dd3c3cb5242902303244b5c54e",
+      "maps": [
+        "MAP3"
+      ],
+      "roles": [
+        "BACKGROUND_TERRAIN_PLATE"
+      ],
+      "members": [
+        {
+          "name": "asset_01.png",
+          "bytes": 1412573,
+          "sha256": "8d08d9d73c1eaa5bf2337f92fcac88f6d9c6f9c953dc26783581864e94fd590e"
+        },
+        {
+          "name": "final.json",
+          "bytes": 451,
+          "sha256": "17bfcdf11962e2e4c1fbb90484557fb3ea11822a561476bdacd613b74973ca9d"
+        },
+        {
+          "name": "manifest.json",
+          "bytes": 234,
+          "sha256": "0c19ed2fd9dbb217cd32ef72e2f572fc31dc2ed1a1fc9d72f1e2f0e6bc6b23e1"
+        },
+        {
+          "name": "submit.json",
+          "bytes": 286,
+          "sha256": "2e2fcc4b92dc584d33fb527999d26f6f90790ef0a5d6515fe2bfa2306f67ed8a"
+        }
+      ],
+      "assetPaths": [
+        "UnityProject/Assets/FantasyTD/Art/ApprovedSources/11233790855/asset_01.png"
+      ],
+      "runtimeIntegrated": false
+    },
+    {
+      "artifactId": 11233805827,
+      "archiveSha256": "b3605596ff9fbfba3e2ca105922b58349965fc58f5997535fab9e56932ae9c0e",
+      "maps": [
+        "MAP3"
+      ],
+      "roles": [
+        "MOON_GATE_SINGLE_SOURCE",
+        "MOON_GATE_CLOSED"
+      ],
+      "members": [
+        {
+          "name": "final.json",
+          "bytes": 451,
+          "sha256": "4ad74b996141fd23cb6bc4afe0a75de9932778b6636b1a3958ea16de473de8b0"
+        },
+        {
+          "name": "manifest.json",
+          "bytes": 239,
+          "sha256": "e55dc5f992770d4f4502272584ce2e1ac475e0cc35f3de9910315be0112edc6b"
+        },
+        {
+          "name": "asset_01.png",
+          "bytes": 1063808,
+          "sha256": "ac3d9912a4f89d4e9278b613be7b70d3cd0d3c97d33459bc3f4f6d1263181739"
+        },
+        {
+          "name": "submit.json",
+          "bytes": 286,
+          "sha256": "4911e7ae25a3725a588d330678e8c5165b69c23baca4e7f21d3f323baaabea46"
+        }
+      ],
+      "assetPaths": [
+        "UnityProject/Assets/FantasyTD/Art/ApprovedSources/11233805827/asset_01.png"
+      ],
+      "runtimeIntegrated": false
+    },
+    {
+      "artifactId": 11233812434,
+      "archiveSha256": "71ae0380b16a595ecc2fdbded000f6bc867c5c96a3fadcdd45998af150619d49",
+      "maps": [
+        "MAP3"
+      ],
+      "roles": [
+        "FOG_START",
+        "FOG_HIGH",
+        "FOG_END"
+      ],
+      "members": [
+        {
+          "name": "asset_01.mp4",
+          "bytes": 1256963,
+          "sha256": "b4c926da4597ef272c3ab682d2ea3cc4d9919229491c1a676aed7bb3b773b624"
+        },
+        {
+          "name": "manifest.json",
+          "bytes": 243,
+          "sha256": "65fe0d53bbf273cd5cac20af4539daa3f3e9cfe97b32703c314a15d2940cfc94"
+        },
+        {
+          "name": "final.json",
+          "bytes": 436,
+          "sha256": "ec1074540c661507d53b427118d235000f35af6aba444211e04d772d17ccf571"
+        },
+        {
+          "name": "submit.json",
+          "bytes": 286,
+          "sha256": "ceb8d9b6edc32d4c4e9d1f7a620592f94cd5b3cb7048df7d9b879610bfcd0e60"
+        }
+      ],
+      "assetPaths": [
+        "UnityProject/Assets/FantasyTD/Art/ApprovedSources/11233812434/asset_01.mp4"
+      ],
+      "runtimeIntegrated": false
+    },
+    {
+      "artifactId": 11233877408,
+      "archiveSha256": "e9092d24cf9165176cd371a1ccda3650f0a10d774305fff59432e07566ce3594",
+      "maps": [
+        "MAP1",
+        "MAP3"
+      ],
+      "roles": [
+        "AMBIENT_LOOP",
+        "AMBIENT_LOOP"
+      ],
+      "members": [
+        {
+          "name": "asset_01.mp4",
+          "bytes": 756327,
+          "sha256": "1ae173e1c00fb6f2b5028e5b4a11b021c3689be9b57e2ce081a86ca8378d6e05"
+        },
+        {
+          "name": "final.json",
+          "bytes": 436,
+          "sha256": "d2105a4874ffbaebca50846d0bc9187a23794d949bb18258fb6d700a436dd6ab"
+        },
+        {
+          "name": "manifest.json",
+          "bytes": 238,
+          "sha256": "bbaaa4a53362a46b8250e0cc994ae4909cb5668d12ba130cae07390f7785ba83"
+        },
+        {
+          "name": "submit.json",
+          "bytes": 286,
+          "sha256": "39a34727b30e0de948cc27914838f98548407eb715612ced7b2bbe4f833a82c9"
+        }
+      ],
+      "assetPaths": [
+        "UnityProject/Assets/FantasyTD/Art/ApprovedSources/11233877408/asset_01.mp4"
+      ],
+      "runtimeIntegrated": false
+    },
+    {
+      "artifactId": 11233999401,
+      "archiveSha256": "602af551f2f88fdb133365092d68dd69ed4ae89653e5d6ecffaa3d0f8dc27c2a",
+      "maps": [
+        "MAP4"
+      ],
+      "roles": [
+        "SPECIAL_AQUATIC_TOWER_ACTIVE_SINGLE_SOURCE"
+      ],
+      "members": [
+        {
+          "name": "asset_01.png",
+          "bytes": 945151,
+          "sha256": "6970f90407eb51ec31fdf0a1c832e6ffb36de15ef2ced670895305874ae938d4"
+        },
+        {
+          "name": "final.json",
+          "bytes": 451,
+          "sha256": "2d6736daa50c60555d1b981e5c32cf37895ed7fbe117d5ffb1f0a99f4f4b2c6c"
+        },
+        {
+          "name": "manifest.json",
+          "bytes": 242,
+          "sha256": "fce8e8eb2a1a519da16c0f41df4ed429421ba82b0c10b12f13037a0d37b7ae18"
+        },
+        {
+          "name": "submit.json",
+          "bytes": 286,
+          "sha256": "d829371fc54c4536297320abe3cdc53b68c924acac07b1b085a3d4eac1f142dd"
+        }
+      ],
+      "assetPaths": [
+        "UnityProject/Assets/FantasyTD/Art/ApprovedSources/11233999401/asset_01.png"
+      ],
+      "runtimeIntegrated": false
+    },
+    {
+      "artifactId": 11234044723,
+      "archiveSha256": "257de636d1c7f1d44b7965a2ff5ae56e0f36e5db53f13983252dce83e0c2df40",
+      "maps": [
+        "MAP4"
+      ],
+      "roles": [
+        "BUBBLE_FORM",
+        "BUBBLE_DRIFT",
+        "BUBBLE_ABSORB",
+        "BUBBLE_BURST",
+        "BUBBLE_EVENT_ANIM"
+      ],
+      "members": [
+        {
+          "name": "asset_01.mp4",
+          "bytes": 1040267,
+          "sha256": "c9b8a38eef49b32ec10e70e9fa15ff5ed77ad8281546d9418ddb1e95753dee02"
+        },
+        {
+          "name": "final.json",
+          "bytes": 436,
+          "sha256": "d3ec8a2803a3e34b1c126f31e9d45afc4296864b867f6a24a7abdd12093343b1"
+        },
+        {
+          "name": "manifest.json",
+          "bytes": 241,
+          "sha256": "54be9b15434351112936ab07bffb6553bb3e82be3474b1a6f64f513a02183ee6"
+        },
+        {
+          "name": "submit.json",
+          "bytes": 286,
+          "sha256": "a8d7ea1e3040e3fff46c826f6bafa69bc3b2513c61e17d2042902c3513f968de"
+        }
+      ],
+      "assetPaths": [
+        "UnityProject/Assets/FantasyTD/Art/ApprovedSources/11234044723/asset_01.mp4"
+      ],
+      "runtimeIntegrated": false
+    },
+    {
+      "artifactId": 11234391273,
+      "archiveSha256": "97dd89997f93195bf9040985d6260438e89b54f12fec7901ebae2391211e4f3a",
+      "maps": [
+        "MAP4"
+      ],
+      "roles": [
+        "PEARL_SHRINE_OPEN",
+        "PEARL_SHRINE_OPEN_ANIM"
+      ],
+      "members": [
+        {
+          "name": "asset_01.mp4",
+          "bytes": 1049820,
+          "sha256": "b3ba60a2080c5a8f2c32036d88beb5d76a9f0ce9f07041b76eed8c2c43cf1ed8"
+        },
+        {
+          "name": "final.json",
+          "bytes": 436,
+          "sha256": "54879e6a2f81b8c073a8111221ab3a38cd67adeeacfa008e79da092c15add9fd"
+        },
+        {
+          "name": "manifest.json",
+          "bytes": 243,
+          "sha256": "cab4feb3ab9506a6f05bf9c2c2110a0b659b7fe84b616ab24021f8af97f07456"
+        },
+        {
+          "name": "submit.json",
+          "bytes": 286,
+          "sha256": "bacff931d64bfd90850e79701295bb6f6fffcea4f1df2a27bb38a4316b14fe7b"
+        }
+      ],
+      "assetPaths": [
+        "UnityProject/Assets/FantasyTD/Art/ApprovedSources/11234391273/asset_01.mp4"
+      ],
+      "runtimeIntegrated": false
+    },
+    {
+      "artifactId": 11234419605,
+      "archiveSha256": "37db28dedcde04b84c9bfff0bca6d6f5af289991d1449d863a8c28a0677fb60e",
+      "maps": [
+        "MAP6"
+      ],
+      "roles": [
+        "PANDA_SOURCE"
+      ],
+      "members": [
+        {
+          "name": "asset_01.png",
+          "bytes": 846781,
+          "sha256": "43157f7f954590f449e6b2d7cbccf0dbacadb31082147285b36b488a63da3dab"
+        },
+        {
+          "name": "final.json",
+          "bytes": 451,
+          "sha256": "4611482227004cf039a35b6073eba44fd5e23852c02db1f557bd5494a81c8701"
+        },
+        {
+          "name": "manifest.json",
+          "bytes": 226,
+          "sha256": "26c4493fed05ba543c7775657ca029ef04d891762886056b90e305b0af2ad562"
+        },
+        {
+          "name": "submit.json",
+          "bytes": 286,
+          "sha256": "34617d21790d8e678ecbd84f14ba1b2fee8b44278010e9a973c72348aeffbf8f"
+        }
+      ],
+      "assetPaths": [
+        "UnityProject/Assets/FantasyTD/Art/ApprovedSources/11234419605/asset_01.png"
+      ],
+      "runtimeIntegrated": false
+    },
+    {
+      "artifactId": 11234470479,
+      "archiveSha256": "2531e929b0cfb03a4c0fa74a5cd729d35a103218e2ff3931df880fc43e36f14e",
+      "maps": [
+        "MAP4"
+      ],
+      "roles": [
+        "SCENERY_PROP_PACK"
+      ],
+      "members": [
+        {
+          "name": "asset_01.png",
+          "bytes": 1232640,
+          "sha256": "97d648c7e3ae6d434342446bafb097216aebb4739c2dc067c8ee12b7c2d6150e"
+        },
+        {
+          "name": "final.json",
+          "bytes": 451,
+          "sha256": "05e0853d128d2069d3dacc04ba2961e771b4bf4f0c361c1427a5f96ed11d6211"
+        },
+        {
+          "name": "manifest.json",
+          "bytes": 228,
+          "sha256": "d90324f64dd56798164ed44301033d6fe7a1a084851242a876757923640007d5"
+        },
+        {
+          "name": "submit.json",
+          "bytes": 286,
+          "sha256": "2ab6fd9868d553e67d76401c75ef108c30de4c8f48595d9bda4ba9b091649920"
+        }
+      ],
+      "assetPaths": [
+        "UnityProject/Assets/FantasyTD/Art/ApprovedSources/11234470479/asset_01.png"
+      ],
+      "runtimeIntegrated": false
+    },
+    {
+      "artifactId": 11234650367,
+      "archiveSha256": "2f20396cc7600acc801cf18fbfabbfeaa4193a8433d0c7a7f81aa4b4ceb68005",
+      "maps": [
+        "MAP1",
+        "MAP4"
+      ],
+      "roles": [
+        "MINIBOSS_DORMANT_SINGLE_SOURCE",
+        "MINIBOSS_DORMANT",
+        "MINIBOSS_DORMANT_SINGLE_SOURCE",
+        "MINIBOSS_DORMANT"
+      ],
+      "members": [
+        {
+          "name": "asset_01.png",
+          "bytes": 1050081,
+          "sha256": "65c6d51bccf3787a07723878a071a80a26088bb7d7e961e7ec15c2e28f2e8484"
+        },
+        {
+          "name": "final.json",
+          "bytes": 451,
+          "sha256": "84a03a42aea19e4fddec1c10c3b4ad18a74a660662646ef951af452793f86ae5"
+        },
+        {
+          "name": "manifest.json",
+          "bytes": 234,
+          "sha256": "54ce8f55f308d611421273fe213b12586d30bd43950ae6dced5ad2792ba0b0d4"
+        },
+        {
+          "name": "submit.json",
+          "bytes": 286,
+          "sha256": "33a1e7fbd419b1093a5334c40806388f38ad313f630909832aa9374b25133e95"
+        }
+      ],
+      "assetPaths": [
+        "UnityProject/Assets/FantasyTD/Art/ApprovedSources/11234650367/asset_01.png"
+      ],
+      "runtimeIntegrated": false
+    },
+    {
+      "artifactId": 11234691977,
+      "archiveSha256": "933729c7494c26e87a9ede387ebfb04d1c4eba05c7ae8d929ad458db625eb6b4",
+      "maps": [
+        "MAP5"
+      ],
+      "roles": [
+        "BACKGROUND_TERRAIN_PLATE"
+      ],
+      "members": [
+        {
+          "name": "final.json",
+          "bytes": 451,
+          "sha256": "7f671c368448a8a086260d3af6cd9ac2de51f0ec8e4f5053b33c974ed2597484"
+        },
+        {
+          "name": "submit.json",
+          "bytes": 286,
+          "sha256": "805e670fb9a9f73d4cb94f2637037f96f9ad3c686e2e6425490594659c42ede9"
+        },
+        {
+          "name": "manifest.json",
+          "bytes": 232,
+          "sha256": "11d050ff29a1516289105e008b0d1a523874efe447c149119ade8726e1625558"
+        },
+        {
+          "name": "asset_01.png",
+          "bytes": 1705236,
+          "sha256": "8dc09376a14d636973a774d169bb26b01f6601e3a60feae65d305b9a8e2b7ef1"
+        }
+      ],
+      "assetPaths": [
+        "UnityProject/Assets/FantasyTD/Art/ApprovedSources/11234691977/asset_01.png"
+      ],
+      "runtimeIntegrated": false
+    },
+    {
+      "artifactId": 11234731952,
+      "archiveSha256": "998144a83727db785d9ea310317abc56ffcf5b759ba522c600cad949ae60c28a",
+      "maps": [
+        "MAP5"
+      ],
+      "roles": [
+        "SCENERY_PROP_PACK"
+      ],
+      "members": [
+        {
+          "name": "asset_01.png",
+          "bytes": 1439858,
+          "sha256": "8ef1bd16b723b34c3c467e56c3a7eb13036f7161eefb8684ddcd5a7112b889ca"
+        },
+        {
+          "name": "final.json",
+          "bytes": 451,
+          "sha256": "11a9ab8726528452efde7607aad92545d4428c5f898e49a23adb1b8b220753e3"
+        },
+        {
+          "name": "manifest.json",
+          "bytes": 227,
+          "sha256": "8ad4e5ca8fe552fdf13f687876e6b1d8aaef75eda8769691b028c1a4f1e88788"
+        },
+        {
+          "name": "submit.json",
+          "bytes": 286,
+          "sha256": "c3d92b6dc1adc116f2bb7321b6478c5fbdf9ec44fe79d1a4b131bc9c37c9c147"
+        }
+      ],
+      "assetPaths": [
+        "UnityProject/Assets/FantasyTD/Art/ApprovedSources/11234731952/asset_01.png"
+      ],
+      "runtimeIntegrated": false
+    },
+    {
+      "artifactId": 11234759621,
+      "archiveSha256": "f10a7d28d32050a5cfaf2f515bda17c08b828b6114d666994c47fb1e7aa35dec",
+      "maps": [
+        "MAP5"
+      ],
+      "roles": [
+        "LAB_OPEN",
+        "LAB_OPEN_ANIM"
+      ],
+      "members": [
+        {
+          "name": "asset_01.mp4",
+          "bytes": 2279835,
+          "sha256": "e3dfdfe8869fdf8d9f625f62ecd69fb4eb58f832c0d681b9c54ccfb47b442ef6"
+        },
+        {
+          "name": "final.json",
+          "bytes": 436,
+          "sha256": "3eb469facff91044c095d64e1bd9b5f35e08c9a2701b21fbfd1cfe55af532ddc"
+        },
+        {
+          "name": "manifest.json",
+          "bytes": 238,
+          "sha256": "b06a0fca59b293389314d835d7566826c5f6df711b045f3346a19d4c0b4a4b3a"
+        },
+        {
+          "name": "submit.json",
+          "bytes": 286,
+          "sha256": "83039b07a5de1a09e757023b2ec4e384c9f2c08b1ae8f65019fc643f1f710605"
+        }
+      ],
+      "assetPaths": [
+        "UnityProject/Assets/FantasyTD/Art/ApprovedSources/11234759621/asset_01.mp4"
+      ],
+      "runtimeIntegrated": false
+    },
+    {
+      "artifactId": 11234883925,
+      "archiveSha256": "f0297567af7319b9b45f2bf6f7c59cac1161e6253302fe575fc69676876f35f3",
+      "maps": [
+        "MAP6"
+      ],
+      "roles": [
+        "MINIBOSS_DORMANT_SINGLE_SOURCE",
+        "MINIBOSS_DORMANT"
+      ],
+      "members": [
+        {
+          "name": "asset_01.png",
+          "bytes": 980670,
+          "sha256": "a01174fc5aea9e5f0e0ea337d3e7fa6f826ab699bba59b25c77961f975349937"
+        },
+        {
+          "name": "final.json",
+          "bytes": 451,
+          "sha256": "7a02616bbf1f4d4080522c0ac368f9832d4ce4e4e384cb0f86717dee79a79f2e"
+        },
+        {
+          "name": "manifest.json",
+          "bytes": 242,
+          "sha256": "3f127f707f56160a1f7d948f1956f50ad4a94ca0357033e07c0adf851c6e5db1"
+        },
+        {
+          "name": "submit.json",
+          "bytes": 286,
+          "sha256": "aa2f16a3927d0482a8d7d1325060850d9f7bcf42b9bc592e5ebd10b9ef7d84bc"
+        }
+      ],
+      "assetPaths": [
+        "UnityProject/Assets/FantasyTD/Art/ApprovedSources/11234883925/asset_01.png"
+      ],
+      "runtimeIntegrated": false
+    },
+    {
+      "artifactId": 11234892986,
+      "archiveSha256": "826d68a358ac13f89936d20da3205f601e0caa5aa5a2e6dafa62e23cb7c2603a",
+      "maps": [
+        "MAP5"
+      ],
+      "roles": [
+        "MINIBOSS_SOURCE"
+      ],
+      "members": [
+        {
+          "name": "manifest.json",
+          "bytes": 236,
+          "sha256": "82619ca2c4c3f8786d8c6d09d1850d3020ba8c48df200b9733fd8698e9fece1f"
+        },
+        {
+          "name": "final.json",
+          "bytes": 451,
+          "sha256": "ee39c123e4bd3ac9f84cfea88b335b42a0f9648be521db7bd86d65d66a2d8b84"
+        },
+        {
+          "name": "submit.json",
+          "bytes": 286,
+          "sha256": "70f4d9075abe73ccc98525636c9540fbe76525e3e76bd76656aca024bb3cb03d"
+        },
+        {
+          "name": "asset_01.png",
+          "bytes": 1133057,
+          "sha256": "442ef64c3c6d0fa1e83cc75fb4739781a437e902f2bac77b42efbc1abedb7f86"
+        }
+      ],
+      "assetPaths": [
+        "UnityProject/Assets/FantasyTD/Art/ApprovedSources/11234892986/asset_01.png"
+      ],
+      "runtimeIntegrated": false
+    },
+    {
+      "artifactId": 11234909637,
+      "archiveSha256": "1b6331b7cb9f3a9b61fe6a44cb005ab35eb7c8de68d28807673abea2c618641e",
+      "maps": [
+        "MAP3",
+        "MAP4"
+      ],
+      "roles": [
+        "MINIBOSS_ACTIVE",
+        "MINIBOSS_AWAKEN_ANIM",
+        "MINIBOSS_ACTIVE",
+        "MINIBOSS_AWAKEN_ANIM"
+      ],
+      "members": [
+        {
+          "name": "asset_01.mp4",
+          "bytes": 2307475,
+          "sha256": "f287aedcb9c7b742087c6f52be150be4799d56b259010aa2a96679dc0ee0337a"
+        },
+        {
+          "name": "final.json",
+          "bytes": 436,
+          "sha256": "680da16eb404f4e78a061696a8966721223ba0b095ac65ca32ba24b0e57a02c3"
+        },
+        {
+          "name": "manifest.json",
+          "bytes": 237,
+          "sha256": "b63f3ebdc21d408853254b67d879d36150074cb4f7517d29a638414c19c7a4d6"
+        },
+        {
+          "name": "submit.json",
+          "bytes": 286,
+          "sha256": "191ee539a008aa4204a2f956e2f7c02252448b519195923f1a960c0678ae4630"
+        }
+      ],
+      "assetPaths": [
+        "UnityProject/Assets/FantasyTD/Art/ApprovedSources/11234909637/asset_01.mp4"
+      ],
+      "runtimeIntegrated": false
+    },
+    {
+      "artifactId": 11235063190,
+      "archiveSha256": "52ea7c77fd8530391fe9f07f582759f02ce7254de322927243c11f546fa09000",
+      "maps": [
+        "MAP6"
+      ],
+      "roles": [
+        "SCENERY_PROP_PACK"
+      ],
+      "members": [
+        {
+          "name": "asset_01.png",
+          "bytes": 1286245,
+          "sha256": "816a7d1e1143ec6a49d86d7efd0d01c7969f1d6256b219fadebe73891c2addf1"
+        },
+        {
+          "name": "manifest.json",
+          "bytes": 227,
+          "sha256": "0fa291fc34aa2a114c4bae3ec0b99470535daded1b7ceeca7e2a6865fba8c0de"
+        },
+        {
+          "name": "final.json",
+          "bytes": 451,
+          "sha256": "336961215de36c9ac9adb0028cfe71f8208ecb6cbe104d4d3ab08d0ab84defc6"
+        },
+        {
+          "name": "submit.json",
+          "bytes": 286,
+          "sha256": "558d0c8b3d72247a6da9a178e7ec701045eb8c74a07517dd8e5e5bd3dcc1f3e2"
+        }
+      ],
+      "assetPaths": [
+        "UnityProject/Assets/FantasyTD/Art/ApprovedSources/11235063190/asset_01.png"
+      ],
+      "runtimeIntegrated": false
+    },
+    {
+      "artifactId": 11235067913,
+      "archiveSha256": "4c014ef184d5b1cc7da5bbf7188a7944f11290033d564caba0ea142272ca1cfa",
+      "maps": [
+        "MAP4"
+      ],
+      "roles": [
+        "SPECIAL_AQUATIC_TOWER_SINGLE_SOURCE",
+        "SPECIAL_AQUATIC_TOWER_ACTIVATION_ANIM"
+      ],
+      "members": [
+        {
+          "name": "asset_01.mp4",
+          "bytes": 1789554,
+          "sha256": "1fd4c1ee215c72b3ed32ae333ff3fcc696ce91d25dc95bff4b12f7d1a407494d"
+        },
+        {
+          "name": "final.json",
+          "bytes": 436,
+          "sha256": "30c68a0b8131d3a1dbc8458e482bdf3325d71467af7ac73aea4db6712fa74a57"
+        },
+        {
+          "name": "manifest.json",
+          "bytes": 257,
+          "sha256": "a025d4d188968ce7bf619f11e1e932cc364d71559853a4d98cc0343228d5ab19"
+        },
+        {
+          "name": "submit.json",
+          "bytes": 286,
+          "sha256": "bb39055ae610256c8205c19e226eec4937f738125f3e7a4cfd76ccc5f6b82b10"
+        }
+      ],
+      "assetPaths": [
+        "UnityProject/Assets/FantasyTD/Art/ApprovedSources/11235067913/asset_01.mp4"
+      ],
+      "runtimeIntegrated": false
+    },
+    {
+      "artifactId": 11235070159,
+      "archiveSha256": "23c77b8301a7bee965ad281d799061ea2004ab1f835108e24c64a07e38f177a7",
+      "maps": [
+        "MAP4"
+      ],
+      "roles": [
+        "AMBIENT_LOOP"
+      ],
+      "members": [
+        {
+          "name": "asset_01.mp4",
+          "bytes": 1725821,
+          "sha256": "b82918a6f0f55898760db6f60f7a5402b297d157aa193fc6d9e96d4e610fd2cb"
+        },
+        {
+          "name": "final.json",
+          "bytes": 436,
+          "sha256": "e4558621ebb90853748f5f306f447e75d7789f68fbaf2fe60c03d959d427eef5"
+        },
+        {
+          "name": "manifest.json",
+          "bytes": 237,
+          "sha256": "1b2ede8a34367b95117fce23a35ddaa1a2fc8c51cf1821ba12cb3c62fe6f43d7"
+        },
+        {
+          "name": "submit.json",
+          "bytes": 286,
+          "sha256": "1a682e0ba7cbf9361016bee2f450f343cd2bc2e7d9c125603df38c7c54da714a"
+        }
+      ],
+      "assetPaths": [
+        "UnityProject/Assets/FantasyTD/Art/ApprovedSources/11235070159/asset_01.mp4"
+      ],
+      "runtimeIntegrated": false
+    },
+    {
+      "artifactId": 11235078130,
+      "archiveSha256": "99d9117c63478d82d59f85f242cedd41e4ea868a11622dded8c03b6b98c750f4",
+      "maps": [
+        "MAP6"
+      ],
+      "roles": [
+        "DOJO_SINGLE_SOURCE",
+        "DOJO_CLOSED"
+      ],
+      "members": [
+        {
+          "name": "asset_01.png",
+          "bytes": 1180935,
+          "sha256": "4b06424fa1c1fe9ee3c7e0f632006bf3d5127f442de5ce5947127b5d5807bec8"
+        },
+        {
+          "name": "final.json",
+          "bytes": 451,
+          "sha256": "2a518325b2b9486a9ad3d0e4d412a33a80d5ece5e6b08f08d9e55987a3ac2bea"
+        },
+        {
+          "name": "manifest.json",
+          "bytes": 225,
+          "sha256": "2085ec3720c843e628679514eb5f9d9ee81b34cd84d883de8aa279227a50ce58"
+        },
+        {
+          "name": "submit.json",
+          "bytes": 286,
+          "sha256": "70898907e7191584a31ee0f26448f038794a14579727b21ebbca6c0fd7daa778"
+        }
+      ],
+      "assetPaths": [
+        "UnityProject/Assets/FantasyTD/Art/ApprovedSources/11235078130/asset_01.png"
+      ],
+      "runtimeIntegrated": false
+    },
+    {
+      "artifactId": 11235099906,
+      "archiveSha256": "26375030c73b55385bfb4c0915ff37888d87d9fad5bab86ccccb36c6926aef8e",
+      "maps": [
+        "MAP6"
+      ],
+      "roles": [
+        "PANDA_HOSTILE_SOURCE"
+      ],
+      "members": [
+        {
+          "name": "asset_01.png",
+          "bytes": 669200,
+          "sha256": "749740f9ff2f94da8591f6afeaf8d4feb3290977f31d332e41146981c1d767b4"
+        },
+        {
+          "name": "final.json",
+          "bytes": 451,
+          "sha256": "4f68125a2bf76eab7dbc94e59023a0fd5b6faa73b511a02e34b126bf1afd9153"
+        },
+        {
+          "name": "manifest.json",
+          "bytes": 234,
+          "sha256": "617237f6d9c02f878f916a35d283976c2d33621599d4031e0e2fe7d2c3edd650"
+        },
+        {
+          "name": "submit.json",
+          "bytes": 286,
+          "sha256": "9486ebe1a3be33d016e15aee5f9ef35b61e16560734f4e706e27a472dce37146"
+        }
+      ],
+      "assetPaths": [
+        "UnityProject/Assets/FantasyTD/Art/ApprovedSources/11235099906/asset_01.png"
+      ],
+      "runtimeIntegrated": false
+    },
+    {
+      "artifactId": 11235118803,
+      "archiveSha256": "910f654a4b7d42629ed0314e0d9481aaf4e26e09f9bfcbe715456db27fe3cb6a",
+      "maps": [
+        "MAP6"
+      ],
+      "roles": [
+        "MINIBOSS_ACTIVE_SINGLE_SOURCE",
+        "MINIBOSS_ACTIVE"
+      ],
+      "members": [
+        {
+          "name": "asset_01.png",
+          "bytes": 1034875,
+          "sha256": "993a8052fa235b265229953993928f364975456d9f67d49b602cee7540943e45"
+        },
+        {
+          "name": "final.json",
+          "bytes": 451,
+          "sha256": "65763171241fbb705cb6559856128347ac88eef0af052ecfc1645ce4008b5a60"
+        },
+        {
+          "name": "manifest.json",
+          "bytes": 241,
+          "sha256": "cc2bf1070066e8cbf3c1d7588803b239a7c3bea5c3891e08f20c17b5252ecf38"
+        },
+        {
+          "name": "submit.json",
+          "bytes": 286,
+          "sha256": "2ed4966bbe7043c204cb14e2a19bb7a5afd2c80c2388420af3495b874ab1ed6a"
+        }
+      ],
+      "assetPaths": [
+        "UnityProject/Assets/FantasyTD/Art/ApprovedSources/11235118803/asset_01.png"
+      ],
+      "runtimeIntegrated": false
+    },
+    {
+      "artifactId": 11235162980,
+      "archiveSha256": "74074e1f4104d389d024eeb1068197a1719fde0f58aa29c02e9971657480d5cf",
+      "maps": [
+        "MAP6"
+      ],
+      "roles": [
+        "SPECIAL_BAMBOO_TOWER_SOURCE"
+      ],
+      "members": [
+        {
+          "name": "asset_01.png",
+          "bytes": 1272970,
+          "sha256": "4883da20d21eb8ea0ff40c6f430e55a1813e8d95789cfb8236b24674df8b72b3"
+        },
+        {
+          "name": "final.json",
+          "bytes": 451,
+          "sha256": "ef9cb1803e30d0260c95427afb09b45f73984be3e0a8556a96f864c20f0dadd4"
+        },
+        {
+          "name": "manifest.json",
+          "bytes": 234,
+          "sha256": "3aabb350336056d59509391191cb7e369396c29036a82cdab1d1dff55f7c4d76"
+        },
+        {
+          "name": "submit.json",
+          "bytes": 286,
+          "sha256": "a3555dcc757c8741f60bfa5c7973eee76f72081364f1534dbf9ecc9d7bbdeb9f"
+        }
+      ],
+      "assetPaths": [
+        "UnityProject/Assets/FantasyTD/Art/ApprovedSources/11235162980/asset_01.png"
+      ],
+      "runtimeIntegrated": false
+    },
+    {
+      "artifactId": 11235167715,
+      "archiveSha256": "36809074b934a67fa277056f3e09f4374dda40a851dd339ae68ffccd8141dbb6",
+      "maps": [
+        "MAP3",
+        "MAP4"
+      ],
+      "roles": [
+        "MINIBOSS_ATTACK_ANIM",
+        "MINIBOSS_ATTACK_ANIM"
+      ],
+      "members": [
+        {
+          "name": "asset_01.mp4",
+          "bytes": 3074024,
+          "sha256": "e4356821eb207d7f1381d4cff4a63560566656624fb1db69d622d13f4a1a611d"
+        },
+        {
+          "name": "final.json",
+          "bytes": 436,
+          "sha256": "6a9f09f0cc5c6880fa5237f502c19a25a358687b5dee45717bfeaa3cf3deefee"
+        },
+        {
+          "name": "manifest.json",
+          "bytes": 237,
+          "sha256": "926be8598adde02235c6566522c8b892f32c0754cd521ab321faa5e62872d496"
+        },
+        {
+          "name": "submit.json",
+          "bytes": 286,
+          "sha256": "3b528efd48a1476a3ce9385b81991333315334c678ed2c2d5252a1ef1e980577"
+        }
+      ],
+      "assetPaths": [
+        "UnityProject/Assets/FantasyTD/Art/ApprovedSources/11235167715/asset_01.mp4"
+      ],
+      "runtimeIntegrated": false
+    },
+    {
+      "artifactId": 11235173326,
+      "archiveSha256": "0e7bdfb944ea0587fbab0e7f91d21ff111fd83f68b565799cf8401a80b3cb6d8",
+      "maps": [
+        "MAP6"
+      ],
+      "roles": [
+        "AMBIENT_LOOP"
+      ],
+      "members": [
+        {
+          "name": "asset_01.mp4",
+          "bytes": 660978,
+          "sha256": "8c10c0443e7dc346ce38887bc8ea84e19c0edbb7e7bf2f3d59ad6df430191fa3"
+        },
+        {
+          "name": "final.json",
+          "bytes": 436,
+          "sha256": "39ece9954d88c54661713ccd3a65d0b5f60e75ae466ce35b6ad30c2f93219bb1"
+        },
+        {
+          "name": "manifest.json",
+          "bytes": 236,
+          "sha256": "06ae83ea66c691d143681bc67452e143eefb65450e6e77ce1c17c98dc8c55607"
+        },
+        {
+          "name": "submit.json",
+          "bytes": 286,
+          "sha256": "1f781349c3bfece12b098a0c77504a01e4a18fd00b043cb41f4ae648257ec23b"
+        }
+      ],
+      "assetPaths": [
+        "UnityProject/Assets/FantasyTD/Art/ApprovedSources/11235173326/asset_01.mp4"
+      ],
+      "runtimeIntegrated": false
+    },
+    {
+      "artifactId": 11235336865,
+      "archiveSha256": "9e3710b1fe54d9226c10c1a92591e98376ae9b7ee090099bac41fd3e28505bb2",
+      "maps": [
+        "MAP5"
+      ],
+      "roles": [
+        "PSY_V0_NORMAL",
+        "PSY_V1_LIGHT_WARP",
+        "PSY_V2_GRID_VISIBLE",
+        "PSY_V3_STRONG",
+        "PSY_V4_PEAK",
+        "PSY_V5_FADE",
+        "PSY_V6_NORMAL",
+        "PSYCHEDELIC_SURGE_ANIM"
+      ],
+      "members": [
+        {
+          "name": "asset_01.mp4",
+          "bytes": 7408320,
+          "sha256": "4a4b309cbaf50e30f0310d009fc6940c8f240c21b22c381e4d9e3ce331923e70"
+        },
+        {
+          "name": "final.json",
+          "bytes": 436,
+          "sha256": "11efa4c6ee3c57ae344e234047474768c2b635ef21fb5ca0968f320eac2a5142"
+        },
+        {
+          "name": "manifest.json",
+          "bytes": 241,
+          "sha256": "0c1f81e0df7f9ad2ffe4dd10906ed03b0d18e79abca6954833ef67a4eb472613"
+        },
+        {
+          "name": "submit.json",
+          "bytes": 286,
+          "sha256": "75940efbeb2f6c7008c59093c83ab4066593dfdfb19107ae10cfece073596ff7"
+        }
+      ],
+      "assetPaths": [
+        "UnityProject/Assets/FantasyTD/Art/ApprovedSources/11235336865/asset_01.mp4"
+      ],
+      "runtimeIntegrated": false
+    },
+    {
+      "artifactId": 11235363386,
+      "archiveSha256": "9086bb85d3c2b1a797deddfb1c218ba21efb46e20f4da3bc44d9069c4173a5d5",
+      "maps": [
+        "MAP5"
+      ],
+      "roles": [
+        "SPECIAL_MUTATION_TOWER_SOURCE"
+      ],
+      "members": [
+        {
+          "name": "asset_01.png",
+          "bytes": 1261358,
+          "sha256": "8a82e815cce6937578ff4ef8ed4d40db8e3ad335d10a69e68189097ca86b6d91"
+        },
+        {
+          "name": "final.json",
+          "bytes": 451,
+          "sha256": "1faf24d0976ec77a7451c58760905f38ce7f10be59744c63b8ee6902587d93d4"
+        },
+        {
+          "name": "manifest.json",
+          "bytes": 235,
+          "sha256": "3717e9d373e5959aa1b25ae56d6263a9f9a10fe73259a10254f8ab5f579ada4d"
+        },
+        {
+          "name": "submit.json",
+          "bytes": 286,
+          "sha256": "10e4d6ed8d7aca117e841af02ab8504950508a2b13e70d83bc4940fbefbeae20"
+        }
+      ],
+      "assetPaths": [
+        "UnityProject/Assets/FantasyTD/Art/ApprovedSources/11235363386/asset_01.png"
+      ],
+      "runtimeIntegrated": false
+    },
+    {
+      "artifactId": 11235446525,
+      "archiveSha256": "2dc8540a3fe64e5e1f33453ae7f6c3715a98787c7c9569dca4aa4dcd394bd103",
+      "maps": [
+        "MAP4"
+      ],
+      "roles": [
+        "SPECIAL_AQUATIC_TOWER_IDLE_LOOP"
+      ],
+      "members": [
+        {
+          "name": "asset_01.mp4",
+          "bytes": 1363524,
+          "sha256": "78c2c3ffec9377fcee6741149c0eace40a6226cc193706ec80dda50e26beba46"
+        },
+        {
+          "name": "final.json",
+          "bytes": 436,
+          "sha256": "bf0b7aa9c3f67844ba81785933bf3ed168637d9ee735292a2410bf52609765cd"
+        },
+        {
+          "name": "manifest.json",
+          "bytes": 249,
+          "sha256": "248aa1982cc23a0d852da4adf11e11ef7dfe985607875e7f91f3e29ccc764733"
+        },
+        {
+          "name": "submit.json",
+          "bytes": 286,
+          "sha256": "dbeda151530bad743a846abd0be0069ecf3c14b1954c161d945bf3205c6f7c89"
+        }
+      ],
+      "assetPaths": [
+        "UnityProject/Assets/FantasyTD/Art/ApprovedSources/11235446525/asset_01.mp4"
+      ],
+      "runtimeIntegrated": false
+    },
+    {
+      "artifactId": 11235466241,
+      "archiveSha256": "3c9f70c5eab19eb14ed100fa5d26869ae932c4af084c8f0da6fc9ed8ecc2f32e",
+      "maps": [
+        "MAP5"
+      ],
+      "roles": [
+        "LAB_SINGLE_SOURCE",
+        "LAB_CLOSED"
+      ],
+      "members": [
+        {
+          "name": "asset_01.png",
+          "bytes": 1140777,
+          "sha256": "f5391ee290e0dad305e25468c22389b3a1c3954f63a4ba008afc06af7e76b520"
+        },
+        {
+          "name": "final.json",
+          "bytes": 451,
+          "sha256": "6db19445c007b0b63ccdd488d21e1ec3c744d6d8ba154b16bac7658041f66610"
+        },
+        {
+          "name": "manifest.json",
+          "bytes": 231,
+          "sha256": "77cbba707b1ffc12062e7c6310f11f6dce92c799dd6292090cd5cdcf0ab73283"
+        },
+        {
+          "name": "submit.json",
+          "bytes": 286,
+          "sha256": "b3167b5a05cbacb9422dfcdc6e52ba232b528701169f9f16fa4c38dcbaa85e61"
+        }
+      ],
+      "assetPaths": [
+        "UnityProject/Assets/FantasyTD/Art/ApprovedSources/11235466241/asset_01.png"
+      ],
+      "runtimeIntegrated": false
+    },
+    {
+      "artifactId": 11235542085,
+      "archiveSha256": "85071d5cae35594fb43bb7e8f90d4598bb6ca2da2988dcc9bb30fed67bfec1da",
+      "maps": [
+        "MAP6"
+      ],
+      "roles": [
+        "BACKGROUND_TERRAIN_PLATE"
+      ],
+      "members": [
+        {
+          "name": "asset_01.png",
+          "bytes": 2062541,
+          "sha256": "52932d8d2a7b3360dd51102c2cfb474d50fb678e67f8b2cabf33dd66e31a90b4"
+        },
+        {
+          "name": "final.json",
+          "bytes": 451,
+          "sha256": "214620ed277c1c8080a262609c3e7b84c01329be93b6e3308800cc1df939e28b"
+        },
+        {
+          "name": "manifest.json",
+          "bytes": 232,
+          "sha256": "cca2aac2bc8b63ba5464c0a22b427791d4f46fd03893f29df7cbdd510fd47fc7"
+        },
+        {
+          "name": "submit.json",
+          "bytes": 286,
+          "sha256": "653f9ed9e6317b6a069eccd8ff38919e7e726e2d6228c68ef78fe5092b156170"
+        }
+      ],
+      "assetPaths": [
+        "UnityProject/Assets/FantasyTD/Art/ApprovedSources/11235542085/asset_01.png"
+      ],
+      "runtimeIntegrated": false
+    },
+    {
+      "artifactId": 11235542099,
+      "archiveSha256": "d69bf99ba317a790478e04a8e97ad82fbb8b378c93e863606f795c3a6e528893",
+      "maps": [
+        "MAP6"
+      ],
+      "roles": [
+        "MINIBOSS_SOURCE"
+      ],
+      "members": [
+        {
+          "name": "asset_01.png",
+          "bytes": 1002839,
+          "sha256": "15908ceea978f379b63824156643d496fcc82a14e7f9a85c1a5db316988faf5e"
+        },
+        {
+          "name": "final.json",
+          "bytes": 451,
+          "sha256": "b88532091c146267083b59f2890b7197cbfba0b1cf1bc21a57664601395408e0"
+        },
+        {
+          "name": "manifest.json",
+          "bytes": 234,
+          "sha256": "efc8b73aaa21891af7aa86b834f2481dc5f462e4254e34e0547ddf0ea9877af2"
+        },
+        {
+          "name": "submit.json",
+          "bytes": 286,
+          "sha256": "c14126815edcd4efa3c6e0f7d47c83ce9dc371d9fca34542951ef63a06baf195"
+        }
+      ],
+      "assetPaths": [
+        "UnityProject/Assets/FantasyTD/Art/ApprovedSources/11235542099/asset_01.png"
+      ],
+      "runtimeIntegrated": false
+    },
+    {
+      "artifactId": 11235547736,
+      "archiveSha256": "4f94ca409b16c9603b299577571a5e20e37734cc57349b85bd0f5b3ba0057708",
+      "maps": [
+        "MAP6"
+      ],
+      "roles": [
+        "BAMBOO_LOG_HAZARD"
+      ],
+      "members": [
+        {
+          "name": "asset_01.mp4",
+          "bytes": 836054,
+          "sha256": "54b15441f1f9b8a8df5c81c8646429444c4eb4932180fda2bec754f6dc6faf71"
+        },
+        {
+          "name": "final.json",
+          "bytes": 436,
+          "sha256": "87494c06960ae535d8b738384a97a9a96c24df805202b3b5248d48f5160ded55"
+        },
+        {
+          "name": "manifest.json",
+          "bytes": 242,
+          "sha256": "27ff5cd065662b2e7e5cb3e7a7d3245108b8bf5be96bad41d098550652831bd2"
+        },
+        {
+          "name": "submit.json",
+          "bytes": 286,
+          "sha256": "9c4d0d4baf50e1301c9e71a215dbf1d9c40439b4ad63dcc0f868f85417fa5047"
+        }
+      ],
+      "assetPaths": [
+        "UnityProject/Assets/FantasyTD/Art/ApprovedSources/11235547736/asset_01.mp4"
+      ],
+      "runtimeIntegrated": false
+    },
+    {
+      "artifactId": 11235615614,
+      "archiveSha256": "823ced0cb883488e4612c2eda8272f497f603c9e8dc6096997521155091ca129",
+      "maps": [
+        "MAP6"
+      ],
+      "roles": [
+        "SPECIAL_BAMBOO_TOWER_ACTIVE_SINGLE_SOURCE"
+      ],
+      "members": [
+        {
+          "name": "asset_01.png",
+          "bytes": 1248702,
+          "sha256": "bbda499ee36881d53a25252cb05696f9571a50fc59a13cf5445fe645b6e9db6f"
+        },
+        {
+          "name": "final.json",
+          "bytes": 451,
+          "sha256": "dc0cd834f3ca023719d550a8b2a9ada4efd064408948b6a9d4014db67f19870c"
+        },
+        {
+          "name": "manifest.json",
+          "bytes": 241,
+          "sha256": "cbb6801b52d3dc1c5790a5728b0720e7ffbbb34df7ba6183dcb6792b160825c6"
+        },
+        {
+          "name": "submit.json",
+          "bytes": 286,
+          "sha256": "851fb08286a02503a4ec7c41522ecafad8bbe5e0c6e68f16bb358653e7055e2f"
+        }
+      ],
+      "assetPaths": [
+        "UnityProject/Assets/FantasyTD/Art/ApprovedSources/11235615614/asset_01.png"
+      ],
+      "runtimeIntegrated": false
+    },
+    {
+      "artifactId": 11235710967,
+      "archiveSha256": "ac0538431bc35a21caf299b9029e903e5cfabd07001a469066e6ba7b685fd0b7",
+      "maps": [
+        "MAP6"
+      ],
+      "roles": [
+        "DOJO_OPEN",
+        "DOJO_OPEN_ANIM"
+      ],
+      "members": [
+        {
+          "name": "asset_01.mp4",
+          "bytes": 2382447,
+          "sha256": "acff856bdc8e0363d59fec80e32dc281269352cce66cdd48a49f50963bdee692"
+        },
+        {
+          "name": "final.json",
+          "bytes": 436,
+          "sha256": "e32369b2710c3066a71302f82956c80678cae46678f67beade7a12c54002862d"
+        },
+        {
+          "name": "manifest.json",
+          "bytes": 239,
+          "sha256": "da98063d8205789494813f689b0f7451c7ef91928f94c03a881f210daf9b1340"
+        },
+        {
+          "name": "submit.json",
+          "bytes": 286,
+          "sha256": "887eb7e35c8c2929ea19596f18e3a13ef2229a68949c34646cceeb50a554b66c"
+        }
+      ],
+      "assetPaths": [
+        "UnityProject/Assets/FantasyTD/Art/ApprovedSources/11235710967/asset_01.mp4"
+      ],
+      "runtimeIntegrated": false
+    },
+    {
+      "artifactId": 11235810368,
+      "archiveSha256": "253727f1a20d03db61c07d6b34ae5fbaf41626622f7ee62005abb651ef404873",
+      "maps": [
+        "MAP6"
+      ],
+      "roles": [
+        "PANDA_ROLL_SOURCE"
+      ],
+      "members": [
+        {
+          "name": "asset_01.png",
+          "bytes": 859244,
+          "sha256": "9c00d2d8f0c49fd5cdd7bd27985a190c3dadb80211c10ae359ee0d935736ca2e"
+        },
+        {
+          "name": "final.json",
+          "bytes": 451,
+          "sha256": "ea1fe658b2e85c6db7626ca0231460e7ccb749021d96a41c58bb4a397f7dd496"
+        },
+        {
+          "name": "manifest.json",
+          "bytes": 231,
+          "sha256": "63aee59db66757a966ab449577ed2a077ec2518e3fd408d8d121edc99affa7ef"
+        },
+        {
+          "name": "submit.json",
+          "bytes": 286,
+          "sha256": "d0f777dca1a816d466752fe7119ddc619cbe4fe4851fdfffda2a55190ce89850"
+        }
+      ],
+      "assetPaths": [
+        "UnityProject/Assets/FantasyTD/Art/ApprovedSources/11235810368/asset_01.png"
+      ],
+      "runtimeIntegrated": false
+    },
+    {
+      "artifactId": 11237423117,
+      "archiveSha256": "14dae23b58d7b271be695b1be4bfce875995d75260395700db45903a5a42559e",
+      "maps": [
+        "MAP5"
+      ],
+      "roles": [
+        "MINIBOSS_ACTIVE_SINGLE_SOURCE",
+        "MINIBOSS_ACTIVE"
+      ],
+      "members": [
+        {
+          "name": "asset_01.png",
+          "bytes": 1274226,
+          "sha256": "95b8562726521b9137b1faa5fe26b5b9a5917f0cc5d30f407c9ad3eaa67e3a8e"
+        },
+        {
+          "name": "final.json",
+          "bytes": 451,
+          "sha256": "7fcf7187d340a271e84620beda5b6450cf378a726e6c4363e119929c4e9d76dc"
+        },
+        {
+          "name": "manifest.json",
+          "bytes": 234,
+          "sha256": "0f089eaa228925a2e323db69022945ec949496f1d3b25839b335624e79a6a84b"
+        },
+        {
+          "name": "submit.json",
+          "bytes": 286,
+          "sha256": "a87dd4c4ad7634f3842b1d33b571b84b029ca55131e439a3d801ce46f1805e3e"
+        }
+      ],
+      "assetPaths": [
+        "UnityProject/Assets/FantasyTD/Art/ApprovedSources/11237423117/asset_01.png"
+      ],
+      "runtimeIntegrated": false
+    },
+    {
+      "artifactId": 11237528090,
+      "archiveSha256": "ba08546ddfe3b8c008cbddf7dd205c12d4fd5e29a6eebfadc64380f77f4112ab",
+      "maps": [
+        "MAP6"
+      ],
+      "roles": [
+        "PANDA_ROLL"
+      ],
+      "members": [
+        {
+          "name": "asset_01.mp4",
+          "bytes": 1134894,
+          "sha256": "260e73d046f0f1cdd9771dd089283c707a77bba0a7514e21dbb9a76dc2f3aa11"
+        },
+        {
+          "name": "final.json",
+          "bytes": 436,
+          "sha256": "f01d5e4cd5ac367e8c603d5f00197bff162b29d474603023002703e79e43a70e"
+        },
+        {
+          "name": "manifest.json",
+          "bytes": 240,
+          "sha256": "09a76ca1e24d50be37bccc11758ec0e6e22be28cac998b51bf649d3f060f0981"
+        },
+        {
+          "name": "submit.json",
+          "bytes": 286,
+          "sha256": "c14b7ecaa390ef46bf94f0cd76e781d4a738a7af6aa5f16e8a8cdf2af3207f76"
+        }
+      ],
+      "assetPaths": [
+        "UnityProject/Assets/FantasyTD/Art/ApprovedSources/11237528090/asset_01.mp4"
+      ],
+      "runtimeIntegrated": false
+    },
+    {
+      "artifactId": 11237770536,
+      "archiveSha256": "6a320f675c715fa1d9539e45a4122796b1a6c1c2075d7ab7993f5c8d602dae68",
+      "maps": [
+        "MAP5"
+      ],
+      "roles": [
+        "MINIBOSS_DORMANT_SINGLE_SOURCE",
+        "MINIBOSS_DORMANT"
+      ],
+      "members": [
+        {
+          "name": "asset_01.png",
+          "bytes": 884704,
+          "sha256": "56ff07017394033bbf67d87a1b93f5ad816322e29e5847fd023c4fda388bf08b"
+        },
+        {
+          "name": "final.json",
+          "bytes": 451,
+          "sha256": "382bd7b6d29558779744a05ca0d87ccee354cf3925ebf118f0d8120f68d12341"
+        },
+        {
+          "name": "manifest.json",
+          "bytes": 235,
+          "sha256": "e94fe97712543140b6ff3aad283da43d7465fdcb6ea3e06c19ae1902c2cfa928"
+        },
+        {
+          "name": "submit.json",
+          "bytes": 286,
+          "sha256": "f0b292eacec2ef32a4cbc1118c80ec90009cb6725aa4ad6eefe99c0969a5b7ff"
+        }
+      ],
+      "assetPaths": [
+        "UnityProject/Assets/FantasyTD/Art/ApprovedSources/11237770536/asset_01.png"
+      ],
+      "runtimeIntegrated": false
+    },
+    {
+      "artifactId": 11238010932,
+      "archiveSha256": "25912c978533c3a9102f57df58ca5cbbecd198de9ee101d4bca7c61c105464d9",
+      "maps": [
+        "MAP5"
+      ],
+      "roles": [
+        "AMBIENT_LOOP"
+      ],
+      "members": [
+        {
+          "name": "asset_01.mp4",
+          "bytes": 1608458,
+          "sha256": "5b1f11f9fae68effb0ee9f54f30360946789ca8f8b2bfd764349f2e5c5417daa"
+        },
+        {
+          "name": "manifest.json",
+          "bytes": 236,
+          "sha256": "b32e80d1a20b7d2ca11a23b58330e7b9ceb91a014a15ceb55f0eec29f41b9f56"
+        },
+        {
+          "name": "final.json",
+          "bytes": 436,
+          "sha256": "812979f1d0411c84fe0f20f2ba6964f6d5ca4bbd01943990c1474df6939dd363"
+        },
+        {
+          "name": "submit.json",
+          "bytes": 286,
+          "sha256": "320e2dcd567062f13172a339a6443858397cef4c7c0c2dae904111b50f0c7c2c"
+        }
+      ],
+      "assetPaths": [
+        "UnityProject/Assets/FantasyTD/Art/ApprovedSources/11238010932/asset_01.mp4"
+      ],
+      "runtimeIntegrated": false
+    }
+  ]
+}
