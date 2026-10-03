@@ -375,7 +375,7 @@ namespace FantasyTD.CI
             while (Time.time - t0 < 0.35f) yield return null;
             speedBefore = (enemy.ProgressDistance - p0) / Mathf.Max(0.001f, Time.time - t0);
 
-            Vector2 plantPos = new Vector2(enemy.transform.position.x, 9f);
+            Vector2 plantPos = (Vector2)enemy.transform.position + Vector2.down * 1.25f;
             float initialDistance = Vector2.Distance(plantPos, enemy.transform.position);
             OakGuardianPlant plant = SpawnPlant<OakGuardianPlant>(PlantKind.OakGuardian, plantPos);
 
@@ -445,7 +445,7 @@ namespace FantasyTD.CI
             while (Time.time - t0 < 0.35f) yield return null;
             float speedBefore = (boss.ProgressDistance - p0) / Mathf.Max(0.001f, Time.time - t0);
 
-            Vector2 plantPos = new Vector2(boss.transform.position.x, 9f);
+            Vector2 plantPos = (Vector2)boss.transform.position + Vector2.down * 1.25f;
             float initialDistance = Vector2.Distance(plantPos, boss.transform.position);
             OakGuardianPlant plant = SpawnPlant<OakGuardianPlant>(PlantKind.OakGuardian, plantPos);
 
