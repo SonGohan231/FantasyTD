@@ -1,9 +1,9 @@
 {
   "enabled": true,
-  "generation_id": "mapa-thorn-king-boss-unit-20261003-001",
+  "generation_id": "mapa-spawn-portal-unit-20261003-001",
   "model_path": "higgsfield-ai/soul/v2/standard",
   "input": {
-    "prompt": "Original single production asset for KROL CIERNI, final boss of MAP-A in FantasyTD. Match the organic hand-painted woodland style: massive regal thorn-and-bark monarch, twisted living-tree body, broad thorny shoulders, crown grown from golden-brown brambles and dark green thorn vines, glowing magenta-purple heart crystal embedded naturally in chest, intimidating expressive face, heavy roots and branch arms, premium final-wave silhouette clearly larger and more elaborate than all basic enemies. Natural magic only, no sci-fi or technology. Top-down 3/4 orthographic mobile game-art view, soft painterly shading, crisp focal edges and dark organic outline, readable on phone. Isolated ONE final idle boss pose on warm off-white background, centered with generous margin for Unity cutout. No text, UI, scenery, original IP only.",
+    "prompt": "Original single production environment asset for MAP-A spawn portal in FantasyTD. Organic fantasy gate made from twisted dark roots and thorn branches forming a circular arch around a glowing violet-magenta magical vortex, mushrooms and tiny leaves at the base, clear readable portal opening, whimsical hand-painted/cartoon mobile-game style, top-down 3/4 orthographic view, crisp silhouette. Isolated ONE portal object on warm off-white background, centered with margin for Unity cutout. No characters, text, UI, metal or technology, original IP only.",
     "resolution": "1080p",
     "aspect_ratio": "1:1",
     "batch_size": 1,
