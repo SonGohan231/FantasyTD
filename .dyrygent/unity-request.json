@@ -1,5 +1,5 @@
 {
-  "requestId": "t0012-regression-plants-20261003-1231",
+  "requestId": "t0012-regression-plants-rerun-20261003-1235",
   "mode": "plant-behaviors",
-  "note": "T0012 regression: four plant behaviors after Higgsfield + upgrade/sell integration."
+  "note": "Rerun T0012 four-plant regression after topology-independent Oak fixture fix."
 }
