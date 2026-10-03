@@ -1,5 +1,5 @@
 {
-  "requestId": "recovery-mobile-layout-20261003-01",
-  "mode": "mobile-layout",
-  "note": "Recovery regression: verify 16:9, 20:9 and safe-area layout after product flow, MAPY navigation, durable Higgsfield assets and visual QA."
+  "requestId": "recovery-map-integrity-20261003-01",
+  "mode": "map-a-integrity",
+  "note": "Recovery regression after Higgsfield visual framing changes: authoritative MAP-A path, 12 spots, hidden logical road and route endpoints."
 }
