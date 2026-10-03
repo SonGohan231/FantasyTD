@@ -61,6 +61,7 @@ namespace FantasyTD.MapA
             if (IsFinished) return;
             IsFinished = true;
             IsVictory = true;
+            Hud.CloseTowerPanel();
             Hud.ShowEndPanel(true);
         }
 
@@ -69,6 +70,7 @@ namespace FantasyTD.MapA
             if (IsFinished) return;
             IsFinished = true;
             IsVictory = false;
+            Hud.CloseTowerPanel();
             Hud.ShowEndPanel(false);
         }
     }
