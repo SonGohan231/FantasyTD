@@ -95,7 +95,7 @@ namespace FantasyTD.MapA
             GameObject root = new GameObject("PortalCore");
             root.transform.position = new Vector3(position.x, position.y, -0.18f);
             // Spawn is exactly on the top route boundary; keep the portal art inside the camera.
-            AddHiggsfieldVisual(root.transform, sprite, 1.85f, new Vector2(0f, -1.72f), 18);
+            AddHiggsfieldVisual(root.transform, sprite, 1.85f, new Vector2(0.20f, -2.48f), 18);
             return root;
         }
 
@@ -109,13 +109,13 @@ namespace FantasyTD.MapA
             RuntimeArt.ShadowObject(
                 "HomeShadow",
                 root.transform,
-                new Vector2(-0.90f, 0.08f),
+                new Vector2(-1.78f, 1.36f),
                 new Vector2(1.55f, 0.46f),
                 16,
                 0.30f);
             // The route ends at the lower-right boundary; pull presentation art inward
             // without changing authoritative enemy movement geometry.
-            AddHiggsfieldVisual(root.transform, sprite, 2.05f, new Vector2(-0.90f, 0.08f), 20);
+            AddHiggsfieldVisual(root.transform, sprite, 2.05f, new Vector2(-1.78f, 1.36f), 20);
             return root;
         }
 
