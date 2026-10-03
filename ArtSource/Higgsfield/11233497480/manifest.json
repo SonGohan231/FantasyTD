@@ -1,0 +1,9 @@
+{
+  "generation_id": "map3-twilight-night-tower-activation-20261002-001",
+  "model_path": "bytedance/seedance-2.5/image-to-video",
+  "request_id": "6f613d69-c05e-4150-bf93-9318a6a3fffc",
+  "status": "completed",
+  "files": [
+    "asset_01.mp4"
+  ]
+}

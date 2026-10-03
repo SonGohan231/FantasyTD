@@ -1,0 +1,9 @@
+{
+  "generation_id": "map2-postapo-miniboss-hit-defeat-20261002-001",
+  "model_path": "bytedance/seedance-2.5/image-to-video",
+  "request_id": "2a1b9e4a-9f47-4e64-92c0-b4e8122866d8",
+  "status": "completed",
+  "files": [
+    "asset_01.mp4"
+  ]
+}

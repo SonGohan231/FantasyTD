@@ -1,0 +1,9 @@
+{
+  "generation_id": "map3-twilight-fog-event-overlay-20261002-001",
+  "model_path": "bytedance/seedance-2.5/text-to-video",
+  "request_id": "9b3b37e6-f562-4b45-aca8-2c729a88bd71",
+  "status": "completed",
+  "files": [
+    "asset_01.mp4"
+  ]
+}

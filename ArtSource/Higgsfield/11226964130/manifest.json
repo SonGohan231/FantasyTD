@@ -1,0 +1,9 @@
+{
+  "generation_id": "map2-postapo-miniboss-slam-attack-20261002-001",
+  "model_path": "bytedance/seedance-2.5/image-to-video",
+  "request_id": "bf167bab-ea1e-40c9-b9b5-50fa09bfaa32",
+  "status": "completed",
+  "files": [
+    "asset_01.mp4"
+  ]
+}

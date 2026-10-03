@@ -1,0 +1,9 @@
+{
+  "generation_id": "map4-abyssal-crab-attack-20261002-001",
+  "model_path": "bytedance/seedance-2.5/image-to-video",
+  "request_id": "0055af81-3ee4-4fff-9a28-afc066030cee",
+  "status": "completed",
+  "files": [
+    "asset_01.mp4"
+  ]
+}

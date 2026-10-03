@@ -1,0 +1,9 @@
+{
+  "generation_id": "map2-postapo-miniboss-awaken-active-20261002-001",
+  "model_path": "bytedance/seedance-2.5/image-to-video",
+  "request_id": "8fa399cb-75f3-4e6f-bca1-7bcbc1617bbb",
+  "status": "completed",
+  "files": [
+    "asset_01.mp4"
+  ]
+}

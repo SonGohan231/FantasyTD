@@ -1,0 +1,9 @@
+{
+  "generation_id": "map4-abyssal-crab-awaken-20261002-001",
+  "model_path": "bytedance/seedance-2.5/image-to-video",
+  "request_id": "0d47d04d-f6e6-4ef7-b618-22c974069999",
+  "status": "completed",
+  "files": [
+    "asset_01.mp4"
+  ]
+}

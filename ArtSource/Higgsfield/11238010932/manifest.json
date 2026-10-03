@@ -1,0 +1,9 @@
+{
+  "generation_id": "map5-fungal-ambient-loop-20261002-002",
+  "model_path": "bytedance/seedance-2.5/text-to-video",
+  "request_id": "a64ad0a3-60cf-44bd-a093-19cf84b3018a",
+  "status": "completed",
+  "files": [
+    "asset_01.mp4"
+  ]
+}

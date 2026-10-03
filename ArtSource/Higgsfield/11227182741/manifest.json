@@ -1,0 +1,9 @@
+{
+  "generation_id": "map2-postapo-maintenance-tunnel-open-20261002-001",
+  "model_path": "bytedance/seedance-2.5/image-to-video",
+  "request_id": "5dcd66a7-def0-4190-bc1c-7c34c6c24535",
+  "status": "completed",
+  "files": [
+    "asset_01.mp4"
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "generation_id": "map6-bamboo-log-hazard-overlay-20261002-001",
+  "model_path": "bytedance/seedance-2.5/text-to-video",
+  "request_id": "d8445f6b-04fe-46b6-b051-7c875c5a83ad",
+  "status": "completed",
+  "files": [
+    "asset_01.mp4"
+  ]
+}

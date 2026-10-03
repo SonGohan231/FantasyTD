@@ -1,0 +1,9 @@
+{
+  "generation_id": "map2-postapo-radio-relay-activation-20261002-002",
+  "model_path": "bytedance/seedance-2.5/image-to-video",
+  "request_id": "010c11d6-a083-4c85-b940-504cb84975ff",
+  "status": "completed",
+  "files": [
+    "asset_01.mp4"
+  ]
+}

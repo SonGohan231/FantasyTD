@@ -1,0 +1,9 @@
+{
+  "generation_id": "map2-postapo-ambient-overlay-20261002-001",
+  "model_path": "bytedance/seedance-2.5/text-to-video",
+  "request_id": "bfe0c95f-0078-4dd0-9604-8f1eff3c5f67",
+  "status": "completed",
+  "files": [
+    "asset_01.mp4"
+  ]
+}
