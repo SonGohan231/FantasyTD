@@ -1,1 +1,5 @@
-{"requestId":"t0012-authored-assets-integration-20261003-01","mode":"playable-release","note":"Validate source walk poses/root pause/authored projectile, UI HP and tower lifecycle after genuine patch alignment and removal of procedural decorative art."}
+{
+  "requestId": "t0012-authored-visual-20261003-01",
+  "mode": "visual-acceptance",
+  "note": "Capture integrated source-art geometry UI and walking candidate after playable-release run37128600034 PASS."
+}
