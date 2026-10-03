@@ -144,14 +144,12 @@ namespace FantasyTD.MapA
             _level.text = "POZIOM " + _tower.Level + "/3";
             _stats.text =
                 _tower.StatsSummary +
-                "
-Zainwestowano: " + _tower.TotalInvested + " Esencji";
+                "\nZainwestowano: " + _tower.TotalInvested + " Esencji";
 
             if (_tower.CanUpgrade)
             {
                 int cost = _tower.NextUpgradeCost;
-                _upgradeLabel.text = "ULEPSZ
-" + cost;
+                _upgradeLabel.text = "ULEPSZ\n" + cost;
                 _upgradeButton.interactable = _session != null && _session.Economy.Essence >= cost;
             }
             else
@@ -160,8 +158,7 @@ Zainwestowano: " + _tower.TotalInvested + " Esencji";
                 _upgradeButton.interactable = false;
             }
 
-            _sellLabel.text = "SPRZEDAJ
-+" + _tower.SellRefund;
+            _sellLabel.text = "SPRZEDAJ\n+" + _tower.SellRefund;
         }
 
         public void Close()
