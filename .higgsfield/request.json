@@ -1,9 +1,9 @@
 {
   "enabled": true,
-  "generation_id": "mapa-frost-bud-unit-20261003-002",
+  "generation_id": "mapa-iron-goblin-unit-20261003-002",
   "model_path": "higgsfield-ai/soul/v2/standard",
   "input": {
-    "prompt": "Original single production asset for MROZNY PAK, a frost-control botanical tower in FantasyTD. Match the existing organic hand-painted style-lock: rooted blue-green plant with a closed crystalline flower bud, layered icy petals, pale cyan frost veins on dark teal leaves, tiny icicle shapes grown organically, expressive small eyes, cold mist implied around the bud, magical natural frost not technology, clean strong silhouette at Android phone scale, top-down 3/4 orthographic game-art view, soft painterly shading, crisp dark organic outline. Isolated ONE final idle pose on simple warm off-white background, centered with margin for Unity cutout. No text, UI, scenery, metal or sci-fi, original IP only.",
+    "prompt": "Original single production asset for ZELAZNY GOBLIN, an armored forest enemy in FantasyTD. Match Chochlik's organic hand-painted woodland style: compact green-brown goblin with leaf ears and bark skin wearing crude fantasy iron helmet and a small battered round shield, iron pieces strapped with vines and leather, not sci-fi, readable physical-resistance identity, stockier than Chochlik but smaller than the ogre, sly expression. Top-down 3/4 orthographic mobile game-art view, soft painterly shading, crisp silhouette, high phone readability. Isolated ONE final idle pose on warm off-white background, centered with margin for Unity cutout. No text, UI, scenery, original IP only.",
     "resolution": "1080p",
     "aspect_ratio": "1:1",
     "batch_size": 1,
