@@ -1,9 +1,9 @@
 {
   "enabled": true,
-  "generation_id": "mapa-oak-guardian-unit-20261003-001",
+  "generation_id": "mapa-frost-bud-unit-20261003-001",
   "model_path": "higgsfield-ai/soul/v2/standard",
   "input": {
-    "prompt": "Original single production asset for DEBOWY STRAZNIK, a rooted oak control tower in FantasyTD. Match the existing organic hand-painted style-lock: compact ancient living oak guardian rooted in the soil, thick bark trunk/body, crown of deep green leaves and moss, expressive carved wooden face, gnarled roots ready to burst from ground and entangle enemies, sturdy defensive silhouette, whimsical but powerful, high readability at Android phone scale, top-down 3/4 orthographic game-art view, soft painterly shading, crisp dark organic outline. Isolated ONE final idle pose on simple warm off-white background, centered with margin for Unity cutout. No text, UI, scenery, weapons, metal or technology, original IP only.",
+    "prompt": "Original single production asset for MROZNY PAK, a frost-control botanical tower in FantasyTD. Match the existing organic hand-painted style-lock: rooted blue-green plant with a closed crystalline flower bud, layered icy petals, pale cyan frost veins on dark teal leaves, tiny icicle shapes grown organically, expressive small eyes, cold mist implied around the bud, magical natural frost not technology, clean strong silhouette at Android phone scale, top-down 3/4 orthographic game-art view, soft painterly shading, crisp dark organic outline. Isolated ONE final idle pose on simple warm off-white background, centered with margin for Unity cutout. No text, UI, scenery, metal or sci-fi, original IP only.",
     "resolution": "1080p",
     "aspect_ratio": "1:1",
     "batch_size": 1,
