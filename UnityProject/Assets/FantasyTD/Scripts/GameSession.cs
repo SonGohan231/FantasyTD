@@ -11,6 +11,7 @@ namespace FantasyTD.MapA
         public BaseHealth Base { get; private set; }
         public WaveDirector Waves { get; private set; }
         public MobileHud Hud { get; private set; }
+        public TowerPanelHud TowerPanel { get; private set; }
         public PlantingSystem Planting { get; private set; }
         public IReadOnlyList<EnemyUnit> Enemies => _enemies;
 
@@ -24,10 +25,16 @@ namespace FantasyTD.MapA
             Waves = gameObject.AddComponent<WaveDirector>();
             Planting = gameObject.AddComponent<PlantingSystem>();
             Hud = gameObject.AddComponent<MobileHud>();
+            TowerPanel = gameObject.AddComponent<TowerPanelHud>();
 
             Hud.Initialize(this);
+            TowerPanel.Initialize(this, Hud.SafeArea);
             Economy.Initialize(Balance.StartEssence);
-            Economy.Changed += delegate { Hud.Refresh(); };
+            Economy.Changed += delegate
+            {
+                Hud.Refresh();
+                TowerPanel.Refresh();
+            };
             Base.Initialize(this,Balance.BaseHp);
             Planting.Initialize(this,spots);
             Waves.Initialize(this);
@@ -61,6 +68,7 @@ namespace FantasyTD.MapA
             if (IsFinished) return;
             IsFinished = true;
             IsVictory = true;
+            if (TowerPanel != null) TowerPanel.Close();
             Hud.ShowEndPanel(true);
         }
 
@@ -69,6 +77,7 @@ namespace FantasyTD.MapA
             if (IsFinished) return;
             IsFinished = true;
             IsVictory = false;
+            if (TowerPanel != null) TowerPanel.Close();
             Hud.ShowEndPanel(false);
         }
     }
