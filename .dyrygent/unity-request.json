@@ -1,5 +1,5 @@
 {
-  "requestId": "t0012-map2-resource-diagnostic-20261003-05",
+  "requestId": "t0012-map2-texture-shape-20261003-06",
   "mode": "playable-release",
-  "note": "Expose pending Resources index diagnostic in job stdout as local Codex execution server disconnected; preserve binary source identities."
+  "note": "Both Resources and AssetDatabase typed lookup absent despite importartifact; explicitly set TextureImporterShape.Texture2D for GUID-only texture metas and rerun actual wave acceptance."
 }
