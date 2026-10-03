@@ -42,7 +42,7 @@ namespace FantasyTD.MapA
             go.AddComponent<MobileCameraFitter>();
 
             cam.orthographic = true;
-            cam.backgroundColor = new Color(0.035f, 0.055f, 0.025f);
+            cam.backgroundColor = new Color(0.055f, 0.095f, 0.040f);
             cam.clearFlags = CameraClearFlags.SolidColor;
         }
 
