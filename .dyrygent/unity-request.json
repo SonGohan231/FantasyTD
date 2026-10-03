@@ -1,5 +1,5 @@
 {
-  "requestId": "t0012-map2-natural-wave-20261003-02",
+  "requestId": "t0012-map2-natural-wave-20261003-03",
   "mode": "playable-release",
-  "note": "MAP1 combat lifecycle regression and MAP2 natural firstwave after scene-transition validator lifecycle fix178b8737. Verified sources materializedf0f7a007."
+  "note": "Fix observed37130031212 failure: product scenes must be explicitly generated/registered before EnterPlaymode rather than relying on deferred editor initialization. Recheck MAP1 and actual MAP2 firstwave."
 }
