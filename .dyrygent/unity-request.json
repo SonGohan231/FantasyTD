@@ -1,5 +1,5 @@
 {
-  "requestId": "t0012-playable-higgsfield-full-20261003-1222",
+  "requestId": "t0012-playable-higgsfield-rerun-20261003-1228",
   "mode": "playable-release",
-  "note": "T0012 full Higgsfield asset integration + enemy HP + tower select/upgrade/sell/rebuild render validation."
+  "note": "Rerun T0012 full Higgsfield playable-release validation after Game View harness fix."
 }
