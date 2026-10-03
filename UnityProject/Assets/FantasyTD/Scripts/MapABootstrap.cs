@@ -91,7 +91,7 @@ namespace FantasyTD.MapA
             {
                 FantasyVisualFactory.CreateEnvironmentSprite(
                     "HomeTree",
-                    home,
+                    homeTree,
                     home,
                     new Vector2(2.15f, 2.15f),
                     4);
