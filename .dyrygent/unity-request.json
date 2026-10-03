@@ -1,5 +1,5 @@
 {
-  "requestId": "t0011-android-corrected-20261003-0906",
+  "requestId": "t0011-android-final-head-20261003-0917",
   "mode": "android-build",
-  "note": "T0011 corrected visual-production Android build after MAP-A anchor fix and gameplay regressions. T0009/T0010 remain untouched."
+  "note": "Final T0011 Android APK build on documentation-complete HEAD. No further repository changes after this run; T0009/T0010 remain untouched."
 }
