@@ -1,5 +1,5 @@
 {
-  "requestId": "t0012-regression-boss-20261003-1235",
+  "requestId": "t0012-regression-boss-rerun-20261003-1242",
   "mode": "boss-end-states",
-  "note": "T0012 regression: wave 6, Higgsfield boss, victory, defeat and restart."
+  "note": "Rerun T0012 boss/end-state regression with route-ordered fixtures A1/A5/A9."
 }
