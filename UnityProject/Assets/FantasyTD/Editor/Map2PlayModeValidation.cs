@@ -17,6 +17,14 @@ namespace FantasyTD.CI
         // Run after MAP1 scenarios inside the existing render-capable Play Mode driver.
         internal static IEnumerator Run(Action<bool,string> check, Action<string> fact)
         {
+            Texture2D indexedTerrain = Resources.Load<Texture2D>("Higgsfield/Maps/MAP2_TERRAIN");
+            Texture2D assetTerrain = UnityEditor.AssetDatabase.LoadAssetAtPath<Texture2D>(
+                "Assets/FantasyTD/Resources/Higgsfield/Maps/MAP2_TERRAIN.png");
+            fact("map2.resourceTerrainPresent=" + (indexedTerrain != null));
+            fact("map2.assetDatabaseTerrainPresent=" + (assetTerrain != null));
+            fact("map2.resourceMapTextureNames=" + string.Join(",", Array.ConvertAll(
+                Resources.LoadAll<Texture2D>("Higgsfield/Maps"), texture => texture.name)));
+            check(indexedTerrain != null, "MAP2 terrain is absent from the runtime Resources index before scene transition.");
             SceneManager.LoadScene(ProductFlowScenes.Map2SceneName);
             GameSession session = null;
             for (int frame = 0; frame < 120; frame++)
