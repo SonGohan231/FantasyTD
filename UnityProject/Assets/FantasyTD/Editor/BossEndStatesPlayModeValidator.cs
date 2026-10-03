@@ -46,7 +46,13 @@ namespace FantasyTD.CI
         };
 
         private static readonly string[] PreDefenseSeedSpots = { "A3", "A7", "A11" };
-        private static readonly string[] ExtraDefenseSeedSpots = { "A4", "A8" };
+        // T0012 uses a shorter art-aligned route than the original prototype.
+        // The victory fixture spends the remaining setup Essence on additional
+        // production SeedShooters so the boss-kill assertion still validates
+        // EnemyUnit.Die/reward flow rather than accidentally testing a sparse
+        // defense against a materially shorter route.
+        private static readonly string[] ExtraDefenseSeedSpots =
+            { "A2", "A4", "A6", "A8", "A10", "A12" };
 
         private enum Phase
         {
@@ -955,6 +961,7 @@ namespace FantasyTD.CI
         {
             if (_extraDefensePlantIndex >= ExtraDefenseSeedSpots.Length)
             {
+                AddFact("victoryDefense.finalSeedCount", CountPlantsOfType<SeedShooterPlant>());
                 _bossFinalEssenceBefore = _session.Economy.Essence;
                 _bossFinalBaseBefore = _session.Base.Hp;
                 AddFact("victory.bossOnlyEssenceBefore", _bossFinalEssenceBefore);
