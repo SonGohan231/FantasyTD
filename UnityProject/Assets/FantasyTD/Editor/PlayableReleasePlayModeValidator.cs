@@ -136,13 +136,26 @@ namespace FantasyTD.CI
 
         private static IEnumerator RunFlow()
         {
-            Screen.SetResolution(1920, 1080, false);
-            for (int i = 0; i < 8; i++) yield return null;
+            string gameViewDetails;
+            bool gameViewConfigured = GameViewResolutionHelper.SetFixedResolution(
+                1920, 1080, "T0012 1920x1080", out gameViewDetails);
+            AddFact("gameViewConfigured", gameViewConfigured);
+            AddFact("gameViewConfiguration", gameViewDetails);
+            Check(gameViewConfigured,
+                "T0012 could not configure a fixed 1920x1080 Game View: " + gameViewDetails);
+
+            Screen.SetResolution(1920, 1080, FullScreenMode.Windowed);
+            for (int i = 0; i < 120; i++)
+            {
+                if (Screen.width == 1920 && Screen.height == 1080)
+                    break;
+                yield return null;
+            }
 
             AddFact("screenWidth", Screen.width);
             AddFact("screenHeight", Screen.height);
             Check(Screen.width == 1920 && Screen.height == 1080,
-                "T0012 render validation did not reach 1920x1080.");
+                "T0012 render validation did not reach 1920x1080 after Game View configuration.");
 
             ValidateMapArt();
 
