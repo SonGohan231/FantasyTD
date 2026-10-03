@@ -1,5 +1,5 @@
 {
-  "requestId": "t0011-android-final-head-20261003-0917",
-  "mode": "android-build",
-  "note": "Final T0011 Android APK build on documentation-complete HEAD. No further repository changes after this run; T0009/T0010 remain untouched."
+  "requestId": "t0012-playable-validation-20261003-1230",
+  "mode": "t0012-playable",
+  "note": "Validate Higgsfield asset readiness plus HP bars, tower selection, upgrade and sell. T0009/T0010 remain untouched."
 }
