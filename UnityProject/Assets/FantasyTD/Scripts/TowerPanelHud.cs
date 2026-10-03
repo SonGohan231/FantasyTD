@@ -68,10 +68,10 @@ namespace FantasyTD.MapA
             outline.effectDistance = new Vector2(3f, -3f);
 
             _title = RuntimeArt.CreateText(panelGo.transform, "TowerName", 34, TextAnchor.MiddleLeft, Color.white);
-            SetRect(_title.rectTransform, new Vector2(0.07f, 0.73f), new Vector2(0.74f, 0.94f));
+            SetRect(_title.rectTransform, new Vector2(0.07f, 0.73f), new Vector2(0.60f, 0.94f));
 
             _level = RuntimeArt.CreateText(panelGo.transform, "TowerLevel", 27, TextAnchor.MiddleRight, new Color(1f, 0.84f, 0.28f));
-            SetRect(_level.rectTransform, new Vector2(0.70f, 0.73f), new Vector2(0.93f, 0.94f));
+            SetRect(_level.rectTransform, new Vector2(0.58f, 0.73f), new Vector2(0.82f, 0.94f));
 
             _stats = RuntimeArt.CreateText(panelGo.transform, "TowerStats", 25, TextAnchor.UpperLeft, new Color(0.94f, 0.96f, 0.87f));
             SetRect(_stats.rectTransform, new Vector2(0.07f, 0.42f), new Vector2(0.93f, 0.73f));
