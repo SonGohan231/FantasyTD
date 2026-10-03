@@ -1,5 +1,5 @@
 {
-  "requestId": "recovery-visual-clearance-20261003-02",
-  "mode": "visual-acceptance",
-  "note": "Verify Higgsfield portal and base artwork no longer overlaps HUD after position correction."
+  "requestId": "recovery-playable-release-20261003-01",
+  "mode": "playable-release",
+  "note": "Verify tower HP, selection, L1-L3 upgrade, sell/refund, rebuild and gameplay after visual placement correction."
 }
