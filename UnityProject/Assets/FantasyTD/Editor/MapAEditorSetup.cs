@@ -19,6 +19,11 @@ namespace FantasyTD.MapA.Editor
             EditorApplication.delayCall += EnsureSceneExists;
         }
 
+        public static void EnsureMapSceneExists()
+        {
+            EnsureSceneExists();
+        }
+
         [MenuItem("Tools/Fantasy TD/Open MAP-A Android v2")]
         public static void OpenMap()
         {
