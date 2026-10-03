@@ -1,5 +1,5 @@
 {
-  "requestId": "t0012-map2-natural-wave-20261003-01",
+  "requestId": "t0012-map2-natural-wave-20261003-02",
   "mode": "playable-release",
-  "note": "Validate MAP1 source animation/combat/lifecycle regression plus MAP2 fresh scene, approved terrain/road source samples, all12 pads, production planting and natural six-enemy wave. Existing verified MAP2 runtime sources preserved by run37129673711."
+  "note": "MAP1 combat lifecycle regression and MAP2 natural firstwave after scene-transition validator lifecycle fix178b8737. Verified sources materializedf0f7a007."
 }
