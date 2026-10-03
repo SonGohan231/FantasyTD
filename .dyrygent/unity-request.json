@@ -1,5 +1,5 @@
 {
-  "requestId": "t0011-map-integrity-final-20261003-0902",
-  "mode": "map-a-integrity",
-  "note": "T0011 visual production final MAP-A geometry regression. T0009/T0010 remain untouched."
+  "requestId": "t0011-boss-end-states-20261003-0905",
+  "mode": "boss-end-states",
+  "note": "T0011 gameplay regression after visual/VFX pass. No T0009/T0010 work."
 }
