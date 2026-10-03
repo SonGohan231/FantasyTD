@@ -1,0 +1,51 @@
+name: Higgsfield Unity Asset Import
+
+on:
+  push:
+    branches:
+      - 'codex/t0012-higgsfield-integration'
+    paths:
+      - '.higgsfield/import-request.json'
+
+permissions:
+  contents: write
+  actions: read
+
+concurrency:
+  group: higgsfield-unity-import-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout T0012
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install image tooling
+        run: python -m pip install --disable-pip-version-check pillow==11.3.0
+
+      - name: Import Higgsfield artifacts
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python tools/higgsfield_importer.py .higgsfield/import-request.json
+
+      - name: Commit imported art
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add UnityProject/Assets/FantasyTD/Art/Higgsfield UnityProject/Assets/FantasyTD/Resources/Higgsfield
+          if git diff --cached --quiet; then
+            echo "No new Higgsfield assets to commit."
+          else
+            git commit -m "T0012: import Higgsfield assets into Unity"
+            git push origin HEAD:codex/t0012-higgsfield-integration
+          fi
