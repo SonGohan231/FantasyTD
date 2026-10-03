@@ -106,15 +106,23 @@ capture map1
 MAP_SHA="$(sha256sum "$OUT/screenshots/map1.png" | awk '{print $1}')"
 [[ "$MAP_SHA" != "$CAMPAIGN_SHA" ]] || fail "MAP1 selection did not change the rendered screen"
 alive Map1
-tap 500 500
+# A visible planting ring in the approved MAP1 background at roughly 47%, 68%.
+tap 470 684
 sleep 2
 capture planting-menu
-tap 435 500
+MENU_PLANT_SHA="$(sha256sum "$OUT/screenshots/planting-menu.png" | awk '{print $1}')"
+[[ "$MENU_PLANT_SHA" != "$MAP_SHA" ]] || fail "Planting spot tap did not open build UI"
+# Seed Shooter radial option is left of the selected planting ring.
+tap 410 684
 sleep 3
 capture planted
+PLANTED_SHA="$(sha256sum "$OUT/screenshots/planted.png" | awk '{print $1}')"
+[[ "$PLANTED_SHA" != "$MENU_PLANT_SHA" ]] || fail "Tower choice did not change the rendered screen"
 tap 100 920
 sleep 8
 capture wave
+WAVE_SHA="$(sha256sum "$OUT/screenshots/wave.png" | awk '{print $1}')"
+[[ "$WAVE_SHA" != "$PLANTED_SHA" ]] || fail "Wave tap did not change the rendered screen"
 alive Wave
 "${ADB[@]}" logcat -d -v threadtime > "$LOG"
 grep -Ei "FATAL EXCEPTION|ANR in $PACKAGE|am_crash.*$PACKAGE|Process: $PACKAGE|Unity.*(Exception|Error)" "$LOG" > "$OUT/logcat-filtered.txt" || true
