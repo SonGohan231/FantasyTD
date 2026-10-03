@@ -666,13 +666,13 @@ namespace FantasyTD.CI
         private static void RunSeedWaitRange()
         {
             EnsureBossAlive("seed range");
-            PlantingSpot spot = FindSpot("A5");
+            PlantingSpot spot = FindSpot("A1");
             float distance = Vector2.Distance(_boss.transform.position, spot.transform.position);
             if (distance > 3.05f)
                 return;
 
             bool planted = TryPlantThroughProductionUi(spot, PlantKind.SeedShooter);
-            Check(planted, "failed to plant SeedShooter A9 for boss physical evidence");
+            Check(planted, "failed to plant SeedShooter A1 for boss physical evidence");
             if (!planted) return;
 
             AddFact("boss.seed.spot", spot.Id);
@@ -734,7 +734,7 @@ namespace FantasyTD.CI
         private static void RunFrostWaitRange()
         {
             EnsureBossAlive("frost range");
-            PlantingSpot spot = FindSpot("A1");
+            PlantingSpot spot = FindSpot("A5");
             float distance = Vector2.Distance(_boss.transform.position, spot.transform.position);
             if (distance > 3.05f)
             {
@@ -744,7 +744,7 @@ namespace FantasyTD.CI
 
             Time.timeScale = 1f;
             bool planted = TryPlantThroughProductionUi(spot, PlantKind.FrostBud);
-            Check(planted, "failed to plant FrostBud A1 for boss slow evidence");
+            Check(planted, "failed to plant FrostBud A5 for boss slow evidence");
             if (!planted) return;
 
             AddFact("boss.frost.spot", spot.Id);
@@ -863,7 +863,7 @@ namespace FantasyTD.CI
             Time.timeScale = 1f;
             _oakHpBefore = ReadEnemyFloat(_boss, "_hp");
             bool planted = TryPlantThroughProductionUi(spot, PlantKind.OakGuardian);
-            Check(planted, "failed to plant OakGuardian A2 for boss root evidence");
+            Check(planted, "failed to plant OakGuardian A9 for boss root evidence");
             if (!planted) return;
 
             AddFact("boss.oak.spot", spot.Id);
