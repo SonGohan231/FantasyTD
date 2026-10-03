@@ -10,6 +10,15 @@ import urllib.request
 import zipfile
 
 
+class SourceRedirect(urllib.request.HTTPRedirectHandler):
+    def redirect_request(self, request, fp, code, msg, headers, new_url):
+        redirected = super().redirect_request(request, fp, code, msg, headers, new_url)
+        # The GitHub API signs the download URL. Its bearer token is not Blob credentials.
+        if redirected is not None:
+            redirected.remove_header('Authorization')
+        return redirected
+
+
 def digest(data):
     return hashlib.sha256(data).hexdigest()
 
@@ -33,7 +42,7 @@ def main():
             request = urllib.request.Request(
                 f'https://api.github.com/repos/{repo}/actions/artifacts/{artifact_id}/zip',
                 headers={'Authorization': f'Bearer {token}', 'Accept': 'application/vnd.github+json'})
-            with urllib.request.urlopen(request, timeout=90) as response:
+            with urllib.request.build_opener(SourceRedirect()).open(request, timeout=90) as response:
                 archive = response.read()
         if digest(archive) != row['archiveSha256']:
             raise ValueError(f'Archive identity mismatch: {artifact_id}')
