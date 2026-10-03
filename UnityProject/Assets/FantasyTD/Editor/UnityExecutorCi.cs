@@ -97,6 +97,11 @@ namespace FantasyTD.CI
             PlayableReleasePlayModeValidator.Start();
         }
 
+        public static void VisualAcceptance()
+        {
+            ProductVisualAcceptanceValidator.Start();
+        }
+
         public static void BuildAndroid()
         {
             Directory.CreateDirectory(ReportDirectory);
