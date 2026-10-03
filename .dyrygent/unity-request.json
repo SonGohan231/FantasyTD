@@ -1,5 +1,5 @@
 {
-  "requestId": "recovery-playable-release-20261003-01",
-  "mode": "playable-release",
-  "note": "Post-visual-QA T0012 playable validation on durable Higgsfield assets: MAP-A art, enemy HP/status, tower build/upgrade/sell/rebuild economy."
+  "requestId": "recovery-mobile-layout-20261003-01",
+  "mode": "mobile-layout",
+  "note": "Recovery regression: verify 16:9, 20:9 and safe-area layout after product flow, MAPY navigation, durable Higgsfield assets and visual QA."
 }
