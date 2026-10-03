@@ -238,7 +238,7 @@ namespace FantasyTD.MapA
             hr.pivot = new Vector2(1f, 0f);
             hr.sizeDelta = new Vector2(600f, 100f);
             hr.anchoredPosition = new Vector2(-28f, 30f);
-            hint.text = "Dotknij kręgu ziemi, aby posadzić obrońcę.";
+            hint.text = "Dotknij pola, aby sadzić. Dotknij rośliny, aby ulepszyć lub sprzedać.";
             Shadow hintShadow = hint.gameObject.AddComponent<Shadow>();
             hintShadow.effectColor = new Color(0f, 0f, 0f, 0.74f);
             hintShadow.effectDistance = new Vector2(2f, -2f);
