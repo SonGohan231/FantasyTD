@@ -1,9 +1,9 @@
 {
   "enabled": true,
-  "generation_id": "mapa-home-tree-base-unit-20261003-001",
+  "generation_id": "mapa-frost-bud-unit-20261003-002",
   "model_path": "higgsfield-ai/soul/v2/standard",
   "input": {
-    "prompt": "Original single production environment asset for MAP-A home/base in FantasyTD. Ancient friendly living home tree at the road exit: thick rooted trunk, broad lush green crown, small warm glowing doorway carved into bark, subtle golden protective runes grown as natural sap markings, roots spread into the ground, premium hand-painted/cartoon organic fantasy mobile-game style, top-down 3/4 orthographic view, clear readable silhouette. Isolated ONE base tree on warm off-white background, centered with margin for Unity cutout. No characters, text, UI, machinery or sci-fi, original IP only.",
+    "prompt": "Original single production asset for MROZNY PAK, a frost-control botanical tower in FantasyTD. Match the existing organic hand-painted style-lock: rooted blue-green plant with a closed crystalline flower bud, layered icy petals, pale cyan frost veins on dark teal leaves, tiny icicle shapes grown organically, expressive small eyes, cold mist implied around the bud, magical natural frost not technology, clean strong silhouette at Android phone scale, top-down 3/4 orthographic game-art view, soft painterly shading, crisp dark organic outline. Isolated ONE final idle pose on simple warm off-white background, centered with margin for Unity cutout. No text, UI, scenery, metal or sci-fi, original IP only.",
     "resolution": "1080p",
     "aspect_ratio": "1:1",
     "batch_size": 1,
