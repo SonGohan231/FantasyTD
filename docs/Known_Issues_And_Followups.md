@@ -566,4 +566,29 @@ Do not activate automatically:
 - decide whether generated scene/package-lock state should be committed once workflows are proven,
 - validate exact Android SDK/NDK/JDK configuration during the Android build ticket,
 - split assemblies only if project growth creates a measurable need,
-- replace procedural placeholder art only after gameplay vertical slice works.
+- continue art/content expansion only as a separately activated future ticket; the MAP-A prototype-art replacement was completed in T0011.
+
+
+---
+
+## T0011 verified evidence — visual production pass
+
+Status: **RESOLVED / PASS**
+
+T0011 replaced the earlier prototype-style presentation with original procedural organic-fantasy runtime art. No external paid asset generation was used because the connected Higgsfield account rejected generation with `Requires basic plan or higher`.
+
+Regression evidence:
+- mobile layout / safe area: `37059744377` — PASS,
+- MAP-A geometry after final visual anchor correction: `37061361432`, `37104978893` — PASS,
+- four plant behaviors after VFX integration: `37062061398` — PASS,
+- boss, victory, natural defeat, restart: `37105044037` — PASS,
+- Android candidate build: `37060044752` — SUCCESS, BuildReport 0 errors / 0 warnings.
+
+One issue was found and resolved during T0011:
+- the decorative HomeTrunk sprite had been moved from the historically validated route-end visual anchor by 0.10 RU,
+- only that presentation offset was restored,
+- MapAData path and planting coordinates were never changed.
+
+No new known gameplay defect was introduced by T0011 evidence.
+
+T0009 device smoke and T0010 balance remain intentionally outside T0011.
