@@ -8,6 +8,7 @@ namespace FantasyTD.MapA
         private EnemyKind _kind;
         private int _segmentIndex;
         private float _hp;
+        private float _maxHp;
         private float _speed;
         private int _reward;
         private int _baseDamage;
@@ -17,22 +18,33 @@ namespace FantasyTD.MapA
         private float _rootUntil;
         private bool _dead;
         private float _progressDistance;
+        private EnemyHealthBar _healthBar;
 
         public bool IsDead => _dead;
         public float ProgressDistance => _progressDistance;
         public EnemyKind Kind => _kind;
+        public float CurrentHp => Mathf.Max(0f, _hp);
+        public float MaxHp => _maxHp;
+        public bool IsBoss => _kind == EnemyKind.Boss;
+        public bool IsRooted => !_dead && Time.time < _rootUntil;
+        public bool IsSlowed => !_dead && !IsRooted && Time.time < _slowUntil;
 
         public void Initialize(GameSession session, EnemyKind kind)
         {
             _session = session;
             _kind = kind;
             Configure(kind);
+            _maxHp = _hp;
             _segmentIndex = 0;
             _dead = false;
             _progressDistance = 0f;
 
             Vector2 start = MapAData.Waypoints[0];
             transform.position = new Vector3(start.x,start.y,-0.20f);
+
+            _healthBar = gameObject.AddComponent<EnemyHealthBar>();
+            _healthBar.Initialize(this, kind == EnemyKind.Boss);
+
             _session.RegisterEnemy(this);
         }
 
@@ -92,6 +104,9 @@ namespace FantasyTD.MapA
                 amount *= 1f - _physicalResistance;
 
             _hp -= amount;
+            if (_healthBar != null)
+                _healthBar.Refresh();
+
             if (_hp <= 0f)
                 Die();
         }
