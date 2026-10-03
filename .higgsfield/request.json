@@ -1,12 +1,13 @@
 {
   "enabled": true,
-  "generation_id": "map7-temple-mirror-source-20261002-002",
-  "model_path": "recraft/v4.1/text-to-image",
+  "generation_id": "mapa-topology-locked-production-20261003-001",
+  "model_path": "ideogram/v4.0",
   "input": {
-    "prompt": "ORIGINAL single interactive temple mechanism asset for a colorful mobile tower-defense game. ONE mirror obelisk only, isolated on warm off-white background. Short carved sandstone pedestal with a large circular polished mirror in a teal-and-gold rotating ring, small blue crystal pivot, chunky polished casual-game cartoon, clean dark outlines, saturated gold/teal, soft cel shading, top-down/3/4 camera. No text, no UI, no extra props. Original IP only.",
-    "resolution": "1k",
+    "prompt": "Preserve the REFERENCE ROAD GRAPH and build-pad topology exactly: one authored route enters from the left upper band, runs right, bends down-right, drops through the center, turns back left across the middle-lower band, drops near left-center, then turns right for a long lower exit run. Preserve all 12 marked build clearings at their guide positions. Replace only the flat guide rendering with a finished ORIGINAL premium mobile 2D tower-defense environment. Theme: lush magical meadow and woodland edge, crooked wooden fences, mossy stones, roots, wildflowers, mushrooms, tiny ponds away from combat lanes, soft natural shadows, colorful hand-painted/cartoon organic fantasy, high phone readability, top-down / restrained 3/4 orthographic. No characters, towers, enemies, text, labels, UI, numbers, logos or grid. Road and 12 planting clearings must stay unobstructed and clearly readable. Original IP only.",
+    "image_url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3JGQx06i0dP8dCxeDB39wmIRZBq/8bace3db-4d7c-489f-93c4-df7b75a22803.png",
+    "image_weight": 80,
     "aspect_ratio": "16:9",
-    "output_format": "png"
+    "rendering_speed": "QUALITY"
   },
   "max_wait_seconds": 1200
 }
