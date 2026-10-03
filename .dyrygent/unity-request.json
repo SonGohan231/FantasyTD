@@ -1,5 +1,5 @@
 {
-  "requestId": "recovery-map-integrity-20261003-02",
-  "mode": "map-a-integrity",
-  "note": "Rerun after updating integrity validator for Higgsfield PortalCore/HomeTree_Higgsfield logical roots and presentation offsets."
+  "requestId": "recovery-plant-behaviors-20261003-01",
+  "mode": "plant-behaviors",
+  "note": "Recovery regression: all four plant production behaviors after Higgsfield product-flow and visual fixes."
 }
