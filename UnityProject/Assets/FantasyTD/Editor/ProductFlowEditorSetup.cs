@@ -14,9 +14,10 @@ namespace FantasyTD.Product.Editor
     {
         public const string MainMenuScenePath = "Assets/FantasyTD/Scenes/MAIN_MENU.unity";
         public const string CampaignScenePath = "Assets/FantasyTD/Scenes/CAMPAIGN_MAP_SELECT.unity";
+        public const string Map2ScenePath = "Assets/FantasyTD/Scenes/MAP_2_POSTAPO.unity";
 
         public static string[] ReleaseScenePaths =>
-            new[] { MainMenuScenePath, CampaignScenePath, FantasyTD.MapA.Editor.MapAEditorSetup.ScenePath };
+            new[] { MainMenuScenePath, CampaignScenePath, FantasyTD.MapA.Editor.MapAEditorSetup.ScenePath, Map2ScenePath };
 
         static ProductFlowEditorSetup()
         {
@@ -35,6 +36,7 @@ namespace FantasyTD.Product.Editor
         {
             if (File.Exists(MainMenuScenePath)) AssetDatabase.DeleteAsset(MainMenuScenePath);
             if (File.Exists(CampaignScenePath)) AssetDatabase.DeleteAsset(CampaignScenePath);
+            if (File.Exists(Map2ScenePath)) AssetDatabase.DeleteAsset(Map2ScenePath);
             EnsureProductScenes();
             EditorSceneManager.OpenScene(MainMenuScenePath, OpenSceneMode.Single);
         }
@@ -49,6 +51,7 @@ namespace FantasyTD.Product.Editor
             FantasyTD.MapA.Editor.MapAEditorSetup.EnsureMapSceneExists();
             EnsureScene<MainMenuBootstrap>(MainMenuScenePath, "MAIN MENU Bootstrap");
             EnsureScene<CampaignMapSelectBootstrap>(CampaignScenePath, "CAMPAIGN MAP SELECT Bootstrap");
+            EnsureScene<Map2Bootstrap>(Map2ScenePath, "MAP2 Bootstrap");
             EnsureBuildOrder();
 
             AssetDatabase.SaveAssets();
@@ -74,13 +77,15 @@ namespace FantasyTD.Product.Editor
             {
                 new EditorBuildSettingsScene(MainMenuScenePath, true),
                 new EditorBuildSettingsScene(CampaignScenePath, true),
-                new EditorBuildSettingsScene(FantasyTD.MapA.Editor.MapAEditorSetup.ScenePath, true)
+                new EditorBuildSettingsScene(FantasyTD.MapA.Editor.MapAEditorSetup.ScenePath, true),
+                new EditorBuildSettingsScene(Map2ScenePath, true)
             };
 
             foreach (EditorBuildSettingsScene scene in EditorBuildSettings.scenes)
             {
                 if (scene.path == MainMenuScenePath ||
                     scene.path == CampaignScenePath ||
+                    scene.path == Map2ScenePath ||
                     scene.path == FantasyTD.MapA.Editor.MapAEditorSetup.ScenePath)
                     continue;
                 ordered.Add(scene);

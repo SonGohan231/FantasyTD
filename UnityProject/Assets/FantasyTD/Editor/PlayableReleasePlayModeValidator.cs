@@ -175,6 +175,8 @@ namespace FantasyTD.CI
             ScreenCapture.CaptureScreenshot(ScreenshotPath);
             for (int i = 0; i < 30 && !File.Exists(ScreenshotPath); i++)
                 yield return null;
+            IEnumerator map2 = Map2PlayModeValidation.Run(Check, text => Facts.Add(text));
+            while (map2.MoveNext()) yield return null;
 
             bool screenshotExists = File.Exists(ScreenshotPath) &&
                                     new FileInfo(ScreenshotPath).Length > 10000;

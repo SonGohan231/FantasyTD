@@ -18,6 +18,8 @@ namespace FantasyTD.MapA.Editor
             importer.alphaIsTransparency = true;
             importer.filterMode = UnityEngine.FilterMode.Bilinear;
             importer.wrapMode = UnityEngine.TextureWrapMode.Clamp;
+            if (assetPath.Contains("/Higgsfield/Maps/"))
+                importer.npotScale = TextureImporterNPOTScale.None;
         }
     }
 }

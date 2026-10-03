@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace FantasyTD.MapA
@@ -5,6 +7,7 @@ namespace FantasyTD.MapA
     public sealed class EnemyUnit : MonoBehaviour
     {
         private GameSession _session;
+        private Vector2[] _route;
         private EnemyKind _kind;
         private int _segmentIndex;
         private float _hp;
@@ -30,8 +33,13 @@ namespace FantasyTD.MapA
         public bool IsRooted => !_dead && Time.time < _rootUntil;
         public bool IsSlowed => !_dead && !IsRooted && Time.time < _slowUntil;
 
-        public void Initialize(GameSession session, EnemyKind kind)
+        public void Initialize(GameSession session, EnemyKind kind, IReadOnlyList<Vector2> route = null)
         {
+            if (session == null)
+                throw new ArgumentNullException(nameof(session));
+            // An enemy owns its complete immutable lane; later graph choices cannot
+            // move an already spawned enemy to another branch.
+            _route = GameSession.SnapshotRoute(route ?? session.Waypoints ?? MapAData.Waypoints);
             _session = session;
             _kind = kind;
             _animation = GetComponent<HiggsfieldUnitAnimation>();
@@ -41,7 +49,7 @@ namespace FantasyTD.MapA
             _dead = false;
             _progressDistance = 0f;
 
-            Vector2 start = MapAData.Waypoints[0];
+            Vector2 start = _route[0];
             transform.position = new Vector3(start.x,start.y,-0.20f);
 
             _healthBar = gameObject.AddComponent<EnemyHealthBar>();
@@ -82,8 +90,8 @@ namespace FantasyTD.MapA
             else if (Time.time < _slowUntil)
                 speedMultiplier = 1f - _slowStrength;
 
-            Vector2 direction = _segmentIndex < MapAData.Waypoints.Length - 1
-                ? MapAData.Waypoints[_segmentIndex + 1] - (Vector2)transform.position : Vector2.zero;
+            Vector2 direction = _segmentIndex < _route.Length - 1
+                ? _route[_segmentIndex + 1] - (Vector2)transform.position : Vector2.zero;
             _animation?.SetMovement(direction, speedMultiplier);
             Move(_speed * speedMultiplier * Time.deltaTime);
         }
@@ -124,10 +132,10 @@ namespace FantasyTD.MapA
 
         private void Move(float distance)
         {
-            while (distance > 0f && _segmentIndex < MapAData.Waypoints.Length - 1)
+            while (distance > 0f && _segmentIndex < _route.Length - 1)
             {
                 Vector2 current = transform.position;
-                Vector2 target = MapAData.Waypoints[_segmentIndex + 1];
+                Vector2 target = _route[_segmentIndex + 1];
                 float remaining = Vector2.Distance(current, target);
 
                 if (remaining < 0.001f)
@@ -150,7 +158,7 @@ namespace FantasyTD.MapA
                 _segmentIndex++;
             }
 
-            if (_segmentIndex >= MapAData.Waypoints.Length - 1)
+            if (_segmentIndex >= _route.Length - 1)
                 ReachBase();
         }
 

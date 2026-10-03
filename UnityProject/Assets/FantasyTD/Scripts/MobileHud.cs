@@ -139,8 +139,9 @@ namespace FantasyTD.MapA
             title.rectTransform.offsetMin = Vector2.zero;
             title.rectTransform.offsetMax = Vector2.zero;
             title.fontStyle = FontStyle.Bold;
+            bool map2 = _session.MapDefinition != null && _session.MapDefinition.Id == "MAP2";
             title.text = victory
-                ? "ZIELONY TRAKT OBRONIONY!"
+                ? (map2 ? "ODZYSKANE RUINY OBRONIONE!" : "ZIELONY TRAKT OBRONIONY!")
                 : "KRÓL CIERNI PRZEDARŁ SIĘ DO BAZY";
 
             Shadow titleShadow = title.gameObject.AddComponent<Shadow>();
@@ -232,7 +233,8 @@ namespace FantasyTD.MapA
             hr.pivot = new Vector2(1f, 0f);
             hr.sizeDelta = new Vector2(600f, 100f);
             hr.anchoredPosition = new Vector2(-28f, 30f);
-            hint.text = "Dotknij grządki, aby posadzić obrońcę.";
+            hint.text = (_session.MapDefinition != null ? _session.MapDefinition.DisplayName + "\n" : "") +
+                "Dotknij grządki, aby posadzić obrońcę.";
             Shadow hintShadow = hint.gameObject.AddComponent<Shadow>();
             hintShadow.effectColor = new Color(0f, 0f, 0f, 0.74f);
             hintShadow.effectDistance = new Vector2(2f, -2f);

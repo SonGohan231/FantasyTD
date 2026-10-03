@@ -9,6 +9,11 @@ from pathlib import Path
 import urllib.request
 import zipfile
 
+RUNTIME_COPIES = {
+    11227178308: 'MAP2_TERRAIN.png',
+    11227420838: 'MAP2_ROAD_KIT.png',
+}
+
 
 class SourceRedirect(urllib.request.HTTPRedirectHandler):
     def redirect_request(self, request, fp, code, msg, headers, new_url):
@@ -70,6 +75,15 @@ def main():
                     meta = target.with_name(target.name + '.meta')
                     if not meta.exists():
                         meta.write_text(f'fileFormatVersion: 2\nguid: {guid}\n')
+                    if artifact_id in RUNTIME_COPIES and name == 'asset_01.png':
+                        runtime_relative = 'UnityProject/Assets/FantasyTD/Resources/Higgsfield/Maps/' + RUNTIME_COPIES[artifact_id]
+                        runtime_target = root / runtime_relative
+                        runtime_target.parent.mkdir(parents=True, exist_ok=True)
+                        runtime_target.write_bytes(data)
+                        runtime_meta = runtime_target.with_name(runtime_target.name + '.meta')
+                        if not runtime_meta.exists():
+                            runtime_guid = hashlib.md5(('FantasyTD-approved:' + runtime_relative).encode()).hexdigest()
+                            runtime_meta.write_text(f'fileFormatVersion: 2\nguid: {runtime_guid}\n')
         print(f'Verified approved artifact {artifact_id}')
     print(f"Verified {len(manifest['artifacts'])} unique approved source archives; no generation performed")
 

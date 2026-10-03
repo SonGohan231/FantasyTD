@@ -34,7 +34,7 @@ namespace FantasyTD.MapA
             "Higgsfield/SEED_SHOOTER_SHEET", 0.70f, 0.458f, 0.719f, 0.496f, "Pedostrzal_AuthoredSeedShot");
 
         public static Sprite SeedShooter => _seedShooter ??= CreateCutout(
-            "Higgsfield/SEED_SHOOTER_SHEET", 0f, 0f, 0.515f, 1f, "Higgsfield_Pedostrzal");
+            "Higgsfield/SEED_SHOOTER_SHEET", 0f, 0f, 0.515f, 1f, "Higgsfield_Pedostrzal", isolateForeground: true);
 
         public static Sprite EssenceFlower => _essenceFlower ??= CreateCutout(
             "Higgsfield/ESSENCE_FLOWER", 0f, 0f, 1f, 1f, "Higgsfield_KwiatEsencji");
@@ -114,6 +114,13 @@ namespace FantasyTD.MapA
                 throw new InvalidOperationException("Missing required Higgsfield production sprite: " + label);
         }
 
+        // Retain exact approved crop dimensions for authored map tile placement.
+        public static Sprite SourceCropUntrimmed(string resourcePath, Rect normalizedCrop, string name)
+        {
+            return CreateCutout(resourcePath, normalizedCrop.xMin, normalizedCrop.yMin,
+                normalizedCrop.xMax, normalizedCrop.yMax, name, false, false, false, true);
+        }
+
         private static Sprite CreateCutout(
             string resourcePath,
             float xMinN,
@@ -122,7 +129,9 @@ namespace FantasyTD.MapA
             float yMaxN,
             string name,
             bool mirror = false,
-            bool isolateForeground = false)
+            bool isolateForeground = false,
+            bool trim = true,
+            bool centeredPivot = false)
         {
             Texture2D sheet = Resources.Load<Texture2D>(resourcePath);
             if (sheet == null)
@@ -208,6 +217,11 @@ namespace FantasyTD.MapA
             maxX = Mathf.Min(width - 1, maxX + padding);
             maxY = Mathf.Min(height - 1, maxY + padding);
 
+            if (!trim)
+            {
+                minX = 0; minY = 0; maxX = width - 1; maxY = height - 1;
+            }
+
             int finalWidth = maxX - minX + 1;
             int finalHeight = maxY - minY + 1;
             Texture2D result = new Texture2D(finalWidth, finalHeight, TextureFormat.RGBA32, false);
@@ -230,7 +244,7 @@ namespace FantasyTD.MapA
             Sprite sprite = Sprite.Create(
                 result,
                 new Rect(0f, 0f, finalWidth, finalHeight),
-                new Vector2(0.5f, 0.08f),
+                centeredPivot ? new Vector2(0.5f, 0.5f) : new Vector2(0.5f, 0.08f),
                 100f);
             sprite.name = name;
             return sprite;

@@ -10,7 +10,7 @@ namespace FantasyTD.Product
     {
         private static readonly string[] MapNames =
         {
-            "ZIELONY TRAKT", "POSTAPO", "ZMIERZCH", "DNO OCEANICZNE",
+            "ZIELONY TRAKT", "ODZYSKANE RUINY", "ZMIERZCH", "DNO OCEANICZNE",
             "GRZYBOWE MIASTO", "LAS BAMBUSOWY", "ŚWIĄTYNIA SŁOŃCA I KSIĘŻYCA", "LOCHY SMOKA"
         };
 
@@ -90,9 +90,12 @@ namespace FantasyTD.Product
                 float x0 = left + col * (cellW + gapX);
                 float y1 = top - row * (cellH + gapY);
                 float y0 = y1 - cellH;
-                bool playable = i == 0;
+                CampaignMapDefinition definition = i == 0 ? CampaignMapDefinition.Map1 : (i == 1 ? CampaignMapDefinition.Map2 : null);
+                bool validated = definition != null && definition.IsValidatedPlayable;
+                bool unlocked = definition != null && CampaignProgress.IsUnlocked(definition.Id);
+                bool playable = validated && unlocked;
 
-                string label = (i + 1) + ". " + MapNames[i] + (playable ? "\nGRAJ" : "\nW PRODUKCJI");
+                string label = (i + 1) + ". " + MapNames[i] + (playable ? "\nGRAJ" : (validated ? "\nUKOŃCZ POPRZEDNIĄ MAPĘ" : "\nW PRODUKCJI"));
                 Button button = RuntimeArt.CreateButton(
                     safe, label,
                     playable ? new Color(0.30f, 0.58f, 0.18f) : new Color(0.16f, 0.20f, 0.14f),
@@ -101,7 +104,11 @@ namespace FantasyTD.Product
                 RectTransform rt = button.GetComponent<RectTransform>();
                 SetRect(rt, new Vector2(x0, y0), new Vector2(x0 + cellW, y1));
                 button.interactable = playable;
-                if (playable) button.onClick.AddListener(ProductFlowScenes.OpenMapA);
+                if (playable)
+                {
+                    string sceneName = definition.SceneName;
+                    button.onClick.AddListener(() => UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName));
+                }
             }
         }
 
