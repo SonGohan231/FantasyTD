@@ -1,5 +1,5 @@
 {
-  "requestId": "recovery-plant-behaviors-20261003-01",
-  "mode": "plant-behaviors",
-  "note": "Recovery regression: all four plant production behaviors after Higgsfield product-flow and visual fixes."
+  "requestId": "recovery-boss-end-states-20261003-01",
+  "mode": "boss-end-states",
+  "note": "Recovery regression: wave 6, Król Cierni, victory, natural defeat and restart after Higgsfield product-flow integration."
 }
