@@ -9,44 +9,47 @@ namespace FantasyTD.MapA
         public const float Height = 14f;
         public const float RoadWidth = 1f;
 
+        // T0012: gameplay geometry aligned to the visible road in the bundled
+        // Higgsfield MAP-A artwork. These points remain invisible in production.
         public static readonly Vector2[] Waypoints =
         {
-            new Vector2(0f, 11f),
-            new Vector2(5f, 11f),
-            new Vector2(10f, 11f),
-            new Vector2(13f, 9f),
-            new Vector2(13f, 6f),
-            new Vector2(10f, 4f),
-            new Vector2(5f, 4f),
-            new Vector2(5f, 2f),
-            new Vector2(10f, 2f),
-            new Vector2(16f, 2f),
-            new Vector2(22f, 2f),
-            new Vector2(24f, 2f)
+            new Vector2(3.05f,14.00f),
+            new Vector2(3.81f,12.66f),
+            new Vector2(4.51f,11.20f),
+            new Vector2(5.33f,9.62f),
+            new Vector2(6.39f,7.92f),
+            new Vector2(7.97f,6.71f),
+            new Vector2(9.96f,6.10f),
+            new Vector2(12.30f,5.74f),
+            new Vector2(14.65f,5.25f),
+            new Vector2(16.99f,4.76f),
+            new Vector2(19.22f,3.91f),
+            new Vector2(21.09f,2.70f),
+            new Vector2(22.62f,1.24f),
+            new Vector2(24.00f,0.15f)
         };
 
+        // Functional spots are kept close enough to the visible road for the
+        // validated L1 ranges. Their subtle rings are the only generated map overlay.
         public static readonly PlantingSpotDefinition[] PlantingSpots =
         {
-            new PlantingSpotDefinition("A1", new Vector2(4f, 10f), 6.08f),
-            new PlantingSpotDefinition("A2", new Vector2(11f, 9f), 7.60f),
-            new PlantingSpotDefinition("A3", new Vector2(12f, 7f), 8.19f),
-            new PlantingSpotDefinition("A4", new Vector2(9f, 5.5f), 6.47f),
-            new PlantingSpotDefinition("A5", new Vector2(7f, 3f), 12.08f),
-            new PlantingSpotDefinition("A6", new Vector2(12.5f, 3.5f), 10.58f),
-            new PlantingSpotDefinition("A7", new Vector2(18f, 3.5f), 5.65f),
-            new PlantingSpotDefinition("A8", new Vector2(21f, 4f), 5.00f),
-            new PlantingSpotDefinition("A9", new Vector2(2.5f, 12.5f), 5.20f),
-            new PlantingSpotDefinition("A10", new Vector2(15f, 4.4f), 6.40f),
-            new PlantingSpotDefinition("A11", new Vector2(2.8f, 8.5f), 5.10f),
-            new PlantingSpotDefinition("A12", new Vector2(22.2f, 5.1f), 4.80f)
+            new PlantingSpotDefinition("A1",  new Vector2(5.60f,12.86f), 4.88f),
+            new PlantingSpotDefinition("A2",  new Vector2(3.47f,9.52f), 5.30f),
+            new PlantingSpotDefinition("A3",  new Vector2(7.44f,9.45f), 6.25f),
+            new PlantingSpotDefinition("A4",  new Vector2(6.39f,5.78f), 4.83f),
+            new PlantingSpotDefinition("A5",  new Vector2(9.75f,7.94f), 6.03f),
+            new PlantingSpotDefinition("A6",  new Vector2(10.98f,4.22f), 5.37f),
+            new PlantingSpotDefinition("A7",  new Vector2(13.59f,7.21f), 5.37f),
+            new PlantingSpotDefinition("A8",  new Vector2(14.89f,3.46f), 5.53f),
+            new PlantingSpotDefinition("A9",  new Vector2(17.83f,6.26f), 5.14f),
+            new PlantingSpotDefinition("A10", new Vector2(18.52f,2.36f), 5.95f),
+            new PlantingSpotDefinition("A11", new Vector2(21.77f,4.29f), 5.08f),
+            new PlantingSpotDefinition("A12", new Vector2(21.18f,0.80f), 5.57f)
         };
 
         public static readonly ObstacleDefinition[] Obstacles =
         {
-            new ObstacleDefinition("Pond", new Vector2(18.5f, 10.5f), 1.5f),
-            new ObstacleDefinition("RocksA", new Vector2(2.2f, 6.5f), 1.0f),
-            new ObstacleDefinition("RocksB", new Vector2(16f, 6.2f), 0.9f),
-            new ObstacleDefinition("Grove", new Vector2(22f, 7f), 1.1f)
+            new ObstacleDefinition("ArtOnly", new Vector2(12f,7f), 0f)
         };
 
         public static float TotalPathLength
