@@ -23,6 +23,7 @@ namespace FantasyTD.CI
         private const string ExitCodeKey = "FantasyTD.T0012.ExitCode";
         private const string PlayModeEnteredKey = "FantasyTD.T0012.PlayModeEntered";
         private const string ReportPath = "Artifacts/UnityExecutor/playable-release.txt";
+        private const string ScreenshotPath = "Artifacts/UnityExecutor/playable-release-1920x1080.png";
         private const float TimeoutSeconds = 240f;
 
         private static readonly List<string> Facts = new List<string>();
@@ -135,8 +136,13 @@ namespace FantasyTD.CI
 
         private static IEnumerator RunFlow()
         {
-            yield return null;
-            yield return null;
+            Screen.SetResolution(1920, 1080, false);
+            for (int i = 0; i < 8; i++) yield return null;
+
+            AddFact("screenWidth", Screen.width);
+            AddFact("screenHeight", Screen.height);
+            Check(Screen.width == 1920 && Screen.height == 1080,
+                "T0012 render validation did not reach 1920x1080.");
 
             ValidateMapArt();
 
@@ -145,6 +151,20 @@ namespace FantasyTD.CI
 
             IEnumerator tower = ValidateTowerLifecycle();
             while (tower.MoveNext()) yield return null;
+
+            Directory.CreateDirectory(Path.GetDirectoryName(ScreenshotPath) ?? "Artifacts/UnityExecutor");
+            if (File.Exists(ScreenshotPath))
+                File.Delete(ScreenshotPath);
+
+            ScreenCapture.CaptureScreenshot(ScreenshotPath);
+            for (int i = 0; i < 30 && !File.Exists(ScreenshotPath); i++)
+                yield return null;
+
+            bool screenshotExists = File.Exists(ScreenshotPath) &&
+                                    new FileInfo(ScreenshotPath).Length > 10000;
+            AddFact("screenshotPath", ScreenshotPath);
+            AddFact("screenshotExists", screenshotExists);
+            Check(screenshotExists, "T0012 render screenshot was not produced.");
 
             AddFact("runtimeWarningCount", RuntimeWarnings.Count);
             AddFact("validationErrorCount", Errors.Count);
