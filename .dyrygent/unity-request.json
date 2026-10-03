@@ -1,5 +1,5 @@
 {
-  "requestId": "t0012-map2-resource-diagnostic-20261003-04",
+  "requestId": "t0012-map2-resource-diagnostic-20261003-05",
   "mode": "playable-release",
-  "note": "Capture actual runtime Resources index and AssetDatabase texture availability for missing MAP2 terrain seen37130407013; no runtime AssetDatabase fallback."
+  "note": "Expose pending Resources index diagnostic in job stdout as local Codex execution server disconnected; preserve binary source identities."
 }
