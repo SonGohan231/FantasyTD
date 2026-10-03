@@ -97,6 +97,11 @@ namespace FantasyTD.CI
             PlayableReleasePlayModeValidator.Start();
         }
 
+        public static void FullCampaign()
+        {
+            FullCampaignPlayModeValidation.Start();
+        }
+
         public static void VisualAcceptance()
         {
             ProductVisualAcceptanceValidator.Start();

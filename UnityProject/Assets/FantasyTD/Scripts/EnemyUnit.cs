@@ -24,6 +24,8 @@ namespace FantasyTD.MapA
         private EnemyHealthBar _healthBar;
         private HiggsfieldUnitAnimation _animation;
 
+        // Fired exclusively by damage-driven death, never by reaching the base.
+        public event Action<EnemyUnit> Killed;
         public bool IsDead => _dead;
         public float ProgressDistance => _progressDistance;
         public EnemyKind Kind => _kind;
@@ -168,6 +170,7 @@ namespace FantasyTD.MapA
             _dead = true;
             _session.Economy.Add(_reward);
             _session.UnregisterEnemy(this);
+            Killed?.Invoke(this);
             if (_healthBar != null)
                 foreach (Canvas canvas in GetComponentsInChildren<Canvas>()) canvas.gameObject.SetActive(false);
             _animation?.PlayDeath();

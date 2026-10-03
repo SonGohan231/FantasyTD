@@ -24,7 +24,7 @@ namespace FantasyTD.CI
         private const string PlayModeEnteredKey = "FantasyTD.T0012.PlayModeEntered";
         private const string ReportPath = "Artifacts/UnityExecutor/playable-release.txt";
         private const string ScreenshotPath = "Artifacts/UnityExecutor/playable-release-1920x1080.png";
-        private const float TimeoutSeconds = 240f;
+        private const float TimeoutSeconds = 600f;
 
         private static readonly List<string> Facts = new List<string>();
         private static readonly List<string> Errors = new List<string>();
@@ -178,6 +178,10 @@ namespace FantasyTD.CI
                 yield return null;
             IEnumerator map2 = Map2PlayModeValidation.Run(Check, text => Facts.Add(text));
             while (map2.MoveNext()) yield return null;
+            IEnumerator sourceMaps = SourceCampaignPlayModeValidation.Run(Check, text => Facts.Add(text));
+            while (sourceMaps.MoveNext()) yield return null;
+            IEnumerator map5Secret = Map5SecretPlayModeValidation.Run(Check, text => Facts.Add(text));
+            while (map5Secret.MoveNext()) yield return null;
 
             bool screenshotExists = File.Exists(ScreenshotPath) &&
                                     new FileInfo(ScreenshotPath).Length > 10000;

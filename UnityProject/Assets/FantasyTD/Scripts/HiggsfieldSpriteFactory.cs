@@ -18,6 +18,10 @@ namespace FantasyTD.MapA
         private static Sprite _homeTree;
         private static Sprite[] _wandererWalk;
         private static Sprite _seedShot;
+        private static Sprite _mutationTower;
+
+        public static Sprite MutationTower => _mutationTower ??= CreateCutout(
+            "Higgsfield/Maps/MAP5_MUTATION_TOWER", 0.21f,0.52f,0.49f,0.96f,"Higgsfield_MutacyjnyPak", isolateForeground:true);
 
         // Authored locomotion poses on the bottom row of artifact 11219935723.
         // The last pose faces left in the source, so it is mirrored to match the others.
@@ -74,6 +78,7 @@ namespace FantasyTD.MapA
                 PlantKind.EssenceFlower => EssenceFlower,
                 PlantKind.OakGuardian => OakGuardian,
                 PlantKind.FrostBud => FrostBud,
+                PlantKind.MutationTower => MutationTower,
                 _ => throw new ArgumentOutOfRangeException(nameof(kind), kind, null)
             };
         }

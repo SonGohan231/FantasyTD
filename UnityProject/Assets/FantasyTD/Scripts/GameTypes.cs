@@ -5,7 +5,8 @@ namespace FantasyTD.MapA
         SeedShooter,
         EssenceFlower,
         OakGuardian,
-        FrostBud
+        FrostBud,
+        MutationTower
     }
 
     public enum EnemyKind
@@ -33,7 +34,8 @@ namespace FantasyTD.MapA
         {
             switch (kind)
             {
-                case PlantKind.SeedShooter: return 100;
+                case PlantKind.SeedShooter:
+                case PlantKind.MutationTower: return 100;
                 case PlantKind.EssenceFlower: return 100;
                 case PlantKind.OakGuardian: return 100;
                 case PlantKind.FrostBud: return 150;
@@ -49,6 +51,7 @@ namespace FantasyTD.MapA
                 case PlantKind.EssenceFlower: return "Kwiat Esencji";
                 case PlantKind.OakGuardian: return "Dębowy Strażnik";
                 case PlantKind.FrostBud: return "Mroźny Pąk";
+                case PlantKind.MutationTower: return "Mutacyjny Pąk";
                 default: return kind.ToString();
             }
         }

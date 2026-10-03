@@ -15,9 +15,14 @@ namespace FantasyTD.Product.Editor
         public const string MainMenuScenePath = "Assets/FantasyTD/Scenes/MAIN_MENU.unity";
         public const string CampaignScenePath = "Assets/FantasyTD/Scenes/CAMPAIGN_MAP_SELECT.unity";
         public const string Map2ScenePath = "Assets/FantasyTD/Scenes/MAP_2_POSTAPO.unity";
+        public const string Map3ScenePath = "Assets/FantasyTD/Scenes/MAP_3_TWILIGHT.unity";
+        public const string Map4ScenePath = "Assets/FantasyTD/Scenes/MAP_4_ABYSSAL.unity";
+        public const string Map5ScenePath = "Assets/FantasyTD/Scenes/MAP5_FUNGAL_ANDROID.unity";
+        public const string Map6ScenePath = "Assets/FantasyTD/Scenes/MAP6_BAMBOO_ANDROID.unity";
 
         public static string[] ReleaseScenePaths =>
-            new[] { MainMenuScenePath, CampaignScenePath, FantasyTD.MapA.Editor.MapAEditorSetup.ScenePath, Map2ScenePath };
+            new[] { MainMenuScenePath, CampaignScenePath, FantasyTD.MapA.Editor.MapAEditorSetup.ScenePath,
+                Map2ScenePath, Map3ScenePath, Map4ScenePath, Map5ScenePath, Map6ScenePath };
 
         static ProductFlowEditorSetup()
         {
@@ -37,6 +42,8 @@ namespace FantasyTD.Product.Editor
             if (File.Exists(MainMenuScenePath)) AssetDatabase.DeleteAsset(MainMenuScenePath);
             if (File.Exists(CampaignScenePath)) AssetDatabase.DeleteAsset(CampaignScenePath);
             if (File.Exists(Map2ScenePath)) AssetDatabase.DeleteAsset(Map2ScenePath);
+            foreach (string path in new[] { Map3ScenePath, Map4ScenePath, Map5ScenePath, Map6ScenePath })
+                if (File.Exists(path)) AssetDatabase.DeleteAsset(path);
             EnsureProductScenes();
             EditorSceneManager.OpenScene(MainMenuScenePath, OpenSceneMode.Single);
         }
@@ -52,6 +59,10 @@ namespace FantasyTD.Product.Editor
             EnsureScene<MainMenuBootstrap>(MainMenuScenePath, "MAIN MENU Bootstrap");
             EnsureScene<CampaignMapSelectBootstrap>(CampaignScenePath, "CAMPAIGN MAP SELECT Bootstrap");
             EnsureScene<Map2Bootstrap>(Map2ScenePath, "MAP2 Bootstrap");
+            EnsureScene<Map3Bootstrap>(Map3ScenePath, "MAP3 Bootstrap");
+            EnsureScene<Map4Bootstrap>(Map4ScenePath, "MAP4 Bootstrap");
+            EnsureScene<Map5Bootstrap>(Map5ScenePath, "MAP5 Bootstrap");
+            EnsureScene<Map6Bootstrap>(Map6ScenePath, "MAP6 Bootstrap");
             EnsureBuildOrder();
 
             AssetDatabase.SaveAssets();
@@ -78,7 +89,11 @@ namespace FantasyTD.Product.Editor
                 new EditorBuildSettingsScene(MainMenuScenePath, true),
                 new EditorBuildSettingsScene(CampaignScenePath, true),
                 new EditorBuildSettingsScene(FantasyTD.MapA.Editor.MapAEditorSetup.ScenePath, true),
-                new EditorBuildSettingsScene(Map2ScenePath, true)
+                new EditorBuildSettingsScene(Map2ScenePath, true),
+                new EditorBuildSettingsScene(Map3ScenePath, true),
+                new EditorBuildSettingsScene(Map4ScenePath, true),
+                new EditorBuildSettingsScene(Map5ScenePath, true),
+                new EditorBuildSettingsScene(Map6ScenePath, true)
             };
 
             foreach (EditorBuildSettingsScene scene in EditorBuildSettings.scenes)
@@ -86,6 +101,8 @@ namespace FantasyTD.Product.Editor
                 if (scene.path == MainMenuScenePath ||
                     scene.path == CampaignScenePath ||
                     scene.path == Map2ScenePath ||
+                    scene.path == Map3ScenePath || scene.path == Map4ScenePath ||
+                    scene.path == Map5ScenePath || scene.path == Map6ScenePath ||
                     scene.path == FantasyTD.MapA.Editor.MapAEditorSetup.ScenePath)
                     continue;
                 ordered.Add(scene);

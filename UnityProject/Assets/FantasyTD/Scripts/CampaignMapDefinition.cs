@@ -7,6 +7,7 @@ namespace FantasyTD.MapA
     {
         private readonly Vector2[] _waypoints;
         private readonly PlantingSpotDefinition[] _spots;
+        private readonly Vector2[][] _spawnRoutes;
         public string Id { get; }
         public string DisplayName { get; }
         public string SceneName { get; }
@@ -18,7 +19,8 @@ namespace FantasyTD.MapA
         public PlantingSpotDefinition[] PlantingSpots => (PlantingSpotDefinition[])_spots.Clone();
 
         public CampaignMapDefinition(string id, string displayName, string sceneName, float width, float height,
-            Vector2[] waypoints, PlantingSpotDefinition[] spots, bool isValidatedPlayable, string backgroundResource = null)
+            Vector2[] waypoints, PlantingSpotDefinition[] spots, bool isValidatedPlayable, string backgroundResource = null,
+            Vector2[][] alternateRoutes = null)
         {
             if (string.IsNullOrEmpty(id) || waypoints == null || waypoints.Length < 2 || spots == null)
                 throw new ArgumentException("A campaign map needs an ID, route and planting data.");
@@ -31,6 +33,19 @@ namespace FantasyTD.MapA
             IsValidatedPlayable = isValidatedPlayable;
             _waypoints = (Vector2[])waypoints.Clone();
             _spots = (PlantingSpotDefinition[])spots.Clone();
+            if (alternateRoutes != null && alternateRoutes.Length > 0)
+            {
+                _spawnRoutes = new Vector2[alternateRoutes.Length][];
+                for (int i = 0; i < alternateRoutes.Length; i++)
+                    _spawnRoutes[i] = GameSession.SnapshotRoute(alternateRoutes[i]);
+            }
+            else _spawnRoutes = new[] { GameSession.SnapshotRoute(waypoints) };
+        }
+
+        public Vector2[] GetSpawnRoute(int ordinal)
+        {
+            if (ordinal < 0) throw new ArgumentOutOfRangeException(nameof(ordinal));
+            return (Vector2[])_spawnRoutes[ordinal % _spawnRoutes.Length].Clone();
         }
 
         public static CampaignMapDefinition Map1 => new CampaignMapDefinition("MAP1", "Zielony Trakt",

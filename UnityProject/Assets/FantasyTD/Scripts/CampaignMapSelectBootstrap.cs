@@ -90,7 +90,7 @@ namespace FantasyTD.Product
                 float x0 = left + col * (cellW + gapX);
                 float y1 = top - row * (cellH + gapY);
                 float y0 = y1 - cellH;
-                CampaignMapDefinition definition = i == 0 ? CampaignMapDefinition.Map1 : (i == 1 ? CampaignMapDefinition.Map2 : null);
+                CampaignMapDefinition definition = CampaignCatalog.Get("MAP" + (i + 1));
                 bool validated = definition != null && definition.IsValidatedPlayable;
                 bool unlocked = definition != null && CampaignProgress.IsUnlocked(definition.Id);
                 bool playable = validated && unlocked;

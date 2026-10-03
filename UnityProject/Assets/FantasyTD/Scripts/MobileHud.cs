@@ -68,6 +68,8 @@ namespace FantasyTD.MapA
             CreateRadialButton(PlantKind.EssenceFlower, new Vector2(0f, 125f), new Color(0.92f, 0.64f, 0.12f));
             CreateRadialButton(PlantKind.OakGuardian, new Vector2(125f, 0f), new Color(0.42f, 0.26f, 0.10f));
             CreateRadialButton(PlantKind.FrostBud, new Vector2(0f, -125f), new Color(0.24f, 0.62f, 0.82f));
+            if (Map5SecretController.MutationTowerUnlocked)
+                CreateRadialButton(PlantKind.MutationTower, new Vector2(0f, -250f), new Color(0.66f,0.20f,0.48f));
 
             Button close = RuntimeArt.CreateButton(
                 _radialRoot, "×", new Color(0.23f, 0.14f, 0.075f, 0.98f), 38);

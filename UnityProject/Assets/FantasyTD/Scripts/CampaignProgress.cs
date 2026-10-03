@@ -10,15 +10,17 @@ namespace FantasyTD.MapA
 
         public static bool IsUnlocked(string mapId)
         {
+            CampaignMapDefinition definition = CampaignCatalog.Get(mapId);
+            if (definition == null || !definition.IsValidatedPlayable) return false;
             if (mapId == "MAP1") return true;
-            if (mapId == "MAP2") return HasVictory("MAP1");
-            return false;
+            int number;
+            return mapId.StartsWith("MAP") && int.TryParse(mapId.Substring(3), out number) &&
+                number > 1 && number <= 6 && HasVictory("MAP" + (number - 1));
         }
 
         public static void RecordVictory(string mapId)
         {
-            CampaignMapDefinition definition = mapId == "MAP1" ? CampaignMapDefinition.Map1
-                : (mapId == "MAP2" ? CampaignMapDefinition.Map2 : null);
+            CampaignMapDefinition definition = CampaignCatalog.Get(mapId);
             if (definition == null || !definition.IsValidatedPlayable) return;
             PlayerPrefs.SetInt(VictoryKeyPrefix + mapId, 1);
             PlayerPrefs.Save();

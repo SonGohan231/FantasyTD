@@ -147,6 +147,7 @@ namespace FantasyTD.MapA
         private void BuildSelected(PlantKind kind)
         {
             if (_selected == null || _selected.Occupied) return;
+            if (kind == PlantKind.MutationTower && !Map5SecretController.MutationTowerUnlocked) return;
 
             int cost = Balance.Cost(kind);
             if (!_session.Economy.TrySpend(cost))
@@ -160,7 +161,8 @@ namespace FantasyTD.MapA
 
             switch (kind)
             {
-                case PlantKind.SeedShooter: behaviour = plant.AddComponent<SeedShooterPlant>(); break;
+                case PlantKind.SeedShooter:
+                case PlantKind.MutationTower: behaviour = plant.AddComponent<SeedShooterPlant>(); break;
                 case PlantKind.EssenceFlower: behaviour = plant.AddComponent<EssenceFlowerPlant>(); break;
                 case PlantKind.OakGuardian: behaviour = plant.AddComponent<OakGuardianPlant>(); break;
                 case PlantKind.FrostBud: behaviour = plant.AddComponent<FrostBudPlant>(); break;

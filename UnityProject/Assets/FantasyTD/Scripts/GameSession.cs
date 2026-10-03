@@ -7,6 +7,7 @@ namespace FantasyTD.MapA
     public sealed class GameSession : MonoBehaviour
     {
         private readonly List<EnemyUnit> _enemies = new List<EnemyUnit>();
+        private int _spawnOrdinal;
 
         public Economy Economy { get; private set; }
         public BaseHealth Base { get; private set; }
@@ -24,6 +25,7 @@ namespace FantasyTD.MapA
         public void Initialize(List<PlantingSpot> spots, CampaignMapDefinition definition = null)
         {
             MapDefinition = definition ?? CampaignMapDefinition.Map1;
+            _spawnOrdinal = 0;
             Waypoints = Array.AsReadOnly(SnapshotRoute(
                 MapDefinition.Waypoints));
             Economy = gameObject.AddComponent<Economy>();
@@ -54,7 +56,7 @@ namespace FantasyTD.MapA
         {
             // Validate and copy an explicit graph lane before creating scene objects.
             // Existing waves inherit the session route without changing spawn order.
-            Vector2[] routeSnapshot = SnapshotRoute(route != null ? route : Waypoints);
+            Vector2[] routeSnapshot = SnapshotRoute(route ?? MapDefinition.GetSpawnRoute(_spawnOrdinal++));
             GameObject go = FantasyVisualFactory.CreateEnemy(kind);
             EnemyUnit enemy = go.AddComponent<EnemyUnit>();
             enemy.Initialize(this, kind, routeSnapshot);

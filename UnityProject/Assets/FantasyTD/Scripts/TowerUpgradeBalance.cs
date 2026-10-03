@@ -81,6 +81,7 @@ namespace FantasyTD.MapA
             switch (kind)
             {
                 case PlantKind.SeedShooter:
+                case PlantKind.MutationTower:
                     return "DMG " + SeedDamage(level).ToString("0") +
                            "  •  " + SeedCooldown(level).ToString("0.##") + " s" +
                            "  •  Zasięg " + SeedRange(level).ToString("0.0");
