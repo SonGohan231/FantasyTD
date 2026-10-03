@@ -13,6 +13,7 @@ namespace FantasyTD.MapA.Editor
 
             TextureImporter importer = (TextureImporter)assetImporter;
             importer.textureType = TextureImporterType.Default;
+            importer.textureShape = TextureImporterShape.Texture2D;
             importer.isReadable = true;
             importer.mipmapEnabled = false;
             importer.alphaIsTransparency = true;
