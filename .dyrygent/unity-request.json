@@ -1,5 +1,5 @@
 {
-  "requestId": "t0012-authored-visual-20261003-01",
-  "mode": "visual-acceptance",
-  "note": "Capture integrated source-art geometry UI and walking candidate after playable-release run37128600034 PASS."
+  "requestId": "t0012-map2-natural-wave-20261003-01",
+  "mode": "playable-release",
+  "note": "Validate MAP1 source animation/combat/lifecycle regression plus MAP2 fresh scene, approved terrain/road source samples, all12 pads, production planting and natural six-enemy wave. Existing verified MAP2 runtime sources preserved by run37129673711."
 }
