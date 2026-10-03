@@ -43,7 +43,7 @@ sleep 15
 UI_XML="$("${ADB[@]}" shell cat /sdcard/fantasytd-window.xml 2>/dev/null || true)"
 if [[ "$UI_XML" == *"Viewing full screen"* ]]; then
   # Bounds in the system dialog are proportional to display size (Got it at 72%, 44%).
-  read SCREEN_W SCREEN_H < <("${ADB[@]}" shell wm size | sed -n 's/.*Physical size: \\([0-9]*\\)x\\([0-9]*\\).*/\\1 \\2/p')
+  read SCREEN_W SCREEN_H < <("${ADB[@]}" shell wm size | sed -nE 's/.*Physical size: ([0-9]+)x([0-9]+).*/\1 \2/p')
   "${ADB[@]}" shell input tap "$((SCREEN_W*72/100))" "$((SCREEN_H*44/100))"
   sleep 5
   report "immersiveOverlayDismissed=True"
