@@ -1,0 +1,62 @@
+name: Freeze Higgsfield MAP-A runtime assets
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - 'recovery/t0012-higgsfield-product-completeness'
+    paths:
+      - '.higgsfield/freeze-request.json'
+      - '.github/workflows/higgsfield-freeze-map-a.yml'
+      - '.github/scripts/materialize-higgsfield-art.sh'
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  freeze:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout recovery branch
+        uses: actions/checkout@v4
+        with:
+          ref: recovery/t0012-higgsfield-product-completeness
+          fetch-depth: 0
+
+      - name: Materialize all MAP-A Higgsfield runtime assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: bash .github/scripts/materialize-higgsfield-art.sh
+
+      - name: Verify materialized assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s UnityProject/Assets/FantasyTD/Resources/Higgsfield/MAP_A.png
+          test -s UnityProject/Assets/FantasyTD/Resources/Higgsfield/SEED_SHOOTER_SHEET.png
+          test -s UnityProject/Assets/FantasyTD/Resources/Higgsfield/WANDERER_SHEET.png
+          test -s UnityProject/Assets/FantasyTD/Resources/Higgsfield/ESSENCE_FLOWER.png
+          test -s UnityProject/Assets/FantasyTD/Resources/Higgsfield/OAK_GUARDIAN.png
+          test -s UnityProject/Assets/FantasyTD/Resources/Higgsfield/FROST_BUD.png
+          test -s UnityProject/Assets/FantasyTD/Resources/Higgsfield/RUNNER.png
+          test -s UnityProject/Assets/FantasyTD/Resources/Higgsfield/BRUTE.png
+          test -s UnityProject/Assets/FantasyTD/Resources/Higgsfield/ARMORED.png
+          test -s UnityProject/Assets/FantasyTD/Resources/Higgsfield/BOSS.png
+          test -s UnityProject/Assets/FantasyTD/Resources/Higgsfield/PORTAL.png
+          test -s UnityProject/Assets/FantasyTD/Resources/Higgsfield/HOME_TREE.png
+          ls -lh UnityProject/Assets/FantasyTD/Resources/Higgsfield
+
+      - name: Commit durable runtime assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "FantasyTD Recovery Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add UnityProject/Assets/FantasyTD/Resources/Higgsfield/*.png
+          if git diff --cached --quiet; then
+            echo "All runtime assets are already durably committed."
+            exit 0
+          fi
+          git commit -m "Recovery: freeze Higgsfield MAP-A runtime assets"
+          git push origin HEAD:recovery/t0012-higgsfield-product-completeness
