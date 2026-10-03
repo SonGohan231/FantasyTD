@@ -92,7 +92,7 @@ namespace FantasyTD.MapA
             Sprite sprite = HiggsfieldSpriteFactory.Portal;
             Require(sprite, "Portal");
 
-            GameObject root = new GameObject("SpawnPortal_Higgsfield");
+            GameObject root = new GameObject("PortalCore");
             root.transform.position = new Vector3(position.x, position.y, -0.18f);
             AddHiggsfieldVisual(root.transform, sprite, 1.85f, new Vector2(0f, -0.42f), 18);
             return root;
@@ -112,7 +112,7 @@ namespace FantasyTD.MapA
                 new Vector2(1.55f, 0.46f),
                 16,
                 0.30f);
-            AddHiggsfieldVisual(root.transform, sprite, 2.05f, new Vector2(0f, -0.69f), 20);
+            AddHiggsfieldVisual(root.transform, sprite, 2.05f, new Vector2(0f, -0.51f), 20);
             return root;
         }
 
