@@ -46,7 +46,7 @@ namespace FantasyTD.CI
         };
 
         private static readonly string[] PreDefenseSeedSpots = { "A3", "A7", "A11" };
-        private static readonly string[] ExtraDefenseSeedSpots = { "A3", "A12" };
+        private static readonly string[] ExtraDefenseSeedSpots = { "A4", "A8" };
 
         private enum Phase
         {
