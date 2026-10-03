@@ -1,5 +1,5 @@
 {
-  "requestId": "recovery-visual-acceptance-20261003-02",
-  "mode": "visual-acceptance",
-  "note": "Visual QA rerun after fixing tower-level clipping, portal/home-tree framing, and preserving all MAP-A runtime Higgsfield PNGs."
+  "requestId": "recovery-playable-release-20261003-01",
+  "mode": "playable-release",
+  "note": "Post-visual-QA T0012 playable validation on durable Higgsfield assets: MAP-A art, enemy HP/status, tower build/upgrade/sell/rebuild economy."
 }
