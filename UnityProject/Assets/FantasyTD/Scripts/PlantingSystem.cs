@@ -89,12 +89,13 @@ namespace FantasyTD.MapA
             Vector2 world = new Vector2(world3.x,world3.y);
 
             PlantingSpot nearest = null;
-            float best = 0.78f * 0.78f;
+            float best = 0.82f * 0.82f;
 
             for (int i = 0; i < _spots.Count; i++)
             {
                 PlantingSpot spot = _spots[i];
-                if (spot == null || spot.Occupied) continue;
+                if (spot == null) continue;
+
                 float d = ((Vector2)spot.transform.position - world).sqrMagnitude;
                 if (d <= best)
                 {
@@ -109,15 +110,28 @@ namespace FantasyTD.MapA
                 return;
             }
 
-            Select(nearest);
+            if (nearest.Occupied && nearest.Instance != null)
+                SelectTower(nearest);
+            else if (!nearest.Occupied)
+                SelectBuildSpot(nearest);
         }
 
-        private void Select(PlantingSpot spot)
+        private void SelectBuildSpot(PlantingSpot spot)
         {
             if (_selected != null) _selected.SetSelected(false);
             _selected = spot;
             _selected.SetSelected(true);
+            _session.Hud.CloseTowerPanel();
             _session.Hud.OpenBuildRadial(_selected, BuildSelected, CloseSelection);
+        }
+
+        private void SelectTower(PlantingSpot spot)
+        {
+            if (_selected != null) _selected.SetSelected(false);
+            _selected = spot;
+            _selected.SetSelected(true);
+            _session.Hud.CloseBuildRadial();
+            RefreshTowerPanel();
         }
 
         private void BuildSelected(PlantKind kind)
@@ -132,8 +146,10 @@ namespace FantasyTD.MapA
             }
 
             GameObject plant = FantasyVisualFactory.CreatePlant(kind, _selected.transform.position);
-            PlantBehaviour behaviour = null;
+            PlantInstance instance = plant.AddComponent<PlantInstance>();
+            instance.Initialize(_session, _selected, kind, cost);
 
+            PlantBehaviour behaviour = null;
             switch (kind)
             {
                 case PlantKind.SeedShooter: behaviour = plant.AddComponent<SeedShooterPlant>(); break;
@@ -142,18 +158,87 @@ namespace FantasyTD.MapA
                 case PlantKind.FrostBud: behaviour = plant.AddComponent<FrostBudPlant>(); break;
             }
 
-            if (behaviour != null) behaviour.Initialize(_session);
-            _selected.Occupy(kind);
+            if (behaviour != null)
+                behaviour.Initialize(_session, instance);
+
+            _selected.Occupy(kind, instance);
             CloseSelection();
             _session.Hud.Refresh();
+        }
+
+        private void UpgradeSelected()
+        {
+            if (_selected == null || _selected.Instance == null) return;
+            PlantInstance instance = _selected.Instance;
+            if (!instance.CanUpgrade)
+            {
+                RefreshTowerPanel();
+                return;
+            }
+
+            int cost = instance.UpgradeCost;
+            if (!_session.Economy.TrySpend(cost))
+            {
+                _session.Hud.PulseEssence();
+                return;
+            }
+
+            instance.ApplyUpgrade(cost);
+            _session.Hud.ShowFloatingMessage(
+                instance.transform.position,
+                "POZIOM " + instance.Level,
+                new Color(1f, 0.84f, 0.25f));
+            _session.Hud.Refresh();
+            RefreshTowerPanel();
+        }
+
+        private void SellSelected()
+        {
+            if (_selected == null || _selected.Instance == null) return;
+
+            PlantInstance instance = _selected.Instance;
+            int refund = instance.SellValue;
+            GameObject plantObject = instance.gameObject;
+            Vector2 pos = plantObject.transform.position;
+
+            _selected.ClearOccupancy();
+            _session.Economy.Add(refund);
+            Destroy(plantObject);
+
+            _session.Hud.ShowFloatingMessage(
+                pos,
+                "+" + refund + " Esencji",
+                new Color(1f, 0.78f, 0.22f));
+
+            CloseSelection();
+            _session.Hud.Refresh();
+        }
+
+        private void RefreshTowerPanel()
+        {
+            if (_selected == null || _selected.Instance == null)
+            {
+                CloseSelection();
+                return;
+            }
+
+            _session.Hud.OpenTowerPanel(
+                _selected.Instance,
+                UpgradeSelected,
+                SellSelected,
+                CloseSelection);
         }
 
         private void CloseSelection()
         {
             if (_selected != null) _selected.SetSelected(false);
             _selected = null;
+
             if (_session != null && _session.Hud != null)
+            {
                 _session.Hud.CloseBuildRadial();
+                _session.Hud.CloseTowerPanel();
+            }
         }
     }
 }
