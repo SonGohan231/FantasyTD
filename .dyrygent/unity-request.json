@@ -1,5 +1,5 @@
 {
-  "requestId": "t0011-android-final-head-20261003-0917",
-  "mode": "android-build",
-  "note": "Final T0011 Android APK build on documentation-complete HEAD. No further repository changes after this run; T0009/T0010 remain untouched."
+  "requestId": "t0012-map-integrity-20261003-1012",
+  "mode": "map-a-integrity",
+  "note": "T0012 validate Higgsfield MAP-A background plus art-aligned invisible route and 12 planting hotspots. T0009/T0010 remain untouched."
 }
