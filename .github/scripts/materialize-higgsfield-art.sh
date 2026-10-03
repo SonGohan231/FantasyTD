@@ -13,6 +13,10 @@ mkdir -p "$DEST"
 download_artifact() {
   local artifact_id="$1"
   local output_name="$2"
+  if [[ -s "$DEST/$output_name" ]]; then
+    echo "Using preserved Higgsfield asset: $output_name"
+    return 0
+  fi
   local tmp
   tmp="$(mktemp --suffix=.zip)"
 
@@ -36,6 +40,10 @@ download_artifact() {
 download_cdn() {
   local url="$1"
   local output_name="$2"
+  if [[ -s "$DEST/$output_name" ]]; then
+    echo "Using preserved Higgsfield asset: $output_name"
+    return 0
+  fi
   echo "Materializing connected Higgsfield generation -> $output_name"
   curl --fail --location --retry 3 --retry-all-errors "$url" -o "$DEST/$output_name"
   if [[ ! -s "$DEST/$output_name" ]]; then
