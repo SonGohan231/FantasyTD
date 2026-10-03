@@ -37,6 +37,17 @@ report "packageInstalled=True"
 "${ADB[@]}" shell am force-stop "$PACKAGE" || true
 "${ADB[@]}" shell monkey -p "$PACKAGE" -c android.intent.category.LAUNCHER 1 > "$OUT/launch.txt" 2>&1 || fail "Launcher failed"
 sleep 15
+# Fresh emulator profiles show an Android immersive-mode education overlay.
+# Dismiss only when that system dialog is present; otherwise leave the game untouched.
+"${ADB[@]}" shell uiautomator dump /sdcard/fantasytd-window.xml >/dev/null 2>&1 || true
+UI_XML="$("${ADB[@]}" shell cat /sdcard/fantasytd-window.xml 2>/dev/null || true)"
+if [[ "$UI_XML" == *"Viewing full screen"* ]]; then
+  # Bounds in the system dialog are proportional to display size (Got it at 72%, 44%).
+  read SCREEN_W SCREEN_H < <("${ADB[@]}" shell wm size | sed -n 's/.*Physical size: \\([0-9]*\\)x\\([0-9]*\\).*/\\1 \\2/p')
+  "${ADB[@]}" shell input tap "$((SCREEN_W*72/100))" "$((SCREEN_H*44/100))"
+  sleep 5
+  report "immersiveOverlayDismissed=True"
+fi
 
 capture() {
   local step="$1"
@@ -66,13 +77,18 @@ alive() {
   report "aliveAfter$1=True"
 }
 alive MainMenu
+MENU_SHA="$(sha256sum "$OUT/screenshots/main-menu.png" | awk '{print $1}')"
 tap 500 700
 sleep 5
 capture campaign
+CAMPAIGN_SHA="$(sha256sum "$OUT/screenshots/campaign.png" | awk '{print $1}')"
+[[ "$CAMPAIGN_SHA" != "$MENU_SHA" ]] || fail "Menu tap did not change the rendered screen"
 alive Campaign
 tap 170 360
 sleep 8
 capture map1
+MAP_SHA="$(sha256sum "$OUT/screenshots/map1.png" | awk '{print $1}')"
+[[ "$MAP_SHA" != "$CAMPAIGN_SHA" ]] || fail "MAP1 selection did not change the rendered screen"
 alive Map1
 tap 500 500
 sleep 2
