@@ -17,6 +17,7 @@ on:
           - enemy-wave-flow
           - boss-end-states
           - mobile-layout
+          - playable-release
           - android-build
   push:
     branches:
@@ -66,7 +67,7 @@ jobs:
           elif [[ "${{ github.event_name }}" == "push" ]] && git diff --name-only HEAD^ HEAD 2>/dev/null | grep -qx '.dyrygent/unity-request.json'; then
             REQUESTED="$(jq -r '.mode // "baseline"' .dyrygent/unity-request.json)"
             case "$REQUESTED" in
-              baseline|tests|map-a-integrity|mobile-planting|plant-behaviors|enemy-wave-flow|boss-end-states|mobile-layout|android-build) MODE="$REQUESTED" ;;
+              baseline|tests|map-a-integrity|mobile-planting|plant-behaviors|enemy-wave-flow|boss-end-states|mobile-layout|playable-release|android-build) MODE="$REQUESTED" ;;
               *) echo "Invalid Unity Executor mode: $REQUESTED"; exit 1 ;;
             esac
           fi
@@ -487,6 +488,59 @@ jobs:
           path: |
             UnityProject/Artifacts/UnityExecutor/**
             UnityProject/Logs/**
+
+  playable_release:
+    name: T0012 playable release Play Mode
+    needs: prepare
+    if: needs.prepare.outputs.mode == 'playable-release'
+    runs-on: [self-hosted, dyrygent-unity]
+    timeout-minutes: 45
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          lfs: true
+
+      - name: Materialize Higgsfield art
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: bash .github/scripts/materialize-higgsfield-art.sh
+
+      - name: Locate Unity Editor
+        id: unity
+        shell: bash
+        run: |
+          set -euo pipefail
+          UNITY_BIN="$(find "$HOME" /opt -type f -path "*/6000.0.26f1/Editor/Unity" -perm -111 2>/dev/null | head -n 1)"
+          if [[ -z "$UNITY_BIN" ]]; then
+            echo "Unity 6000.0.26f1 executable not found."
+            exit 1
+          fi
+          echo "bin=$UNITY_BIN" >> "$GITHUB_OUTPUT"
+
+      - name: Run T0012 playable release Play Mode validation
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$GITHUB_WORKSPACE/UnityProject/Logs"
+          "${{ steps.unity.outputs.bin }}" \
+            -batchmode -nographics \
+            -projectPath "$GITHUB_WORKSPACE/UnityProject" \
+            -executeMethod FantasyTD.CI.UnityExecutorCi.PlayableRelease \
+            -logFile "$GITHUB_WORKSPACE/UnityProject/Logs/unity-playable-release.log"
+
+      - name: Upload T0012 playable release report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: unity-executor-playable-release-${{ github.run_id }}
+          if-no-files-found: warn
+          path: |
+            UnityProject/Artifacts/UnityExecutor/**
+            UnityProject/Logs/**
+
 
   android:
     name: Unity Android APK
