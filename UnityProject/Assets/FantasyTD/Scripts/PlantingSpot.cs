@@ -8,6 +8,7 @@ namespace FantasyTD.MapA
         public float Epc { get; private set; }
         public bool Occupied { get; private set; }
         public PlantKind? Plant { get; private set; }
+        public PlantInstance Instance { get; private set; }
 
         private SpriteRenderer _soil;
         private SpriteRenderer _ring;
@@ -17,14 +18,24 @@ namespace FantasyTD.MapA
             Id = id;
             Epc = epc;
             _soil = GetComponent<SpriteRenderer>();
-            _ring = transform.Find("Ring").GetComponent<SpriteRenderer>();
+            Transform ring = transform.Find("Ring");
+            _ring = ring != null ? ring.GetComponent<SpriteRenderer>() : null;
             RefreshVisual();
         }
 
-        public void Occupy(PlantKind kind)
+        public void Occupy(PlantKind kind, PlantInstance instance)
         {
             Occupied = true;
             Plant = kind;
+            Instance = instance;
+            RefreshVisual();
+        }
+
+        public void ClearOccupancy()
+        {
+            Occupied = false;
+            Plant = null;
+            Instance = null;
             RefreshVisual();
         }
 
@@ -42,7 +53,7 @@ namespace FantasyTD.MapA
         {
             if (_soil == null) return;
             _soil.color = Occupied
-                ? new Color(0.22f,0.14f,0.06f,0.50f)
+                ? new Color(0.22f,0.14f,0.06f,0.36f)
                 : new Color(0.36f,0.22f,0.09f,0.96f);
         }
     }
