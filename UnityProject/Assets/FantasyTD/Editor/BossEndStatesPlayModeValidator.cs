@@ -45,7 +45,7 @@ namespace FantasyTD.CI
             EnemyKind.Boss
         };
 
-        private static readonly string[] PreDefenseSeedSpots = { "A4", "A5", "A6", "A7", "A8", "A10" };
+        private static readonly string[] PreDefenseSeedSpots = { "A3", "A7", "A11" };
         private static readonly string[] ExtraDefenseSeedSpots = { "A3", "A12" };
 
         private enum Phase
@@ -637,14 +637,20 @@ namespace FantasyTD.CI
 
             Time.timeScale = 1f;
             Time.maximumDeltaTime = 0.10f;
-            _sampleStartTime = Time.time;
-            _sampleStartProgress = _boss.ProgressDistance;
+            _sampleStartTime = -1f;
             _phase = Phase.BossBaseline;
         }
 
         private static void RunBossBaseline()
         {
             EnsureBossAlive("baseline");
+
+            if (_sampleStartTime < 0f)
+            {
+                _sampleStartTime = Time.time;
+                _sampleStartProgress = _boss.ProgressDistance;
+                return;
+            }
 
             float elapsed = Time.time - _sampleStartTime;
             if (elapsed < 0.80f)
@@ -660,7 +666,7 @@ namespace FantasyTD.CI
         private static void RunSeedWaitRange()
         {
             EnsureBossAlive("seed range");
-            PlantingSpot spot = FindSpot("A9");
+            PlantingSpot spot = FindSpot("A5");
             float distance = Vector2.Distance(_boss.transform.position, spot.transform.position);
             if (distance > 3.05f)
                 return;
@@ -677,7 +683,7 @@ namespace FantasyTD.CI
         private static void RunSeedWaitProjectile()
         {
             EnsureBossAlive("seed projectile");
-            PlantingSpot spot = FindSpot("A9");
+            PlantingSpot spot = FindSpot("A1");
             SeedProjectile projectile = FindProjectileTargetingBoss("MagicSeed", spot.transform.position, 0.75f);
             if (projectile == null)
                 return;
@@ -749,7 +755,7 @@ namespace FantasyTD.CI
         private static void RunFrostWaitProjectile()
         {
             EnsureBossAlive("frost projectile");
-            PlantingSpot spot = FindSpot("A1");
+            PlantingSpot spot = FindSpot("A5");
             SeedProjectile projectile = FindProjectileTargetingBoss("FrostSeed", spot.transform.position, 0.75f);
             if (projectile == null)
                 return;
@@ -849,7 +855,7 @@ namespace FantasyTD.CI
         private static void RunOakWaitRange()
         {
             EnsureBossAlive("oak range");
-            PlantingSpot spot = FindSpot("A2");
+            PlantingSpot spot = FindSpot("A9");
             float distance = Vector2.Distance(_boss.transform.position, spot.transform.position);
             if (distance > 2.25f || AnyNonBossWithin(spot.transform.position, 2.4f))
                 return;
@@ -879,7 +885,7 @@ namespace FantasyTD.CI
             _oakRootUntil = rootUntil;
             _oakRootObservedDuration = _oakRootUntil - Time.time;
 
-            DestroyPlantAt<OakGuardianPlant>(FindSpot("A2"));
+            DestroyPlantAt<OakGuardianPlant>(FindSpot("A9"));
 
             AddFact("boss.oak.hpAfter", _oakHpAfter);
             AddFact("boss.oak.damage", _oakDamage);
