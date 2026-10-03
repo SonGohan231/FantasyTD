@@ -280,3 +280,51 @@ Completion evidence:
 - T0009 device/emulator smoke: **NOT RUN**
 - T0010 balance pass: **NOT STARTED**
 - no automatic merge
+
+
+---
+
+# T0012 — MAP-A Actual Playable Release
+
+Status: **ACTIVE**
+
+Purpose:
+Replace the rejected tech-demo presentation with the real Higgsfield MAP-A artwork and complete the minimum gameplay interactions expected from a playable tower-defense level.
+
+Authorized by user after direct APK review.
+
+Scope:
+- bundle and render the existing Higgsfield MAP-A environment from run `36991331980`, artifact `11219593382`,
+- align the invisible enemy route and 12 active planting zones to the visible road/soil patches in that artwork,
+- keep the map grid invisible,
+- add readable HP bars to every enemy and a larger boss bar,
+- add visible slow/root state cues,
+- tapping an occupied tower opens a tower panel,
+- tower panel shows name, level, concise stats, upgrade cost and sell refund,
+- add exactly three tower levels for the four existing plants; L1 keeps existing validated base values,
+- add tower selling with 70% floor refund of total Essence invested,
+- selling clears the planting spot and allows rebuilding,
+- upgrade immediately affects production behavior and updates a visible level marker,
+- use existing Higgsfield character assets where available and materialize them through the same build pipeline; missing character art may be generated through the existing prepaid Higgsfield API bridge,
+- add T0012 Play Mode validation for HP UI, tower selection, upgrade, sell/refund and rebuild,
+- rerun affected existing gameplay/layout regressions,
+- create a final Android APK from final T0012 head.
+
+T0012 upgrade values:
+- Pędostrzał: L1 22 dmg / 1.0 s; L2 30 dmg / 1.0 s; L3 40 dmg / 0.85 s; range 3.2
+- Kwiat Esencji: L1 +20 / 20 s; L2 +25 / 20 s; L3 +30 / 18 s
+- Dębowy Strażnik: L1 8 dmg / 1.75 s root / 5.0 s; L2 12 / 1.9 / 5.0; L3 16 / 2.1 / 4.5; range 2.4
+- Mroźny Pąk: L1 18 dmg / 35% slow / 1.0 s; L2 24 / 37.5% / 1.0; L3 30 / 40% / 0.9; slow duration 2.5 s; range 3.2
+- L1→L2 upgrade cost = nearest 25 to 75% of base cost
+- L2→L3 upgrade cost = nearest 25 to 100% of base cost
+- sell refund = floor(70% × total Essence invested)
+
+Explicitly allowed geometry change:
+The old prototype MAP-A route/spot coordinates may be replaced only as needed to align gameplay with the visible Higgsfield road and planting patches. This is an art-to-gameplay alignment correction, not T0010 balance tuning.
+
+Constraints:
+- no new plant/enemy roster,
+- no branch/final upgrade tree,
+- no T0009 device-smoke implementation,
+- no T0010 balance-playtest pass,
+- no automatic merge.
