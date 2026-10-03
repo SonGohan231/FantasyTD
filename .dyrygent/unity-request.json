@@ -1,5 +1,5 @@
 {
-  "requestId": "recovery-map-integrity-20261003-01",
+  "requestId": "recovery-map-integrity-20261003-02",
   "mode": "map-a-integrity",
-  "note": "Recovery regression after Higgsfield visual framing changes: authoritative MAP-A path, 12 spots, hidden logical road and route endpoints."
+  "note": "Rerun after updating integrity validator for Higgsfield PortalCore/HomeTree_Higgsfield logical roots and presentation offsets."
 }
