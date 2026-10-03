@@ -1,5 +1,5 @@
 {
-  "requestId": "t0012-regression-plants-rerun-20261003-1235",
-  "mode": "plant-behaviors",
-  "note": "Rerun T0012 four-plant regression after topology-independent Oak fixture fix."
+  "requestId": "t0012-regression-enemies-20261003-1233",
+  "mode": "enemy-wave-flow",
+  "note": "T0012 regression: enemy movement, rewards, leaks and waves 1-5 with Higgsfield units."
 }
