@@ -62,6 +62,7 @@ namespace FantasyTD.CI
 
             try
             {
+                FantasyTD.Product.Editor.ProductFlowEditorSetup.EnsureProductScenes();
                 MapAEditorSetup.OpenMap();
                 EditorApplication.EnterPlaymode();
             }
