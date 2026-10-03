@@ -261,3 +261,22 @@ Completion evidence:
 - Android candidate build: run `37060044752` — BuildReport Succeeded, 0 errors, 0 warnings,
 - final Android build is requested only after these documentation commits so the APK evidence comes from the final branch HEAD,
 - T0009 and T0010 remain PLANNED and were not implemented.
+
+
+## T0011 completion evidence
+
+- render-capable mobile layout regression: run `37059744377` — PASS at 1920×1080, 2400×1080 and synthetic safe area
+- corrected MAP-A geometry regression: run `37104978893` — PASS
+- four plant behaviors after VFX integration: run `37062061398` — PASS
+- boss / victory / defeat / restart regression: run `37105044037` — PASS
+- corrected Android build: run `37105211817` — PASS
+- corrected Android build head: `98539046e3cab8ff24572d6b401cd61579f895b0`
+- Unity: `6000.0.26f1`
+- BuildReport: `Succeeded`, errors `0`, warnings `0`
+- APK: `Builds/Android/FantasyTD_MAP_A_v2.apk`
+- APK bytes: `18888441`
+- APK SHA-256: `aaccb09c2e8a358eeaf814a4f07d110e770ebf7bb5d8d547dc3d54f52673b6f1`
+- artifact: `fantasy-td-android-37105211817` (ID `11267512151`)
+- T0009 device/emulator smoke: **NOT RUN**
+- T0010 balance pass: **NOT STARTED**
+- no automatic merge
