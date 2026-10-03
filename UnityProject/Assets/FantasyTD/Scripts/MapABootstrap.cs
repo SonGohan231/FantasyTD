@@ -147,75 +147,12 @@ namespace FantasyTD.MapA
 
         private static void SpawnPortal(Vector2 p)
         {
-            RuntimeArt.SpriteObject(
-                "PortalAura",
-                null,
-                p,
-                new Vector2(1.38f, 1.38f),
-                new Color(0.64f, 0.22f, 0.86f, 0.18f),
-                8,
-                true,
-                RuntimeArt.SoftCircle);
-
-            RuntimeArt.SpriteObject(
-                "PortalOuter",
-                null,
-                p,
-                new Vector2(0.82f, 0.82f),
-                new Color(0.46f, 0.13f, 0.62f, 0.92f),
-                9,
-                true,
-                RuntimeArt.Ring);
-
-            RuntimeArt.SpriteObject(
-                "PortalCore",
-                null,
-                p,
-                new Vector2(0.42f, 0.42f),
-                new Color(0.93f, 0.65f, 1f, 0.82f),
-                10,
-                true,
-                RuntimeArt.SoftCircle);
+            FantasyVisualFactory.CreatePortal(p);
         }
 
         private static void HomeTree(Vector2 p)
         {
-            // The validator treats HomeTrunk.position + (0,0.18) as the route anchor.
-            Vector2 trunkPosition = p + new Vector2(0f, -0.18f);
-
-            RuntimeArt.ShadowObject(
-                "HomeShadow",
-                null,
-                p + new Vector2(0f, -0.40f),
-                new Vector2(1.34f, 0.46f),
-                7,
-                0.28f);
-
-            RuntimeArt.SpriteObject(
-                "HomeTrunk",
-                null,
-                trunkPosition,
-                new Vector2(0.50f, 0.92f),
-                new Color(0.37f, 0.21f, 0.075f),
-                9);
-
-            RuntimeArt.SpriteObject(
-                "HomeCrown",
-                null,
-                p + new Vector2(0f, 0.38f),
-                new Vector2(1.12f, 0.88f),
-                new Color(0.12f, 0.43f, 0.10f),
-                10);
-
-            RuntimeArt.SpriteObject(
-                "HomeGlow",
-                null,
-                p + new Vector2(0f, 0.30f),
-                new Vector2(1.35f, 1.35f),
-                new Color(0.58f, 0.88f, 0.24f, 0.13f),
-                11,
-                true,
-                RuntimeArt.SoftCircle);
+            FantasyVisualFactory.CreateHomeTree(p);
         }
     }
 }
