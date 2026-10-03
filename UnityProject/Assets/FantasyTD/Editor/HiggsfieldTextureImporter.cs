@@ -14,6 +14,7 @@ namespace FantasyTD.MapA.Editor
             TextureImporter importer = (TextureImporter)assetImporter;
             importer.textureType = TextureImporterType.Default;
             importer.isReadable = true;
+            importer.npotScale = TextureImporterNPOTScale.None;
             importer.mipmapEnabled = false;
             importer.alphaIsTransparency = true;
             importer.filterMode = UnityEngine.FilterMode.Bilinear;
