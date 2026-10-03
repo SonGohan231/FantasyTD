@@ -1,9 +1,9 @@
 {
   "enabled": true,
-  "generation_id": "mapa-iron-goblin-unit-20261003-001",
+  "generation_id": "mapa-thorn-king-boss-unit-20261003-001",
   "model_path": "higgsfield-ai/soul/v2/standard",
   "input": {
-    "prompt": "Original single production asset for ZELAZNY GOBLIN, an armored forest enemy in FantasyTD. Match Chochlik's organic hand-painted woodland style: compact green-brown goblin with leaf ears and bark skin wearing crude fantasy iron helmet and a small battered round shield, iron pieces strapped with vines and leather, not sci-fi, readable 15 percent physical-resistance identity, stockier than Chochlik but smaller than the ogre, sly expression. Top-down 3/4 orthographic mobile game-art view, soft painterly shading, crisp silhouette, high phone readability. Isolated ONE final idle pose on warm off-white background, centered with margin for Unity cutout. No text, UI, scenery, original IP only.",
+    "prompt": "Original single production asset for KROL CIERNI, final boss of MAP-A in FantasyTD. Match the organic hand-painted woodland style: massive regal thorn-and-bark monarch, twisted living-tree body, broad thorny shoulders, crown grown from golden-brown brambles and dark green thorn vines, glowing magenta-purple heart crystal embedded naturally in chest, intimidating expressive face, heavy roots and branch arms, premium final-wave silhouette clearly larger and more elaborate than all basic enemies. Natural magic only, no sci-fi or technology. Top-down 3/4 orthographic mobile game-art view, soft painterly shading, crisp focal edges and dark organic outline, readable on phone. Isolated ONE final idle boss pose on warm off-white background, centered with generous margin for Unity cutout. No text, UI, scenery, original IP only.",
     "resolution": "1080p",
     "aspect_ratio": "1:1",
     "batch_size": 1,
