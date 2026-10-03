@@ -102,7 +102,7 @@ namespace FantasyTD.CI
             SessionState.SetBool(PlayModeEnteredKey, true);
             SubscribeLog();
 
-            if (_session == null)
+            if (_session == null && _flow == null)
             {
                 _warmupFrames++;
                 if (_warmupFrames < 6)
