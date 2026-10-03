@@ -1,9 +1,9 @@
 {
   "enabled": true,
-  "generation_id": "mapa-iron-goblin-unit-20261003-002",
+  "generation_id": "mapa-home-tree-base-unit-20261003-002",
   "model_path": "higgsfield-ai/soul/v2/standard",
   "input": {
-    "prompt": "Original single production asset for ZELAZNY GOBLIN, an armored forest enemy in FantasyTD. Match Chochlik's organic hand-painted woodland style: compact green-brown goblin with leaf ears and bark skin wearing crude fantasy iron helmet and a small battered round shield, iron pieces strapped with vines and leather, not sci-fi, readable physical-resistance identity, stockier than Chochlik but smaller than the ogre, sly expression. Top-down 3/4 orthographic mobile game-art view, soft painterly shading, crisp silhouette, high phone readability. Isolated ONE final idle pose on warm off-white background, centered with margin for Unity cutout. No text, UI, scenery, original IP only.",
+    "prompt": "Original single production environment asset for MAP-A home/base in FantasyTD. Ancient friendly living home tree at the road exit: thick rooted trunk, broad lush green crown, small warm glowing doorway carved into bark, subtle golden protective runes grown as natural sap markings, roots spread into the ground, premium hand-painted/cartoon organic fantasy mobile-game style, top-down 3/4 orthographic view, clear readable silhouette. Isolated ONE base tree on warm off-white background, centered with margin for Unity cutout. No characters, text, UI, machinery or sci-fi, original IP only.",
     "resolution": "1080p",
     "aspect_ratio": "1:1",
     "batch_size": 1,
