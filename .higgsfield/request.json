@@ -1,9 +1,9 @@
 {
   "enabled": true,
-  "generation_id": "mapa-wind-sprite-unit-20261003-001",
+  "generation_id": "mapa-forest-ogre-unit-20261003-001",
   "model_path": "higgsfield-ai/soul/v2/standard",
   "input": {
-    "prompt": "Original single production asset for WICHROWY SKRZAT, a fast forest enemy in FantasyTD. Match Chochlik's organic hand-painted woodland style: small slender wind-swept fae-goblin creature, purple-violet bark skin mixed with leaves, long swept-back leaf ears, lightweight twig limbs, scarf-like leaf fronds trailing backward, mischievous determined face, dynamic running-ready silhouette that clearly reads faster and lighter than Chochlik, no weapons, no metal. Top-down 3/4 orthographic game-art view, soft painterly shading, crisp outline, high readability at phone scale. Isolated ONE final idle/run-ready pose on warm off-white background, centered with margin for Unity cutout. No text, UI, scenery, original IP only.",
+    "prompt": "Original single production asset for OGR ZAROSLI, a heavy forest enemy in FantasyTD. Match Chochlik's organic hand-painted woodland style: bulky squat ogre made of bark, earth and moss, broad shoulders, thick root-like arms and feet, patches of shrubs and leaves growing from body, small horns of pale wood, expressive grumpy face, clearly slow and high-health silhouette, no weapons, no metal. Top-down 3/4 orthographic game-art view, soft painterly shading, crisp dark organic outline, highly readable at phone scale. Isolated ONE final idle pose on warm off-white background, centered with margin for Unity cutout. No text, UI, scenery, original IP only.",
     "resolution": "1080p",
     "aspect_ratio": "1:1",
     "batch_size": 1,
