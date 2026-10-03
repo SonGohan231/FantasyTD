@@ -33,6 +33,7 @@ report "model=$("${ADB[@]}" shell getprop ro.product.model | tr -d '\r')"
 "${ADB[@]}" install -r "$APK" > "$OUT/adb-install.txt" 2>&1 || fail "adb install failed"
 "${ADB[@]}" shell pm path "$PACKAGE" | grep -q '^package:' || fail "Package not installed"
 report "packageInstalled=True"
+"${ADB[@]}" shell settings put secure immersive_mode_confirmations confirmed || true
 "${ADB[@]}" logcat -c
 "${ADB[@]}" shell am force-stop "$PACKAGE" || true
 "${ADB[@]}" shell monkey -p "$PACKAGE" -c android.intent.category.LAUNCHER 1 > "$OUT/launch.txt" 2>&1 || fail "Launcher failed"
@@ -40,13 +41,28 @@ sleep 15
 # Fresh emulator profiles show an Android immersive-mode education overlay.
 # Dismiss only when that system dialog is present; otherwise leave the game untouched.
 "${ADB[@]}" shell uiautomator dump /sdcard/fantasytd-window.xml >/dev/null 2>&1 || true
-UI_XML="$("${ADB[@]}" shell cat /sdcard/fantasytd-window.xml 2>/dev/null || true)"
-if [[ "$UI_XML" == *"Viewing full screen"* ]]; then
-  # Bounds in the system dialog are proportional to display size (Got it at 72%, 44%).
-  read SCREEN_W SCREEN_H < <("${ADB[@]}" shell wm size | sed -nE 's/.*Physical size: ([0-9]+)x([0-9]+).*/\1 \2/p')
-  "${ADB[@]}" shell input tap "$((SCREEN_W*72/100))" "$((SCREEN_H*44/100))"
-  sleep 5
-  report "immersiveOverlayDismissed=True"
+"${ADB[@]}" shell cat /sdcard/fantasytd-window.xml > "$OUT/window-before.xml" 2>/dev/null || true
+if grep -q 'Viewing full screen' "$OUT/window-before.xml"; then
+  read TARGET_X TARGET_Y < <(python3 - "$OUT/window-before.xml" <<'PY'
+import re,sys,xml.etree.ElementTree as ET
+root=ET.parse(sys.argv[1]).getroot()
+for n in root.iter():
+    if n.attrib.get("text") == "Got it":
+        b=list(map(int,re.findall(r"\d+",n.attrib["bounds"])))
+        print((b[0]+b[2])//2,(b[1]+b[3])//2)
+        break
+PY
+)
+  if [[ -n "${TARGET_X:-}" ]]; then
+    "${ADB[@]}" shell input tap "$TARGET_X" "$TARGET_Y"
+    sleep 5
+    report "immersiveOverlayDismissed=True"
+  fi
+fi
+"${ADB[@]}" shell uiautomator dump /sdcard/fantasytd-window-after.xml >/dev/null 2>&1 || true
+"${ADB[@]}" shell cat /sdcard/fantasytd-window-after.xml > "$OUT/window-after.xml" 2>/dev/null || true
+if grep -q 'Viewing full screen' "$OUT/window-after.xml"; then
+  fail "Android immersive-mode system dialog still blocks the game"
 fi
 
 capture() {
