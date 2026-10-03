@@ -1,0 +1,106 @@
+{
+  "sourceBranch": "visual/higgsfield-api-bridge",
+  "scope": "map-a",
+  "count": 9,
+  "entries": [
+    {
+      "generationId": "stylelock-pedostrzal-20261002-001",
+      "runId": 36991021820,
+      "artifactId": 11219567888,
+      "createdAt": "2026-10-02T09:39:17Z",
+      "modelPath": "higgsfield-ai/soul/v2/standard",
+      "files": [
+        "UnityProject/Assets/FantasyTD/Art/Higgsfield/Source/stylelock-pedostrzal-20261002-001/asset_01.png"
+      ],
+      "resourcePath": "Higgsfield/MAP_A/Towers/Pedostrzal"
+    },
+    {
+      "generationId": "stylelock-chochlik-20261002-001",
+      "runId": 36991173273,
+      "artifactId": 11219935723,
+      "createdAt": "2026-10-02T09:40:52Z",
+      "modelPath": "higgsfield-ai/soul/v2/standard",
+      "files": [
+        "UnityProject/Assets/FantasyTD/Art/Higgsfield/Source/stylelock-chochlik-20261002-001/asset_01.png"
+      ],
+      "resourcePath": "Higgsfield/MAP_A/Enemies/Chochlik"
+    },
+    {
+      "generationId": "stylelock-mapa-20261002-001",
+      "runId": 36991331980,
+      "artifactId": 11219593382,
+      "createdAt": "2026-10-02T09:42:32Z",
+      "modelPath": "higgsfield-ai/soul/v2/standard",
+      "files": [
+        "UnityProject/Assets/FantasyTD/Art/Higgsfield/Source/stylelock-mapa-20261002-001/asset_01.png"
+      ],
+      "resourcePath": null
+    },
+    {
+      "generationId": "mapa-essence-flower-unit-20261003-001",
+      "runId": 37111278110,
+      "artifactId": 11269897822,
+      "createdAt": "2026-10-03T08:54:54Z",
+      "modelPath": "higgsfield-ai/soul/v2/standard",
+      "files": [
+        "UnityProject/Assets/FantasyTD/Art/Higgsfield/Source/mapa-essence-flower-unit-20261003-001/asset_01.png"
+      ],
+      "resourcePath": "Higgsfield/MAP_A/Towers/KwiatEsencji"
+    },
+    {
+      "generationId": "mapa-oak-guardian-unit-20261003-001",
+      "runId": 37111280161,
+      "artifactId": 11269588052,
+      "createdAt": "2026-10-03T08:54:56Z",
+      "modelPath": "higgsfield-ai/soul/v2/standard",
+      "files": [
+        "UnityProject/Assets/FantasyTD/Art/Higgsfield/Source/mapa-oak-guardian-unit-20261003-001/asset_01.png"
+      ],
+      "resourcePath": "Higgsfield/MAP_A/Towers/DebowyStraznik"
+    },
+    {
+      "generationId": "mapa-wind-sprite-unit-20261003-001",
+      "runId": 37111284860,
+      "artifactId": 11269862777,
+      "createdAt": "2026-10-03T08:55:00Z",
+      "modelPath": "higgsfield-ai/soul/v2/standard",
+      "files": [
+        "UnityProject/Assets/FantasyTD/Art/Higgsfield/Source/mapa-wind-sprite-unit-20261003-001/asset_01.png"
+      ],
+      "resourcePath": "Higgsfield/MAP_A/Enemies/WichrowySkrzat"
+    },
+    {
+      "generationId": "mapa-forest-ogre-unit-20261003-001",
+      "runId": 37111287144,
+      "artifactId": 11269493528,
+      "createdAt": "2026-10-03T08:55:02Z",
+      "modelPath": "higgsfield-ai/soul/v2/standard",
+      "files": [
+        "UnityProject/Assets/FantasyTD/Art/Higgsfield/Source/mapa-forest-ogre-unit-20261003-001/asset_01.png"
+      ],
+      "resourcePath": "Higgsfield/MAP_A/Enemies/OgrZarosli"
+    },
+    {
+      "generationId": "mapa-thorn-king-boss-unit-20261003-001",
+      "runId": 37111292896,
+      "artifactId": 11270112107,
+      "createdAt": "2026-10-03T08:55:07Z",
+      "modelPath": "higgsfield-ai/soul/v2/standard",
+      "files": [
+        "UnityProject/Assets/FantasyTD/Art/Higgsfield/Source/mapa-thorn-king-boss-unit-20261003-001/asset_01.png"
+      ],
+      "resourcePath": "Higgsfield/MAP_A/Enemies/KrolCierni"
+    },
+    {
+      "generationId": "mapa-spawn-portal-unit-20261003-001",
+      "runId": 37111294873,
+      "artifactId": 11268964482,
+      "createdAt": "2026-10-03T08:55:09Z",
+      "modelPath": "higgsfield-ai/soul/v2/standard",
+      "files": [
+        "UnityProject/Assets/FantasyTD/Art/Higgsfield/Source/mapa-spawn-portal-unit-20261003-001/asset_01.png"
+      ],
+      "resourcePath": "Higgsfield/MAP_A/Environment/SpawnPortal"
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "status": "queued",
+  "request_id": "9e6244dd-de2c-428a-8eba-8123c7f27aff",
+  "status_url": "https://platform.higgsfield.ai/requests/9e6244dd-de2c-428a-8eba-8123c7f27aff/status",
+  "cancel_url": "https://platform.higgsfield.ai/requests/9e6244dd-de2c-428a-8eba-8123c7f27aff/cancel"
+}
