@@ -1,5 +1,5 @@
 {
-  "requestId": "t0012-regression-boss-rerun-20261003-1242",
+  "requestId": "t0012-regression-boss-final-20261003-1249",
   "mode": "boss-end-states",
-  "note": "Rerun T0012 boss/end-state regression with route-ordered fixtures A1/A5/A9."
+  "note": "T0012 boss/end-state regression after route-order and free-extra-defense fixture fixes."
 }
