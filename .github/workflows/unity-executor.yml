@@ -527,6 +527,7 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p "$GITHUB_WORKSPACE/UnityProject/Logs"
+          trap 'if [[ -f "$GITHUB_WORKSPACE/UnityProject/Artifacts/UnityExecutor/playable-release.txt" ]]; then cat "$GITHUB_WORKSPACE/UnityProject/Artifacts/UnityExecutor/playable-release.txt"; fi' EXIT
           if ! command -v xvfb-run >/dev/null 2>&1; then
             echo "xvfb-run is required for T0012 render validation."
             exit 1
