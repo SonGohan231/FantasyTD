@@ -92,6 +92,11 @@ namespace FantasyTD.CI
             MobileLayoutPlayModeValidator.Start();
         }
 
+        public static void T0012Playable()
+        {
+            T0012PlayablePlayModeValidator.Start();
+        }
+
         public static void BuildAndroid()
         {
             Directory.CreateDirectory(ReportDirectory);
