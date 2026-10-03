@@ -220,7 +220,7 @@ Do not expand the roster.
 
 # T0011 — MAP-A Visual Production Pass + Release APK
 
-Status: **ACTIVE**
+Status: **DONE**
 
 Purpose:
 Replace prototype-looking MAP-A visuals with a cohesive original organic-fantasy production pass while preserving validated gameplay, balance, path geometry, planting coordinates, touch behavior, wave flow and combat values.
@@ -252,3 +252,12 @@ Acceptance:
 - Unity compile/Play Mode validation passes with no introduced errors,
 - final Android BuildReport succeeds on Unity 6000.0.26f1,
 - final APK artifact is downloadable with recorded checksum.
+
+Completion evidence:
+- render-capable mobile layout regression: run `37059744377` — PASS,
+- post-fix MAP-A integrity: runs `37061361432` and `37104978893` — PASS,
+- plant behavior regression after VFX integration: run `37062061398` — PASS,
+- boss/victory/defeat/restart regression: run `37105044037` — PASS,
+- Android candidate build: run `37060044752` — BuildReport Succeeded, 0 errors, 0 warnings,
+- final Android build is requested only after these documentation commits so the APK evidence comes from the final branch HEAD,
+- T0009 and T0010 remain PLANNED and were not implemented.
