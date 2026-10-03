@@ -1,13 +1,13 @@
 {
   "enabled": true,
-  "generation_id": "mapa-home-tree-base-unit-20261003-002",
-  "model_path": "higgsfield-ai/soul/v2/standard",
+  "generation_id": "mapa-topology-locked-production-20261003-002",
+  "model_path": "ideogram/v4.0",
   "input": {
-    "prompt": "Original single production environment asset for MAP-A home/base in FantasyTD. Ancient friendly living home tree at the road exit: thick rooted trunk, broad lush green crown, small warm glowing doorway carved into bark, subtle golden protective runes grown as natural sap markings, roots spread into the ground, premium hand-painted/cartoon organic fantasy mobile-game style, top-down 3/4 orthographic view, clear readable silhouette. Isolated ONE base tree on warm off-white background, centered with margin for Unity cutout. No characters, text, UI, machinery or sci-fi, original IP only.",
-    "resolution": "1080p",
-    "aspect_ratio": "1:1",
-    "batch_size": 1,
-    "enhance_prompt": true
+    "prompt": "Preserve the REFERENCE ROAD GRAPH and build-pad topology exactly: one authored route enters from the left upper band, runs right, bends down-right, drops through the center, turns back left across the middle-lower band, drops near left-center, then turns right for a long lower exit run. Preserve all 12 marked build clearings at their guide positions. Replace only the flat guide rendering with a finished ORIGINAL premium mobile 2D tower-defense environment. Theme: lush magical meadow and woodland edge, crooked wooden fences, mossy stones, roots, wildflowers, mushrooms, tiny ponds away from combat lanes, soft natural shadows, colorful hand-painted/cartoon organic fantasy, high phone readability, top-down / restrained 3/4 orthographic. No characters, towers, enemies, text, labels, UI, numbers, logos or grid. Road and 12 planting clearings must stay unobstructed and clearly readable. Original IP only.",
+    "image_url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3JGQx06i0dP8dCxeDB39wmIRZBq/8bace3db-4d7c-489f-93c4-df7b75a22803.png",
+    "image_weight": 80,
+    "aspect_ratio": "16:9",
+    "rendering_speed": "QUALITY"
   },
   "max_wait_seconds": 1200
 }
