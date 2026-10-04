@@ -48,6 +48,12 @@ namespace FantasyTD.CI
             }
             check(session!=null && session.MapDefinition!=null && session.MapDefinition.Id==id,id+" fresh session missing.");
             if(session==null || session.MapDefinition==null || session.MapDefinition.Id!=id) yield break;
+
+            // Scene loading can restore the project's normal time scale. Reapply the
+            // validation acceleration per map so the real production wave is allowed
+            // to finish before the wall-clock guard without shortening its route.
+            Time.timeScale=4f;
+
             check(session.Economy.Essence==Balance.StartEssence && session.Base.Hp==Balance.BaseHp && session.Waves.CurrentWave==0 && !session.IsFinished,
                 id+" scene retained previous game state.");
             Camera camera=Camera.main;
