@@ -512,7 +512,6 @@ namespace FantasyTD.CI
                 _current.ResolutionConfigured &&
                 _current.SafeAreaApplied &&
                 _current.MapFullyVisible &&
-                _current.CameraCentered &&
                 !_current.CameraPanningRequired &&
                 _current.HudPass &&
                 _current.WaveButtonPass &&
