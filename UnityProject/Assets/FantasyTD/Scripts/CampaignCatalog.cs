@@ -12,8 +12,10 @@ namespace FantasyTD.MapA
                 case "MAP4": return Map4SourceDefinition.Definition;
                 case "MAP5": return Map5SourceDefinition.Definition;
                 case "MAP6": return Map6SourceDefinition.Definition;
+                case "MAP8": return Map8SourceDefinition.Definition;
                 default: return null;
             }
         }
     }
 }
+

@@ -24,7 +24,7 @@ namespace FantasyTD.CI
             try
             {
                 Time.timeScale=4f;
-                foreach(string id in new[]{"MAP3","MAP4","MAP5","MAP6"})
+                foreach(string id in new[]{"MAP3","MAP4","MAP5","MAP6","MAP8"})
                 {
                     IEnumerator scenario=RunMap(id,check,fact);
                     while(scenario.MoveNext()) yield return null;
@@ -143,7 +143,7 @@ namespace FantasyTD.CI
             fact(id+".baseHpAfterNaturalWave="+session.Base.Hp);
             fact(id+".nextWaveReady="+session.Waves.ReadyForNextWave);
             fact(id+".campaignPlayableFlag="+definition.IsValidatedPlayable);
-            int expectedLanes=id=="MAP3" ? 2 : (id=="MAP4" ? 4 : 3);
+            int expectedLanes=id=="MAP3" ? 2 : (id=="MAP4" || id=="MAP8" ? 4 : 3);
             check(spawnIds.Count==6,id+" natural first wave did not observe exactly six production enemies.");
             check(laneSignatures.Count==expectedLanes,id+" first-wave spawns did not exercise every authored alternate route.");
             check(productionDamage,id+" natural enemy received no production SeedShooter damage.");
@@ -172,7 +172,9 @@ namespace FantasyTD.CI
                 check(coverage.min.x<=0.01f && coverage.min.y<=0.01f && coverage.max.x>=definition.Width-0.01f && coverage.max.y>=definition.Height-0.01f,
                     id+" authored field does not cover logical bounds.");
             }
-            string source=id=="MAP4" ? "Higgsfield/Maps/MAP4_TERRAIN" : "Higgsfield/Maps/MAP1_ROAD_SOURCE";
+            string source=id=="MAP4" ? "Higgsfield/Maps/MAP4_TERRAIN"
+                : id=="MAP5" ? "Higgsfield/Maps/MAP2_ROAD_KIT"
+                : id=="MAP8" ? Map8SourceDefinition.Resource : "Higgsfield/Maps/MAP1_ROAD_SOURCE";
             Texture2D road=Resources.Load<Texture2D>(source);
             MeshRenderer[] paths=UnityEngine.Object.FindObjectsByType<MeshRenderer>(FindObjectsSortMode.None)
                 .Where(r=>r.name.StartsWith(id,StringComparison.Ordinal) && r.name.Contains("_SourceRoad_")).ToArray();
@@ -185,6 +187,8 @@ namespace FantasyTD.CI
                 check(mesh!=null && mesh.vertexCount>=4 && mesh.triangles.Length>=6 && mesh.uv.Length==mesh.vertexCount,id+" road mesh/UV incomplete.");
                 if(mesh==null) continue;
                 Rect crop=id=="MAP4" ? new Rect(600f/1344f,(768f-379f)/768f,110f/1344f,42f/768f)
+                    : id=="MAP5" ? new Rect(70f/1344f,(768f-127f)/768f,400f/1344f,61f/768f)
+                    : id=="MAP8" ? new Rect(720f/2048f,(1152f-503f)/1152f,50f/2048f,22f/1152f)
                     : new Rect(990f/2048f,(1152f-740f)/1152f,160f/2048f,50f/1152f);
                 foreach(Vector2 uv in mesh.uv)
                     check(uv.x>=crop.xMin-0.0001f && uv.x<=crop.xMax+0.0001f && uv.y>=crop.yMin-0.0001f && uv.y<=crop.yMax+0.0001f,
@@ -241,3 +245,4 @@ namespace FantasyTD.CI
     }
 }
 #endif
+

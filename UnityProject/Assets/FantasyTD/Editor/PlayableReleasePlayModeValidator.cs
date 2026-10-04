@@ -78,13 +78,6 @@ namespace FantasyTD.CI
             if (!SessionState.GetBool(ActiveKey, false))
                 return;
 
-            if (TimedOut())
-            {
-                Errors.Add("timeout=" + TimeoutSeconds.ToString("0", CultureInfo.InvariantCulture));
-                Complete(false);
-                return;
-            }
-
             string phase = SessionState.GetString(PhaseKey, "enter-play");
             if (phase == "exit-editor" &&
                 !EditorApplication.isPlaying &&
@@ -94,6 +87,15 @@ namespace FantasyTD.CI
                 SessionState.SetBool(ActiveKey, false);
                 UnsubscribeLog();
                 EditorApplication.Exit(exitCode);
+                return;
+            }
+
+            // Finish the editor exit even when the preceding scenario timed out.
+            if (phase == "exit-editor") return;
+            if (TimedOut())
+            {
+                Errors.Add("timeout=" + TimeoutSeconds.ToString("0", CultureInfo.InvariantCulture));
+                Complete(false);
                 return;
             }
 

@@ -11,6 +11,7 @@ import urllib.request
 import zipfile
 
 RUNTIME_COPIES = {
+    11222684271: 'MAP8_RECOVERED_CONCEPT.png',
     11219593382: 'MAP1_ROAD_SOURCE.png',
     11233790855: 'MAP3_TERRAIN.png',
     11233805827: 'MAP3_GATE.png',
@@ -58,7 +59,14 @@ def main():
     local = None
     if args.local_index:
         local = {a['id']: a['archive'] for a in json.loads(Path(args.local_index).read_text())['artifacts']}
-    for row in manifest['artifacts']:
+    recovered = []
+    for candidate_path in sorted((root / 'ArtSource/Higgsfield/RecoveredCandidates').glob('*.json')):
+        candidate = json.loads(candidate_path.read_text())
+        row = dict(candidate)
+        row['members'] = [dict(m, name=m['path']) for m in candidate['members']]
+        row['recoveredCandidate'] = True
+        recovered.append(row)
+    for row in manifest['artifacts'] + recovered:
         artifact_id = row['artifactId']
         if local:
             archive = Path(local[artifact_id]).read_bytes()
@@ -86,7 +94,7 @@ def main():
                     continue
                 is_media = name.startswith('asset_') and Path(name).suffix in ('.png', '.mp4')
                 relative = (f'UnityProject/Assets/FantasyTD/Art/ApprovedSources/{artifact_id}/{name}'
-                            if is_media else f'ArtSource/Higgsfield/{artifact_id}/{name}')
+                            if is_media and not row.get('recoveredCandidate') else f'ArtSource/Higgsfield/{artifact_id}/{name}')
                 target = root / relative
                 target.parent.mkdir(parents=True, exist_ok=True)
                 target.write_bytes(data)
@@ -121,9 +129,10 @@ def main():
                         'runtimePath': frame_relative, 'runtimeSha256': digest(frame_target.read_bytes()),
                         'frameCount': 1, 'isFullAnimation': False
                     }, indent=2) + '\n')
-        print(f'Verified approved artifact {artifact_id}')
+        print(f"Verified {'recovered candidate' if row.get('recoveredCandidate') else 'approved'} artifact {artifact_id}")
     print(f"Verified {len(manifest['artifacts'])} unique approved source archives; no generation performed")
 
 
 if __name__ == '__main__':
     main()
+

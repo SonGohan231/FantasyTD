@@ -6,6 +6,7 @@ on:
       - recovery/t0012-higgsfield-product-completeness
     paths:
       - ArtSource/Higgsfield/approved-artifacts.json
+      - ArtSource/Higgsfield/RecoveredCandidates/**
       - .github/scripts/materialize-approved-higgsfield.py
       - .github/workflows/higgsfield-preserve-approved.yml
   workflow_dispatch:
@@ -47,3 +48,4 @@ jobs:
           git commit -m 'T0012: preserve approved Higgsfield source media with verified provenance'
           git pull --rebase origin recovery/t0012-higgsfield-product-completeness
           git push origin HEAD:recovery/t0012-higgsfield-product-completeness
+
