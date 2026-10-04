@@ -200,7 +200,7 @@ Expected artifact:
 
 # T0009 — Android APK Smoke Test
 
-Status: **PLANNED**
+Status: **ACTIVE**
 
 Purpose:
 Install/launch the APK on an emulator or physical Android device and perform the smallest useful runtime smoke test.

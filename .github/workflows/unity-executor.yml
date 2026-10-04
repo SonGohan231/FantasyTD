@@ -18,6 +18,7 @@ on:
           - boss-end-states
           - mobile-layout
           - android-build
+          - android-smoke
   push:
     branches:
       - main
@@ -38,6 +39,7 @@ concurrency:
 
 permissions:
   contents: read
+  actions: read
   checks: write
 
 env:
@@ -65,7 +67,7 @@ jobs:
           elif [[ "${{ github.event_name }}" == "push" ]] && git diff --name-only HEAD^ HEAD 2>/dev/null | grep -qx '.dyrygent/unity-request.json'; then
             REQUESTED="$(jq -r '.mode // "baseline"' .dyrygent/unity-request.json)"
             case "$REQUESTED" in
-              baseline|tests|map-a-integrity|mobile-planting|plant-behaviors|enemy-wave-flow|boss-end-states|mobile-layout|android-build) MODE="$REQUESTED" ;;
+              baseline|tests|map-a-integrity|mobile-planting|plant-behaviors|enemy-wave-flow|boss-end-states|mobile-layout|android-build|android-smoke) MODE="$REQUESTED" ;;
               *) echo "Invalid Unity Executor mode: $REQUESTED"; exit 1 ;;
             esac
           fi
@@ -438,6 +440,55 @@ jobs:
           path: |
             UnityProject/Artifacts/UnityExecutor/**
             UnityProject/Logs/**
+
+
+  android_smoke:
+    name: T0009 Android APK smoke test
+    needs: prepare
+    if: needs.prepare.outputs.mode == 'android-smoke'
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Checkout T0009 branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          lfs: false
+
+      - name: Download exact T0008 APK artifact
+        uses: actions/download-artifact@v4
+        with:
+          repository: SonGohan231/FantasyTD
+          run-id: 37006999780
+          name: fantasy-td-android-37006999780
+          github-token: ${{ github.token }}
+          path: "${{ runner.temp }}/t0008-artifact"
+
+      - name: Enable KVM acceleration when available
+        shell: bash
+        run: |
+          if [[ -e /dev/kvm ]]; then
+            sudo chmod 666 /dev/kvm
+            ls -l /dev/kvm
+          else
+            echo "/dev/kvm unavailable on hosted runner; smoke script may fall back to software acceleration."
+          fi
+
+      - name: Run real Android APK smoke test
+        shell: bash
+        run: |
+          set -o pipefail
+          chmod +x "$GITHUB_WORKSPACE/.github/scripts/android-smoke.sh"
+          "$GITHUB_WORKSPACE/.github/scripts/android-smoke.sh"             "${{ runner.temp }}/t0008-artifact"             "$GITHUB_WORKSPACE/Artifacts/AndroidSmoke"
+
+      - name: Upload T0009 smoke evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: fantasy-td-android-smoke-${{ github.run_id }}
+          if-no-files-found: error
+          path: |
+            Artifacts/AndroidSmoke/**
 
   android:
     name: Unity Android APK
