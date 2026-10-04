@@ -172,7 +172,7 @@ namespace FantasyTD.CI
             for (int frame=0; frame<120 && (Screen.width!=960 || Screen.height!=540); frame++) yield return null;
             Check(Screen.width==960 && Screen.height==540,"Full campaign screen is not 960x540.");
             AddFact("validationResolution","960x540 functional input/combat; not a 60 FPS device or 1920x1080 visual acceptance proof");
-            AddFact("strategy","Real uGUI; actual flower income; bounded idle preparation; no damage/cash/HP/victory injections");
+            AddFact("strategy","Headless functional simulation with real uGUI events, actual flower income, natural waves and combat; no damage/cash/HP/victory injections");
             Time.timeScale=4f;
             AddFact("timeScale",Time.timeScale);
             try
@@ -242,7 +242,6 @@ namespace FantasyTD.CI
             AddFact(mapId+".flowersL3",flowers.Length);
             AddFact(mapId+".frostDefendersL3",defenders.Length);
             Check(Time.time-prepStarted<=600f,mapId+" preparation exceeded 600 game seconds.");
-            ScreenCapture.CaptureScreenshot("Artifacts/UnityExecutor/full-campaign-"+mapId+"-prepared.png");
 
             int[] expectedSpawns={6,8,9,13,15,12};
             for(int wave=1;wave<=6 && !_session.IsFinished;wave++)
@@ -274,7 +273,6 @@ namespace FantasyTD.CI
                 Check(spawns==expectedSpawns[wave-1],mapId+" wave "+wave+" spawn count mismatch.");
                 Check(_battle.Kills-killsBefore+_battle.Leaks-leaksBefore==spawns,mapId+" wave "+wave+" unresolved enemies.");
                 if(wave<6 && !_session.IsFinished) Check(_session.Waves.ReadyForNextWave,mapId+" next wave unavailable.");
-                ScreenCapture.CaptureScreenshot("Artifacts/UnityExecutor/full-campaign-"+mapId+"-wave"+wave+".png");
                 for(int frame=0;frame<8;frame++) yield return null;
             }
             AddFact(mapId+".totalSpawns",_battle.SpawnIds.Count);

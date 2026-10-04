@@ -73,7 +73,7 @@ namespace FantasyTD.MapA
             return level >= 3 ? 0.9f : 1f;
         }
 
-        public static float FrostRange(int level) { return 3.2f; }
+        public static float FrostRange(int level) { return level >= 3 ? 3.4f : 3.2f; }
         public static float FrostDuration(int level) { return 2.5f; }
 
         public static string StatsSummary(PlantKind kind, int level)

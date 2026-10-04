@@ -112,7 +112,7 @@ namespace FantasyTD.CI
             for (int i = 0; i < 90; i++) yield return null;
 
             Check(GameObject.Find("Button_GRAJ") != null, "Main menu GRAJ button missing.");
-            IEnumerator shot = Capture("01-main-menu.png");
+            IEnumerator shot = Capture("01-main-menu.png", false);
             while (shot.MoveNext()) yield return null;
 
             SceneManager.LoadScene(ProductFlowScenes.CampaignSceneName);
@@ -120,7 +120,7 @@ namespace FantasyTD.CI
             Check(GameObject.Find("MapButton_MAP1") != null, "Campaign MAP1 button missing.");
             Button map2 = FindButton("MapButton_MAP2");
             Check(map2 != null && !map2.interactable, "MAP2 must be visible but locked.");
-            shot = Capture("02-campaign-map-select.png");
+            shot = Capture("02-campaign-map-select.png", false);
             while (shot.MoveNext()) yield return null;
 
             SceneManager.LoadScene(ProductFlowScenes.MapASceneName);
@@ -130,63 +130,163 @@ namespace FantasyTD.CI
                 yield return null;
                 session = UnityEngine.Object.FindFirstObjectByType<GameSession>();
             }
+
             Check(session != null, "MAP-A GameSession did not initialize.");
-            Check(Resources.Load<Texture2D>("Higgsfield/MAP_A") != null, "Higgsfield MAP-A texture missing.");
+            Texture2D mapTexture = Resources.Load<Texture2D>("Higgsfield/MAP_A");
+            Check(mapTexture != null, "Higgsfield MAP-A texture missing.");
+            try
+            {
+                HiggsfieldSpriteFactory.ValidateProductionAssets();
+                Fact("productionHiggsfieldAssetSet", "validated");
+            }
+            catch (Exception ex)
+            {
+                Check(false, "Higgsfield production asset validation failed: " + ex.Message);
+            }
+
+            GameObject grass = GameObject.Find("Grass");
+            SpriteRenderer grassRenderer = grass != null ? grass.GetComponent<SpriteRenderer>() : null;
+            Check(grassRenderer != null && grassRenderer.sprite != null, "MAP-A background renderer missing.");
+            Check(grassRenderer != null && grassRenderer.sprite != null &&
+                  grassRenderer.sprite.name == "Higgsfield_MAP_A",
+                "MAP-A is not rendering the Higgsfield background sprite.");
+            Fact("mapRendererSprite", grassRenderer != null && grassRenderer.sprite != null
+                ? grassRenderer.sprite.name : "MISSING");
             Check(GameObject.Find("Button_MAPY") != null, "Gameplay MAPY navigation button missing.");
-            shot = Capture("03-map-a-higgsfield-gameplay.png");
+
+            shot = Capture("03-map-a-higgsfield-gameplay.png", true);
             while (shot.MoveNext()) yield return null;
 
             if (session != null)
             {
-                EnemyUnit enemy = session.SpawnEnemy(EnemyKind.Wanderer);
-                for (int i = 0; i < 4; i++) yield return null;
-                if (enemy != null) enemy.TakeDamage(22f, DamageType.Physical);
-                for (int i = 0; i < 3; i++) yield return null;
-
-                Check(enemy != null && enemy.GetComponent<EnemyHealthBar>() != null, "Enemy HP bar evidence missing.");
-                shot = Capture("04-enemy-hp-bar.png");
-                while (shot.MoveNext()) yield return null;
-
                 PlantingSpot spot = FindSpot("A1");
                 Check(spot != null, "A1 planting spot missing.");
                 if (spot != null && Camera.main != null)
                 {
-                    session.Planting.TryHandleScreenPress(Camera.main.WorldToScreenPoint(spot.transform.position));
+                    bool pressAccepted = session.Planting.TryHandleScreenPress(
+                        Camera.main.WorldToScreenPoint(spot.transform.position));
+                    Check(pressAccepted, "A1 production planting press was blocked.");
                     yield return null;
+
                     Button build = FindButton("PlantOption_SeedShooter");
+                    Check(build != null, "Pędostrzał radial option missing.");
+                    shot = Capture("04-planting-radial-higgsfield-map.png", true);
+                    while (shot.MoveNext()) yield return null;
+
                     Check(DispatchClick(build), "Could not build tower through production radial.");
-                    for (int i = 0; i < 4; i++) yield return null;
+                    for (int i = 0; i < 6; i++) yield return null;
 
-                    session.Planting.TryHandleScreenPress(Camera.main.WorldToScreenPoint(spot.transform.position));
+                    Check(spot.Occupied && spot.Tower != null &&
+                          spot.Tower.Kind == PlantKind.SeedShooter,
+                        "Production Pędostrzał build failed.");
+                    SpriteRenderer towerRenderer = spot.Tower != null
+                        ? spot.Tower.GetComponentInChildren<SpriteRenderer>() : null;
+                    Check(towerRenderer != null && towerRenderer.sprite != null &&
+                          towerRenderer.sprite.name == "Higgsfield_Pedostrzal",
+                        "Built tower is not rendering the Higgsfield Pędostrzał sprite.");
+                    Fact("towerRendererSprite", towerRenderer != null && towerRenderer.sprite != null
+                        ? towerRenderer.sprite.name : "MISSING");
+
+                    shot = Capture("05-higgsfield-tower-built.png", true);
+                    while (shot.MoveNext()) yield return null;
+
+                    session.Planting.TryHandleScreenPress(
+                        Camera.main.WorldToScreenPoint(spot.transform.position));
                     for (int i = 0; i < 3; i++) yield return null;
-
                     Check(GameObject.Find("TowerPanel") != null, "Tower panel missing.");
                     Check(FindButton("Button_ULEPSZ") != null, "ULEPSZ button missing.");
                     Check(FindButton("Button_SPRZEDAJ") != null, "SPRZEDAJ button missing.");
-                    shot = Capture("05-tower-panel-upgrade-sell.png");
+                    shot = Capture("06-tower-panel-upgrade-sell.png", true);
                     while (shot.MoveNext()) yield return null;
+
+                    Button close = FindButton("TowerPanelClose");
+                    if (close != null) DispatchClick(close);
+                    yield return null;
                 }
 
-                session.Victory();
-                for (int i = 0; i < 4; i++) yield return null;
-                Check(GameObject.Find("EndPanel") != null, "Victory end-state panel missing.");
-                shot = Capture("06-victory-end-state.png");
+                Button startWave = FindButton("Button_START");
+                Check(DispatchClick(startWave), "Could not start wave 1 through production UI.");
+                for (int i = 0; i < 240 &&
+                     (session.Waves.CurrentWave < 1 || session.Enemies.Count == 0); i++)
+                    yield return null;
+
+                Check(session.Waves.CurrentWave == 1, "Production wave 1 did not start.");
+                Check(session.Enemies.Count > 0, "Production wave 1 spawned no enemies.");
+
+                EnemyUnit enemy = session.Enemies.FirstOrDefault(e => e != null);
+                SpriteRenderer enemyRenderer = enemy != null
+                    ? enemy.GetComponentInChildren<SpriteRenderer>() : null;
+                string enemySpriteName = enemyRenderer != null && enemyRenderer.sprite != null
+                    ? enemyRenderer.sprite.name : "MISSING";
+                Check(enemyRenderer != null && enemyRenderer.sprite != null &&
+                      (enemySpriteName.StartsWith("Higgsfield_", StringComparison.Ordinal) ||
+                       enemySpriteName.StartsWith("Chochlik_", StringComparison.Ordinal)),
+                    "Active production enemy is not rendering a Higgsfield sprite.");
+                Check(enemy != null && enemy.GetComponent<EnemyHealthBar>() != null,
+                    "Active production enemy HP bar missing.");
+                Fact("activeWaveEnemySprite", enemySpriteName);
+
+                shot = Capture("07-active-wave-higgsfield-enemies.png", true);
                 while (shot.MoveNext()) yield return null;
+
+                Fact("bossEndStateScreenshot",
+                    "not forced in visual gate; natural boss/victory is validated by full-campaign gate");
             }
 
             Fact("validationErrorCount", Errors.Count);
         }
 
-        private static IEnumerator Capture(string fileName)
+        private static IEnumerator Capture(string fileName, bool requireRichGameplay)
         {
             string path = Path.Combine(ShotDir, fileName);
             if (File.Exists(path)) File.Delete(path);
             ScreenCapture.CaptureScreenshot(path);
-            for (int i = 0; i < 45 && !File.Exists(path); i++) yield return null;
+            for (int i = 0; i < 90 && !File.Exists(path); i++) yield return null;
+            for (int i = 0; i < 3; i++) yield return null;
 
             bool ok = File.Exists(path) && new FileInfo(path).Length > 10000;
             Fact("screenshot." + fileName, ok ? path : "MISSING");
             Check(ok, "Screenshot not produced: " + fileName);
+
+            if (ok && requireRichGameplay)
+                ValidateRichGameplayScreenshot(path, fileName);
+        }
+
+        private static void ValidateRichGameplayScreenshot(string path, string fileName)
+        {
+            byte[] bytes = File.ReadAllBytes(path);
+            Fact("screenshotBytes." + fileName, bytes.Length);
+            Check(bytes.Length >= 100000,
+                "Gameplay screenshot is suspiciously small and may be placeholder/blank: " + fileName);
+
+            Texture2D image = new Texture2D(2, 2, TextureFormat.RGBA32, false);
+            bool loaded = image.LoadImage(bytes, false);
+            Check(loaded, "Could not decode gameplay screenshot: " + fileName);
+            if (!loaded)
+            {
+                UnityEngine.Object.DestroyImmediate(image);
+                return;
+            }
+
+            HashSet<int> bins = new HashSet<int>();
+            int x0 = image.width / 10;
+            int x1 = image.width * 9 / 10;
+            int y0 = image.height / 10;
+            int y1 = image.height * 9 / 10;
+            int step = Mathf.Max(4, Mathf.Min(image.width, image.height) / 90);
+            for (int y = y0; y < y1; y += step)
+            for (int x = x0; x < x1; x += step)
+            {
+                Color32 c = image.GetPixel(x, y);
+                int key = ((c.r >> 4) << 8) | ((c.g >> 4) << 4) | (c.b >> 4);
+                bins.Add(key);
+            }
+
+            Fact("quantizedColorBins." + fileName, bins.Count);
+            Check(bins.Count >= 128,
+                "Gameplay screenshot lacks expected visual color/detail richness; old flat placeholder may be rendering: " +
+                fileName + " bins=" + bins.Count);
+            UnityEngine.Object.DestroyImmediate(image);
         }
 
         private static PlantingSpot FindSpot(string id)
