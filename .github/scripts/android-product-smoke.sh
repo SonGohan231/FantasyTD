@@ -66,9 +66,10 @@ if grep -q 'Viewing full screen' "$OUT/window-after.xml"; then
 fi
 
 capture_raw() {
-  local file="$1"
-  "${ADB[@]}" exec-out screencap -p > "$file"
-  python3 - "$file" <<'PY'
+  local file="$1" dims
+  for _ in $(seq 1 10); do
+    if "${ADB[@]}" exec-out screencap -p > "$file" 2>/dev/null \
+      && dims="$(python3 - "$file" 2>/dev/null <<'PY'
 import struct,sys
 with open(sys.argv[1],"rb") as f:
     data=f.read(24)
@@ -77,6 +78,13 @@ w,h=struct.unpack(">II",data[16:24])
 assert w>h, "App did not render in landscape"
 print(w,h)
 PY
+)"; then
+      printf '%s\n' "$dims"
+      return 0
+    fi
+    sleep 1
+  done
+  fail "Could not capture a valid landscape PNG from the emulator"
 }
 capture() {
   local step="$1"
