@@ -67,9 +67,12 @@ namespace FantasyTD.MapA
             Vector2 fieldCenter = new Vector2(safe.center.x,
                 safe.yMin + bottomInset + usableHeight * 0.5f);
 
-            float usableAspect = usableWidth / Mathf.Max(1f, usableHeight);
+            // The logical battlefield must fit the complete camera viewport. The HUD
+            // overlays that viewport, so using the smaller HUD-safe rectangle as the
+            // camera aspect can paradoxically crop wide maps (notably MAP6 30x16).
+            float screenAspect = screenWidth / Mathf.Max(1f, screenHeight);
             float fitHeight = (_height + 0.35f) * 0.5f;
-            float fitWidth = (_width + 0.35f) / (2f * Mathf.Max(0.01f, usableAspect));
+            float fitWidth = (_width + 0.35f) / (2f * Mathf.Max(0.01f, screenAspect));
             _camera.orthographicSize = Mathf.Max(fitHeight, fitWidth);
             float unitsPerPixel = 2f * _camera.orthographicSize / screenHeight;
             transform.position = new Vector3(
