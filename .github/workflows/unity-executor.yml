@@ -29,7 +29,6 @@ on:
       - 'dyrygent/**'
       - 'recovery/**'
     paths:
-      - 'UnityProject/**'
       - '.dyrygent/unity-request.json'
       - '.github/workflows/unity-executor.yml'
   pull_request:
