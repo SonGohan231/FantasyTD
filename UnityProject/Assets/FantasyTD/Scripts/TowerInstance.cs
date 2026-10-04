@@ -9,6 +9,7 @@ namespace FantasyTD.MapA
         private PlantingSpot _spot;
         private PlantBehaviour _behaviour;
         private Transform _levelMarkers;
+        private LineRenderer _rangeIndicator;
 
         public PlantKind Kind { get; private set; }
         public int Level { get; private set; } = 1;
@@ -19,6 +20,7 @@ namespace FantasyTD.MapA
         public int NextUpgradeCost => CanUpgrade ? TowerUpgradeBalance.UpgradeCost(Kind, Level) : 0;
         public int SellRefund => TowerUpgradeBalance.SellRefund(TotalInvested);
         public string StatsSummary => TowerUpgradeBalance.StatsSummary(Kind, Level);
+        public float AttackRange => TowerUpgradeBalance.AttackRange(Kind, Level);
 
         public void Initialize(
             GameSession session,
@@ -53,6 +55,8 @@ namespace FantasyTD.MapA
                 _behaviour.OnTowerLevelChanged(previousLevel, Level);
 
             RefreshLevelMarkers();
+            if (_rangeIndicator != null && _rangeIndicator.enabled)
+                RefreshRangeIndicator();
             return true;
         }
 
@@ -70,10 +74,60 @@ namespace FantasyTD.MapA
             Destroy(gameObject);
         }
 
+        public void SetSelectedVisual(bool selected)
+        {
+            if (!selected || AttackRange <= 0f)
+            {
+                if (_rangeIndicator != null)
+                    _rangeIndicator.enabled = false;
+                return;
+            }
+
+            if (_rangeIndicator == null)
+            {
+                GameObject ring = new GameObject("AttackRangeIndicator");
+                ring.transform.SetParent(transform, false);
+                _rangeIndicator = ring.AddComponent<LineRenderer>();
+                _rangeIndicator.useWorldSpace = false;
+                _rangeIndicator.loop = true;
+                _rangeIndicator.positionCount = 65;
+                _rangeIndicator.startWidth = 0.065f;
+                _rangeIndicator.endWidth = 0.065f;
+                _rangeIndicator.numCornerVertices = 2;
+                _rangeIndicator.numCapVertices = 2;
+                Color c = new Color(0.78f, 0.96f, 0.55f, 0.72f);
+                _rangeIndicator.material = RuntimeArt.SpriteMaterial(c);
+                _rangeIndicator.startColor = c;
+                _rangeIndicator.endColor = c;
+                _rangeIndicator.sortingOrder = 12;
+            }
+
+            RefreshRangeIndicator();
+            _rangeIndicator.enabled = true;
+        }
+
+        private void RefreshRangeIndicator()
+        {
+            if (_rangeIndicator == null) return;
+            float radius = AttackRange;
+            for (int i = 0; i < _rangeIndicator.positionCount; i++)
+            {
+                float angle = (Mathf.PI * 2f * i) / (_rangeIndicator.positionCount - 1);
+                _rangeIndicator.SetPosition(i, new Vector3(
+                    Mathf.Cos(angle) * radius,
+                    Mathf.Sin(angle) * radius,
+                    0f));
+            }
+        }
+
         private void RefreshLevelMarkers()
         {
             if (_levelMarkers != null)
                 Destroy(_levelMarkers.gameObject);
+            _levelMarkers = null;
+
+            if (Level <= 1)
+                return;
 
             GameObject root = new GameObject("LevelMarkers", typeof(RectTransform), typeof(Canvas));
             root.transform.SetParent(transform, false);
