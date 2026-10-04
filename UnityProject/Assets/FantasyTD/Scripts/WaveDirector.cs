@@ -73,16 +73,16 @@ namespace FantasyTD.MapA
             {
                 case 0:
                     return new List<SpawnOrder> {
-                        new SpawnOrder(EnemyKind.Wanderer,6,1.15f,0f)
+                        new SpawnOrder(EnemyKind.Wanderer,6,1.35f,0f)
                     };
                 case 1:
                     return new List<SpawnOrder> {
-                        new SpawnOrder(EnemyKind.Wanderer,4,1.0f,1f),
-                        new SpawnOrder(EnemyKind.Runner,4,0.85f,0f)
+                        new SpawnOrder(EnemyKind.Wanderer,4,1.15f,1f),
+                        new SpawnOrder(EnemyKind.Runner,4,1.0f,0f)
                     };
                 case 2:
                     return new List<SpawnOrder> {
-                        new SpawnOrder(EnemyKind.Wanderer,5,0.95f,1f),
+                        new SpawnOrder(EnemyKind.Wanderer,5,1.10f,1f),
                         new SpawnOrder(EnemyKind.Armored,4,1.20f,0f)
                     };
                 case 3:
