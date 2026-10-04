@@ -1,5 +1,5 @@
 {
-  "requestId": "t0013-stage1-baseline-retry-20261004-1844",
-  "mode": "baseline",
-  "note": "Compile T0013 stage 1 after camera viewport math, non-overlapping wave/enemy HUD, MAPY relocation, adaptive RGB cutout masking, and removal of the unsynchronized duplicate sprite shadow."
+  "requestId": "t0013-stage1-map-integrity-20261004-1847",
+  "mode": "map-a-integrity",
+  "note": "Validate MAP1 geometry and camera containment after viewport-fraction fitting repair. Preserve authoritative map, path and planting coordinates."
 }
