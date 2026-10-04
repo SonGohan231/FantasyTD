@@ -266,7 +266,7 @@ namespace FantasyTD.CI
             AddFact("initialWaveButtonActive", IsWaveButtonActive());
 
             Check(_session.Base.Hp == 20, "expected initial base HP 20");
-            Check(_session.Economy.Essence == 300, "expected initial Essence 300");
+            Check(_session.Economy.Essence == Balance.StartEssence, "expected initial Essence " + Balance.StartEssence);
             Check(_session.Waves.CurrentWave == 0, "expected CurrentWave 0 before wave1");
             Check(_session.Waves.ReadyForNextWave, "wave1 not ready initially");
             Check(!_session.Waves.Running, "WaveDirector unexpectedly running before T0005");
@@ -715,8 +715,10 @@ namespace FantasyTD.CI
             Check(_controlledDeathCount == 47,
                 "controlled reward/cleanup deaths expected=47 actual=" + _controlledDeathCount);
             Check(_session.Base.Hp == 15, "final base HP expected=15 actual=" + _session.Base.Hp);
-            Check(_session.Economy.Essence == 1004,
-                "final Essence expected=1004 actual=" + _session.Economy.Essence);
+            const int earnedThroughValidatedFlow = 704;
+            int expectedFinalEssence = Balance.StartEssence + earnedThroughValidatedFlow;
+            Check(_session.Economy.Essence == expectedFinalEssence,
+                "final Essence expected=" + expectedFinalEssence + " actual=" + _session.Economy.Essence);
             Check(!_session.IsFinished, "session finished during T0005; T0006 state entered unexpectedly");
             Check(_session.Waves.CurrentWave == 5, "expected to stop after wave5");
             Check(_session.Waves.ReadyForNextWave, "wave6 availability should be ready after wave5");

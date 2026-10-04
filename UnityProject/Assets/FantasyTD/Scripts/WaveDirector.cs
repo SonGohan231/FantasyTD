@@ -36,6 +36,10 @@ namespace FantasyTD.MapA
             _running = true;
             _ready = false;
             _session.Hud.Refresh();
+            Debug.Log("FantasyTD.Runtime event=wave-start wave=" + (index + 1));
+
+            bool finalBossSpawned = false;
+            bool finalBossKilled = false;
 
             List<SpawnOrder> orders = GetWave(index);
             for (int i = 0; i < orders.Count; i++)
@@ -44,7 +48,12 @@ namespace FantasyTD.MapA
                 for (int n = 0; n < order.Count; n++)
                 {
                     if (_session.IsFinished) yield break;
-                    _session.SpawnEnemy(order.Kind);
+                    EnemyUnit enemy = _session.SpawnEnemy(order.Kind);
+                    if (index >= TotalWaves - 1 && order.Kind == EnemyKind.Boss && enemy != null)
+                    {
+                        finalBossSpawned = true;
+                        enemy.Killed += delegate { finalBossKilled = true; };
+                    }
                     yield return new WaitForSeconds(order.Interval);
                 }
                 if (order.GapAfter > 0f)
@@ -59,7 +68,18 @@ namespace FantasyTD.MapA
             if (_session.IsFinished) yield break;
 
             if (_waveIndex >= TotalWaves - 1)
-                _session.Victory();
+            {
+                if (finalBossSpawned && finalBossKilled)
+                {
+                    Debug.Log("FantasyTD.Runtime event=final-boss outcome=killed");
+                    _session.Victory();
+                }
+                else
+                {
+                    Debug.Log("FantasyTD.Runtime event=final-boss outcome=escaped");
+                    _session.Defeat();
+                }
+            }
             else
             {
                 _ready = true;

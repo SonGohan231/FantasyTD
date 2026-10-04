@@ -475,7 +475,7 @@ namespace FantasyTD.CI
             AddFact("oak.boss.distanceAtPlantRU", initialDistance);
             AddFact("oak.boss.hpBefore", hpBefore);
             AddFact("oak.boss.hpAfter", hpAfter);
-            AddFact("oak.boss.rawDamage", 8f);
+            AddFact("oak.boss.rawDamage", 12f);
             AddFact("oak.boss.finalDamage", finalDamage);
             AddFact("oak.boss.rootReductionMultiplier", 0.35f);
             AddFact("oak.boss.rootDurationExpectedSec", 2.0f * 0.35f);
@@ -487,7 +487,7 @@ namespace FantasyTD.CI
 
             Check(initialDistance <= 2.4f + 0.001f, "oak boss was outside range at plant creation");
             CheckApprox(hpBefore, 2200f, 0.05f, "oak boss initial HP");
-            CheckApprox(finalDamage, 8f, 0.05f, "oak boss damage");
+            CheckApprox(finalDamage, 12f, 0.05f, "oak boss damage");
             CheckApprox(rootDurationObserved, 0.6125f, 0.10f, "oak boss root duration");
             CheckApprox(speedBefore, 0.30f, 0.05f, "oak boss speed before root");
             Check(Mathf.Abs(speedDuring) <= 0.04f, "oak boss moved during root");

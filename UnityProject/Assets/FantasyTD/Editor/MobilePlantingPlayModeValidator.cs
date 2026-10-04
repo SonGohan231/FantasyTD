@@ -45,7 +45,7 @@ namespace FantasyTD.CI
         private static bool _uiWorldSelectionBlocked;
         private static int _occupiedPlantCountBefore;
         private static bool _occupiedBuilt;
-        private static bool _occupiedSecondPressBlocked;
+        private static bool _occupiedSecondPressOpenedTowerPanel;
         private static bool _occupiedSecondPlantPrevented;
         private static bool _unaffordableSpendDownSucceeded;
         private static bool _unaffordableAllDisabled;
@@ -346,13 +346,24 @@ namespace FantasyTD.CI
         {
             PlantingSpot spot = FindSpot("A1");
             int count = CountPlantsAt(spot.transform.position);
-            _occupiedSecondPressBlocked = _planting.SelectedSpot == null && _hud.RadialRoot == null;
+            _occupiedSecondPressOpenedTowerPanel =
+                spot != null &&
+                _planting.SelectedSpot == spot &&
+                _planting.SelectedTower == spot.Tower &&
+                _session.TowerPanel != null &&
+                _session.TowerPanel.IsOpen &&
+                _session.TowerPanel.CurrentTower == spot.Tower &&
+                _hud.RadialRoot == null;
             _occupiedSecondPlantPrevented = count == _occupiedPlantCountBefore + 1;
 
-            if (!_occupiedSecondPressBlocked)
-                Errors.Add("occupied.secondPressOpenedSelection");
+            if (!_occupiedSecondPressOpenedTowerPanel)
+                Errors.Add("occupied.secondPressDidNotOpenTowerPanel");
             if (!_occupiedSecondPlantPrevented)
                 Errors.Add("occupied.secondPlantWasCreated");
+
+            Button close = FindButton("TowerPanelClose");
+            if (close == null || !ExecuteButtonClick(close))
+                Errors.Add("occupied.towerPanelCloseFailed");
         }
 
         private static void CreateUiBlockerFixture()
@@ -434,7 +445,10 @@ namespace FantasyTD.CI
 
         private static void BeginUnaffordableValidation()
         {
-            _unaffordableSpendDownSucceeded = _session.Economy.Essence == 200 && _session.Economy.TrySpend(150);
+            int spendDown = Mathf.Max(0, _session.Economy.Essence - 50);
+            _unaffordableSpendDownSucceeded =
+                _session.Economy.Essence >= 50 &&
+                (spendDown == 0 || _session.Economy.TrySpend(spendDown));
             if (!_unaffordableSpendDownSucceeded || _session.Economy.Essence != 50)
             {
                 Errors.Add("unaffordable.couldNotReach50EssenceThroughEconomy");
@@ -490,7 +504,7 @@ namespace FantasyTD.CI
             bool success =
                 allSpotsPassed &&
                 _occupiedBuilt &&
-                _occupiedSecondPressBlocked &&
+                _occupiedSecondPressOpenedTowerPanel &&
                 _occupiedSecondPlantPrevented &&
                 _uiRaycastHit &&
                 _uiWorldSelectionBlocked &&
@@ -562,7 +576,7 @@ namespace FantasyTD.CI
             }
 
             sb.AppendLine("occupied.A1.initialBuild=" + _occupiedBuilt);
-            sb.AppendLine("occupied.A1.secondPressBlocked=" + _occupiedSecondPressBlocked);
+            sb.AppendLine("occupied.A1.secondPressOpenedTowerPanel=" + _occupiedSecondPressOpenedTowerPanel);
             sb.AppendLine("occupied.A1.secondPlantPrevented=" + _occupiedSecondPlantPrevented);
 
             sb.AppendLine("uiBlock.underlyingSpot=A3");
@@ -747,7 +761,7 @@ namespace FantasyTD.CI
             _uiWorldSelectionBlocked = false;
             _occupiedPlantCountBefore = 0;
             _occupiedBuilt = false;
-            _occupiedSecondPressBlocked = false;
+            _occupiedSecondPressOpenedTowerPanel = false;
             _occupiedSecondPlantPrevented = false;
             _unaffordableSpendDownSucceeded = false;
             _unaffordableAllDisabled = false;

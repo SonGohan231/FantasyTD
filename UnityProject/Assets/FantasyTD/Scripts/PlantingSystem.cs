@@ -126,6 +126,7 @@ namespace FantasyTD.MapA
             _selected = spot;
             _selectedTower = null;
             _selected.SetSelected(true);
+            Debug.Log("FantasyTD.Runtime event=planting-select spot=" + _selected.Id);
             _session.Hud.OpenBuildRadial(_selected, BuildSelected, CloseSelection);
         }
 
@@ -137,6 +138,8 @@ namespace FantasyTD.MapA
             _selectedTower = spot.Tower;
             _selected.SetSelected(true);
             _selectedTower.SetSelectedVisual(true);
+            Debug.Log("FantasyTD.Runtime event=tower-select spot=" + _selected.Id +
+                      " kind=" + _selectedTower.Kind);
 
             _session.TowerPanel.Open(
                 _selectedTower,
@@ -174,7 +177,10 @@ namespace FantasyTD.MapA
             if (behaviour != null)
                 behaviour.Initialize(_session, tower);
 
+            string builtSpotId = _selected.Id;
             _selected.Occupy(kind, tower);
+            Debug.Log("FantasyTD.Runtime event=tower-built spot=" + builtSpotId +
+                      " kind=" + kind + " essence=" + _session.Economy.Essence);
             CloseSelection();
             _session.Hud.Refresh();
         }

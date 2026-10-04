@@ -51,7 +51,7 @@ namespace FantasyTD.CI
         // Rebuild tested pads through production planting after the samples;
         // retain the boss kill/reward/base assertions even if balance now fails.
         private static readonly string[] ExtraDefenseSeedSpots =
-            { "A1", "A5", "A7", "A9" };
+            { "A1", "A2", "A3", "A4", "A5", "A6", "A7", "A8", "A9", "A10" };
 
         private enum Phase
         {
