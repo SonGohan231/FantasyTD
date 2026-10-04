@@ -3,7 +3,7 @@
   "sourceBranch": "visual/higgsfield-api-bridge",
   "sourceChecklist": ".higgsfield/PRODUCTION_CHECKLIST.md",
   "generationAllowed": false,
-  "uniqueArtifactCount": 68,
+  "uniqueArtifactCount": 69,
   "artifacts": [
     {
       "artifactId": 11223664631,
@@ -2493,6 +2493,34 @@
         "UnityProject/Assets/FantasyTD/Art/ApprovedSources/11238010932/asset_01.mp4"
       ],
       "runtimeIntegrated": false
+    },
+    {
+      "artifactId": 11219593382,
+      "archiveSha256": "b136feb744540545444f974e07b3281f479d1a0f1feacd256e6cf1dbea6f5800",
+      "archiveBytes": 4306326,
+      "sourceRole": "MAP1 approved style-lock raw road source",
+      "members": [
+        {
+          "name": "asset_01.png",
+          "bytes": 4305964,
+          "sha256": "de96e01152b94b2636cb9cc351400cae6f5d87fbfc0c908c049676303b0fefde"
+        },
+        {
+          "name": "final.json",
+          "bytes": 451,
+          "sha256": "dc8dedddc8d303dace5693b772ac8b117a3b8bdc61b841016bf307d0f8260c3d"
+        },
+        {
+          "name": "manifest.json",
+          "bytes": 220,
+          "sha256": "c7bd65f4717a4583c19d7669374b7a103dc557f9c20c6085213aa75e3ba8dd80"
+        },
+        {
+          "name": "submit.json",
+          "bytes": 286,
+          "sha256": "b42b7b36cdc69ffa01dd45e35530d4d98d52ad4a5256a8186aec66b8af920057"
+        }
+      ]
     }
   ]
 }
