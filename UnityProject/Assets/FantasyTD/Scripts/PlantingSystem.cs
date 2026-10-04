@@ -136,6 +136,7 @@ namespace FantasyTD.MapA
             _selected = spot;
             _selectedTower = spot.Tower;
             _selected.SetSelected(true);
+            _selectedTower.SetSelectedVisual(true);
 
             _session.TowerPanel.Open(
                 _selectedTower,
@@ -203,6 +204,7 @@ namespace FantasyTD.MapA
 
             TowerInstance tower = _selectedTower;
             PlantingSpot spot = _selected;
+            tower.SetSelectedVisual(false);
 
             _selectedTower = null;
             _selected = null;
@@ -225,6 +227,8 @@ namespace FantasyTD.MapA
         {
             if (_selected != null)
                 _selected.SetSelected(false);
+            if (_selectedTower != null)
+                _selectedTower.SetSelectedVisual(false);
 
             _selected = null;
             _selectedTower = null;
