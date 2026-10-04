@@ -75,10 +75,22 @@ namespace FantasyTD.MapA
             mapRenderer.color = Color.white;
 
             Vector2 spriteSize = mapSprite.bounds.size;
-            map.transform.localScale = new Vector3(
+            Vector3 exactScale = new Vector3(
                 MapAData.Width / Mathf.Max(0.001f, spriteSize.x),
                 MapAData.Height / Mathf.Max(0.001f, spriteSize.y),
                 1f);
+            map.transform.localScale = exactScale;
+
+            // Full-bleed presentation without disturbing the exact foreground map/route alignment:
+            // a slightly enlarged, darkened copy of the same approved Higgsfield map fills
+            // aspect-ratio margins behind the authoritative artwork.
+            GameObject bleed = new GameObject("HiggsfieldMapBleed");
+            bleed.transform.position = map.transform.position + new Vector3(0f, 0f, 0.05f);
+            bleed.transform.localScale = new Vector3(exactScale.x * 1.09f, exactScale.y * 1.09f, 1f);
+            SpriteRenderer bleedRenderer = bleed.AddComponent<SpriteRenderer>();
+            bleedRenderer.sprite = mapSprite;
+            bleedRenderer.sortingOrder = -101;
+            bleedRenderer.color = new Color(0.72f, 0.78f, 0.68f, 1f);
 
             // Keep exact route objects for editor/CI geometry validation and production
             // movement evidence, but they are deliberately invisible in the shipped map.
