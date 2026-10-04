@@ -73,7 +73,7 @@ capture_raw() {
 import struct,sys
 with open(sys.argv[1],"rb") as f:
     data=f.read(24)
-assert data[:8] == b"\\x89PNG\\r\\n\\x1a\\n" and data[12:16] == b"IHDR", "Invalid screenshot"
+assert data[:8] == b"\x89PNG\r\n\x1a\n" and data[12:16] == b"IHDR", "Invalid screenshot"
 w,h=struct.unpack(">II",data[16:24])
 assert w>h, "App did not render in landscape"
 print(w,h)
