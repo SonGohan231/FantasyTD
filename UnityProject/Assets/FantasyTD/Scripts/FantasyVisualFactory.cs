@@ -13,7 +13,7 @@ namespace FantasyTD.MapA
             GameObject root = new GameObject(Balance.DisplayName(kind));
             root.transform.position = new Vector3(position.x, position.y, -0.25f);
 
-            float height = kind == PlantKind.OakGuardian ? 1.55f : 1.42f;
+            float height = kind == PlantKind.OakGuardian ? 1.92f : 1.72f;
 
             SpriteRenderer renderer = AddHiggsfieldVisual(
                 root.transform, sprite, height, new Vector2(0f, -0.49f), 24);
