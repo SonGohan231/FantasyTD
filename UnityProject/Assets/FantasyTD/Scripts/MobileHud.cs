@@ -186,19 +186,17 @@ namespace FantasyTD.MapA
             _safe.offsetMin = Vector2.zero;
             _safe.offsetMax = Vector2.zero;
 
-            CreateTopShade();
-
             CreateTopPill(
                 out _essenceText, "Essence",
-                new Vector2(20f, -18f), new Vector2(280f, 68f),
+                new Vector2(22f, -18f), new Vector2(320f, 76f),
                 TextAnchor.MiddleLeft);
             CreateTopPill(
                 out _waveText, "Wave",
-                new Vector2(0f, -18f), new Vector2(235f, 68f),
+                new Vector2(0f, -18f), new Vector2(250f, 94f),
                 TextAnchor.MiddleCenter, 0.5f);
             CreateTopPill(
                 out _hpText, "HP",
-                new Vector2(-20f, -18f), new Vector2(220f, 68f),
+                new Vector2(-22f, -18f), new Vector2(235f, 76f),
                 TextAnchor.MiddleRight, 1f);
 
             _enemyText = RuntimeArt.CreateText(
@@ -208,37 +206,53 @@ namespace FantasyTD.MapA
             er.anchorMin = new Vector2(0.5f, 1f);
             er.anchorMax = new Vector2(0.5f, 1f);
             er.pivot = new Vector2(0.5f, 1f);
-            er.sizeDelta = new Vector2(320f, 42f);
-            er.anchoredPosition = new Vector2(0f, -82f);
+            er.sizeDelta = new Vector2(250f, 30f);
+            er.anchoredPosition = new Vector2(0f, -70f);
             _enemyText.fontStyle = FontStyle.Bold;
             Shadow enemyShadow = _enemyText.gameObject.AddComponent<Shadow>();
             enemyShadow.effectColor = new Color(0f, 0f, 0f, 0.68f);
             enemyShadow.effectDistance = new Vector2(2f, -2f);
 
             _waveButton = RuntimeArt.CreateButton(
-                _safe, "START", new Color(0.28f, 0.50f, 0.16f), 24);
+                _safe, "START", new Color(0.88f, 0.30f, 0.055f), 28);
             RectTransform wr = _waveButton.GetComponent<RectTransform>();
             wr.anchorMin = new Vector2(0f, 0f);
             wr.anchorMax = new Vector2(0f, 0f);
             wr.pivot = new Vector2(0f, 0f);
-            wr.sizeDelta = new Vector2(240f, 84f);
-            wr.anchoredPosition = new Vector2(22f, 22f);
+            wr.sizeDelta = new Vector2(310f, 108f);
+            wr.anchoredPosition = new Vector2(26f, 26f);
             _waveButtonText = _waveButton.GetComponentInChildren<Text>();
             _waveButton.onClick.AddListener(delegate { _session.Waves.StartNextWave(); });
 
+            GameObject hintPanel = new GameObject(
+                "HintPanel", typeof(RectTransform), typeof(CanvasRenderer), typeof(Image), typeof(Outline), typeof(Shadow));
+            hintPanel.transform.SetParent(_safe, false);
+            RectTransform hpr = hintPanel.GetComponent<RectTransform>();
+            hpr.anchorMin = hpr.anchorMax = new Vector2(1f, 0f);
+            hpr.pivot = new Vector2(1f, 0f);
+            hpr.sizeDelta = new Vector2(520f, 72f);
+            hpr.anchoredPosition = new Vector2(-22f, 22f);
+            Image hintBg = hintPanel.GetComponent<Image>();
+            hintBg.color = new Color(0.055f, 0.105f, 0.050f, 0.90f);
+            Outline hintOutline = hintPanel.GetComponent<Outline>();
+            hintOutline.effectColor = new Color(0.76f, 0.62f, 0.20f, 0.90f);
+            hintOutline.effectDistance = new Vector2(3f, -3f);
+            Shadow hintPanelShadow = hintPanel.GetComponent<Shadow>();
+            hintPanelShadow.effectColor = new Color(0f, 0f, 0f, 0.56f);
+            hintPanelShadow.effectDistance = new Vector2(5f, -5f);
+
             Text hint = RuntimeArt.CreateText(
-                _safe, "Hint", 20, TextAnchor.LowerRight,
-                new Color(1f, 1f, 1f, 0.86f));
-            RectTransform hr = hint.rectTransform;
-            hr.anchorMin = new Vector2(1f, 0f);
-            hr.anchorMax = new Vector2(1f, 0f);
-            hr.pivot = new Vector2(1f, 0f);
-            hr.sizeDelta = new Vector2(620f, 54f);
-            hr.anchoredPosition = new Vector2(-20f, 20f);
-            hint.text = (_session.MapDefinition != null ? _session.MapDefinition.DisplayName + "  •  " : "") +
+                hintPanel.transform, "Hint", 20, TextAnchor.MiddleRight,
+                new Color(1f, 0.98f, 0.88f, 0.96f));
+            hint.rectTransform.anchorMin = Vector2.zero;
+            hint.rectTransform.anchorMax = Vector2.one;
+            hint.rectTransform.offsetMin = new Vector2(22f, 8f);
+            hint.rectTransform.offsetMax = new Vector2(-22f, -8f);
+            hint.text = (_session.MapDefinition != null ? _session.MapDefinition.DisplayName + "\n" : "") +
                 "Dotknij grządki, aby posadzić obrońcę.";
+            hint.fontStyle = FontStyle.Bold;
             Shadow hintShadow = hint.gameObject.AddComponent<Shadow>();
-            hintShadow.effectColor = new Color(0f, 0f, 0f, 0.74f);
+            hintShadow.effectColor = new Color(0f, 0f, 0f, 0.76f);
             hintShadow.effectDistance = new Vector2(2f, -2f);
         }
 
@@ -297,11 +311,15 @@ namespace FantasyTD.MapA
 
             Image panelImage = panel.GetComponent<Image>();
             panelImage.sprite = null;
-            panelImage.color = new Color(0.055f, 0.105f, 0.050f, 0.86f);
+            panelImage.color = new Color(0.045f, 0.095f, 0.040f, 0.94f);
 
             Outline outline = panel.GetComponent<Outline>();
-            outline.effectColor = new Color(0.65f, 0.53f, 0.21f, 0.42f);
-            outline.effectDistance = new Vector2(2f, -2f);
+            outline.effectColor = new Color(0.80f, 0.66f, 0.22f, 0.94f);
+            outline.effectDistance = new Vector2(3f, -3f);
+
+            Shadow panelShadow = panel.AddComponent<Shadow>();
+            panelShadow.effectColor = new Color(0f, 0f, 0f, 0.56f);
+            panelShadow.effectDistance = new Vector2(5f, -5f);
 
             text = RuntimeArt.CreateText(panel.transform, name + "Text", 25, align, Color.white);
             RectTransform tr = text.rectTransform;
