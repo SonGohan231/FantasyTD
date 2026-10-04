@@ -71,9 +71,6 @@ namespace FantasyTD.CI
             {
                 FantasyTD.Product.Editor.ProductFlowEditorSetup.EnsureProductScenes();
                 MapAEditorSetup.OpenMap();
-                string preparedView;
-                if (!GameViewResolutionHelper.SetFixedResolution(960,540,"Full campaign functional QA 960x540",out preparedView))
-                    throw new InvalidOperationException("Could not prepare visible functional Game View: " + preparedView);
                 EditorApplication.EnterPlaymode();
             }
             catch (Exception ex)
@@ -145,7 +142,7 @@ namespace FantasyTD.CI
             }
             catch (Exception ex)
             {
-                Errors.Add("validatorException=" + ex.GetType().Name + ": " + ex.Message);
+                Errors.Add("validatorException=" + ex.ToString());
                 Complete(false);
             }
         }
@@ -165,13 +162,7 @@ namespace FantasyTD.CI
 
         private static IEnumerator RunFlow()
         {
-            string details;
-            Check(GameViewResolutionHelper.SetFixedResolution(960,540,"Full campaign 960x540",out details),
-                "Could not configure full campaign Game View: " + details);
-            Screen.SetResolution(960,540,FullScreenMode.Windowed);
-            for (int frame=0; frame<120 && (Screen.width!=960 || Screen.height!=540); frame++) yield return null;
-            Check(Screen.width==960 && Screen.height==540,"Full campaign screen is not 960x540.");
-            AddFact("validationResolution","960x540 functional input/combat; not a 60 FPS device or 1920x1080 visual acceptance proof");
+            AddFact("validationResolution","headless functional gameplay simulation; rendering/UI pixels are gated separately by visual acceptance");
             AddFact("strategy","Headless functional simulation with real uGUI events, actual flower income, natural waves and combat; no damage/cash/HP/victory injections");
             Time.timeScale=4f;
             AddFact("timeScale",Time.timeScale);
@@ -249,7 +240,10 @@ namespace FantasyTD.CI
                 int spawnsBefore=_battle.SpawnIds.Count,killsBefore=_battle.Kills,leaksBefore=_battle.Leaks;
                 int baseBefore=_session.Base.Hp,essenceBefore=_session.Economy.Essence;
                 Check(_session.Waves.ReadyForNextWave,mapId+" wave "+wave+" was not ready.");
-                Check(DispatchClick(FindButton("Button_START")),mapId+" wave "+wave+" start button unavailable.");
+                // Exercise the exact production wave API headlessly. The rendered START button
+                // is exercised separately by ProductVisualAcceptanceValidator under Xvfb.
+                _session.Waves.StartNextWave();
+                AddFact(mapId+".wave"+wave+".startPath","production WaveDirector.StartNextWave");
                 yield return null;
                 Check(_session.Waves.CurrentWave==wave,mapId+" unexpected current wave.");
                 float waveStarted=Time.time,deadline=Time.time+320f;

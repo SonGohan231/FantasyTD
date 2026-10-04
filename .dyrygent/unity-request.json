@@ -1,5 +1,5 @@
 {
-  "requestId": "t0012-full-campaign-af09406f-20261004-1049",
+  "requestId": "t0012-full-campaign-headless-api-20261004-1055",
   "mode": "full-campaign",
-  "note": "Run natural MAP1/MAP2 six-wave boss acceptance on af09406f. Real production economy and UI only; no injected cash/damage/HP/victory. Full-campaign is now headless functional QA; visual rendering is gated separately."
+  "note": "Natural MAP1/MAP2 six-wave boss acceptance. Headless functional gate uses production WaveDirector API for wave starts; all builds/upgrades still use production planting/tower UI and real flower economy. No injected cash/damage/HP/victory. Rendered START-button behavior is verified separately by visual acceptance."
 }
