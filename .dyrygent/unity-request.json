@@ -1,5 +1,5 @@
 {
-  "requestId": "t0012-six-map-integrated-20261004-01",
+  "requestId": "t0012-eight-scene-hud-fixed-20261004-02",
   "mode": "playable-release",
-  "note": "Resume actual integrated MAP1–6/source-map and MAP5 secret acceptance after preserved sources b74898dad9567988b9ff8ac484021e2e58d4f542; bot-initiated run37132137553 was action_required and did not validate gameplay."
+  "note": "Validate actual MAP1–8 source scenes after MAP5 UV correction, safe-area HUD access fix and timeout exit fix. MAP7/8 recovered-concept candidates remain unvalidated; no new generation. First-wave checks do not certify full campaign or APK."
 }

@@ -15,7 +15,7 @@ namespace FantasyTD.MapA
             if (mapId == "MAP1") return true;
             int number;
             return mapId.StartsWith("MAP") && int.TryParse(mapId.Substring(3), out number) &&
-                number > 1 && number <= 6 && HasVictory("MAP" + (number - 1));
+                number > 1 && number <= 8 && HasVictory("MAP" + (number - 1));
         }
 
         public static void RecordVictory(string mapId)
@@ -27,3 +27,4 @@ namespace FantasyTD.MapA
         }
     }
 }
+

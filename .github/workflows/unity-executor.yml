@@ -550,6 +550,16 @@ jobs:
             UnityProject/Artifacts/UnityExecutor/**
             UnityProject/Logs/**
 
+      - name: Upload compact playable review evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: unity-executor-playable-review-${{ github.run_id }}
+          if-no-files-found: warn
+          path: |
+            UnityProject/Artifacts/UnityExecutor/*.txt
+            UnityProject/Artifacts/UnityExecutor/*.png
+
 
   full_campaign:
     name: T0012 full campaign Play Mode
