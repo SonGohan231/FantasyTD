@@ -17,13 +17,13 @@ namespace FantasyTD.MapA
             "MAP8", "Lochy Smoka", "MAP8_DRAGON_DUNGEONS_ANDROID", 32f, 18f,
             InitialRoutes[0], new[]
             {
-                new PlantingSpotDefinition("D1", new Vector2(2.5f, 16.8f), 0f),
+                new PlantingSpotDefinition("D1", new Vector2(2.5f, 16.0f), 0f),
                 new PlantingSpotDefinition("D2", new Vector2(5.8f, 13.3f), 0f),
                 new PlantingSpotDefinition("D3", new Vector2(3f, 9.3f), 0f),
                 new PlantingSpotDefinition("D4", new Vector2(8f, 12.2f), 0f),
                 new PlantingSpotDefinition("D5", new Vector2(3f, 5.2f), 0f),
                 new PlantingSpotDefinition("D6", new Vector2(8f, 5.8f), 0f),
-                new PlantingSpotDefinition("D7", new Vector2(2.5f, 1.3f), 0f),
+                new PlantingSpotDefinition("D7", new Vector2(2.5f, 2.4f), 0f),
                 new PlantingSpotDefinition("D8", new Vector2(11.5f, 15.5f), 0f),
                 new PlantingSpotDefinition("D9", new Vector2(12.3f, 2.8f), 0f),
                 new PlantingSpotDefinition("D10", new Vector2(17.5f, 9.7f), 0f),
