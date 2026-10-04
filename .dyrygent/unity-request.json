@@ -1,5 +1,5 @@
 {
-  "requestId": "t0012-full-campaign-headless-api-20261004-1055",
+  "requestId": "t0012-full-campaign-event-accounting-20261004-1100",
   "mode": "full-campaign",
-  "note": "Natural MAP1/MAP2 six-wave boss acceptance. Headless functional gate uses production WaveDirector API for wave starts; all builds/upgrades still use production planting/tower UI and real flower economy. No injected cash/damage/HP/victory. Rendered START-button behavior is verified separately by visual acceptance."
+  "note": "Natural MAP1/MAP2 six-wave boss acceptance after replacing invalid Editor-only witness components with production EnemyUnit.Killed event accounting. Real flower economy/builds/upgrades/waves/combat; no injected cash/damage/HP/victory."
 }

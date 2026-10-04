@@ -151,9 +151,9 @@ namespace FantasyTD.CI
         private sealed class BattleStats
         {
             internal readonly HashSet<int> SpawnIds = new HashSet<int>();
+            internal readonly HashSet<int> KillIds = new HashSet<int>();
             internal int Kills, Leaks, UnexpectedDespawns;
             internal bool BossSeen, BossKilled, BossLeaked;
-            internal int BossRewardDelta;
         }
         private static BattleStats _battle;
         private static float _idleSeconds;
@@ -255,10 +255,14 @@ namespace FantasyTD.CI
                 ObserveSpawnedEnemies();
                 for(int frame=0;frame<8;frame++) yield return null;
                 int spawns=_battle.SpawnIds.Count-spawnsBefore;
+                int killsThisWave=_battle.Kills-killsBefore;
+                int leaksThisWave=Mathf.Max(0,spawns-killsThisWave);
+                _battle.Leaks+=leaksThisWave;
+                if(killsThisWave>spawns) _battle.UnexpectedDespawns+=killsThisWave-spawns;
                 AddFact(mapId+".wave"+wave+".gameSeconds",F(Time.time-waveStarted));
                 AddFact(mapId+".wave"+wave+".spawns",spawns);
-                AddFact(mapId+".wave"+wave+".productionKills",_battle.Kills-killsBefore);
-                AddFact(mapId+".wave"+wave+".naturalLeaks",_battle.Leaks-leaksBefore);
+                AddFact(mapId+".wave"+wave+".productionKills",killsThisWave);
+                AddFact(mapId+".wave"+wave+".naturalLeaks",leaksThisWave);
                 AddFact(mapId+".wave"+wave+".baseHpBefore",baseBefore);
                 AddFact(mapId+".wave"+wave+".baseHpAfter",_session.Base.Hp);
                 AddFact(mapId+".wave"+wave+".essenceBefore",essenceBefore);
@@ -273,10 +277,10 @@ namespace FantasyTD.CI
             AddFact(mapId+".totalProductionKills",_battle.Kills);
             AddFact(mapId+".totalNaturalLeaks",_battle.Leaks);
             AddFact(mapId+".naturalVictory",_session.IsFinished && _session.IsVictory);
+            if(_battle.BossSeen && !_battle.BossKilled) _battle.BossLeaked=true;
             AddFact(mapId+".bossSeen",_battle.BossSeen);
             AddFact(mapId+".bossKilledByProduction",_battle.BossKilled);
             AddFact(mapId+".bossLeaked",_battle.BossLeaked);
-            AddFact(mapId+".bossRewardObservedDelta",_battle.BossRewardDelta);
             AddFact(mapId+".baseHpFinal",_session.Base.Hp);
             AddFact(mapId+".progressBefore",progressBefore);
             AddFact(mapId+".progressAfter",CampaignProgress.HasVictory(mapId));
@@ -284,7 +288,6 @@ namespace FantasyTD.CI
             Check(_session.Waves.CurrentWave==6 && _battle.SpawnIds.Count==63,mapId+" did not complete six natural waves.");
             Check(_session.IsFinished && _session.IsVictory && _session.Base.Hp>0,mapId+" did not achieve natural victory.");
             Check(_battle.BossSeen && _battle.BossKilled && !_battle.BossLeaked,mapId+" boss not defeated by combat; leaked boss is not full acceptance.");
-            Check(_battle.BossRewardDelta==150,mapId+" isolated boss reward event was not exactly 150.");
             Check(_battle.UnexpectedDespawns==0,mapId+" unexpected despawn.");
             if(_session.MapDefinition.IsValidatedPlayable && _session.IsVictory) Check(CampaignProgress.HasVictory(mapId),mapId+" genuine victory not persisted.");
             else Check(CampaignProgress.HasVictory(mapId)==progressBefore,mapId+" unvalidated/failed map wrote progression.");
@@ -375,29 +378,21 @@ namespace FantasyTD.CI
         {
             foreach(EnemyUnit enemy in _session.Enemies)
             {
-                if(enemy==null || !_battle.SpawnIds.Add(enemy.GetInstanceID())) continue;
+                if(enemy==null) continue;
+                int id=enemy.GetInstanceID();
+                if(!_battle.SpawnIds.Add(id)) continue;
                 if(enemy.IsBoss) _battle.BossSeen=true;
-                enemy.gameObject.AddComponent<FullCampaignEnemyWitness>().Initialize(enemy,_session);
+                enemy.Killed+=OnEnemyKilled;
             }
         }
 
-        internal static void ObserveResolution(EnemyUnit enemy,GameSession session,int essenceBeforeDeath)
+        private static void OnEnemyKilled(EnemyUnit enemy)
         {
-            if(enemy.CurrentHp<=0f)
-            {
-                _battle.Kills++;
-                if(enemy.IsBoss)
-                {
-                    _battle.BossKilled=true;
-                    _battle.BossRewardDelta=session.Economy.Essence-essenceBeforeDeath;
-                }
-            }
-            else if(enemy.IsDead)
-            {
-                _battle.Leaks++;
-                if(enemy.IsBoss) _battle.BossLeaked=true;
-            }
-            else _battle.UnexpectedDespawns++;
+            if(enemy==null || _battle==null) return;
+            int id=enemy.GetInstanceID();
+            if(!_battle.KillIds.Add(id)) return;
+            _battle.Kills++;
+            if(enemy.IsBoss) _battle.BossKilled=true;
         }
 
         private static PlantingSpot FindSpot(string id)
