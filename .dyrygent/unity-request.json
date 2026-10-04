@@ -1,5 +1,5 @@
 {
-  "requestId": "t0012-tests-20261004-1132",
-  "mode": "tests",
-  "note": "Run the full Unity EditMode and PlayMode regression suite on the current FantasyTD recovery branch after MAP1 campaign validation. Use failures as the next implementation input; do not treat skipped specialized gates as release acceptance."
+  "requestId": "t0012-release-gate-20261004-1135",
+  "mode": "release-gate",
+  "note": "Run every required FantasyTD validation: compile, EditMode and PlayMode tests, map integrity, planting, plant behaviors, enemy and wave flow, boss end states, mobile layout, playable release, full campaign, visual acceptance, and fresh Android APK build. Release gate passes only if every required job succeeds."
 }
