@@ -1,5 +1,5 @@
 {
-  "requestId": "t0012-full-campaign-map1-viable-layout-20261004-1112",
-  "mode": "full-campaign",
-  "note": "Natural MAP1/MAP2 six-wave boss acceptance. MAP1 uses six economy flowers and six L3 Frost defenders, including A7 which becomes attack-reachable at the new L3 3.4 range. All purchases/upgrades use real production economy; no injected cash/damage/HP/victory."
+  "requestId": "t0012-tests-20261004-1132",
+  "mode": "tests",
+  "note": "Run the full Unity EditMode and PlayMode regression suite on the current FantasyTD recovery branch after MAP1 campaign validation. Use failures as the next implementation input; do not treat skipped specialized gates as release acceptance."
 }
