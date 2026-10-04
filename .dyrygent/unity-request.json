@@ -1,5 +1,5 @@
 {
-  "requestId": "t0012-product-reference-visual-20261004-1245",
-  "mode": "visual-acceptance",
-  "note": "Re-run product visual acceptance after reference-driven HUD, full-bleed, scale, grounding and representative-battle changes. Must show 3 readable Higgsfield towers, selected range, 4 readable enemies with HP bars and real projectile/VFX in a 1920x1080 production capture."
+  "requestId": "t0013-stage1-baseline-20261004-1840",
+  "mode": "baseline",
+  "note": "Compile T0013 stage 1 after camera viewport math, non-overlapping wave/enemy HUD, MAPY relocation, adaptive RGB cutout masking, and removal of the unsynchronized duplicate sprite shadow."
 }
