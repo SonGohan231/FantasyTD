@@ -24,7 +24,7 @@ namespace FantasyTD.CI
             try
             {
                 Time.timeScale=4f;
-                foreach(string id in new[]{"MAP3","MAP4","MAP5","MAP6","MAP8"})
+                foreach(string id in new[]{"MAP3","MAP4","MAP5","MAP6","MAP7","MAP8"})
                 {
                     IEnumerator scenario=RunMap(id,check,fact);
                     while(scenario.MoveNext()) yield return null;
@@ -143,7 +143,7 @@ namespace FantasyTD.CI
             fact(id+".baseHpAfterNaturalWave="+session.Base.Hp);
             fact(id+".nextWaveReady="+session.Waves.ReadyForNextWave);
             fact(id+".campaignPlayableFlag="+definition.IsValidatedPlayable);
-            int expectedLanes=id=="MAP3" ? 2 : (id=="MAP4" || id=="MAP8" ? 4 : 3);
+            int expectedLanes=id=="MAP7" ? 5 : id=="MAP3" ? 2 : (id=="MAP4" || id=="MAP8" ? 4 : 3);
             check(spawnIds.Count==6,id+" natural first wave did not observe exactly six production enemies.");
             check(laneSignatures.Count==expectedLanes,id+" first-wave spawns did not exercise every authored alternate route.");
             check(productionDamage,id+" natural enemy received no production SeedShooter damage.");
@@ -174,6 +174,7 @@ namespace FantasyTD.CI
             }
             string source=id=="MAP4" ? "Higgsfield/Maps/MAP4_TERRAIN"
                 : id=="MAP5" ? "Higgsfield/Maps/MAP2_ROAD_KIT"
+                : id=="MAP7" ? Map7SourceDefinition.Resource
                 : id=="MAP8" ? Map8SourceDefinition.Resource : "Higgsfield/Maps/MAP1_ROAD_SOURCE";
             Texture2D road=Resources.Load<Texture2D>(source);
             MeshRenderer[] paths=UnityEngine.Object.FindObjectsByType<MeshRenderer>(FindObjectsSortMode.None)
@@ -188,6 +189,7 @@ namespace FantasyTD.CI
                 if(mesh==null) continue;
                 Rect crop=id=="MAP4" ? new Rect(600f/1344f,(768f-379f)/768f,110f/1344f,42f/768f)
                     : id=="MAP5" ? new Rect(70f/1344f,(768f-127f)/768f,400f/1344f,61f/768f)
+                    : id=="MAP7" ? new Rect(250f/2048f,(1152f-1040f)/1152f,70f/2048f,40f/1152f)
                     : id=="MAP8" ? new Rect(720f/2048f,(1152f-503f)/1152f,50f/2048f,22f/1152f)
                     : new Rect(990f/2048f,(1152f-740f)/1152f,160f/2048f,50f/1152f);
                 foreach(Vector2 uv in mesh.uv)
@@ -239,7 +241,14 @@ namespace FantasyTD.CI
         private static bool Click(Button button)
         {
             if(button==null || !button.interactable || EventSystem.current==null) return false;
-            PointerEventData pointer=new PointerEventData(EventSystem.current){button=PointerEventData.InputButton.Left};
+            Canvas canvas=button.GetComponentInParent<Canvas>();
+            if(canvas==null) return false;
+            Camera camera=canvas.renderMode==RenderMode.ScreenSpaceOverlay ? null : canvas.worldCamera;
+            Vector2 screen=RectTransformUtility.WorldToScreenPoint(camera,button.transform.position);
+            PointerEventData pointer=new PointerEventData(EventSystem.current){button=PointerEventData.InputButton.Left,position=screen};
+            List<RaycastResult> hits=new List<RaycastResult>();
+            EventSystem.current.RaycastAll(pointer,hits);
+            if(hits.Count==0 || ExecuteEvents.GetEventHandler<IPointerClickHandler>(hits[0].gameObject)!=button.gameObject) return false;
             return ExecuteEvents.Execute(button.gameObject,pointer,ExecuteEvents.pointerClickHandler);
         }
     }

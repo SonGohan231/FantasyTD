@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Import only approved pre-existing media, with byte identity and stable Unity GUIDs."""
+"""Import existing approved media and explicitly unapproved recovered candidates, with verified byte identity."""
 import argparse
 import hashlib
 import io
@@ -11,6 +11,7 @@ import urllib.request
 import zipfile
 
 RUNTIME_COPIES = {
+    11223032330: 'MAP7_RECOVERED_CONCEPT.png',
     11222684271: 'MAP8_RECOVERED_CONCEPT.png',
     11219593382: 'MAP1_ROAD_SOURCE.png',
     11233790855: 'MAP3_TERRAIN.png',

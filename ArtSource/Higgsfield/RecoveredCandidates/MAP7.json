@@ -1,0 +1,77 @@
+{
+  "map": "MAP7",
+  "artifactId": 11223032330,
+  "runId": 36999563641,
+  "generationId": "map-temple-api-20261002-002",
+  "archiveSha256": "b71073ec0dc21c089584dbe026aec894b068c8be3c0cd079c6a6907facb61b6a",
+  "archiveBytes": 3821120,
+  "members": [
+    {
+      "path": "asset_01.png",
+      "bytes": 3819166,
+      "sha256": "6e9d276707e29fac8535035f00c154e186fa58b28529a1c44b055042c54d38c6"
+    },
+    {
+      "path": "final.json",
+      "bytes": 451,
+      "sha256": "33ac6f11161876f86fbcf5759c4205f1d488d5322e9139605b53940fd0c43aa4"
+    },
+    {
+      "path": "manifest.json",
+      "bytes": 220,
+      "sha256": "2d4947399f1eaaf0f322cb07988d9b7080f0ee37ac9d5b0693d79366555b629b"
+    },
+    {
+      "path": "submit.json",
+      "bytes": 286,
+      "sha256": "509bf052e8d7c79f440e912e997176a069c097e7f11d4bdb37f0084ad7715d6e"
+    }
+  ],
+  "sourceApproved": false,
+  "oldLayoutStatus": "REJECTED_AS_FINAL_LAYOUT",
+  "compositionStatus": "CANDIDATE_REQUIRES_UNITY_QA",
+  "resource": "Higgsfield/Maps/MAP7_RECOVERED_CONCEPT",
+  "sourceSize": [
+    2048,
+    1152
+  ],
+  "generationAllowed": false,
+  "wholeConceptRendered": false,
+  "cropsTopLeft": {
+    "ground": [
+      510,
+      880,
+      50,
+      50
+    ],
+    "roadStone": [
+      250,
+      1000,
+      70,
+      40
+    ],
+    "buildPlatform": [
+      660,
+      540,
+      130,
+      50
+    ],
+    "moonSymbol": [
+      710,
+      147,
+      104,
+      110
+    ],
+    "sunSymbol": [
+      1021,
+      345,
+      96,
+      86
+    ]
+  },
+  "topology": "ArtSource/Higgsfield/Topology/MAP7_TEMPLE_TOPOLOGY.json",
+  "implemented": "Three exact canonical primary lanes and initial state A gate_A/mirror bridge connections, twelve exact pads, isolated source texture/symbol composition.",
+  "notImplemented": "State B gate transition mechanics; guardian encounter; authored animation; complete natural campaign validation.",
+  "visualRisk": "Original concept is a 3D low-perspective scene, incompatible as a complete battlefield. Only small surface/symbol crops are reused; source material may still look more rendered than the 2D production maps. Candidate remains disabled until new visual review.",
+  "cropInspection": "Source grass chosen by pixel inspection: mean RGB96.2/142.6/31.1, sum of per-channel deviation12.2, no original road in this patch. All crops are inside 2048x1152 source."
+}
