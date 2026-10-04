@@ -1,5 +1,5 @@
 {
-  "requestId": "t0012-map2-texture-shape-20261003-06",
+  "requestId": "t0012-six-map-integrated-20261004-01",
   "mode": "playable-release",
-  "note": "Both Resources and AssetDatabase typed lookup absent despite importartifact; explicitly set TextureImporterShape.Texture2D for GUID-only texture metas and rerun actual wave acceptance."
+  "note": "Resume actual integrated MAP1–6/source-map and MAP5 secret acceptance after preserved sources b74898dad9567988b9ff8ac484021e2e58d4f542; bot-initiated run37132137553 was action_required and did not validate gameplay."
 }
