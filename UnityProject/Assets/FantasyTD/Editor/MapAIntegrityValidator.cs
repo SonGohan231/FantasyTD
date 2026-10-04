@@ -1,1 +1,346 @@
-¨¥yÛhr‰çyËm¡»¬:—«jØ¨z-¥êæŠÛ^t¥˜U9%Qe}%Q=H)ÕÍ¥¹œMåÍÑ•´ì)ÕÍ¥¹œMåÍÑ•´¹½±±•Ñ¥½¹Ì¹•¹•É¥Œì)ÕÍ¥¹œMåÍÑ•´¹±½‰…±¥é…Ñ¥½¸ì)ÕÍ¥¹œMåÍÑ•´¹1¥¹Äì)ÕÍ¥¹œMåÍÑ•´¹I•™±•Ñ¥½¸ì)ÕÍ¥¹œMåÍÑ•´¹Q•áĞì)ÕÍ¥¹œ…¹Ñ…ÍåQ¹5…Áì)ÕÍ¥¹œ…¹Ñ…ÍåQ¹5…Á¹‘¥Ñ½Èì)ÕÍ¥¹œU¹¥Ñå¹¥¹”ì)ÕÍ¥¹œU¹¥Ñå¹¥¹”¹M•¹•5…¹…•µ•¹Ğì()¹…µ•ÍÁ…”…¹Ñ…ÍåQ¹$)ì(€€€¥¹Ñ•É¹…°ÍÑ…Ñ¥Œ±…ÍÌ5…Á%¹Ñ•É¥ÑåY…±¥‘…Ñ½È(€€€ì(€€€€€€€¥¹Ñ•É¹…°Í•…±•±…ÍÌI•ÍÕ±Ğ(€€€€€€€ì(€€€€€€€€€€€ÁÉ¥Ù…Ñ”É•…‘½¹±ä1¥ÍĞñÍÑÉ¥¹œø}™…ÑÌ€ô¹•Ü1¥ÍĞñÍÑÉ¥¹œø ¤ì(€€€€€€€€€€€ÁÉ¥Ù…Ñ”É•…‘½¹±ä1¥ÍĞñÍÑÉ¥¹œø}•ÉÉ½ÉÌ€ô¹•Ü1¥ÍĞñÍÑÉ¥¹œø ¤ì((€€€€€€€€€€€¥¹Ñ•É¹…°‰½½°MÕ•ÍÌ€ôø}•ÉÉ½ÉÌ¹½Õ¹Ğ€ôô€Àì(€€€€€€€€€€€¥¹Ñ•É¹…°%I•…‘=¹±å1¥ÍĞñÍÑÉ¥¹œøÉÉ½ÉÌ€ôø}•ÉÉ½ÉÌì((€€€€€€€€€€€¥¹Ñ•É¹…°Ù½¥…Ğ¡ÍÑÉ¥¹œ­•ä°½‰©•ĞÙ…±Õ”¤(€€€€€€€€€€€ì(€€€€€€€€€€€€€€€}™…ÑÌ¹‘¡­•ä€¬€ˆôˆ€¬½¹Ù•ÉĞ¹Q½MÑÉ¥¹œ¡Ù…±Õ”°Õ±ÑÕÉ•%¹™¼¹%¹Ù…É¥…¹ÑÕ±ÑÕÉ”¤¤ì(€€€€€€€€€€€ô((€€€€€€€€€€€¥¹Ñ•É¹…°Ù½¥¡•¬¡ÍÑÉ¥¹œ­•ä°‰½½°Á…ÍÍ•°ÍÑÉ¥¹œ™…¥±ÕÉ”¤(€€€€€€€€€€€ì(€€€€€€€€€€€€€€€…Ğ¡­•ä°Á…ÍÍ•¤ì(€€€€€€€€€€€€€€€¥˜€ …Á…ÍÍ•¤(€€€€€€€€€€€€€€€€€€€}•ÉÉ½ÉÌ¹‘¡™…¥±ÕÉ”¤ì(€€€€€€€€€€€ô((€€€€€€€€€€€¥¹Ñ•É¹…°ÍÑÉ¥¹œQ½I•Á½ÉÑQ•áĞ ¤(€€€€€€€€€€€ì(€€€€€€€€€€€€€€€MÑÉ¥¹	Õ¥±‘•ÈÍˆ€ô¹•ÜMÑÉ¥¹	Õ¥±‘•È ¤ì(€€€€€€€€€€€€€€€Íˆ¹ÁÁ•¹‘1¥¹” ‰eIe9PU9%QdaUQ=H5@µ%9QI%Qdˆ¤ì(€€€€€€€€€€€€€€€Íˆ¹ÁÁ•¹‘1¥¹” ‰Ñ¥µ•ÍÑ…µÁUÑŒôˆ€¬…Ñ•Q¥µ”¹UÑ9½Ü¹Q½MÑÉ¥¹œ ‰<ˆ¤¤ì(€€€€€€€€€€€€€€€Íˆ¹ÁÁ•¹‘1¥¹” ‰Õ¹¥ÑåY•ÉÍ¥½¸ôˆ€¬ÁÁ±¥…Ñ¥½¸¹Õ¹¥ÑåY•ÉÍ¥½¸¤ì(€€€€€€€€€€€€€€€Íˆ¹ÁÁ•¹‘1¥¹” ‰ÍÑ…ÑÕÌôˆ€¬€¡MÕ•ÍÌ€ü€‰AMLˆ€è€‰%0ˆ¤¤ì(€€€€€€€€€€€€€€€™½É•… €¡ÍÑÉ¥¹œ™…Ğ¥¸}™…ÑÌ¤(€€€€€€€€€€€€€€€€€€€Íˆ¹ÁÁ•¹‘1¥¹”¡™…Ğ¤ì(€€€€€€€€€€€€€€€Íˆ¹ÁÁ•¹‘1¥¹” ‰•ÉÉ½É½Õ¹Ğôˆ€¬}•ÉÉ½ÉÌ¹½Õ¹Ğ¤ì(€€€€€€€€€€€€€€€™½È€¡¥¹Ğ¤€ô€Àì¤€ğ}•ÉÉ½ÉÌ¹½Õ¹Ğì¤¬¬¤(€€€€€€€€€€€€€€€€€€€Íˆ¹ÁÁ•¹‘1¥¹” ‰•ÉÉ½È¸ˆ€¬€¡¤€¬€Ä¤€¬€ˆôˆ€¬}•ÉÉ½ÉÍm¥t¹I•Á±…” ‰q¸ˆ°€ˆ€ˆ¤¹I•Á±…” ‰qÈˆ°€ˆ€ˆ¤¤ì(€€€€€€€€€€€€€€€É•ÑÕÉ¸Íˆ¹Q½MÑÉ¥¹œ ¤ì(€€€€€€€€€€€ô(€€€€€€€ô((€€€€€€€¥¹Ñ•É¹…°ÍÑ…Ñ¥ŒI•ÍÕ±ĞIÕ¸ ¤(€€€€€€€ì(€€€€€€€€€€€I•ÍÕ±ĞÉ•ÍÕ±Ğ€ô¹•ÜI•ÍÕ±Ğ ¤ì(€€€€€€€€€€€1¥ÍĞñÍÑÉ¥¹œø½¹Í½±•ÉÉ½ÉÌ€ô¹•Ü1¥ÍĞñÍÑÉ¥¹œø ¤ì(€€€€€€€€€€€‰½½°•‘¥Ñ½ÉY…±¥‘…Ñ¥½¹A…ÍÍ1½½Õ¹€ô™…±Í”ì((€€€€€€€€€€€ÁÁ±¥…Ñ¥½¸¹1½…±±‰…¬¡…¹‘±•È€ô‘•±•…Ñ”¡ÍÑÉ¥¹œ½¹‘¥Ñ¥½¸°ÍÑÉ¥¹œÍÑ…­QÉ…”°1½QåÁ”ÑåÁ”¤(€€€€€€€€€€€ì(€€€€€€€€€€€€€€€¥˜€¡½¹‘¥Ñ¥½¸¹MÑ…ÉÑÍ]¥Ñ  ‰5@µ¹‘É½¥ØÈÙ…±¥‘…Ñ¥½¸AML¸ˆ°MÑÉ¥¹½µÁ…É¥Í½¸¹=É‘¥¹…°¤¤(€€€€€€€€€€€€€€€€€€€•‘¥Ñ½ÉY…±¥‘…Ñ¥½¹A…ÍÍ1½½Õ¹€ôÑÉÕ”ì((€€€€€€€€€€€€€€€¥˜€¡ÑåÁ”€ôô1½QåÁ”¹ÉÉ½ÈñğÑåÁ”€ôô1½QåÁ”¹á•ÁÑ¥½¸ñğÑåÁ”€ôô1½QåÁ”¹ÍÍ•ÉĞ¤(€€€€€€€€€€€€€€€€€€€½¹Í½±•ÉÉ½ÉÌ¹‘¡½¹‘¥Ñ¥½¸¤ì(€€€€€€€€€€€ôì((€€€€€€€€€€€ÁÁ±¥…Ñ¥½¸¹±½5•ÍÍ…•I••¥Ù•€¬ô¡…¹‘±•Èì(€€€€€€€€€€€ÑÉä(€€€€€€€€€€€ì(€€€€€€€€€€€€€€€5…Á‘¥Ñ½ÉM•ÑÕÀ¹=Á•¹5…À ¤ì(€€€€€€€€€€€€€€€M•¹”Í•¹”€ôM•¹•5…¹…•È¹•ÑÑ¥Ù•M•¹” ¤ì(€€€€€€€€€€€€€€€É•ÍÕ±Ğ¹¡•¬ ‰Í•¹•=Á•¹•ˆ°Í•¹”¹%ÍY…±¥ ¤€˜˜Í•¹”¹¥Í1½…‘•€˜˜Í•¹”¹Á…Ñ €ôô5…Á‘¥Ñ½ÉM•ÑÕÀ¹M•¹•A…Ñ °(€€€€€€€€€€€€€€€€€€€€‰5@µÍ•¹”‘¥¹½Ğ½Á•¸…ĞÑ¡”•áÁ•Ñ•Á…Ñ ¸ˆ¤ì(€€€€€€€€€€€€€€€É•ÍÕ±Ğ¹…Ğ ‰Í•¹•A…Ñ ˆ°Í•¹”¹Á…Ñ ¤ì((€€€€€€€€€€€€€€€5…Á‘¥Ñ½ÉM•ÑÕÀ¹Y…±¥‘…Ñ” ¤ì(€€€€€€€€€€€€€€€É•ÍÕ±Ğ¹¡•¬ ‰•‘¥Ñ½ÉY…±¥‘…Ñ¥½¹½µµ…¹‘A…ÍÌˆ°•‘¥Ñ½ÉY…±¥‘…Ñ¥½¹A…ÍÍ1½½Õ¹°(€€€€€€€€€€€€€€€€€€€€‰Q½½±Ì½…¹Ñ…ÍäQ½Y…±¥‘…Ñ”5@µ‘¥¹½Ğ•µ¥Ğ¥ÑÌAMLÉ•ÍÕ±Ğ¸ˆ¤ì((€€€€€€€€€€€€€€€5…Á	½½ÑÍÑÉ…À‰½½ÑÍÑÉ…À€ôU¹¥Ñå¹¥¹”¹=‰©•Ğ¹¥¹‘¥ÉÍÑ=‰©•Ñ	åQåÁ”ñ5…Á	½½ÑÍÑÉ…Àø¡¥¹‘=‰©•ÑÍ%¹…Ñ¥Ù”¹%¹±Õ‘”¤ì(€€€€€€€€€€€€€€€É•ÍÕ±Ğ¹¡•¬ ‰‰½½ÑÍÑÉ…Á½Õ¹ˆ°‰½½ÑÍÑÉ…À€„ô¹Õ±°°€‰5@µ‰½½ÑÍÑÉ…Àİ…Ì¹½Ğ™½Õ¹¥¸Ñ¡”½Á•¹•Í•¹”¸ˆ¤ì(€€€€€€€€€€€€€€€¥˜€¡‰½½ÑÍÑÉ…À€ôô¹Õ±°¤(€€€€€€€€€€€€€€€€€€€É•ÑÕÉ¸¥¹¥Í ¡É•ÍÕ±Ğ°½¹Í½±•ÉÉ½ÉÌ¤ì((€€€€€€€€€€€€€€€%¹Ù½­•	½½ÑÍÑÉ…Á•½µ•ÑÉä¡‰½½ÑÍÑÉ…À¤ì((€€€€€€€€€€€€€€€Y…±¥‘…Ñ•1½¥…±	½Õ¹‘Ì¡É•ÍÕ±Ğ¤ì(€€€€€€€€€€€€€€€Y…±¥‘…Ñ•I½…¡É•ÍÕ±Ğ¤ì(€€€€€€€€€€€€€€€Y…±¥‘…Ñ•I½ÕÑ•¹‘Ì¡É•ÍÕ±Ğ¤ì(€€€€€€€€€€€€€€€Y…±¥‘…Ñ•A±…¹Ñ¥¹MÁ½ÑÌ¡É•ÍÕ±Ğ¤ì(€€€€€€€€€€€€€€€Y…±¥‘…Ñ•É¥‘‰Í•¹”¡É•ÍÕ±Ğ¤ì(€€€€€€€€€€€€€€€Y…±¥‘…Ñ•…µ•É…É…µ¥¹œ¡É•ÍÕ±Ğ¤ì((€€€€€€€€€€€€€€€É•ÍÕ±Ğ¹…Ğ ‰ÉÕ¹Ñ¥µ••½µ•ÑÉåM½ÕÉ”ˆ°€‰5…Á	½½ÑÍÑÉ…À¹	Õ¥±‘…µ•É„­	Õ¥±‘5…À­	Õ¥±‘A±…¹Ñ¥¹MÁ½ÑÌˆ¤ì(€€€€€€€€€€€€€€€É•ÍÕ±Ğ¹…Ğ ‰Á±…å5½‘•¹Ñ•É•ˆ°™…±Í”¤ì(€€€€€€€€€€€€€€€É•ÍÕ±Ğ¹…Ğ ‰…¹‘É½¥‘	Õ¥±‘IÕ¸ˆ°™…±Í”¤ì(€€€€€€€€€€€ô(€€€€€€€€€€€…Ñ €¡á•ÁÑ¥½¸•à¤(€€€€€€€€€€€ì(€€€€€€€€€€€€€€€á•ÁÑ¥½¸É½½Ğ€ô•à¥ÌQ…É•Ñ%¹Ù½…Ñ¥½¹á•ÁÑ¥½¸€˜˜•à¹%¹¹•Éá•ÁÑ¥½¸€„ô¹Õ±°€ü•à¹%¹¹•Éá•ÁÑ¥½¸€è•àì(€€€€€€€€€€€€€€€É•ÍÕ±Ğ¹¡•¬ ‰Ù…±¥‘…Ñ½Éá•ÁÑ¥½¹É•”ˆ°™…±Í”°É½½Ğ¹•ÑQåÁ” ¤¹9…µ”€¬€ˆè€ˆ€¬É½½Ğ¹5•ÍÍ…”¤ì(€€€€€€€€€€€ô(€€€€€€€€€€€™¥¹…±±ä(€€€€€€€€€€€ì(€€€€€€€€€€€€€€€ÁÁ±¥…Ñ¥½¸¹±½5•ÍÍ…•I••¥Ù•€´ô¡…¹‘±•Èì(€€€€€€€€€€€ô((€€€€€€€€€€€É•ÑÕÉ¸¥¹¥Í ¡É•ÍÕ±Ğ°½¹Í½±•ÉÉ½ÉÌ¤ì(€€€€€€€ô((€€€€€€€ÁÉ¥Ù…Ñ”ÍÑ…Ñ¥ŒI•ÍÕ±Ğ¥¹¥Í ¡I•ÍÕ±ĞÉ•ÍÕ±Ğ°1¥ÍĞñÍÑÉ¥¹œø½¹Í½±•ÉÉ½ÉÌ¤(€€€€€€€ì(€€€€€€€€€€€É•ÍÕ±Ğ¹…Ğ ‰Ù…±¥‘…Ñ¥½¹½¹Í½±•ÉÉ½É½Õ¹Ğˆ°½¹Í½±•ÉÉ½ÉÌ¹½Õ¹Ğ¤ì(€€€€€€€€€€€™½È€¡¥¹Ğ¤€ô€Àì¤€ğ½¹Í½±•ÉÉ½ÉÌ¹½Õ¹Ğì¤¬¬¤(€€€€€€€€€€€€€€€É•ÍÕ±Ğ¹…Ğ ‰½¹Í½±•ÉÉ½È¸ˆ€¬€¡¤€¬€Ä¤°½¹Í½±•ÉÉ½ÉÍm¥t¹I•Á±…” ‰q¸ˆ°€ˆ€ˆ¤¹I•Á±…” ‰qÈˆ°€ˆ€ˆ¤¤ì(€€€€€€€€€€€É•ÍÕ±Ğ¹¡•¬ ‰¹½Y…±¥‘…Ñ¥½¹½¹Í½±•ÉÉ½ÉÌˆ°½¹Í½±•ÉÉ½ÉÌ¹½Õ¹Ğ€ôô€À°(€€€€€€€€€€€€€€€€‰U¹¥Ñä±½•½¹”½Èµ½É”•ÉÉ½ÉÌ½•á•ÁÑ¥½¹Ì½…ÍÍ•ÉÑÌ‘ÕÉ¥¹œ5@µ¥¹Ñ•É¥ÑäÙ…±¥‘…Ñ¥½¸¸ˆ¤ì(€€€€€€€€€€€É•ÑÕÉ¸É•ÍÕ±Ğì(€€€€€€€ô((€€€€€€€ÁÉ¥Ù…Ñ”ÍÑ…Ñ¥ŒÙ½¥%¹Ù½­•	½½ÑÍÑÉ…Á•½µ•ÑÉä¡5…Á	½½ÑÍÑÉ…À‰½½ÑÍÑÉ…À¤(€€€€€€€ì(€€€€€€€€€€€QåÁ”ÑåÁ”€ôÑåÁ•½˜¡5…Á	½½ÑÍÑÉ…À¤ì(€€€€€€€€€€€%¹Ù½­”¡ÑåÁ”¹•Ñ5•Ñ¡½ ‰	Õ¥±‘…µ•É„ˆ°	¥¹‘¥¹±…Ì¹9½¹AÕ‰±¥Œğ	¥¹‘¥¹±…Ì¹MÑ…Ñ¥Œ¤°¹Õ±°¤ì(€€€€€€€€€€€%¹Ù½­”¡ÑåÁ”¹•Ñ5•Ñ¡½ ‰	Õ¥±‘5…Àˆ°	¥¹‘¥¹±…Ì¹9½¹AÕ‰±¥Œğ	¥¹‘¥¹±…Ì¹MÑ…Ñ¥Œ¤°¹Õ±°¤ì(€€€€€€€€€€€%¹Ù½­”¡ÑåÁ”¹•Ñ5•Ñ¡½ ‰	Õ¥±‘A±…¹Ñ¥¹MÁ½ÑÌˆ°	¥¹‘¥¹±…Ì¹9½¹AÕ‰±¥Œğ	¥¹‘¥¹±…Ì¹%¹ÍÑ…¹”¤°‰½½ÑÍÑÉ…À¤ì((€€€€€€€€€€€…µ•É„…µ•É„€ô…µ•É„¹µ…¥¸ì(€€€€€€€€€€€¥˜€¡…µ•É„€„ô¹Õ±°¤(€€€€€€€€€€€ì(€€€€€€€€€€€€€€€5½‰¥±•…µ•É…¥ÑÑ•È™¥ÑÑ•È€ô…µ•É„¹•Ñ½µÁ½¹•¹Ğñ5½‰¥±•…µ•É…¥ÑÑ•Èø ¤ì(€€€€€€€€€€€€€€€¥˜€¡™¥ÑÑ•È€„ô¹Õ±°¤(€€€€€€€€€€€€€€€€€€€%¹Ù½­”¡ÑåÁ•½˜¡5½‰¥±•…µ•É…¥ÑÑ•È¤¹•Ñ5•Ñ¡½ ‰İ…­”ˆ°	¥¹‘¥¹±…Ì¹9½¹AÕ‰±¥Œğ	¥¹‘¥¹±…Ì¹%¹ÍÑ…¹”¤°™¥ÑÑ•È¤ì(€€€€€€€€€€€ô(€€€€€€€ô((€€€€€€€ÁÉ¥Ù…Ñ”ÍÑ…Ñ¥ŒÙ½¥%¹Ù½­”¡5•Ñ¡½‘%¹™¼µ•Ñ¡½°½‰©•ĞÑ…É•Ğ¤(€€€€€€€ì(€€€€€€€€€€€¥˜€¡µ•Ñ¡½€ôô¹Õ±°¤(€€€€€€€€€€€€€€€Ñ¡É½Ü¹•Ü5¥ÍÍ¥¹5•Ñ¡½‘á•ÁÑ¥½¸ ‰I•ÅÕ¥É•5@µÉÕ¹Ñ¥µ”•½µ•ÑÉäµ•Ñ¡½İ…Ì¹½Ğ™½Õ¹¸ˆ¤ì(€€€€€€€€€€€µ•Ñ¡½¹%¹Ù½­”¡Ñ…É•Ğ°¹Õ±°¤ì(€€€€€€€ô((€€€€€€€ÁÉ¥Ù…Ñ”ÍÑ…Ñ¥ŒÙ½¥Y…±¥‘…Ñ•1½¥…±	½Õ¹‘Ì¡I•ÍÕ±ĞÉ•ÍÕ±Ğ¤(€€€€€€€ì(€€€€€€€€€€€‰½½°Í¥é”€ô5…Ñ¡˜¹ÁÁÉ½á¥µ…Ñ•±ä¡5…Á…Ñ„¹]¥‘Ñ °€ÈÑ˜¤€˜˜5…Ñ¡˜¹ÁÁÉ½á¥µ…Ñ•±ä¡5…Á…Ñ„¹!•¥¡Ğ°€ÄÑ˜¤ì(€€€€€€€€€€€É•ÍÕ±Ğ¹¡•¬ ‰±½¥…±5…ÁM¥é”ÈÑàÄĞˆ°Í¥é”°€‰5@µ±½¥…°Í¥é”¥Ì¹½Ğ€ÈÑàÄĞIT¸ˆ¤ì(€€€€€€€€€€€É•ÍÕ±Ğ¹…Ğ ‰µ…Á]¥‘Ñ¡ITˆ°5…Á…Ñ„¹]¥‘Ñ ¤ì(€€€€€€€€€€€É•ÍÕ±Ğ¹…Ğ ‰µ…Á!•¥¡ÑITˆ°5…Á…Ñ„¹!•¥¡Ğ¤ì(€€€€€€€€€€€É•ÍÕ±Ğ¹…Ğ ‰Á…Ñ¡1•¹Ñ¡ITˆ°5…Á…Ñ„¹Q½Ñ…±A…Ñ¡1•¹Ñ ¹Q½MÑÉ¥¹œ ˆÀ¸ÀÀÀˆ°Õ±ÑÕÉ•%¹™¼¹%¹Ù…É¥…¹ÑÕ±ÑÕÉ”¤¤ì((€€€€€€€€€€€‰½½°İ…åÁ½¥¹ÑÍ%¹Í¥‘”€ô5…Á…Ñ„¹]…åÁ½¥¹ÑÌ¹±°¡À€ôø%¹Í¥‘•	½Õ¹‘Ì¡À¤¤ì(€€€€€€€€€€€‰½½°ÍÁ½ÑÍ%¹Í¥‘”€ô5…Á…Ñ„¹A±…¹Ñ¥¹MÁ½ÑÌ¹±°¡Ì€ôø%¹Í¥‘•	½Õ¹‘Ì¡Ì¹A½Í¥Ñ¥½¸¤¤ì(€€€€€€€€€€€É•ÍÕ±Ğ¹¡•¬ ‰…±±]…åÁ½¥¹ÑÍ%¹Í¥‘•1½¥…±	½Õ¹‘Ìˆ°İ…åÁ½¥¹ÑÍ%¹Í¥‘”°€‰=¹”½Èµ½É”É½ÕÑ”İ…åÁ½¥¹ÑÌ…É”½ÕÑÍ¥‘”5@µ±½¥…°‰½Õ¹‘Ì¸ˆ¤ì(€€€€€€€€€€€É•ÍÕ±Ğ¹¡•¬ ‰…±±A±…¹Ñ¥¹•™¥¹¥Ñ¥½¹Í%¹Í¥‘•1½¥…±	½Õ¹‘Ìˆ°ÍÁ½ÑÍ%¹Í¥‘”°€‰=¹”½Èµ½É”Á±…¹Ñ¥¹œÍÁ½Ğ‘•™¥¹¥Ñ¥½¹Ì…É”½ÕÑÍ¥‘”5@µ±½¥…°‰½Õ¹‘Ì¸ˆ¤ì((€€€€€€€€€€€…µ•=‰©•ĞÉ…ÍÌ€ô…µ•=‰©•Ğ¹¥¹ ‰É…ÍÌˆ¤ì(€€€€€€€€€€€MÁÉ¥Ñ•I•¹‘•É•ÈÉ•¹‘•É•È€ôÉ…ÍÌ€„ô¹Õ±°€üÉ…ÍÌ¹•Ñ½µÁ½¹•¹ĞñMÁÉ¥Ñ•I•¹‘•É•Èø ¤€è¹Õ±°ì(€€€€€€€€€€€‰½½°É…ÍÍ	½Õ¹‘Ì€ôÉ•¹‘•É•È€„ô¹Õ±°€˜˜(€€€€€€€€€€€€€€€ÁÁÉ½á¥µ…Ñ•±ä¡É•¹‘•É•È¹‰½Õ¹‘Ì¹µ¥¸¹à°€Á˜°€À¸ÀÉ˜¤€˜˜(€€€€€€€€€€€€€€€ÁÁÉ½á¥µ…Ñ•±ä¡É•¹‘•É•È¹‰½Õ¹‘Ì¹µ…à¹à°€ÈÑ˜°€À¸ÀÉ˜¤€˜˜(€€€€€€€€€€€€€€€ÁÁÉ½á¥µ…Ñ•±ä¡É•¹‘•É•È¹‰½Õ¹‘Ì¹µ¥¸¹ä°€Á˜°€À¸ÀÉ˜¤€˜˜(€€€€€€€€€€€€€€€ÁÁÉ½á¥µ…Ñ•±ä¡É•¹‘•É•È¹‰½Õ¹‘Ì¹µ…à¹ä°€ÄÑ˜°€À¸ÀÉ˜¤ì(€€€€€€€€€€€É•ÍÕ±Ğ¹¡•¬ ‰É…ÍÍI•¹‘•É•É5…Ñ¡•Í1½¥…±	½Õ¹‘Ìˆ°É…ÍÍ	½Õ¹‘Ì°€‰É…ÍÌÉ•¹‘•É•È‘½•Ì¹½Ğ½Ù•ÈÑ¡”•áÁ•Ñ•€ÈÑàÄĞIT±½¥…°µ…À¸ˆ¤ì(€€€€€€€ô((€€€€€€€ÁÉ¥Ù…Ñ”ÍÑ…Ñ¥ŒÙ½¥Y…±¥‘…Ñ•I½…¡I•ÍÕ±ĞÉ•ÍÕ±Ğ¤(€€€€€€€ì(€€€€€€€€€€€ÍÑÉ¥¹mt¹…µ•Ì€ôì€‰I½…‘M¡…‘½Üˆ°€‰I½…ˆ°€‰I½…‘ÕÍĞˆôì(€€€€€€€€€€€¥¹ĞÙ…±¥‘I•¹‘•É•ÉÌ€ô€Àì(€€€€€€€€€€€‰½½°ÁÉ¥µ…Éå5…Ñ¡•Ì€ô™…±Í”ì((€€€€€€€€€€€™½É•… €¡ÍÑÉ¥¹œ¹…µ”¥¸¹…µ•Ì¤(€€€€€€€€€€€ì(€€€€€€€€€€€€€€€…µ•=‰©•Ğ¼€ô…µ•=‰©•Ğ¹¥¹¡¹…µ”¤ì(€€€€€€€€€€€€€€€1¥¹•I•¹‘•É•È±È€ô¼€„ô¹Õ±°€ü¼¹•Ñ½µÁ½¹•¹Ğñ1¥¹•I•¹‘•É•Èø ¤€è¹Õ±°ì(€€€€€€€€€€€€€€€‰½½°Ù¥ÍÕ…°€ô±È€„ô¹Õ±°€˜˜±È¹•¹…‰±•€˜˜±È¹Í¡…É•‘5…Ñ•É¥…°€„ô¹Õ±°€˜˜±È¹Á½Í¥Ñ¥½¹½Õ¹Ğ€ôô5…Á…Ñ„¹]…åÁ½¥¹ÑÌ¹1•¹Ñ €˜˜(€€€€€€€€€€€€€€€€€€€€€€€€€€€€€±È¹ÍÑ…ÉÑ]¥‘Ñ €ø€Á˜€˜˜±È¹•¹‘]¥‘Ñ €ø€Á˜ì(€€€€€€€€€€€€€€€¥˜€¡Ù¥ÍÕ…°¤Ù…±¥‘I•¹‘•É•ÉÌ¬¬ì((€€€€€€€€€€€€€€€¥˜€¡¹…µ”€ôô€‰I½…ˆ€˜˜±È€„ô¹Õ±°€˜˜±È¹Á½Í¥Ñ¥½¹½Õ¹Ğ€ôô5…Á…Ñ„¹]…åÁ½¥¹ÑÌ¹1•¹Ñ ¤(€€€€€€€€€€€€€€€ì(€€€€€€€€€€€€€€€€€€€ÁÉ¥µ…Éå5…Ñ¡•Ì€ôÑÉÕ”ì(€€€€€€€€€€€€€€€€€€€™½È€¡¥¹Ğ¤€ô€Àì¤€ğ5…Á…Ñ„¹]…åÁ½¥¹ÑÌ¹1•¹Ñ ì¤¬¬¤(€€€€€€€€€€€€€€€€€€€ì(€€€€€€€€€€€€€€€€€€€€€€€Y•Ñ½ÈÌ…ÑÕ…°€ô±È¹•ÑA½Í¥Ñ¥½¸¡¤¤ì(€€€€€€€€€€€€€€€€€€€€€€€Y•Ñ½ÈÈ•áÁ•Ñ•€ô5…Á…Ñ„¹]…åÁ½¥¹ÑÍm¥tì(€€€€€€€€€€€€€€€€€€€€€€€¥˜€¡Y•Ñ½ÈÈ¹¥ÍÑ…¹”¡¹•ÜY•Ñ½ÈÈ¡…ÑÕ…°¹à°…ÑÕ…°¹ä¤°•áÁ•Ñ•¤€ø€À¸ÀÀÅ˜¤(€€€€€€€€€€€€€€€€€€€€€€€ì(€€€€€€€€€€€€€€€€€€€€€€€€€€€ÁÉ¥µ…Éå5…Ñ¡•Ì€ô™…±Í”ì(€€€€€€€€€€€€€€€€€€€€€€€€€€€‰É•…¬ì(€€€€€€€€€€€€€€€€€€€€€€€ô(€€€€€€€€€€€€€€€€€€€ô(€€€€€€€€€€€€€€€ô(€€€€€€€€€€€ô((€€€€€€€€€€€É•ÍÕ±Ğ¹…Ğ ‰É½…‘Y¥ÍÕ…±I•¹‘•É•É½Õ¹Ğˆ°Ù…±¥‘I•¹‘•É•ÉÌ¤ì(€€€€€€€€€€€É•ÍÕ±Ğ¹¡•¬ ‰É½…‘Y¥ÍÕ…±I•¹‘•É•ÉÍAÉ•Í•¹Ğˆ°Ù…±¥‘I•¹‘•É•ÉÌ€ôô€Ì°€‰áÁ•Ñ•Ñ¡É•”•¹…‰±•½µ…Ñ•É¥…°µ‰…­•É½…1¥¹•I•¹‘•É•ÉÌ¸ˆ¤ì(€€€€€€€€€€€É•ÍÕ±Ğ¹¡•¬ ‰É½…‘•½µ•ÑÉå5…Ñ¡•Í]…åÁ½¥¹ÑÌˆ°ÁÉ¥µ…Éå5…Ñ¡•Ì°€‰AÉ¥µ…ÉäÉ½…1¥¹•I•¹‘•É•È‘½•Ì¹½Ğµ…Ñ 5@µİ…åÁ½¥¹ÑÌ¸ˆ¤ì(€€€€€€€ô((€€€€€€€ÁÉ¥Ù…Ñ”ÍÑ…Ñ¥ŒÙ½¥Y…±¥‘…Ñ•I½ÕÑ•¹‘Ì¡I•ÍÕ±ĞÉ•ÍÕ±Ğ¤(€€€€€€€ì(€€€€€€€€€€€Y•Ñ½ÈÈ™¥ÉÍĞ€ô5…Á…Ñ„¹]…åÁ½¥¹ÑÍlÁtì(€€€€€€€€€€€Y•Ñ½ÈÈ±…ÍĞ€ô5…Á…Ñ„¹]…åÁ½¥¹ÑÍm5…Á…Ñ„¹]…åÁ½¥¹ÑÌ¹1•¹Ñ €´€Åtì((€€€€€€€€€€€€¼¼PÀÀÄÈ!¥Í™¥•±¥¹Ñ•É…Ñ¥½¸­••ÁÌÑ¡”±½¥…°…¹¡½ÉÌ…ĞÑ¡”•á…Ğ(€€€€€€€€€€€€¼¼É½ÕÑ”•¹‘Á½¥¹ÑÌİ¡¥±”ÁÉ•Í•¹Ñ…Ñ¥½¸¡¥±‘É•¸µ…ä‰”½™™Í•Ğ¥¹İ…ÉÍ¼(€€€€€€€€€€€€¼¼±…É”…ÉÑİ½É¬É•µ…¥¹ÌÙ¥Í¥‰±”¥¹Í¥‘”Ñ¡”±…¹‘Í…Á”…µ•É„¸(€€€€€€€€€€€…µ•=‰©•ĞÁ½ÉÑ…°€ô…µ•=‰©•Ğ¹¥¹ ‰A½ÉÑ…±½É”ˆ¤ì(€€€€€€€€€€€…µ•=‰©•Ğ¡½µ”€ô…µ•=‰©•Ğ¹¥¹ ‰!½µ•QÉ••}!¥Í™¥•±ˆ¤ì((€€€€€€€€€€€QÉ…¹Í™½É´Á½ÉÑ…±Y¥ÍÕ…±QÉ…¹Í™½É´€ôÁ½ÉÑ…°€„ô¹Õ±°€üÁ½ÉÑ…°¹ÑÉ…¹Í™½É´¹¥¹ ‰!¥Í™¥•±‘Y¥ÍÕ…°ˆ¤€è¹Õ±°ì(€€€€€€€€€€€QÉ…¹Í™½É´¡½µ•Y¥ÍÕ…±QÉ…¹Í™½É´€ô¡½µ”€„ô¹Õ±°€ü¡½µ”¹ÑÉ…¹Í™½É´¹¥¹ ‰!¥Í™¥•±‘Y¥ÍÕ…°ˆ¤€è¹Õ±°ì(€€€€€€€€€€€MÁÉ¥Ñ•I•¹‘•É•ÈÁ½ÉÑ…±I•¹‘•É•È€ôÁ½ÉÑ…±Y¥ÍÕ…±QÉ…¹Í™½É´€„ô¹Õ±°(€€€€€€€€€€€€€€€€üÁ½ÉÑ…±Y¥ÍÕ…±QÉ…¹Í™½É´¹•Ñ½µÁ½¹•¹ĞñMÁÉ¥Ñ•I•¹‘•É•Èø ¤(€€€€€€€€€€€€€€€€è¹Õ±°ì(€€€€€€€€€€€MÁÉ¥Ñ•I•¹‘•É•È¡½µ•I•¹‘•É•È€ô¡½µ•Y¥ÍÕ…±QÉ…¹Í™½É´€„ô¹Õ±°(€€€€€€€€€€€€€€€€ü¡½µ•Y¥ÍÕ…±QÉ…¹Í™½É´¹•Ñ½µÁ½¹•¹ĞñMÁÉ¥Ñ•I•¹‘•É•Èø ¤(€€€€€€€€€€€€€€€€è¹Õ±°ì((€€€€€€€€€€€‰½½°Á½ÉÑ…±Y¥ÍÕ…°€ôÁ½ÉÑ…±I•¹‘•É•È€„ô¹Õ±°€˜˜Á½ÉÑ…±I•¹‘•É•È¹•¹…‰±•€˜˜Á½ÉÑ…±I•¹‘•É•È¹ÍÁÉ¥Ñ”€„ô¹Õ±°ì(€€€€€€€€€€€‰½½°¡½µ•Y¥ÍÕ…°€ô¡½µ•I•¹‘•É•È€„ô¹Õ±°€˜˜¡½µ•I•¹‘•É•È¹•¹…‰±•€˜˜¡½µ•I•¹‘•É•È¹ÍÁÉ¥Ñ”€„ô¹Õ±°ì(€€€€€€€€€€€‰½½°Á½ÉÑ…±ÑMÑ…ÉĞ€ôÁ½ÉÑ…°€„ô¹Õ±°€˜˜(€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€Y•Ñ½ÈÈ¹¥ÍÑ…¹” ¡Y•Ñ½ÈÈ¥Á½ÉÑ…°¹ÑÉ…¹Í™½É´¹Á½Í¥Ñ¥½¸°™¥ÉÍĞ¤€ğô€À¸ÀÀÅ˜ì(€€€€€€€€€€€‰½½°¡½µ•Ñ¹€ô¡½µ”€„ô¹Õ±°€˜˜(€€€€€€€€€€€€€€€€€€€€€€€€€€€€Y•Ñ½ÈÈ¹¥ÍÑ…¹” ¡Y•Ñ½ÈÈ¥¡½µ”¹ÑÉ…¹Í™½É´¹Á½Í¥Ñ¥½¸°±…ÍĞ¤€ğô€À¸ÀÀÅ˜ì((€€€€€€€€€€€É•ÍÕ±Ğ¹¡•¬ ‰ÍÁ…İ¹A½ÉÑ…±Y¥ÍÕ…±AÉ•Í•¹Ğˆ°Á½ÉÑ…±Y¥ÍÕ…°°€‰!¥Í™¥•±ÍÁ…İ¸Á½ÉÑ…°Ù¥ÍÕ…°¥Ìµ¥ÍÍ¥¹œ½È¹½ĞÉ•¹‘•É…‰±”¸ˆ¤ì(€€€€€€€€€€€É•ÍÕ±Ğ¹¡•¬ ‰ÍÁ…İ¹ÑI½ÕÑ•MÑ…ÉĞˆ°Á½ÉÑ…±ÑMÑ…ÉĞ°€‰MÁ…İ¸Á½ÉÑ…°±½¥…°É½½Ğ¥Ì¹½Ğ…¹¡½É•…ĞÑ¡”™¥ÉÍĞÉ½ÕÑ”İ…åÁ½¥¹Ğ¸ˆ¤ì(€€€€€€€€€€€É•ÍÕ±Ğ¹¡•¬ ‰‰…Í•QÉ••Y¥ÍÕ…±AÉ•Í•¹Ğˆ°¡½µ•Y¥ÍÕ…°°€‰!¥Í™¥•±¡½µ”½‰…Í”ÑÉ•”Ù¥ÍÕ…°¥Ìµ¥ÍÍ¥¹œ½È¹½ĞÉ•¹‘•É…‰±”¸ˆ¤ì(€€€€€€€€€€€É•ÍÕ±Ğ¹¡•¬ ‰‰…Í•ÑI½ÕÑ•¹ˆ°¡½µ•Ñ¹°€‰!½µ”½‰…Í”ÑÉ•”±½¥…°É½½Ğ¥Ì¹½Ğ…¹¡½É•…ĞÑ¡”™¥¹…°É½ÕÑ”İ…åÁ½¥¹Ğ¸ˆ¤ì(€€€€€€€€€€€É•ÍÕ±Ğ¹¡•¬ ‰É½ÕÑ•¹‘ÍÉ•=ÁÁ½Í¥Ñ”ˆ°Y•Ñ½ÈÈ¹¥ÍÑ…¹”¡™¥ÉÍĞ°±…ÍĞ¤€ø5…Á…Ñ„¹]¥‘Ñ €¨€À¸ÜÕ˜°(€€€€€€€€€€€€€€€€‰I½ÕÑ”•¹‘Á½¥¹ÑÌ‘¼¹½ĞÍÁ…¸½ÁÁ½Í¥Ñ”Í¥‘•Ì½˜Ñ¡”±½¥…°µ…À¸ˆ¤ì(€€€€€€€€€€€É•ÍÕ±Ğ¹…Ğ ‰É½ÕÑ•MÑ…ÉĞˆ°½Éµ…Ğ¡™¥ÉÍĞ¤¤ì(€€€€€€€€€€€É•ÍÕ±Ğ¹…Ğ ‰É½ÕÑ•¹ˆ°½Éµ…Ğ¡±…ÍĞ¤¤ì(€€€€€€€€€€€É•ÍÕ±Ğ¹…Ğ ‰ÍÁ…İ¹AÉ•Í•¹Ñ…Ñ¥½¹=™™Í•Ğˆ°Á½ÉÑ…±Y¥ÍÕ…±QÉ…¹Í™½É´€„ô¹Õ±°(€€€€€€€€€€€€€€€€ü½Éµ…Ğ¡Á½ÉÑ…±Y¥ÍÕ…±QÉ…¹Í™½É´¹±½…±A½Í¥Ñ¥½¸¤(€€€€€€€€€€€€€€€€è€‰µ¥ÍÍ¥¹œˆ¤ì(€€€€€€€€€€€É•ÍÕ±Ğ¹…Ğ ‰‰…Í•AÉ•Í•¹Ñ…Ñ¥½¹=™™Í•Ğˆ°¡½µ•Y¥ÍÕ…±QÉ…¹Í™½É´€„ô¹Õ±°(€€€€€€€€€€€€€€€€ü½Éµ…Ğ¡¡½µ•Y¥ÍÕ…±QÉ…¹Í™½É´¹±½…±A½Í¥Ñ¥½¸¤(€€€€€€€€€€€€€€€€è€‰µ¥ÍÍ¥¹œˆ¤ì(€€€€€€€ô((€€€€€€€ÁÉ¥Ù…Ñ”ÍÑ…Ñ¥ŒÙ½¥Y…±¥‘…Ñ•A±…¹Ñ¥¹MÁ½ÑÌ¡I•ÍÕ±ĞÉ•ÍÕ±Ğ¤(€€€€€€€ì(€€€€€€€€€€€A±…¹Ñ¥¹MÁ½ÑmtÍÁ½ÑÌ€ôU¹¥Ñå¹¥¹”¹=‰©•Ğ¹¥¹‘=‰©•ÑÍ	åQåÁ”ñA±…¹Ñ¥¹MÁ½Ğø¡¥¹‘=‰©•ÑÍ%¹…Ñ¥Ù”¹%¹±Õ‘”°¥¹‘=‰©•ÑÍM½ÉÑ5½‘”¹9½¹”¤ì(€€€€€€€€€€€É•ÍÕ±Ğ¹…Ğ ‰ÉÕ¹Ñ¥µ•A±…¹Ñ¥¹MÁ½Ñ½Õ¹Ğˆ°ÍÁ½ÑÌ¹1•¹Ñ ¤ì(€€€€€€€€€€€É•ÍÕ±Ğ¹¡•¬ ‰•á…Ñ±äÄÉIÕ¹Ñ¥µ•A±…¹Ñ¥¹MÁ½ÑÌˆ°ÍÁ½ÑÌ¹1•¹Ñ €ôô€ÄÈ°€‰IÕ¹Ñ¥µ”5@µ‘½•Ì¹½Ğ½¹Ñ…¥¸•á…Ñ±ä€ÄÈA±…¹Ñ¥¹MÁ½Ğ½µÁ½¹•¹ÑÌ¸ˆ¤ì((€€€€€€€€€€€¥Ñ¥½¹…ÉäñÍÑÉ¥¹œ°A±…¹Ñ¥¹MÁ½Ğø‰å%€ôÍÁ½ÑÌ¹]¡•É”¡Ì€ôø€…ÍÑÉ¥¹œ¹%Í9Õ±±=ÉµÁÑä¡Ì¹%¤¤(€€€€€€€€€€€€€€€€¹É½ÕÁ	ä¡Ì€ôøÌ¹%¤¹Q½¥Ñ¥½¹…Éä¡œ€ôøœ¹-•ä°œ€ôøœ¹¥ÉÍĞ ¤¤ì(€€€€€€€€€€€‰½½°Õ¹¥ÅÕ”€ô‰å%¹½Õ¹Ğ€ôôÍÁ½ÑÌ¹1•¹Ñ ì(€€€€€€€€€€€‰½½°…±±5…Ñ €ôÕ¹¥ÅÕ”€˜˜5…Á…Ñ„¹A±…¹Ñ¥¹MÁ½ÑÌ¹±°¡‘•˜€ôø(€€€€€€€€€€€ì(€€€€€€€€€€€€€€€A±…¹Ñ¥¹MÁ½ĞÍÁ½Ğì(€€€€€€€€€€€€€€€¥˜€ …‰å%¹QÉå•ÑY…±Õ”¡‘•˜¹%°½ÕĞÍÁ½Ğ¤¤(€€€€€€€€€€€€€€€€€€€É•ÑÕÉ¸™…±Í”ì(€€€€€€€€€€€€€€€É•ÑÕÉ¸Y•Ñ½ÈÈ¹¥ÍÑ…¹”¡ÍÁ½Ğ¹ÑÉ…¹Í™½É´¹Á½Í¥Ñ¥½¸°‘•˜¹A½Í¥Ñ¥½¸¤€ğô€À¸ÀÀÅ˜€˜˜(€€€€€€€€€€€€€€€€€€€€€€ÍÁ½Ğ¹•Ñ½µÁ½¹•¹ÑÍ%¹¡¥±‘É•¸ñI•¹‘•É•Èø¡ÑÉÕ”¤¹1•¹Ñ €ôô€Àì(€€€€€€€€€€€ô¤ì((€€€€€€€€€€€É•ÍÕ±Ğ¹¡•¬ ‰Á±…¹Ñ¥¹MÁ½Ñ%‘ÍU¹¥ÅÕ”ˆ°Õ¹¥ÅÕ”°€‰IÕ¹Ñ¥µ”Á±…¹Ñ¥¹œÍÁ½Ğ%Ì…É”¹½ĞÕ¹¥ÅÕ”¸ˆ¤ì(€€€€€€€€€€€É•ÍÕ±Ğ¹¡•¬ ‰Á±…¹Ñ¥¹MÁ½ÑÍ5…Ñ¡ÕÑ¡½É•‘A…Ñ¡¹¡½ÉÌˆ°…±±5…Ñ °(€€€€€€€€€€€€€€€€‰IÕ¹Ñ¥µ”Á±…¹Ñ¥¹œÍÁ½Ğ…¹¡½ÉÌ‘¼¹½Ğµ…Ñ Ñ¡”…ÕÑ¡½É•Á…Ñ ‘•™¥¹¥Ñ¥½¹Ì½È½¹Ñ…¥¸•¹•É…Ñ•½Ù•É±…äÉ•¹‘•É•ÉÌ¸ˆ¤ì(€€€€€€€ô((€€€€€€€ÁÉ¥Ù…Ñ”ÍÑ…Ñ¥ŒÙ½¥Y…±¥‘…Ñ•É¥‘‰Í•¹”¡I•ÍÕ±ĞÉ•ÍÕ±Ğ¤(€€€€€€€ì(€€€€€€€€€€€½µÁ½¹•¹Ñmt½µÁ½¹•¹ÑÌ€ôI•Í½ÕÉ•Ì¹¥¹‘=‰©•ÑÍ=™QåÁ•±°ñ½µÁ½¹•¹Ğø ¤ì(€€€€€€€€€€€¥¹ĞÉ¥‘½µÁ½¹•¹ÑÌ€ô½µÁ½¹•¹ÑÌ¹½Õ¹Ğ¡Œ€ôø(€€€€€€€€€€€€€€€Œ€„ô¹Õ±°€˜˜Œ¹…µ•=‰©•Ğ€„ô¹Õ±°€˜˜Œ¹…µ•=‰©•Ğ¹Í•¹”¹%ÍY…±¥ ¤€˜˜(€€€€€€€€€€€€€€€€¡Œ¹•ÑQåÁ” ¤¹9…µ”€ôô€‰É¥ˆñğŒ¹•ÑQåÁ” ¤¹9…µ”€ôô€‰É¥‘1…å½ÕĞˆ¤¤ì((€€€€€€€€€€€I•¹‘•É•ÉmtÉ•¹‘•É•ÉÌ€ôU¹¥Ñå¹¥¹”¹=‰©•Ğ¹¥¹‘=‰©•ÑÍ	åQåÁ”ñI•¹‘•É•Èø¡¥¹‘=‰©•ÑÍ%¹…Ñ¥Ù”¹%¹±Õ‘”°¥¹‘=‰©•ÑÍM½ÉÑ5½‘”¹9½¹”¤ì(€€€€€€€€€€€¥¹Ğ¹…µ•‘Y¥Í¥‰±•É¥‘I•¹‘•É•ÉÌ€ôÉ•¹‘•É•ÉÌ¹½Õ¹Ğ¡È€ôø(€€€€€€€€€€€€€€€È€„ô¹Õ±°€˜˜È¹•¹…‰±•€˜˜È¹…µ•=‰©•Ğ¹…Ñ¥Ù•%¹!¥•É…É¡ä€˜˜(€€€€€€€€€€€€€€€È¹…µ•=‰©•Ğ¹¹…µ”¹%¹‘•á=˜ ‰É¥ˆ°MÑÉ¥¹½µÁ…É¥Í½¸¹=É‘¥¹…±%¹½É•…Í”¤€øô€À¤ì((€€€€€€€€€€€É•ÍÕ±Ğ¹…Ğ ‰É¥‘½µÁ½¹•¹Ñ½Õ¹Ğˆ°É¥‘½µÁ½¹•¹ÑÌ¤ì(€€€€€€€€€€€É•ÍÕ±Ğ¹…Ğ ‰¹…µ•‘Y¥Í¥‰±•É¥‘I•¹‘•É•É½Õ¹Ğˆ°¹…µ•‘Y¥Í¥‰±•É¥‘I•¹‘•É•ÉÌ¤ì(€€€€€€€€€€€É•ÍÕ±Ğ¹¡•¬ ‰¹½…µ•Á±…åÉ¥‘Y¥Í¥‰±”ˆ°É¥‘½µÁ½¹•¹ÑÌ€ôô€À€˜˜¹…µ•‘Y¥Í¥‰±•É¥‘I•¹‘•É•ÉÌ€ôô€À°(€€€€€€€€€€€€€€€€‰…µ•Á±…äÉ¥½É¥‘1…å½ÕĞ½ÈÙ¥Í¥‰±”É¥µ¹…µ•É•¹‘•É•È•á¥ÍÑÌ¥¸5@µ¸ˆ¤ì(€€€€€€€ô((€€€€€€€ÁÉ¥Ù…Ñ”ÍÑ…Ñ¥ŒÙ½¥Y…±¥‘…Ñ•…µ•É…É…µ¥¹œ¡I•ÍÕ±ĞÉ•ÍÕ±Ğ¤(€€€€€€€ì(€€€€€€€€€€€…µ•É„…µ•É„€ô…µ•É„¹µ…¥¸ì(€€€€€€€€€€€5½‰¥±•…µ•É…¥ÑÑ•È™¥ÑÑ•È€ô…µ•É„€„ô¹Õ±°€ü…µ•É„¹•Ñ½µÁ½¹•¹Ğñ5½‰¥±•…µ•É…¥ÑÑ•Èø ¤€è¹Õ±°ì(€€€€€€€€€€€‰½½°…µ•É…I•…‘ä€ô…µ•É„€„ô¹Õ±°€˜˜…µ•É„¹½ÉÑ¡½É…Á¡¥Œ€˜˜™¥ÑÑ•È€„ô¹Õ±°ì(€€€€€€€€€€€É•ÍÕ±Ğ¹¡•¬ ‰µ…Á…µ•É…½¹™¥ÕÉ•ˆ°…µ•É…I•…‘ä°€‰5@µ5…¥¸…µ•É„½5½‰¥±•…µ•É…¥ÑÑ•È¥Ìµ¥ÍÍ¥¹œ½È¹½Ğ½ÉÑ¡½É…Á¡¥Œ¸ˆ¤ì(€€€€€€€€€€€¥˜€ ……µ•É…I•…‘ä¤(€€€€€€€€€€€€€€€É•ÑÕÉ¸ì((€€€€€€€€€€€™±½…Ğ…ÍÁ•Ğ€ô5…Ñ¡˜¹5…à À¸Å˜°€¡™±½…Ğ¥MÉ••¸¹İ¥‘Ñ €¼5…Ñ¡˜¹5…à Ä°MÉ••¸¹¡•¥¡Ğ¤¤ì(€€€€€€€€€€€™±½…Ğ¡…±™!•¥¡Ğ€ô…µ•É„¹½ÉÑ¡½É…Á¡¥M¥é”ì(€€€€€€€€€€€™±½…Ğ¡…±™]¥‘Ñ €ô¡…±™!•¥¡Ğ€¨…ÍÁ•Ğì(€€€€€€€€€€€Y•Ñ½ÈÌ•¹Ñ•È€ô…µ•É„¹ÑÉ…¹Í™½É´¹Á½Í¥Ñ¥½¸ì(€€€€€€€€€€€™±½…Ğ±•™Ğ€ô•¹Ñ•È¹à€´¡…±™]¥‘Ñ ì(€€€€€€€€€€€™±½…ĞÉ¥¡Ğ€ô•¹Ñ•È¹à€¬¡…±™]¥‘Ñ ì(€€€€€€€€€€€™±½…Ğ‰½ÑÑ½´€ô•¹Ñ•È¹ä€´¡…±™!•¥¡Ğì(€€€€€€€€€€€™±½…ĞÑ½À€ô•¹Ñ•È¹ä€¬¡…±™!•¥¡Ğì((€€€€€€€€€€€€¼¼5½‰¥±•…µ•É…¥ÑÑ•Èµ…ä½™™Í•ĞÑ¡”ÁÉ•Í•¹Ñ…Ñ¥½¸‰ä„Íµ…±°…µ½Õ¹ĞÑ¼(€€€€€€€€€€€€¼¼‰…±…¹”…Íåµµ•ÑÉ¥Œ!U¥¹Í•ÑÌ¸Q¡…Ğ¥Ì¥¹Ñ•¹Ñ¥½¹…°ìÉ•©•Ğ½¹±ä„(€€€€€€€€€€€€¼¼µ…Ñ•É¥…°‘É¥™Ğ…İ…ä™É½´Ñ¡”±½¥…°µ…À•¹ÑÉ”¸(€€€€€€€€€€€‰½½°•¹Ñ•É•€ô5…Ñ¡˜¹‰Ì¡•¹Ñ•È¹à€´5…Á…Ñ„¹]¥‘Ñ €¨€À¸Õ˜¤€ğô€À¸ÈÕ˜€˜˜(€€€€€€€€€€€€€€€€€€€€€€€€€€€5…Ñ¡˜¹‰Ì¡•¹Ñ•È¹ä€´5…Á…Ñ„¹!•¥¡Ğ€¨€À¸Õ˜¤€ğô€À¸ÈÕ˜ì(€€€€€€€€€€€‰½½°½¹Ñ…¥¹Ì€ô±•™Ğ€ğô€À¸ÀÀÅ˜€˜˜É¥¡Ğ€øô5…Á…Ñ„¹]¥‘Ñ €´€À¸ÀÀÅ˜€˜˜(€€€€€€€€€€€€€€€€€€€€€€€€€€€‰½ÑÑ½´€ğô€À¸ÀÀÅ˜€˜˜Ñ½À€øô5…Á…Ñ„¹!•¥¡Ğ€´€À¸ÀÀÅ˜ì((€€€€€€€€€€€É•ÍÕ±Ğ¹…Ğ ‰…µ•Y¥•İ]¥‘Ñ ˆ°MÉ••¸¹İ¥‘Ñ ¤ì(€€€€€€€€€€€É•ÍÕ±Ğ¹…Ğ ‰…µ•Y¥•İ!•¥¡Ğˆ°MÉ••¸¹¡•¥¡Ğ¤ì(€€€€€€€€€€€É•ÍÕ±Ğ¹…Ğ ‰…µ•Y¥•İÍÁ•ÑUÍ•ˆ°…ÍÁ•Ğ¹Q½MÑÉ¥¹œ ˆÀ¸ŒŒŒˆ°Õ±ÑÕÉ•%¹™¼¹%¹Ù…É¥…¹ÑÕ±ÑÕÉ”¤¤ì(€€€€€€€€€€€É•ÍÕ±Ğ¹…Ğ ‰…µ•É…=ÉÑ¡½É…Á¡¥M¥é”ˆ°¡…±™!•¥¡Ğ¹Q½MÑÉ¥¹œ ˆÀ¸ŒŒŒˆ°Õ±ÑÕÉ•%¹™¼¹%¹Ù…É¥…¹ÑÕ±ÑÕÉ”¤¤ì(€€€€€€€€€€€É•ÍÕ±Ğ¹¡•¬ ‰…µ•É…AÉ•Í•¹Ñ…Ñ¥½¹=™™Í•Ñ]¥Ñ¡¥¹5…É¥¸ˆ°•¹Ñ•É•°(€€€€€€€€€€€€€€€€‰5@µ…µ•É„ÁÉ•Í•¹Ñ…Ñ¥½¸½™™Í•Ğ•á••‘ÌÑ¡”…±±½İ•!U™É…µ¥¹œµ…É¥¸¸ˆ¤ì(€€€€€€€€€€€É•ÍÕ±Ğ¹¡•¬ ‰±½¥…±5…Á½¹Ñ…¥¹•‘%¹…µ•Y¥•Üˆ°½¹Ñ…¥¹Ì°€‰5@µ±½¥…°‰½Õ¹‘Ì…É”¹½Ğ™Õ±±ä½¹Ñ…¥¹•‰äÑ¡”½¹™¥ÕÉ•…µ”Y¥•Ü…µ•É„¸ˆ¤ì(€€€€€€€ô((€€€€€€€ÁÉ¥Ù…Ñ”ÍÑ…Ñ¥Œ‰½½°%¹Í¥‘•	½Õ¹‘Ì¡Y•Ñ½ÈÈÀ¤(€€€€€€€ì(€€€€€€€€€€€É•ÑÕÉ¸À¹à€øô€Á˜€˜˜À¹à€ğô5…Á…Ñ„¹]¥‘Ñ €˜˜À¹ä€øô€Á˜€˜˜À¹ä€ğô5…Á…Ñ„¹!•¥¡Ğì(€€€€€€€ô((€€€€€€€ÁÉ¥Ù…Ñ”ÍÑ…Ñ¥Œ‰½½°ÁÁÉ½á¥µ…Ñ•±ä¡™±½…Ğ„°™±½…Ğˆ°™±½…ĞÑ½±•É…¹”¤(€€€€€€€ì(€€€€€€€€€€€É•ÑÕÉ¸5…Ñ¡˜¹‰Ì¡„€´ˆ¤€ğôÑ½±•É…¹”ì(€€€€€€€ô((€€€€€€€ÁÉ¥Ù…Ñ”ÍÑ…Ñ¥ŒÍÑÉ¥¹œ½Éµ…Ğ¡Y•Ñ½ÈÈÙ…±Õ”¤(€€€€€€€ì(€€€€€€€€€€€É•ÑÕÉ¸Ù…±Õ”¹à¹Q½MÑÉ¥¹œ ˆÀ¸ŒŒŒˆ°Õ±ÑÕÉ•%¹™¼¹%¹Ù…É¥…¹ÑÕ±ÑÕÉ”¤€¬€ˆ°ˆ€¬(€€€€€€€€€€€€€€€€€€Ù…±Õ”¹ä¹Q½MÑÉ¥¹œ ˆÀ¸ŒŒŒˆ°Õ±ÑÕÉ•%¹™¼¹%¹Ù…É¥…¹ÑÕ±ÑÕÉ”¤ì(€€€€€€€ô((€€€€€€€ÁÉ¥Ù…Ñ”ÍÑ…Ñ¥ŒÍÑÉ¥¹œ½Éµ…Ğ¡Y•Ñ½ÈÌÙ…±Õ”¤(€€€€€€€ì(€€€€€€€€€€€É•ÑÕÉ¸Ù…±Õ”¹à¹Q½MÑÉ¥¹œ ˆÀ¸ŒŒŒˆ°Õ±ÑÕÉ•%¹™¼¹%¹Ù…É¥…¹ÑÕ±ÑÕÉ”¤€¬€ˆ°ˆ€¬(€€€€€€€€€€€€€€€€€€Ù…±Õ”¹ä¹Q½MÑÉ¥¹œ ˆÀ¸ŒŒŒˆ°Õ±ÑÕÉ•%¹™¼¹%¹Ù…É¥…¹ÑÕ±ÑÕÉ”¤€¬€ˆ°ˆ€¬(€€€€€€€€€€€€€€€€€€Ù…±Õ”¹è¹Q½MÑÉ¥¹œ ˆÀ¸ŒŒŒˆ°Õ±ÑÕÉ•%¹™¼¹%¹Ù…É¥…¹ÑÕ±ÑÕÉ”¤ì(€€€€€€€ô(€€€ô)ô(•¹‘¥˜(
+#if UNITY_EDITOR
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Reflection;
+using System.Text;
+using FantasyTD.MapA;
+using FantasyTD.MapA.Editor;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+namespace FantasyTD.CI
+{
+    internal static class MapAIntegrityValidator
+    {
+        internal sealed class Result
+        {
+            private readonly List<string> _facts = new List<string>();
+            private readonly List<string> _errors = new List<string>();
+
+            internal bool Success => _errors.Count == 0;
+            internal IReadOnlyList<string> Errors => _errors;
+
+            internal void Fact(string key, object value)
+            {
+                _facts.Add(key + "=" + Convert.ToString(value, CultureInfo.InvariantCulture));
+            }
+
+            internal void Check(string key, bool passed, string failure)
+            {
+                Fact(key, passed);
+                if (!passed)
+                    _errors.Add(failure);
+            }
+
+            internal string ToReportText()
+            {
+                StringBuilder sb = new StringBuilder();
+                sb.AppendLine("DYRYGENT UNITY EXECUTOR MAP-A INTEGRITY");
+                sb.AppendLine("timestampUtc=" + DateTime.UtcNow.ToString("O"));
+                sb.AppendLine("unityVersion=" + Application.unityVersion);
+                sb.AppendLine("status=" + (Success ? "PASS" : "FAIL"));
+                foreach (string fact in _facts)
+                    sb.AppendLine(fact);
+                sb.AppendLine("errorCount=" + _errors.Count);
+                for (int i = 0; i < _errors.Count; i++)
+                    sb.AppendLine("error." + (i + 1) + "=" + _errors[i].Replace("\n", " ").Replace("\r", " "));
+                return sb.ToString();
+            }
+        }
+
+        internal static Result Run()
+        {
+            Result result = new Result();
+            List<string> consoleErrors = new List<string>();
+            bool editorValidationPassLogFound = false;
+
+            Application.LogCallback handler = delegate(string condition, string stackTrace, LogType type)
+            {
+                if (condition.StartsWith("MAP-A Android v2 validation PASS.", StringComparison.Ordinal))
+                    editorValidationPassLogFound = true;
+
+                if (type == LogType.Error || type == LogType.Exception || type == LogType.Assert)
+                    consoleErrors.Add(condition);
+            };
+
+            Application.logMessageReceived += handler;
+            try
+            {
+                MapAEditorSetup.OpenMap();
+                Scene scene = SceneManager.GetActiveScene();
+                result.Check("sceneOpened", scene.IsValid() && scene.isLoaded && scene.path == MapAEditorSetup.ScenePath,
+                    "MAP-A scene did not open at the expected path.");
+                result.Fact("scenePath", scene.path);
+
+                MapAEditorSetup.Validate();
+                result.Check("editorValidationCommandPass", editorValidationPassLogFound,
+                    "Tools/Fantasy TD/Validate MAP-A did not emit its PASS result.");
+
+                MapABootstrap bootstrap = UnityEngine.Object.FindFirstObjectByType<MapABootstrap>(FindObjectsInactive.Include);
+                result.Check("bootstrapFound", bootstrap != null, "MAP-A bootstrap was not found in the opened scene.");
+                if (bootstrap == null)
+                    return Finish(result, consoleErrors);
+
+                InvokeBootstrapGeometry(bootstrap);
+
+                ValidateLogicalBounds(result);
+                ValidateRoad(result);
+                ValidateRouteEnds(result);
+                ValidatePlantingSpots(result);
+                ValidateGridAbsence(result);
+                ValidateCameraFraming(result);
+
+                result.Fact("runtimeGeometrySource", "MapABootstrap.BuildCamera+BuildMap+BuildPlantingSpots");
+                result.Fact("playModeEntered", false);
+                result.Fact("androidBuildRun", false);
+            }
+            catch (Exception ex)
+            {
+                Exception root = ex is TargetInvocationException && ex.InnerException != null ? ex.InnerException : ex;
+                result.Check("validatorExceptionFree", false, root.GetType().Name + ": " + root.Message);
+            }
+            finally
+            {
+                Application.logMessageReceived -= handler;
+            }
+
+            return Finish(result, consoleErrors);
+        }
+
+        private static Result Finish(Result result, List<string> consoleErrors)
+        {
+            result.Fact("validationConsoleErrorCount", consoleErrors.Count);
+            for (int i = 0; i < consoleErrors.Count; i++)
+                result.Fact("consoleError." + (i + 1), consoleErrors[i].Replace("\n", " ").Replace("\r", " "));
+            result.Check("noValidationConsoleErrors", consoleErrors.Count == 0,
+                "Unity logged one or more errors/exceptions/asserts during MAP-A integrity validation.");
+            return result;
+        }
+
+        private static void InvokeBootstrapGeometry(MapABootstrap bootstrap)
+        {
+            Type type = typeof(MapABootstrap);
+            Invoke(type.GetMethod("BuildCamera", BindingFlags.NonPublic | BindingFlags.Static), null);
+            Invoke(type.GetMethod("BuildMap", BindingFlags.NonPublic | BindingFlags.Static), null);
+            Invoke(type.GetMethod("BuildPlantingSpots", BindingFlags.NonPublic | BindingFlags.Instance), bootstrap);
+
+            Camera camera = Camera.main;
+            if (camera != null)
+            {
+                MobileCameraFitter fitter = camera.GetComponent<MobileCameraFitter>();
+                if (fitter != null)
+                    Invoke(typeof(MobileCameraFitter).GetMethod("Awake", BindingFlags.NonPublic | BindingFlags.Instance), fitter);
+            }
+        }
+
+        private static void Invoke(MethodInfo method, object target)
+        {
+            if (method == null)
+                throw new MissingMethodException("Required MAP-A runtime geometry method was not found.");
+            method.Invoke(target, null);
+        }
+
+        private static void ValidateLogicalBounds(Result result)
+        {
+            bool size = Mathf.Approximately(MapAData.Width, 24f) && Mathf.Approximately(MapAData.Height, 14f);
+            result.Check("logicalMapSize24x14", size, "MAP-A logical size is not 24x14 RU.");
+            result.Fact("mapWidthRU", MapAData.Width);
+            result.Fact("mapHeightRU", MapAData.Height);
+            result.Fact("pathLengthRU", MapAData.TotalPathLength.ToString("0.000", CultureInfo.InvariantCulture));
+
+            bool waypointsInside = MapAData.Waypoints.All(p => InsideBounds(p));
+            bool spotsInside = MapAData.PlantingSpots.All(s => InsideBounds(s.Position));
+            result.Check("allWaypointsInsideLogicalBounds", waypointsInside, "One or more route waypoints are outside MAP-A logical bounds.");
+            result.Check("allPlantingDefinitionsInsideLogicalBounds", spotsInside, "One or more planting spot definitions are outside MAP-A logical bounds.");
+
+            GameObject grass = GameObject.Find("Grass");
+            SpriteRenderer renderer = grass != null ? grass.GetComponent<SpriteRenderer>() : null;
+            bool grassBounds = renderer != null &&
+                Approximately(renderer.bounds.min.x, 0f, 0.02f) &&
+                Approximately(renderer.bounds.max.x, 24f, 0.02f) &&
+                Approximately(renderer.bounds.min.y, 0f, 0.02f) &&
+                Approximately(renderer.bounds.max.y, 14f, 0.02f);
+            result.Check("grassRendererMatchesLogicalBounds", grassBounds, "Grass renderer does not cover the expected 24x14 RU logical map.");
+        }
+
+        private static void ValidateRoad(Result result)
+        {
+            string[] names = { "RoadShadow", "Road", "RoadDust" };
+            int validRenderers = 0;
+            bool primaryMatches = false;
+
+            foreach (string name in names)
+            {
+                GameObject go = GameObject.Find(name);
+                LineRenderer lr = go != null ? go.GetComponent<LineRenderer>() : null;
+                bool visual = lr != null && lr.enabled && lr.sharedMaterial != null && lr.positionCount == MapAData.Waypoints.Length &&
+                              lr.startWidth > 0f && lr.endWidth > 0f;
+                if (visual) validRenderers++;
+
+                if (name == "Road" && lr != null && lr.positionCount == MapAData.Waypoints.Length)
+                {
+                    primaryMatches = true;
+                    for (int i = 0; i < MapAData.Waypoints.Length; i++)
+                    {
+                        Vector3 actual = lr.GetPosition(i);
+                        Vector2 expected = MapAData.Waypoints[i];
+                        if (Vector2.Distance(new Vector2(actual.x, actual.y), expected) > 0.001f)
+                        {
+                            primaryMatches = false;
+                            break;
+                        }
+                    }
+                }
+            }
+
+            result.Fact("roadVisualRendererCount", validRenderers);
+            result.Check("roadVisualRenderersPresent", validRenderers == 3, "Expected three enabled/material-backed road LineRenderers.");
+            result.Check("roadGeometryMatchesWaypoints", primaryMatches, "Primary road LineRenderer does not match MAP-A waypoints.");
+        }
+
+        private static void ValidateRouteEnds(Result result)
+        {
+            Vector2 first = MapAData.Waypoints[0];
+            Vector2 last = MapAData.Waypoints[MapAData.Waypoints.Length - 1];
+
+            // T0012 Higgsfield integration keeps the logical anchors at the exact
+            // route endpoints while presentation children may be offset inward so
+            // large artwork remains visible inside the landscape camera.
+            GameObject portal = GameObject.Find("PortalCore");
+            GameObject home = GameObject.Find("HomeTree_Higgsfield");
+
+            Transform portalVisualTransform = portal != null ? portal.transform.Find("HiggsfieldVisual") : null;
+            Transform homeVisualTransform = home != null ? home.transform.Find("HiggsfieldVisual") : null;
+            SpriteRenderer portalRenderer = portalVisualTransform != null
+                ? portalVisualTransform.GetComponent<SpriteRenderer>()
+                : null;
+            SpriteRenderer homeRenderer = homeVisualTransform != null
+                ? homeVisualTransform.GetComponent<SpriteRenderer>()
+                : null;
+
+            bool portalVisual = portalRenderer != null && portalRenderer.enabled && portalRenderer.sprite != null;
+            bool homeVisual = homeRenderer != null && homeRenderer.enabled && homeRenderer.sprite != null;
+            bool portalAtStart = portal != null &&
+                                 Vector2.Distance((Vector2)portal.transform.position, first) <= 0.001f;
+            bool homeAtEnd = home != null &&
+                             Vector2.Distance((Vector2)home.transform.position, last) <= 0.001f;
+
+            result.Check("spawnPortalVisualPresent", portalVisual, "Higgsfield spawn portal visual is missing or not renderable.");
+            result.Check("spawnAtRouteStart", portalAtStart, "Spawn portal logical root is not anchored at the first route waypoint.");
+            result.Check("baseTreeVisualPresent", homeVisual, "Higgsfield home/base tree visual is missing or not renderable.");
+            result.Check("baseAtRouteEnd", homeAtEnd, "Home/base tree logical root is not anchored at the final route waypoint.");
+            result.Check("routeEndsAreOpposite", Vector2.Distance(first, last) > MapAData.Width * 0.75f,
+                "Route endpoints do not span opposite sides of the logical map.");
+            result.Fact("routeStart", Format(first));
+            result.Fact("routeEnd", Format(last));
+            result.Fact("spawnPresentationOffset", portalVisualTransform != null
+                ? Format(portalVisualTransform.localPosition)
+                : "missing");
+            result.Fact("basePresentationOffset", homeVisualTransform != null
+                ? Format(homeVisualTransform.localPosition)
+                : "missing");
+        }
+
+        private static void ValidatePlantingSpots(Result result)
+        {
+            PlantingSpot[] spots = UnityEngine.Object.FindObjectsByType<PlantingSpot>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+            result.Fact("runtimePlantingSpotCount", spots.Length);
+            result.Check("exactly12RuntimePlantingSpots", spots.Length == 12, "Runtime MAP-A does not contain exactly 12 PlantingSpot components.");
+
+            Dictionary<string, PlantingSpot> byId = spots.Where(s => !string.IsNullOrEmpty(s.Id))
+                .GroupBy(s => s.Id).ToDictionary(g => g.Key, g => g.First());
+            bool unique = byId.Count == spots.Length;
+            bool allMatch = unique && MapAData.PlantingSpots.All(def =>
+            {
+                PlantingSpot spot;
+                if (!byId.TryGetValue(def.Id, out spot))
+                    return false;
+                return Vector2.Distance(spot.transform.position, def.Position) <= 0.001f &&
+                       spot.GetComponentsInChildren<Renderer>(true).Length == 0;
+            });
+
+            result.Check("plantingSpotIdsUnique", unique, "Runtime planting spot IDs are not unique.");
+            result.Check("plantingSpotsMatchAuthoredPatchAnchors", allMatch,
+                "Runtime planting spot anchors do not match the authored patch definitions or contain generated overlay renderers.");
+        }
+
+        private static void ValidateGridAbsence(Result result)
+        {
+            Component[] components = Resources.FindObjectsOfTypeAll<Component>();
+            int gridComponents = components.Count(c =>
+                c != null && c.gameObject != null && c.gameObject.scene.IsValid() &&
+                (c.GetType().Name == "Grid" || c.GetType().Name == "GridLayout"));
+
+            Renderer[] renderers = UnityEngine.Object.FindObjectsByType<Renderer>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+            int namedVisibleGridRenderers = renderers.Count(r =>
+                r != null && r.enabled && r.gameObject.activeInHierarchy &&
+                r.gameObject.name.IndexOf("Grid", StringComparison.OrdinalIgnoreCase) >= 0);
+
+            result.Fact("gridComponentCount", gridComponents);
+            result.Fact("namedVisibleGridRendererCount", namedVisibleGridRenderers);
+            result.Check("noGameplayGridVisible", gridComponents == 0 && namedVisibleGridRenderers == 0,
+                "A gameplay Grid/GridLayout or visible Grid-named renderer exists in MAP-A.");
+        }
+
+        private static void ValidateCameraFraming(Result result)
+        {
+            Camera camera = Camera.main;
+            MobileCameraFitter fitter = camera != null ? camera.GetComponent<MobileCameraFitter>() : null;
+            bool cameraReady = camera != null && camera.orthographic && fitter != null;
+            result.Check("mapCameraConfigured", cameraReady, "MAP-A Main Camera/MobileCameraFitter is missing or not orthographic.");
+            if (!cameraReady)
+                return;
+
+            float aspect = Mathf.Max(0.1f, (float)Screen.width / Mathf.Max(1, Screen.height));
+            float halfHeight = camera.orthographicSize;
+            float halfWidth = halfHeight * aspect;
+            Vector3 center = camera.transform.position;
+            float left = center.x - halfWidth;
+            float right = center.x + halfWidth;
+            float bottom = center.y - halfHeight;
+            float top = center.y + halfHeight;
+
+            // MobileCameraFitter may offset the presentation by a small amount to
+            // balance asymmetric HUD insets. That is intentional; reject only a
+            // material drift away from the logical map centre.
+            bool centered = Mathf.Abs(center.x - MapAData.Width * 0.5f) <= 0.25f &&
+                            Mathf.Abs(center.y - MapAData.Height * 0.5f) <= 0.25f;
+            bool contains = left <= 0.001f && right >= MapAData.Width - 0.001f &&
+                            bottom <= 0.001f && top >= MapAData.Height - 0.001f;
+
+            result.Fact("gameViewWidth", Screen.width);
+            result.Fact("gameViewHeight", Screen.height);
+            result.Fact("gameViewAspectUsed", aspect.ToString("0.###", CultureInfo.InvariantCulture));
+            result.Fact("cameraOrthographicSize", halfHeight.ToString("0.###", CultureInfo.InvariantCulture));
+            result.Check("cameraPresentationOffsetWithinMargin", centered,
+                "MAP-A camera presentation offset exceeds the allowed HUD framing margin.");
+            result.Check("logicalMapContainedInGameView", contains, "MAP-A logical bounds are not fully contained by the configured Game View camera.");
+        }
+
+        private static bool InsideBounds(Vector2 p)
+        {
+            return p.x >= 0f && p.x <= MapAData.Width && p.y >= 0f && p.y <= MapAData.Height;
+        }
+
+        private static bool Approximately(float a, float b, float tolerance)
+        {
+            return Mathf.Abs(a - b) <= tolerance;
+        }
+
+        private static string Format(Vector2 value)
+        {
+            return value.x.ToString("0.###", CultureInfo.InvariantCulture) + "," +
+                   value.y.ToString("0.###", CultureInfo.InvariantCulture);
+        }
+
+        private static string Format(Vector3 value)
+        {
+            return value.x.ToString("0.###", CultureInfo.InvariantCulture) + "," +
+                   value.y.ToString("0.###", CultureInfo.InvariantCulture) + "," +
+                   value.z.ToString("0.###", CultureInfo.InvariantCulture);
+        }
+    }
+}
+#endif

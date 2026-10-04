@@ -1,1 +1,421 @@
-®•y€hrâÁyÀm°ª¨:ó´jÿ®ûz-•ÍÊä€^u’Õ•πúÅMÂÕ—ï¥Ï)’Õ•πúÅUπ•—Âπù•πîÏ()πÖµïÕ¡ÖçîÅÖπ—ÖÕÂQπ5Ö¡)Ï(ÄÄÄÅ¡’â±•åÅÕ—Ö—•åÅç±ÖÕÃÅ!•ùùÕô•ï±ëM¡…•—ïÖç—Ω…‰(ÄÄÄÅÏ(ÄÄÄÄÄÄÄÅ¡…•ŸÖ—îÅÕ—Ö—•åÅM¡…•—îÅ}ÕïïëM°ΩΩ—ï»Ï(ÄÄÄÄÄÄÄÅ¡…•ŸÖ—îÅÕ—Ö—•åÅM¡…•—îÅ}ïÕÕïπçï±Ω›ï»Ï(ÄÄÄÄÄÄÄÅ¡…•ŸÖ—îÅÕ—Ö—•åÅM¡…•—îÅ}ΩÖ≠’Ö…ë•Ö∏Ï(ÄÄÄÄÄÄÄÅ¡…•ŸÖ—îÅÕ—Ö—•åÅM¡…•—îÅ}ô…ΩÕ—	’êÏ(ÄÄÄÄÄÄÄÅ¡…•ŸÖ—îÅÕ—Ö—•åÅM¡…•—îÅ}›Öπëï…ï»Ï(ÄÄÄÄÄÄÄÅ¡…•ŸÖ—îÅÕ—Ö—•åÅM¡…•—îÅ}…’ππï»Ï(ÄÄÄÄÄÄÄÅ¡…•ŸÖ—îÅÕ—Ö—•åÅM¡…•—îÅ}â…’—îÏ(ÄÄÄÄÄÄÄÅ¡…•ŸÖ—îÅÕ—Ö—•åÅM¡…•—îÅ}Ö…µΩ…ïêÏ(ÄÄÄÄÄÄÄÅ¡…•ŸÖ—îÅÕ—Ö—•åÅM¡…•—îÅ}âΩÕÃÏ(ÄÄÄÄÄÄÄÅ¡…•ŸÖ—îÅÕ—Ö—•åÅM¡…•—îÅ}¡Ω…—Ö∞Ï(ÄÄÄÄÄÄÄÅ¡…•ŸÖ—îÅÕ—Ö—•åÅM¡…•—îÅ}°ΩµïQ…ïîÏ(ÄÄÄÄÄÄÄÅ¡…•ŸÖ—îÅÕ—Ö—•åÅM¡…•—ïmtÅ}›Öπëï…ï…]Ö±¨Ï(ÄÄÄÄÄÄÄÅ¡…•ŸÖ—îÅÕ—Ö—•åÅM¡…•—îÅ}ÕïïëM°Ω–Ï(ÄÄÄÄÄÄÄÅ¡…•ŸÖ—îÅÕ—Ö—•åÅM¡…•—îÅ}µ’—Ö—•ΩπQΩ›ï»Ï((ÄÄÄÄÄÄÄÅ¡’â±•åÅÕ—Ö—•åÅM¡…•—îÅ5’—Ö—•ΩπQΩ›ï»ÄÙ¯Å}µ’—Ö—•ΩπQΩ›ï»Ä¸¸ÙÅ…ïÖ—ï’—Ω’–†(ÄÄÄÄÄÄÄÄÄÄÄÄâ!•ùùÕô•ï±êΩ5Ö¡ÃΩ5@’}5UQQ%=9}Q=]Hà∞Ä¿∏»≈ò∞¿∏‘…ò∞¿∏–Âò∞¿∏‰Ÿò∞â!•ùùÕô•ï±ë}5’—ÖçÂ©πÂAÖ¨à∞Å•ÕΩ±Ö—ïΩ…ïù…Ω’πêÈ—…’î§Ï((ÄÄÄÄÄÄÄÄººÅ’—°Ω…ïêÅ±ΩçΩµΩ—•Ω∏Å¡ΩÕïÃÅΩ∏Å—°îÅâΩ——Ω¥Å…Ω‹ÅΩòÅÖ…—•ôÖç–Äƒƒ»ƒ‰‰Ã‘‹»Ã∏(ÄÄÄÄÄÄÄÄººÅQ°îÅ±ÖÕ–Å¡ΩÕîÅôÖçïÃÅ±ïô–Å•∏Å—°îÅÕΩ’…çî∞ÅÕºÅ•–Å•ÃÅµ•……Ω…ïêÅ—ºÅµÖ—ç†Å—°îÅΩ—°ï…Ã∏(ÄÄÄÄÄÄÄÅ¡’â±•åÅÕ—Ö—•åÅM¡…•—ïmtÅ]Öπëï…ï…]Ö±¨ÄÙ¯Å}›Öπëï…ï…]Ö±¨Ä¸¸ÙÅπï›mt(ÄÄÄÄÄÄÄÅÏ(ÄÄÄÄÄÄÄÄÄÄÄÅ…ïÖ—ï’—Ω’–†â!•ùùÕô•ï±êΩ]9II}M!Pà∞Ä¿∏–‘’ò∞Ä¡ò∞Ä¿∏ÿÃ’ò∞Ä¿∏–›ò∞Äâ°Ωç°±•≠}]Ö±≠|¿à∞ÅôÖ±Õî∞Å—…’î§∞(ÄÄÄÄÄÄÄÄÄÄÄÅ…ïÖ—ï’—Ω’–†â!•ùùÕô•ï±êΩ]9II}M!Pà∞Ä¿∏ÿÃ’ò∞Ä¡ò∞Ä¿∏‡¿·ò∞Ä¿∏–›ò∞Äâ°Ωç°±•≠}]Ö±≠|ƒà∞ÅôÖ±Õî∞Å—…’î§∞(ÄÄÄÄÄÄÄÄÄÄÄÅ…ïÖ—ï’—Ω’–†â!•ùùÕô•ï±êΩ]9II}M!Pà∞Ä¿∏‡¿·ò∞Ä¡ò∞Ä≈ò∞Ä¿∏–›ò∞Äâ°Ωç°±•≠}]Ö±≠|»à∞Å—…’î∞Å—…’î§(ÄÄÄÄÄÄÄÅÙÏ((ÄÄÄÄÄÄÄÄººÅQ°îÅ•ÕΩ±Ö—ïêÅô±Â•πúÅÕïïêÅÖâΩŸîÅ—°îÅÕµÖ±∞Åâ’êÅ•∏ÅÖ…—•ôÖç–Äƒƒ»ƒ‰‘ÿ‹‡‡‡∏(ÄÄÄÄÄÄÄÄººÅQ°•ÃÅ•ÃÅÑÅÕΩ’…çîÅç…Ω¿∞ÅπΩ–ÅÑÅùïπï…Ö—ïêÅ¡…•µ•—•ŸîÅΩ»ÅÑÅπï‹Å•±±’Õ—…Ö—•Ω∏∏(ÄÄÄÄÄÄÄÅ¡’â±•åÅÕ—Ö—•åÅM¡…•—îÅMïïëM°Ω–ÄÙ¯Å}ÕïïëM°Ω–Ä¸¸ÙÅ…ïÖ—ï’—Ω’–†(ÄÄÄÄÄÄÄÄÄÄÄÄâ!•ùùÕô•ï±êΩM}M!==QI}M!Pà∞Ä¿∏‹¡ò∞Ä¿∏–‘·ò∞Ä¿∏‹ƒÂò∞Ä¿∏–‰Ÿò∞(ÄÄÄÄÄÄÄÄÄÄÄÄâAïëΩÕ—…ÈÖ±}’—°Ω…ïëMïïëM°Ω–à∞Å•ÕΩ±Ö—ïΩ…ïù…Ω’πêËÅ—…’î§Ï((ÄÄÄÄÄÄÄÅ¡’â±•åÅÕ—Ö—•åÅM¡…•—îÅMïïëM°ΩΩ—ï»ÄÙ¯Å}ÕïïëM°ΩΩ—ï»Ä¸¸ÙÅ…ïÖ—ï’—Ω’–†(ÄÄÄÄÄÄÄÄÄÄÄÄâ!•ùùÕô•ï±êΩM}M!==QI}M!Pà∞Ä¡ò∞Ä¡ò∞Ä¿∏‘ƒ’ò∞Ä≈ò∞Äâ!•ùùÕô•ï±ë}AïëΩÕ—…ÈÖ∞à∞Å•ÕΩ±Ö—ïΩ…ïù…Ω’πêËÅ—…’î§Ï((ÄÄÄÄÄÄÄÅ¡’â±•åÅÕ—Ö—•åÅM¡…•—îÅÕÕïπçï±Ω›ï»ÄÙ¯Å}ïÕÕïπçï±Ω›ï»Ä¸¸ÙÅ…ïÖ—ï’—Ω’–†(ÄÄÄÄÄÄÄÄÄÄÄÄâ!•ùùÕô•ï±êΩMM9}1=]Hà∞Ä¡ò∞Ä¡ò∞Ä≈ò∞Ä≈ò∞Äâ!•ùùÕô•ï±ë}-›•Ö—Õïπç©§à∞Å•ÕΩ±Ö—ïΩ…ïù…Ω’πêËÅ—…’î§Ï((ÄÄÄÄÄÄÄÅ¡’â±•åÅÕ—Ö—•åÅM¡…•—îÅ=Ö≠’Ö…ë•Ö∏ÄÙ¯Å}ΩÖ≠’Ö…ë•Ö∏Ä¸¸ÙÅ…ïÖ—ï’—Ω’–†(ÄÄÄÄÄÄÄÄÄÄÄÄâ!•ùùÕô•ï±êΩ=-}UI%8à∞Ä¡ò∞Ä¡ò∞Ä≈ò∞Ä≈ò∞Äâ!•ùùÕô•ï±ë}ïâΩ›ÂM—…ÖÈπ•¨à∞Å•ÕΩ±Ö—ïΩ…ïù…Ω’πêËÅ—…’î§Ï((ÄÄÄÄÄÄÄÅ¡’â±•åÅÕ—Ö—•åÅM¡…•—îÅ…ΩÕ—	’êÄÙ¯Å}ô…ΩÕ—	’êÄ¸¸ÙÅ…ïÖ—ï’—Ω’–†(ÄÄÄÄÄÄÄÄÄÄÄÄâ!•ùùÕô•ï±êΩI=MQ}	Uà∞Ä¡ò∞Ä¡ò∞Ä≈ò∞Ä≈ò∞Äâ!•ùùÕô•ï±ë}5…ΩÈπÂAÖ¨à∞Å•ÕΩ±Ö—ïΩ…ïù…Ω’πêËÅ—…’î§Ï((ÄÄÄÄÄÄÄÅ¡’â±•åÅÕ—Ö—•åÅM¡…•—îÅ]Öπëï…ï»ÄÙ¯Å}›Öπëï…ï»Ä¸¸ÙÅ…ïÖ—ï’—Ω’–†(ÄÄÄÄÄÄÄÄÄÄÄÄâ!•ùùÕô•ï±êΩ]9II}M!Pà∞Ä¡ò∞Ä¡ò∞Ä¿∏–‘’ò∞Ä≈ò∞Äâ!•ùùÕô•ï±ë}°Ωç°±•¨à∞Å•ÕΩ±Ö—ïΩ…ïù…Ω’πêËÅ—…’î§Ï((ÄÄÄÄÄÄÄÅ¡’â±•åÅÕ—Ö—•åÅM¡…•—îÅI’ππï»ÄÙ¯Å}…’ππï»Ä¸¸ÙÅ…ïÖ—ï’—Ω’–†(ÄÄÄÄÄÄÄÄÄÄÄÄâ!•ùùÕô•ï±êΩIU99Hà∞Ä¡ò∞Ä¡ò∞Ä≈ò∞Ä≈ò∞Äâ!•ùùÕô•ï±ë}]•ç°…Ω›ÂM≠…ÈÖ–à∞Å•ÕΩ±Ö—ïΩ…ïù…Ω’πêËÅ—…’î§Ï((ÄÄÄÄÄÄÄÅ¡’â±•åÅÕ—Ö—•åÅM¡…•—îÅ	…’—îÄÙ¯Å}â…’—îÄ¸¸ÙÅ…ïÖ—ï’—Ω’–†(ÄÄÄÄÄÄÄÄÄÄÄÄâ!•ùùÕô•ï±êΩ	IUQà∞Ä¡ò∞Ä¡ò∞Ä≈ò∞Ä≈ò∞Äâ!•ùùÕô•ï±ë}=ù…iÖ…ΩÕ±§à∞Å•ÕΩ±Ö—ïΩ…ïù…Ω’πêËÅ—…’î§Ï((ÄÄÄÄÄÄÄÅ¡’â±•åÅÕ—Ö—•åÅM¡…•—îÅ…µΩ…ïêÄÙ¯Å}Ö…µΩ…ïêÄ¸¸ÙÅ…ïÖ—ï’—Ω’–†(ÄÄÄÄÄÄÄÄÄÄÄÄâ!•ùùÕô•ï±êΩI5=Ià∞Ä¡ò∞Ä¡ò∞Ä≈ò∞Ä≈ò∞Äâ!•ùùÕô•ï±ë}iï±ÖÈπÂΩâ±•∏à∞Å•ÕΩ±Ö—ïΩ…ïù…Ω’πêËÅ—…’î§Ï((ÄÄÄÄÄÄÄÅ¡’â±•åÅÕ—Ö—•åÅM¡…•—îÅ	ΩÕÃÄÙ¯Å}âΩÕÃÄ¸¸ÙÅ…ïÖ—ï’—Ω’–†(ÄÄÄÄÄÄÄÄÄÄÄÄâ!•ùùÕô•ï±êΩ	=MLà∞Ä¡ò∞Ä¡ò∞Ä≈ò∞Ä≈ò∞Äâ!•ùùÕô•ï±ë}-…Ω±•ï…π§à∞Å•ÕΩ±Ö—ïΩ…ïù…Ω’πêËÅ—…’î§Ï((ÄÄÄÄÄÄÄÅ¡’â±•åÅÕ—Ö—•åÅM¡…•—îÅAΩ…—Ö∞ÄÙ¯Å}¡Ω…—Ö∞Ä¸¸ÙÅ…ïÖ—ï’—Ω’–†(ÄÄÄÄÄÄÄÄÄÄÄÄâ!•ùùÕô•ï±êΩA=IQ0à∞Ä¡ò∞Ä¡ò∞Ä≈ò∞Ä≈ò∞Äâ!•ùùÕô•ï±ë}AΩ…—Ö∞à∞Å•ÕΩ±Ö—ïΩ…ïù…Ω’πêËÅ—…’î§Ï((ÄÄÄÄÄÄÄÅ¡’â±•åÅÕ—Ö—•åÅM¡…•—îÅ!ΩµïQ…ïîÄÙ¯Å}°ΩµïQ…ïîÄ¸¸ÙÅ…ïÖ—ï’—Ω’–†(ÄÄÄÄÄÄÄÄÄÄÄÄâ!•ùùÕô•ï±êΩ!=5}QIà∞Ä¡ò∞Ä¡ò∞Ä≈ò∞Ä≈ò∞Äâ!•ùùÕô•ï±ë}!ΩµïQ…ïîà∞Å•ÕΩ±Ö—ïΩ…ïù…Ω’πêËÅ—…’î§Ï((ÄÄÄÄÄÄÄÅ¡’â±•åÅÕ—Ö—•åÅM¡…•—îÅA±Öπ–°A±Öπ—-•πêÅ≠•πê§(ÄÄÄÄÄÄÄÅÏ(ÄÄÄÄÄÄÄÄÄÄÄÅ…ï—’…∏Å≠•πêÅÕ›•—ç†(ÄÄÄÄÄÄÄÄÄÄÄÅÏ(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅA±Öπ—-•πêπMïïëM°ΩΩ—ï»ÄÙ¯ÅMïïëM°ΩΩ—ï»∞(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅA±Öπ—-•πêπÕÕïπçï±Ω›ï»ÄÙ¯ÅÕÕïπçï±Ω›ï»∞(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅA±Öπ—-•πêπ=Ö≠’Ö…ë•Ö∏ÄÙ¯Å=Ö≠’Ö…ë•Ö∏∞(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅA±Öπ—-•πêπ…ΩÕ—	’êÄÙ¯Å…ΩÕ—	’ê∞(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅA±Öπ—-•πêπ5’—Ö—•ΩπQΩ›ï»ÄÙ¯Å5’—Ö—•ΩπQΩ›ï»∞(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅ|ÄÙ¯Å—°…Ω‹Åπï‹Å…ù’µïπ—=’—=ôIÖπùï·çï¡—•Ω∏°πÖµïΩò°≠•πê§∞Å≠•πê∞Åπ’±∞§(ÄÄÄÄÄÄÄÄÄÄÄÅÙÏ(ÄÄÄÄÄÄÄÅÙ((ÄÄÄÄÄÄÄÅ¡’â±•åÅÕ—Ö—•åÅM¡…•—îÅπïµ‰°πïµÂ-•πêÅ≠•πê§(ÄÄÄÄÄÄÄÅÏ(ÄÄÄÄÄÄÄÄÄÄÄÅ…ï—’…∏Å≠•πêÅÕ›•—ç†(ÄÄÄÄÄÄÄÄÄÄÄÅÏ(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅπïµÂ-•πêπ]Öπëï…ï»ÄÙ¯Å]Öπëï…ï»∞(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅπïµÂ-•πêπI’ππï»ÄÙ¯ÅI’ππï»∞(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅπïµÂ-•πêπ	…’—îÄÙ¯Å	…’—î∞(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅπïµÂ-•πêπ…µΩ…ïêÄÙ¯Å…µΩ…ïê∞(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅπïµÂ-•πêπ	ΩÕÃÄÙ¯Å	ΩÕÃ∞(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅ|ÄÙ¯Å—°…Ω‹Åπï‹Å…ù’µïπ—=’—=ôIÖπùï·çï¡—•Ω∏°πÖµïΩò°≠•πê§∞Å≠•πê∞Åπ’±∞§(ÄÄÄÄÄÄÄÄÄÄÄÅÙÏ(ÄÄÄÄÄÄÄÅÙ((ÄÄÄÄÄÄÄÅ¡’â±•åÅÕ—Ö—•åÅŸΩ•êÅYÖ±•ëÖ—ïA…Ωë’ç—•ΩπÕÕï—Ã†§(ÄÄÄÄÄÄÄÅÏ(ÄÄÄÄÄÄÄÄÄÄÄÅIï≈’•…î°MïïëM°ΩΩ—ï»∞ÄâCeëΩÕ—…Èáà§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅIï≈’•…î°ÕÕïπçï±Ω›ï»∞Äâ-›•Ö–ÅÕïπç©§à§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅIï≈’•…î°=Ö≠’Ö…ë•Ö∏∞ÄâeâΩ›‰ÅM—…áÒπ•¨à§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅIï≈’•…î°…ΩÕ—	’ê∞Äâ5…øÈπ‰ÅC¨à§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅIï≈’•…î°]Öπëï…ï»∞Äâ°Ωç°±•¨à§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅIï≈’•…î°I’ππï»∞Äâ]•ç°…Ω›‰ÅM≠…ÈÖ–à§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅIï≈’•…î°	…’—î∞Äâ=ù»ÅiÖ…øm±§à§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅIï≈’•…î°…µΩ…ïê∞ÄãÌï±ÖÈπ‰ÅΩâ±•∏à§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅIï≈’•…î°	ΩÕÃ∞Äâ-ÀÕ∞Å•ï…π§à§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅIï≈’•…î°AΩ…—Ö∞∞ÄâAΩ…—Ö∞à§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅIï≈’•…î°!ΩµïQ…ïî∞Äâ	ÖÈÑµë…Èï›ºà§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅIï≈’•…î°MïïëM°Ω–∞ÄãÂÀÕì	Ω›‰Å¡Ωç•Õ¨ÅπÖÕ•ïππ‰à§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅôΩ…ïÖç†Ä°M¡…•—îÅô…ÖµîÅ•∏Å]Öπëï…ï…]Ö±¨§ÅIï≈’•…î°ô…Öµî∞ÄãÂÀÕì	Ω›ÑÅ¡ΩÈÑÅç°Ωë‘Å°Ωç°±•≠Ñà§Ï(ÄÄÄÄÄÄÄÅÙ((ÄÄÄÄÄÄÄÅ¡…•ŸÖ—îÅÕ—Ö—•åÅŸΩ•êÅIï≈’•…î°M¡…•—îÅÕ¡…•—î∞ÅÕ—…•πúÅ±Öâï∞§(ÄÄÄÄÄÄÄÅÏ(ÄÄÄÄÄÄÄÄÄÄÄÅ•òÄ°Õ¡…•—îÄÙÙÅπ’±∞§(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅ—°…Ω‹Åπï‹Å%πŸÖ±•ë=¡ï…Ö—•Ωπ·çï¡—•Ω∏†â5•ÕÕ•πúÅ…ï≈’•…ïêÅ!•ùùÕô•ï±êÅ¡…Ωë’ç—•Ω∏ÅÕ¡…•—îËÄàÄ¨Å±Öâï∞§Ï(ÄÄÄÄÄÄÄÅÙ((ÄÄÄÄÄÄÄÄººÅIï—Ö•∏Åï·Öç–ÅÖ¡¡…ΩŸïêÅç…Ω¿Åë•µïπÕ•ΩπÃÅôΩ»ÅÖ’—°Ω…ïêÅµÖ¿Å—•±îÅ¡±Öçïµïπ–∏(ÄÄÄÄÄÄÄÅ¡’â±•åÅÕ—Ö—•åÅM¡…•—îÅMΩ’…çï…Ω¡Uπ—…•µµïê°Õ—…•πúÅ…ïÕΩ’…çïAÖ—†∞ÅIïç–ÅπΩ…µÖ±•Èïë…Ω¿∞ÅÕ—…•πúÅπÖµî§(ÄÄÄÄÄÄÄÅÏ(ÄÄÄÄÄÄÄÄÄÄÄÅ…ï—’…∏Å…ïÖ—ï’—Ω’–°…ïÕΩ’…çïAÖ—†∞ÅπΩ…µÖ±•Èïë…Ω¿π·5•∏∞ÅπΩ…µÖ±•Èïë…Ω¿πÂ5•∏∞(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅπΩ…µÖ±•Èïë…Ω¿π·5Ö‡∞ÅπΩ…µÖ±•Èïë…Ω¿πÂ5Ö‡∞ÅπÖµî∞ÅôÖ±Õî∞ÅôÖ±Õî∞ÅôÖ±Õî∞Å—…’î§Ï(ÄÄÄÄÄÄÄÅÙ((ÄÄÄÄÄÄÄÅ¡…•ŸÖ—îÅÕ—Ö—•åÅM¡…•—îÅ…ïÖ—ï’—Ω’–†(ÄÄÄÄÄÄÄÄÄÄÄÅÕ—…•πúÅ…ïÕΩ’…çïAÖ—†∞(ÄÄÄÄÄÄÄÄÄÄÄÅô±ΩÖ–Å·5•π8∞(ÄÄÄÄÄÄÄÄÄÄÄÅô±ΩÖ–ÅÂ5•π8∞(ÄÄÄÄÄÄÄÄÄÄÄÅô±ΩÖ–Å·5Ö·8∞(ÄÄÄÄÄÄÄÄÄÄÄÅô±ΩÖ–ÅÂ5Ö·8∞(ÄÄÄÄÄÄÄÄÄÄÄÅÕ—…•πúÅπÖµî∞(ÄÄÄÄÄÄÄÄÄÄÄÅâΩΩ∞Åµ•……Ω»ÄÙÅôÖ±Õî∞(ÄÄÄÄÄÄÄÄÄÄÄÅâΩΩ∞Å•ÕΩ±Ö—ïΩ…ïù…Ω’πêÄÙÅôÖ±Õî∞(ÄÄÄÄÄÄÄÄÄÄÄÅâΩΩ∞Å—…•¥ÄÙÅ—…’î∞(ÄÄÄÄÄÄÄÄÄÄÄÅâΩΩ∞Åçïπ—ï…ïëA•ŸΩ–ÄÙÅôÖ±Õî§(ÄÄÄÄÄÄÄÅÏ(ÄÄÄÄÄÄÄÄÄÄÄÅQï·—’…î…ÅÕ°ïï–ÄÙÅIïÕΩ’…çïÃπ1ΩÖêÒQï·—’…î…¯°…ïÕΩ’…çïAÖ—†§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ•òÄ°Õ°ïï–ÄÙÙÅπ’±∞§(ÄÄÄÄÄÄÄÄÄÄÄÅÏ(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅïâ’úπ1Ωù……Ω»†âIï≈’•…ïêÅ!•ùùÕô•ï±êÅ—ï·—’…îÅµ•ÕÕ•πúËÄàÄ¨Å…ïÕΩ’…çïAÖ—†§Ï(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅ…ï—’…∏Åπ’±∞Ï(ÄÄÄÄÄÄÄÄÄÄÄÅÙ((ÄÄÄÄÄÄÄÄÄÄÄÅ•òÄ†ÖÕ°ïï–π•ÕIïÖëÖâ±î§(ÄÄÄÄÄÄÄÄÄÄÄÅÏ(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅïâ’úπ1Ωù……Ω»†â!•ùùÕô•ï±êÅ—ï·—’…îÅ•ÃÅπΩ–Å…ïÖëÖâ±îËÄàÄ¨Å…ïÕΩ’…çïAÖ—†§Ï(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅ…ï—’…∏Åπ’±∞Ï(ÄÄÄÄÄÄÄÄÄÄÄÅÙ((ÄÄÄÄÄÄÄÄÄÄÄÅ•π–Å‡¿ÄÙÅ5Ö—°òπ±Öµ¿°5Ö—°òπIΩ’πëQΩ%π–°Õ°ïï–π›•ë—†Ä®Å·5•π8§∞Ä¿∞ÅÕ°ïï–π›•ë—†Ä¥Äƒ§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ•π–Å‰¿ÄÙÅ5Ö—°òπ±Öµ¿°5Ö—°òπIΩ’πëQΩ%π–°Õ°ïï–π°ï•ù°–Ä®ÅÂ5•π8§∞Ä¿∞ÅÕ°ïï–π°ï•ù°–Ä¥Äƒ§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ•π–Å‡ƒÄÙÅ5Ö—°òπ±Öµ¿°5Ö—°òπIΩ’πëQΩ%π–°Õ°ïï–π›•ë—†Ä®Å·5Ö·8§∞Å‡¿Ä¨Äƒ∞ÅÕ°ïï–π›•ë—†§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ•π–Å‰ƒÄÙÅ5Ö—°òπ±Öµ¿°5Ö—°òπIΩ’πëQΩ%π–°Õ°ïï–π°ï•ù°–Ä®ÅÂ5Ö·8§∞Å‰¿Ä¨Äƒ∞ÅÕ°ïï–π°ï•ù°–§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ•π–Å›•ë—†ÄÙÅ‡ƒÄ¥Å‡¿Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ•π–Å°ï•ù°–ÄÙÅ‰ƒÄ¥Å‰¿Ï((ÄÄÄÄÄÄÄÄÄÄÄÅΩ±Ω»Ã…mtÅ¡•·ï±ÃÄÙÅÕ°ïï–πï—A•·ï±ÃÃ»†§Ï((ÄÄÄÄÄÄÄÄÄÄÄÅΩ±Ω»Ã…mtÅç…Ω¡¡ïêÄÙÅπï‹ÅΩ±Ω»Ã…m›•ë—†Ä®Å°ï•ù°—tÏ(ÄÄÄÄÄÄÄÄÄÄÄÅôΩ»Ä°•π–Å‰ÄÙÄ¿ÏÅ‰ÄÅ°ï•ù°–ÏÅ‰¨¨§(ÄÄÄÄÄÄÄÄÄÄÄÅÏ(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅ•π–ÅÕΩ’…çïIΩ‹ÄÙÄ°‰¿Ä¨Å‰§Ä®ÅÕ°ïï–π›•ë—†Ä¨Å‡¿Ï(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅ•π–Å—Ö…ùï—IΩ‹ÄÙÅ‰Ä®Å›•ë—†Ï(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅôΩ»Ä°•π–Å‡ÄÙÄ¿ÏÅ‡ÄÅ›•ë—†ÏÅ‡¨¨§(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅç…Ω¡¡ïëm—Ö…ùï—IΩ‹Ä¨Å·tÄÙÅ¡•·ï±ÕmÕΩ’…çïIΩ‹Ä¨Å·tÏ(ÄÄÄÄÄÄÄÄÄÄÄÅÙ((ÄÄÄÄÄÄÄÄÄÄÄÅΩ±Ω»Ã…mtÅâÖç≠ù…Ω’πëAÖ±ï——îÄÙÅMÖµ¡±ï	Öç≠ù…Ω’πëAÖ±ï——î°ç…Ω¡¡ïê∞Å›•ë—†∞Å°ï•ù°–§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅâΩΩ±mtÅçΩππïç—ïë	Öç≠ù…Ω’πêÄÙÅ•πëΩππïç—ïë	Öç≠ù…Ω’πê°ç…Ω¡¡ïê∞Å›•ë—†∞Å°ï•ù°–∞ÅâÖç≠ù…Ω’πëAÖ±ï——î§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ•π–Åµ•π`ÄÙÅ›•ë—†Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ•π–Åµ•πdÄÙÅ°ï•ù°–Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ•π–ÅµÖ·`ÄÙÄ¥ƒÏ(ÄÄÄÄÄÄÄÄÄÄÄÅ•π–ÅµÖ·dÄÙÄ¥ƒÏ((ÄÄÄÄÄÄÄÄÄÄÄÅôΩ»Ä°•π–Å‰ÄÙÄ¿ÏÅ‰ÄÅ°ï•ù°–ÏÅ‰¨¨§(ÄÄÄÄÄÄÄÄÄÄÄÅÏ(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅôΩ»Ä°•π–Å‡ÄÙÄ¿ÏÅ‡ÄÅ›•ë—†ÏÅ‡¨¨§(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÏ(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅ•π–Å•πëï‡ÄÙÅ‰Ä®Å›•ë—†Ä¨Å‡Ï(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅΩ±Ω»Ã»ÅΩ’—¡’–ÄÙÅç…Ω¡¡ïëm•πëï·tÏ(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅô±ΩÖ–Å¡Ö±ï——ï•Õ—ÖπçîÄÙÅ•Õ—ÖπçïQΩAÖ±ï——î°Ω’—¡’–∞ÅâÖç≠ù…Ω’πëAÖ±ï——î§Ï(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅâΩΩ∞ÅâÖç≠ù…Ω’πêÄÙÅçΩππïç—ïë	Öç≠ù…Ω’πëm•πëï·tÅÒÅ¡Ö±ï——ï•Õ—ÖπçîÄÙÄ¿∏¿‹’òÏ(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅΩ’—¡’–πÑÄÙÅâÖç≠ù…Ω’πêÄ¸Ä°âÂ—î§¿ÄËÄ°âÂ—î§»‘‘Ï(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅç…Ω¡¡ïëm•πëï·tÄÙÅΩ’—¡’–Ï((ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅ•òÄ°Ω’—¡’–πÑÄ¯ÙÄ–‡§(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÏ(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅµ•π`ÄÙÅ5Ö—°òπ5•∏°µ•π`∞Å‡§Ï(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅµ•πdÄÙÅ5Ö—°òπ5•∏°µ•πd∞Å‰§Ï(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅµÖ·`ÄÙÅ5Ö—°òπ5Ö‡°µÖ·`∞Å‡§Ï(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅµÖ·dÄÙÅ5Ö—°òπ5Ö‡°µÖ·d∞Å‰§Ï(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÙ(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÙ(ÄÄÄÄÄÄÄÄÄÄÄÅÙ((ÄÄÄÄÄÄÄÄÄÄÄÅïÖ—°ï…Ω…ïù…Ω’πëëùî°ç…Ω¡¡ïê∞Å›•ë—†∞Å°ï•ù°–§Ï((ÄÄÄÄÄÄÄÄÄÄÄÅ•òÄ°•ÕΩ±Ö—ïΩ…ïù…Ω’πê§(ÄÄÄÄÄÄÄÄÄÄÄÅÏ(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅ-ïï¡1Ö…ùïÕ—Ω…ïù…Ω’πê°ç…Ω¡¡ïê∞Å›•ë—†∞Å°ï•ù°–§Ï(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅµ•π`ÄÙÅ›•ë—†ÏÅµ•πdÄÙÅ°ï•ù°–ÏÅµÖ·`ÄÙÄ¥ƒÏÅµÖ·dÄÙÄ¥ƒÏ(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅôΩ»Ä°•π–Å‰ÄÙÄ¿ÏÅ‰ÄÅ°ï•ù°–ÏÅ‰¨¨§(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅôΩ»Ä°•π–Å‡ÄÙÄ¿ÏÅ‡ÄÅ›•ë—†ÏÅ‡¨¨§(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÏ(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅ•òÄ°ç…Ω¡¡ïëm‰Ä®Å›•ë—†Ä¨Å·tπÑÄÄ–‡§ÅçΩπ—•π’îÏ(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅµ•π`ÄÙÅ5Ö—°òπ5•∏°µ•π`∞Å‡§ÏÅµ•πdÄÙÅ5Ö—°òπ5•∏°µ•πd∞Å‰§Ï(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅµÖ·`ÄÙÅ5Ö—°òπ5Ö‡°µÖ·`∞Å‡§ÏÅµÖ·dÄÙÅ5Ö—°òπ5Ö‡°µÖ·d∞Å‰§Ï(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÙ(ÄÄÄÄÄÄÄÄÄÄÄÅÙ((ÄÄÄÄÄÄÄÄÄÄÄÅ•òÄ°µÖ·`ÄÅµ•π`ÅÒÅµÖ·dÄÅµ•πd§(ÄÄÄÄÄÄÄÄÄÄÄÅÏ(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅïâ’úπ1Ωù……Ω»†â!•ùùÕô•ï±êÅç’—Ω’–Å¡…Ωë’çïêÅπºÅôΩ…ïù…Ω’πêÅ¡•·ï±ÃËÄàÄ¨Å…ïÕΩ’…çïAÖ—†§Ï(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅ…ï—’…∏Åπ’±∞Ï(ÄÄÄÄÄÄÄÄÄÄÄÅÙ((ÄÄÄÄÄÄÄÄÄÄÄÅçΩπÕ–Å•π–Å¡Öëë•πúÄÙÄƒ»Ï(ÄÄÄÄÄÄÄÄÄÄÄÅµ•π`ÄÙÅ5Ö—°òπ5Ö‡†¿∞Åµ•π`Ä¥Å¡Öëë•πú§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅµ•πdÄÙÅ5Ö—°òπ5Ö‡†¿∞Åµ•πdÄ¥Å¡Öëë•πú§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅµÖ·`ÄÙÅ5Ö—°òπ5•∏°›•ë—†Ä¥Äƒ∞ÅµÖ·`Ä¨Å¡Öëë•πú§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅµÖ·dÄÙÅ5Ö—°òπ5•∏°°ï•ù°–Ä¥Äƒ∞ÅµÖ·dÄ¨Å¡Öëë•πú§Ï((ÄÄÄÄÄÄÄÄÄÄÄÅ•òÄ†Ö—…•¥§(ÄÄÄÄÄÄÄÄÄÄÄÅÏ(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅµ•π`ÄÙÄ¿ÏÅµ•πdÄÙÄ¿ÏÅµÖ·`ÄÙÅ›•ë—†Ä¥ÄƒÏÅµÖ·dÄÙÅ°ï•ù°–Ä¥ÄƒÏ(ÄÄÄÄÄÄÄÄÄÄÄÅÙ((ÄÄÄÄÄÄÄÄÄÄÄÅ•π–Åô•πÖ±]•ë—†ÄÙÅµÖ·`Ä¥Åµ•π`Ä¨ÄƒÏ(ÄÄÄÄÄÄÄÄÄÄÄÅ•π–Åô•πÖ±!ï•ù°–ÄÙÅµÖ·dÄ¥Åµ•πdÄ¨ÄƒÏ(ÄÄÄÄÄÄÄÄÄÄÄÅQï·—’…î…Å…ïÕ’±–ÄÙÅπï‹ÅQï·—’…î…°ô•πÖ±]•ë—†∞Åô•πÖ±!ï•ù°–∞ÅQï·—’…ïΩ…µÖ–πI	Ã»∞ÅôÖ±Õî§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ…ïÕ’±–ππÖµîÄÙÅπÖµîÄ¨Äâ}Qï·—’…îàÏ(ÄÄÄÄÄÄÄÄÄÄÄÅ…ïÕ’±–πô•±—ï…5ΩëîÄÙÅ•±—ï…5Ωëîπ	•±•πïÖ»Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ…ïÕ’±–π›…Ö¡5ΩëîÄÙÅQï·—’…ï]…Ö¡5Ωëîπ±Öµ¿Ï((ÄÄÄÄÄÄÄÄÄÄÄÅΩ±Ω»Ã…mtÅô•πÖ±A•·ï±ÃÄÙÅπï‹ÅΩ±Ω»Ã…mô•πÖ±]•ë—†Ä®Åô•πÖ±!ï•ù°—tÏ(ÄÄÄÄÄÄÄÄÄÄÄÅôΩ»Ä°•π–Å‰ÄÙÄ¿ÏÅ‰ÄÅô•πÖ±!ï•ù°–ÏÅ‰¨¨§(ÄÄÄÄÄÄÄÄÄÄÄÅÏ(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅ•π–ÅÕΩ’…çïIΩ‹ÄÙÄ°µ•πdÄ¨Å‰§Ä®Å›•ë—†Ï(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅ•π–Å—Ö…ùï—IΩ‹ÄÙÅ‰Ä®Åô•πÖ±]•ë—†Ï(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅôΩ»Ä°•π–Å‡ÄÙÄ¿ÏÅ‡ÄÅô•πÖ±]•ë—†ÏÅ‡¨¨§(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅô•πÖ±A•·ï±Õm—Ö…ùï—IΩ‹Ä¨Å·tÄÙÅç…Ω¡¡ïëmÕΩ’…çïIΩ‹Ä¨Åµ•π`Ä¨Ä°µ•……Ω»Ä¸Åô•πÖ±]•ë—†Ä¥ÄƒÄ¥Å‡ÄËÅ‡•tÏ(ÄÄÄÄÄÄÄÄÄÄÄÅÙ((ÄÄÄÄÄÄÄÄÄÄÄÅ…ïÕ’±–πMï—A•·ï±ÃÃ»°ô•πÖ±A•·ï±Ã§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ…ïÕ’±–π¡¡±‰°ôÖ±Õî∞Å—…’î§Ï((ÄÄÄÄÄÄÄÄÄÄÄÅM¡…•—îÅÕ¡…•—îÄÙÅM¡…•—îπ…ïÖ—î†(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅ…ïÕ’±–∞(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅπï‹ÅIïç–†¡ò∞Ä¡ò∞Åô•πÖ±]•ë—†∞Åô•πÖ±!ï•ù°–§∞(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅçïπ—ï…ïëA•ŸΩ–Ä¸Åπï‹ÅYïç—Ω»»†¿∏’ò∞Ä¿∏’ò§ÄËÅπï‹ÅYïç—Ω»»†¿∏’ò∞Ä¿∏¿·ò§∞(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄƒ¿¡ò§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅÕ¡…•—îππÖµîÄÙÅπÖµîÏ(ÄÄÄÄÄÄÄÄÄÄÄÅ…ï—’…∏ÅÕ¡…•—îÏ(ÄÄÄÄÄÄÄÅÙ((ÄÄÄÄÄÄÄÄººÅIïµΩŸîÅë•ÕçΩππïç—ïêÅô…Öùµïπ—ÃÅΩòÅπï•ù°âΩ…•πúÅë…Ö›•πùÃ∞ÅπïŸï»Å…ï¡Ö•»ΩÕÂπ—°ïÕ•ÈîÅ¡•·ï±Ã∏(ÄÄÄÄÄÄÄÅ¡…•ŸÖ—îÅÕ—Ö—•åÅŸΩ•êÅ-ïï¡1Ö…ùïÕ—Ω…ïù…Ω’πê°Ω±Ω»Ã…mtÅ¡•·ï±Ã∞Å•π–Å›•ë—†∞Å•π–Å°ï•ù°–§(ÄÄÄÄÄÄÄÅÏ(ÄÄÄÄÄÄÄÄÄÄÄÅ•π—mtÅ±Öâï±ÃÄÙÅπï‹Å•π—m¡•·ï±Ãπ1ïπù—°tÏ(ÄÄÄÄÄÄÄÄÄÄÄÅ•π—mtÅ≈’ï’îÄÙÅπï‹Å•π—m¡•·ï±Ãπ1ïπù—°tÏ(ÄÄÄÄÄÄÄÄÄÄÄÅ•π–Å±Öâï∞ÄÙÄ¿∞Å±Ö…ùïÕ—1Öâï∞ÄÙÄ¿∞Å±Ö…ùïÕ—Ω’π–ÄÙÄ¿Ï(ÄÄÄÄÄÄÄÄÄÄÄÅôΩ»Ä°•π–ÅÕ—Ö…–ÄÙÄ¿ÏÅÕ—Ö…–ÄÅ¡•·ï±Ãπ1ïπù—†ÏÅÕ—Ö…–¨¨§(ÄÄÄÄÄÄÄÄÄÄÄÅÏ(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅ•òÄ°¡•·ï±ÕmÕ—Ö…—tπÑÄÄ–‡ÅÒÅ±Öâï±ÕmÕ—Ö…—tÄÑÙÄ¿§ÅçΩπ—•π’îÏ(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅ±Öâï∞¨¨Ï(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅ•π–Å…ïÖêÄÙÄ¿∞ÅçΩ’π–ÄÙÄƒÏ(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅ≈’ï’ïl¡tÄÙÅÕ—Ö…–ÏÅ±Öâï±ÕmÕ—Ö…—tÄÙÅ±Öâï∞Ï(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅ›°•±îÄ°…ïÖêÄÅçΩ’π–§(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÏ(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅ•π–Å•πëï‡ÄÙÅ≈’ï’ïm…ïÖê¨≠t∞Å¡‡ÄÙÅ•πëï‡ÄîÅ›•ë—†∞Å¡‰ÄÙÅ•πëï‡ÄºÅ›•ë—†Ï(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅôΩ»Ä°•π–Åë‰ÄÙÄ¥ƒÏÅë‰ÄÙÄƒÏÅë‰¨¨§(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅôΩ»Ä°•π–Åë‡ÄÙÄ¥ƒÏÅë‡ÄÙÄƒÏÅë‡¨¨§(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÏ(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅ•π–Å‡ÄÙÅ¡‡Ä¨Åë‡∞Å‰ÄÙÅ¡‰Ä¨Åë‰Ï(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅ•òÄ°‡ÄÄ¿ÅÒÅ‡Ä¯ÙÅ›•ë—†ÅÒÅ‰ÄÄ¿ÅÒÅ‰Ä¯ÙÅ°ï•ù°–§ÅçΩπ—•π’îÏ(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅ•π–Åπï·–ÄÙÅ‰Ä®Å›•ë—†Ä¨Å‡Ï(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅ•òÄ°¡•·ï±Õmπï·—tπÑÄÄ–‡ÅÒÅ±Öâï±Õmπï·—tÄÑÙÄ¿§ÅçΩπ—•π’îÏ(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅ±Öâï±Õmπï·—tÄÙÅ±Öâï∞ÏÅ≈’ï’ïmçΩ’π–¨≠tÄÙÅπï·–Ï(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÙ(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÙ(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅ•òÄ°çΩ’π–Ä¯Å±Ö…ùïÕ—Ω’π–§ÅÏÅ±Ö…ùïÕ—Ω’π–ÄÙÅçΩ’π–ÏÅ±Ö…ùïÕ—1Öâï∞ÄÙÅ±Öâï∞ÏÅÙ(ÄÄÄÄÄÄÄÄÄÄÄÅÙ(ÄÄÄÄÄÄÄÄÄÄÄÅôΩ»Ä°•π–Å‰ÄÙÄ¿ÏÅ‰ÄÅ°ï•ù°–ÏÅ‰¨¨§(ÄÄÄÄÄÄÄÄÄÄÄÅôΩ»Ä°•π–Å‡ÄÙÄ¿ÏÅ‡ÄÅ›•ë—†ÏÅ‡¨¨§(ÄÄÄÄÄÄÄÄÄÄÄÅÏ(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅ•π–Å•πëï‡ÄÙÅ‰Ä®Å›•ë—†Ä¨Å‡Ï(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅ•òÄ°±Öâï±Õm•πëï·tÄÙÙÅ±Ö…ùïÕ—1Öâï∞§ÅçΩπ—•π’îÏ(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅâΩΩ∞ÅïëùîÄÙÅôÖ±ÕîÏ(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄººÅIï—Ö•∏ÅΩπ±‰Å—°îÅΩ…•ù•πÖ∞ÅÖπ—•Ö±•ÖÃÅô…•πùîÅÖë©Ω•π•πúÅ—°îÅ…ï—Ö•πïêÅô•ù’…î∏(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅ•òÄ°¡•·ï±Õm•πëï·tπÑÄÄ–‡§(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅôΩ»Ä°•π–Åë‰ÄÙÄ¥ƒÏÅë‰ÄÙÄƒÏÅë‰¨¨§(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅôΩ»Ä°•π–Åë‡ÄÙÄ¥ƒÏÅë‡ÄÙÄƒÏÅë‡¨¨§(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÏ(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅ•π–Åπ‡ÄÙÅ‡Ä¨Åë‡∞Åπ‰ÄÙÅ‰Ä¨Åë‰Ï(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅ•òÄ°π‡Ä¯ÙÄ¿ÄòòÅπ‡ÄÅ›•ë—†ÄòòÅπ‰Ä¯ÙÄ¿ÄòòÅπ‰ÄÅ°ï•ù°–Äòò(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅ±Öâï±Õmπ‰Ä®Å›•ë—†Ä¨Åπ·tÄÙÙÅ±Ö…ùïÕ—1Öâï∞§ÅïëùîÄÙÅ—…’îÏ(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÙ(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅ•òÄ†Öïëùî§Å¡•·ï±Õm•πëï·tπÑÄÙÄ¿Ï(ÄÄÄÄÄÄÄÄÄÄÄÅÙ(ÄÄÄÄÄÄÄÅÙ((ÄÄÄÄÄÄÄÅ¡…•ŸÖ—îÅÕ—Ö—•åÅΩ±Ω»Ã…mtÅMÖµ¡±ï	Öç≠ù…Ω’πëAÖ±ï——î°Ω±Ω»Ã…mtÅ¡•·ï±Ã∞Å•π–Å›•ë—†∞Å•π–Å°ï•ù°–§(ÄÄÄÄÄÄÄÅÏ(ÄÄÄÄÄÄÄÄÄÄÄÅçΩπÕ–Å•π–ÅÕÖµ¡±ïÕAï…ëùîÄÙÄƒÿÏ(ÄÄÄÄÄÄÄÄÄÄÄÅΩ±Ω»Ã…mtÅ¡Ö±ï——îÄÙÅπï‹ÅΩ±Ω»Ã…mÕÖµ¡±ïÕAï…ëùîÄ®Ä—tÏ(ÄÄÄÄÄÄÄÄÄÄÄÅ•π–Å•πÕï—`ÄÙÅ5Ö—°òπ5•∏°5Ö—°òπ5Ö‡†ƒ∞Å›•ë—†ÄºÄƒ¿¿§∞Å5Ö—°òπ5Ö‡†¿∞Å›•ë—†Ä¥Äƒ§§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ•π–Å•πÕï—dÄÙÅ5Ö—°òπ5•∏°5Ö—°òπ5Ö‡†ƒ∞Å°ï•ù°–ÄºÄƒ¿¿§∞Å5Ö—°òπ5Ö‡†¿∞Å°ï•ù°–Ä¥Äƒ§§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ•π–Å•πëï‡ÄÙÄ¿Ï(ÄÄÄÄÄÄÄÄÄÄÄÅôΩ»Ä°•π–Å§ÄÙÄ¿ÏÅ§ÄÅÕÖµ¡±ïÕAï…ëùîÏÅ§¨¨§(ÄÄÄÄÄÄÄÄÄÄÄÅÏ(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅô±ΩÖ–Å–ÄÙÅÕÖµ¡±ïÕAï…ëùîÄÙÙÄƒÄ¸Ä¿∏’òÄËÄ°ô±ΩÖ–•§ÄºÄ°ÕÖµ¡±ïÕAï…ëùîÄ¥Äƒ§Ï(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅ•π–Å‡ÄÙÅ5Ö—°òπ±Öµ¿°5Ö—°òπIΩ’πëQΩ%π–°–Ä®Ä°›•ë—†Ä¥Äƒ§§∞Ä¿∞Å›•ë—†Ä¥Äƒ§Ï(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅ•π–Å‰ÄÙÅ5Ö—°òπ±Öµ¿°5Ö—°òπIΩ’πëQΩ%π–°–Ä®Ä°°ï•ù°–Ä¥Äƒ§§∞Ä¿∞Å°ï•ù°–Ä¥Äƒ§Ï(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅ¡Ö±ï——ïm•πëï‡¨≠tÄÙÅ¡•·ï±Õm•πÕï—dÄ®Å›•ë—†Ä¨Å·tÏ(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅ¡Ö±ï——ïm•πëï‡¨≠tÄÙÅ¡•·ï±Õl°°ï•ù°–Ä¥ÄƒÄ¥Å•πÕï—d§Ä®Å›•ë—†Ä¨Å·tÏ(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅ¡Ö±ï——ïm•πëï‡¨≠tÄÙÅ¡•·ï±Õm‰Ä®Å›•ë—†Ä¨Å•πÕï—atÏ(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅ¡Ö±ï——ïm•πëï‡¨≠tÄÙÅ¡•·ï±Õm‰Ä®Å›•ë—†Ä¨Å›•ë—†Ä¥ÄƒÄ¥Å•πÕï—atÏ(ÄÄÄÄÄÄÄÄÄÄÄÅÙ(ÄÄÄÄÄÄÄÄÄÄÄÅ…ï—’…∏Å¡Ö±ï——îÏ(ÄÄÄÄÄÄÄÅÙ((ÄÄÄÄÄÄÄÅ¡…•ŸÖ—îÅÕ—Ö—•åÅâΩΩ±mtÅ•πëΩππïç—ïë	Öç≠ù…Ω’πê†(ÄÄÄÄÄÄÄÄÄÄÄÅΩ±Ω»Ã…mtÅ¡•·ï±Ã∞Å•π–Å›•ë—†∞Å•π–Å°ï•ù°–∞ÅΩ±Ω»Ã…mtÅ¡Ö±ï——î§(ÄÄÄÄÄÄÄÅÏ(ÄÄÄÄÄÄÄÄÄÄÄÅâΩΩ±mtÅâÖç≠ù…Ω’πêÄÙÅπï‹ÅâΩΩ±m¡•·ï±Ãπ1ïπù—°tÏ(ÄÄÄÄÄÄÄÄÄÄÄÅ•π—mtÅ≈’ï’îÄÙÅπï‹Å•π—m¡•·ï±Ãπ1ïπù—°tÏ(ÄÄÄÄÄÄÄÄÄÄÄÅ•π–Å…ïÖêÄÙÄ¿Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ•π–ÅçΩ’π–ÄÙÄ¿Ï((ÄÄÄÄÄÄÄÄÄÄÄÅôΩ»Ä°•π–Å‡ÄÙÄ¿ÏÅ‡ÄÅ›•ë—†ÏÅ‡¨¨§(ÄÄÄÄÄÄÄÄÄÄÄÅÏ(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅQ…ÂE’ï’ï	Öç≠ù…Ω’πê°‡∞Ä¿∞Å¡•·ï±Ã∞Å›•ë—†∞Å°ï•ù°–∞Å¡Ö±ï——î∞ÅâÖç≠ù…Ω’πê∞Å≈’ï’î∞Å…ïòÅçΩ’π–§Ï(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅQ…ÂE’ï’ï	Öç≠ù…Ω’πê°‡∞Å°ï•ù°–Ä¥Äƒ∞Å¡•·ï±Ã∞Å›•ë—†∞Å°ï•ù°–∞Å¡Ö±ï——î∞ÅâÖç≠ù…Ω’πê∞Å≈’ï’î∞Å…ïòÅçΩ’π–§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅÙ(ÄÄÄÄÄÄÄÄÄÄÄÅôΩ»Ä°•π–Å‰ÄÙÄƒÏÅ‰ÄÅ°ï•ù°–Ä¥ÄƒÏÅ‰¨¨§(ÄÄÄÄÄÄÄÄÄÄÄÅÏ(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅQ…ÂE’ï’ï	Öç≠ù…Ω’πê†¿∞Å‰∞Å¡•·ï±Ã∞Å›•ë—†∞Å°ï•ù°–∞Å¡Ö±ï——î∞ÅâÖç≠ù…Ω’πê∞Å≈’ï’î∞Å…ïòÅçΩ’π–§Ï(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅQ…ÂE’ï’ï	Öç≠ù…Ω’πê°›•ë—†Ä¥Äƒ∞Å‰∞Å¡•·ï±Ã∞Å›•ë—†∞Å°ï•ù°–∞Å¡Ö±ï——î∞ÅâÖç≠ù…Ω’πê∞Å≈’ï’î∞Å…ïòÅçΩ’π–§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅÙ((ÄÄÄÄÄÄÄÄÄÄÄÅ›°•±îÄ°…ïÖêÄÅçΩ’π–§(ÄÄÄÄÄÄÄÄÄÄÄÅÏ(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅ•π–Åç’……ïπ–ÄÙÅ≈’ï’ïm…ïÖê¨≠tÏ(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅ•π–Å‡ÄÙÅç’……ïπ–ÄîÅ›•ë—†Ï(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅ•π–Å‰ÄÙÅç’……ïπ–ÄºÅ›•ë—†Ï(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅQ…ÂE’ï’ï	Öç≠ù…Ω’πê°‡Ä¥Äƒ∞Å‰∞Å¡•·ï±Ã∞Å›•ë—†∞Å°ï•ù°–∞Å¡Ö±ï——î∞ÅâÖç≠ù…Ω’πê∞Å≈’ï’î∞Å…ïòÅçΩ’π–§Ï(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅQ…ÂE’ï’ï	Öç≠ù…Ω’πê°‡Ä¨Äƒ∞Å‰∞Å¡•·ï±Ã∞Å›•ë—†∞Å°ï•ù°–∞Å¡Ö±ï——î∞ÅâÖç≠ù…Ω’πê∞Å≈’ï’î∞Å…ïòÅçΩ’π–§Ï(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅQ…ÂE’ï’ï	Öç≠ù…Ω’πê°‡∞Å‰Ä¥Äƒ∞Å¡•·ï±Ã∞Å›•ë—†∞Å°ï•ù°–∞Å¡Ö±ï——î∞ÅâÖç≠ù…Ω’πê∞Å≈’ï’î∞Å…ïòÅçΩ’π–§Ï(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅQ…ÂE’ï’ï	Öç≠ù…Ω’πê°‡∞Å‰Ä¨Äƒ∞Å¡•·ï±Ã∞Å›•ë—†∞Å°ï•ù°–∞Å¡Ö±ï——î∞ÅâÖç≠ù…Ω’πê∞Å≈’ï’î∞Å…ïòÅçΩ’π–§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅÙ((ÄÄÄÄÄÄÄÄÄÄÄÅ…ï—’…∏ÅâÖç≠ù…Ω’πêÏ(ÄÄÄÄÄÄÄÅÙ((ÄÄÄÄÄÄÄÅ¡…•ŸÖ—îÅÕ—Ö—•åÅŸΩ•êÅQ…ÂE’ï’ï	Öç≠ù…Ω’πê†(ÄÄÄÄÄÄÄÄÄÄÄÅ•π–Å‡∞(ÄÄÄÄÄÄÄÄÄÄÄÅ•π–Å‰∞(ÄÄÄÄÄÄÄÄÄÄÄÅΩ±Ω»Ã…mtÅ¡•·ï±Ã∞(ÄÄÄÄÄÄÄÄÄÄÄÅ•π–Å›•ë—†∞(ÄÄÄÄÄÄÄÄÄÄÄÅ•π–Å°ï•ù°–∞(ÄÄÄÄÄÄÄÄÄÄÄÅΩ±Ω»Ã…mtÅ¡Ö±ï——î∞(ÄÄÄÄÄÄÄÄÄÄÄÅâΩΩ±mtÅâÖç≠ù…Ω’πê∞(ÄÄÄÄÄÄÄÄÄÄÄÅ•π—mtÅ≈’ï’î∞(ÄÄÄÄÄÄÄÄÄÄÄÅ…ïòÅ•π–ÅçΩ’π–§(ÄÄÄÄÄÄÄÅÏ(ÄÄÄÄÄÄÄÄÄÄÄÅ•òÄ°‡ÄÄ¿ÅÒÅ‡Ä¯ÙÅ›•ë—†ÅÒÅ‰ÄÄ¿ÅÒÅ‰Ä¯ÙÅ°ï•ù°–§Å…ï—’…∏Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ•π–Å•πëï‡ÄÙÅ‰Ä®Å›•ë—†Ä¨Å‡Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ•òÄ°âÖç≠ù…Ω’πëm•πëï·tÅÒÅ•Õ—ÖπçïQΩAÖ±ï——î°¡•·ï±Õm•πëï·t∞Å¡Ö±ï——î§Ä¯Ä¿∏ƒ›ò§Å…ï—’…∏Ï(ÄÄÄÄÄÄÄÄÄÄÄÅâÖç≠ù…Ω’πëm•πëï·tÄÙÅ—…’îÏ(ÄÄÄÄÄÄÄÄÄÄÄÅ≈’ï’ïmçΩ’π–¨≠tÄÙÅ•πëï‡Ï(ÄÄÄÄÄÄÄÅÙ((ÄÄÄÄÄÄÄÅ¡…•ŸÖ—îÅÕ—Ö—•åÅô±ΩÖ–Å•Õ—ÖπçïQΩAÖ±ï——î°Ω±Ω»Ã»ÅçΩ±Ω»∞ÅΩ±Ω»Ã…mtÅ¡Ö±ï——î§(ÄÄÄÄÄÄÄÅÏ(ÄÄÄÄÄÄÄÄÄÄÄÅô±ΩÖ–ÅπïÖ…ïÕ–ÄÙÅô±ΩÖ–π5Ö·YÖ±’îÏ(ÄÄÄÄÄÄÄÄÄÄÄÅôΩ»Ä°•π–Å§ÄÙÄ¿ÏÅ§ÄÅ¡Ö±ï——îπ1ïπù—†ÏÅ§¨¨§(ÄÄÄÄÄÄÄÄÄÄÄÅÏ(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅô±ΩÖ–Åë»ÄÙÄ°çΩ±Ω»π»Ä¥Å¡Ö±ï——ïm•tπ»§ÄºÄ»‘’òÏ(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅô±ΩÖ–ÅëúÄÙÄ°çΩ±Ω»πúÄ¥Å¡Ö±ï——ïm•tπú§ÄºÄ»‘’òÏ(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅô±ΩÖ–ÅëàÄÙÄ°çΩ±Ω»πàÄ¥Å¡Ö±ï——ïm•tπà§ÄºÄ»‘’òÏ(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅô±ΩÖ–Åë•Õ—ÖπçîÄÙÅ5Ö—°òπM≈…–°ë»Ä®Åë»Ä¨ÅëúÄ®ÅëúÄ¨ÅëàÄ®Åëà§Ï(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅ•òÄ°ë•Õ—ÖπçîÄÅπïÖ…ïÕ–§ÅπïÖ…ïÕ–ÄÙÅë•Õ—ÖπçîÏ(ÄÄÄÄÄÄÄÄÄÄÄÅÙ(ÄÄÄÄÄÄÄÄÄÄÄÅ…ï—’…∏ÅπïÖ…ïÕ–Ï(ÄÄÄÄÄÄÄÅÙ((ÄÄÄÄÄÄÄÅ¡…•ŸÖ—îÅÕ—Ö—•åÅŸΩ•êÅïÖ—°ï…Ω…ïù…Ω’πëëùî°Ω±Ω»Ã…mtÅ¡•·ï±Ã∞Å•π–Å›•ë—†∞Å•π–Å°ï•ù°–§(ÄÄÄÄÄÄÄÅÏ(ÄÄÄÄÄÄÄÄÄÄÄÅΩ±Ω»Ã…mtÅÕΩ’…çîÄÙÄ°Ω±Ω»Ã…mt•¡•·ï±Ãπ±Ωπî†§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅôΩ»Ä°•π–Å‰ÄÙÄ¿ÏÅ‰ÄÅ°ï•ù°–ÏÅ‰¨¨§(ÄÄÄÄÄÄÄÄÄÄÄÅôΩ»Ä°•π–Å‡ÄÙÄ¿ÏÅ‡ÄÅ›•ë—†ÏÅ‡¨¨§(ÄÄÄÄÄÄÄÄÄÄÄÅÏ(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅ•π–Å•πëï‡ÄÙÅ‰Ä®Å›•ë—†Ä¨Å‡Ï(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅ•òÄ°ÕΩ’…çïm•πëï·tπÑÄÙÙÄ¿§ÅçΩπ—•π’îÏ((ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅ•π–Å—…ÖπÕ¡Ö…ïπ—9ï•ù°âΩ…ÃÄÙÄ¿Ï(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅôΩ»Ä°•π–Åë‰ÄÙÄ¥ƒÏÅë‰ÄÙÄƒÏÅë‰¨¨§(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅôΩ»Ä°•π–Åë‡ÄÙÄ¥ƒÏÅë‡ÄÙÄƒÏÅë‡¨¨§(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÏ(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅ•òÄ°ë‡ÄÙÙÄ¿ÄòòÅë‰ÄÙÙÄ¿§ÅçΩπ—•π’îÏ(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅ•π–Åπ‡ÄÙÅ‡Ä¨Åë‡Ï(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅ•π–Åπ‰ÄÙÅ‰Ä¨Åë‰Ï(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅ•òÄ°π‡ÄÄ¿ÅÒÅπ‡Ä¯ÙÅ›•ë—†ÅÒÅπ‰ÄÄ¿ÅÒÅπ‰Ä¯ÙÅ°ï•ù°–ÅÒ(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÕΩ’…çïmπ‰Ä®Å›•ë—†Ä¨Åπ·tπÑÄÙÙÄ¿§(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅ—…ÖπÕ¡Ö…ïπ—9ï•ù°âΩ…Ã¨¨Ï(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÙ((ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅ•òÄ°—…ÖπÕ¡Ö…ïπ—9ï•ù°âΩ…ÃÄÙÙÄ¿§ÅçΩπ—•π’îÏ(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅΩ±Ω»Ã»ÅÕΩô—ïπïêÄÙÅ¡•·ï±Õm•πëï·tÏ(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÕΩô—ïπïêπÑÄÙÄ°âÂ—î•5Ö—°òπ±Öµ¿†»‘‘Ä¥Å—…ÖπÕ¡Ö…ïπ—9ï•ù°âΩ…ÃÄ®Äƒ‡∞Ä‰ÿ∞Ä»»¿§Ï(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅ¡•·ï±Õm•πëï·tÄÙÅÕΩô—ïπïêÏ(ÄÄÄÄÄÄÄÄÄÄÄÅÙ((ÄÄÄÄÄÄÄÅÙ(ÄÄÄÅÙ)Ù(
+using System;
+using UnityEngine;
+
+namespace FantasyTD.MapA
+{
+    public static class HiggsfieldSpriteFactory
+    {
+        private static Sprite _seedShooter;
+        private static Sprite _essenceFlower;
+        private static Sprite _oakGuardian;
+        private static Sprite _frostBud;
+        private static Sprite _wanderer;
+        private static Sprite _runner;
+        private static Sprite _brute;
+        private static Sprite _armored;
+        private static Sprite _boss;
+        private static Sprite _portal;
+        private static Sprite _homeTree;
+        private static Sprite[] _wandererWalk;
+        private static Sprite _seedShot;
+        private static Sprite _mutationTower;
+
+        public static Sprite MutationTower => _mutationTower ??= CreateCutout(
+            "Higgsfield/Maps/MAP5_MUTATION_TOWER", 0.21f,0.52f,0.49f,0.96f,"Higgsfield_MutacyjnyPak", isolateForeground:true);
+
+        // Authored locomotion poses on the bottom row of artifact 11219935723.
+        // The last pose faces left in the source, so it is mirrored to match the others.
+        public static Sprite[] WandererWalk => _wandererWalk ??= new[]
+        {
+            CreateCutout("Higgsfield/WANDERER_SHEET", 0.455f, 0f, 0.635f, 0.47f, "Chochlik_Walk_0", false, true),
+            CreateCutout("Higgsfield/WANDERER_SHEET", 0.635f, 0f, 0.808f, 0.47f, "Chochlik_Walk_1", false, true),
+            CreateCutout("Higgsfield/WANDERER_SHEET", 0.808f, 0f, 1f, 0.47f, "Chochlik_Walk_2", true, true)
+        };
+
+        // The isolated flying seed above the small bud in artifact 11219567888.
+        // This is a source crop, not a generated primitive or a new illustration.
+        public static Sprite SeedShot => _seedShot ??= CreateCutout(
+            "Higgsfield/SEED_SHOOTER_SHEET", 0.70f, 0.458f, 0.719f, 0.496f,
+            "Pedostrzal_AuthoredSeedShot", isolateForeground: true);
+
+        public static Sprite SeedShooter => _seedShooter ??= CreateCutout(
+            "Higgsfield/SEED_SHOOTER_SHEET", 0f, 0f, 0.515f, 1f, "Higgsfield_Pedostrzal", isolateForeground: true);
+
+        public static Sprite EssenceFlower => _essenceFlower ??= CreateCutout(
+            "Higgsfield/ESSENCE_FLOWER", 0f, 0f, 1f, 1f, "Higgsfield_KwiatEsencji", isolateForeground: true);
+
+        public static Sprite OakGuardian => _oakGuardian ??= CreateCutout(
+            "Higgsfield/OAK_GUARDIAN", 0f, 0f, 1f, 1f, "Higgsfield_DebowyStraznik", isolateForeground: true);
+
+        public static Sprite FrostBud => _frostBud ??= CreateCutout(
+            "Higgsfield/FROST_BUD", 0f, 0f, 1f, 1f, "Higgsfield_MroznyPak", isolateForeground: true);
+
+        public static Sprite Wanderer => _wanderer ??= CreateCutout(
+            "Higgsfield/WANDERER_SHEET", 0f, 0f, 0.455f, 1f, "Higgsfield_Chochlik", isolateForeground: true);
+
+        public static Sprite Runner => _runner ??= CreateCutout(
+            "Higgsfield/RUNNER", 0f, 0f, 1f, 1f, "Higgsfield_WichrowySkrzat", isolateForeground: true);
+
+        public static Sprite Brute => _brute ??= CreateCutout(
+            "Higgsfield/BRUTE", 0f, 0f, 1f, 1f, "Higgsfield_OgrZarosli", isolateForeground: true);
+
+        public static Sprite Armored => _armored ??= CreateCutout(
+            "Higgsfield/ARMORED", 0f, 0f, 1f, 1f, "Higgsfield_ZelaznyGoblin", isolateForeground: true);
+
+        public static Sprite Boss => _boss ??= CreateCutout(
+            "Higgsfield/BOSS", 0f, 0f, 1f, 1f, "Higgsfield_KrolCierni", isolateForeground: true);
+
+        public static Sprite Portal => _portal ??= CreateCutout(
+            "Higgsfield/PORTAL", 0f, 0f, 1f, 1f, "Higgsfield_Portal", isolateForeground: true);
+
+        public static Sprite HomeTree => _homeTree ??= CreateCutout(
+            "Higgsfield/HOME_TREE", 0f, 0f, 1f, 1f, "Higgsfield_HomeTree", isolateForeground: true);
+
+        public static Sprite Plant(PlantKind kind)
+        {
+            return kind switch
+            {
+                PlantKind.SeedShooter => SeedShooter,
+                PlantKind.EssenceFlower => EssenceFlower,
+                PlantKind.OakGuardian => OakGuardian,
+                PlantKind.FrostBud => FrostBud,
+                PlantKind.MutationTower => MutationTower,
+                _ => throw new ArgumentOutOfRangeException(nameof(kind), kind, null)
+            };
+        }
+
+        public static Sprite Enemy(EnemyKind kind)
+        {
+            return kind switch
+            {
+                EnemyKind.Wanderer => Wanderer,
+                EnemyKind.Runner => Runner,
+                EnemyKind.Brute => Brute,
+                EnemyKind.Armored => Armored,
+                EnemyKind.Boss => Boss,
+                _ => throw new ArgumentOutOfRangeException(nameof(kind), kind, null)
+            };
+        }
+
+        public static void ValidateProductionAssets()
+        {
+            Require(SeedShooter, "Pƒôdostrza≈Ç");
+            Require(EssenceFlower, "Kwiat Esencji");
+            Require(OakGuardian, "Dƒôbowy Stra≈ºnik");
+            Require(FrostBud, "Mro≈∫ny PƒÖk");
+            Require(Wanderer, "Chochlik");
+            Require(Runner, "Wichrowy Skrzat");
+            Require(Brute, "Ogr Zaro≈õli");
+            Require(Armored, "≈ªelazny Goblin");
+            Require(Boss, "Kr√≥l Cierni");
+            Require(Portal, "Portal");
+            Require(HomeTree, "Baza-drzewo");
+            Require(SeedShot, "≈πr√≥d≈Çowy pocisk nasienny");
+            foreach (Sprite frame in WandererWalk) Require(frame, "≈πr√≥d≈Çowa poza chodu Chochlika");
+        }
+
+        private static void Require(Sprite sprite, string label)
+        {
+            if (sprite == null)
+                throw new InvalidOperationException("Missing required Higgsfield production sprite: " + label);
+        }
+
+        // Retain exact approved crop dimensions for authored map tile placement.
+        public static Sprite SourceCropUntrimmed(string resourcePath, Rect normalizedCrop, string name)
+        {
+            return CreateCutout(resourcePath, normalizedCrop.xMin, normalizedCrop.yMin,
+                normalizedCrop.xMax, normalizedCrop.yMax, name, false, false, false, true);
+        }
+
+        private static Sprite CreateCutout(
+            string resourcePath,
+            float xMinN,
+            float yMinN,
+            float xMaxN,
+            float yMaxN,
+            string name,
+            bool mirror = false,
+            bool isolateForeground = false,
+            bool trim = true,
+            bool centeredPivot = false)
+        {
+            Texture2D sheet = Resources.Load<Texture2D>(resourcePath);
+            if (sheet == null)
+            {
+                Debug.LogError("Required Higgsfield texture missing: " + resourcePath);
+                return null;
+            }
+
+            if (!sheet.isReadable)
+            {
+                Debug.LogError("Higgsfield texture is not readable: " + resourcePath);
+                return null;
+            }
+
+            int x0 = Mathf.Clamp(Mathf.RoundToInt(sheet.width * xMinN), 0, sheet.width - 1);
+            int y0 = Mathf.Clamp(Mathf.RoundToInt(sheet.height * yMinN), 0, sheet.height - 1);
+            int x1 = Mathf.Clamp(Mathf.RoundToInt(sheet.width * xMaxN), x0 + 1, sheet.width);
+            int y1 = Mathf.Clamp(Mathf.RoundToInt(sheet.height * yMaxN), y0 + 1, sheet.height);
+            int width = x1 - x0;
+            int height = y1 - y0;
+
+            Color32[] pixels = sheet.GetPixels32();
+
+            Color32[] cropped = new Color32[width * height];
+            for (int y = 0; y < height; y++)
+            {
+                int sourceRow = (y0 + y) * sheet.width + x0;
+                int targetRow = y * width;
+                for (int x = 0; x < width; x++)
+                    cropped[targetRow + x] = pixels[sourceRow + x];
+            }
+
+            Color32[] backgroundPalette = SampleBackgroundPalette(cropped, width, height);
+            bool[] connectedBackground = FindConnectedBackground(cropped, width, height, backgroundPalette);
+            int minX = width;
+            int minY = height;
+            int maxX = -1;
+            int maxY = -1;
+
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0; x < width; x++)
+                {
+                    int index = y * width + x;
+                    Color32 output = cropped[index];
+                    float paletteDistance = DistanceToPalette(output, backgroundPalette);
+                    bool background = connectedBackground[index] || paletteDistance <= 0.075f;
+                    output.a = background ? (byte)0 : (byte)255;
+                    cropped[index] = output;
+
+                    if (output.a >= 48)
+                    {
+                        minX = Mathf.Min(minX, x);
+                        minY = Mathf.Min(minY, y);
+                        maxX = Mathf.Max(maxX, x);
+                        maxY = Mathf.Max(maxY, y);
+                    }
+                }
+            }
+
+            FeatherForegroundEdge(cropped, width, height);
+
+            if (isolateForeground)
+            {
+                KeepLargestForeground(cropped, width, height);
+                minX = width; minY = height; maxX = -1; maxY = -1;
+                for (int y = 0; y < height; y++)
+                for (int x = 0; x < width; x++)
+                {
+                    if (cropped[y * width + x].a < 48) continue;
+                    minX = Mathf.Min(minX, x); minY = Mathf.Min(minY, y);
+                    maxX = Mathf.Max(maxX, x); maxY = Mathf.Max(maxY, y);
+                }
+            }
+
+            if (maxX < minX || maxY < minY)
+            {
+                Debug.LogError("Higgsfield cutout produced no foreground pixels: " + resourcePath);
+                return null;
+            }
+
+            const int padding = 12;
+            minX = Mathf.Max(0, minX - padding);
+            minY = Mathf.Max(0, minY - padding);
+            maxX = Mathf.Min(width - 1, maxX + padding);
+            maxY = Mathf.Min(height - 1, maxY + padding);
+
+            if (!trim)
+            {
+                minX = 0; minY = 0; maxX = width - 1; maxY = height - 1;
+            }
+
+            int finalWidth = maxX - minX + 1;
+            int finalHeight = maxY - minY + 1;
+            Texture2D result = new Texture2D(finalWidth, finalHeight, TextureFormat.RGBA32, false);
+            result.name = name + "_Texture";
+            result.filterMode = FilterMode.Bilinear;
+            result.wrapMode = TextureWrapMode.Clamp;
+
+            Color32[] finalPixels = new Color32[finalWidth * finalHeight];
+            for (int y = 0; y < finalHeight; y++)
+            {
+                int sourceRow = (minY + y) * width;
+                int targetRow = y * finalWidth;
+                for (int x = 0; x < finalWidth; x++)
+                    finalPixels[targetRow + x] = cropped[sourceRow + minX + (mirror ? finalWidth - 1 - x : x)];
+            }
+
+            result.SetPixels32(finalPixels);
+            result.Apply(false, true);
+
+            Sprite sprite = Sprite.Create(
+                result,
+                new Rect(0f, 0f, finalWidth, finalHeight),
+                centeredPivot ? new Vector2(0.5f, 0.5f) : new Vector2(0.5f, 0.08f),
+                100f);
+            sprite.name = name;
+            return sprite;
+        }
+
+        // Remove disconnected fragments of neighboring drawings, never repair/synthesize pixels.
+        private static void KeepLargestForeground(Color32[] pixels, int width, int height)
+        {
+            int[] labels = new int[pixels.Length];
+            int[] queue = new int[pixels.Length];
+            int label = 0, largestLabel = 0, largestCount = 0;
+            for (int start = 0; start < pixels.Length; start++)
+            {
+                if (pixels[start].a < 48 || labels[start] != 0) continue;
+                label++;
+                int read = 0, count = 1;
+                queue[0] = start; labels[start] = label;
+                while (read < count)
+                {
+                    int index = queue[read++], px = index % width, py = index / width;
+                    for (int dy = -1; dy <= 1; dy++)
+                    for (int dx = -1; dx <= 1; dx++)
+                    {
+                        int x = px + dx, y = py + dy;
+                        if (x < 0 || x >= width || y < 0 || y >= height) continue;
+                        int next = y * width + x;
+                        if (pixels[next].a < 48 || labels[next] != 0) continue;
+                        labels[next] = label; queue[count++] = next;
+                    }
+                }
+                if (count > largestCount) { largestCount = count; largestLabel = label; }
+            }
+            for (int y = 0; y < height; y++)
+            for (int x = 0; x < width; x++)
+            {
+                int index = y * width + x;
+                if (labels[index] == largestLabel) continue;
+                bool edge = false;
+                // Retain only the original antialias fringe adjoining the retained figure.
+                if (pixels[index].a < 48)
+                    for (int dy = -1; dy <= 1; dy++)
+                    for (int dx = -1; dx <= 1; dx++)
+                    {
+                        int nx = x + dx, ny = y + dy;
+                        if (nx >= 0 && nx < width && ny >= 0 && ny < height &&
+                            labels[ny * width + nx] == largestLabel) edge = true;
+                    }
+                if (!edge) pixels[index].a = 0;
+            }
+        }
+
+        private static Color32[] SampleBackgroundPalette(Color32[] pixels, int width, int height)
+        {
+            const int samplesPerEdge = 16;
+            Color32[] palette = new Color32[samplesPerEdge * 4];
+            int insetX = Mathf.Min(Mathf.Max(1, width / 100), Mathf.Max(0, width - 1));
+            int insetY = Mathf.Min(Mathf.Max(1, height / 100), Mathf.Max(0, height - 1));
+            int index = 0;
+            for (int i = 0; i < samplesPerEdge; i++)
+            {
+                float t = samplesPerEdge == 1 ? 0.5f : (float)i / (samplesPerEdge - 1);
+                int x = Mathf.Clamp(Mathf.RoundToInt(t * (width - 1)), 0, width - 1);
+                int y = Mathf.Clamp(Mathf.RoundToInt(t * (height - 1)), 0, height - 1);
+                palette[index++] = pixels[insetY * width + x];
+                palette[index++] = pixels[(height - 1 - insetY) * width + x];
+                palette[index++] = pixels[y * width + insetX];
+                palette[index++] = pixels[y * width + width - 1 - insetX];
+            }
+            return palette;
+        }
+
+        private static bool[] FindConnectedBackground(
+            Color32[] pixels, int width, int height, Color32[] palette)
+        {
+            bool[] background = new bool[pixels.Length];
+            int[] queue = new int[pixels.Length];
+            int read = 0;
+            int count = 0;
+
+            for (int x = 0; x < width; x++)
+            {
+                TryQueueBackground(x, 0, pixels, width, height, palette, background, queue, ref count);
+                TryQueueBackground(x, height - 1, pixels, width, height, palette, background, queue, ref count);
+            }
+            for (int y = 1; y < height - 1; y++)
+            {
+                TryQueueBackground(0, y, pixels, width, height, palette, background, queue, ref count);
+                TryQueueBackground(width - 1, y, pixels, width, height, palette, background, queue, ref count);
+            }
+
+            while (read < count)
+            {
+                int current = queue[read++];
+                int x = current % width;
+                int y = current / width;
+                TryQueueBackground(x - 1, y, pixels, width, height, palette, background, queue, ref count);
+                TryQueueBackground(x + 1, y, pixels, width, height, palette, background, queue, ref count);
+                TryQueueBackground(x, y - 1, pixels, width, height, palette, background, queue, ref count);
+                TryQueueBackground(x, y + 1, pixels, width, height, palette, background, queue, ref count);
+            }
+
+            return background;
+        }
+
+        private static void TryQueueBackground(
+            int x,
+            int y,
+            Color32[] pixels,
+            int width,
+            int height,
+            Color32[] palette,
+            bool[] background,
+            int[] queue,
+            ref int count)
+        {
+            if (x < 0 || x >= width || y < 0 || y >= height) return;
+            int index = y * width + x;
+            if (background[index] || DistanceToPalette(pixels[index], palette) > 0.17f) return;
+            background[index] = true;
+            queue[count++] = index;
+        }
+
+        private static float DistanceToPalette(Color32 color, Color32[] palette)
+        {
+            float nearest = float.MaxValue;
+            for (int i = 0; i < palette.Length; i++)
+            {
+                float dr = (color.r - palette[i].r) / 255f;
+                float dg = (color.g - palette[i].g) / 255f;
+                float db = (color.b - palette[i].b) / 255f;
+                float distance = Mathf.Sqrt(dr * dr + dg * dg + db * db);
+                if (distance < nearest) nearest = distance;
+            }
+            return nearest;
+        }
+
+        private static void FeatherForegroundEdge(Color32[] pixels, int width, int height)
+        {
+            Color32[] source = (Color32[])pixels.Clone();
+            for (int y = 0; y < height; y++)
+            for (int x = 0; x < width; x++)
+            {
+                int index = y * width + x;
+                if (source[index].a == 0) continue;
+
+                int transparentNeighbors = 0;
+                for (int dy = -1; dy <= 1; dy++)
+                for (int dx = -1; dx <= 1; dx++)
+                {
+                    if (dx == 0 && dy == 0) continue;
+                    int nx = x + dx;
+                    int ny = y + dy;
+                    if (nx < 0 || nx >= width || ny < 0 || ny >= height ||
+                        source[ny * width + nx].a == 0)
+                        transparentNeighbors++;
+                }
+
+                if (transparentNeighbors == 0) continue;
+                Color32 softened = pixels[index];
+                softened.a = (byte)Mathf.Clamp(255 - transparentNeighbors * 18, 96, 220);
+                pixels[index] = softened;
+            }
+
+        }
+    }
+}

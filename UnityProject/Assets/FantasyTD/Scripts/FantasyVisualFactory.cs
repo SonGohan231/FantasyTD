@@ -1,1 +1,120 @@
-¨¥yÛhr‰çyËm¡»¬:—«jØ¨z-¥êæŠÛ^uÕÍ¥¹œMåÍÑ•´ì)ÕÍ¥¹œU¹¥Ñå¹¥¹”ì()¹…µ•ÍÁ…”…¹Ñ…ÍåQ¹5…Á)ì(€€€ÁÕ‰±¥ŒÍÑ…Ñ¥Œ±…ÍÌ…¹Ñ…ÍåY¥ÍÕ…±…Ñ½Éä(€€€ì(€€€€€€€ÁÕ‰±¥ŒÍÑ…Ñ¥Œ…µ•=‰©•ĞÉ•…Ñ•A±…¹Ğ¡A±…¹Ñ-¥¹­¥¹°Y•Ñ½ÈÈÁ½Í¥Ñ¥½¸¤(€€€€€€€ì(€€€€€€€€€€€MÁÉ¥Ñ”ÍÁÉ¥Ñ”€ô!¥Í™¥•±‘MÁÉ¥Ñ•…Ñ½Éä¹A±…¹Ğ¡­¥¹¤ì(€€€€€€€€€€€I•ÅÕ¥É”¡ÍÁÉ¥Ñ”°	…±…¹”¹¥ÍÁ±…å9…µ”¡­¥¹¤¤ì((€€€€€€€€€€€…µ•=‰©•ĞÉ½½Ğ€ô¹•Ü…µ•=‰©•Ğ¡	…±…¹”¹¥ÍÁ±…å9…µ”¡­¥¹¤¤ì(€€€€€€€€€€€É½½Ğ¹ÑÉ…¹Í™½É´¹Á½Í¥Ñ¥½¸€ô¹•ÜY•Ñ½ÈÌ¡Á½Í¥Ñ¥½¸¹à°Á½Í¥Ñ¥½¸¹ä°€´À¸ÈÕ˜¤ì((€€€€€€€€€€€™±½…Ğ¡•¥¡Ğ€ô­¥¹€ôôA±…¹Ñ-¥¹¹=…­Õ…É‘¥…¸€ü€Ä¸äÉ˜€è€Ä¸ÜÉ˜ì((€€€€€€€€€€€MÁÉ¥Ñ•I•¹‘•É•ÈÉ•¹‘•É•È€ô‘‘!¥Í™¥•±‘Y¥ÍÕ…° (€€€€€€€€€€€€€€€É½½Ğ¹ÑÉ…¹Í™½É´°ÍÁÉ¥Ñ”°¡•¥¡Ğ°¹•ÜY•Ñ½ÈÈ Á˜°€´À¸Ğå˜¤°€ÈĞ¤ì(€€€€€€€€€€€É½½Ğ¹‘‘½µÁ½¹•¹Ğñ!¥Í™¥•±‘U¹¥Ñ¹¥µ…Ñ¥½¸ø ¤¹%¹¥Ñ¥…±¥é”¡É•¹‘•É•È°¡•¥¡Ğ¤ì((€€€€€€€€€€€É•ÑÕÉ¸É½½Ğì(€€€€€€€ô((€€€€€€€ÁÕ‰±¥ŒÍÑ…Ñ¥Œ…µ•=‰©•ĞÉ•…Ñ•¹•µä¡¹•µå-¥¹­¥¹¤(€€€€€€€ì(€€€€€€€€€€€MÁÉ¥Ñ”ÍÁÉ¥Ñ”€ô!¥Í™¥•±‘MÁÉ¥Ñ•…Ñ½Éä¹¹•µä¡­¥¹¤ì(€€€€€€€€€€€I•ÅÕ¥É”¡ÍÁÉ¥Ñ”°	…±…¹”¹¹•µå9…µ”¡­¥¹¤¤ì((€€€€€€€€€€€…µ•=‰©•ĞÉ½½Ğ€ô¹•Ü…µ•=‰©•Ğ¡	…±…¹”¹¹•µå9…µ”¡­¥¹¤¤ì((€€€€€€€€€€€™±½…ĞÑ…É•Ñ!•¥¡Ğì(€€€€€€€€€€€Y•Ñ½ÈÈ½™™Í•Ğì((€€€€€€€€€€€Íİ¥Ñ €¡­¥¹¤(€€€€€€€€€€€ì(€€€€€€€€€€€€€€€…Í”¹•µå-¥¹¹IÕ¹¹•Èè(€€€€€€€€€€€€€€€€€€€Ñ…É•Ñ!•¥¡Ğ€ô€Ä¸ÈÉ˜ì(€€€€€€€€€€€€€€€€€€€½™™Í•Ğ€ô¹•ÜY•Ñ½ÈÈ Á˜°€´À¸ĞÁ˜¤ì(€€€€€€€€€€€€€€€€€€€‰É•…¬ì(€€€€€€€€€€€€€€€…Í”¹•µå-¥¹¹	ÉÕÑ”è(€€€€€€€€€€€€€€€€€€€Ñ…É•Ñ!•¥¡Ğ€ô€Ä¸Üá˜ì(€€€€€€€€€€€€€€€€€€€½™™Í•Ğ€ô¹•ÜY•Ñ½ÈÈ Á˜°€´À¸ÔÕ˜¤ì(€€€€€€€€€€€€€€€€€€€‰É•…¬ì(€€€€€€€€€€€€€€€…Í”¹•µå-¥¹¹Éµ½É•è(€€€€€€€€€€€€€€€€€€€Ñ…É•Ñ!•¥¡Ğ€ô€Ä¸ĞÉ˜ì(€€€€€€€€€€€€€€€€€€€½™™Í•Ğ€ô¹•ÜY•Ñ½ÈÈ Á˜°€´À¸ĞÕ˜¤ì(€€€€€€€€€€€€€€€€€€€‰É•…¬ì(€€€€€€€€€€€€€€€…Í”¹•µå-¥¹¹	½ÍÌè(€€€€€€€€€€€€€€€€€€€Ñ…É•Ñ!•¥¡Ğ€ô€È¸ÌÕ˜ì(€€€€€€€€€€€€€€€€€€€½™™Í•Ğ€ô¹•ÜY•Ñ½ÈÈ Á˜°€´À¸ÜÁ˜¤ì(€€€€€€€€€€€€€€€€€€€‰É•…¬ì(€€€€€€€€€€€€€€€‘•™…Õ±Ğè(€€€€€€€€€€€€€€€€€€€Ñ…É•Ñ!•¥¡Ğ€ô€Ä¸ÌÙ˜ì(€€€€€€€€€€€€€€€€€€€½™™Í•Ğ€ô¹•ÜY•Ñ½ÈÈ Á˜°€´À¸ĞÑ˜¤ì(€€€€€€€€€€€€€€€€€€€‰É•…¬ì(€€€€€€€€€€€ô(((€€€€€€€€€€€MÁÉ¥Ñ•I•¹‘•É•ÈÉ•¹‘•É•È€ô‘‘!¥Í™¥•±‘Y¥ÍÕ…°¡É½½Ğ¹ÑÉ…¹Í™½É´°ÍÁÉ¥Ñ”°Ñ…É•Ñ!•¥¡Ğ°½™™Í•Ğ°€ÈĞ¤ì(€€€€€€€€€€€É½½Ğ¹‘‘½µÁ½¹•¹Ğñ!¥Í™¥•±‘U¹¥Ñ¹¥µ…Ñ¥½¸ø ¤¹%¹¥Ñ¥…±¥é” (€€€€€€€€€€€€€€€É•¹‘•É•È°Ñ…É•Ñ!•¥¡Ğ°­¥¹€ôô¹•µå-¥¹¹]…¹‘•É•È€ü!¥Í™¥•±‘MÁÉ¥Ñ•…Ñ½Éä¹]…¹‘•É•É]…±¬€è¹Õ±°¤ì(€€€€€€€€€€€É•ÑÕÉ¸É½½Ğì(€€€€€€€ô((€€€€€€€ÁÕ‰±¥ŒÍÑ…Ñ¥Œ…µ•=‰©•ĞÉ•…Ñ•A½ÉÑ…°¡Y•Ñ½ÈÈÁ½Í¥Ñ¥½¸¤(€€€€€€€ì(€€€€€€€€€€€MÁÉ¥Ñ”ÍÁÉ¥Ñ”€ô!¥Í™¥•±‘MÁÉ¥Ñ•…Ñ½Éä¹A½ÉÑ…°ì(€€€€€€€€€€€I•ÅÕ¥É”¡ÍÁÉ¥Ñ”°€‰A½ÉÑ…°ˆ¤ì((€€€€€€€€€€€…µ•=‰©•ĞÉ½½Ğ€ô¹•Ü…µ•=‰©•Ğ ‰A½ÉÑ…±½É”ˆ¤ì(€€€€€€€€€€€É½½Ğ¹ÑÉ…¹Í™½É´¹Á½Í¥Ñ¥½¸€ô¹•ÜY•Ñ½ÈÌ¡Á½Í¥Ñ¥½¸¹à°Á½Í¥Ñ¥½¸¹ä°€´À¸Äá˜¤ì(€€€€€€€€€€€€¼¼MÁ…İ¸¥Ì•á…Ñ±ä½¸Ñ¡”Ñ½ÀÉ½ÕÑ”‰½Õ¹‘…Éäì­••ÀÑ¡”Á½ÉÑ…°…ÉĞ¥¹Í¥‘”Ñ¡”…µ•É„¸(€€€€€€€€€€€‘‘!¥Í™¥•±‘Y¥ÍÕ…°¡É½½Ğ¹ÑÉ…¹Í™½É´°ÍÁÉ¥Ñ”°€È¸ÄÁ˜°¹•ÜY•Ñ½ÈÈ À¸ÈÁ˜°€´È¸ÌÕ˜¤°€Äà¤ì(€€€€€€€€€€€É•ÑÕÉ¸É½½Ğì(€€€€€€€ô((€€€€€€€ÁÕ‰±¥ŒÍÑ…Ñ¥Œ…µ•=‰©•ĞÉ•…Ñ•!½µ•QÉ•”¡Y•Ñ½ÈÈÁ½Í¥Ñ¥½¸¤(€€€€€€€ì(€€€€€€€€€€€MÁÉ¥Ñ”ÍÁÉ¥Ñ”€ô!¥Í™¥•±‘MÁÉ¥Ñ•…Ñ½Éä¹!½µ•QÉ•”ì(€€€€€€€€€€€I•ÅÕ¥É”¡ÍÁÉ¥Ñ”°€‰	…é„µ‘Éé•İ¼ˆ¤ì((€€€€€€€€€€€…µ•=‰©•ĞÉ½½Ğ€ô¹•Ü…µ•=‰©•Ğ ‰!½µ•QÉ••}!¥Í™¥•±ˆ¤ì(€€€€€€€€€€€É½½Ğ¹ÑÉ…¹Í™½É´¹Á½Í¥Ñ¥½¸€ô¹•ÜY•Ñ½ÈÌ¡Á½Í¥Ñ¥½¸¹à°Á½Í¥Ñ¥½¸¹ä°€´À¸Äá˜¤ì(€€€€€€€€€€€€¼¼Q¡”É½ÕÑ”•¹‘Ì…ĞÑ¡”±½İ•ÈµÉ¥¡Ğ‰½Õ¹‘…ÉäìÁÕ±°ÁÉ•Í•¹Ñ…Ñ¥½¸…ÉĞ¥¹İ…É(€€€€€€€€€€€€¼¼İ¥Ñ¡½ÕĞ¡…¹¥¹œ…ÕÑ¡½É¥Ñ…Ñ¥Ù”•¹•µäµ½Ù•µ•¹Ğ•½µ•ÑÉä¸(€€€€€€€€€€€‘‘!¥Í™¥•±‘Y¥ÍÕ…°¡É½½Ğ¹ÑÉ…¹Í™½É´°ÍÁÉ¥Ñ”°€È¸ÔÕ˜°¹•ÜY•Ñ½ÈÈ ´Ä¸ÜÉ˜°€Ä¸ĞÕ˜¤°€ÈÀ¤ì(€€€€€€€€€€€É•ÑÕÉ¸É½½Ğì(€€€€€€€ô((€€€€€€€ÁÉ¥Ù…Ñ”ÍÑ…Ñ¥ŒMÁÉ¥Ñ•I•¹‘•É•È‘‘!¥Í™¥•±‘Y¥ÍÕ…° (€€€€€€€€€€€QÉ…¹Í™½É´É½½Ğ°(€€€€€€€€€€€MÁÉ¥Ñ”ÍÁÉ¥Ñ”°(€€€€€€€€€€€™±½…ĞÑ…É•Ñ!•¥¡Ğ°(€€€€€€€€€€€Y•Ñ½ÈÈ±½…±A½Í¥Ñ¥½¸°(€€€€€€€€€€€¥¹ĞÍ½ÉÑ¥¹=É‘•È¤(€€€€€€€ì(€€€€€€€€€€€™±½…Ğ¡•¥¡Ğ€ô5…Ñ¡˜¹5…à À¸ÀÀÅ˜°ÍÁÉ¥Ñ”¹‰½Õ¹‘Ì¹Í¥é”¹ä¤ì(€€€€€€€€€€€™±½…ĞÍ…±”€ôÑ…É•Ñ!•¥¡Ğ€¼¡•¥¡Ğì((€€€€€€€€€€€…µ•=‰©•ĞÙ¥ÍÕ…°€ô¹•Ü…µ•=‰©•Ğ ‰!¥Í™¥•±‘Y¥ÍÕ…°ˆ¤ì(€€€€€€€€€€€Ù¥ÍÕ…°¹ÑÉ…¹Í™½É´¹M•ÑA…É•¹Ğ¡É½½Ğ°™…±Í”¤ì(€€€€€€€€€€€Ù¥ÍÕ…°¹ÑÉ…¹Í™½É´¹±½…±A½Í¥Ñ¥½¸€ô¹•ÜY•Ñ½ÈÌ¡±½…±A½Í¥Ñ¥½¸¹à°±½…±A½Í¥Ñ¥½¸¹ä°€Á˜¤ì((€€€€€€€€€€€MÁÉ¥Ñ•I•¹‘•É•ÈÉ•¹‘•É•È€ôÙ¥ÍÕ…°¹‘‘½µÁ½¹•¹ĞñMÁÉ¥Ñ•I•¹‘•É•Èø ¤ì(€€€€€€€€€€€É•¹‘•É•È¹ÍÁÉ¥Ñ”€ôÍÁÉ¥Ñ”ì(€€€€€€€€€€€É•¹‘•É•È¹Í½ÉÑ¥¹=É‘•È€ôÍ½ÉÑ¥¹=É‘•Èì(€€€€€€€€€€€É•¹‘•É•È¹½±½È€ô½±½È¹İ¡¥Ñ”ì(€€€€€€€€€€€Ù¥ÍÕ…°¹ÑÉ…¹Í™½É´¹±½…±M…±”€ô¹•ÜY•Ñ½ÈÌ¡Í…±”°Í…±”°€Å˜¤ì(€€€€€€€€€€€É•ÑÕÉ¸É•¹‘•É•Èì(€€€€€€€ô((€€€€€€€ÁÉ¥Ù…Ñ”ÍÑ…Ñ¥ŒÙ½¥I•ÅÕ¥É”¡MÁÉ¥Ñ”ÍÁÉ¥Ñ”°ÍÑÉ¥¹œ±…‰•°¤(€€€€€€€ì(€€€€€€€€€€€¥˜€¡ÍÁÉ¥Ñ”€ôô¹Õ±°¤(€€€€€€€€€€€€€€€Ñ¡É½Ü¹•Ü%¹Ù…±¥‘=Á•É…Ñ¥½¹á•ÁÑ¥½¸ (€€€€€€€€€€€€€€€€€€€€‰PÀÀÄÈÉ•ÅÕ¥É•Ì!¥Í™¥•±ÁÉ½‘ÕÑ¥½¸…ÉĞ™½Èè€ˆ€¬±…‰•°¤ì(€€€€€€€ô(€€€ô)ô
+using System;
+using UnityEngine;
+
+namespace FantasyTD.MapA
+{
+    public static class FantasyVisualFactory
+    {
+        public static GameObject CreatePlant(PlantKind kind, Vector2 position)
+        {
+            Sprite sprite = HiggsfieldSpriteFactory.Plant(kind);
+            Require(sprite, Balance.DisplayName(kind));
+
+            GameObject root = new GameObject(Balance.DisplayName(kind));
+            root.transform.position = new Vector3(position.x, position.y, -0.25f);
+
+            float height = kind == PlantKind.OakGuardian ? 1.92f : 1.72f;
+
+            SpriteRenderer renderer = AddHiggsfieldVisual(
+                root.transform, sprite, height, new Vector2(0f, -0.49f), 24);
+            root.AddComponent<HiggsfieldUnitAnimation>().Initialize(renderer, height);
+
+            return root;
+        }
+
+        public static GameObject CreateEnemy(EnemyKind kind)
+        {
+            Sprite sprite = HiggsfieldSpriteFactory.Enemy(kind);
+            Require(sprite, Balance.EnemyName(kind));
+
+            GameObject root = new GameObject(Balance.EnemyName(kind));
+
+            float targetHeight;
+            Vector2 offset;
+
+            switch (kind)
+            {
+                case EnemyKind.Runner:
+                    targetHeight = 1.22f;
+                    offset = new Vector2(0f, -0.40f);
+                    break;
+                case EnemyKind.Brute:
+                    targetHeight = 1.78f;
+                    offset = new Vector2(0f, -0.55f);
+                    break;
+                case EnemyKind.Armored:
+                    targetHeight = 1.42f;
+                    offset = new Vector2(0f, -0.45f);
+                    break;
+                case EnemyKind.Boss:
+                    targetHeight = 2.35f;
+                    offset = new Vector2(0f, -0.70f);
+                    break;
+                default:
+                    targetHeight = 1.36f;
+                    offset = new Vector2(0f, -0.44f);
+                    break;
+            }
+
+
+            SpriteRenderer renderer = AddHiggsfieldVisual(root.transform, sprite, targetHeight, offset, 24);
+            root.AddComponent<HiggsfieldUnitAnimation>().Initialize(
+                renderer, targetHeight, kind == EnemyKind.Wanderer ? HiggsfieldSpriteFactory.WandererWalk : null);
+            return root;
+        }
+
+        public static GameObject CreatePortal(Vector2 position)
+        {
+            Sprite sprite = HiggsfieldSpriteFactory.Portal;
+            Require(sprite, "Portal");
+
+            GameObject root = new GameObject("PortalCore");
+            root.transform.position = new Vector3(position.x, position.y, -0.18f);
+            // Spawn is exactly on the top route boundary; keep the portal art inside the camera.
+            AddHiggsfieldVisual(root.transform, sprite, 2.10f, new Vector2(0.20f, -2.35f), 18);
+            return root;
+        }
+
+        public static GameObject CreateHomeTree(Vector2 position)
+        {
+            Sprite sprite = HiggsfieldSpriteFactory.HomeTree;
+            Require(sprite, "Baza-drzewo");
+
+            GameObject root = new GameObject("HomeTree_Higgsfield");
+            root.transform.position = new Vector3(position.x, position.y, -0.18f);
+            // The route ends at the lower-right boundary; pull presentation art inward
+            // without changing authoritative enemy movement geometry.
+            AddHiggsfieldVisual(root.transform, sprite, 2.55f, new Vector2(-1.72f, 1.45f), 20);
+            return root;
+        }
+
+        private static SpriteRenderer AddHiggsfieldVisual(
+            Transform root,
+            Sprite sprite,
+            float targetHeight,
+            Vector2 localPosition,
+            int sortingOrder)
+        {
+            float height = Mathf.Max(0.001f, sprite.bounds.size.y);
+            float scale = targetHeight / height;
+
+            GameObject visual = new GameObject("HiggsfieldVisual");
+            visual.transform.SetParent(root, false);
+            visual.transform.localPosition = new Vector3(localPosition.x, localPosition.y, 0f);
+
+            SpriteRenderer renderer = visual.AddComponent<SpriteRenderer>();
+            renderer.sprite = sprite;
+            renderer.sortingOrder = sortingOrder;
+            renderer.color = Color.white;
+            visual.transform.localScale = new Vector3(scale, scale, 1f);
+            return renderer;
+        }
+
+        private static void Require(Sprite sprite, string label)
+        {
+            if (sprite == null)
+                throw new InvalidOperationException(
+                    "T0012 requires Higgsfield production art for: " + label);
+        }
+    }
+}

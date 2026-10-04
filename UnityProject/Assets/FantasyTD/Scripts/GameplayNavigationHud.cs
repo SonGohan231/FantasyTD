@@ -1,1 +1,28 @@
-¨¥yÛhr‰çyËm¡»¬:—«jØ¨z-¥êæŠÛ^uÕÍ¥¹œ…¹Ñ…ÍåQ¹5…Áì)ÕÍ¥¹œU¹¥Ñå¹¥¹”ì)ÕÍ¥¹œU¹¥Ñå¹¥¹”¹U$ì()¹…µ•ÍÁ…”…¹Ñ…ÍåQ¹AÉ½‘ÕĞ)ì(€€€ÁÕ‰±¥ŒÍ•…±•±…ÍÌ…µ•Á±…å9…Ù¥…Ñ¥½¹!Õ€è5½¹½	•¡…Ù¥½ÕÈ(€€€ì(€€€€€€€ÁÕ‰±¥ŒÙ½¥%¹¥Ñ¥…±¥é”¡I•ÑQÉ…¹Í™½É´Í…™•É•„¤(€€€€€€€ì(€€€€€€€€€€€¥˜€¡Í…™•É•„€ôô¹Õ±°ñğ…µ•=‰©•Ğ¹¥¹ ‰	ÕÑÑ½¹}5Adˆ¤€„ô¹Õ±°¤É•ÑÕÉ¸ì((€€€€€€€€€€€	ÕÑÑ½¸µ…ÁÌ€ôIÕ¹Ñ¥µ•ÉĞ¹É•…Ñ•	ÕÑÑ½¸ (€€€€€€€€€€€€€€€Í…™•É•„°€‰5Adˆ°¹•Ü½±½È À¸Àá˜°€À¸ÈÍ˜°€À¸Àå˜°€À¸äİ˜¤°€ÈĞ¤ì(€€€€€€€€€€€µ…ÁÌ¹…µ•=‰©•Ğ¹¹…µ”€ô€‰	ÕÑÑ½¹}5Adˆì((€€€€€€€€€€€I•ÑQÉ…¹Í™½É´ÉĞ€ôµ…ÁÌ¹•Ñ½µÁ½¹•¹ĞñI•ÑQÉ…¹Í™½É´ø ¤ì(€€€€€€€€€€€ÉĞ¹…¹¡½É5¥¸€ôÉĞ¹…¹¡½É5…à€ô¹•ÜY•Ñ½ÈÈ Á˜°€Å˜¤ì(€€€€€€€€€€€ÉĞ¹Á¥Ù½Ğ€ô¹•ÜY•Ñ½ÈÈ Á˜°€Å˜¤ì(€€€€€€€€€€€ÉĞ¹Í¥é••±Ñ„€ô¹•ÜY•Ñ½ÈÈ ÄÔÁ˜°€ØÑ˜¤ì(€€€€€€€€€€€€¼¼-••À¹…Ù¥…Ñ¥½¸¥¸Ñ¡”Ñ½À!U±…¹”°Ñ¼Ñ¡”É¥¡Ğ½˜Ñ¡”•ÍÍ•¹”(€€€€€€€€€€€€¼¼Á¥±°¸Q¡”™½Éµ•ÈÍ•½¹µÉ½ÜÁ±…•µ•¹Ğ½‰ÍÕÉ•Ñ¡”5@ÄÁ½ÉÑ…°¸(€€€€€€€€€€€ÉĞ¹…¹¡½É•‘A½Í¥Ñ¥½¸€ô¹•ÜY•Ñ½ÈÈ ÌÔÙ˜°€´ÈÑ˜¤ì((€€€€€€€€€€€µ…ÁÌ¹½¹±¥¬¹‘‘1¥ÍÑ•¹•È¡AÉ½‘ÕÑ±½İM•¹•Ì¹=Á•¹…µÁ…¥¸¤ì(€€€€€€€ô(€€€ô)ô(
+using FantasyTD.MapA;
+using UnityEngine;
+using UnityEngine.UI;
+
+namespace FantasyTD.Product
+{
+    public sealed class GameplayNavigationHud : MonoBehaviour
+    {
+        public void Initialize(RectTransform safeArea)
+        {
+            if (safeArea == null || GameObject.Find("Button_MAPY") != null) return;
+
+            Button maps = RuntimeArt.CreateButton(
+                safeArea, "MAPY", new Color(0.08f, 0.23f, 0.09f, 0.97f), 24);
+            maps.gameObject.name = "Button_MAPY";
+
+            RectTransform rt = maps.GetComponent<RectTransform>();
+            rt.anchorMin = rt.anchorMax = new Vector2(0f, 1f);
+            rt.pivot = new Vector2(0f, 1f);
+            rt.sizeDelta = new Vector2(150f, 64f);
+            // Keep navigation in the top HUD lane, to the right of the essence
+            // pill. The former second-row placement obscured the MAP1 portal.
+            rt.anchoredPosition = new Vector2(356f, -24f);
+
+            maps.onClick.AddListener(ProductFlowScenes.OpenCampaign);
+        }
+    }
+}
