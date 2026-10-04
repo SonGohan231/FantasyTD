@@ -11,14 +11,14 @@ namespace FantasyTD.Product
             if (safeArea == null || GameObject.Find("Button_MAPY") != null) return;
 
             Button maps = RuntimeArt.CreateButton(
-                safeArea, "MAPY", new Color(0.16f, 0.28f, 0.14f, 0.96f), 22);
+                safeArea, "MAPY", new Color(0.08f, 0.23f, 0.09f, 0.97f), 24);
             maps.gameObject.name = "Button_MAPY";
 
             RectTransform rt = maps.GetComponent<RectTransform>();
             rt.anchorMin = rt.anchorMax = new Vector2(0f, 1f);
             rt.pivot = new Vector2(0f, 1f);
-            rt.sizeDelta = new Vector2(180f, 66f);
-            rt.anchoredPosition = new Vector2(32f, -122f);
+            rt.sizeDelta = new Vector2(205f, 72f);
+            rt.anchoredPosition = new Vector2(28f, -116f);
 
             maps.onClick.AddListener(ProductFlowScenes.OpenCampaign);
         }
