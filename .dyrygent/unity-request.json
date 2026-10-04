@@ -1,5 +1,5 @@
 {
-  "requestId": "t0012-natural-full-campaign-diagnostic-20261004-04",
+  "requestId": "t0012-full-campaign-af09406f-20261004-1049",
   "mode": "full-campaign",
-  "note": "Natural MAP1/MAP2 full-wave/boss diagnostic, real production income only. Existing balance unchanged; static 243-composition model predicts MAP1 boss failure and requires actual Unity evidence. Functional960x540, focus/playerloop safeguards, exact clocks; not finalAPK/performance acceptance. Eight-scene run37180523240 FAIL remains open."
+  "note": "Run natural MAP1/MAP2 six-wave boss acceptance on af09406f. Real production economy and UI only; no injected cash/damage/HP/victory. Full-campaign is now headless functional QA; visual rendering is gated separately."
 }
