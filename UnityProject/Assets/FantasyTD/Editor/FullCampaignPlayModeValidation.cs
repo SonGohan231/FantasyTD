@@ -169,7 +169,7 @@ namespace FantasyTD.CI
             try
             {
                 IEnumerator map1=RunNaturalMap("MAP1",FantasyTD.Product.ProductFlowScenes.MapASceneName,
-                    new[]{"A2","A3","A4","A6","A7","A8","A10"},new[]{"A1","A5","A9","A11","A12"});
+                    new[]{"A2","A3","A4","A6","A8","A10"},new[]{"A1","A5","A7","A9","A11","A12"});
                 while(map1.MoveNext()) yield return null;
                 IEnumerator map2=RunNaturalMap("MAP2",FantasyTD.Product.ProductFlowScenes.Map2SceneName,
                     new[]{"B1","B2","B3","B4","B10","B12"},new[]{"B5","B6","B7","B8","B9","B11"});
