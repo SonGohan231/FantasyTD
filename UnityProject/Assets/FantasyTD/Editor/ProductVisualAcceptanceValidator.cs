@@ -159,74 +159,139 @@ namespace FantasyTD.CI
 
             if (session != null)
             {
-                PlantingSpot spot = FindSpot("A1");
-                Check(spot != null, "A1 planting spot missing.");
-                if (spot != null && Camera.main != null)
-                {
-                    bool pressAccepted = session.Planting.TryHandleScreenPress(
-                        Camera.main.WorldToScreenPoint(spot.transform.position));
-                    Check(pressAccepted, "A1 production planting press was blocked.");
-                    yield return null;
+                PlantingSpot a1 = FindSpot("A1");
+                PlantingSpot a5 = FindSpot("A5");
+                PlantingSpot a9 = FindSpot("A9");
+                Check(a1 != null && a5 != null && a9 != null,
+                    "Representative planting spots A1/A5/A9 missing.");
 
-                    Button build = FindButton("PlantOption_SeedShooter");
-                    Check(build != null, "Pędostrzał radial option missing.");
+                if (a1 != null && Camera.main != null)
+                {
+                    Check(session.Planting.TryHandleScreenPress(
+                        Camera.main.WorldToScreenPoint(a1.transform.position)),
+                        "A1 production planting press was blocked.");
+                    yield return null;
+                    Button firstBuild = FindButton("PlantOption_SeedShooter");
+                    Check(firstBuild != null && firstBuild.interactable,
+                        "Pędostrzał radial option missing/unaffordable.");
                     shot = Capture("04-planting-radial-higgsfield-map.png", true);
                     while (shot.MoveNext()) yield return null;
+                    Check(DispatchClick(firstBuild),
+                        "Could not build A1 Pędostrzał through production radial.");
+                    for (int i = 0; i < 4; i++) yield return null;
+                }
 
-                    Check(DispatchClick(build), "Could not build tower through production radial.");
-                    for (int i = 0; i < 6; i++) yield return null;
+                IEnumerator build = BuildTowerThroughProduction(session, a5, PlantKind.SeedShooter);
+                while (build.MoveNext()) yield return null;
+                build = BuildTowerThroughProduction(session, a9, PlantKind.EssenceFlower);
+                while (build.MoveNext()) yield return null;
 
-                    Check(spot.Occupied && spot.Tower != null &&
-                          spot.Tower.Kind == PlantKind.SeedShooter,
-                        "Production Pędostrzał build failed.");
-                    SpriteRenderer towerRenderer = spot.Tower != null
-                        ? spot.Tower.GetComponentInChildren<SpriteRenderer>() : null;
-                    Check(towerRenderer != null && towerRenderer.sprite != null &&
-                          towerRenderer.sprite.name == "Higgsfield_Pedostrzal",
-                        "Built tower is not rendering the Higgsfield Pędostrzał sprite.");
-                    Fact("towerRendererSprite", towerRenderer != null && towerRenderer.sprite != null
-                        ? towerRenderer.sprite.name : "MISSING");
+                PlantingSpot[] representative = { a1, a5, a9 };
+                int visibleTowerCount = 0;
+                foreach (PlantingSpot built in representative)
+                {
+                    if (built == null || built.Tower == null) continue;
+                    SpriteRenderer renderer = built.Tower.GetComponentsInChildren<SpriteRenderer>()
+                        .FirstOrDefault(sr => sr != null && sr.sprite != null &&
+                            sr.gameObject.name == "HiggsfieldVisual");
+                    string spriteName = renderer != null && renderer.sprite != null
+                        ? renderer.sprite.name : "MISSING";
+                    Fact("tower." + built.Id + ".sprite", spriteName);
+                    Check(renderer != null &&
+                          spriteName.StartsWith("Higgsfield_", StringComparison.Ordinal),
+                        built.Id + " is not rendering a Higgsfield production tower sprite.");
+                    if (renderer != null && IsRendererReadableOnPhone(renderer, 72f))
+                        visibleTowerCount++;
+                }
+                Fact("visibleReadableHiggsfieldTowers", visibleTowerCount);
+                Check(visibleTowerCount >= 3,
+                    "Product screenshot requires at least three readable Higgsfield towers in view.");
 
-                    shot = Capture("05-higgsfield-tower-built.png", true);
-                    while (shot.MoveNext()) yield return null;
+                shot = Capture("05-three-higgsfield-towers.png", true);
+                while (shot.MoveNext()) yield return null;
 
-                    session.Planting.TryHandleScreenPress(
-                        Camera.main.WorldToScreenPoint(spot.transform.position));
+                if (a5 != null && a5.Tower != null && Camera.main != null)
+                {
+                    Check(session.Planting.TryHandleScreenPress(
+                        Camera.main.WorldToScreenPoint(a5.transform.position)),
+                        "Could not select representative combat tower.");
                     for (int i = 0; i < 3; i++) yield return null;
-                    Check(GameObject.Find("TowerPanel") != null, "Tower panel missing.");
-                    Check(FindButton("Button_ULEPSZ") != null, "ULEPSZ button missing.");
-                    Check(FindButton("Button_SPRZEDAJ") != null, "SPRZEDAJ button missing.");
-                    shot = Capture("06-tower-panel-upgrade-sell.png", true);
-                    while (shot.MoveNext()) yield return null;
+                    Check(session.Planting.SelectedTower == a5.Tower,
+                        "Representative combat tower selection did not persist.");
 
-                    Button close = FindButton("TowerPanelClose");
-                    if (close != null) DispatchClick(close);
+                    Transform range = a5.Tower.transform.Find("AttackRangeIndicator");
+                    LineRenderer rangeLine = range != null ? range.GetComponent<LineRenderer>() : null;
+                    Check(rangeLine != null && rangeLine.enabled,
+                        "Selected combat tower attack-range indicator is not visible.");
+
+                    // Keep the production selection/range ring but hide only the detail plaque
+                    // so the combat capture matches the reference composition.
+                    session.TowerPanel.Close();
                     yield return null;
+                    shot = Capture("06-selected-tower-range.png", true);
+                    while (shot.MoveNext()) yield return null;
                 }
 
                 Button startWave = FindButton("Button_START");
                 Check(DispatchClick(startWave), "Could not start wave 1 through production UI.");
-                for (int i = 0; i < 240 &&
-                     (session.Waves.CurrentWave < 1 || session.Enemies.Count == 0); i++)
+
+                bool combatCompositionReady = false;
+                int readableEnemyCount = 0;
+                bool projectileVisible = false;
+                for (int i = 0; i < 1800; i++)
+                {
                     yield return null;
+                    readableEnemyCount = 0;
+                    foreach (EnemyUnit activeEnemy in session.Enemies.Where(
+                                 e => e != null && !e.IsDead))
+                    {
+                        SpriteRenderer renderer = activeEnemy.GetComponentsInChildren<SpriteRenderer>()
+                            .FirstOrDefault(sr => sr != null && sr.sprite != null &&
+                                sr.gameObject.name == "HiggsfieldVisual");
+                        EnemyHealthBar hp = activeEnemy.GetComponent<EnemyHealthBar>();
+                        if (renderer != null && hp != null &&
+                            IsRendererReadableOnPhone(renderer, 50f))
+                            readableEnemyCount++;
+                    }
 
+                    projectileVisible =
+                        UnityEngine.Object.FindFirstObjectByType<SeedProjectile>() != null;
+
+                    if (session.Waves.CurrentWave == 1 &&
+                        readableEnemyCount >= 4 &&
+                        projectileVisible)
+                    {
+                        combatCompositionReady = true;
+                        break;
+                    }
+                }
+
+                Fact("combatReadableEnemyCount", readableEnemyCount);
+                Fact("combatProjectileVisible", projectileVisible);
                 Check(session.Waves.CurrentWave == 1, "Production wave 1 did not start.");
-                Check(session.Enemies.Count > 0, "Production wave 1 spawned no enemies.");
+                Check(readableEnemyCount >= 4,
+                    "Product combat screenshot requires at least four readable enemies with HP bars in view.");
+                Check(projectileVisible,
+                    "Product combat screenshot requires a real production projectile/VFX in flight.");
+                Check(combatCompositionReady,
+                    "Representative production combat composition was not reached before capture deadline.");
 
-                EnemyUnit enemy = session.Enemies.FirstOrDefault(e => e != null);
-                SpriteRenderer enemyRenderer = enemy != null
-                    ? enemy.GetComponentInChildren<SpriteRenderer>() : null;
-                string enemySpriteName = enemyRenderer != null && enemyRenderer.sprite != null
-                    ? enemyRenderer.sprite.name : "MISSING";
-                Check(enemyRenderer != null && enemyRenderer.sprite != null &&
-                      (enemySpriteName.StartsWith("Higgsfield_", StringComparison.Ordinal) ||
-                       enemySpriteName.StartsWith("Chochlik_", StringComparison.Ordinal)),
-                    "Active production enemy is not rendering a Higgsfield sprite.");
-                Check(enemy != null && enemy.GetComponent<EnemyHealthBar>() != null,
-                    "Active production enemy HP bar missing.");
-                Fact("activeWaveEnemySprite", enemySpriteName);
+                foreach (EnemyUnit activeEnemy in session.Enemies.Where(e => e != null && !e.IsDead))
+                {
+                    SpriteRenderer renderer = activeEnemy.GetComponentsInChildren<SpriteRenderer>()
+                        .FirstOrDefault(sr => sr != null && sr.sprite != null &&
+                            sr.gameObject.name == "HiggsfieldVisual");
+                    string spriteName = renderer != null && renderer.sprite != null
+                        ? renderer.sprite.name : "MISSING";
+                    Check(renderer != null &&
+                          (spriteName.StartsWith("Higgsfield_", StringComparison.Ordinal) ||
+                           spriteName.StartsWith("Chochlik_", StringComparison.Ordinal)),
+                        "Visible enemy is not using Higgsfield production art: " + spriteName);
+                    Check(activeEnemy.GetComponent<EnemyHealthBar>() != null,
+                        "Visible production enemy HP bar missing.");
+                }
 
-                shot = Capture("07-active-wave-higgsfield-enemies.png", true);
+                shot = Capture("07-active-wave-commercial-composition.png", true);
                 while (shot.MoveNext()) yield return null;
 
                 Fact("bossEndStateScreenshot",
@@ -287,6 +352,53 @@ namespace FantasyTD.CI
                 "Gameplay screenshot lacks expected visual color/detail richness; old flat placeholder may be rendering: " +
                 fileName + " bins=" + bins.Count);
             UnityEngine.Object.DestroyImmediate(image);
+        }
+
+        private static IEnumerator BuildTowerThroughProduction(
+            GameSession session,
+            PlantingSpot spot,
+            PlantKind kind)
+        {
+            Check(session != null && spot != null && Camera.main != null,
+                "Cannot build representative tower: missing session/spot/camera.");
+            if (session == null || spot == null || Camera.main == null)
+                yield break;
+
+            Check(session.Planting.TryHandleScreenPress(
+                Camera.main.WorldToScreenPoint(spot.transform.position)),
+                spot.Id + " production planting press was blocked.");
+            yield return null;
+
+            Button build = FindButton("PlantOption_" + kind);
+            Check(build != null && build.interactable,
+                spot.Id + " build option unavailable for " + kind + ".");
+            Check(DispatchClick(build),
+                "Could not build " + kind + " at " + spot.Id + " through production radial.");
+            for (int i = 0; i < 4; i++) yield return null;
+
+            Check(spot.Occupied && spot.Tower != null && spot.Tower.Kind == kind,
+                "Production tower build failed at " + spot.Id + ".");
+        }
+
+        private static bool IsRendererReadableOnPhone(
+            SpriteRenderer renderer,
+            float minimumPixelHeight)
+        {
+            if (renderer == null || Camera.main == null || renderer.sprite == null)
+                return false;
+
+            Bounds b = renderer.bounds;
+            Vector3 bottom = Camera.main.WorldToScreenPoint(
+                new Vector3(b.center.x, b.min.y, b.center.z));
+            Vector3 top = Camera.main.WorldToScreenPoint(
+                new Vector3(b.center.x, b.max.y, b.center.z));
+            Vector3 center = Camera.main.WorldToScreenPoint(b.center);
+
+            float pixelHeight = Mathf.Abs(top.y - bottom.y);
+            bool inView = center.z > 0f &&
+                          center.x >= 0f && center.x <= Screen.width &&
+                          center.y >= 0f && center.y <= Screen.height;
+            return inView && pixelHeight >= minimumPixelHeight;
         }
 
         private static PlantingSpot FindSpot(string id)
