@@ -1,0 +1,142 @@
+{
+  "map": "MAP5",
+  "terrainArtifactId": 11234691977,
+  "terrainPngSha256": "8dc09376a14d636973a774d169bb26b01f6601e3a60feae65d305b9a8e2b7ef1",
+  "terrainSourceSize": [
+    1344,
+    768
+  ],
+  "terrainCropTopLeft": [
+    270,
+    215,
+    720,
+    340
+  ],
+  "worldSize": [
+    28,
+    16
+  ],
+  "terrainSortingOrder": -100,
+  "reason": "Replace repeated almost-blank 88x91 crop with a single large approved central terrain fragment retaining cracks, fungal margins, grass islands and debris. Perimeter buildings excluded. Existing canonical road meshes render above it.",
+  "propsArtifactId": 11234731952,
+  "addedProps": [
+    {
+      "prop": "CarWest",
+      "cropTopLeft": [
+        310,
+        298,
+        233,
+        173
+      ],
+      "worldCenter": [
+        1.6,
+        2.6
+      ],
+      "worldSize": [
+        2.4,
+        1.65
+      ],
+      "conservativeRoadClearance": 3.419,
+      "conservativePadClearance": 1.078
+    },
+    {
+      "prop": "WallNorth",
+      "cropTopLeft": [
+        365,
+        72,
+        185,
+        194
+      ],
+      "worldCenter": [
+        5.2,
+        15
+      ],
+      "worldSize": [
+        2.2,
+        2.1
+      ],
+      "conservativeRoadClearance": 1.453,
+      "conservativePadClearance": 0.996
+    },
+    {
+      "prop": "CarNorth",
+      "cropTopLeft": [
+        310,
+        298,
+        233,
+        173
+      ],
+      "worldCenter": [
+        18.2,
+        14.7
+      ],
+      "worldSize": [
+        2.7,
+        1.9
+      ],
+      "conservativeRoadClearance": 1.846,
+      "conservativePadClearance": 0.934
+    },
+    {
+      "prop": "WallSouth",
+      "cropTopLeft": [
+        590,
+        278,
+        148,
+        198
+      ],
+      "worldCenter": [
+        11.6,
+        0.9
+      ],
+      "worldSize": [
+        1.7,
+        1.55
+      ],
+      "conservativeRoadClearance": 0.508,
+      "conservativePadClearance": 1.107
+    },
+    {
+      "prop": "FungalSouth",
+      "cropTopLeft": [
+        365,
+        72,
+        185,
+        194
+      ],
+      "worldCenter": [
+        21,
+        1.9
+      ],
+      "worldSize": [
+        2.2,
+        2
+      ],
+      "conservativeRoadClearance": 3.069,
+      "conservativePadClearance": 2.281
+    },
+    {
+      "prop": "CityEast",
+      "cropTopLeft": [
+        1080,
+        18,
+        244,
+        277
+      ],
+      "worldCenter": [
+        27,
+        12.7
+      ],
+      "worldSize": [
+        1.65,
+        1.9
+      ],
+      "conservativeRoadClearance": 2.359,
+      "conservativePadClearance": 0.788
+    }
+  ],
+  "topologyChanged": false,
+  "generatedPixels": false,
+  "qualityRisk": "A larger central crop stretches moderately to the battlefield aspect ratio. Cracks, grass islands and partial fungal margins are baked terrain decoration, never gameplay roads. Border fragments and source-white foreground keying need Unity screenshot QA.",
+  "validation": "All added prop rectangles pass conservative clearance against every canonical road segment and all twelve pads; all source crops inside original image. Unity screenshot QA pending."
+}

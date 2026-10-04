@@ -11,8 +11,7 @@ namespace FantasyTD.MapA
         {
             CampaignMapDefinition definition = Map5SourceDefinition.Definition;
             Map56SourceScene.ConfigureCamera(definition);
-            Map56SourceScene.RepeatGround("MAP5", "Higgsfield/Maps/MAP5_TERRAIN",
-                new Rect(551f,217f,88f,91f), definition.Width, definition.Height);
+            PlaceTerrainPlate(definition);
             Vector2[][] routes = Map56SourceScene.Routes(definition);
             AuthoredPathRenderer.Create("MAP5_AuthoredRoad", routes,
                 "Higgsfield/Maps/MAP2_ROAD_KIT", new Rect(70f,66f,400f,61f), new Vector2(1344f,768f), 1.05f, 4f);
@@ -24,12 +23,45 @@ namespace FantasyTD.MapA
                 new Rect(1071f,493f,257f,252f), new Vector2(3f,1.25f), new Vector2(2.4f,2f));
             Map56SourceScene.Decoration("MAP5_LampSouth", "Higgsfield/Maps/MAP5_PROPS",
                 new Rect(946f,20f,132f,266f), new Vector2(25.5f,1.55f), new Vector2(1f,2.3f));
+            // Existing source props frame the battlefield without covering canonical lanes or pads.
+            Map56SourceScene.Decoration("MAP5_OvergrownCarWest", "Higgsfield/Maps/MAP5_PROPS",
+                new Rect(310f,298f,233f,173f), new Vector2(1.6f,2.6f), new Vector2(2.4f,1.65f));
+            Map56SourceScene.Decoration("MAP5_FungalWallNorth", "Higgsfield/Maps/MAP5_PROPS",
+                new Rect(365f,72f,185f,194f), new Vector2(5.2f,15f), new Vector2(2.2f,2.1f));
+            Map56SourceScene.Decoration("MAP5_OvergrownCarNorth", "Higgsfield/Maps/MAP5_PROPS",
+                new Rect(310f,298f,233f,173f), new Vector2(18.2f,14.7f), new Vector2(2.7f,1.9f));
+            Map56SourceScene.Decoration("MAP5_CrackedWallSouth", "Higgsfield/Maps/MAP5_PROPS",
+                new Rect(590f,278f,148f,198f), new Vector2(11.6f,0.9f), new Vector2(1.7f,1.55f));
+            Map56SourceScene.Decoration("MAP5_FungalWallSouth", "Higgsfield/Maps/MAP5_PROPS",
+                new Rect(365f,72f,185f,194f), new Vector2(21f,1.9f), new Vector2(2.2f,2f));
+            Map56SourceScene.Decoration("MAP5_CityEast", "Higgsfield/Maps/MAP5_PROPS",
+                new Rect(1080f,18f,244f,277f), new Vector2(27f,12.7f), new Vector2(1.65f,1.9f));
             List<PlantingSpot> spots = Map56SourceScene.BuildSpots(definition,
                 "Higgsfield/Maps/MAP5_PROPS", new Rect(754f,297f,206f,184f), new Vector2(1.6f,1.18f));
             Map56SourceScene.Endpoints(definition, routes);
             GameSession session=new GameObject("GameSession").AddComponent<GameSession>();
             session.Initialize(spots,definition);
             new GameObject("MAP5_SecretController").AddComponent<Map5SecretController>().Initialize(session);
+        }
+
+        private static void PlaceTerrainPlate(CampaignMapDefinition definition)
+        {
+            Texture2D texture = Resources.Load<Texture2D>("Higgsfield/Maps/MAP5_TERRAIN");
+            if (texture == null || texture.width != 1344 || texture.height != 768)
+                throw new InvalidOperationException("Approved MAP5 terrain must preserve source dimensions 1344x768.");
+            // Central road-free surface: cracks, fungal edges, grass islands and source debris.
+            // Large perimeter buildings are excluded rather than painted over or erased.
+            Rect topLeft = new Rect(270f,215f,720f,340f);
+            Sprite sprite = Sprite.Create(texture,
+                new Rect(topLeft.x,texture.height-topLeft.yMax,topLeft.width,topLeft.height),Vector2.one*0.5f,100f);
+            sprite.name = "MAP5_ApprovedCentralTerrainPlate";
+            GameObject ground = new GameObject("MAP5_AuthoredCentralTerrain");
+            ground.transform.position = new Vector3(definition.Width*0.5f,definition.Height*0.5f,0f);
+            ground.transform.localScale = new Vector3(definition.Width/sprite.bounds.size.x,
+                definition.Height/sprite.bounds.size.y,1f);
+            SpriteRenderer renderer = ground.AddComponent<SpriteRenderer>();
+            renderer.sprite = sprite;
+            renderer.sortingOrder = -100;
         }
     }
 

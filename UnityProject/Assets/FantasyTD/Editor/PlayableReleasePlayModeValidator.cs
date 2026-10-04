@@ -22,6 +22,7 @@ namespace FantasyTD.CI
         private const string StartedKey = "FantasyTD.T0012.StartedUtc";
         private const string ExitCodeKey = "FantasyTD.T0012.ExitCode";
         private const string PlayModeEnteredKey = "FantasyTD.T0012.PlayModeEntered";
+        private const string OriginalBackgroundKey = "FantasyTD.T0012.OriginalRunInBackground";
         private const string ReportPath = "Artifacts/UnityExecutor/playable-release.txt";
         private const string ScreenshotPath = "Artifacts/UnityExecutor/playable-release-1920x1080.png";
         private const float TimeoutSeconds = 600f;
@@ -32,6 +33,7 @@ namespace FantasyTD.CI
 
         private static bool _subscribed;
         private static int _warmupFrames;
+        private static int _lastPlayerFrame = -1;
         private static GameSession _session;
         private static IEnumerator _flow;
 
@@ -49,8 +51,11 @@ namespace FantasyTD.CI
             Errors.Clear();
             RuntimeWarnings.Clear();
             _warmupFrames = 0;
+            _lastPlayerFrame = -1;
             _session = null;
             _flow = null;
+            SessionState.SetBool(OriginalBackgroundKey, Application.runInBackground);
+            Application.runInBackground = true;
 
             Directory.CreateDirectory(Path.GetDirectoryName(ReportPath) ?? "Artifacts/UnityExecutor");
             SessionState.SetBool(ActiveKey, true);
@@ -101,6 +106,13 @@ namespace FantasyTD.CI
 
             if (!EditorApplication.isPlaying)
                 return;
+
+            // Editor updates are not player frames. Keep the headless player loop
+            // scheduled, and advance runtime assertions only after a new frame.
+            EditorApplication.QueuePlayerLoopUpdate();
+            if (_lastPlayerFrame == Time.frameCount)
+                return;
+            _lastPlayerFrame = Time.frameCount;
 
             SessionState.SetBool(PlayModeEnteredKey, true);
             SubscribeLog();
@@ -183,7 +195,14 @@ namespace FantasyTD.CI
             IEnumerator sourceMaps = SourceCampaignPlayModeValidation.Run(Check, text => Facts.Add(text));
             while (sourceMaps.MoveNext()) yield return null;
             IEnumerator map5Secret = Map5SecretPlayModeValidation.Run(Check, text => Facts.Add(text));
-            while (map5Secret.MoveNext()) yield return null;
+            try
+            {
+                while (map5Secret.MoveNext()) yield return null;
+            }
+            finally
+            {
+                (map5Secret as IDisposable)?.Dispose();
+            }
 
             bool screenshotExists = File.Exists(ScreenshotPath) &&
                                     new FileInfo(ScreenshotPath).Length > 10000;
@@ -455,6 +474,11 @@ namespace FantasyTD.CI
 
         private static void Complete(bool success)
         {
+            // Disposing the scenario also executes its save/time-scale cleanup
+            // if the overall wall-clock timeout interrupted a yielded wait.
+            (_flow as IDisposable)?.Dispose();
+            _flow = null;
+            Application.runInBackground = SessionState.GetBool(OriginalBackgroundKey, false);
             AddFact("playModeEntered", SessionState.GetBool(PlayModeEnteredKey, false));
             WriteReport(success && Errors.Count == 0);
 
@@ -467,6 +491,7 @@ namespace FantasyTD.CI
 
         private static void FinishImmediately(bool success)
         {
+            Application.runInBackground = SessionState.GetBool(OriginalBackgroundKey, false);
             WriteReport(success);
             SessionState.SetInt(ExitCodeKey, success ? 0 : 1);
             SessionState.SetString(PhaseKey, "exit-editor");

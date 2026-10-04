@@ -1,5 +1,5 @@
 {
-  "requestId": "t0012-eight-scene-hud-fixed-20261004-02",
+  "requestId": "t0012-eight-scene-source-and-playerloop-fixed-20261004-03",
   "mode": "playable-release",
-  "note": "Validate actual MAP1–8 source scenes after MAP5 UV correction, safe-area HUD access fix and timeout exit fix. MAP7/8 recovered-concept candidates remain unvalidated; no new generation. First-wave checks do not certify full campaign or APK."
+  "note": "Actual eight-map candidate acceptance after omitted MAP1 road source preserved in4d8d30f6, HUD fix, proper MAP5 road UV, MAP5 source terrain composition and bounded player-loop income diagnostics. All unvalidated maps remain disabled; no new graphics generated; full campaign and new APK still pending."
 }

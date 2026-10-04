@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using FantasyTD.MapA;
 using UnityEngine;
@@ -48,9 +49,23 @@ namespace FantasyTD.CI
                 Require(session.Economy.Essence==0,check,"Three real flower purchases spend initial 300 Essence.");
                 Time.timeScale=8f;
                 fact("map5Secret.simulationSpeed=8x;balanceValuesUnchanged");
-                float incomeDeadline=Time.time+650f;
-                while (session.Economy.Essence<1300 && Time.time<incomeDeadline && !session.IsFinished) yield return null;
-                Require(session.Economy.Essence>=1300,check,"Real flower production must earn preparation funds.");
+                float incomeStarted=Time.time;
+                float incomeRealStarted=Time.realtimeSinceStartup;
+                int incomeFrameStarted=Time.frameCount;
+                int incomeEssenceStarted=session.Economy.Essence;
+                fact("map5Secret.incomeBefore="+IncomeState(session));
+                float incomeDeadline=incomeStarted+650f;
+                float incomeRealDeadline=incomeRealStarted+180f;
+                while (session.Economy.Essence<1300 && Time.time<incomeDeadline &&
+                    Time.realtimeSinceStartup<incomeRealDeadline && !session.IsFinished) yield return null;
+                string incomeResult=IncomeState(session)+
+                    ";elapsedGameSeconds="+(Time.time-incomeStarted).ToString("0.###",CultureInfo.InvariantCulture)+
+                    ";elapsedRealSeconds="+(Time.realtimeSinceStartup-incomeRealStarted).ToString("0.###",CultureInfo.InvariantCulture)+
+                    ";elapsedFrames="+(Time.frameCount-incomeFrameStarted)+
+                    ";earnedEssence="+(session.Economy.Essence-incomeEssenceStarted);
+                fact("map5Secret.incomeAfter="+incomeResult);
+                Require(session.Economy.Essence>=1300,check,
+                    "Real flower production must earn 1300 preparation funds within 650 game seconds and 180 real seconds; "+incomeResult);
                 fact("map5Secret.earnedEssenceBeforeCombat="+session.Economy.Essence);
 
                 foreach (string id in new[]{"F6","F11","F12"})
@@ -65,6 +80,8 @@ namespace FantasyTD.CI
                 IEnumerator frostUpgrades=UpgradeViaUi(session,"F10",check);
                 while (frostUpgrades.MoveNext()) yield return null;
 
+                Time.timeScale=4f;
+                fact("map5Secret.combatSimulationSpeed=4x;balanceValuesUnchanged");
                 Click("LabSourceButton",check);
                 yield return null;
                 EnemyUnit mother=secret.MotherMycelium;
@@ -108,6 +125,19 @@ namespace FantasyTD.CI
                 PlayerPrefs.Save();
             }
         }
+
+        private static string IncomeState(GameSession session) =>
+            "gameTime="+Time.time.ToString("0.###",CultureInfo.InvariantCulture)+
+            ";realTime="+Time.realtimeSinceStartup.ToString("0.###",CultureInfo.InvariantCulture)+
+            ";frame="+Time.frameCount+
+            ";essence="+session.Economy.Essence+
+            ";timeScale="+Time.timeScale.ToString("0.###",CultureInfo.InvariantCulture)+
+            ";finished="+session.IsFinished+
+            ";focused="+Application.isFocused+
+            ";runInBackground="+Application.runInBackground+
+            ";editorPaused="+UnityEditor.EditorApplication.isPaused+
+            ";activeFlowers="+UnityEngine.Object.FindObjectsByType<EssenceFlowerPlant>(
+                FindObjectsInactive.Exclude,FindObjectsSortMode.None).Count(plant=>plant.isActiveAndEnabled);
 
         private static IEnumerator Build(GameSession session,string id,PlantKind kind,Action<bool,string> check)
         {
