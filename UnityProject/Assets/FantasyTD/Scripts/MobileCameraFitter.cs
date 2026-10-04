@@ -56,21 +56,21 @@ namespace FantasyTD.MapA
             if (safe.width <= 0f || safe.height <= 0f)
                 safe = new Rect(0f, 0f, screenWidth, screenHeight);
 
-            // Match MobileHud's 1920x1080 CanvasScaler with a 0.5 width/height match.
-            // Keep the complete field below EnemyCount (156 units from the top)
-            // and above START (160 units from the bottom), including a touch gap.
+            // HUD overlays the battlefield. Reserve only touch-safe breathing room;
+            // do not shrink the map into a centered postcard.
             float hudScale = Mathf.Sqrt((screenWidth / 1920f) * (screenHeight / 1080f));
-            float sideInset = 18f * hudScale;
-            float bottomInset = 170f * hudScale;
-            float topInset = 166f * hudScale;
+            float sideInset = 10f * hudScale;
+            float bottomInset = 42f * hudScale;
+            float topInset = 54f * hudScale;
             float usableWidth = Mathf.Max(1f, safe.width - 2f * sideInset);
             float usableHeight = Mathf.Max(1f, safe.height - bottomInset - topInset);
             Vector2 fieldCenter = new Vector2(safe.center.x,
                 safe.yMin + bottomInset + usableHeight * 0.5f);
 
-            float fitHeight = (_height + 1.1f) * screenHeight / (2f * usableHeight);
-            float fitWidth = (_width + 1.1f) * screenHeight / (2f * usableWidth);
-            _camera.orthographicSize = Mathf.Max(fitHeight,fitWidth);
+            float usableAspect = usableWidth / Mathf.Max(1f, usableHeight);
+            float fitHeight = (_height + 0.35f) * 0.5f;
+            float fitWidth = (_width + 0.35f) / (2f * Mathf.Max(0.01f, usableAspect));
+            _camera.orthographicSize = Mathf.Max(fitHeight, fitWidth);
             float unitsPerPixel = 2f * _camera.orthographicSize / screenHeight;
             transform.position = new Vector3(
                 _width * 0.5f - (fieldCenter.x - screenWidth * 0.5f) * unitsPerPixel,
