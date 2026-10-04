@@ -215,3 +215,68 @@ Purpose:
 Use actual runtime evidence to revise only the MAP-A vertical-slice balance.
 
 Do not expand the roster.
+
+---
+
+# T0011 — MAP-A Visual Production Pass + Release APK
+
+Status: **DONE**
+
+Purpose:
+Replace prototype-looking MAP-A visuals with a cohesive original organic-fantasy production pass while preserving validated gameplay, balance, path geometry, planting coordinates, touch behavior, wave flow and combat values.
+
+Scope:
+- authored-looking terrain/path dressing without changing gameplay geometry,
+- polished silhouettes for all 4 plants,
+- polished silhouettes for all 4 basic enemies and Król Cierni,
+- readable projectile/control VFX,
+- cohesive HUD, radial menu, planting indicators and victory/defeat presentation,
+- retain Android landscape support at 16:9 and 20:9,
+- add ticket-specific render-capable Play Mode visual smoke validation when practical,
+- create a final Android APK from the final T0011 head.
+
+Constraints:
+- no balance changes,
+- no wave changes,
+- no map-coordinate/path/spot changes,
+- no new gameplay roster or upgrade systems,
+- no T0009 device smoke test,
+- no T0010 balance pass,
+- no automatic merge.
+
+Acceptance:
+- gameplay invariants remain unchanged,
+- all plants/enemies/boss are visually distinct and readable,
+- MAP-A no longer reads as debug/prototype geometry,
+- UI remains touch-safe and unclipped,
+- Unity compile/Play Mode validation passes with no introduced errors,
+- final Android BuildReport succeeds on Unity 6000.0.26f1,
+- final APK artifact is downloadable with recorded checksum.
+
+Completion evidence:
+- render-capable mobile layout regression: run `37059744377` — PASS,
+- post-fix MAP-A integrity: runs `37061361432` and `37104978893` — PASS,
+- plant behavior regression after VFX integration: run `37062061398` — PASS,
+- boss/victory/defeat/restart regression: run `37105044037` — PASS,
+- Android candidate build: run `37060044752` — BuildReport Succeeded, 0 errors, 0 warnings,
+- final Android build is requested only after these documentation commits so the APK evidence comes from the final branch HEAD,
+- T0009 and T0010 remain PLANNED and were not implemented.
+
+
+## T0011 completion evidence
+
+- render-capable mobile layout regression: run `37059744377` — PASS at 1920×1080, 2400×1080 and synthetic safe area
+- corrected MAP-A geometry regression: run `37104978893` — PASS
+- four plant behaviors after VFX integration: run `37062061398` — PASS
+- boss / victory / defeat / restart regression: run `37105044037` — PASS
+- corrected Android build: run `37105211817` — PASS
+- corrected Android build head: `98539046e3cab8ff24572d6b401cd61579f895b0`
+- Unity: `6000.0.26f1`
+- BuildReport: `Succeeded`, errors `0`, warnings `0`
+- APK: `Builds/Android/FantasyTD_MAP_A_v2.apk`
+- APK bytes: `18888441`
+- APK SHA-256: `aaccb09c2e8a358eeaf814a4f07d110e770ebf7bb5d8d547dc3d54f52673b6f1`
+- artifact: `fantasy-td-android-37105211817` (ID `11267512151`)
+- T0009 device/emulator smoke: **NOT RUN**
+- T0010 balance pass: **NOT STARTED**
+- no automatic merge

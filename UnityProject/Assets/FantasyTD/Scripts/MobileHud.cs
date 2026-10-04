@@ -54,26 +54,31 @@ namespace FantasyTD.MapA
             CloseBuildRadial();
 
             GameObject root = new GameObject("RadialBuildMenu", typeof(RectTransform));
-            root.transform.SetParent(_safe,false);
+            root.transform.SetParent(_safe, false);
             _radialRoot = root.GetComponent<RectTransform>();
             _radialRoot.sizeDelta = Vector2.zero;
 
             Vector2 local;
             Vector3 screen = Camera.main.WorldToScreenPoint(spot.transform.position);
-            RectTransformUtility.ScreenPointToLocalPointInRectangle(_safe,new Vector2(screen.x,screen.y),null,out local);
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(
+                _safe, new Vector2(screen.x, screen.y), null, out local);
             _radialRoot.anchoredPosition = local;
 
-            CreateRadialButton(PlantKind.SeedShooter,new Vector2(-125f,0f),new Color(0.28f,0.64f,0.20f));
-            CreateRadialButton(PlantKind.EssenceFlower,new Vector2(0f,125f),new Color(0.92f,0.64f,0.12f));
-            CreateRadialButton(PlantKind.OakGuardian,new Vector2(125f,0f),new Color(0.42f,0.26f,0.10f));
-            CreateRadialButton(PlantKind.FrostBud,new Vector2(0f,-125f),new Color(0.24f,0.62f,0.82f));
+            CreateRadialBackdrop();
 
-            Button close = RuntimeArt.CreateButton(_radialRoot,"×",new Color(0.25f,0.16f,0.10f,0.95f),38);
+            CreateRadialButton(PlantKind.SeedShooter, new Vector2(-125f, 0f), new Color(0.28f, 0.64f, 0.20f));
+            CreateRadialButton(PlantKind.EssenceFlower, new Vector2(0f, 125f), new Color(0.92f, 0.64f, 0.12f));
+            CreateRadialButton(PlantKind.OakGuardian, new Vector2(125f, 0f), new Color(0.42f, 0.26f, 0.10f));
+            CreateRadialButton(PlantKind.FrostBud, new Vector2(0f, -125f), new Color(0.24f, 0.62f, 0.82f));
+
+            Button close = RuntimeArt.CreateButton(
+                _radialRoot, "×", new Color(0.23f, 0.14f, 0.075f, 0.98f), 38);
             close.gameObject.name = "RadialCloseButton";
             RectTransform cr = close.GetComponent<RectTransform>();
-            cr.sizeDelta = new Vector2(74f,74f);
+            cr.sizeDelta = new Vector2(74f, 74f);
             cr.anchoredPosition = Vector2.zero;
-            close.onClick.AddListener(delegate {
+            close.onClick.AddListener(delegate
+            {
                 if (_onClose != null) _onClose();
             });
 
@@ -97,94 +102,198 @@ namespace FantasyTD.MapA
 
         public void ShowFloatingMessage(Vector2 world, string message, Color color)
         {
-            StartCoroutine(FloatingMessageRoutine(world,message,color));
+            StartCoroutine(FloatingMessageRoutine(world, message, color));
         }
 
         public void ShowEndPanel(bool victory)
         {
             CloseBuildRadial();
-            GameObject panel = new GameObject("EndPanel",typeof(RectTransform),typeof(CanvasRenderer),typeof(Image));
-            panel.transform.SetParent(_safe,false);
-            RectTransform pr = panel.GetComponent<RectTransform>();
-            pr.anchorMin = new Vector2(0.5f,0.5f);
-            pr.anchorMax = new Vector2(0.5f,0.5f);
-            pr.sizeDelta = new Vector2(760f,400f);
-            panel.GetComponent<Image>().color = new Color(0.12f,0.08f,0.04f,0.94f);
 
-            Text title = RuntimeArt.CreateText(panel.transform,"Result",54,TextAnchor.MiddleCenter,Color.white);
-            title.rectTransform.anchorMin = new Vector2(0.08f,0.38f);
-            title.rectTransform.anchorMax = new Vector2(0.92f,0.90f);
+            GameObject panel = new GameObject(
+                "EndPanel",
+                typeof(RectTransform),
+                typeof(CanvasRenderer),
+                typeof(Image),
+                typeof(Outline));
+            panel.transform.SetParent(_safe, false);
+
+            RectTransform pr = panel.GetComponent<RectTransform>();
+            pr.anchorMin = new Vector2(0.5f, 0.5f);
+            pr.anchorMax = new Vector2(0.5f, 0.5f);
+            pr.sizeDelta = new Vector2(760f, 400f);
+
+            Image panelImage = panel.GetComponent<Image>();
+            panelImage.sprite = RuntimeArt.Circle;
+            panelImage.color = victory
+                ? new Color(0.075f, 0.18f, 0.075f, 0.97f)
+                : new Color(0.20f, 0.075f, 0.055f, 0.97f);
+
+            Outline outline = panel.GetComponent<Outline>();
+            outline.effectColor = victory
+                ? new Color(0.58f, 0.78f, 0.22f, 0.72f)
+                : new Color(0.72f, 0.28f, 0.13f, 0.72f);
+            outline.effectDistance = new Vector2(4f, -4f);
+
+            CreateEndPanelDecor(panel.transform, victory);
+
+            Text title = RuntimeArt.CreateText(
+                panel.transform, "Result", 54, TextAnchor.MiddleCenter, Color.white);
+            title.rectTransform.anchorMin = new Vector2(0.08f, 0.38f);
+            title.rectTransform.anchorMax = new Vector2(0.92f, 0.90f);
             title.rectTransform.offsetMin = Vector2.zero;
             title.rectTransform.offsetMax = Vector2.zero;
-            title.text = victory ? "ZIELONY TRAKT OBRONIONY!" : "KRÓL CIERNI PRZEDARŁ SIĘ DO BAZY";
+            title.fontStyle = FontStyle.Bold;
+            title.text = victory
+                ? "ZIELONY TRAKT OBRONIONY!"
+                : "KRÓL CIERNI PRZEDARŁ SIĘ DO BAZY";
 
-            Button restart = RuntimeArt.CreateButton(panel.transform,"ZAGRAJ PONOWNIE",new Color(0.28f,0.58f,0.20f),28);
+            Shadow titleShadow = title.gameObject.AddComponent<Shadow>();
+            titleShadow.effectColor = new Color(0f, 0f, 0f, 0.68f);
+            titleShadow.effectDistance = new Vector2(3f, -3f);
+
+            Button restart = RuntimeArt.CreateButton(
+                panel.transform,
+                "ZAGRAJ PONOWNIE",
+                victory ? new Color(0.30f, 0.62f, 0.19f) : new Color(0.66f, 0.28f, 0.13f),
+                28);
             RectTransform rr = restart.GetComponent<RectTransform>();
-            rr.anchorMin = new Vector2(0.5f,0.18f);
-            rr.anchorMax = new Vector2(0.5f,0.18f);
-            rr.sizeDelta = new Vector2(360f,100f);
-            restart.onClick.AddListener(delegate {
+            rr.anchorMin = new Vector2(0.5f, 0.18f);
+            rr.anchorMax = new Vector2(0.5f, 0.18f);
+            rr.sizeDelta = new Vector2(360f, 100f);
+            restart.onClick.AddListener(delegate
+            {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             });
         }
 
         private void BuildCanvas()
         {
-            GameObject canvasGo = new GameObject("MobileCanvas",typeof(Canvas),typeof(CanvasScaler),typeof(GraphicRaycaster));
+            GameObject canvasGo = new GameObject(
+                "MobileCanvas", typeof(Canvas), typeof(CanvasScaler), typeof(GraphicRaycaster));
             _canvas = canvasGo.GetComponent<Canvas>();
             _canvas.renderMode = RenderMode.ScreenSpaceOverlay;
             _canvas.sortingOrder = 500;
 
             CanvasScaler scaler = canvasGo.GetComponent<CanvasScaler>();
             scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
-            scaler.referenceResolution = new Vector2(1920f,1080f);
+            scaler.referenceResolution = new Vector2(1920f, 1080f);
             scaler.matchWidthOrHeight = 0.5f;
 
-            GameObject safeGo = new GameObject("SafeArea",typeof(RectTransform),typeof(SafeAreaFitter));
-            safeGo.transform.SetParent(canvasGo.transform,false);
+            GameObject safeGo = new GameObject("SafeArea", typeof(RectTransform), typeof(SafeAreaFitter));
+            safeGo.transform.SetParent(canvasGo.transform, false);
             _safe = safeGo.GetComponent<RectTransform>();
             _safe.anchorMin = Vector2.zero;
             _safe.anchorMax = Vector2.one;
             _safe.offsetMin = Vector2.zero;
             _safe.offsetMax = Vector2.zero;
 
-            CreateTopPill(out _essenceText,"Essence",new Vector2(30f,-28f),new Vector2(340f,82f),TextAnchor.MiddleLeft);
-            CreateTopPill(out _waveText,"Wave",new Vector2(0f,-28f),new Vector2(270f,82f),TextAnchor.MiddleCenter,0.5f);
-            CreateTopPill(out _hpText,"HP",new Vector2(-30f,-28f),new Vector2(260f,82f),TextAnchor.MiddleRight,1f);
+            CreateTopShade();
 
-            _enemyText = RuntimeArt.CreateText(_safe,"EnemyCount",24,TextAnchor.UpperCenter,new Color(0.94f,0.92f,0.80f));
+            CreateTopPill(
+                out _essenceText, "Essence",
+                new Vector2(30f, -28f), new Vector2(340f, 82f),
+                TextAnchor.MiddleLeft);
+            CreateTopPill(
+                out _waveText, "Wave",
+                new Vector2(0f, -28f), new Vector2(270f, 82f),
+                TextAnchor.MiddleCenter, 0.5f);
+            CreateTopPill(
+                out _hpText, "HP",
+                new Vector2(-30f, -28f), new Vector2(260f, 82f),
+                TextAnchor.MiddleRight, 1f);
+
+            _enemyText = RuntimeArt.CreateText(
+                _safe, "EnemyCount", 24, TextAnchor.UpperCenter,
+                new Color(0.98f, 0.94f, 0.78f));
             RectTransform er = _enemyText.rectTransform;
-            er.anchorMin = new Vector2(0.5f,1f);
-            er.anchorMax = new Vector2(0.5f,1f);
-            er.pivot = new Vector2(0.5f,1f);
-            er.sizeDelta = new Vector2(400f,50f);
-            er.anchoredPosition = new Vector2(0f,-106f);
+            er.anchorMin = new Vector2(0.5f, 1f);
+            er.anchorMax = new Vector2(0.5f, 1f);
+            er.pivot = new Vector2(0.5f, 1f);
+            er.sizeDelta = new Vector2(400f, 50f);
+            er.anchoredPosition = new Vector2(0f, -106f);
+            _enemyText.fontStyle = FontStyle.Bold;
+            Shadow enemyShadow = _enemyText.gameObject.AddComponent<Shadow>();
+            enemyShadow.effectColor = new Color(0f, 0f, 0f, 0.68f);
+            enemyShadow.effectDistance = new Vector2(2f, -2f);
 
-            _waveButton = RuntimeArt.CreateButton(_safe,"START",new Color(0.76f,0.34f,0.12f),30);
+            _waveButton = RuntimeArt.CreateButton(
+                _safe, "START", new Color(0.76f, 0.34f, 0.12f), 30);
             RectTransform wr = _waveButton.GetComponent<RectTransform>();
-            wr.anchorMin = new Vector2(0f,0f);
-            wr.anchorMax = new Vector2(0f,0f);
-            wr.pivot = new Vector2(0f,0f);
-            wr.sizeDelta = new Vector2(300f,126f);
-            wr.anchoredPosition = new Vector2(34f,34f);
+            wr.anchorMin = new Vector2(0f, 0f);
+            wr.anchorMax = new Vector2(0f, 0f);
+            wr.pivot = new Vector2(0f, 0f);
+            wr.sizeDelta = new Vector2(300f, 126f);
+            wr.anchoredPosition = new Vector2(34f, 34f);
             _waveButtonText = _waveButton.GetComponentInChildren<Text>();
             _waveButton.onClick.AddListener(delegate { _session.Waves.StartNextWave(); });
 
-            Text hint = RuntimeArt.CreateText(_safe,"Hint",24,TextAnchor.LowerRight,new Color(1f,1f,1f,0.82f));
+            AddButtonLeaf(_waveButton.transform);
+
+            Text hint = RuntimeArt.CreateText(
+                _safe, "Hint", 24, TextAnchor.LowerRight,
+                new Color(1f, 1f, 1f, 0.86f));
             RectTransform hr = hint.rectTransform;
-            hr.anchorMin = new Vector2(1f,0f);
-            hr.anchorMax = new Vector2(1f,0f);
-            hr.pivot = new Vector2(1f,0f);
-            hr.sizeDelta = new Vector2(600f,100f);
-            hr.anchoredPosition = new Vector2(-28f,30f);
+            hr.anchorMin = new Vector2(1f, 0f);
+            hr.anchorMax = new Vector2(1f, 0f);
+            hr.pivot = new Vector2(1f, 0f);
+            hr.sizeDelta = new Vector2(600f, 100f);
+            hr.anchoredPosition = new Vector2(-28f, 30f);
             hint.text = "Dotknij kręgu ziemi, aby posadzić obrońcę.";
+            Shadow hintShadow = hint.gameObject.AddComponent<Shadow>();
+            hintShadow.effectColor = new Color(0f, 0f, 0f, 0.74f);
+            hintShadow.effectDistance = new Vector2(2f, -2f);
+        }
+
+        private void CreateTopShade()
+        {
+            GameObject shadeGo = new GameObject(
+                "HudTopShade", typeof(RectTransform), typeof(CanvasRenderer), typeof(Image));
+            shadeGo.transform.SetParent(_safe, false);
+            RectTransform rt = shadeGo.GetComponent<RectTransform>();
+            rt.anchorMin = new Vector2(0f, 1f);
+            rt.anchorMax = new Vector2(1f, 1f);
+            rt.pivot = new Vector2(0.5f, 1f);
+            rt.sizeDelta = new Vector2(0f, 150f);
+            rt.anchoredPosition = Vector2.zero;
+
+            Image image = shadeGo.GetComponent<Image>();
+            image.sprite = RuntimeArt.White;
+            image.color = new Color(0.025f, 0.055f, 0.025f, 0.28f);
+            image.raycastTarget = false;
+        }
+
+        private void CreateRadialBackdrop()
+        {
+            GameObject glowGo = new GameObject(
+                "RadialBackdrop", typeof(RectTransform), typeof(CanvasRenderer), typeof(Image));
+            glowGo.transform.SetParent(_radialRoot, false);
+            RectTransform glowRt = glowGo.GetComponent<RectTransform>();
+            glowRt.sizeDelta = new Vector2(320f, 320f);
+            glowRt.anchoredPosition = Vector2.zero;
+
+            Image glow = glowGo.GetComponent<Image>();
+            glow.sprite = RuntimeArt.SoftCircle;
+            glow.color = new Color(0.055f, 0.10f, 0.045f, 0.78f);
+            glow.raycastTarget = false;
+
+            GameObject ringGo = new GameObject(
+                "RadialOrnament", typeof(RectTransform), typeof(CanvasRenderer), typeof(Image));
+            ringGo.transform.SetParent(_radialRoot, false);
+            RectTransform ringRt = ringGo.GetComponent<RectTransform>();
+            ringRt.sizeDelta = new Vector2(238f, 238f);
+            ringRt.anchoredPosition = Vector2.zero;
+
+            Image ring = ringGo.GetComponent<Image>();
+            ring.sprite = RuntimeArt.Ring;
+            ring.color = new Color(0.88f, 0.72f, 0.30f, 0.30f);
+            ring.raycastTarget = false;
         }
 
         private void ClampRadialToSafeArea()
         {
             if (_safe == null || _radialRoot == null) return;
 
-            Bounds bounds = RectTransformUtility.CalculateRelativeRectTransformBounds(_safe,_radialRoot);
+            Bounds bounds = RectTransformUtility.CalculateRelativeRectTransformBounds(_safe, _radialRoot);
             Rect safeRect = _safe.rect;
             Vector2 shift = Vector2.zero;
 
@@ -196,52 +305,146 @@ namespace FantasyTD.MapA
             _radialRoot.anchoredPosition += shift;
         }
 
-        private void CreateTopPill(out Text text, string name, Vector2 pos, Vector2 size, TextAnchor align, float anchorX = 0f)
+        private void CreateTopPill(
+            out Text text, string name, Vector2 pos, Vector2 size,
+            TextAnchor align, float anchorX = 0f)
         {
-            GameObject panel = new GameObject(name + "Panel",typeof(RectTransform),typeof(CanvasRenderer),typeof(Image));
-            panel.transform.SetParent(_safe,false);
+            GameObject panel = new GameObject(
+                name + "Panel",
+                typeof(RectTransform),
+                typeof(CanvasRenderer),
+                typeof(Image),
+                typeof(Outline));
+            panel.transform.SetParent(_safe, false);
+
             RectTransform pr = panel.GetComponent<RectTransform>();
-            pr.anchorMin = new Vector2(anchorX,1f);
-            pr.anchorMax = new Vector2(anchorX,1f);
-            pr.pivot = new Vector2(anchorX,1f);
+            pr.anchorMin = new Vector2(anchorX, 1f);
+            pr.anchorMax = new Vector2(anchorX, 1f);
+            pr.pivot = new Vector2(anchorX, 1f);
             pr.sizeDelta = size;
             pr.anchoredPosition = pos;
-            panel.GetComponent<Image>().sprite = RuntimeArt.Circle;
-            panel.GetComponent<Image>().color = new Color(0.10f,0.07f,0.035f,0.87f);
 
-            text = RuntimeArt.CreateText(panel.transform,name+"Text",30,align,Color.white);
+            Image panelImage = panel.GetComponent<Image>();
+            panelImage.sprite = RuntimeArt.Circle;
+            panelImage.color = new Color(0.065f, 0.115f, 0.055f, 0.94f);
+
+            Outline outline = panel.GetComponent<Outline>();
+            outline.effectColor = new Color(0.65f, 0.53f, 0.21f, 0.42f);
+            outline.effectDistance = new Vector2(2f, -2f);
+
+            GameObject shineGo = new GameObject(
+                name + "Shine", typeof(RectTransform), typeof(CanvasRenderer), typeof(Image));
+            shineGo.transform.SetParent(panel.transform, false);
+            RectTransform shineRt = shineGo.GetComponent<RectTransform>();
+            shineRt.anchorMin = new Vector2(0.07f, 0.58f);
+            shineRt.anchorMax = new Vector2(0.93f, 0.88f);
+            shineRt.offsetMin = Vector2.zero;
+            shineRt.offsetMax = Vector2.zero;
+            Image shine = shineGo.GetComponent<Image>();
+            shine.sprite = RuntimeArt.Circle;
+            shine.color = new Color(1f, 0.95f, 0.72f, 0.06f);
+            shine.raycastTarget = false;
+
+            text = RuntimeArt.CreateText(panel.transform, name + "Text", 30, align, Color.white);
             RectTransform tr = text.rectTransform;
             tr.anchorMin = Vector2.zero;
             tr.anchorMax = Vector2.one;
-            tr.offsetMin = new Vector2(28f,8f);
-            tr.offsetMax = new Vector2(-28f,-8f);
+            tr.offsetMin = new Vector2(28f, 8f);
+            tr.offsetMax = new Vector2(-28f, -8f);
+            text.fontStyle = FontStyle.Bold;
+
+            Shadow shadow = text.gameObject.AddComponent<Shadow>();
+            shadow.effectColor = new Color(0f, 0f, 0f, 0.62f);
+            shadow.effectDistance = new Vector2(2f, -2f);
         }
 
         private void CreateRadialButton(PlantKind kind, Vector2 offset, Color color)
         {
             int cost = Balance.Cost(kind);
             string label = Balance.DisplayName(kind) + "\n" + cost;
-            Button button = RuntimeArt.CreateButton(_radialRoot,label,color,24);
+            Button button = RuntimeArt.CreateButton(_radialRoot, label, color, 24);
             button.gameObject.name = "PlantOption_" + kind;
+
             RectTransform r = button.GetComponent<RectTransform>();
-            r.sizeDelta = new Vector2(185f,112f);
+            r.sizeDelta = new Vector2(185f, 112f);
             r.anchoredPosition = offset;
 
             bool affordable = _session.Economy.Essence >= cost;
             button.interactable = affordable;
 
             PlantKind captured = kind;
-            button.onClick.AddListener(delegate {
+            button.onClick.AddListener(delegate
+            {
                 if (_onBuild != null) _onBuild(captured);
             });
+        }
+
+        private void AddButtonLeaf(Transform button)
+        {
+            GameObject leafGo = new GameObject(
+                "LeafEmblem", typeof(RectTransform), typeof(CanvasRenderer), typeof(Image));
+            leafGo.transform.SetParent(button, false);
+
+            RectTransform rt = leafGo.GetComponent<RectTransform>();
+            rt.anchorMin = new Vector2(0f, 0.5f);
+            rt.anchorMax = new Vector2(0f, 0.5f);
+            rt.pivot = new Vector2(0.5f, 0.5f);
+            rt.sizeDelta = new Vector2(42f, 62f);
+            rt.anchoredPosition = new Vector2(30f, 0f);
+            rt.localRotation = Quaternion.Euler(0f, 0f, -28f);
+
+            Image image = leafGo.GetComponent<Image>();
+            image.sprite = RuntimeArt.Leaf;
+            image.color = new Color(0.94f, 0.80f, 0.28f, 0.72f);
+            image.raycastTarget = false;
+        }
+
+        private static void CreateEndPanelDecor(Transform panel, bool victory)
+        {
+            Color glow = victory
+                ? new Color(0.55f, 0.84f, 0.20f, 0.18f)
+                : new Color(0.88f, 0.22f, 0.12f, 0.18f);
+
+            GameObject glowGo = new GameObject(
+                "ResultGlow", typeof(RectTransform), typeof(CanvasRenderer), typeof(Image));
+            glowGo.transform.SetParent(panel, false);
+            RectTransform gr = glowGo.GetComponent<RectTransform>();
+            gr.anchorMin = new Vector2(0.12f, 0.18f);
+            gr.anchorMax = new Vector2(0.88f, 0.92f);
+            gr.offsetMin = Vector2.zero;
+            gr.offsetMax = Vector2.zero;
+            Image gi = glowGo.GetComponent<Image>();
+            gi.sprite = RuntimeArt.SoftCircle;
+            gi.color = glow;
+            gi.raycastTarget = false;
+
+            for (int i = 0; i < 4; i++)
+            {
+                bool left = i < 2;
+                GameObject leafGo = new GameObject(
+                    "ResultLeaf_" + i, typeof(RectTransform), typeof(CanvasRenderer), typeof(Image));
+                leafGo.transform.SetParent(panel, false);
+                RectTransform lr = leafGo.GetComponent<RectTransform>();
+                lr.anchorMin = new Vector2(left ? 0.06f : 0.94f, i % 2 == 0 ? 0.30f : 0.68f);
+                lr.anchorMax = lr.anchorMin;
+                lr.sizeDelta = new Vector2(70f, 110f);
+                lr.anchoredPosition = Vector2.zero;
+                lr.localRotation = Quaternion.Euler(0f, 0f, left ? -42f : 42f);
+                Image li = leafGo.GetComponent<Image>();
+                li.sprite = RuntimeArt.Leaf;
+                li.color = victory
+                    ? new Color(0.37f, 0.68f, 0.18f, 0.62f)
+                    : new Color(0.48f, 0.22f, 0.11f, 0.62f);
+                li.raycastTarget = false;
+            }
         }
 
         private IEnumerator PulseText()
         {
             Color original = _essenceText.color;
-            for (float t=0f;t<0.45f;t+=Time.unscaledDeltaTime)
+            for (float t = 0f; t < 0.45f; t += Time.unscaledDeltaTime)
             {
-                _essenceText.color = Color.Lerp(Color.red,original,t/0.45f);
+                _essenceText.color = Color.Lerp(new Color(1f, 0.30f, 0.16f), original, t / 0.45f);
                 yield return null;
             }
             _essenceText.color = original;
@@ -250,8 +453,10 @@ namespace FantasyTD.MapA
 
         private IEnumerator FloatingMessageRoutine(Vector2 world, string message, Color color)
         {
-            GameObject go = new GameObject("FloatingMessage",typeof(RectTransform),typeof(CanvasRenderer),typeof(Text));
-            go.transform.SetParent(_safe,false);
+            GameObject go = new GameObject(
+                "FloatingMessage", typeof(RectTransform), typeof(CanvasRenderer), typeof(Text));
+            go.transform.SetParent(_safe, false);
+
             Text t = go.GetComponent<Text>();
             t.font = RuntimeArt.Font;
             t.fontSize = 28;
@@ -261,32 +466,38 @@ namespace FantasyTD.MapA
             t.text = message;
             t.raycastTarget = false;
 
+            Shadow shadow = go.AddComponent<Shadow>();
+            shadow.effectColor = new Color(0f, 0f, 0f, 0.74f);
+            shadow.effectDistance = new Vector2(2f, -2f);
+
             RectTransform rt = t.rectTransform;
-            rt.sizeDelta = new Vector2(320f,70f);
+            rt.sizeDelta = new Vector2(320f, 70f);
 
             Vector3 screen = Camera.main.WorldToScreenPoint(world);
             Vector2 local;
-            RectTransformUtility.ScreenPointToLocalPointInRectangle(_safe,new Vector2(screen.x,screen.y),null,out local);
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(
+                _safe, new Vector2(screen.x, screen.y), null, out local);
             rt.anchoredPosition = local;
 
             float duration = 0.9f;
             Vector2 start = rt.anchoredPosition;
-            for (float elapsed=0f; elapsed<duration; elapsed+=Time.unscaledDeltaTime)
+            for (float elapsed = 0f; elapsed < duration; elapsed += Time.unscaledDeltaTime)
             {
-                float p = elapsed/duration;
+                float p = elapsed / duration;
                 rt.anchoredPosition = start + Vector2.up * 80f * p;
                 Color c = color;
-                c.a = 1f-p;
+                c.a = 1f - p;
                 t.color = c;
                 yield return null;
             }
+
             Destroy(go);
         }
 
         private static void EnsureEventSystem()
         {
             if (EventSystem.current != null) return;
-            GameObject es = new GameObject("EventSystem",typeof(EventSystem),typeof(StandaloneInputModule));
+            new GameObject("EventSystem", typeof(EventSystem), typeof(StandaloneInputModule));
         }
     }
 }

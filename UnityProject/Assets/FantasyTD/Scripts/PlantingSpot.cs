@@ -42,8 +42,8 @@ namespace FantasyTD.MapA
         {
             if (_soil == null) return;
             _soil.color = Occupied
-                ? new Color(0.28f,0.18f,0.08f,0.45f)
-                : new Color(0.43f,0.28f,0.12f,0.92f);
+                ? new Color(0.22f,0.14f,0.06f,0.50f)
+                : new Color(0.36f,0.22f,0.09f,0.96f);
         }
     }
 }

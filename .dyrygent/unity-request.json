@@ -1,5 +1,5 @@
 {
-  "requestId": "t0008-android-build-final-finalhead-20261002-1428",
+  "requestId": "t0011-android-final-head-20261003-0917",
   "mode": "android-build",
-  "note": "Final T0008 Android APK build on the completion/documentation HEAD. No further code or docs changes after this run."
+  "note": "Final T0011 Android APK build on documentation-complete HEAD. No further repository changes after this run; T0009/T0010 remain untouched."
 }
