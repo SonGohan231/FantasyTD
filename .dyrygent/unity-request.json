@@ -1,5 +1,5 @@
 {
-  "requestId": "t0012-full-campaign-event-accounting-20261004-1100",
+  "requestId": "t0012-full-campaign-clean-witness-20261004-1104",
   "mode": "full-campaign",
-  "note": "Natural MAP1/MAP2 six-wave boss acceptance after replacing invalid Editor-only witness components with production EnemyUnit.Killed event accounting. Real flower economy/builds/upgrades/waves/combat; no injected cash/damage/HP/victory."
+  "note": "Natural MAP1/MAP2 acceptance after removing obsolete Editor-only FullCampaignEnemyWitness. Resolution accounting now uses production EnemyUnit.Killed events. No injected cash/damage/HP/victory."
 }
