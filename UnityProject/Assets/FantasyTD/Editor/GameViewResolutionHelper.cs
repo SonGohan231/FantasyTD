@@ -116,6 +116,7 @@ namespace FantasyTD.CI
                 }
 
                 selectedProperty.SetValue(gameView, selectedIndex);
+                gameView.Focus();
                 gameView.Repaint();
 
                 details = "selectedIndex=" + selectedIndex +
@@ -146,3 +147,4 @@ namespace FantasyTD.CI
     }
 }
 #endif
+

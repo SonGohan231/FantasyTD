@@ -1,5 +1,5 @@
 {
-  "requestId": "t0012-eight-scene-source-and-playerloop-fixed-20261004-03",
-  "mode": "playable-release",
-  "note": "Actual eight-map candidate acceptance after omitted MAP1 road source preserved in4d8d30f6, HUD fix, proper MAP5 road UV, MAP5 source terrain composition and bounded player-loop income diagnostics. All unvalidated maps remain disabled; no new graphics generated; full campaign and new APK still pending."
+  "requestId": "t0012-natural-full-campaign-diagnostic-20261004-04",
+  "mode": "full-campaign",
+  "note": "Natural MAP1/MAP2 full-wave/boss diagnostic, real production income only. Existing balance unchanged; static 243-composition model predicts MAP1 boss failure and requires actual Unity evidence. Functional960x540, focus/playerloop safeguards, exact clocks; not finalAPK/performance acceptance. Eight-scene run37180523240 FAIL remains open."
 }
