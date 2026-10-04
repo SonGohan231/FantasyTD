@@ -538,6 +538,19 @@ namespace FantasyTD.CI
             {
                 Check(spot.Occupied && spot.Plant == PlantKind.SeedShooter,
                     "pre-wave6 planting state incorrect at " + id);
+
+                // The art-aligned MAP1 route is substantially shorter than the legacy
+                // prototype route. Use the shipped upgrade system for the permanent
+                // downstream defense instead of requiring six L1 towers to kill the boss.
+                while (spot.Tower != null && spot.Tower.CanUpgrade)
+                {
+                    bool upgraded = spot.Tower.TryUpgrade();
+                    Check(upgraded, "failed to upgrade pre-wave6 SeedShooter at " + id);
+                    if (!upgraded)
+                        break;
+                }
+                Check(spot.Tower != null && spot.Tower.Level == TowerUpgradeBalance.MaxLevel,
+                    "pre-wave6 SeedShooter did not reach max level at " + id);
                 _defensePlantIndex++;
             }
         }
