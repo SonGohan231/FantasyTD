@@ -9,6 +9,11 @@ on:
       - .github/scripts/android-product-smoke.sh
       - .github/workflows/android-product-smoke.yml
   workflow_dispatch:
+    inputs:
+      source_run:
+        description: Successful Dyrygent Unity Executor run containing the APK
+        required: true
+        type: string
 
 permissions:
   contents: read
@@ -20,11 +25,29 @@ jobs:
     timeout-minutes: 35
     steps:
       - uses: actions/checkout@v4
+      - name: Resolve exact Unity candidate
+        id: candidate
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SOURCE_RUN: ${{ inputs.source_run }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          [[ -n "$SOURCE_RUN" ]] || { echo "source_run is required"; exit 1; }
+          RUN_JSON="$(gh api "repos/${GITHUB_REPOSITORY}/actions/runs/${SOURCE_RUN}")"
+          NAME="$(jq -r '.name' <<<"$RUN_JSON")"
+          CONCLUSION="$(jq -r '.conclusion' <<<"$RUN_JSON")"
+          HEAD_SHA="$(jq -r '.head_sha' <<<"$RUN_JSON")"
+          [[ "$NAME" == "Dyrygent Unity Executor" ]] || { echo "Unexpected source workflow: $NAME"; exit 1; }
+          [[ "$CONCLUSION" == "success" ]] || { echo "Source Unity run is not successful: $CONCLUSION"; exit 1; }
+          echo "run=$SOURCE_RUN" >> "$GITHUB_OUTPUT"
+          echo "artifact=fantasy-td-android-$SOURCE_RUN" >> "$GITHUB_OUTPUT"
+          echo "head_sha=$HEAD_SHA" >> "$GITHUB_OUTPUT"
       - name: Download exact T0012 candidate APK
         uses: actions/download-artifact@v4
         with:
-          run-id: 37196919539
-          name: fantasy-td-android-37196919539
+          run-id: ${{ steps.candidate.outputs.run }}
+          name: ${{ steps.candidate.outputs.artifact }}
           path: ${{ runner.temp }}/fantasytd-candidate
           github-token: ${{ github.token }}
       - name: Enable KVM
@@ -39,7 +62,7 @@ jobs:
           target: google_apis
           arch: x86_64
           profile: pixel_7_pro
-          script: bash .github/scripts/android-product-smoke.sh "${{ runner.temp }}/fantasytd-candidate" "$GITHUB_WORKSPACE/AndroidSmoke"
+          script: bash .github/scripts/android-product-smoke.sh "${{ runner.temp }}/fantasytd-candidate" "$GITHUB_WORKSPACE/AndroidSmoke" "${{ steps.candidate.outputs.run }}" "${{ steps.candidate.outputs.artifact }}" "${{ steps.candidate.outputs.head_sha }}"
       - name: Upload runtime evidence
         if: always()
         uses: actions/upload-artifact@v4
