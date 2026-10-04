@@ -27,7 +27,7 @@ namespace FantasyTD.MapA
 
     public static class Balance
     {
-        public const int StartEssence = 300;
+        public const int StartEssence = 375;
         public const int BaseHp = 20;
 
         public static int Cost(PlantKind kind)
