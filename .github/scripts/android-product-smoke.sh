@@ -106,14 +106,14 @@ capture map1
 MAP_SHA="$(sha256sum "$OUT/screenshots/map1.png" | awk '{print $1}')"
 [[ "$MAP_SHA" != "$CAMPAIGN_SHA" ]] || fail "MAP1 selection did not change the rendered screen"
 alive Map1
-# A visible planting ring in the approved MAP1 background at roughly 47%, 68%.
-tap 470 684
+# Use authored MAP1 pad A3. On the current full-bleed/HUD-safe camera this projects to roughly 48.7%, 24.4% of the Pixel 7 Pro landscape framebuffer.
+tap 487 244
 sleep 2
 capture planting-menu
 MENU_PLANT_SHA="$(sha256sum "$OUT/screenshots/planting-menu.png" | awk '{print $1}')"
 [[ "$MENU_PLANT_SHA" != "$MAP_SHA" ]] || fail "Planting spot tap did not open build UI"
-# Seed Shooter radial option is left of the selected planting ring.
-tap 410 684
+# Seed Shooter radial option is 125 reference UI units left of A3 (about 5.9% of this framebuffer width).
+tap 428 244
 sleep 3
 capture planted
 PLANTED_SHA="$(sha256sum "$OUT/screenshots/planted.png" | awk '{print $1}')"

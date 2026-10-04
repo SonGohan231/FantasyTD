@@ -1,5 +1,5 @@
 {
-  "requestId": "t0012-product-reference-visual-20261004-1245",
-  "mode": "visual-acceptance",
-  "note": "Re-run product visual acceptance after reference-driven HUD, full-bleed, scale, grounding and representative-battle changes. Must show 3 readable Higgsfield towers, selected range, 4 readable enemies with HP bars and real projectile/VFX in a 1920x1080 production capture."
+  "requestId": "t0012-release-hardening-gate-20261004-1940",
+  "mode": "release-gate",
+  "note": "Run every required FantasyTD validation after release-hardening commit: updated approved balance regression contracts, MAP-A integrity landscape applicability, and mobile HUD EnemyCount separation. Keep gameplay/input/wave/boss/pad gates strict and build a fresh Android APK only if the configured release-gate workflow reaches it."
 }

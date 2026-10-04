@@ -1,7 +1,7 @@
 {
-  "requestId": "t0012-current-apk-smoke-20261004-1900",
+  "requestId": "t0012-current-apk-smoke-a3-20261004-1940",
   "sourceRun": 37196919539,
   "sourceArtifact": "fantasy-td-android-37196919539",
   "sourceSha256": "de77755b516d493dd036259902a2c7913213eaad72064962c3c2e208669dc06c",
-  "note": "Install and exercise the exact current T0012 APK on Android emulator: main menu, campaign selection, MAP1, planting, tower placement, wave start, process survival, and fatal logcat scan."
+  "note": "Re-run exact APK smoke using authored A3 projected coordinates after proving previous 47%/68.4% tap hit grass. Verify menu -> campaign -> MAP1 -> radial build -> Seed Shooter -> wave -> process/logcat."
 }
