@@ -21,15 +21,18 @@ namespace FantasyTD.MapA
 
         public static float SeedDamage(int level)
         {
-            return level <= 1 ? 22f : (level == 2 ? 30f : 40f);
+            return level <= 1 ? 34f : (level == 2 ? 46f : 62f);
         }
 
         public static float SeedCooldown(int level)
         {
-            return level >= 3 ? 0.85f : 1.0f;
+            return level <= 1 ? 0.90f : (level == 2 ? 0.78f : 0.68f);
         }
 
-        public static float SeedRange(int level) { return 3.2f; }
+        public static float SeedRange(int level)
+        {
+            return level <= 1 ? 4.0f : (level == 2 ? 4.35f : 4.70f);
+        }
 
         public static int FlowerIncome(int level)
         {
@@ -43,38 +46,57 @@ namespace FantasyTD.MapA
 
         public static float OakDamage(int level)
         {
-            return level <= 1 ? 8f : (level == 2 ? 12f : 16f);
+            return level <= 1 ? 12f : (level == 2 ? 18f : 26f);
         }
 
         public static float OakRootDuration(int level)
         {
-            return level <= 1 ? 1.75f : (level == 2 ? 1.9f : 2.1f);
+            return level <= 1 ? 2.0f : (level == 2 ? 2.2f : 2.4f);
         }
 
         public static float OakCadence(int level)
         {
-            return level >= 3 ? 4.5f : 5f;
+            return level <= 1 ? 4.3f : (level == 2 ? 3.8f : 3.4f);
         }
 
-        public static float OakRange(int level) { return 2.4f; }
+        public static float OakRange(int level)
+        {
+            return level <= 1 ? 3.4f : (level == 2 ? 3.7f : 4.0f);
+        }
 
         public static float FrostDamage(int level)
         {
-            return level <= 1 ? 18f : (level == 2 ? 24f : 30f);
+            return level <= 1 ? 26f : (level == 2 ? 34f : 44f);
         }
 
         public static float FrostSlow(int level)
         {
-            return level <= 1 ? 0.35f : (level == 2 ? 0.375f : 0.40f);
+            return level <= 1 ? 0.35f : (level == 2 ? 0.40f : 0.45f);
         }
 
         public static float FrostCooldown(int level)
         {
-            return level >= 3 ? 0.9f : 1f;
+            return level <= 1 ? 0.95f : (level == 2 ? 0.85f : 0.75f);
         }
 
-        public static float FrostRange(int level) { return level >= 3 ? 3.4f : 3.2f; }
+        public static float FrostRange(int level)
+        {
+            return level <= 1 ? 3.8f : (level == 2 ? 4.15f : 4.5f);
+        }
+
         public static float FrostDuration(int level) { return 2.5f; }
+
+        public static float AttackRange(PlantKind kind, int level)
+        {
+            switch (kind)
+            {
+                case PlantKind.SeedShooter:
+                case PlantKind.MutationTower: return SeedRange(level);
+                case PlantKind.OakGuardian: return OakRange(level);
+                case PlantKind.FrostBud: return FrostRange(level);
+                default: return 0f;
+            }
+        }
 
         public static string StatsSummary(PlantKind kind, int level)
         {
@@ -93,12 +115,12 @@ namespace FantasyTD.MapA
                 case PlantKind.OakGuardian:
                     return "DMG " + OakDamage(level).ToString("0") +
                            "  •  Root " + OakRootDuration(level).ToString("0.##") + " s" +
-                           "  •  " + OakCadence(level).ToString("0.#") + " s";
+                           "  •  Zasięg " + OakRange(level).ToString("0.0");
 
                 case PlantKind.FrostBud:
                     return "DMG " + FrostDamage(level).ToString("0") +
                            "  •  Slow " + Mathf.RoundToInt(FrostSlow(level) * 100f) + "%" +
-                           "  •  " + FrostCooldown(level).ToString("0.##") + " s";
+                           "  •  Zasięg " + FrostRange(level).ToString("0.0");
 
                 default:
                     return string.Empty;
