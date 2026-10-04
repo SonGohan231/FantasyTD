@@ -729,7 +729,7 @@ namespace FantasyTD.CI
 
             Check(_seedProjectileReached, "Seed projectile did not damage boss");
             Check(_seedDamageType == DamageType.Physical, "Seed projectile damage type not Physical");
-            CheckApprox(_seedRawDamage, 22f, 0.01f, "Seed raw damage");
+            CheckApprox(_seedRawDamage, 34f, 0.01f, "Seed raw damage");
             CheckApprox(_seedFinalDamage, _seedRawDamage * (1f - _bossResistance), 0.06f,
                 "boss physical resistance final damage");
 
@@ -801,7 +801,7 @@ namespace FantasyTD.CI
             AddFact("boss.frost.appliedSlow", _frostAppliedSlow);
             AddFact("boss.frost.durationObserved", _frostObservedDuration);
 
-            CheckApprox(_frostRawDamage, 18f, 0.01f, "Frost raw damage");
+            CheckApprox(_frostRawDamage, 26f, 0.01f, "Frost raw damage");
             CheckApprox(_frostFinalDamage, _frostRawDamage, 0.06f, "Frost final damage");
             CheckApprox(_frostRequestedSlow, 0.35f, 0.001f, "Frost requested slow");
             CheckApprox(_frostAppliedSlow, 0.20f, 0.001f, "boss slow cap");
@@ -894,11 +894,11 @@ namespace FantasyTD.CI
 
             AddFact("boss.oak.hpAfter", _oakHpAfter);
             AddFact("boss.oak.damage", _oakDamage);
-            AddFact("boss.oak.rootDurationExpected", 1.75f * 0.35f);
+            AddFact("boss.oak.rootDurationExpected", 2.0f * 0.35f);
             AddFact("boss.oak.rootDurationObserved", _oakRootObservedDuration);
 
-            CheckApprox(_oakDamage, 8f, 0.06f, "Oak root damage");
-            CheckApprox(_oakRootObservedDuration, 1.75f * 0.35f, 0.12f, "boss root duration");
+            CheckApprox(_oakDamage, 12f, 0.06f, "Oak root damage");
+            CheckApprox(_oakRootObservedDuration, 2.0f * 0.35f, 0.12f, "boss root duration");
 
             _sampleStartTime = Time.time;
             _sampleStartProgress = _boss.ProgressDistance;

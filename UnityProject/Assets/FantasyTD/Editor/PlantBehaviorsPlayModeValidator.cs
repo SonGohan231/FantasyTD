@@ -153,7 +153,7 @@ namespace FantasyTD.CI
             yield return null;
 
             AddFact("seed.rangeRU", 3.2f);
-            AddFact("seed.expectedRawDamage", 22f);
+            AddFact("seed.expectedRawDamage", 34f);
             AddFact("seed.expectedProjectileSpeed", 7f);
             AddFact("seed.targetPriority", "First");
 
@@ -212,7 +212,7 @@ namespace FantasyTD.CI
             Check(backDistance <= 3.2f + 0.001f, "seed back target fixture is not in range");
             Check(outsideDistance > 3.2f, "seed outside target fixture is not outside range");
             Check(projectileTarget == front, "seed First/range targeting did not choose highest-progress in-range enemy");
-            CheckApprox(rawDamage, 22f, 0.01f, "seed raw projectile damage");
+            CheckApprox(rawDamage, 34f, 0.01f, "seed raw projectile damage");
             CheckApprox(projectileSpeed, 7f, 0.01f, "seed projectile speed");
 
             UnityEngine.Object.Destroy(plant.gameObject);
@@ -237,7 +237,7 @@ namespace FantasyTD.CI
             AddFact("seed.targeting.finalDamage", finalDamage);
 
             Check(reached, "seed projectile did not reach/damage intended target");
-            CheckApprox(finalDamage, 22f, 0.05f, "seed unarmored final damage");
+            CheckApprox(finalDamage, 34f, 0.05f, "seed unarmored final damage");
             CheckApprox(backAfter, backBefore, 0.01f, "seed back enemy should remain undamaged");
             CheckApprox(outsideAfter, outsideBefore, 0.01f, "seed out-of-range enemy should remain undamaged");
 
@@ -294,8 +294,8 @@ namespace FantasyTD.CI
             Check(armoredDistance <= 3.2f + 0.001f, "seed armored fixture outside range");
             CheckApprox(armoredBefore, 260f, 0.05f, "armored initial HP");
             CheckApprox(resistance, 0.15f, 0.001f, "armored physical resistance");
-            CheckApprox(rawDamage, 22f, 0.01f, "seed armored raw damage");
-            CheckApprox(armoredFinalDamage, 18.7f, 0.05f, "seed armored final damage");
+            CheckApprox(rawDamage, 34f, 0.01f, "seed armored raw damage");
+            CheckApprox(armoredFinalDamage, 28.9f, 0.05f, "seed armored final damage");
             Check(armoredFinalDamage < rawDamage, "physical resistance did not reduce seed damage");
 
             AddFact("seed.result", Errors.Count == startErrors ? "PASS" : "FAIL");
@@ -405,9 +405,9 @@ namespace FantasyTD.CI
             AddFact("oak.normal.distanceAtPlantRU", initialDistance);
             AddFact("oak.normal.hpBefore", hpBefore);
             AddFact("oak.normal.hpAfter", hpAfter);
-            AddFact("oak.normal.rawDamage", 8f);
+            AddFact("oak.normal.rawDamage", 12f);
             AddFact("oak.normal.finalDamage", finalDamage);
-            AddFact("oak.normal.rootDurationConfiguredSec", 1.75f);
+            AddFact("oak.normal.rootDurationConfiguredSec", 2.0f);
             AddFact("oak.normal.rootDurationObservedSec", rootDurationObserved);
             AddFact("oak.normal.speedBefore", speedBefore);
             AddFact("oak.normal.speedDuringRoot", speedDuring);
@@ -416,8 +416,8 @@ namespace FantasyTD.CI
 
             Check(initialDistance <= 2.4f + 0.001f, "oak normal enemy was outside range at plant creation");
             CheckApprox(hpBefore, 170f, 0.05f, "oak normal initial HP");
-            CheckApprox(finalDamage, 8f, 0.05f, "oak normal damage");
-            CheckApprox(rootDurationObserved, 1.75f, 0.12f, "oak normal root duration");
+            CheckApprox(finalDamage, 12f, 0.05f, "oak normal damage");
+            CheckApprox(rootDurationObserved, 2.0f, 0.12f, "oak normal root duration");
             CheckApprox(speedBefore, 0.8f, 0.08f, "oak normal speed before root");
             Check(Mathf.Abs(speedDuring) <= 0.05f, "oak normal enemy moved during root");
             CheckApprox(speedAfter, 0.8f, 0.08f, "oak normal speed after root");
@@ -478,7 +478,7 @@ namespace FantasyTD.CI
             AddFact("oak.boss.rawDamage", 8f);
             AddFact("oak.boss.finalDamage", finalDamage);
             AddFact("oak.boss.rootReductionMultiplier", 0.35f);
-            AddFact("oak.boss.rootDurationExpectedSec", 1.75f * 0.35f);
+            AddFact("oak.boss.rootDurationExpectedSec", 2.0f * 0.35f);
             AddFact("oak.boss.rootDurationObservedSec", rootDurationObserved);
             AddFact("oak.boss.speedBefore", speedBefore);
             AddFact("oak.boss.speedDuringRoot", speedDuring);
@@ -585,8 +585,8 @@ namespace FantasyTD.CI
 
             Check(shotDistanceFixture <= 3.2f + 0.001f, "frost normal fixture outside range");
             CheckApprox(hpBefore, 170f, 0.05f, "frost normal initial HP");
-            CheckApprox(rawDamage, 18f, 0.01f, "frost normal raw damage");
-            CheckApprox(finalDamage, 18f, 0.05f, "frost normal final damage");
+            CheckApprox(rawDamage, 26f, 0.01f, "frost normal raw damage");
+            CheckApprox(finalDamage, 26f, 0.05f, "frost normal final damage");
             CheckApprox(requestedSlow, 0.35f, 0.001f, "frost normal requested slow");
             CheckApprox(slowStrength, 0.35f, 0.001f, "frost normal applied slow");
             CheckApprox(slowDurationObserved, 2.5f, 0.15f, "frost normal slow duration");
@@ -690,8 +690,8 @@ namespace FantasyTD.CI
 
             Check(shotDistanceFixture <= 3.2f + 0.001f, "frost boss fixture outside range");
             CheckApprox(hpBefore, 2200f, 0.05f, "frost boss initial HP");
-            CheckApprox(rawDamage, 18f, 0.01f, "frost boss raw damage");
-            CheckApprox(finalDamage, 18f, 0.05f, "frost boss final damage");
+            CheckApprox(rawDamage, 26f, 0.01f, "frost boss raw damage");
+            CheckApprox(finalDamage, 26f, 0.05f, "frost boss final damage");
             CheckApprox(physicalResistance, 0.20f, 0.001f, "boss physical resistance");
             CheckApprox(requestedSlow, 0.35f, 0.001f, "frost boss requested slow");
             CheckApprox(slowStrength, 0.20f, 0.001f, "frost boss applied slow");

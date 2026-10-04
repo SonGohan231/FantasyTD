@@ -355,7 +355,7 @@ namespace FantasyTD.CI
             Check(tower.Level == 2, "Tower did not reach L2.");
             Check(_session.Economy.Essence == afterBuild - cost12,
                 "L1->L2 upgrade did not spend exact cost.");
-            CheckApprox(TowerUpgradeBalance.SeedDamage(tower.Level), 30f, 0.01f, "Seed L2 damage");
+            CheckApprox(TowerUpgradeBalance.SeedDamage(tower.Level), 46f, 0.01f, "Seed L2 damage");
 
             upgrade = FindButton("Button_ULEPSZ");
             Check(DispatchClick(upgrade), "L2->L3 upgrade click failed.");
@@ -364,8 +364,8 @@ namespace FantasyTD.CI
             Check(tower.Level == 3, "Tower did not reach L3.");
             Check(_session.Economy.Essence == afterBuild - cost12 - cost23,
                 "L2->L3 upgrade did not spend exact cost.");
-            CheckApprox(TowerUpgradeBalance.SeedDamage(tower.Level), 40f, 0.01f, "Seed L3 damage");
-            CheckApprox(TowerUpgradeBalance.SeedCooldown(tower.Level), 0.85f, 0.001f, "Seed L3 cooldown");
+            CheckApprox(TowerUpgradeBalance.SeedDamage(tower.Level), 62f, 0.01f, "Seed L3 damage");
+            CheckApprox(TowerUpgradeBalance.SeedCooldown(tower.Level), 0.68f, 0.001f, "Seed L3 cooldown");
 
             int invested = tower.TotalInvested;
             int expectedInvested = Balance.Cost(PlantKind.SeedShooter) + cost12 + cost23;

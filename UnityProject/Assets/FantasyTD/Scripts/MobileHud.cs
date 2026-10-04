@@ -207,7 +207,7 @@ namespace FantasyTD.MapA
             er.anchorMax = new Vector2(0.5f, 1f);
             er.pivot = new Vector2(0.5f, 1f);
             er.sizeDelta = new Vector2(250f, 30f);
-            er.anchoredPosition = new Vector2(0f, -70f);
+            er.anchoredPosition = new Vector2(0f, -122f);
             _enemyText.fontStyle = FontStyle.Bold;
             Shadow enemyShadow = _enemyText.gameObject.AddComponent<Shadow>();
             enemyShadow.effectColor = new Color(0f, 0f, 0f, 0.68f);
