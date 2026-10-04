@@ -1,26 +1,1 @@
-using FantasyTD.MapA;
-using UnityEngine;
-using UnityEngine.UI;
-
-namespace FantasyTD.Product
-{
-    public sealed class GameplayNavigationHud : MonoBehaviour
-    {
-        public void Initialize(RectTransform safeArea)
-        {
-            if (safeArea == null || GameObject.Find("Button_MAPY") != null) return;
-
-            Button maps = RuntimeArt.CreateButton(
-                safeArea, "MAPY", new Color(0.08f, 0.23f, 0.09f, 0.97f), 24);
-            maps.gameObject.name = "Button_MAPY";
-
-            RectTransform rt = maps.GetComponent<RectTransform>();
-            rt.anchorMin = rt.anchorMax = new Vector2(0f, 1f);
-            rt.pivot = new Vector2(0f, 1f);
-            rt.sizeDelta = new Vector2(205f, 72f);
-            rt.anchoredPosition = new Vector2(28f, -116f);
-
-            maps.onClick.AddListener(ProductFlowScenes.OpenCampaign);
-        }
-    }
-}
+¨¥yÛhr‰çyËm¡»¬:—«jØ¨žz-¥êæŠÛ^uÕÍ¥¹œ…¹Ñ…ÍåQ¹5…Áì)ÕÍ¥¹œU¹¥Ñå¹¥¹”ì)ÕÍ¥¹œU¹¥Ñå¹¥¹”¹U$ì()¹…µ•ÍÁ…”…¹Ñ…ÍåQ¹AÉ½‘ÕÐ)ì(€€€ÁÕ‰±¥ŒÍ•…±•±…ÍÌ…µ•Á±…å9…Ù¥…Ñ¥½¹!Õ€è5½¹½	•¡…Ù¥½ÕÈ(€€€ì(€€€€€€€ÁÕ‰±¥ŒÙ½¥%¹¥Ñ¥…±¥é”¡I•ÑQÉ…¹Í™½É´Í…™•É•„¤(€€€€€€€ì(€€€€€€€€€€€¥˜€¡Í…™•É•„€ôô¹Õ±°ñð…µ•=‰©•Ð¹¥¹ ‰	ÕÑÑ½¹}5Adˆ¤€„ô¹Õ±°¤É•ÑÕÉ¸ì((€€€€€€€€€€€	ÕÑÑ½¸µ…ÁÌ€ôIÕ¹Ñ¥µ•ÉÐ¹É•…Ñ•	ÕÑÑ½¸ (€€€€€€€€€€€€€€€Í…™•É•„°€‰5Adˆ°¹•Ü½±½È À¸Àá˜°€À¸ÈÍ˜°€À¸Àå˜°€À¸äÝ˜¤°€ÈÐ¤ì(€€€€€€€€€€€µ…ÁÌ¹…µ•=‰©•Ð¹¹…µ”€ô€‰	ÕÑÑ½¹}5Adˆì((€€€€€€€€€€€I•ÑQÉ…¹Í™½É´ÉÐ€ôµ…ÁÌ¹•Ñ½µÁ½¹•¹ÐñI•ÑQÉ…¹Í™½É´ø ¤ì(€€€€€€€€€€€ÉÐ¹…¹¡½É5¥¸€ôÉÐ¹…¹¡½É5…à€ô¹•ÜY•Ñ½ÈÈ Á˜°€Å˜¤ì(€€€€€€€€€€€ÉÐ¹Á¥Ù½Ð€ô¹•ÜY•Ñ½ÈÈ Á˜°€Å˜¤ì(€€€€€€€€€€€ÉÐ¹Í¥é••±Ñ„€ô¹•ÜY•Ñ½ÈÈ ÄÔÁ˜°€ØÑ˜¤ì(€€€€€€€€€€€€¼¼-••À¹…Ù¥…Ñ¥½¸¥¸Ñ¡”Ñ½À!U±…¹”°Ñ¼Ñ¡”É¥¡Ð½˜Ñ¡”•ÍÍ•¹”(€€€€€€€€€€€€¼¼Á¥±°¸Q¡”™½Éµ•ÈÍ•½¹µÉ½ÜÁ±…•µ•¹Ð½‰ÍÕÉ•Ñ¡”5@ÄÁ½ÉÑ…°¸(€€€€€€€€€€€ÉÐ¹…¹¡½É•‘A½Í¥Ñ¥½¸€ô¹•ÜY•Ñ½ÈÈ ÌÔÙ˜°€´ÈÑ˜¤ì((€€€€€€€€€€€µ…ÁÌ¹½¹±¥¬¹‘‘1¥ÍÑ•¹•È¡AÉ½‘ÕÑ±½ÝM•¹•Ì¹=Á•¹…µÁ…¥¸¤ì(€€€€€€€ô(€€€ô)ô(

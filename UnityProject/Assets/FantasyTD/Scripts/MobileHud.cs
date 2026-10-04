@@ -1,429 +1,1 @@
-using System;
-using System.Collections;
-using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-
-namespace FantasyTD.MapA
-{
-    public sealed class MobileHud : MonoBehaviour
-    {
-        private GameSession _session;
-        private Canvas _canvas;
-        private RectTransform _safe;
-        private Text _essenceText;
-        private Text _hpText;
-        private Text _waveText;
-        private Text _enemyText;
-        private Button _waveButton;
-        private Text _waveButtonText;
-        private RectTransform _radialRoot;
-        private Action<PlantKind> _onBuild;
-        private Action _onClose;
-        private Coroutine _essencePulse;
-
-        public RectTransform RadialRoot => _radialRoot;
-        public RectTransform SafeArea => _safe;
-
-        public void Initialize(GameSession session)
-        {
-            _session = session;
-            EnsureEventSystem();
-            BuildCanvas();
-        }
-
-        public void Refresh()
-        {
-            if (_session == null || _essenceText == null) return;
-
-            _essenceText.text = "‚ú¶ " + _session.Economy.Essence + "  ESENCJI";
-            _hpText.text = "‚ô• " + _session.Base.Hp + "/" + _session.Base.MaxHp;
-            _waveText.text = "FALA  " + _session.Waves.CurrentWave + "/" + _session.Waves.TotalWaves;
-            _enemyText.text = "WROGOWIE  " + _session.Enemies.Count;
-
-            bool ready = _session.Waves.ReadyForNextWave;
-            _waveButton.gameObject.SetActive(ready && !_session.IsFinished);
-            _waveButtonText.text = _session.Waves.CurrentWave == 0 ? "START 1. FALI" : "NASTƒòPNA FALA";
-        }
-
-        public void OpenBuildRadial(PlantingSpot spot, Action<PlantKind> onBuild, Action onClose)
-        {
-            _onBuild = onBuild;
-            _onClose = onClose;
-            CloseBuildRadial();
-
-            GameObject root = new GameObject("RadialBuildMenu", typeof(RectTransform));
-            root.transform.SetParent(_safe, false);
-            _radialRoot = root.GetComponent<RectTransform>();
-            _radialRoot.sizeDelta = Vector2.zero;
-
-            Vector2 local;
-            Vector3 screen = Camera.main.WorldToScreenPoint(spot.transform.position);
-            RectTransformUtility.ScreenPointToLocalPointInRectangle(
-                _safe, new Vector2(screen.x, screen.y), null, out local);
-            _radialRoot.anchoredPosition = local;
-
-            CreateRadialButton(PlantKind.SeedShooter, new Vector2(-125f, 0f), new Color(0.28f, 0.64f, 0.20f));
-            CreateRadialButton(PlantKind.EssenceFlower, new Vector2(0f, 125f), new Color(0.92f, 0.64f, 0.12f));
-            CreateRadialButton(PlantKind.OakGuardian, new Vector2(125f, 0f), new Color(0.42f, 0.26f, 0.10f));
-            CreateRadialButton(PlantKind.FrostBud, new Vector2(0f, -125f), new Color(0.24f, 0.62f, 0.82f));
-            if (Map5SecretController.MutationTowerUnlocked)
-                CreateRadialButton(PlantKind.MutationTower, new Vector2(0f, -250f), new Color(0.66f,0.20f,0.48f));
-
-            Button close = RuntimeArt.CreateButton(
-                _radialRoot, "√ó", new Color(0.23f, 0.14f, 0.075f, 0.98f), 38);
-            close.gameObject.name = "RadialCloseButton";
-            RectTransform cr = close.GetComponent<RectTransform>();
-            cr.sizeDelta = new Vector2(74f, 74f);
-            cr.anchoredPosition = Vector2.zero;
-            close.onClick.AddListener(delegate
-            {
-                if (_onClose != null) _onClose();
-            });
-
-            Canvas.ForceUpdateCanvases();
-            ClampRadialToSafeArea();
-            Canvas.ForceUpdateCanvases();
-        }
-
-        public void CloseBuildRadial()
-        {
-            if (_radialRoot != null)
-                Destroy(_radialRoot.gameObject);
-            _radialRoot = null;
-        }
-
-        public void PulseEssence()
-        {
-            if (_essencePulse != null) StopCoroutine(_essencePulse);
-            _essencePulse = StartCoroutine(PulseText());
-        }
-
-        public void ShowFloatingMessage(Vector2 world, string message, Color color)
-        {
-            StartCoroutine(FloatingMessageRoutine(world, message, color));
-        }
-
-        public void ShowEndPanel(bool victory)
-        {
-            CloseBuildRadial();
-
-            GameObject panel = new GameObject(
-                "EndPanel",
-                typeof(RectTransform),
-                typeof(CanvasRenderer),
-                typeof(Image),
-                typeof(Outline));
-            panel.transform.SetParent(_safe, false);
-
-            RectTransform pr = panel.GetComponent<RectTransform>();
-            pr.anchorMin = new Vector2(0.5f, 0.5f);
-            pr.anchorMax = new Vector2(0.5f, 0.5f);
-            pr.sizeDelta = new Vector2(760f, 400f);
-
-            Image panelImage = panel.GetComponent<Image>();
-            panelImage.sprite = null;
-            panelImage.color = victory
-                ? new Color(0.075f, 0.18f, 0.075f, 0.97f)
-                : new Color(0.20f, 0.075f, 0.055f, 0.97f);
-
-            Outline outline = panel.GetComponent<Outline>();
-            outline.effectColor = victory
-                ? new Color(0.58f, 0.78f, 0.22f, 0.72f)
-                : new Color(0.72f, 0.28f, 0.13f, 0.72f);
-            outline.effectDistance = new Vector2(4f, -4f);
-
-            Text title = RuntimeArt.CreateText(
-                panel.transform, "Result", 54, TextAnchor.MiddleCenter, Color.white);
-            title.rectTransform.anchorMin = new Vector2(0.08f, 0.38f);
-            title.rectTransform.anchorMax = new Vector2(0.92f, 0.90f);
-            title.rectTransform.offsetMin = Vector2.zero;
-            title.rectTransform.offsetMax = Vector2.zero;
-            title.fontStyle = FontStyle.Bold;
-            bool map2 = _session.MapDefinition != null && _session.MapDefinition.Id == "MAP2";
-            title.text = victory
-                ? (map2 ? "ODZYSKANE RUINY OBRONIONE!" : "ZIELONY TRAKT OBRONIONY!")
-                : "KR√ìL CIERNI PRZEDAR≈Å SIƒò DO BAZY";
-
-            Shadow titleShadow = title.gameObject.AddComponent<Shadow>();
-            titleShadow.effectColor = new Color(0f, 0f, 0f, 0.68f);
-            titleShadow.effectDistance = new Vector2(3f, -3f);
-
-            Button restart = RuntimeArt.CreateButton(
-                panel.transform,
-                "ZAGRAJ PONOWNIE",
-                victory ? new Color(0.30f, 0.62f, 0.19f) : new Color(0.66f, 0.28f, 0.13f),
-                28);
-            RectTransform rr = restart.GetComponent<RectTransform>();
-            rr.anchorMin = new Vector2(0.5f, 0.18f);
-            rr.anchorMax = new Vector2(0.5f, 0.18f);
-            rr.sizeDelta = new Vector2(360f, 100f);
-            restart.onClick.AddListener(delegate
-            {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            });
-        }
-
-        private void BuildCanvas()
-        {
-            GameObject canvasGo = new GameObject(
-                "MobileCanvas", typeof(Canvas), typeof(CanvasScaler), typeof(GraphicRaycaster));
-            _canvas = canvasGo.GetComponent<Canvas>();
-            _canvas.renderMode = RenderMode.ScreenSpaceOverlay;
-            _canvas.sortingOrder = 500;
-
-            CanvasScaler scaler = canvasGo.GetComponent<CanvasScaler>();
-            scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
-            scaler.referenceResolution = new Vector2(1920f, 1080f);
-            scaler.matchWidthOrHeight = 0.5f;
-
-            GameObject safeGo = new GameObject("SafeArea", typeof(RectTransform), typeof(SafeAreaFitter));
-            safeGo.transform.SetParent(canvasGo.transform, false);
-            _safe = safeGo.GetComponent<RectTransform>();
-            _safe.anchorMin = Vector2.zero;
-            _safe.anchorMax = Vector2.one;
-            _safe.offsetMin = Vector2.zero;
-            _safe.offsetMax = Vector2.zero;
-
-            CreateTopPill(
-                out _essenceText, "Essence",
-                new Vector2(22f, -18f), new Vector2(320f, 76f),
-                TextAnchor.MiddleLeft);
-            CreateTopPill(
-                out _waveText, "Wave",
-                new Vector2(0f, -18f), new Vector2(250f, 94f),
-                TextAnchor.MiddleCenter, 0.5f);
-            CreateTopPill(
-                out _hpText, "HP",
-                new Vector2(-22f, -18f), new Vector2(235f, 76f),
-                TextAnchor.MiddleRight, 1f);
-
-            _enemyText = RuntimeArt.CreateText(
-                _safe, "EnemyCount", 20, TextAnchor.UpperCenter,
-                new Color(0.98f, 0.94f, 0.78f));
-            RectTransform er = _enemyText.rectTransform;
-            er.anchorMin = new Vector2(0.5f, 1f);
-            er.anchorMax = new Vector2(0.5f, 1f);
-            er.pivot = new Vector2(0.5f, 1f);
-            er.sizeDelta = new Vector2(250f, 30f);
-            er.anchoredPosition = new Vector2(0f, -70f);
-            _enemyText.fontStyle = FontStyle.Bold;
-            Shadow enemyShadow = _enemyText.gameObject.AddComponent<Shadow>();
-            enemyShadow.effectColor = new Color(0f, 0f, 0f, 0.68f);
-            enemyShadow.effectDistance = new Vector2(2f, -2f);
-
-            _waveButton = RuntimeArt.CreateButton(
-                _safe, "START", new Color(0.88f, 0.30f, 0.055f), 28);
-            RectTransform wr = _waveButton.GetComponent<RectTransform>();
-            wr.anchorMin = new Vector2(0f, 0f);
-            wr.anchorMax = new Vector2(0f, 0f);
-            wr.pivot = new Vector2(0f, 0f);
-            wr.sizeDelta = new Vector2(310f, 108f);
-            wr.anchoredPosition = new Vector2(26f, 26f);
-            _waveButtonText = _waveButton.GetComponentInChildren<Text>();
-            _waveButton.onClick.AddListener(delegate { _session.Waves.StartNextWave(); });
-
-            GameObject hintPanel = new GameObject(
-                "HintPanel", typeof(RectTransform), typeof(CanvasRenderer), typeof(Image), typeof(Outline), typeof(Shadow));
-            hintPanel.transform.SetParent(_safe, false);
-            RectTransform hpr = hintPanel.GetComponent<RectTransform>();
-            hpr.anchorMin = hpr.anchorMax = new Vector2(1f, 0f);
-            hpr.pivot = new Vector2(1f, 0f);
-            hpr.sizeDelta = new Vector2(520f, 72f);
-            hpr.anchoredPosition = new Vector2(-22f, 22f);
-            Image hintBg = hintPanel.GetComponent<Image>();
-            hintBg.color = new Color(0.055f, 0.105f, 0.050f, 0.90f);
-            Outline hintOutline = hintPanel.GetComponent<Outline>();
-            hintOutline.effectColor = new Color(0.76f, 0.62f, 0.20f, 0.90f);
-            hintOutline.effectDistance = new Vector2(3f, -3f);
-            Shadow hintPanelShadow = hintPanel.GetComponent<Shadow>();
-            hintPanelShadow.effectColor = new Color(0f, 0f, 0f, 0.56f);
-            hintPanelShadow.effectDistance = new Vector2(5f, -5f);
-
-            Text hint = RuntimeArt.CreateText(
-                hintPanel.transform, "Hint", 20, TextAnchor.MiddleRight,
-                new Color(1f, 0.98f, 0.88f, 0.96f));
-            hint.rectTransform.anchorMin = Vector2.zero;
-            hint.rectTransform.anchorMax = Vector2.one;
-            hint.rectTransform.offsetMin = new Vector2(22f, 8f);
-            hint.rectTransform.offsetMax = new Vector2(-22f, -8f);
-            hint.text = (_session.MapDefinition != null ? _session.MapDefinition.DisplayName + "\n" : "") +
-                "Dotknij grzƒÖdki, aby posadziƒá obro≈Ñcƒô.";
-            hint.fontStyle = FontStyle.Bold;
-            Shadow hintShadow = hint.gameObject.AddComponent<Shadow>();
-            hintShadow.effectColor = new Color(0f, 0f, 0f, 0.76f);
-            hintShadow.effectDistance = new Vector2(2f, -2f);
-        }
-
-        private void CreateTopShade()
-        {
-            GameObject shadeGo = new GameObject(
-                "HudTopShade", typeof(RectTransform), typeof(CanvasRenderer), typeof(Image));
-            shadeGo.transform.SetParent(_safe, false);
-            RectTransform rt = shadeGo.GetComponent<RectTransform>();
-            rt.anchorMin = new Vector2(0f, 1f);
-            rt.anchorMax = new Vector2(1f, 1f);
-            rt.pivot = new Vector2(0.5f, 1f);
-            rt.sizeDelta = new Vector2(0f, 104f);
-            rt.anchoredPosition = Vector2.zero;
-
-            Image image = shadeGo.GetComponent<Image>();
-            image.sprite = null;
-            image.color = new Color(0.025f, 0.055f, 0.025f, 0.36f);
-            image.raycastTarget = false;
-        }
-
-        private void ClampRadialToSafeArea()
-        {
-            if (_safe == null || _radialRoot == null) return;
-
-            Bounds bounds = RectTransformUtility.CalculateRelativeRectTransformBounds(_safe, _radialRoot);
-            Rect safeRect = _safe.rect;
-            Vector2 shift = Vector2.zero;
-
-            if (bounds.min.x < safeRect.xMin) shift.x += safeRect.xMin - bounds.min.x;
-            if (bounds.max.x > safeRect.xMax) shift.x -= bounds.max.x - safeRect.xMax;
-            if (bounds.min.y < safeRect.yMin) shift.y += safeRect.yMin - bounds.min.y;
-            if (bounds.max.y > safeRect.yMax) shift.y -= bounds.max.y - safeRect.yMax;
-
-            _radialRoot.anchoredPosition += shift;
-        }
-
-        private void CreateTopPill(
-            out Text text, string name, Vector2 pos, Vector2 size,
-            TextAnchor align, float anchorX = 0f)
-        {
-            GameObject panel = new GameObject(
-                name + "Panel",
-                typeof(RectTransform),
-                typeof(CanvasRenderer),
-                typeof(Image),
-                typeof(Outline));
-            panel.transform.SetParent(_safe, false);
-
-            RectTransform pr = panel.GetComponent<RectTransform>();
-            pr.anchorMin = new Vector2(anchorX, 1f);
-            pr.anchorMax = new Vector2(anchorX, 1f);
-            pr.pivot = new Vector2(anchorX, 1f);
-            pr.sizeDelta = size;
-            pr.anchoredPosition = pos;
-
-            Image panelImage = panel.GetComponent<Image>();
-            panelImage.sprite = null;
-            panelImage.color = new Color(0.045f, 0.095f, 0.040f, 0.94f);
-
-            Outline outline = panel.GetComponent<Outline>();
-            outline.effectColor = new Color(0.80f, 0.66f, 0.22f, 0.94f);
-            outline.effectDistance = new Vector2(3f, -3f);
-
-            Shadow panelShadow = panel.AddComponent<Shadow>();
-            panelShadow.effectColor = new Color(0f, 0f, 0f, 0.56f);
-            panelShadow.effectDistance = new Vector2(5f, -5f);
-
-            text = RuntimeArt.CreateText(panel.transform, name + "Text", 25, align, Color.white);
-            RectTransform tr = text.rectTransform;
-            tr.anchorMin = Vector2.zero;
-            tr.anchorMax = Vector2.one;
-            tr.offsetMin = new Vector2(28f, 8f);
-            tr.offsetMax = new Vector2(-28f, -8f);
-            text.fontStyle = FontStyle.Bold;
-
-            Shadow shadow = text.gameObject.AddComponent<Shadow>();
-            shadow.effectColor = new Color(0f, 0f, 0f, 0.62f);
-            shadow.effectDistance = new Vector2(2f, -2f);
-        }
-
-        private void CreateRadialButton(PlantKind kind, Vector2 offset, Color color)
-        {
-            int cost = Balance.Cost(kind);
-            string label = Balance.DisplayName(kind) + "\n" + cost;
-            Button button = RuntimeArt.CreateButton(_radialRoot, label, color, 24);
-            button.gameObject.name = "PlantOption_" + kind;
-
-            RectTransform r = button.GetComponent<RectTransform>();
-            r.sizeDelta = new Vector2(185f, 112f);
-            r.anchoredPosition = offset;
-
-            Image portrait = RuntimeArt.CreateArtImage(button.transform, "PlantPortrait", HiggsfieldSpriteFactory.Plant(kind));
-            RectTransform portraitRect = portrait.rectTransform;
-            portraitRect.anchorMin = new Vector2(0.03f, 0.13f);
-            portraitRect.anchorMax = new Vector2(0.31f, 0.87f);
-            portraitRect.offsetMin = portraitRect.offsetMax = Vector2.zero;
-            Text optionLabel = button.GetComponentInChildren<Text>();
-            optionLabel.rectTransform.anchorMin = new Vector2(0.32f, 0f);
-            optionLabel.rectTransform.offsetMin = new Vector2(3f, 8f);
-            optionLabel.rectTransform.offsetMax = new Vector2(-6f, -8f);
-
-            bool affordable = _session.Economy.Essence >= cost;
-            button.interactable = affordable;
-
-            PlantKind captured = kind;
-            button.onClick.AddListener(delegate
-            {
-                if (_onBuild != null) _onBuild(captured);
-            });
-        }
-
-        private IEnumerator PulseText()
-        {
-            Color original = _essenceText.color;
-            for (float t = 0f; t < 0.45f; t += Time.unscaledDeltaTime)
-            {
-                _essenceText.color = Color.Lerp(new Color(1f, 0.30f, 0.16f), original, t / 0.45f);
-                yield return null;
-            }
-            _essenceText.color = original;
-            _essencePulse = null;
-        }
-
-        private IEnumerator FloatingMessageRoutine(Vector2 world, string message, Color color)
-        {
-            GameObject go = new GameObject(
-                "FloatingMessage", typeof(RectTransform), typeof(CanvasRenderer), typeof(Text));
-            go.transform.SetParent(_safe, false);
-
-            Text t = go.GetComponent<Text>();
-            t.font = RuntimeArt.Font;
-            t.fontSize = 28;
-            t.fontStyle = FontStyle.Bold;
-            t.alignment = TextAnchor.MiddleCenter;
-            t.color = color;
-            t.text = message;
-            t.raycastTarget = false;
-
-            Shadow shadow = go.AddComponent<Shadow>();
-            shadow.effectColor = new Color(0f, 0f, 0f, 0.74f);
-            shadow.effectDistance = new Vector2(2f, -2f);
-
-            RectTransform rt = t.rectTransform;
-            rt.sizeDelta = new Vector2(320f, 70f);
-
-            Vector3 screen = Camera.main.WorldToScreenPoint(world);
-            Vector2 local;
-            RectTransformUtility.ScreenPointToLocalPointInRectangle(
-                _safe, new Vector2(screen.x, screen.y), null, out local);
-            rt.anchoredPosition = local;
-
-            float duration = 0.9f;
-            Vector2 start = rt.anchoredPosition;
-            for (float elapsed = 0f; elapsed < duration; elapsed += Time.unscaledDeltaTime)
-            {
-                float p = elapsed / duration;
-                rt.anchoredPosition = start + Vector2.up * 80f * p;
-                Color c = color;
-                c.a = 1f - p;
-                t.color = c;
-                yield return null;
-            }
-
-            Destroy(go);
-        }
-
-        private static void EnsureEventSystem()
-        {
-            if (EventSystem.current != null) return;
-            new GameObject("EventSystem", typeof(EventSystem), typeof(StandaloneInputModule));
-        }
-    }
-}
+®•y€hrâÁyÀm°ª¨:ó´jÿ®ûz-•ÍÊä€^u’Õ•πúÅMÂÕ—ï¥Ï)’Õ•πúÅMÂÕ—ï¥πΩ±±ïç—•ΩπÃÏ)’Õ•πúÅUπ•—Âπù•πîÏ)’Õ•πúÅUπ•—Âπù•πîπŸïπ—MÂÕ—ïµÃÏ)’Õ•πúÅUπ•—Âπù•πîπMçïπï5ÖπÖùïµïπ–Ï)’Õ•πúÅUπ•—Âπù•πîπU$Ï()πÖµïÕ¡ÖçîÅÖπ—ÖÕÂQπ5Ö¡)Ï(ÄÄÄÅ¡’â±•åÅÕïÖ±ïêÅç±ÖÕÃÅ5Ωâ•±ï!’êÄËÅ5ΩπΩ	ï°ÖŸ•Ω’»(ÄÄÄÅÏ(ÄÄÄÄÄÄÄÅ¡…•ŸÖ—îÅÖµïMïÕÕ•Ω∏Å}ÕïÕÕ•Ω∏Ï(ÄÄÄÄÄÄÄÅ¡…•ŸÖ—îÅÖπŸÖÃÅ}çÖπŸÖÃÏ(ÄÄÄÄÄÄÄÅ¡…•ŸÖ—îÅIïç—Q…ÖπÕôΩ…¥Å}ÕÖôîÏ(ÄÄÄÄÄÄÄÅ¡…•ŸÖ—îÅQï·–Å}ïÕÕïπçïQï·–Ï(ÄÄÄÄÄÄÄÅ¡…•ŸÖ—îÅQï·–Å}°¡Qï·–Ï(ÄÄÄÄÄÄÄÅ¡…•ŸÖ—îÅQï·–Å}›ÖŸïQï·–Ï(ÄÄÄÄÄÄÄÅ¡…•ŸÖ—îÅQï·–Å}ïπïµÂQï·–Ï(ÄÄÄÄÄÄÄÅ¡…•ŸÖ—îÅ	’——Ω∏Å}›ÖŸï	’——Ω∏Ï(ÄÄÄÄÄÄÄÅ¡…•ŸÖ—îÅQï·–Å}›ÖŸï	’——ΩπQï·–Ï(ÄÄÄÄÄÄÄÅ¡…•ŸÖ—îÅIïç—Q…ÖπÕôΩ…¥Å}…Öë•Ö±IΩΩ–Ï(ÄÄÄÄÄÄÄÅ¡…•ŸÖ—îÅç—•Ω∏ÒA±Öπ—-•πê¯Å}Ωπ	’•±êÏ(ÄÄÄÄÄÄÄÅ¡…•ŸÖ—îÅç—•Ω∏Å}Ωπ±ΩÕîÏ(ÄÄÄÄÄÄÄÅ¡…•ŸÖ—îÅΩ…Ω’—•πîÅ}ïÕÕïπçïA’±ÕîÏ((ÄÄÄÄÄÄÄÅ¡’â±•åÅIïç—Q…ÖπÕôΩ…¥ÅIÖë•Ö±IΩΩ–ÄÙ¯Å}…Öë•Ö±IΩΩ–Ï(ÄÄÄÄÄÄÄÅ¡’â±•åÅIïç—Q…ÖπÕôΩ…¥ÅMÖôï…ïÑÄÙ¯Å}ÕÖôîÏ((ÄÄÄÄÄÄÄÅ¡’â±•åÅŸΩ•êÅ%π•—•Ö±•Èî°ÖµïMïÕÕ•Ω∏ÅÕïÕÕ•Ω∏§(ÄÄÄÄÄÄÄÅÏ(ÄÄÄÄÄÄÄÄÄÄÄÅ}ÕïÕÕ•Ω∏ÄÙÅÕïÕÕ•Ω∏Ï(ÄÄÄÄÄÄÄÄÄÄÄÅπÕ’…ïŸïπ—MÂÕ—ï¥†§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ	’•±ëÖπŸÖÃ†§Ï(ÄÄÄÄÄÄÄÅÙ((ÄÄÄÄÄÄÄÅ¡’â±•åÅŸΩ•êÅIïô…ïÕ††§(ÄÄÄÄÄÄÄÅÏ(ÄÄÄÄÄÄÄÄÄÄÄÅ•òÄ°}ÕïÕÕ•Ω∏ÄÙÙÅπ’±∞ÅÒÅ}ïÕÕïπçïQï·–ÄÙÙÅπ’±∞§Å…ï—’…∏Ï((ÄÄÄÄÄÄÄÄÄÄÄÅ}ïÕÕïπçïQï·–π—ï·–ÄÙÄãäròÄàÄ¨Å}ÕïÕÕ•Ω∏πçΩπΩµ‰πÕÕïπçîÄ¨ÄàÄÅM9)$àÏ(ÄÄÄÄÄÄÄÄÄÄÄÅ}°¡Qï·–π—ï·–ÄÙÄãäfîÄàÄ¨Å}ÕïÕÕ•Ω∏π	ÖÕîπ!¿Ä¨ÄàºàÄ¨Å}ÕïÕÕ•Ω∏π	ÖÕîπ5Ö·!¿Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ}›ÖŸïQï·–π—ï·–ÄÙÄâ1ÄÄàÄ¨Å}ÕïÕÕ•Ω∏π]ÖŸïÃπ’……ïπ—]ÖŸîÄ¨ÄàºàÄ¨Å}ÕïÕÕ•Ω∏π]ÖŸïÃπQΩ—Ö±]ÖŸïÃÏ(ÄÄÄÄÄÄÄÄÄÄÄÅ}ïπïµÂQï·–π—ï·–ÄÙÄâ]I==]%ÄÄàÄ¨Å}ÕïÕÕ•Ω∏ππïµ•ïÃπΩ’π–Ï((ÄÄÄÄÄÄÄÄÄÄÄÅâΩΩ∞Å…ïÖë‰ÄÙÅ}ÕïÕÕ•Ω∏π]ÖŸïÃπIïÖëÂΩ…9ï·—]ÖŸîÏ(ÄÄÄÄÄÄÄÄÄÄÄÅ}›ÖŸï	’——Ω∏πùÖµï=â©ïç–πMï—ç—•Ÿî°…ïÖë‰ÄòòÄÖ}ÕïÕÕ•Ω∏π%Õ•π•Õ°ïê§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ}›ÖŸï	’——ΩπQï·–π—ï·–ÄÙÅ}ÕïÕÕ•Ω∏π]ÖŸïÃπ’……ïπ—]ÖŸîÄÙÙÄ¿Ä¸ÄâMQIPÄƒ∏Å1$àÄËÄâ9MSaA9Å1àÏ(ÄÄÄÄÄÄÄÅÙ((ÄÄÄÄÄÄÄÅ¡’â±•åÅŸΩ•êÅ=¡ïπ	’•±ëIÖë•Ö∞°A±Öπ—•πùM¡Ω–ÅÕ¡Ω–∞Åç—•Ω∏ÒA±Öπ—-•πê¯ÅΩπ	’•±ê∞Åç—•Ω∏ÅΩπ±ΩÕî§(ÄÄÄÄÄÄÄÅÏ(ÄÄÄÄÄÄÄÄÄÄÄÅ}Ωπ	’•±êÄÙÅΩπ	’•±êÏ(ÄÄÄÄÄÄÄÄÄÄÄÅ}Ωπ±ΩÕîÄÙÅΩπ±ΩÕîÏ(ÄÄÄÄÄÄÄÄÄÄÄÅ±ΩÕï	’•±ëIÖë•Ö∞†§Ï((ÄÄÄÄÄÄÄÄÄÄÄÅÖµï=â©ïç–Å…ΩΩ–ÄÙÅπï‹ÅÖµï=â©ïç–†âIÖë•Ö±	’•±ë5ïπ‘à∞Å—Â¡ïΩò°Iïç—Q…ÖπÕôΩ…¥§§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ…ΩΩ–π—…ÖπÕôΩ…¥πMï—AÖ…ïπ–°}ÕÖôî∞ÅôÖ±Õî§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ}…Öë•Ö±IΩΩ–ÄÙÅ…ΩΩ–πï—Ωµ¡Ωπïπ–ÒIïç—Q…ÖπÕôΩ…¥¯†§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ}…Öë•Ö±IΩΩ–πÕ•Èïï±—ÑÄÙÅYïç—Ω»»πÈï…ºÏ((ÄÄÄÄÄÄÄÄÄÄÄÅYïç—Ω»»Å±ΩçÖ∞Ï(ÄÄÄÄÄÄÄÄÄÄÄÅYïç—Ω»ÃÅÕç…ïï∏ÄÙÅÖµï…ÑπµÖ•∏π]Ω…±ëQΩMç…ïïπAΩ•π–°Õ¡Ω–π—…ÖπÕôΩ…¥π¡ΩÕ•—•Ω∏§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅIïç—Q…ÖπÕôΩ…µU—•±•—‰πMç…ïïπAΩ•π—QΩ1ΩçÖ±AΩ•π—%πIïç—Öπù±î†(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅ}ÕÖôî∞Åπï‹ÅYïç—Ω»»°Õç…ïï∏π‡∞ÅÕç…ïï∏π‰§∞Åπ’±∞∞ÅΩ’–Å±ΩçÖ∞§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ}…Öë•Ö±IΩΩ–πÖπç°Ω…ïëAΩÕ•—•Ω∏ÄÙÅ±ΩçÖ∞Ï((ÄÄÄÄÄÄÄÄÄÄÄÅ…ïÖ—ïIÖë•Ö±	’——Ω∏°A±Öπ—-•πêπMïïëM°ΩΩ—ï»∞Åπï‹ÅYïç—Ω»»†¥ƒ»’ò∞Ä¡ò§∞Åπï‹ÅΩ±Ω»†¿∏»·ò∞Ä¿∏ÿ—ò∞Ä¿∏»¡ò§§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ…ïÖ—ïIÖë•Ö±	’——Ω∏°A±Öπ—-•πêπÕÕïπçï±Ω›ï»∞Åπï‹ÅYïç—Ω»»†¡ò∞Äƒ»’ò§∞Åπï‹ÅΩ±Ω»†¿∏‰…ò∞Ä¿∏ÿ—ò∞Ä¿∏ƒ…ò§§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ…ïÖ—ïIÖë•Ö±	’——Ω∏°A±Öπ—-•πêπ=Ö≠’Ö…ë•Ö∏∞Åπï‹ÅYïç—Ω»»†ƒ»’ò∞Ä¡ò§∞Åπï‹ÅΩ±Ω»†¿∏–…ò∞Ä¿∏»Ÿò∞Ä¿∏ƒ¡ò§§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ…ïÖ—ïIÖë•Ö±	’——Ω∏°A±Öπ—-•πêπ…ΩÕ—	’ê∞Åπï‹ÅYïç—Ω»»†¡ò∞Ä¥ƒ»’ò§∞Åπï‹ÅΩ±Ω»†¿∏»—ò∞Ä¿∏ÿ…ò∞Ä¿∏‡…ò§§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ•òÄ°5Ö¿’Mïç…ï—Ωπ—…Ω±±ï»π5’—Ö—•ΩπQΩ›ï…Uπ±Ωç≠ïê§(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅ…ïÖ—ïIÖë•Ö±	’——Ω∏°A±Öπ—-•πêπ5’—Ö—•ΩπQΩ›ï»∞Åπï‹ÅYïç—Ω»»†¡ò∞Ä¥»‘¡ò§∞Åπï‹ÅΩ±Ω»†¿∏ÿŸò∞¿∏»¡ò∞¿∏–·ò§§Ï((ÄÄÄÄÄÄÄÄÄÄÄÅ	’——Ω∏Åç±ΩÕîÄÙÅI’π—•µï…–π…ïÖ—ï	’——Ω∏†(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅ}…Öë•Ö±IΩΩ–∞Äã\à∞Åπï‹ÅΩ±Ω»†¿∏»Õò∞Ä¿∏ƒ—ò∞Ä¿∏¿‹’ò∞Ä¿∏‰·ò§∞ÄÃ‡§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅç±ΩÕîπùÖµï=â©ïç–ππÖµîÄÙÄâIÖë•Ö±±ΩÕï	’——Ω∏àÏ(ÄÄÄÄÄÄÄÄÄÄÄÅIïç—Q…ÖπÕôΩ…¥Åç»ÄÙÅç±ΩÕîπï—Ωµ¡Ωπïπ–ÒIïç—Q…ÖπÕôΩ…¥¯†§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅç»πÕ•Èïï±—ÑÄÙÅπï‹ÅYïç—Ω»»†‹—ò∞Ä‹—ò§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅç»πÖπç°Ω…ïëAΩÕ•—•Ω∏ÄÙÅYïç—Ω»»πÈï…ºÏ(ÄÄÄÄÄÄÄÄÄÄÄÅç±ΩÕîπΩπ±•ç¨πëë1•Õ—ïπï»°ëï±ïùÖ—î(ÄÄÄÄÄÄÄÄÄÄÄÅÏ(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅ•òÄ°}Ωπ±ΩÕîÄÑÙÅπ’±∞§Å}Ωπ±ΩÕî†§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅÙ§Ï((ÄÄÄÄÄÄÄÄÄÄÄÅÖπŸÖÃπΩ…çïU¡ëÖ—ïÖπŸÖÕïÃ†§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ±Öµ¡IÖë•Ö±QΩMÖôï…ïÑ†§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅÖπŸÖÃπΩ…çïU¡ëÖ—ïÖπŸÖÕïÃ†§Ï(ÄÄÄÄÄÄÄÅÙ((ÄÄÄÄÄÄÄÅ¡’â±•åÅŸΩ•êÅ±ΩÕï	’•±ëIÖë•Ö∞†§(ÄÄÄÄÄÄÄÅÏ(ÄÄÄÄÄÄÄÄÄÄÄÅ•òÄ°}…Öë•Ö±IΩΩ–ÄÑÙÅπ’±∞§(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅïÕ—…Ω‰°}…Öë•Ö±IΩΩ–πùÖµï=â©ïç–§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ}…Öë•Ö±IΩΩ–ÄÙÅπ’±∞Ï(ÄÄÄÄÄÄÄÅÙ((ÄÄÄÄÄÄÄÅ¡’â±•åÅŸΩ•êÅA’±ÕïÕÕïπçî†§(ÄÄÄÄÄÄÄÅÏ(ÄÄÄÄÄÄÄÄÄÄÄÅ•òÄ°}ïÕÕïπçïA’±ÕîÄÑÙÅπ’±∞§ÅM—Ω¡Ω…Ω’—•πî°}ïÕÕïπçïA’±Õî§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ}ïÕÕïπçïA’±ÕîÄÙÅM—Ö…—Ω…Ω’—•πî°A’±ÕïQï·–†§§Ï(ÄÄÄÄÄÄÄÅÙ((ÄÄÄÄÄÄÄÅ¡’â±•åÅŸΩ•êÅM°Ω›±ΩÖ—•πù5ïÕÕÖùî°Yïç—Ω»»Å›Ω…±ê∞ÅÕ—…•πúÅµïÕÕÖùî∞ÅΩ±Ω»ÅçΩ±Ω»§(ÄÄÄÄÄÄÄÅÏ(ÄÄÄÄÄÄÄÄÄÄÄÅM—Ö…—Ω…Ω’—•πî°±ΩÖ—•πù5ïÕÕÖùïIΩ’—•πî°›Ω…±ê∞ÅµïÕÕÖùî∞ÅçΩ±Ω»§§Ï(ÄÄÄÄÄÄÄÅÙ((ÄÄÄÄÄÄÄÅ¡’â±•åÅŸΩ•êÅM°Ω›πëAÖπï∞°âΩΩ∞ÅŸ•ç—Ω…‰§(ÄÄÄÄÄÄÄÅÏ(ÄÄÄÄÄÄÄÄÄÄÄÅ±ΩÕï	’•±ëIÖë•Ö∞†§Ï((ÄÄÄÄÄÄÄÄÄÄÄÅÖµï=â©ïç–Å¡Öπï∞ÄÙÅπï‹ÅÖµï=â©ïç–†(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄâπëAÖπï∞à∞(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅ—Â¡ïΩò°Iïç—Q…ÖπÕôΩ…¥§∞(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅ—Â¡ïΩò°ÖπŸÖÕIïπëï…ï»§∞(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅ—Â¡ïΩò°%µÖùî§∞(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅ—Â¡ïΩò°=’—±•πî§§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ¡Öπï∞π—…ÖπÕôΩ…¥πMï—AÖ…ïπ–°}ÕÖôî∞ÅôÖ±Õî§Ï((ÄÄÄÄÄÄÄÄÄÄÄÅIïç—Q…ÖπÕôΩ…¥Å¡»ÄÙÅ¡Öπï∞πï—Ωµ¡Ωπïπ–ÒIïç—Q…ÖπÕôΩ…¥¯†§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ¡»πÖπç°Ω…5•∏ÄÙÅπï‹ÅYïç—Ω»»†¿∏’ò∞Ä¿∏’ò§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ¡»πÖπç°Ω…5Ö‡ÄÙÅπï‹ÅYïç—Ω»»†¿∏’ò∞Ä¿∏’ò§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ¡»πÕ•Èïï±—ÑÄÙÅπï‹ÅYïç—Ω»»†‹ÿ¡ò∞Ä–¿¡ò§Ï((ÄÄÄÄÄÄÄÄÄÄÄÅ%µÖùîÅ¡Öπï±%µÖùîÄÙÅ¡Öπï∞πï—Ωµ¡Ωπïπ–Ò%µÖùî¯†§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ¡Öπï±%µÖùîπÕ¡…•—îÄÙÅπ’±∞Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ¡Öπï±%µÖùîπçΩ±Ω»ÄÙÅŸ•ç—Ω…‰(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¸Åπï‹ÅΩ±Ω»†¿∏¿‹’ò∞Ä¿∏ƒ·ò∞Ä¿∏¿‹’ò∞Ä¿∏‰›ò§(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄËÅπï‹ÅΩ±Ω»†¿∏»¡ò∞Ä¿∏¿‹’ò∞Ä¿∏¿‘’ò∞Ä¿∏‰›ò§Ï((ÄÄÄÄÄÄÄÄÄÄÄÅ=’—±•πîÅΩ’—±•πîÄÙÅ¡Öπï∞πï—Ωµ¡Ωπïπ–Ò=’—±•πî¯†§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅΩ’—±•πîπïôôïç—Ω±Ω»ÄÙÅŸ•ç—Ω…‰(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¸Åπï‹ÅΩ±Ω»†¿∏‘·ò∞Ä¿∏‹·ò∞Ä¿∏»…ò∞Ä¿∏‹…ò§(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄËÅπï‹ÅΩ±Ω»†¿∏‹…ò∞Ä¿∏»·ò∞Ä¿∏ƒÕò∞Ä¿∏‹…ò§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅΩ’—±•πîπïôôïç—•Õ—ÖπçîÄÙÅπï‹ÅYïç—Ω»»†—ò∞Ä¥—ò§Ï((ÄÄÄÄÄÄÄÄÄÄÄÅQï·–Å—•—±îÄÙÅI’π—•µï…–π…ïÖ—ïQï·–†(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅ¡Öπï∞π—…ÖπÕôΩ…¥∞ÄâIïÕ’±–à∞Ä‘–∞ÅQï·—πç°Ω»π5•ëë±ïïπ—ï»∞ÅΩ±Ω»π›°•—î§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ—•—±îπ…ïç—Q…ÖπÕôΩ…¥πÖπç°Ω…5•∏ÄÙÅπï‹ÅYïç—Ω»»†¿∏¿·ò∞Ä¿∏Ã·ò§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ—•—±îπ…ïç—Q…ÖπÕôΩ…¥πÖπç°Ω…5Ö‡ÄÙÅπï‹ÅYïç—Ω»»†¿∏‰…ò∞Ä¿∏‰¡ò§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ—•—±îπ…ïç—Q…ÖπÕôΩ…¥πΩôôÕï—5•∏ÄÙÅYïç—Ω»»πÈï…ºÏ(ÄÄÄÄÄÄÄÄÄÄÄÅ—•—±îπ…ïç—Q…ÖπÕôΩ…¥πΩôôÕï—5Ö‡ÄÙÅYïç—Ω»»πÈï…ºÏ(ÄÄÄÄÄÄÄÄÄÄÄÅ—•—±îπôΩπ—M—Â±îÄÙÅΩπ—M—Â±îπ	Ω±êÏ(ÄÄÄÄÄÄÄÄÄÄÄÅâΩΩ∞ÅµÖ¿»ÄÙÅ}ÕïÕÕ•Ω∏π5Ö¡ïô•π•—•Ω∏ÄÑÙÅπ’±∞ÄòòÅ}ÕïÕÕ•Ω∏π5Ö¡ïô•π•—•Ω∏π%êÄÙÙÄâ5@»àÏ(ÄÄÄÄÄÄÄÄÄÄÄÅ—•—±îπ—ï·–ÄÙÅŸ•ç—Ω…‰(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¸Ä°µÖ¿»Ä¸Äâ=ieM-9ÅIU%9dÅ=	I=9%=9ÑàÄËÄâi%1=9dÅQI-PÅ=	I=9%=9dÑà§(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄËÄâ-KM0Å%I9$ÅAIiKÅM'`Å<Å	idàÏ((ÄÄÄÄÄÄÄÄÄÄÄÅM°ÖëΩ‹Å—•—±ïM°ÖëΩ‹ÄÙÅ—•—±îπùÖµï=â©ïç–πëëΩµ¡Ωπïπ–ÒM°ÖëΩ‹¯†§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ—•—±ïM°ÖëΩ‹πïôôïç—Ω±Ω»ÄÙÅπï‹ÅΩ±Ω»†¡ò∞Ä¡ò∞Ä¡ò∞Ä¿∏ÿ·ò§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ—•—±ïM°ÖëΩ‹πïôôïç—•Õ—ÖπçîÄÙÅπï‹ÅYïç—Ω»»†Õò∞Ä¥Õò§Ï((ÄÄÄÄÄÄÄÄÄÄÄÅ	’——Ω∏Å…ïÕ—Ö…–ÄÙÅI’π—•µï…–π…ïÖ—ï	’——Ω∏†(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅ¡Öπï∞π—…ÖπÕôΩ…¥∞(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄâiI(ÅA=9=]9%à∞(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅŸ•ç—Ω…‰Ä¸Åπï‹ÅΩ±Ω»†¿∏Ã¡ò∞Ä¿∏ÿ…ò∞Ä¿∏ƒÂò§ÄËÅπï‹ÅΩ±Ω»†¿∏ÿŸò∞Ä¿∏»·ò∞Ä¿∏ƒÕò§∞(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ»‡§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅIïç—Q…ÖπÕôΩ…¥Å…»ÄÙÅ…ïÕ—Ö…–πï—Ωµ¡Ωπïπ–ÒIïç—Q…ÖπÕôΩ…¥¯†§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ…»πÖπç°Ω…5•∏ÄÙÅπï‹ÅYïç—Ω»»†¿∏’ò∞Ä¿∏ƒ·ò§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ…»πÖπç°Ω…5Ö‡ÄÙÅπï‹ÅYïç—Ω»»†¿∏’ò∞Ä¿∏ƒ·ò§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ…»πÕ•Èïï±—ÑÄÙÅπï‹ÅYïç—Ω»»†Ãÿ¡ò∞Äƒ¿¡ò§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ…ïÕ—Ö…–πΩπ±•ç¨πëë1•Õ—ïπï»°ëï±ïùÖ—î(ÄÄÄÄÄÄÄÄÄÄÄÅÏ(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅMçïπï5ÖπÖùï»π1ΩÖëMçïπî°Mçïπï5ÖπÖùï»πï—ç—•ŸïMçïπî†§πâ’•±ë%πëï‡§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅÙ§Ï(ÄÄÄÄÄÄÄÅÙ((ÄÄÄÄÄÄÄÅ¡…•ŸÖ—îÅŸΩ•êÅ	’•±ëÖπŸÖÃ†§(ÄÄÄÄÄÄÄÅÏ(ÄÄÄÄÄÄÄÄÄÄÄÅÖµï=â©ïç–ÅçÖπŸÖÕºÄÙÅπï‹ÅÖµï=â©ïç–†(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄâ5Ωâ•±ïÖπŸÖÃà∞Å—Â¡ïΩò°ÖπŸÖÃ§∞Å—Â¡ïΩò°ÖπŸÖÕMçÖ±ï»§∞Å—Â¡ïΩò°…Ö¡°•çIÖÂçÖÕ—ï»§§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ}çÖπŸÖÃÄÙÅçÖπŸÖÕºπï—Ωµ¡Ωπïπ–ÒÖπŸÖÃ¯†§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ}çÖπŸÖÃπ…ïπëï…5ΩëîÄÙÅIïπëï…5ΩëîπMç…ïïπM¡Öçï=Ÿï…±Ö‰Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ}çÖπŸÖÃπÕΩ…—•πù=…ëï»ÄÙÄ‘¿¿Ï((ÄÄÄÄÄÄÄÄÄÄÄÅÖπŸÖÕMçÖ±ï»ÅÕçÖ±ï»ÄÙÅçÖπŸÖÕºπï—Ωµ¡Ωπïπ–ÒÖπŸÖÕMçÖ±ï»¯†§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅÕçÖ±ï»π’•MçÖ±ï5ΩëîÄÙÅÖπŸÖÕMçÖ±ï»πMçÖ±ï5ΩëîπMçÖ±ï]•—°Mç…ïïπM•ÈîÏ(ÄÄÄÄÄÄÄÄÄÄÄÅÕçÖ±ï»π…ïôï…ïπçïIïÕΩ±’—•Ω∏ÄÙÅπï‹ÅYïç—Ω»»†ƒ‰»¡ò∞Äƒ¿‡¡ò§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅÕçÖ±ï»πµÖ—ç°]•ë—°=…!ï•ù°–ÄÙÄ¿∏’òÏ((ÄÄÄÄÄÄÄÄÄÄÄÅÖµï=â©ïç–ÅÕÖôïºÄÙÅπï‹ÅÖµï=â©ïç–†âMÖôï…ïÑà∞Å—Â¡ïΩò°Iïç—Q…ÖπÕôΩ…¥§∞Å—Â¡ïΩò°MÖôï…ïÖ•——ï»§§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅÕÖôïºπ—…ÖπÕôΩ…¥πMï—AÖ…ïπ–°çÖπŸÖÕºπ—…ÖπÕôΩ…¥∞ÅôÖ±Õî§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ}ÕÖôîÄÙÅÕÖôïºπï—Ωµ¡Ωπïπ–ÒIïç—Q…ÖπÕôΩ…¥¯†§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ}ÕÖôîπÖπç°Ω…5•∏ÄÙÅYïç—Ω»»πÈï…ºÏ(ÄÄÄÄÄÄÄÄÄÄÄÅ}ÕÖôîπÖπç°Ω…5Ö‡ÄÙÅYïç—Ω»»πΩπîÏ(ÄÄÄÄÄÄÄÄÄÄÄÅ}ÕÖôîπΩôôÕï—5•∏ÄÙÅYïç—Ω»»πÈï…ºÏ(ÄÄÄÄÄÄÄÄÄÄÄÅ}ÕÖôîπΩôôÕï—5Ö‡ÄÙÅYïç—Ω»»πÈï…ºÏ((ÄÄÄÄÄÄÄÄÄÄÄÅ…ïÖ—ïQΩ¡A•±∞†(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅΩ’–Å}ïÕÕïπçïQï·–∞ÄâÕÕïπçîà∞(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅπï‹ÅYïç—Ω»»†»…ò∞Ä¥ƒ·ò§∞Åπï‹ÅYïç—Ω»»†Ã»¡ò∞Ä‹Ÿò§∞(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅQï·—πç°Ω»π5•ëë±ï1ïô–§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ…ïÖ—ïQΩ¡A•±∞†(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅΩ’–Å}›ÖŸïQï·–∞Äâ]ÖŸîà∞(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅπï‹ÅYïç—Ω»»†¡ò∞Ä¥ƒ·ò§∞Åπï‹ÅYïç—Ω»»†»‘¡ò∞Ä‰—ò§∞(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅQï·—πç°Ω»π5•ëë±ïïπ—ï»∞Ä¿∏’ò§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ…ïÖ—ïQΩ¡A•±∞†(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅΩ’–Å}°¡Qï·–∞Äâ!@à∞(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅπï‹ÅYïç—Ω»»†¥»…ò∞Ä¥ƒ·ò§∞Åπï‹ÅYïç—Ω»»†»Ã’ò∞Ä‹Ÿò§∞(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅQï·—πç°Ω»π5•ëë±ïI•ù°–∞Ä≈ò§Ï((ÄÄÄÄÄÄÄÄÄÄÄÅIïç—Q…ÖπÕôΩ…¥Å›ÖŸïQï·—Iïç–ÄÙÅ}›ÖŸïQï·–π…ïç—Q…ÖπÕôΩ…¥Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ›ÖŸïQï·—Iïç–πÖπç°Ω…5•∏ÄÙÅπï‹ÅYïç—Ω»»†¡ò∞Ä¿∏Ã·ò§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ›ÖŸïQï·—Iïç–πÖπç°Ω…5Ö‡ÄÙÅYïç—Ω»»πΩπîÏ(ÄÄÄÄÄÄÄÄÄÄÄÅ›ÖŸïQï·—Iïç–πΩôôÕï—5•∏ÄÙÅπï‹ÅYïç—Ω»»†ƒ·ò∞Ä¡ò§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ›ÖŸïQï·—Iïç–πΩôôÕï—5Ö‡ÄÙÅπï‹ÅYïç—Ω»»†¥ƒ·ò∞Ä¥’ò§Ï((ÄÄÄÄÄÄÄÄÄÄÄÅ}ïπïµÂQï·–ÄÙÅI’π—•µï…–π…ïÖ—ïQï·–†(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅ}›ÖŸïQï·–π—…ÖπÕôΩ…¥π¡Ö…ïπ–∞ÄâπïµÂΩ’π–à∞Äƒ‡∞ÅQï·—πç°Ω»π5•ëë±ïïπ—ï»∞(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅπï‹ÅΩ±Ω»†¿∏‰·ò∞Ä¿∏‰—ò∞Ä¿∏‹·ò§§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅIïç—Q…ÖπÕôΩ…¥Åï»ÄÙÅ}ïπïµÂQï·–π…ïç—Q…ÖπÕôΩ…¥Ï(ÄÄÄÄÄÄÄÄÄÄÄÅï»πÖπç°Ω…5•∏ÄÙÅπï‹ÅYïç—Ω»»†¡ò∞Ä¿∏¿…ò§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅï»πÖπç°Ω…5Ö‡ÄÙÅπï‹ÅYïç—Ω»»†≈ò∞Ä¿∏Ã·ò§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅï»πΩôôÕï—5•∏ÄÙÅπï‹ÅYïç—Ω»»†ƒŸò∞Ä…ò§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅï»πΩôôÕï—5Ö‡ÄÙÅπï‹ÅYïç—Ω»»†¥ƒŸò∞Ä¡ò§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ}ïπïµÂQï·–πôΩπ—M—Â±îÄÙÅΩπ—M—Â±îπ	Ω±êÏ(ÄÄÄÄÄÄÄÄÄÄÄÅM°ÖëΩ‹ÅïπïµÂM°ÖëΩ‹ÄÙÅ}ïπïµÂQï·–πùÖµï=â©ïç–πëëΩµ¡Ωπïπ–ÒM°ÖëΩ‹¯†§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅïπïµÂM°ÖëΩ‹πïôôïç—Ω±Ω»ÄÙÅπï‹ÅΩ±Ω»†¡ò∞Ä¡ò∞Ä¡ò∞Ä¿∏ÿ·ò§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅïπïµÂM°ÖëΩ‹πïôôïç—•Õ—ÖπçîÄÙÅπï‹ÅYïç—Ω»»†…ò∞Ä¥…ò§Ï((ÄÄÄÄÄÄÄÄÄÄÄÅ}›ÖŸï	’——Ω∏ÄÙÅI’π—•µï…–π…ïÖ—ï	’——Ω∏†(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅ}ÕÖôî∞ÄâMQIPà∞Åπï‹ÅΩ±Ω»†¿∏‡·ò∞Ä¿∏Ã¡ò∞Ä¿∏¿‘’ò§∞Ä»‡§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅIïç—Q…ÖπÕôΩ…¥Å›»ÄÙÅ}›ÖŸï	’——Ω∏πï—Ωµ¡Ωπïπ–ÒIïç—Q…ÖπÕôΩ…¥¯†§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ›»πÖπç°Ω…5•∏ÄÙÅπï‹ÅYïç—Ω»»†¡ò∞Ä¡ò§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ›»πÖπç°Ω…5Ö‡ÄÙÅπï‹ÅYïç—Ω»»†¡ò∞Ä¡ò§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ›»π¡•ŸΩ–ÄÙÅπï‹ÅYïç—Ω»»†¡ò∞Ä¡ò§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ›»πÕ•Èïï±—ÑÄÙÅπï‹ÅYïç—Ω»»†Ãƒ¡ò∞Äƒ¿·ò§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ›»πÖπç°Ω…ïëAΩÕ•—•Ω∏ÄÙÅπï‹ÅYïç—Ω»»†»Ÿò∞Ä»Ÿò§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ}›ÖŸï	’——ΩπQï·–ÄÙÅ}›ÖŸï	’——Ω∏πï—Ωµ¡Ωπïπ—%π°•±ë…ï∏ÒQï·–¯†§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ}›ÖŸï	’——Ω∏πΩπ±•ç¨πëë1•Õ—ïπï»°ëï±ïùÖ—îÅÏÅ}ÕïÕÕ•Ω∏π]ÖŸïÃπM—Ö…—9ï·—]ÖŸî†§ÏÅÙ§Ï((ÄÄÄÄÄÄÄÄÄÄÄÅÖµï=â©ïç–Å°•π—AÖπï∞ÄÙÅπï‹ÅÖµï=â©ïç–†(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄâ!•π—AÖπï∞à∞Å—Â¡ïΩò°Iïç—Q…ÖπÕôΩ…¥§∞Å—Â¡ïΩò°ÖπŸÖÕIïπëï…ï»§∞Å—Â¡ïΩò°%µÖùî§∞Å—Â¡ïΩò°=’—±•πî§∞Å—Â¡ïΩò°M°ÖëΩ‹§§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ°•π—AÖπï∞π—…ÖπÕôΩ…¥πMï—AÖ…ïπ–°}ÕÖôî∞ÅôÖ±Õî§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅIïç—Q…ÖπÕôΩ…¥Å°¡»ÄÙÅ°•π—AÖπï∞πï—Ωµ¡Ωπïπ–ÒIïç—Q…ÖπÕôΩ…¥¯†§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ°¡»πÖπç°Ω…5•∏ÄÙÅ°¡»πÖπç°Ω…5Ö‡ÄÙÅπï‹ÅYïç—Ω»»†≈ò∞Ä¡ò§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ°¡»π¡•ŸΩ–ÄÙÅπï‹ÅYïç—Ω»»†≈ò∞Ä¡ò§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ°¡»πÕ•Èïï±—ÑÄÙÅπï‹ÅYïç—Ω»»†‘»¡ò∞Ä‹…ò§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ°¡»πÖπç°Ω…ïëAΩÕ•—•Ω∏ÄÙÅπï‹ÅYïç—Ω»»†¥»…ò∞Ä»…ò§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ%µÖùîÅ°•π—	úÄÙÅ°•π—AÖπï∞πï—Ωµ¡Ωπïπ–Ò%µÖùî¯†§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ°•π—	úπçΩ±Ω»ÄÙÅπï‹ÅΩ±Ω»†¿∏¿‘’ò∞Ä¿∏ƒ¿’ò∞Ä¿∏¿‘¡ò∞Ä¿∏‰¡ò§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ=’—±•πîÅ°•π—=’—±•πîÄÙÅ°•π—AÖπï∞πï—Ωµ¡Ωπïπ–Ò=’—±•πî¯†§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ°•π—=’—±•πîπïôôïç—Ω±Ω»ÄÙÅπï‹ÅΩ±Ω»†¿∏‹Ÿò∞Ä¿∏ÿ…ò∞Ä¿∏»¡ò∞Ä¿∏‰¡ò§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ°•π—=’—±•πîπïôôïç—•Õ—ÖπçîÄÙÅπï‹ÅYïç—Ω»»†Õò∞Ä¥Õò§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅM°ÖëΩ‹Å°•π—AÖπï±M°ÖëΩ‹ÄÙÅ°•π—AÖπï∞πï—Ωµ¡Ωπïπ–ÒM°ÖëΩ‹¯†§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ°•π—AÖπï±M°ÖëΩ‹πïôôïç—Ω±Ω»ÄÙÅπï‹ÅΩ±Ω»†¡ò∞Ä¡ò∞Ä¡ò∞Ä¿∏‘Ÿò§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ°•π—AÖπï±M°ÖëΩ‹πïôôïç—•Õ—ÖπçîÄÙÅπï‹ÅYïç—Ω»»†’ò∞Ä¥’ò§Ï((ÄÄÄÄÄÄÄÄÄÄÄÅQï·–Å°•π–ÄÙÅI’π—•µï…–π…ïÖ—ïQï·–†(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅ°•π—AÖπï∞π—…ÖπÕôΩ…¥∞Äâ!•π–à∞Ä»¿∞ÅQï·—πç°Ω»π5•ëë±ïI•ù°–∞(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅπï‹ÅΩ±Ω»†≈ò∞Ä¿∏‰·ò∞Ä¿∏‡·ò∞Ä¿∏‰Ÿò§§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ°•π–π…ïç—Q…ÖπÕôΩ…¥πÖπç°Ω…5•∏ÄÙÅYïç—Ω»»πÈï…ºÏ(ÄÄÄÄÄÄÄÄÄÄÄÅ°•π–π…ïç—Q…ÖπÕôΩ…¥πÖπç°Ω…5Ö‡ÄÙÅYïç—Ω»»πΩπîÏ(ÄÄÄÄÄÄÄÄÄÄÄÅ°•π–π…ïç—Q…ÖπÕôΩ…¥πΩôôÕï—5•∏ÄÙÅπï‹ÅYïç—Ω»»†»…ò∞Ä·ò§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ°•π–π…ïç—Q…ÖπÕôΩ…¥πΩôôÕï—5Ö‡ÄÙÅπï‹ÅYïç—Ω»»†¥»…ò∞Ä¥·ò§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ°•π–π—ï·–ÄÙÄ°}ÕïÕÕ•Ω∏π5Ö¡ïô•π•—•Ω∏ÄÑÙÅπ’±∞Ä¸Å}ÕïÕÕ•Ω∏π5Ö¡ïô•π•—•Ω∏π•Õ¡±ÖÂ9ÖµîÄ¨Äâq∏àÄËÄàà§Ä¨(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄâΩ—≠π•®Åù…Îë≠§∞ÅÖâ‰Å¡ΩÕÖëÈßÅΩâ…øèd∏àÏ(ÄÄÄÄÄÄÄÄÄÄÄÅ°•π–πôΩπ—M—Â±îÄÙÅΩπ—M—Â±îπ	Ω±êÏ(ÄÄÄÄÄÄÄÄÄÄÄÅM°ÖëΩ‹Å°•π—M°ÖëΩ‹ÄÙÅ°•π–πùÖµï=â©ïç–πëëΩµ¡Ωπïπ–ÒM°ÖëΩ‹¯†§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ°•π—M°ÖëΩ‹πïôôïç—Ω±Ω»ÄÙÅπï‹ÅΩ±Ω»†¡ò∞Ä¡ò∞Ä¡ò∞Ä¿∏‹Ÿò§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ°•π—M°ÖëΩ‹πïôôïç—•Õ—ÖπçîÄÙÅπï‹ÅYïç—Ω»»†…ò∞Ä¥…ò§Ï(ÄÄÄÄÄÄÄÅÙ((ÄÄÄÄÄÄÄÅ¡…•ŸÖ—îÅŸΩ•êÅ…ïÖ—ïQΩ¡M°Öëî†§(ÄÄÄÄÄÄÄÅÏ(ÄÄÄÄÄÄÄÄÄÄÄÅÖµï=â©ïç–ÅÕ°ÖëïºÄÙÅπï‹ÅÖµï=â©ïç–†(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄâ!’ëQΩ¡M°Öëîà∞Å—Â¡ïΩò°Iïç—Q…ÖπÕôΩ…¥§∞Å—Â¡ïΩò°ÖπŸÖÕIïπëï…ï»§∞Å—Â¡ïΩò°%µÖùî§§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅÕ°Öëïºπ—…ÖπÕôΩ…¥πMï—AÖ…ïπ–°}ÕÖôî∞ÅôÖ±Õî§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅIïç—Q…ÖπÕôΩ…¥Å…–ÄÙÅÕ°Öëïºπï—Ωµ¡Ωπïπ–ÒIïç—Q…ÖπÕôΩ…¥¯†§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ…–πÖπç°Ω…5•∏ÄÙÅπï‹ÅYïç—Ω»»†¡ò∞Ä≈ò§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ…–πÖπç°Ω…5Ö‡ÄÙÅπï‹ÅYïç—Ω»»†≈ò∞Ä≈ò§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ…–π¡•ŸΩ–ÄÙÅπï‹ÅYïç—Ω»»†¿∏’ò∞Ä≈ò§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ…–πÕ•Èïï±—ÑÄÙÅπï‹ÅYïç—Ω»»†¡ò∞Äƒ¿—ò§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ…–πÖπç°Ω…ïëAΩÕ•—•Ω∏ÄÙÅYïç—Ω»»πÈï…ºÏ((ÄÄÄÄÄÄÄÄÄÄÄÅ%µÖùîÅ•µÖùîÄÙÅÕ°Öëïºπï—Ωµ¡Ωπïπ–Ò%µÖùî¯†§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ•µÖùîπÕ¡…•—îÄÙÅπ’±∞Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ•µÖùîπçΩ±Ω»ÄÙÅπï‹ÅΩ±Ω»†¿∏¿»’ò∞Ä¿∏¿‘’ò∞Ä¿∏¿»’ò∞Ä¿∏ÃŸò§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ•µÖùîπ…ÖÂçÖÕ—QÖ…ùï–ÄÙÅôÖ±ÕîÏ(ÄÄÄÄÄÄÄÅÙ((ÄÄÄÄÄÄÄÅ¡…•ŸÖ—îÅŸΩ•êÅ±Öµ¡IÖë•Ö±QΩMÖôï…ïÑ†§(ÄÄÄÄÄÄÄÅÏ(ÄÄÄÄÄÄÄÄÄÄÄÅ•òÄ°}ÕÖôîÄÙÙÅπ’±∞ÅÒÅ}…Öë•Ö±IΩΩ–ÄÙÙÅπ’±∞§Å…ï—’…∏Ï((ÄÄÄÄÄÄÄÄÄÄÄÅ	Ω’πëÃÅâΩ’πëÃÄÙÅIïç—Q…ÖπÕôΩ…µU—•±•—‰πÖ±ç’±Ö—ïIï±Ö—•ŸïIïç—Q…ÖπÕôΩ…µ	Ω’πëÃ°}ÕÖôî∞Å}…Öë•Ö±IΩΩ–§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅIïç–ÅÕÖôïIïç–ÄÙÅ}ÕÖôîπ…ïç–Ï(ÄÄÄÄÄÄÄÄÄÄÄÅYïç—Ω»»ÅÕ°•ô–ÄÙÅYïç—Ω»»πÈï…ºÏ((ÄÄÄÄÄÄÄÄÄÄÄÅ•òÄ°âΩ’πëÃπµ•∏π‡ÄÅÕÖôïIïç–π·5•∏§ÅÕ°•ô–π‡Ä¨ÙÅÕÖôïIïç–π·5•∏Ä¥ÅâΩ’πëÃπµ•∏π‡Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ•òÄ°âΩ’πëÃπµÖ‡π‡Ä¯ÅÕÖôïIïç–π·5Ö‡§ÅÕ°•ô–π‡Ä¥ÙÅâΩ’πëÃπµÖ‡π‡Ä¥ÅÕÖôïIïç–π·5Ö‡Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ•òÄ°âΩ’πëÃπµ•∏π‰ÄÅÕÖôïIïç–πÂ5•∏§ÅÕ°•ô–π‰Ä¨ÙÅÕÖôïIïç–πÂ5•∏Ä¥ÅâΩ’πëÃπµ•∏π‰Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ•òÄ°âΩ’πëÃπµÖ‡π‰Ä¯ÅÕÖôïIïç–πÂ5Ö‡§ÅÕ°•ô–π‰Ä¥ÙÅâΩ’πëÃπµÖ‡π‰Ä¥ÅÕÖôïIïç–πÂ5Ö‡Ï((ÄÄÄÄÄÄÄÄÄÄÄÅ}…Öë•Ö±IΩΩ–πÖπç°Ω…ïëAΩÕ•—•Ω∏Ä¨ÙÅÕ°•ô–Ï(ÄÄÄÄÄÄÄÅÙ((ÄÄÄÄÄÄÄÅ¡…•ŸÖ—îÅŸΩ•êÅ…ïÖ—ïQΩ¡A•±∞†(ÄÄÄÄÄÄÄÄÄÄÄÅΩ’–ÅQï·–Å—ï·–∞ÅÕ—…•πúÅπÖµî∞ÅYïç—Ω»»Å¡ΩÃ∞ÅYïç—Ω»»ÅÕ•Èî∞(ÄÄÄÄÄÄÄÄÄÄÄÅQï·—πç°Ω»ÅÖ±•ù∏∞Åô±ΩÖ–ÅÖπç°Ω…`ÄÙÄ¡ò§(ÄÄÄÄÄÄÄÅÏ(ÄÄÄÄÄÄÄÄÄÄÄÅÖµï=â©ïç–Å¡Öπï∞ÄÙÅπï‹ÅÖµï=â©ïç–†(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅπÖµîÄ¨ÄâAÖπï∞à∞(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅ—Â¡ïΩò°Iïç—Q…ÖπÕôΩ…¥§∞(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅ—Â¡ïΩò°ÖπŸÖÕIïπëï…ï»§∞(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅ—Â¡ïΩò°%µÖùî§∞(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅ—Â¡ïΩò°=’—±•πî§§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ¡Öπï∞π—…ÖπÕôΩ…¥πMï—AÖ…ïπ–°}ÕÖôî∞ÅôÖ±Õî§Ï((ÄÄÄÄÄÄÄÄÄÄÄÅIïç—Q…ÖπÕôΩ…¥Å¡»ÄÙÅ¡Öπï∞πï—Ωµ¡Ωπïπ–ÒIïç—Q…ÖπÕôΩ…¥¯†§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ¡»πÖπç°Ω…5•∏ÄÙÅπï‹ÅYïç—Ω»»°Öπç°Ω…`∞Ä≈ò§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ¡»πÖπç°Ω…5Ö‡ÄÙÅπï‹ÅYïç—Ω»»°Öπç°Ω…`∞Ä≈ò§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ¡»π¡•ŸΩ–ÄÙÅπï‹ÅYïç—Ω»»°Öπç°Ω…`∞Ä≈ò§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ¡»πÕ•Èïï±—ÑÄÙÅÕ•ÈîÏ(ÄÄÄÄÄÄÄÄÄÄÄÅ¡»πÖπç°Ω…ïëAΩÕ•—•Ω∏ÄÙÅ¡ΩÃÏ((ÄÄÄÄÄÄÄÄÄÄÄÅ%µÖùîÅ¡Öπï±%µÖùîÄÙÅ¡Öπï∞πï—Ωµ¡Ωπïπ–Ò%µÖùî¯†§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ¡Öπï±%µÖùîπÕ¡…•—îÄÙÅπ’±∞Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ¡Öπï±%µÖùîπçΩ±Ω»ÄÙÅπï‹ÅΩ±Ω»†¿∏¿–’ò∞Ä¿∏¿‰’ò∞Ä¿∏¿–¡ò∞Ä¿∏‰—ò§Ï((ÄÄÄÄÄÄÄÄÄÄÄÅ=’—±•πîÅΩ’—±•πîÄÙÅ¡Öπï∞πï—Ωµ¡Ωπïπ–Ò=’—±•πî¯†§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅΩ’—±•πîπïôôïç—Ω±Ω»ÄÙÅπï‹ÅΩ±Ω»†¿∏‡¡ò∞Ä¿∏ÿŸò∞Ä¿∏»…ò∞Ä¿∏‰—ò§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅΩ’—±•πîπïôôïç—•Õ—ÖπçîÄÙÅπï‹ÅYïç—Ω»»†Õò∞Ä¥Õò§Ï((ÄÄÄÄÄÄÄÄÄÄÄÅM°ÖëΩ‹Å¡Öπï±M°ÖëΩ‹ÄÙÅ¡Öπï∞πëëΩµ¡Ωπïπ–ÒM°ÖëΩ‹¯†§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ¡Öπï±M°ÖëΩ‹πïôôïç—Ω±Ω»ÄÙÅπï‹ÅΩ±Ω»†¡ò∞Ä¡ò∞Ä¡ò∞Ä¿∏‘Ÿò§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ¡Öπï±M°ÖëΩ‹πïôôïç—•Õ—ÖπçîÄÙÅπï‹ÅYïç—Ω»»†’ò∞Ä¥’ò§Ï((ÄÄÄÄÄÄÄÄÄÄÄÅ—ï·–ÄÙÅI’π—•µï…–π…ïÖ—ïQï·–°¡Öπï∞π—…ÖπÕôΩ…¥∞ÅπÖµîÄ¨ÄâQï·–à∞Ä»‘∞ÅÖ±•ù∏∞ÅΩ±Ω»π›°•—î§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅIïç—Q…ÖπÕôΩ…¥Å—»ÄÙÅ—ï·–π…ïç—Q…ÖπÕôΩ…¥Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ—»πÖπç°Ω…5•∏ÄÙÅYïç—Ω»»πÈï…ºÏ(ÄÄÄÄÄÄÄÄÄÄÄÅ—»πÖπç°Ω…5Ö‡ÄÙÅYïç—Ω»»πΩπîÏ(ÄÄÄÄÄÄÄÄÄÄÄÅ—»πΩôôÕï—5•∏ÄÙÅπï‹ÅYïç—Ω»»†»·ò∞Ä·ò§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ—»πΩôôÕï—5Ö‡ÄÙÅπï‹ÅYïç—Ω»»†¥»·ò∞Ä¥·ò§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ—ï·–πôΩπ—M—Â±îÄÙÅΩπ—M—Â±îπ	Ω±êÏ((ÄÄÄÄÄÄÄÄÄÄÄÅM°ÖëΩ‹ÅÕ°ÖëΩ‹ÄÙÅ—ï·–πùÖµï=â©ïç–πëëΩµ¡Ωπïπ–ÒM°ÖëΩ‹¯†§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅÕ°ÖëΩ‹πïôôïç—Ω±Ω»ÄÙÅπï‹ÅΩ±Ω»†¡ò∞Ä¡ò∞Ä¡ò∞Ä¿∏ÿ…ò§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅÕ°ÖëΩ‹πïôôïç—•Õ—ÖπçîÄÙÅπï‹ÅYïç—Ω»»†…ò∞Ä¥…ò§Ï(ÄÄÄÄÄÄÄÅÙ((ÄÄÄÄÄÄÄÅ¡…•ŸÖ—îÅŸΩ•êÅ…ïÖ—ïIÖë•Ö±	’——Ω∏°A±Öπ—-•πêÅ≠•πê∞ÅYïç—Ω»»ÅΩôôÕï–∞ÅΩ±Ω»ÅçΩ±Ω»§(ÄÄÄÄÄÄÄÅÏ(ÄÄÄÄÄÄÄÄÄÄÄÅ•π–ÅçΩÕ–ÄÙÅ	Ö±ÖπçîπΩÕ–°≠•πê§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅÕ—…•πúÅ±Öâï∞ÄÙÅ	Ö±Öπçîπ•Õ¡±ÖÂ9Öµî°≠•πê§Ä¨Äâq∏àÄ¨ÅçΩÕ–Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ	’——Ω∏Åâ’——Ω∏ÄÙÅI’π—•µï…–π…ïÖ—ï	’——Ω∏°}…Öë•Ö±IΩΩ–∞Å±Öâï∞∞ÅçΩ±Ω»∞Ä»–§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅâ’——Ω∏πùÖµï=â©ïç–ππÖµîÄÙÄâA±Öπ—=¡—•Ωπ|àÄ¨Å≠•πêÏ((ÄÄÄÄÄÄÄÄÄÄÄÅIïç—Q…ÖπÕôΩ…¥Å»ÄÙÅâ’——Ω∏πï—Ωµ¡Ωπïπ–ÒIïç—Q…ÖπÕôΩ…¥¯†§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ»πÕ•Èïï±—ÑÄÙÅπï‹ÅYïç—Ω»»†ƒ‡’ò∞Äƒƒ…ò§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ»πÖπç°Ω…ïëAΩÕ•—•Ω∏ÄÙÅΩôôÕï–Ï((ÄÄÄÄÄÄÄÄÄÄÄÅ%µÖùîÅ¡Ω…—…Ö•–ÄÙÅI’π—•µï…–π…ïÖ—ï…—%µÖùî°â’——Ω∏π—…ÖπÕôΩ…¥∞ÄâA±Öπ—AΩ…—…Ö•–à∞Å!•ùùÕô•ï±ëM¡…•—ïÖç—Ω…‰πA±Öπ–°≠•πê§§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅIïç—Q…ÖπÕôΩ…¥Å¡Ω…—…Ö•—Iïç–ÄÙÅ¡Ω…—…Ö•–π…ïç—Q…ÖπÕôΩ…¥Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ¡Ω…—…Ö•—Iïç–πÖπç°Ω…5•∏ÄÙÅπï‹ÅYïç—Ω»»†¿∏¿Õò∞Ä¿∏ƒÕò§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ¡Ω…—…Ö•—Iïç–πÖπç°Ω…5Ö‡ÄÙÅπï‹ÅYïç—Ω»»†¿∏Ã≈ò∞Ä¿∏‡›ò§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ¡Ω…—…Ö•—Iïç–πΩôôÕï—5•∏ÄÙÅ¡Ω…—…Ö•—Iïç–πΩôôÕï—5Ö‡ÄÙÅYïç—Ω»»πÈï…ºÏ(ÄÄÄÄÄÄÄÄÄÄÄÅQï·–ÅΩ¡—•Ωπ1Öâï∞ÄÙÅâ’——Ω∏πï—Ωµ¡Ωπïπ—%π°•±ë…ï∏ÒQï·–¯†§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅΩ¡—•Ωπ1Öâï∞π…ïç—Q…ÖπÕôΩ…¥πÖπç°Ω…5•∏ÄÙÅπï‹ÅYïç—Ω»»†¿∏Ã…ò∞Ä¡ò§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅΩ¡—•Ωπ1Öâï∞π…ïç—Q…ÖπÕôΩ…¥πΩôôÕï—5•∏ÄÙÅπï‹ÅYïç—Ω»»†Õò∞Ä·ò§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅΩ¡—•Ωπ1Öâï∞π…ïç—Q…ÖπÕôΩ…¥πΩôôÕï—5Ö‡ÄÙÅπï‹ÅYïç—Ω»»†¥Ÿò∞Ä¥·ò§Ï((ÄÄÄÄÄÄÄÄÄÄÄÅâΩΩ∞ÅÖôôΩ…ëÖâ±îÄÙÅ}ÕïÕÕ•Ω∏πçΩπΩµ‰πÕÕïπçîÄ¯ÙÅçΩÕ–Ï(ÄÄÄÄÄÄÄÄÄÄÄÅâ’——Ω∏π•π—ï…Öç—Öâ±îÄÙÅÖôôΩ…ëÖâ±îÏ((ÄÄÄÄÄÄÄÄÄÄÄÅA±Öπ—-•πêÅçÖ¡—’…ïêÄÙÅ≠•πêÏ(ÄÄÄÄÄÄÄÄÄÄÄÅâ’——Ω∏πΩπ±•ç¨πëë1•Õ—ïπï»°ëï±ïùÖ—î(ÄÄÄÄÄÄÄÄÄÄÄÅÏ(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅ•òÄ°}Ωπ	’•±êÄÑÙÅπ’±∞§Å}Ωπ	’•±ê°çÖ¡—’…ïê§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅÙ§Ï(ÄÄÄÄÄÄÄÅÙ((ÄÄÄÄÄÄÄÅ¡…•ŸÖ—îÅ%π’µï…Ö—Ω»ÅA’±ÕïQï·–†§(ÄÄÄÄÄÄÄÅÏ(ÄÄÄÄÄÄÄÄÄÄÄÅΩ±Ω»ÅΩ…•ù•πÖ∞ÄÙÅ}ïÕÕïπçïQï·–πçΩ±Ω»Ï(ÄÄÄÄÄÄÄÄÄÄÄÅôΩ»Ä°ô±ΩÖ–Å–ÄÙÄ¡òÏÅ–ÄÄ¿∏–’òÏÅ–Ä¨ÙÅQ•µîπ’πÕçÖ±ïëï±—ÖQ•µî§(ÄÄÄÄÄÄÄÄÄÄÄÅÏ(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅ}ïÕÕïπçïQï·–πçΩ±Ω»ÄÙÅΩ±Ω»π1ï…¿°πï‹ÅΩ±Ω»†≈ò∞Ä¿∏Ã¡ò∞Ä¿∏ƒŸò§∞ÅΩ…•ù•πÖ∞∞Å–ÄºÄ¿∏–’ò§Ï(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÂ•ï±êÅ…ï—’…∏Åπ’±∞Ï(ÄÄÄÄÄÄÄÄÄÄÄÅÙ(ÄÄÄÄÄÄÄÄÄÄÄÅ}ïÕÕïπçïQï·–πçΩ±Ω»ÄÙÅΩ…•ù•πÖ∞Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ}ïÕÕïπçïA’±ÕîÄÙÅπ’±∞Ï(ÄÄÄÄÄÄÄÅÙ((ÄÄÄÄÄÄÄÅ¡…•ŸÖ—îÅ%π’µï…Ö—Ω»Å±ΩÖ—•πù5ïÕÕÖùïIΩ’—•πî°Yïç—Ω»»Å›Ω…±ê∞ÅÕ—…•πúÅµïÕÕÖùî∞ÅΩ±Ω»ÅçΩ±Ω»§(ÄÄÄÄÄÄÄÅÏ(ÄÄÄÄÄÄÄÄÄÄÄÅÖµï=â©ïç–ÅùºÄÙÅπï‹ÅÖµï=â©ïç–†(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄâ±ΩÖ—•πù5ïÕÕÖùîà∞Å—Â¡ïΩò°Iïç—Q…ÖπÕôΩ…¥§∞Å—Â¡ïΩò°ÖπŸÖÕIïπëï…ï»§∞Å—Â¡ïΩò°Qï·–§§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅùºπ—…ÖπÕôΩ…¥πMï—AÖ…ïπ–°}ÕÖôî∞ÅôÖ±Õî§Ï((ÄÄÄÄÄÄÄÄÄÄÄÅQï·–Å–ÄÙÅùºπï—Ωµ¡Ωπïπ–ÒQï·–¯†§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ–πôΩπ–ÄÙÅI’π—•µï…–πΩπ–Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ–πôΩπ—M•ÈîÄÙÄ»‡Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ–πôΩπ—M—Â±îÄÙÅΩπ—M—Â±îπ	Ω±êÏ(ÄÄÄÄÄÄÄÄÄÄÄÅ–πÖ±•ùπµïπ–ÄÙÅQï·—πç°Ω»π5•ëë±ïïπ—ï»Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ–πçΩ±Ω»ÄÙÅçΩ±Ω»Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ–π—ï·–ÄÙÅµïÕÕÖùîÏ(ÄÄÄÄÄÄÄÄÄÄÄÅ–π…ÖÂçÖÕ—QÖ…ùï–ÄÙÅôÖ±ÕîÏ((ÄÄÄÄÄÄÄÄÄÄÄÅM°ÖëΩ‹ÅÕ°ÖëΩ‹ÄÙÅùºπëëΩµ¡Ωπïπ–ÒM°ÖëΩ‹¯†§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅÕ°ÖëΩ‹πïôôïç—Ω±Ω»ÄÙÅπï‹ÅΩ±Ω»†¡ò∞Ä¡ò∞Ä¡ò∞Ä¿∏‹—ò§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅÕ°ÖëΩ‹πïôôïç—•Õ—ÖπçîÄÙÅπï‹ÅYïç—Ω»»†…ò∞Ä¥…ò§Ï((ÄÄÄÄÄÄÄÄÄÄÄÅIïç—Q…ÖπÕôΩ…¥Å…–ÄÙÅ–π…ïç—Q…ÖπÕôΩ…¥Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ…–πÕ•Èïï±—ÑÄÙÅπï‹ÅYïç—Ω»»†Ã»¡ò∞Ä‹¡ò§Ï((ÄÄÄÄÄÄÄÄÄÄÄÅYïç—Ω»ÃÅÕç…ïï∏ÄÙÅÖµï…ÑπµÖ•∏π]Ω…±ëQΩMç…ïïπAΩ•π–°›Ω…±ê§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅYïç—Ω»»Å±ΩçÖ∞Ï(ÄÄÄÄÄÄÄÄÄÄÄÅIïç—Q…ÖπÕôΩ…µU—•±•—‰πMç…ïïπAΩ•π—QΩ1ΩçÖ±AΩ•π—%πIïç—Öπù±î†(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅ}ÕÖôî∞Åπï‹ÅYïç—Ω»»°Õç…ïï∏π‡∞ÅÕç…ïï∏π‰§∞Åπ’±∞∞ÅΩ’–Å±ΩçÖ∞§Ï(ÄÄÄÄÄÄÄÄÄÄÄÅ…–πÖπç°Ω…ïëAΩÕ•—•Ω∏ÄÙÅ±ΩçÖ∞Ï((ÄÄÄÄÄÄÄÄÄÄÄÅô±ΩÖ–Åë’…Ö—•Ω∏ÄÙÄ¿∏ÂòÏ(ÄÄÄÄÄÄÄÄÄÄÄÅYïç—Ω»»ÅÕ—Ö…–ÄÙÅ…–πÖπç°Ω…ïëAΩÕ•—•Ω∏Ï(ÄÄÄÄÄÄÄÄÄÄÄÅôΩ»Ä°ô±ΩÖ–Åï±Ö¡ÕïêÄÙÄ¡òÏÅï±Ö¡ÕïêÄÅë’…Ö—•Ω∏ÏÅï±Ö¡ÕïêÄ¨ÙÅQ•µîπ’πÕçÖ±ïëï±—ÖQ•µî§(ÄÄÄÄÄÄÄÄÄÄÄÅÏ(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅô±ΩÖ–Å¿ÄÙÅï±Ö¡ÕïêÄºÅë’…Ö—•Ω∏Ï(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅ…–πÖπç°Ω…ïëAΩÕ•—•Ω∏ÄÙÅÕ—Ö…–Ä¨ÅYïç—Ω»»π’¿Ä®Ä‡¡òÄ®Å¿Ï(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅΩ±Ω»ÅåÄÙÅçΩ±Ω»Ï(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅåπÑÄÙÄ≈òÄ¥Å¿Ï(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅ–πçΩ±Ω»ÄÙÅåÏ(ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÂ•ï±êÅ…ï—’…∏Åπ’±∞Ï(ÄÄÄÄÄÄÄÄÄÄÄÅÙ((ÄÄÄÄÄÄÄÄÄÄÄÅïÕ—…Ω‰°ùº§Ï(ÄÄÄÄÄÄÄÅÙ((ÄÄÄÄÄÄÄÅ¡…•ŸÖ—îÅÕ—Ö—•åÅŸΩ•êÅπÕ’…ïŸïπ—MÂÕ—ï¥†§(ÄÄÄÄÄÄÄÅÏ(ÄÄÄÄÄÄÄÄÄÄÄÅ•òÄ°Ÿïπ—MÂÕ—ï¥πç’……ïπ–ÄÑÙÅπ’±∞§Å…ï—’…∏Ï(ÄÄÄÄÄÄÄÄÄÄÄÅπï‹ÅÖµï=â©ïç–†âŸïπ—MÂÕ—ï¥à∞Å—Â¡ïΩò°Ÿïπ—MÂÕ—ï¥§∞Å—Â¡ïΩò°M—ÖπëÖ±Ωπï%π¡’—5Ωë’±î§§Ï(ÄÄÄÄÄÄÄÅÙ(ÄÄÄÅÙ)Ù(

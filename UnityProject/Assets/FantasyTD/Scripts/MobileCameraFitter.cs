@@ -1,81 +1,1 @@
-using UnityEngine;
-
-namespace FantasyTD.MapA
-{
-    [RequireComponent(typeof(Camera))]
-    public sealed class MobileCameraFitter : MonoBehaviour
-    {
-        private Camera _camera;
-        private int _lastW;
-        private int _lastH;
-        private Rect _lastSafeArea;
-        private float _width = MapAData.Width;
-        private float _height = MapAData.Height;
-
-        public void Configure(float width, float height)
-        {
-            if (width <= 0f || height <= 0f || float.IsNaN(width) || float.IsNaN(height) ||
-                float.IsInfinity(width) || float.IsInfinity(height))
-                throw new System.ArgumentOutOfRangeException("Map dimensions must be finite and positive.");
-            _width = width;
-            _height = height;
-            if (_camera == null) _camera = GetComponent<Camera>();
-            Fit();
-        }
-
-        private void Awake()
-        {
-            _camera = GetComponent<Camera>();
-            Fit();
-        }
-
-        private void Update()
-        {
-            if (Screen.width != _lastW || Screen.height != _lastH || SafeArea() != _lastSafeArea)
-                Fit();
-        }
-
-        private static Rect SafeArea()
-        {
-#if UNITY_EDITOR
-            if (SafeAreaFitter.EditorOverrideSafeArea.HasValue)
-                return SafeAreaFitter.EditorOverrideSafeArea.Value;
-#endif
-            return Screen.safeArea;
-        }
-
-        private void Fit()
-        {
-            _lastW = Screen.width;
-            _lastH = Screen.height;
-
-            float screenWidth = Mathf.Max(1, Screen.width);
-            float screenHeight = Mathf.Max(1, Screen.height);
-            _lastSafeArea = SafeArea();
-            Rect safe = _lastSafeArea;
-            if (safe.width <= 0f || safe.height <= 0f)
-                safe = new Rect(0f, 0f, screenWidth, screenHeight);
-
-            // HUD overlays the battlefield. Reserve only touch-safe breathing room;
-            // do not shrink the map into a centered postcard.
-            float hudScale = Mathf.Sqrt((screenWidth / 1920f) * (screenHeight / 1080f));
-            float sideInset = 10f * hudScale;
-            float bottomInset = 42f * hudScale;
-            float topInset = 54f * hudScale;
-            float usableWidth = Mathf.Max(1f, safe.width - 2f * sideInset);
-            float usableHeight = Mathf.Max(1f, safe.height - bottomInset - topInset);
-            Vector2 fieldCenter = new Vector2(safe.center.x,
-                safe.yMin + bottomInset + usableHeight * 0.5f);
-
-            float usableAspect = usableWidth / Mathf.Max(1f, usableHeight);
-            float fitHeight = (_height + 0.35f) * 0.5f;
-            float fitWidth = (_width + 0.35f) / (2f * Mathf.Max(0.01f, usableAspect));
-            _camera.orthographicSize = Mathf.Max(fitHeight, fitWidth);
-            float unitsPerPixel = 2f * _camera.orthographicSize / screenHeight;
-            transform.position = new Vector3(
-                _width * 0.5f - (fieldCenter.x - screenWidth * 0.5f) * unitsPerPixel,
-                _height * 0.5f - (fieldCenter.y - screenHeight * 0.5f) * unitsPerPixel,
-                -10f);
-        }
-    }
-}
+¨¥yÛhr‰çyËm¡»¬:—«jØ¨žz-¥êæŠÛ^uÕÍ¥¹œU¹¥Ñå¹¥¹”ì()¹…µ•ÍÁ…”…¹Ñ…ÍåQ¹5…Á)ì(€€€mI•ÅÕ¥É•½µÁ½¹•¹Ð¡ÑåÁ•½˜¡…µ•É„¤¥t(€€€ÁÕ‰±¥ŒÍ•…±•±…ÍÌ5½‰¥±•…µ•É…¥ÑÑ•È€è5½¹½	•¡…Ù¥½ÕÈ(€€€ì(€€€€€€€ÁÉ¥Ù…Ñ”…µ•É„}…µ•É„ì(€€€€€€€ÁÉ¥Ù…Ñ”¥¹Ð}±…ÍÑ\ì(€€€€€€€ÁÉ¥Ù…Ñ”¥¹Ð}±…ÍÑ ì(€€€€€€€ÁÉ¥Ù…Ñ”I•Ð}±…ÍÑM…™•É•„ì(€€€€€€€ÁÉ¥Ù…Ñ”™±½…Ð}Ý¥‘Ñ €ô5…Á…Ñ„¹]¥‘Ñ ì(€€€€€€€ÁÉ¥Ù…Ñ”™±½…Ð}¡•¥¡Ð€ô5…Á…Ñ„¹!•¥¡Ðì((€€€€€€€ÁÕ‰±¥ŒÙ½¥½¹™¥ÕÉ”¡™±½…ÐÝ¥‘Ñ °™±½…Ð¡•¥¡Ð¤(€€€€€€€ì(€€€€€€€€€€€¥˜€¡Ý¥‘Ñ €ðô€Á˜ñð¡•¥¡Ð€ðô€Á˜ñð™±½…Ð¹%Í9…8¡Ý¥‘Ñ ¤ñð™±½…Ð¹%Í9…8¡¡•¥¡Ð¤ñð(€€€€€€€€€€€€€€€™±½…Ð¹%Í%¹™¥¹¥Ñä¡Ý¥‘Ñ ¤ñð™±½…Ð¹%Í%¹™¥¹¥Ñä¡¡•¥¡Ð¤¤(€€€€€€€€€€€€€€€Ñ¡É½Ü¹•ÜMåÍÑ•´¹ÉÕµ•¹Ñ=ÕÑ=™I…¹•á•ÁÑ¥½¸ ‰5…À‘¥µ•¹Í¥½¹ÌµÕÍÐ‰”™¥¹¥Ñ”…¹Á½Í¥Ñ¥Ù”¸ˆ¤ì(€€€€€€€€€€€}Ý¥‘Ñ €ôÝ¥‘Ñ ì(€€€€€€€€€€€}¡•¥¡Ð€ô¡•¥¡Ðì(€€€€€€€€€€€¥˜€¡}…µ•É„€ôô¹Õ±°¤}…µ•É„€ô•Ñ½µÁ½¹•¹Ðñ…µ•É„ø ¤ì(€€€€€€€€€€€¥Ð ¤ì(€€€€€€€ô((€€€€€€€ÁÉ¥Ù…Ñ”Ù½¥Ý…­” ¤(€€€€€€€ì(€€€€€€€€€€€}…µ•É„€ô•Ñ½µÁ½¹•¹Ðñ…µ•É„ø ¤ì(€€€€€€€€€€€¥Ð ¤ì(€€€€€€€ô((€€€€€€€ÁÉ¥Ù…Ñ”Ù½¥UÁ‘…Ñ” ¤(€€€€€€€ì(€€€€€€€€€€€¥˜€¡MÉ••¸¹Ý¥‘Ñ €„ô}±…ÍÑ\ñðMÉ••¸¹¡•¥¡Ð€„ô}±…ÍÑ ñðM…™•É•„ ¤€„ô}±…ÍÑM…™•É•„¤(€€€€€€€€€€€€€€€¥Ð ¤ì(€€€€€€€ô((€€€€€€€ÁÉ¥Ù…Ñ”ÍÑ…Ñ¥ŒI•ÐM…™•É•„ ¤(€€€€€€€ì(¥˜U9%Qe}%Q=H(€€€€€€€€€€€¥˜€¡M…™•É•…¥ÑÑ•È¹‘¥Ñ½É=Ù•ÉÉ¥‘•M…™•É•„¹!…ÍY…±Õ”¤(€€€€€€€€€€€€€€€É•ÑÕÉ¸M…™•É•…¥ÑÑ•È¹‘¥Ñ½É=Ù•ÉÉ¥‘•M…™•É•„¹Y…±Õ”ì(•¹‘¥˜(€€€€€€€€€€€É•ÑÕÉ¸MÉ••¸¹Í…™•É•„ì(€€€€€€€ô((€€€€€€€ÁÉ¥Ù…Ñ”Ù½¥¥Ð ¤(€€€€€€€ì(€€€€€€€€€€€}±…ÍÑ\€ôMÉ••¸¹Ý¥‘Ñ ì(€€€€€€€€€€€}±…ÍÑ €ôMÉ••¸¹¡•¥¡Ðì((€€€€€€€€€€€™±½…ÐÍÉ••¹]¥‘Ñ €ô5…Ñ¡˜¹5…à Ä°MÉ••¸¹Ý¥‘Ñ ¤ì(€€€€€€€€€€€™±½…ÐÍÉ••¹!•¥¡Ð€ô5…Ñ¡˜¹5…à Ä°MÉ••¸¹¡•¥¡Ð¤ì(€€€€€€€€€€€}±…ÍÑM…™•É•„€ôM…™•É•„ ¤ì(€€€€€€€€€€€I•ÐÍ…™”€ô}±…ÍÑM…™•É•„ì(€€€€€€€€€€€¥˜€¡Í…™”¹Ý¥‘Ñ €ðô€Á˜ñðÍ…™”¹¡•¥¡Ð€ðô€Á˜¤(€€€€€€€€€€€€€€€Í…™”€ô¹•ÜI•Ð Á˜°€Á˜°ÍÉ••¹]¥‘Ñ °ÍÉ••¹!•¥¡Ð¤ì((€€€€€€€€€€€€¼¼!U½Ù•É±…åÌÑ¡”‰…ÑÑ±•™¥•±¸I•Í•ÉÙ”½¹±äÑ½Õ µÍ…™”‰É•…Ñ¡¥¹œÉ½½´ì(€€€€€€€€€€€€¼¼‘¼¹½ÐÍ¡É¥¹¬Ñ¡”µ…À¥¹Ñ¼„•¹Ñ•É•Á½ÍÑ…É¸(€€€€€€€€€€€™±½…Ð¡Õ‘M…±”€ô5…Ñ¡˜¹MÅÉÐ ¡ÍÉ••¹]¥‘Ñ €¼€ÄäÈÁ˜¤€¨€¡ÍÉ••¹!•¥¡Ð€¼€ÄÀàÁ˜¤¤ì(€€€€€€€€€€€™±½…ÐÍ¥‘•%¹Í•Ð€ô€ÄÁ˜€¨¡Õ‘M…±”ì(€€€€€€€€€€€™±½…Ð‰½ÑÑ½µ%¹Í•Ð€ô€ÐÉ˜€¨¡Õ‘M…±”ì(€€€€€€€€€€€™±½…ÐÑ½Á%¹Í•Ð€ô€ÔÑ˜€¨¡Õ‘M…±”ì(€€€€€€€€€€€™±½…ÐÕÍ…‰±•]¥‘Ñ €ô5…Ñ¡˜¹5…à Å˜°Í…™”¹Ý¥‘Ñ €´€É˜€¨Í¥‘•%¹Í•Ð¤ì(€€€€€€€€€€€™±½…ÐÕÍ…‰±•!•¥¡Ð€ô5…Ñ¡˜¹5…à Å˜°Í…™”¹¡•¥¡Ð€´‰½ÑÑ½µ%¹Í•Ð€´Ñ½Á%¹Í•Ð¤ì(€€€€€€€€€€€Y•Ñ½ÈÈ™¥•±‘•¹Ñ•È€ô¹•ÜY•Ñ½ÈÈ¡Í…™”¹•¹Ñ•È¹à°(€€€€€€€€€€€€€€€Í…™”¹å5¥¸€¬‰½ÑÑ½µ%¹Í•Ð€¬ÕÍ…‰±•!•¥¡Ð€¨€À¸Õ˜¤ì((€€€€€€€€€€€€¼¼Q¡”…µ•É„É•¹‘•ÉÌ¥¹Ñ¼Ñ¡”™Õ±°ÍÉ••¸Ù¥•ÝÁ½ÉÐ¸½¹Ù•ÉÐÑ¡”É•Í•ÉÙ•(€€€€€€€€€€€€¼¼Á¥á•°É•Ñ…¹±”¥¹Ñ¼Ù¥•ÝÁ½ÉÐ™É…Ñ¥½¹Ì‰•™½É”…±Õ±…Ñ¥¹œÑ¡”Ý½É±(€€€€€€€€€€€€¼¼•áÑ•¹ÑÌìÕÍ¥¹œÕÍ…‰±•]¥‘Ñ €¼ÕÍ…‰±•!•¥¡Ð‘¥É•Ñ±äÉ½ÁÌ€ÐèÌÙ¥•ÝÌ¸(€€€€€€€€€€€™±½…ÐÍÉ••¹ÍÁ•Ð€ôÍÉ••¹]¥‘Ñ €¼ÍÉ••¹!•¥¡Ðì(€€€€€€€€€€€™±½…ÐÕÍ…‰±•]¥‘Ñ¡É…Ñ¥½¸€ôÕÍ…‰±•]¥‘Ñ €¼ÍÉ••¹]¥‘Ñ ì(€€€€€€€€€€€™±½…ÐÕÍ…‰±•!•¥¡ÑÉ…Ñ¥½¸€ôÕÍ…‰±•!•¥¡Ð€¼ÍÉ••¹!•¥¡Ðì(€€€€€€€€€€€™±½…Ð™¥Ñ!•¥¡Ð€ô€¡}¡•¥¡Ð€¬€À¸ÌÕ˜¤€¼(€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€ É˜€¨5…Ñ¡˜¹5…à À¸ÀÅ˜°ÕÍ…‰±•!•¥¡ÑÉ…Ñ¥½¸¤¤ì(€€€€€€€€€€€™±½…Ð™¥Ñ]¥‘Ñ €ô€¡}Ý¥‘Ñ €¬€À¸ÌÕ˜¤€¼(€€€€€€€€€€€€€€€€€€€€€€€€€€€€€ É˜€¨5…Ñ¡˜¹5…à À¸ÀÅ˜°ÍÉ••¹ÍÁ•Ð€¨ÕÍ…‰±•]¥‘Ñ¡É…Ñ¥½¸¤¤ì(€€€€€€€€€€€}…µ•É„¹½ÉÑ¡½É…Á¡¥M¥é”€ô5…Ñ¡˜¹5…à¡™¥Ñ!•¥¡Ð°™¥Ñ]¥‘Ñ ¤ì(€€€€€€€€€€€™±½…ÐÕ¹¥ÑÍA•ÉA¥á•°€ô€É˜€¨}…µ•É„¹½ÉÑ¡½É…Á¡¥M¥é”€¼ÍÉ••¹!•¥¡Ðì(€€€€€€€€€€€ÑÉ…¹Í™½É´¹Á½Í¥Ñ¥½¸€ô¹•ÜY•Ñ½ÈÌ (€€€€€€€€€€€€€€€}Ý¥‘Ñ €¨€À¸Õ˜€´€¡™¥•±‘•¹Ñ•È¹à€´ÍÉ••¹]¥‘Ñ €¨€À¸Õ˜¤€¨Õ¹¥ÑÍA•ÉA¥á•°°(€€€€€€€€€€€€€€€}¡•¥¡Ð€¨€À¸Õ˜€´€¡™¥•±‘•¹Ñ•È¹ä€´ÍÉ••¹!•¥¡Ð€¨€À¸Õ˜¤€¨Õ¹¥ÑÍA•ÉA¥á•°°(€€€€€€€€€€€€€€€€´ÄÁ˜¤ì(€€€€€€€ô(€€€ô)ô(

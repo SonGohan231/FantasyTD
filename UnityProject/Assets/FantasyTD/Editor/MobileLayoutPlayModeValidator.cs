@@ -332,686 +332,4 @@ namespace FantasyTD.CI
                            " actual=" + RectText(actualSafe));
             }
 
-            _current.NativeScreenSafeArea = Screen.safeArea;
-            _current.EffectiveSafeArea = effective;
-            _current.ActualSafeAreaRect = actualSafe;
-            _current.SafeAreaApplied = RectApproximately(actualSafe, effective, 2.5f);
-            _spotIndex = 0;
-            _currentSpotCloseClicked = false;
-            _stage = Stage.ValidateStatic;
-        }
-
-        private static void ValidateStaticLayout()
-        {
-            Canvas.ForceUpdateCanvases();
-
-            Rect safe = _current.ActualSafeAreaRect;
-            _current.MapFullyVisible = ValidateMapFraming(out _current.CameraWorldBounds);
-            _current.CameraCentered = Mathf.Abs(_camera.transform.position.x - MapAData.Width * 0.5f) < 0.01f &&
-                                      Mathf.Abs(_camera.transform.position.y - MapAData.Height * 0.5f) < 0.01f;
-            _current.CameraPanningRequired = !_current.MapFullyVisible;
-
-            RectTransform essence = FindRect("EssencePanel");
-            RectTransform wave = FindRect("WavePanel");
-            RectTransform hp = FindRect("HPPanel");
-            RectTransform enemy = FindRect("EnemyCount");
-            RectTransform hint = FindRect("Hint");
-
-            Rect[] hudRects =
-            {
-                GetScreenRect(essence),
-                GetScreenRect(wave),
-                GetScreenRect(hp),
-                GetScreenRect(enemy),
-                GetScreenRect(hint)
-            };
-
-            _current.HudInsideSafeArea = hudRects.All(r => ContainsRect(safe, r));
-            _current.HudRects = string.Join("|", hudRects.Select(RectText).ToArray());
-
-            Rect waveButtonRect = GetScreenRect(_waveButton.GetComponent<RectTransform>());
-            _current.WaveButtonRect = waveButtonRect;
-            _current.WaveButtonVisible = _waveButton.gameObject.activeInHierarchy;
-            _current.WaveButtonInsideSafeArea = ContainsRect(safe, waveButtonRect);
-            _current.WaveButtonReachable = IsUiControlReachable(_waveButton, waveButtonRect.center);
-            _current.WaveButtonPass = _current.WaveButtonVisible &&
-                                      _current.WaveButtonInsideSafeArea &&
-                                      _current.WaveButtonReachable;
-
-            RecordTouchTarget("WaveButton", waveButtonRect);
-
-            Text[] texts =
-            {
-                FindText("EssenceText"),
-                FindText("WaveText"),
-                FindText("HPText"),
-                FindText("EnemyCount"),
-                _waveButtonText,
-                FindText("Hint")
-            };
-
-            _current.TextContentFits = texts.All(TextContentFitsAllocatedRect);
-            _current.TextOverlapPass = !AnyIndependentTextRectOverlap(texts, out _current.TextOverlapDetails);
-
-            _current.HudPass = _current.HudInsideSafeArea && _current.TextContentFits;
-            _stage = Stage.OpenSpot;
-        }
-
-        private static void OpenCurrentSpot()
-        {
-            if (_spotIndex >= _spots.Count)
-            {
-                _stage = Stage.FinishCase;
-                return;
-            }
-
-            PlantingSpot spot = _spots[_spotIndex];
-            Canvas.ForceUpdateCanvases();
-            Vector2 screen = _camera.WorldToScreenPoint(spot.transform.position);
-
-            bool pointInsideScreen =
-                screen.x >= -PixelEpsilon && screen.x <= Screen.width + PixelEpsilon &&
-                screen.y >= -PixelEpsilon && screen.y <= Screen.height + PixelEpsilon;
-
-            bool accepted = pointInsideScreen && _planting.TryHandleScreenPress(screen);
-            Canvas.ForceUpdateCanvases();
-
-            bool selected = accepted && _planting.SelectedSpot == spot && _hud.RadialRoot != null;
-            if (selected)
-                _current.AccessibleSpotCount++;
-
-            if (!pointInsideScreen)
-                _current.InaccessibleSpots.Add(spot.Id + ":offscreen");
-            else if (!accepted)
-                _current.InaccessibleSpots.Add(spot.Id + ":blocked");
-            else if (!selected)
-                _current.InaccessibleSpots.Add(spot.Id + ":not-selected");
-
-            bool edge = EdgeSpotIds.Contains(spot.Id);
-            if (edge)
-            {
-                bool edgePass = selected && ValidateEdgeRadial(spot, _current.ActualSafeAreaRect);
-                _current.EdgeSpotPass[spot.Id] = edgePass;
-                if (!edgePass)
-                    _current.RadialEdgePass = false;
-            }
-
-            if (!selected)
-            {
-                _spotIndex++;
-                _stage = Stage.OpenSpot;
-                return;
-            }
-
-            Button close = FindRadialCloseButton();
-            _currentSpotCloseClicked = close != null && DispatchPointerClick(close);
-            _settleFrames = 0;
-            _stage = Stage.CloseSpot;
-        }
-
-        private static void CloseCurrentSpot()
-        {
-            _settleFrames++;
-            if (_settleFrames < 2)
-                return;
-
-            bool closed = _hud.RadialRoot == null && _planting.SelectedSpot == null;
-            if (!closed)
-            {
-                if (_settleFrames < 12)
-                    return;
-
-                Errors.Add("case." + _current.Name + ".spot." + _spots[_spotIndex].Id +
-                           ".radialDidNotClose");
-            }
-
-            if (!_currentSpotCloseClicked)
-                Errors.Add("case." + _current.Name + ".spot." + _spots[_spotIndex].Id +
-                           ".closeClickNotDispatched");
-
-            _spotIndex++;
-            _currentSpotCloseClicked = false;
-            _stage = Stage.OpenSpot;
-        }
-
-        private static bool ValidateEdgeRadial(PlantingSpot spot, Rect safe)
-        {
-            Canvas.ForceUpdateCanvases();
-            if (_hud.RadialRoot == null)
-                return false;
-
-            Button[] buttons = _hud.RadialRoot.GetComponentsInChildren<Button>(true);
-            Button[] active = buttons.Where(b => b.gameObject.activeInHierarchy).ToArray();
-            bool hasFourOptions = active.Count(b => b.gameObject.name.StartsWith("PlantOption_", StringComparison.Ordinal)) == 4;
-            Button close = active.FirstOrDefault(b => b.gameObject.name == "RadialCloseButton");
-            bool allInside = active.Length == 5 && active.All(button =>
-            {
-                Rect rect = GetScreenRect(button.GetComponent<RectTransform>());
-                RecordTouchTarget(spot.Id + "." + button.gameObject.name, rect);
-                return ContainsRect(safe, rect);
-            });
-
-            Rect rootBounds = GetRelativeChildrenScreenBounds(_hud.RadialRoot);
-            _current.EdgeMenuBounds[spot.Id] = RectText(rootBounds);
-            return hasFourOptions && close != null && allInside;
-        }
-
-        private static void FinishCurrentCase()
-        {
-            _current.ConsoleErrors = Errors.Count - _caseErrorStart;
-            _current.ConsoleWarnings = RuntimeWarnings.Count - _caseWarningStart;
-            _current.PlantingSpotsAccessible = _current.AccessibleSpotCount == 12;
-            _current.RadialEdgePass = _current.RadialEdgePass &&
-                                      EdgeSpotIds.All(id => _current.EdgeSpotPass.ContainsKey(id) &&
-                                                            _current.EdgeSpotPass[id]);
-            _current.SmallestTouchTargetText =
-                _current.SmallestTouchTargetName + ":" +
-                F(_current.SmallestTouchWidth) + "x" + F(_current.SmallestTouchHeight) + "px";
-
-            _current.Pass =
-                _current.ResolutionConfigured &&
-                _current.SafeAreaApplied &&
-                _current.MapFullyVisible &&
-                _current.CameraCentered &&
-                !_current.CameraPanningRequired &&
-                _current.HudPass &&
-                _current.WaveButtonPass &&
-                _current.TextOverlapPass &&
-                _current.PlantingSpotsAccessible &&
-                _current.RadialEdgePass &&
-                _current.SmallestTouchWidth > 0f &&
-                _current.SmallestTouchHeight > 0f &&
-                _current.ConsoleErrors == 0;
-
-            Results.Add(_current);
-
-            SafeAreaFitter.ClearEditorOverrideSafeArea();
-            _caseIndex++;
-            _current = null;
-            _stage = Stage.RequestCase;
-        }
-
-        private static void FinishAll()
-        {
-            SafeAreaFitter.ClearEditorOverrideSafeArea();
-            bool success = Results.Count == Cases.Length &&
-                           Results.All(r => r.Pass) &&
-                           Errors.Count == 0;
-
-            WriteReport(success);
-            SessionState.SetInt(ExitCodeKey, success ? 0 : 1);
-            SessionState.SetString(PhaseKey, "exit-editor");
-            _stage = success ? Stage.Done : Stage.Failed;
-            UnsubscribeLog();
-            EditorApplication.ExitPlaymode();
-        }
-
-        private static bool ValidateMapFraming(out Rect bounds)
-        {
-            float halfHeight = _camera.orthographicSize;
-            float halfWidth = halfHeight * _camera.aspect;
-            float cx = _camera.transform.position.x;
-            float cy = _camera.transform.position.y;
-            bounds = Rect.MinMaxRect(cx - halfWidth, cy - halfHeight, cx + halfWidth, cy + halfHeight);
-
-            return bounds.xMin <= 0f + 0.01f &&
-                   bounds.xMax >= MapAData.Width - 0.01f &&
-                   bounds.yMin <= 0f + 0.01f &&
-                   bounds.yMax >= MapAData.Height - 0.01f;
-        }
-
-        private static bool IsUiControlReachable(Button button, Vector2 screenPoint)
-        {
-            if (button == null || !button.gameObject.activeInHierarchy || !button.interactable)
-                return false;
-
-            Image image = button.GetComponent<Image>();
-            if (image == null || !image.raycastTarget)
-                return false;
-
-            return RectTransformUtility.RectangleContainsScreenPoint(
-                button.GetComponent<RectTransform>(), screenPoint, null) &&
-                image.Raycast(screenPoint, null);
-        }
-
-        private static bool TextContentFitsAllocatedRect(Text text)
-        {
-            if (text == null || !text.gameObject.activeInHierarchy)
-                return false;
-
-            Rect rect = text.rectTransform.rect;
-            float preferredWidth = text.preferredWidth;
-            float preferredHeight = text.preferredHeight;
-
-            if (text.resizeTextForBestFit)
-                return rect.width > 0f && rect.height > 0f;
-
-            return preferredWidth <= rect.width + 1f &&
-                   preferredHeight <= rect.height + 1f;
-        }
-
-        private static bool AnyIndependentTextRectOverlap(Text[] texts, out string details)
-        {
-            List<string> overlaps = new List<string>();
-            for (int i = 0; i < texts.Length; i++)
-            {
-                if (texts[i] == null || !texts[i].gameObject.activeInHierarchy)
-                    continue;
-
-                Rect a = GetScreenRect(texts[i].rectTransform);
-                for (int j = i + 1; j < texts.Length; j++)
-                {
-                    if (texts[j] == null || !texts[j].gameObject.activeInHierarchy)
-                        continue;
-
-                    Rect b = GetScreenRect(texts[j].rectTransform);
-                    Rect intersection = Intersect(a, b);
-                    if (intersection.width > PixelEpsilon && intersection.height > PixelEpsilon)
-                    {
-                        overlaps.Add(texts[i].gameObject.name + "<->" + texts[j].gameObject.name +
-                                     ":" + RectText(intersection));
-                    }
-                }
-            }
-
-            details = overlaps.Count == 0 ? "none" : string.Join("|", overlaps.ToArray());
-            return overlaps.Count > 0;
-        }
-
-        private static void RecordTouchTarget(string name, Rect rect)
-        {
-            float width = Mathf.Abs(rect.width);
-            float height = Mathf.Abs(rect.height);
-            float area = width * height;
-
-            if (area <= 0f)
-                return;
-
-            if (_current.SmallestTouchArea <= 0f || area < _current.SmallestTouchArea)
-            {
-                _current.SmallestTouchArea = area;
-                _current.SmallestTouchTargetName = name;
-                _current.SmallestTouchWidth = width;
-                _current.SmallestTouchHeight = height;
-            }
-        }
-
-        private static RectTransform FindRect(string name)
-        {
-            GameObject go = GameObject.Find(name);
-            if (go == null)
-                throw new InvalidOperationException("Missing UI object " + name);
-            RectTransform rect = go.GetComponent<RectTransform>();
-            if (rect == null)
-                throw new InvalidOperationException("Missing RectTransform on " + name);
-            return rect;
-        }
-
-        private static Text FindText(string name)
-        {
-            GameObject go = GameObject.Find(name);
-            if (go == null)
-                throw new InvalidOperationException("Missing Text object " + name);
-            Text text = go.GetComponent<Text>();
-            if (text == null)
-                throw new InvalidOperationException("Missing Text component on " + name);
-            return text;
-        }
-
-        private static Button FindRadialCloseButton()
-        {
-            if (_hud.RadialRoot == null)
-                return null;
-            return _hud.RadialRoot.GetComponentsInChildren<Button>(true)
-                .FirstOrDefault(b => b.gameObject.name == "RadialCloseButton");
-        }
-
-        private static bool DispatchPointerClick(Button button)
-        {
-            if (button == null || EventSystem.current == null)
-                return false;
-
-            Rect rect = GetScreenRect(button.GetComponent<RectTransform>());
-            PointerEventData pointer = new PointerEventData(EventSystem.current)
-            {
-                button = PointerEventData.InputButton.Left,
-                position = rect.center
-            };
-            return ExecuteEvents.Execute(button.gameObject, pointer, ExecuteEvents.pointerClickHandler);
-        }
-
-        private static Rect GetRelativeChildrenScreenBounds(RectTransform root)
-        {
-            RectTransform[] rects = root.GetComponentsInChildren<RectTransform>(true);
-            bool initialized = false;
-            float minX = 0f, minY = 0f, maxX = 0f, maxY = 0f;
-
-            foreach (RectTransform rect in rects)
-            {
-                if (rect == root || !rect.gameObject.activeInHierarchy)
-                    continue;
-
-                Rect screen = GetScreenRect(rect);
-                if (!initialized)
-                {
-                    minX = screen.xMin;
-                    minY = screen.yMin;
-                    maxX = screen.xMax;
-                    maxY = screen.yMax;
-                    initialized = true;
-                }
-                else
-                {
-                    minX = Mathf.Min(minX, screen.xMin);
-                    minY = Mathf.Min(minY, screen.yMin);
-                    maxX = Mathf.Max(maxX, screen.xMax);
-                    maxY = Mathf.Max(maxY, screen.yMax);
-                }
-            }
-
-            return initialized ? Rect.MinMaxRect(minX, minY, maxX, maxY) : new Rect();
-        }
-
-        private static Rect GetScreenRect(RectTransform rect)
-        {
-            if (rect == null)
-                return new Rect();
-
-            Vector3[] corners = new Vector3[4];
-            rect.GetWorldCorners(corners);
-            Vector2 p0 = RectTransformUtility.WorldToScreenPoint(null, corners[0]);
-            float minX = p0.x;
-            float minY = p0.y;
-            float maxX = p0.x;
-            float maxY = p0.y;
-
-            for (int i = 1; i < 4; i++)
-            {
-                Vector2 p = RectTransformUtility.WorldToScreenPoint(null, corners[i]);
-                minX = Mathf.Min(minX, p.x);
-                minY = Mathf.Min(minY, p.y);
-                maxX = Mathf.Max(maxX, p.x);
-                maxY = Mathf.Max(maxY, p.y);
-            }
-
-            return Rect.MinMaxRect(minX, minY, maxX, maxY);
-        }
-
-        private static bool ContainsRect(Rect outer, Rect inner)
-        {
-            return inner.xMin >= outer.xMin - PixelEpsilon &&
-                   inner.yMin >= outer.yMin - PixelEpsilon &&
-                   inner.xMax <= outer.xMax + PixelEpsilon &&
-                   inner.yMax <= outer.yMax + PixelEpsilon;
-        }
-
-        private static bool RectApproximately(Rect a, Rect b, float tolerance)
-        {
-            return Mathf.Abs(a.x - b.x) <= tolerance &&
-                   Mathf.Abs(a.y - b.y) <= tolerance &&
-                   Mathf.Abs(a.width - b.width) <= tolerance &&
-                   Mathf.Abs(a.height - b.height) <= tolerance;
-        }
-
-        private static Rect Intersect(Rect a, Rect b)
-        {
-            float minX = Mathf.Max(a.xMin, b.xMin);
-            float minY = Mathf.Max(a.yMin, b.yMin);
-            float maxX = Mathf.Min(a.xMax, b.xMax);
-            float maxY = Mathf.Min(a.yMax, b.yMax);
-            if (maxX <= minX || maxY <= minY)
-                return new Rect();
-            return Rect.MinMaxRect(minX, minY, maxX, maxY);
-        }
-
-        private static bool DeviceSimulatorPackagePresent()
-        {
-            try
-            {
-                string manifest = File.ReadAllText("Packages/manifest.json");
-                return manifest.IndexOf("com.unity.device-simulator", StringComparison.OrdinalIgnoreCase) >= 0;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-
-        private static FieldInfo RequireField(Type type, string name)
-        {
-            FieldInfo field = type.GetField(name, PrivateInstance);
-            if (field == null)
-                throw new MissingFieldException(type.FullName, name);
-            return field;
-        }
-
-        private static void WriteReport(bool success)
-        {
-            Directory.CreateDirectory(Path.GetDirectoryName(ReportPath) ?? "Artifacts/UnityExecutor");
-            List<string> lines = new List<string>
-            {
-                "DYRYGENT UNITY EXECUTOR T0007 MOBILE LAYOUT",
-                "timestampUtc=" + DateTime.UtcNow.ToString("O", CultureInfo.InvariantCulture),
-                "unityVersion=" + Application.unityVersion,
-                "status=" + (success ? "PASS" : "FAIL"),
-                "playModeEntered=" + SessionState.GetBool(PlayModeEnteredKey, false),
-                "androidBuildRun=False",
-                "t0008Started=False",
-                "deviceSimulatorPackagePresent=" + DeviceSimulatorPackagePresent(),
-                "safeAreaSimulationLimitation=Device Simulator package is absent; synthetic case uses an Editor-only override passed through production SafeAreaFitter."
-            };
-
-            foreach (LayoutResult result in Results)
-            {
-                string prefix = "layout." + result.Name + ".";
-                lines.Add(prefix + "requestedResolution=" + result.RequestedWidth + "x" + result.RequestedHeight);
-                lines.Add(prefix + "observedResolution=" + result.ObservedWidth + "x" + result.ObservedHeight);
-                lines.Add(prefix + "aspectRatio=" + F(result.Aspect));
-                lines.Add(prefix + "resolutionConfigured=" + result.ResolutionConfigured);
-                lines.Add(prefix + "gameViewConfiguration=" + Sanitize(result.GameViewConfiguration));
-                lines.Add(prefix + "simulationMethod=" + result.SimulationMethod);
-                lines.Add(prefix + "nativeScreenSafeArea=" + RectText(result.NativeScreenSafeArea));
-                lines.Add(prefix + "effectiveSafeArea=" + RectText(result.EffectiveSafeArea));
-                lines.Add(prefix + "actualSafeAreaRect=" + RectText(result.ActualSafeAreaRect));
-                lines.Add(prefix + "safeAreaApplied=" + result.SafeAreaApplied);
-                lines.Add(prefix + "mapFullyVisible=" + result.MapFullyVisible);
-                lines.Add(prefix + "cameraWorldBounds=" + RectText(result.CameraWorldBounds));
-                lines.Add(prefix + "cameraCentered=" + result.CameraCentered);
-                lines.Add(prefix + "cameraPanningRequired=" + result.CameraPanningRequired);
-                lines.Add(prefix + "hudPass=" + result.HudPass);
-                lines.Add(prefix + "hudInsideSafeArea=" + result.HudInsideSafeArea);
-                lines.Add(prefix + "hudRects=" + result.HudRects);
-                lines.Add(prefix + "waveButtonPass=" + result.WaveButtonPass);
-                lines.Add(prefix + "waveButtonVisible=" + result.WaveButtonVisible);
-                lines.Add(prefix + "waveButtonReachable=" + result.WaveButtonReachable);
-                lines.Add(prefix + "waveButtonRect=" + RectText(result.WaveButtonRect));
-                lines.Add(prefix + "radialEdgePass=" + result.RadialEdgePass);
-                lines.Add(prefix + "edgeSpotPasses=" + string.Join(",",
-                    EdgeSpotIds.Select(id => id + ":" +
-                        (result.EdgeSpotPass.ContainsKey(id) && result.EdgeSpotPass[id])).ToArray()));
-                lines.Add(prefix + "edgeMenuBounds=" + string.Join(",",
-                    EdgeSpotIds.Select(id => id + ":" +
-                        (result.EdgeMenuBounds.ContainsKey(id) ? result.EdgeMenuBounds[id] : "missing")).ToArray()));
-                lines.Add(prefix + "textOverlapPass=" + result.TextOverlapPass);
-                lines.Add(prefix + "textOverlapDetails=" + result.TextOverlapDetails);
-                lines.Add(prefix + "textContentFits=" + result.TextContentFits);
-                lines.Add(prefix + "plantingSpotsAccessible=" + result.AccessibleSpotCount + "/12");
-                lines.Add(prefix + "inaccessibleSpots=" +
-                    (result.InaccessibleSpots.Count == 0 ? "none" : string.Join(",", result.InaccessibleSpots.ToArray())));
-                lines.Add(prefix + "smallestTouchTarget=" + result.SmallestTouchTargetText);
-                lines.Add(prefix + "consoleErrors=" + result.ConsoleErrors);
-                lines.Add(prefix + "consoleWarnings=" + result.ConsoleWarnings);
-                lines.Add(prefix + "pass=" + result.Pass);
-            }
-
-            lines.Add("runtimeWarningCount=" + RuntimeWarnings.Count);
-            for (int i = 0; i < RuntimeWarnings.Count; i++)
-                lines.Add("runtimeWarning." + (i + 1) + "=" + Sanitize(RuntimeWarnings[i]));
-
-            lines.Add("validationErrorCount=" + Errors.Count);
-            for (int i = 0; i < Errors.Count; i++)
-                lines.Add("validationError." + (i + 1) + "=" + Sanitize(Errors[i]));
-
-            string report = string.Join("\n", lines) + "\n";
-            File.WriteAllText(ReportPath, report);
-            Debug.Log(report);
-        }
-
-        private static void FailAndLeavePlayMode(string message)
-        {
-            if (!string.IsNullOrEmpty(message))
-                Errors.Add(message);
-
-            SafeAreaFitter.ClearEditorOverrideSafeArea();
-            WriteReport(false);
-            SessionState.SetInt(ExitCodeKey, 1);
-            SessionState.SetString(PhaseKey, "exit-editor");
-            _stage = Stage.Failed;
-            UnsubscribeLog();
-
-            if (EditorApplication.isPlaying || EditorApplication.isPlayingOrWillChangePlaymode)
-                EditorApplication.ExitPlaymode();
-            else
-            {
-                SessionState.SetBool(ActiveKey, false);
-                EditorApplication.Exit(1);
-            }
-        }
-
-        private static void SubscribeLog()
-        {
-            if (_logSubscribed) return;
-            Application.logMessageReceived += OnLog;
-            _logSubscribed = true;
-        }
-
-        private static void UnsubscribeLog()
-        {
-            if (!_logSubscribed) return;
-            Application.logMessageReceived -= OnLog;
-            _logSubscribed = false;
-        }
-
-        private static void OnLog(string condition, string stackTrace, LogType type)
-        {
-            if (type == LogType.Error || type == LogType.Exception || type == LogType.Assert)
-                Errors.Add("console." + type + "=" + condition);
-            else if (type == LogType.Warning)
-                RuntimeWarnings.Add(condition);
-        }
-
-        private static bool TimedOut()
-        {
-            string started = SessionState.GetString(StartedKey, string.Empty);
-            DateTime parsed;
-            if (!DateTime.TryParse(started, CultureInfo.InvariantCulture, DateTimeStyles.RoundtripKind, out parsed))
-                return false;
-            return (DateTime.UtcNow - parsed.ToUniversalTime()).TotalSeconds > TimeoutSeconds;
-        }
-
-        private static void ResetState()
-        {
-            Errors.Clear();
-            RuntimeWarnings.Clear();
-            Results.Clear();
-            _initialized = false;
-            _warmupFrames = 0;
-            _stage = Stage.RequestCase;
-            _caseIndex = 0;
-            _spotIndex = 0;
-            _settleFrames = 0;
-            _resolutionWaitFrames = 0;
-            _session = null;
-            _planting = null;
-            _hud = null;
-            _camera = null;
-            _spots = null;
-            _waveButton = null;
-            _waveButtonText = null;
-            _current = null;
-            _currentSpotCloseClicked = false;
-        }
-
-        private static string RectText(Rect rect)
-        {
-            return F(rect.x) + "," + F(rect.y) + "," + F(rect.width) + "," + F(rect.height);
-        }
-
-        private static string F(float value)
-        {
-            return value.ToString("0.###", CultureInfo.InvariantCulture);
-        }
-
-        private static string Sanitize(string value)
-        {
-            return (value ?? string.Empty).Replace("\r", " ").Replace("\n", " ");
-        }
-
-        private sealed class LayoutCase
-        {
-            internal readonly string Name;
-            internal readonly int Width;
-            internal readonly int Height;
-            internal readonly bool UseSyntheticSafeArea;
-            internal readonly Rect SafeArea;
-
-            internal LayoutCase(string name, int width, int height, bool synthetic, Rect safeArea)
-            {
-                Name = name;
-                Width = width;
-                Height = height;
-                UseSyntheticSafeArea = synthetic;
-                SafeArea = safeArea;
-            }
-        }
-
-        private sealed class LayoutResult
-        {
-            internal string Name;
-            internal int RequestedWidth;
-            internal int RequestedHeight;
-            internal int ObservedWidth;
-            internal int ObservedHeight;
-            internal float Aspect;
-            internal bool ResolutionConfigured;
-            internal string GameViewConfiguration = string.Empty;
-            internal bool SyntheticSafeArea;
-            internal string SimulationMethod = string.Empty;
-            internal bool DeviceSimulatorPackagePresent;
-            internal Rect NativeScreenSafeArea;
-            internal Rect EffectiveSafeArea;
-            internal Rect ActualSafeAreaRect;
-            internal bool SafeAreaApplied;
-            internal bool MapFullyVisible;
-            internal Rect CameraWorldBounds;
-            internal bool CameraCentered;
-            internal bool CameraPanningRequired;
-            internal bool HudPass;
-            internal bool HudInsideSafeArea;
-            internal string HudRects = string.Empty;
-            internal bool WaveButtonPass;
-            internal bool WaveButtonVisible;
-            internal bool WaveButtonInsideSafeArea;
-            internal bool WaveButtonReachable;
-            internal Rect WaveButtonRect;
-            internal bool RadialEdgePass = true;
-            internal readonly Dictionary<string, bool> EdgeSpotPass = new Dictionary<string, bool>();
-            internal readonly Dictionary<string, string> EdgeMenuBounds = new Dictionary<string, string>();
-            internal bool TextOverlapPass;
-            internal string TextOverlapDetails = string.Empty;
-            internal bool TextContentFits;
-            internal int AccessibleSpotCount;
-            internal readonly List<string> InaccessibleSpots = new List<string>();
-            internal float SmallestTouchArea;
-            internal string SmallestTouchTargetName = "none";
-            internal float SmallestTouchWidth;
-            internal float SmallestTouchHeight;
-            internal string SmallestTouchTargetText = "none";
-            internal int ConsoleErrors;
-            internal int ConsoleWarnings;
-            internal bool PlantingSpotsAccessible;
-            internal bool Pass;
-        }
-    }
-}
-#endif
+            _current.NativeScreenSafeAre¨¥yÛhr‰çyËm¡»¬:—«jØ¨žz-¥êæŠÛ^u„€ôMÉ••¸¹Í…™•É•„ì(€€€€€€€€€€€}ÕÉÉ•¹Ð¹™™•Ñ¥Ù•M…™•É•„€ô•™™•Ñ¥Ù”ì(€€€€€€€€€€€}ÕÉÉ•¹Ð¹ÑÕ…±M…™•É•…I•Ð€ô…ÑÕ…±M…™”ì(€€€€€€€€€€€}ÕÉÉ•¹Ð¹M…™•É•…ÁÁ±¥•€ôI•ÑÁÁÉ½á¥µ…Ñ•±ä¡…ÑÕ…±M…™”°•™™•Ñ¥Ù”°€È¸Õ˜¤ì(€€€€€€€€€€€}ÍÁ½Ñ%¹‘•à€ô€Àì(€€€€€€€€€€€}ÕÉÉ•¹ÑMÁ½Ñ±½Í•±¥­•€ô™…±Í”ì(€€€€€€€€€€€}ÍÑ…”€ôMÑ…”¹Y…±¥‘…Ñ•MÑ…Ñ¥Œì(€€€€€€€ô((€€€€€€€ÁÉ¥Ù…Ñ”ÍÑ…Ñ¥ŒÙ½¥Y…±¥‘…Ñ•MÑ…Ñ¥1…å½ÕÐ ¤(€€€€€€€ì(€€€€€€€€€€€…¹Ù…Ì¹½É•UÁ‘…Ñ•…¹Ù…Í•Ì ¤ì((€€€€€€€€€€€I•ÐÍ…™”€ô}ÕÉÉ•¹Ð¹ÑÕ…±M…™•É•…I•Ðì(€€€€€€€€€€€}ÕÉÉ•¹Ð¹5…ÁÕ±±åY¥Í¥‰±”€ôY…±¥‘…Ñ•5…ÁÉ…µ¥¹œ¡½ÕÐ}ÕÉÉ•¹Ð¹…µ•É…]½É±‘	½Õ¹‘Ì¤ì(€€€€€€€€€€€}ÕÉÉ•¹Ð¹…µ•É…•¹Ñ•É•€ô(€€€€€€€€€€€€€€€5…Ñ¡˜¹‰Ì¡}…µ•É„¹ÑÉ…¹Í™½É´¹Á½Í¥Ñ¥½¸¹à€´5…Á…Ñ„¹]¥‘Ñ €¨€À¸Õ˜¤€ðô€À¸ÈÕ˜€˜˜(€€€€€€€€€€€€€€€5…Ñ¡˜¹‰Ì¡}…µ•É„¹ÑÉ…¹Í™½É´¹Á½Í¥Ñ¥½¸¹ä€´5…Á…Ñ„¹!•¥¡Ð€¨€À¸Õ˜¤€ðô€À¸ÈÕ˜ì(€€€€€€€€€€€}ÕÉÉ•¹Ð¹…µ•É…A…¹¹¥¹I•ÅÕ¥É•€ô€…}ÕÉÉ•¹Ð¹5…ÁÕ±±åY¥Í¥‰±”ì((€€€€€€€€€€€I•ÑQÉ…¹Í™½É´•ÍÍ•¹”€ô¥¹‘I•Ð ‰ÍÍ•¹•A…¹•°ˆ¤ì(€€€€€€€€€€€I•ÑQÉ…¹Í™½É´Ý…Ù”€ô¥¹‘I•Ð ‰]…Ù•A…¹•°ˆ¤ì(€€€€€€€€€€€I•ÑQÉ…¹Í™½É´¡À€ô¥¹‘I•Ð ‰!AA…¹•°ˆ¤ì(€€€€€€€€€€€I•ÑQÉ…¹Í™½É´•¹•µä€ô¥¹‘I•Ð ‰¹•µå½Õ¹Ðˆ¤ì(€€€€€€€€€€€I•ÑQÉ…¹Í™½É´¡¥¹Ð€ô¥¹‘I•Ð ‰!¥¹Ðˆ¤ì((€€€€€€€€€€€I•Ñmt¡Õ‘I•ÑÌ€ô(€€€€€€€€€€€ì(€€€€€€€€€€€€€€€•ÑMÉ••¹I•Ð¡•ÍÍ•¹”¤°(€€€€€€€€€€€€€€€•ÑMÉ••¹I•Ð¡Ý…Ù”¤°(€€€€€€€€€€€€€€€•ÑMÉ••¹I•Ð¡¡À¤°(€€€€€€€€€€€€€€€•ÑMÉ••¹I•Ð¡•¹•µä¤°(€€€€€€€€€€€€€€€•ÑMÉ••¹I•Ð¡¡¥¹Ð¤(€€€€€€€€€€€ôì((€€€€€€€€€€€}ÕÉÉ•¹Ð¹!Õ‘%¹Í¥‘•M…™•É•„€ô¡Õ‘I•ÑÌ¹±°¡È€ôø½¹Ñ…¥¹ÍI•Ð¡Í…™”°È¤¤ì(€€€€€€€€€€€}ÕÉÉ•¹Ð¹!Õ‘I•ÑÌ€ôÍÑÉ¥¹œ¹)½¥¸ ‰ðˆ°¡Õ‘I•ÑÌ¹M•±•Ð¡I•ÑQ•áÐ¤¹Q½ÉÉ…ä ¤¤ì((€€€€€€€€€€€I•ÐÝ…Ù•	ÕÑÑ½¹I•Ð€ô•ÑMÉ••¹I•Ð¡}Ý…Ù•	ÕÑÑ½¸¹•Ñ½µÁ½¹•¹ÐñI•ÑQÉ…¹Í™½É´ø ¤¤ì(€€€€€€€€€€€}ÕÉÉ•¹Ð¹]…Ù•	ÕÑÑ½¹I•Ð€ôÝ…Ù•	ÕÑÑ½¹I•Ðì(€€€€€€€€€€€}ÕÉÉ•¹Ð¹]…Ù•	ÕÑÑ½¹Y¥Í¥‰±”€ô}Ý…Ù•	ÕÑÑ½¸¹…µ•=‰©•Ð¹…Ñ¥Ù•%¹!¥•É…É¡äì(€€€€€€€€€€€}ÕÉÉ•¹Ð¹]…Ù•	ÕÑÑ½¹%¹Í¥‘•M…™•É•„€ô½¹Ñ…¥¹ÍI•Ð¡Í…™”°Ý…Ù•	ÕÑÑ½¹I•Ð¤ì(€€€€€€€€€€€}ÕÉÉ•¹Ð¹]…Ù•	ÕÑÑ½¹I•…¡…‰±”€ô%ÍU¥½¹ÑÉ½±I•…¡…‰±”¡}Ý…Ù•	ÕÑÑ½¸°Ý…Ù•	ÕÑÑ½¹I•Ð¹•¹Ñ•È¤ì(€€€€€€€€€€€}ÕÉÉ•¹Ð¹]…Ù•	ÕÑÑ½¹A…ÍÌ€ô}ÕÉÉ•¹Ð¹]…Ù•	ÕÑÑ½¹Y¥Í¥‰±”€˜˜(€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€}ÕÉÉ•¹Ð¹]…Ù•	ÕÑÑ½¹%¹Í¥‘•M…™•É•„€˜˜(€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€}ÕÉÉ•¹Ð¹]…Ù•	ÕÑÑ½¹I•…¡…‰±”ì((€€€€€€€€€€€I•½É‘Q½Õ¡Q…É•Ð ‰]…Ù•	ÕÑÑ½¸ˆ°Ý…Ù•	ÕÑÑ½¹I•Ð¤ì((€€€€€€€€€€€Q•áÑmtÑ•áÑÌ€ô(€€€€€€€€€€€ì(€€€€€€€€€€€€€€€¥¹‘Q•áÐ ‰ÍÍ•¹•Q•áÐˆ¤°(€€€€€€€€€€€€€€€¥¹‘Q•áÐ ‰]…Ù•Q•áÐˆ¤°(€€€€€€€€€€€€€€€¥¹‘Q•áÐ ‰!AQ•áÐˆ¤°(€€€€€€€€€€€€€€€¥¹‘Q•áÐ ‰¹•µå½Õ¹Ðˆ¤°(€€€€€€€€€€€€€€€}Ý…Ù•	ÕÑÑ½¹Q•áÐ°(€€€€€€€€€€€€€€€¥¹‘Q•áÐ ‰!¥¹Ðˆ¤(€€€€€€€€€€€ôì((€€€€€€€€€€€}ÕÉÉ•¹Ð¹Q•áÑ½¹Ñ•¹Ñ¥ÑÌ€ôÑ•áÑÌ¹±°¡Q•áÑ½¹Ñ•¹Ñ¥ÑÍ±±½…Ñ•‘I•Ð¤ì(€€€€€€€€€€€}ÕÉÉ•¹Ð¹Q•áÑ=Ù•É±…ÁA…ÍÌ€ô€…¹å%¹‘•Á•¹‘•¹ÑQ•áÑI•Ñ=Ù•É±…À¡Ñ•áÑÌ°½ÕÐ}ÕÉÉ•¹Ð¹Q•áÑ=Ù•É±…Á•Ñ…¥±Ì¤ì((€€€€€€€€€€€}ÕÉÉ•¹Ð¹!Õ‘A…ÍÌ€ô}ÕÉÉ•¹Ð¹!Õ‘%¹Í¥‘•M…™•É•„€˜˜}ÕÉÉ•¹Ð¹Q•áÑ½¹Ñ•¹Ñ¥ÑÌì(€€€€€€€€€€€}ÍÑ…”€ôMÑ…”¹=Á•¹MÁ½Ðì(€€€€€€€ô((€€€€€€€ÁÉ¥Ù…Ñ”ÍÑ…Ñ¥ŒÙ½¥=Á•¹ÕÉÉ•¹ÑMÁ½Ð ¤(€€€€€€€ì(€€€€€€€€€€€¥˜€¡}ÍÁ½Ñ%¹‘•à€øô}ÍÁ½ÑÌ¹½Õ¹Ð¤(€€€€€€€€€€€ì(€€€€€€€€€€€€€€€}ÍÑ…”€ôMÑ…”¹¥¹¥Í¡…Í”ì(€€€€€€€€€€€€€€€É•ÑÕÉ¸ì(€€€€€€€€€€€ô((€€€€€€€€€€€A±…¹Ñ¥¹MÁ½ÐÍÁ½Ð€ô}ÍÁ½ÑÍm}ÍÁ½Ñ%¹‘•átì(€€€€€€€€€€€…¹Ù…Ì¹½É•UÁ‘…Ñ•…¹Ù…Í•Ì ¤ì(€€€€€€€€€€€Y•Ñ½ÈÈÍÉ••¸€ô}…µ•É„¹]½É±‘Q½MÉ••¹A½¥¹Ð¡ÍÁ½Ð¹ÑÉ…¹Í™½É´¹Á½Í¥Ñ¥½¸¤ì((€€€€€€€€€€€‰½½°Á½¥¹Ñ%¹Í¥‘•MÉ••¸€ô(€€€€€€€€€€€€€€€ÍÉ••¸¹à€øô€µA¥á•±ÁÍ¥±½¸€˜˜ÍÉ••¸¹à€ðôMÉ••¸¹Ý¥‘Ñ €¬A¥á•±ÁÍ¥±½¸€˜˜(€€€€€€€€€€€€€€€ÍÉ••¸¹ä€øô€µA¥á•±ÁÍ¥±½¸€˜˜ÍÉ••¸¹ä€ðôMÉ••¸¹¡•¥¡Ð€¬A¥á•±ÁÍ¥±½¸ì((€€€€€€€€€€€‰½½°…•ÁÑ•€ôÁ½¥¹Ñ%¹Í¥‘•MÉ••¸€˜˜}Á±…¹Ñ¥¹œ¹QÉå!…¹‘±•MÉ••¹AÉ•ÍÌ¡ÍÉ••¸¤ì(€€€€€€€€€€€…¹Ù…Ì¹½É•UÁ‘…Ñ•…¹Ù…Í•Ì ¤ì((€€€€€€€€€€€‰½½°Í•±•Ñ•€ô…•ÁÑ•€˜˜}Á±…¹Ñ¥¹œ¹M•±•Ñ•‘MÁ½Ð€ôôÍÁ½Ð€˜˜}¡Õ¹I…‘¥…±I½½Ð€„ô¹Õ±°ì(€€€€€€€€€€€¥˜€¡Í•±•Ñ•¤(€€€€€€€€€€€€€€€}ÕÉÉ•¹Ð¹•ÍÍ¥‰±•MÁ½Ñ½Õ¹Ð¬¬ì((€€€€€€€€€€€¥˜€ …Á½¥¹Ñ%¹Í¥‘•MÉ••¸¤(€€€€€€€€€€€€€€€}ÕÉÉ•¹Ð¹%¹…•ÍÍ¥‰±•MÁ½ÑÌ¹‘¡ÍÁ½Ð¹%€¬€ˆé½™™ÍÉ••¸ˆ¤ì(€€€€€€€€€€€•±Í”¥˜€ ……•ÁÑ•¤(€€€€€€€€€€€€€€€}ÕÉÉ•¹Ð¹%¹…•ÍÍ¥‰±•MÁ½ÑÌ¹‘¡ÍÁ½Ð¹%€¬€ˆé‰±½­•ˆ¤ì(€€€€€€€€€€€•±Í”¥˜€ …Í•±•Ñ•¤(€€€€€€€€€€€€€€€}ÕÉÉ•¹Ð¹%¹…•ÍÍ¥‰±•MÁ½ÑÌ¹‘¡ÍÁ½Ð¹%€¬€ˆé¹½ÐµÍ•±•Ñ•ˆ¤ì((€€€€€€€€€€€‰½½°•‘”€ô‘•MÁ½Ñ%‘Ì¹½¹Ñ…¥¹Ì¡ÍÁ½Ð¹%¤ì(€€€€€€€€€€€¥˜€¡•‘”¤(€€€€€€€€€€€ì(€€€€€€€€€€€€€€€‰½½°•‘•A…ÍÌ€ôÍ•±•Ñ•€˜˜Y…±¥‘…Ñ•‘•I…‘¥…°¡ÍÁ½Ð°}ÕÉÉ•¹Ð¹ÑÕ…±M…™•É•…I•Ð¤ì(€€€€€€€€€€€€€€€}ÕÉÉ•¹Ð¹‘•MÁ½ÑA…ÍÍmÍÁ½Ð¹%‘t€ô•‘•A…ÍÌì(€€€€€€€€€€€€€€€¥˜€ …•‘•A…ÍÌ¤(€€€€€€€€€€€€€€€€€€€}ÕÉÉ•¹Ð¹I…‘¥…±‘•A…ÍÌ€ô™…±Í”ì(€€€€€€€€€€€ô((€€€€€€€€€€€¥˜€ …Í•±•Ñ•¤(€€€€€€€€€€€ì(€€€€€€€€€€€€€€€}ÍÁ½Ñ%¹‘•à¬¬ì(€€€€€€€€€€€€€€€}ÍÑ…”€ôMÑ…”¹=Á•¹MÁ½Ðì(€€€€€€€€€€€€€€€É•ÑÕÉ¸ì(€€€€€€€€€€€ô((€€€€€€€€€€€	ÕÑÑ½¸±½Í”€ô¥¹‘I…‘¥…±±½Í•	ÕÑÑ½¸ ¤ì(€€€€€€€€€€€}ÕÉÉ•¹ÑMÁ½Ñ±½Í•±¥­•€ô±½Í”€„ô¹Õ±°€˜˜¥ÍÁ…Ñ¡A½¥¹Ñ•É±¥¬¡±½Í”¤ì(€€€€€€€€€€€}Í•ÑÑ±•É…µ•Ì€ô€Àì(€€€€€€€€€€€}ÍÑ…”€ôMÑ…”¹±½Í•MÁ½Ðì(€€€€€€€ô((€€€€€€€ÁÉ¥Ù…Ñ”ÍÑ…Ñ¥ŒÙ½¥±½Í•ÕÉÉ•¹ÑMÁ½Ð ¤(€€€€€€€ì(€€€€€€€€€€€}Í•ÑÑ±•É…µ•Ì¬¬ì(€€€€€€€€€€€¥˜€¡}Í•ÑÑ±•É…µ•Ì€ð€È¤(€€€€€€€€€€€€€€€É•ÑÕÉ¸ì((€€€€€€€€€€€‰½½°±½Í•€ô}¡Õ¹I…‘¥…±I½½Ð€ôô¹Õ±°€˜˜}Á±…¹Ñ¥¹œ¹M•±•Ñ•‘MÁ½Ð€ôô¹Õ±°ì(€€€€€€€€€€€¥˜€ …±½Í•¤(€€€€€€€€€€€ì(€€€€€€€€€€€€€€€¥˜€¡}Í•ÑÑ±•É…µ•Ì€ð€ÄÈ¤(€€€€€€€€€€€€€€€€€€€É•ÑÕÉ¸ì((€€€€€€€€€€€€€€€ÉÉ½ÉÌ¹‘ ‰…Í”¸ˆ€¬}ÕÉÉ•¹Ð¹9…µ”€¬€ˆ¹ÍÁ½Ð¸ˆ€¬}ÍÁ½ÑÍm}ÍÁ½Ñ%¹‘•át¹%€¬(€€€€€€€€€€€€€€€€€€€€€€€€€€€ˆ¹É…‘¥…±¥‘9½Ñ±½Í”ˆ¤ì(€€€€€€€€€€€ô((€€€€€€€€€€€¥˜€ …}ÕÉÉ•¹ÑMÁ½Ñ±½Í•±¥­•¤(€€€€€€€€€€€€€€€ÉÉ½ÉÌ¹‘ ‰…Í”¸ˆ€¬}ÕÉÉ•¹Ð¹9…µ”€¬€ˆ¹ÍÁ½Ð¸ˆ€¬}ÍÁ½ÑÍm}ÍÁ½Ñ%¹‘•át¹%€¬(€€€€€€€€€€€€€€€€€€€€€€€€€€€ˆ¹±½Í•±¥­9½Ñ¥ÍÁ…Ñ¡•ˆ¤ì((€€€€€€€€€€€}ÍÁ½Ñ%¹‘•à¬¬ì(€€€€€€€€€€€}ÕÉÉ•¹ÑMÁ½Ñ±½Í•±¥­•€ô™…±Í”ì(€€€€€€€€€€€}ÍÑ…”€ôMÑ…”¹=Á•¹MÁ½Ðì(€€€€€€€ô((€€€€€€€ÁÉ¥Ù…Ñ”ÍÑ…Ñ¥Œ‰½½°Y…±¥‘…Ñ•‘•I…‘¥…°¡A±…¹Ñ¥¹MÁ½ÐÍÁ½Ð°I•ÐÍ…™”¤(€€€€€€€ì(€€€€€€€€€€€…¹Ù…Ì¹½É•UÁ‘…Ñ•…¹Ù…Í•Ì ¤ì(€€€€€€€€€€€¥˜€¡}¡Õ¹I…‘¥…±I½½Ð€ôô¹Õ±°¤(€€€€€€€€€€€€€€€É•ÑÕÉ¸™…±Í”ì((€€€€€€€€€€€	ÕÑÑ½¹mt‰ÕÑÑ½¹Ì€ô}¡Õ¹I…‘¥…±I½½Ð¹•Ñ½µÁ½¹•¹ÑÍ%¹¡¥±‘É•¸ñ	ÕÑÑ½¸ø¡ÑÉÕ”¤ì(€€€€€€€€€€€	ÕÑÑ½¹mt…Ñ¥Ù”€ô‰ÕÑÑ½¹Ì¹]¡•É”¡ˆ€ôøˆ¹…µ•=‰©•Ð¹…Ñ¥Ù•%¹!¥•É…É¡ä¤¹Q½ÉÉ…ä ¤ì(€€€€€€€€€€€‰½½°¡…Í½ÕÉ=ÁÑ¥½¹Ì€ô…Ñ¥Ù”¹½Õ¹Ð¡ˆ€ôøˆ¹…µ•=‰©•Ð¹¹…µ”¹MÑ…ÉÑÍ]¥Ñ  ‰A±…¹Ñ=ÁÑ¥½¹|ˆ°MÑÉ¥¹½µÁ…É¥Í½¸¹=É‘¥¹…°¤¤€ôô€Ðì(€€€€€€€€€€€	ÕÑÑ½¸±½Í”€ô…Ñ¥Ù”¹¥ÉÍÑ=É•™…Õ±Ð¡ˆ€ôøˆ¹…µ•=‰©•Ð¹¹…µ”€ôô€‰I…‘¥…±±½Í•	ÕÑÑ½¸ˆ¤ì(€€€€€€€€€€€‰½½°…±±%¹Í¥‘”€ô…Ñ¥Ù”¹1•¹Ñ €ôô€Ô€˜˜…Ñ¥Ù”¹±°¡‰ÕÑÑ½¸€ôø(€€€€€€€€€€€ì(€€€€€€€€€€€€€€€I•ÐÉ•Ð€ô•ÑMÉ••¹I•Ð¡‰ÕÑÑ½¸¹•Ñ½µÁ½¹•¹ÐñI•ÑQÉ…¹Í™½É´ø ¤¤ì(€€€€€€€€€€€€€€€I•½É‘Q½Õ¡Q…É•Ð¡ÍÁ½Ð¹%€¬€ˆ¸ˆ€¬‰ÕÑÑ½¸¹…µ•=‰©•Ð¹¹…µ”°É•Ð¤ì(€€€€€€€€€€€€€€€É•ÑÕÉ¸½¹Ñ…¥¹ÍI•Ð¡Í…™”°É•Ð¤ì(€€€€€€€€€€€ô¤ì((€€€€€€€€€€€I•ÐÉ½½Ñ	½Õ¹‘Ì€ô•ÑI•±…Ñ¥Ù•¡¥±‘É•¹MÉ••¹	½Õ¹‘Ì¡}¡Õ¹I…‘¥…±I½½Ð¤ì(€€€€€€€€€€€}ÕÉÉ•¹Ð¹‘•5•¹Õ	½Õ¹‘ÍmÍÁ½Ð¹%‘t€ôI•ÑQ•áÐ¡É½½Ñ	½Õ¹‘Ì¤ì(€€€€€€€€€€€É•ÑÕÉ¸¡…Í½ÕÉ=ÁÑ¥½¹Ì€˜˜±½Í”€„ô¹Õ±°€˜˜…±±%¹Í¥‘”ì(€€€€€€€ô((€€€€€€€ÁÉ¥Ù…Ñ”ÍÑ…Ñ¥ŒÙ½¥¥¹¥Í¡ÕÉÉ•¹Ñ…Í” ¤(€€€€€€€ì(€€€€€€€€€€€}ÕÉÉ•¹Ð¹½¹Í½±•ÉÉ½ÉÌ€ôÉÉ½ÉÌ¹½Õ¹Ð€´}…Í•ÉÉ½ÉMÑ…ÉÐì(€€€€€€€€€€€}ÕÉÉ•¹Ð¹½¹Í½±•]…É¹¥¹Ì€ôIÕ¹Ñ¥µ•]…É¹¥¹Ì¹½Õ¹Ð€´}…Í•]…É¹¥¹MÑ…ÉÐì(€€€€€€€€€€€}ÕÉÉ•¹Ð¹A±…¹Ñ¥¹MÁ½ÑÍ•ÍÍ¥‰±”€ô}ÕÉÉ•¹Ð¹•ÍÍ¥‰±•MÁ½Ñ½Õ¹Ð€ôô€ÄÈì(€€€€€€€€€€€}ÕÉÉ•¹Ð¹I…‘¥…±‘•A…ÍÌ€ô}ÕÉÉ•¹Ð¹I…‘¥…±‘•A…ÍÌ€˜˜(€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€‘•MÁ½Ñ%‘Ì¹±°¡¥€ôø}ÕÉÉ•¹Ð¹‘•MÁ½ÑA…ÍÌ¹½¹Ñ…¥¹Í-•ä¡¥¤€˜˜(€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€}ÕÉÉ•¹Ð¹‘•MÁ½ÑA…ÍÍm¥‘t¤ì(€€€€€€€€€€€}ÕÉÉ•¹Ð¹Mµ…±±•ÍÑQ½Õ¡Q…É•ÑQ•áÐ€ô(€€€€€€€€€€€€€€€}ÕÉÉ•¹Ð¹Mµ…±±•ÍÑQ½Õ¡Q…É•Ñ9…µ”€¬€ˆèˆ€¬(€€€€€€€€€€€€€€€¡}ÕÉÉ•¹Ð¹Mµ…±±•ÍÑQ½Õ¡]¥‘Ñ ¤€¬€‰àˆ€¬¡}ÕÉÉ•¹Ð¹Mµ…±±•ÍÑQ½Õ¡!•¥¡Ð¤€¬€‰Áàˆì((€€€€€€€€€€€}ÕÉÉ•¹Ð¹A…ÍÌ€ô(€€€€€€€€€€€€€€€}ÕÉÉ•¹Ð¹I•Í½±ÕÑ¥½¹½¹™¥ÕÉ•€˜˜(€€€€€€€€€€€€€€€}ÕÉÉ•¹Ð¹M…™•É•…ÁÁ±¥•€˜˜(€€€€€€€€€€€€€€€}ÕÉÉ•¹Ð¹5…ÁÕ±±åY¥Í¥‰±”€˜˜(€€€€€€€€€€€€€€€}ÕÉÉ•¹Ð¹…µ•É…•¹Ñ•É•€˜˜(€€€€€€€€€€€€€€€€…}ÕÉÉ•¹Ð¹…µ•É…A…¹¹¥¹I•ÅÕ¥É•€˜˜(€€€€€€€€€€€€€€€}ÕÉÉ•¹Ð¹!Õ‘A…ÍÌ€˜˜(€€€€€€€€€€€€€€€}ÕÉÉ•¹Ð¹]…Ù•	ÕÑÑ½¹A…ÍÌ€˜˜(€€€€€€€€€€€€€€€}ÕÉÉ•¹Ð¹Q•áÑ=Ù•É±…ÁA…ÍÌ€˜˜(€€€€€€€€€€€€€€€}ÕÉÉ•¹Ð¹A±…¹Ñ¥¹MÁ½ÑÍ•ÍÍ¥‰±”€˜˜(€€€€€€€€€€€€€€€}ÕÉÉ•¹Ð¹I…‘¥…±‘•A…ÍÌ€˜˜(€€€€€€€€€€€€€€€}ÕÉÉ•¹Ð¹Mµ…±±•ÍÑQ½Õ¡]¥‘Ñ €ø€Á˜€˜˜(€€€€€€€€€€€€€€€}ÕÉÉ•¹Ð¹Mµ…±±•ÍÑQ½Õ¡!•¥¡Ð€ø€Á˜€˜˜(€€€€€€€€€€€€€€€}ÕÉÉ•¹Ð¹½¹Í½±•ÉÉ½ÉÌ€ôô€Àì((€€€€€€€€€€€I•ÍÕ±ÑÌ¹‘¡}ÕÉÉ•¹Ð¤ì((€€€€€€€€€€€M…™•É•…¥ÑÑ•È¹±•…É‘¥Ñ½É=Ù•ÉÉ¥‘•M…™•É•„ ¤ì(€€€€€€€€€€€}…Í•%¹‘•à¬¬ì(€€€€€€€€€€€}ÕÉÉ•¹Ð€ô¹Õ±°ì(€€€€€€€€€€€}ÍÑ…”€ôMÑ…”¹I•ÅÕ•ÍÑ…Í”ì(€€€€€€€ô((€€€€€€€ÁÉ¥Ù…Ñ”ÍÑ…Ñ¥ŒÙ½¥¥¹¥Í¡±° ¤(€€€€€€€ì(€€€€€€€€€€€M…™•É•…¥ÑÑ•È¹±•…É‘¥Ñ½É=Ù•ÉÉ¥‘•M…™•É•„ ¤ì(€€€€€€€€€€€‰½½°ÍÕ•ÍÌ€ôI•ÍÕ±ÑÌ¹½Õ¹Ð€ôô…Í•Ì¹1•¹Ñ €˜˜(€€€€€€€€€€€€€€€€€€€€€€€€€€I•ÍÕ±ÑÌ¹±°¡È€ôøÈ¹A…ÍÌ¤€˜˜(€€€€€€€€€€€€€€€€€€€€€€€€€€ÉÉ½ÉÌ¹½Õ¹Ð€ôô€Àì((€€€€€€€€€€€]É¥Ñ•I•Á½ÉÐ¡ÍÕ•ÍÌ¤ì(€€€€€€€€€€€M•ÍÍ¥½¹MÑ…Ñ”¹M•Ñ%¹Ð¡á¥Ñ½‘•-•ä°ÍÕ•ÍÌ€ü€À€è€Ä¤ì(€€€€€€€€€€€M•ÍÍ¥½¹MÑ…Ñ”¹M•ÑMÑÉ¥¹œ¡A¡…Í•-•ä°€‰•á¥Ðµ•‘¥Ñ½Èˆ¤ì(€€€€€€€€€€€}ÍÑ…”€ôÍÕ•ÍÌ€üMÑ…”¹½¹”€èMÑ…”¹…¥±•ì(€€€€€€€€€€€U¹ÍÕ‰ÍÉ¥‰•1½œ ¤ì(€€€€€€€€€€€‘¥Ñ½ÉÁÁ±¥…Ñ¥½¸¹á¥ÑA±…åµ½‘” ¤ì(€€€€€€€ô((€€€€€€€ÁÉ¥Ù…Ñ”ÍÑ…Ñ¥Œ‰½½°Y…±¥‘…Ñ•5…ÁÉ…µ¥¹œ¡½ÕÐI•Ð‰½Õ¹‘Ì¤(€€€€€€€ì(€€€€€€€€€€€™±½…Ð¡…±™!•¥¡Ð€ô}…µ•É„¹½ÉÑ¡½É…Á¡¥M¥é”ì(€€€€€€€€€€€™±½…Ð¡…±™]¥‘Ñ €ô¡…±™!•¥¡Ð€¨}…µ•É„¹…ÍÁ•Ðì(€€€€€€€€€€€™±½…Ðà€ô}…µ•É„¹ÑÉ…¹Í™½É´¹Á½Í¥Ñ¥½¸¹àì(€€€€€€€€€€€™±½…Ðä€ô}…µ•É„¹ÑÉ…¹Í™½É´¹Á½Í¥Ñ¥½¸¹äì(€€€€€€€€€€€‰½Õ¹‘Ì€ôI•Ð¹5¥¹5…áI•Ð¡à€´¡…±™]¥‘Ñ °ä€´¡…±™!•¥¡Ð°à€¬¡…±™]¥‘Ñ °ä€¬¡…±™!•¥¡Ð¤ì((€€€€€€€€€€€É•ÑÕÉ¸‰½Õ¹‘Ì¹á5¥¸€ðô€Á˜€¬€À¸ÀÅ˜€˜˜(€€€€€€€€€€€€€€€€€€‰½Õ¹‘Ì¹á5…à€øô5…Á…Ñ„¹]¥‘Ñ €´€À¸ÀÅ˜€˜˜(€€€€€€€€€€€€€€€€€€‰½Õ¹‘Ì¹å5¥¸€ðô€Á˜€¬€À¸ÀÅ˜€˜˜(€€€€€€€€€€€€€€€€€€‰½Õ¹‘Ì¹å5…à€øô5…Á…Ñ„¹!•¥¡Ð€´€À¸ÀÅ˜ì(€€€€€€€ô((€€€€€€€ÁÉ¥Ù…Ñ”ÍÑ…Ñ¥Œ‰½½°%ÍU¥½¹ÑÉ½±I•…¡…‰±”¡	ÕÑÑ½¸‰ÕÑÑ½¸°Y•Ñ½ÈÈÍÉ••¹A½¥¹Ð¤(€€€€€€€ì(€€€€€€€€€€€¥˜€¡‰ÕÑÑ½¸€ôô¹Õ±°ñð€…‰ÕÑÑ½¸¹…µ•=‰©•Ð¹…Ñ¥Ù•%¹!¥•É…É¡äñð€…‰ÕÑÑ½¸¹¥¹Ñ•É…Ñ…‰±”¤(€€€€€€€€€€€€€€€É•ÑÕÉ¸™…±Í”ì((€€€€€€€€€€€%µ…”¥µ…”€ô‰ÕÑÑ½¸¹•Ñ½µÁ½¹•¹Ðñ%µ…”ø ¤ì(€€€€€€€€€€€¥˜€¡¥µ…”€ôô¹Õ±°ñð€…¥µ…”¹É…å…ÍÑQ…É•Ð¤(€€€€€€€€€€€€€€€É•ÑÕÉ¸™…±Í”ì((€€€€€€€€€€€É•ÑÕÉ¸I•ÑQÉ…¹Í™½ÉµUÑ¥±¥Ñä¹I•Ñ…¹±•½¹Ñ…¥¹ÍMÉ••¹A½¥¹Ð (€€€€€€€€€€€€€€€‰ÕÑÑ½¸¹•Ñ½µÁ½¹•¹ÐñI•ÑQÉ…¹Í™½É´ø ¤°ÍÉ••¹A½¥¹Ð°¹Õ±°¤€˜˜(€€€€€€€€€€€€€€€¥µ…”¹I…å…ÍÐ¡ÍÉ••¹A½¥¹Ð°¹Õ±°¤ì(€€€€€€€ô((€€€€€€€ÁÉ¥Ù…Ñ”ÍÑ…Ñ¥Œ‰½½°Q•áÑ½¹Ñ•¹Ñ¥ÑÍ±±½…Ñ•‘I•Ð¡Q•áÐÑ•áÐ¤(€€€€€€€ì(€€€€€€€€€€€¥˜€¡Ñ•áÐ€ôô¹Õ±°ñð€…Ñ•áÐ¹…µ•=‰©•Ð¹…Ñ¥Ù•%¹!¥•É…É¡ä¤(€€€€€€€€€€€€€€€É•ÑÕÉ¸™…±Í”ì((€€€€€€€€€€€I•ÐÉ•Ð€ôÑ•áÐ¹É•ÑQÉ…¹Í™½É´¹É•Ðì(€€€€€€€€€€€™±½…ÐÁÉ•™•ÉÉ•‘]¥‘Ñ €ôÑ•áÐ¹ÁÉ•™•ÉÉ•‘]¥‘Ñ ì(€€€€€€€€€€€™±½…ÐÁÉ•™•ÉÉ•‘!•¥¡Ð€ôÑ•áÐ¹ÁÉ•™•ÉÉ•‘!•¥¡Ðì((€€€€€€€€€€€¥˜€¡Ñ•áÐ¹É•Í¥é•Q•áÑ½É	•ÍÑ¥Ð¤(€€€€€€€€€€€€€€€É•ÑÕÉ¸É•Ð¹Ý¥‘Ñ €ø€Á˜€˜˜É•Ð¹¡•¥¡Ð€ø€Á˜ì((€€€€€€€€€€€É•ÑÕÉ¸ÁÉ•™•ÉÉ•‘]¥‘Ñ €ðôÉ•Ð¹Ý¥‘Ñ €¬€Å˜€˜˜(€€€€€€€€€€€€€€€€€€ÁÉ•™•ÉÉ•‘!•¥¡Ð€ðôÉ•Ð¹¡•¥¡Ð€¬€Å˜ì(€€€€€€€ô((€€€€€€€ÁÉ¥Ù…Ñ”ÍÑ…Ñ¥Œ‰½½°¹å%¹‘•Á•¹‘•¹ÑQ•áÑI•Ñ=Ù•É±…À¡Q•áÑmtÑ•áÑÌ°½ÕÐÍÑÉ¥¹œ‘•Ñ…¥±Ì¤(€€€€€€€ì(€€€€€€€€€€€1¥ÍÐñÍÑÉ¥¹œø½Ù•É±…ÁÌ€ô¹•Ü1¥ÍÐñÍÑÉ¥¹œø ¤ì(€€€€€€€€€€€™½È€¡¥¹Ð¤€ô€Àì¤€ðÑ•áÑÌ¹1•¹Ñ ì¤¬¬¤(€€€€€€€€€€€ì(€€€€€€€€€€€€€€€¥˜€¡Ñ•áÑÍm¥t€ôô¹Õ±°ñð€…Ñ•áÑÍm¥t¹…µ•=‰©•Ð¹…Ñ¥Ù•%¹!¥•É…É¡ä¤(€€€€€€€€€€€€€€€€€€€½¹Ñ¥¹Õ”ì((€€€€€€€€€€€€€€€I•Ð„€ô•ÑMÉ••¹I•Ð¡Ñ•áÑÍm¥t¹É•ÑQÉ…¹Í™½É´¤ì(€€€€€€€€€€€€€€€™½È€¡¥¹Ð¨€ô¤€¬€Äì¨€ðÑ•áÑÌ¹1•¹Ñ ì¨¬¬¤(€€€€€€€€€€€€€€€ì(€€€€€€€€€€€€€€€€€€€¥˜€¡Ñ•áÑÍm©t€ôô¹Õ±°ñð€…Ñ•áÑÍm©t¹…µ•=‰©•Ð¹…Ñ¥Ù•%¹!¥•É…É¡ä¤(€€€€€€€€€€€€€€€€€€€€€€€½¹Ñ¥¹Õ”ì((€€€€€€€€€€€€€€€€€€€I•Ðˆ€ô•ÑMÉ••¹I•Ð¡Ñ•áÑÍm©t¹É•ÑQÉ…¹Í™½É´¤ì(€€€€€€€€€€€€€€€€€€€I•Ð¥¹Ñ•ÉÍ•Ñ¥½¸€ô%¹Ñ•ÉÍ•Ð¡„°ˆ¤ì(€€€€€€€€€€€€€€€€€€€¥˜€¡¥¹Ñ•ÉÍ•Ñ¥½¸¹Ý¥‘Ñ €øA¥á•±ÁÍ¥±½¸€˜˜¥¹Ñ•ÉÍ•Ñ¥½¸¹¡•¥¡Ð€øA¥á•±ÁÍ¥±½¸¤(€€€€€€€€€€€€€€€€€€€ì(€€€€€€€€€€€€€€€€€€€€€€€½Ù•É±…ÁÌ¹‘¡Ñ•áÑÍm¥t¹…µ•=‰©•Ð¹¹…µ”€¬€ˆð´øˆ€¬Ñ•áÑÍm©t¹…µ•=‰©•Ð¹¹…µ”€¬(€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€ˆèˆ€¬I•ÑQ•áÐ¡¥¹Ñ•ÉÍ•Ñ¥½¸¤¤ì(€€€€€€€€€€€€€€€€€€€ô(€€€€€€€€€€€€€€€ô(€€€€€€€€€€€ô((€€€€€€€€€€€‘•Ñ…¥±Ì€ô½Ù•É±…ÁÌ¹½Õ¹Ð€ôô€À€ü€‰¹½¹”ˆ€èÍÑÉ¥¹œ¹)½¥¸ ‰ðˆ°½Ù•É±…ÁÌ¹Q½ÉÉ…ä ¤¤ì(€€€€€€€€€€€É•ÑÕÉ¸½Ù•É±…ÁÌ¹½Õ¹Ð€ø€Àì(€€€€€€€ô((€€€€€€€ÁÉ¥Ù…Ñ”ÍÑ…Ñ¥ŒÙ½¥I•½É‘Q½Õ¡Q…É•Ð¡ÍÑÉ¥¹œ¹…µ”°I•ÐÉ•Ð¤(€€€€€€€ì(€€€€€€€€€€€™±½…ÐÝ¥‘Ñ €ô5…Ñ¡˜¹‰Ì¡É•Ð¹Ý¥‘Ñ ¤ì(€€€€€€€€€€€™±½…Ð¡•¥¡Ð€ô5…Ñ¡˜¹‰Ì¡É•Ð¹¡•¥¡Ð¤ì(€€€€€€€€€€€™±½…Ð…É•„€ôÝ¥‘Ñ €¨¡•¥¡Ðì((€€€€€€€€€€€¥˜€¡…É•„€ðô€Á˜¤(€€€€€€€€€€€€€€€É•ÑÕÉ¸ì((€€€€€€€€€€€¥˜€¡}ÕÉÉ•¹Ð¹Mµ…±±•ÍÑQ½Õ¡É•„€ðô€Á˜ñð…É•„€ð}ÕÉÉ•¹Ð¹Mµ…±±•ÍÑQ½Õ¡É•„¤(€€€€€€€€€€€ì(€€€€€€€€€€€€€€€}ÕÉÉ•¹Ð¹Mµ…±±•ÍÑQ½Õ¡É•„€ô…É•„ì(€€€€€€€€€€€€€€€}ÕÉÉ•¹Ð¹Mµ…±±•ÍÑQ½Õ¡Q…É•Ñ9…µ”€ô¹…µ”ì(€€€€€€€€€€€€€€€}ÕÉÉ•¹Ð¹Mµ…±±•ÍÑQ½Õ¡]¥‘Ñ €ôÝ¥‘Ñ ì(€€€€€€€€€€€€€€€}ÕÉÉ•¹Ð¹Mµ…±±•ÍÑQ½Õ¡!•¥¡Ð€ô¡•¥¡Ðì(€€€€€€€€€€€ô(€€€€€€€ô((€€€€€€€ÁÉ¥Ù…Ñ”ÍÑ…Ñ¥ŒI•ÑQÉ…¹Í™½É´¥¹‘I•Ð¡ÍÑÉ¥¹œ¹…µ”¤(€€€€€€€ì(€€€€€€€€€€€…µ•=‰©•Ð¼€ô…µ•=‰©•Ð¹¥¹¡¹…µ”¤ì(€€€€€€€€€€€¥˜€¡¼€ôô¹Õ±°¤(€€€€€€€€€€€€€€€Ñ¡É½Ü¹•Ü%¹Ù…±¥‘=Á•É…Ñ¥½¹á•ÁÑ¥½¸ ‰5¥ÍÍ¥¹œU$½‰©•Ð€ˆ€¬¹…µ”¤ì(€€€€€€€€€€€I•ÑQÉ…¹Í™½É´É•Ð€ô¼¹•Ñ½µÁ½¹•¹ÐñI•ÑQÉ…¹Í™½É´ø ¤ì(€€€€€€€€€€€¥˜€¡É•Ð€ôô¹Õ±°¤(€€€€€€€€€€€€€€€Ñ¡É½Ü¹•Ü%¹Ù…±¥‘=Á•É…Ñ¥½¹á•ÁÑ¥½¸ ‰5¥ÍÍ¥¹œI•ÑQÉ…¹Í™½É´½¸€ˆ€¬¹…µ”¤ì(€€€€€€€€€€€É•ÑÕÉ¸É•Ðì(€€€€€€€ô((€€€€€€€ÁÉ¥Ù…Ñ”ÍÑ…Ñ¥ŒQ•áÐ¥¹‘Q•áÐ¡ÍÑÉ¥¹œ¹…µ”¤(€€€€€€€ì(€€€€€€€€€€€…µ•=‰©•Ð¼€ô…µ•=‰©•Ð¹¥¹¡¹…µ”¤ì(€€€€€€€€€€€¥˜€¡¼€ôô¹Õ±°¤(€€€€€€€€€€€€€€€Ñ¡É½Ü¹•Ü%¹Ù…±¥‘=Á•É…Ñ¥½¹á•ÁÑ¥½¸ ‰5¥ÍÍ¥¹œQ•áÐ½‰©•Ð€ˆ€¬¹…µ”¤ì(€€€€€€€€€€€Q•áÐÑ•áÐ€ô¼¹•Ñ½µÁ½¹•¹ÐñQ•áÐø ¤ì(€€€€€€€€€€€¥˜€¡Ñ•áÐ€ôô¹Õ±°¤(€€€€€€€€€€€€€€€Ñ¡É½Ü¹•Ü%¹Ù…±¥‘=Á•É…Ñ¥½¹á•ÁÑ¥½¸ ‰5¥ÍÍ¥¹œQ•áÐ½µÁ½¹•¹Ð½¸€ˆ€¬¹…µ”¤ì(€€€€€€€€€€€É•ÑÕÉ¸Ñ•áÐì(€€€€€€€ô((€€€€€€€ÁÉ¥Ù…Ñ”ÍÑ…Ñ¥Œ	ÕÑÑ½¸¥¹‘I…‘¥…±±½Í•	ÕÑÑ½¸ ¤(€€€€€€€ì(€€€€€€€€€€€¥˜€¡}¡Õ¹I…‘¥…±I½½Ð€ôô¹Õ±°¤(€€€€€€€€€€€€€€€É•ÑÕÉ¸¹Õ±°ì(€€€€€€€€€€€É•ÑÕÉ¸}¡Õ¹I…‘¥…±I½½Ð¹•Ñ½µÁ½¹•¹ÑÍ%¹¡¥±‘É•¸ñ	ÕÑÑ½¸ø¡ÑÉÕ”¤(€€€€€€€€€€€€€€€€¹¥ÉÍÑ=É•™…Õ±Ð¡ˆ€ôøˆ¹…µ•=‰©•Ð¹¹…µ”€ôô€‰I…‘¥…±±½Í•	ÕÑÑ½¸ˆ¤ì(€€€€€€€ô((€€€€€€€ÁÉ¥Ù…Ñ”ÍÑ…Ñ¥Œ‰½½°¥ÍÁ…Ñ¡A½¥¹Ñ•É±¥¬¡	ÕÑÑ½¸‰ÕÑÑ½¸¤(€€€€€€€ì(€€€€€€€€€€€¥˜€¡‰ÕÑÑ½¸€ôô¹Õ±°ñðÙ•¹ÑMåÍÑ•´¹ÕÉÉ•¹Ð€ôô¹Õ±°¤(€€€€€€€€€€€€€€€É•ÑÕÉ¸™…±Í”ì((€€€€€€€€€€€I•ÐÉ•Ð€ô•ÑMÉ••¹I•Ð¡‰ÕÑÑ½¸¹•Ñ½µÁ½¹•¹ÐñI•ÑQÉ…¹Í™½É´ø ¤¤ì(€€€€€€€€€€€A½¥¹Ñ•ÉÙ•¹Ñ…Ñ„Á½¥¹Ñ•È€ô¹•ÜA½¥¹Ñ•ÉÙ•¹Ñ…Ñ„¡Ù•¹ÑMåÍÑ•´¹ÕÉÉ•¹Ð¤(€€€€€€€€€€€ì(€€€€€€€€€€€€€€€‰ÕÑÑ½¸€ôA½¥¹Ñ•ÉÙ•¹Ñ…Ñ„¹%¹ÁÕÑ	ÕÑÑ½¸¹1•™Ð°(€€€€€€€€€€€€€€€Á½Í¥Ñ¥½¸€ôÉ•Ð¹•¹Ñ•È(€€€€€€€€€€€ôì(€€€€€€€€€€€É•ÑÕÉ¸á•ÕÑ•Ù•¹ÑÌ¹á•ÕÑ”¡‰ÕÑÑ½¸¹…µ•=‰©•Ð°Á½¥¹Ñ•È°á•ÕÑ•Ù•¹ÑÌ¹Á½¥¹Ñ•É±¥­!…¹‘±•È¤ì(€€€€€€€ô((€€€€€€€ÁÉ¥Ù…Ñ”ÍÑ…Ñ¥ŒI•Ð•ÑI•±…Ñ¥Ù•¡¥±‘É•¹MÉ••¹	½Õ¹‘Ì¡I•ÑQÉ…¹Í™½É´É½½Ð¤(€€€€€€€ì(€€€€€€€€€€€I•ÑQÉ…¹Í™½ÉµmtÉ•ÑÌ€ôÉ½½Ð¹•Ñ½µÁ½¹•¹ÑÍ%¹¡¥±‘É•¸ñI•ÑQÉ…¹Í™½É´ø¡ÑÉÕ”¤ì(€€€€€€€€€€€‰½½°¥¹¥Ñ¥…±¥é•€ô™…±Í”ì(€€€€€€€€€€€™±½…Ðµ¥¹`€ô€Á˜°µ¥¹d€ô€Á˜°µ…á`€ô€Á˜°µ…ád€ô€Á˜ì((€€€€€€€€€€€™½É•… €¡I•ÑQÉ…¹Í™½É´É•Ð¥¸É•ÑÌ¤(€€€€€€€€€€€ì(€€€€€€€€€€€€€€€¥˜€¡É•Ð€ôôÉ½½Ðñð€…É•Ð¹…µ•=‰©•Ð¹…Ñ¥Ù•%¹!¥•É…É¡ä¤(€€€€€€€€€€€€€€€€€€€½¹Ñ¥¹Õ”ì((€€€€€€€€€€€€€€€I•ÐÍÉ••¸€ô•ÑMÉ••¹I•Ð¡É•Ð¤ì(€€€€€€€€€€€€€€€¥˜€ …¥¹¥Ñ¥…±¥é•¤(€€€€€€€€€€€€€€€ì(€€€€€€€€€€€€€€€€€€€µ¥¹`€ôÍÉ••¸¹á5¥¸ì(€€€€€€€€€€€€€€€€€€€µ¥¹d€ôÍÉ••¸¹å5¥¸ì(€€€€€€€€€€€€€€€€€€€µ…á`€ôÍÉ••¸¹á5…àì(€€€€€€€€€€€€€€€€€€€µ…ád€ôÍÉ••¸¹å5…àì(€€€€€€€€€€€€€€€€€€€¥¹¥Ñ¥…±¥é•€ôÑÉÕ”ì(€€€€€€€€€€€€€€€ô(€€€€€€€€€€€€€€€•±Í”(€€€€€€€€€€€€€€€ì(€€€€€€€€€€€€€€€€€€€µ¥¹`€ô5…Ñ¡˜¹5¥¸¡µ¥¹`°ÍÉ••¸¹á5¥¸¤ì(€€€€€€€€€€€€€€€€€€€µ¥¹d€ô5…Ñ¡˜¹5¥¸¡µ¥¹d°ÍÉ••¸¹å5¥¸¤ì(€€€€€€€€€€€€€€€€€€€µ…á`€ô5…Ñ¡˜¹5…à¡µ…á`°ÍÉ••¸¹á5…à¤ì(€€€€€€€€€€€€€€€€€€€µ…ád€ô5…Ñ¡˜¹5…à¡µ…ád°ÍÉ••¸¹å5…à¤ì(€€€€€€€€€€€€€€€ô(€€€€€€€€€€€ô((€€€€€€€€€€€É•ÑÕÉ¸¥¹¥Ñ¥…±¥é•€üI•Ð¹5¥¹5…áI•Ð¡µ¥¹`°µ¥¹d°µ…á`°µ…ád¤€è¹•ÜI•Ð ¤ì(€€€€€€€ô((€€€€€€€ÁÉ¥Ù…Ñ”ÍÑ…Ñ¥ŒI•Ð•ÑMÉ••¹I•Ð¡I•ÑQÉ…¹Í™½É´É•Ð¤(€€€€€€€ì(€€€€€€€€€€€¥˜€¡É•Ð€ôô¹Õ±°¤(€€€€€€€€€€€€€€€É•ÑÕÉ¸¹•ÜI•Ð ¤ì((€€€€€€€€€€€Y•Ñ½ÈÍmt½É¹•ÉÌ€ô¹•ÜY•Ñ½ÈÍlÑtì(€€€€€€€€€€€É•Ð¹•Ñ]½É±‘½É¹•ÉÌ¡½É¹•ÉÌ¤ì(€€€€€€€€€€€Y•Ñ½ÈÈÀÀ€ôI•ÑQÉ…¹Í™½ÉµUÑ¥±¥Ñä¹]½É±‘Q½MÉ••¹A½¥¹Ð¡¹Õ±°°½É¹•ÉÍlÁt¤ì(€€€€€€€€€€€™±½…Ðµ¥¹`€ôÀÀ¹àì(€€€€€€€€€€€™±½…Ðµ¥¹d€ôÀÀ¹äì(€€€€€€€€€€€™±½…Ðµ…á`€ôÀÀ¹àì(€€€€€€€€€€€™±½…Ðµ…ád€ôÀÀ¹äì((€€€€€€€€€€€™½È€¡¥¹Ð¤€ô€Äì¤€ð€Ðì¤¬¬¤(€€€€€€€€€€€ì(€€€€€€€€€€€€€€€Y•Ñ½ÈÈÀ€ôI•ÑQÉ…¹Í™½ÉµUÑ¥±¥Ñä¹]½É±‘Q½MÉ••¹A½¥¹Ð¡¹Õ±°°½É¹•ÉÍm¥t¤ì(€€€€€€€€€€€€€€€µ¥¹`€ô5…Ñ¡˜¹5¥¸¡µ¥¹`°À¹à¤ì(€€€€€€€€€€€€€€€µ¥¹d€ô5…Ñ¡˜¹5¥¸¡µ¥¹d°À¹ä¤ì(€€€€€€€€€€€€€€€µ…á`€ô5…Ñ¡˜¹5…à¡µ…á`°À¹à¤ì(€€€€€€€€€€€€€€€µ…ád€ô5…Ñ¡˜¹5…à¡µ…ád°À¹ä¤ì(€€€€€€€€€€€ô((€€€€€€€€€€€É•ÑÕÉ¸I•Ð¹5¥¹5…áI•Ð¡µ¥¹`°µ¥¹d°µ…á`°µ…ád¤ì(€€€€€€€ô((€€€€€€€ÁÉ¥Ù…Ñ”ÍÑ…Ñ¥Œ‰½½°½¹Ñ…¥¹ÍI•Ð¡I•Ð½ÕÑ•È°I•Ð¥¹¹•È¤(€€€€€€€ì(€€€€€€€€€€€É•ÑÕÉ¸¥¹¹•È¹á5¥¸€øô½ÕÑ•È¹á5¥¸€´A¥á•±ÁÍ¥±½¸€˜˜(€€€€€€€€€€€€€€€€€€¥¹¹•È¹å5¥¸€øô½ÕÑ•È¹å5¥¸€´A¥á•±ÁÍ¥±½¸€˜˜(€€€€€€€€€€€€€€€€€€¥¹¹•È¹á5…à€ðô½ÕÑ•È¹á5…à€¬A¥á•±ÁÍ¥±½¸€˜˜(€€€€€€€€€€€€€€€€€€¥¹¹•È¹å5…à€ðô½ÕÑ•È¹å5…à€¬A¥á•±ÁÍ¥±½¸ì(€€€€€€€ô((€€€€€€€ÁÉ¥Ù…Ñ”ÍÑ…Ñ¥Œ‰½½°I•ÑÁÁÉ½á¥µ…Ñ•±ä¡I•Ð„°I•Ðˆ°™±½…ÐÑ½±•É…¹”¤(€€€€€€€ì(€€€€€€€€€€€É•ÑÕÉ¸5…Ñ¡˜¹‰Ì¡„¹à€´ˆ¹à¤€ðôÑ½±•É…¹”€˜˜(€€€€€€€€€€€€€€€€€€5…Ñ¡˜¹‰Ì¡„¹ä€´ˆ¹ä¤€ðôÑ½±•É…¹”€˜˜(€€€€€€€€€€€€€€€€€€5…Ñ¡˜¹‰Ì¡„¹Ý¥‘Ñ €´ˆ¹Ý¥‘Ñ ¤€ðôÑ½±•É…¹”€˜˜(€€€€€€€€€€€€€€€€€€5…Ñ¡˜¹‰Ì¡„¹¡•¥¡Ð€´ˆ¹¡•¥¡Ð¤€ðôÑ½±•É…¹”ì(€€€€€€€ô((€€€€€€€ÁÉ¥Ù…Ñ”ÍÑ…Ñ¥ŒI•Ð%¹Ñ•ÉÍ•Ð¡I•Ð„°I•Ðˆ¤(€€€€€€€ì(€€€€€€€€€€€™±½…Ðµ¥¹`€ô5…Ñ¡˜¹5…à¡„¹á5¥¸°ˆ¹á5¥¸¤ì(€€€€€€€€€€€™±½…Ðµ¥¹d€ô5…Ñ¡˜¹5…à¡„¹å5¥¸°ˆ¹å5¥¸¤ì(€€€€€€€€€€€™±½…Ðµ…á`€ô5…Ñ¡˜¹5¥¸¡„¹á5…à°ˆ¹á5…à¤ì(€€€€€€€€€€€™±½…Ðµ…ád€ô5…Ñ¡˜¹5¥¸¡„¹å5…à°ˆ¹å5…à¤ì(€€€€€€€€€€€¥˜€¡µ…á`€ðôµ¥¹`ñðµ…ád€ðôµ¥¹d¤(€€€€€€€€€€€€€€€É•ÑÕÉ¸¹•ÜI•Ð ¤ì(€€€€€€€€€€€É•ÑÕÉ¸I•Ð¹5¥¹5…áI•Ð¡µ¥¹`°µ¥¹d°µ…á`°µ…ád¤ì(€€€€€€€ô((€€€€€€€ÁÉ¥Ù…Ñ”ÍÑ…Ñ¥Œ‰½½°•Ù¥•M¥µÕ±…Ñ½ÉA…­…•AÉ•Í•¹Ð ¤(€€€€€€€ì(€€€€€€€€€€€ÑÉä(€€€€€€€€€€€ì(€€€€€€€€€€€€€€€ÍÑÉ¥¹œµ…¹¥™•ÍÐ€ô¥±”¹I•…‘±±Q•áÐ ‰A…­…•Ì½µ…¹¥™•ÍÐ¹©Í½¸ˆ¤ì(€€€€€€€€€€€€€€€É•ÑÕÉ¸µ…¹¥™•ÍÐ¹%¹‘•á=˜ ‰½´¹Õ¹¥Ñä¹‘•Ù¥”µÍ¥µÕ±…Ñ½Èˆ°MÑÉ¥¹½µÁ…É¥Í½¸¹=É‘¥¹…±%¹½É•…Í”¤€øô€Àì(€€€€€€€€€€€ô(€€€€€€€€€€€…Ñ (€€€€€€€€€€€ì(€€€€€€€€€€€€€€€É•ÑÕÉ¸™…±Í”ì(€€€€€€€€€€€ô(€€€€€€€ô((€€€€€€€ÁÉ¥Ù…Ñ”ÍÑ…Ñ¥Œ¥•±‘%¹™¼I•ÅÕ¥É•¥•±¡QåÁ”ÑåÁ”°ÍÑÉ¥¹œ¹…µ”¤(€€€€€€€ì(€€€€€€€€€€€¥•±‘%¹™¼™¥•±€ôÑåÁ”¹•Ñ¥•±¡¹…µ”°AÉ¥Ù…Ñ•%¹ÍÑ…¹”¤ì(€€€€€€€€€€€¥˜€¡™¥•±€ôô¹Õ±°¤(€€€€€€€€€€€€€€€Ñ¡É½Ü¹•Ü5¥ÍÍ¥¹¥•±‘á•ÁÑ¥½¸¡ÑåÁ”¹Õ±±9…µ”°¹…µ”¤ì(€€€€€€€€€€€É•ÑÕÉ¸™¥•±ì(€€€€€€€ô((€€€€€€€ÁÉ¥Ù…Ñ”ÍÑ…Ñ¥ŒÙ½¥]É¥Ñ•I•Á½ÉÐ¡‰½½°ÍÕ•ÍÌ¤(€€€€€€€ì(€€€€€€€€€€€¥É•Ñ½Éä¹É•…Ñ•¥É•Ñ½Éä¡A…Ñ ¹•Ñ¥É•Ñ½Éå9…µ”¡I•Á½ÉÑA…Ñ ¤€üü€‰ÉÑ¥™…ÑÌ½U¹¥Ñåá•ÕÑ½Èˆ¤ì(€€€€€€€€€€€1¥ÍÐñÍÑÉ¥¹œø±¥¹•Ì€ô¹•Ü1¥ÍÐñÍÑÉ¥¹œø(€€€€€€€€€€€ì(€€€€€€€€€€€€€€€€‰eIe9PU9%QdaUQ=HPÀÀÀÜ5=	%11e=UPˆ°(€€€€€€€€€€€€€€€€‰Ñ¥µ•ÍÑ…µÁUÑŒôˆ€¬…Ñ•Q¥µ”¹UÑ9½Ü¹Q½MÑÉ¥¹œ ‰<ˆ°Õ±ÑÕÉ•%¹™¼¹%¹Ù…É¥…¹ÑÕ±ÑÕÉ”¤°(€€€€€€€€€€€€€€€€‰Õ¹¥ÑåY•ÉÍ¥½¸ôˆ€¬Á
