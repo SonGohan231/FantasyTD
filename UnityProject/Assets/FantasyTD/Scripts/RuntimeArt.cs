@@ -73,6 +73,14 @@ namespace FantasyTD.MapA
             image.type = Image.Type.Simple;
             image.color = background;
 
+            Outline border = go.AddComponent<Outline>();
+            border.effectColor = new Color(0.74f, 0.60f, 0.18f, 0.92f);
+            border.effectDistance = new Vector2(3f, -3f);
+
+            Shadow panelShadow = go.AddComponent<Shadow>();
+            panelShadow.effectColor = new Color(0f, 0f, 0f, 0.58f);
+            panelShadow.effectDistance = new Vector2(5f, -5f);
+
             Button button = go.GetComponent<Button>();
             ColorBlock cb = button.colors;
             cb.normalColor = Color.white;
