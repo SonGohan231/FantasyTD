@@ -33,6 +33,9 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          if [[ -z "$SOURCE_RUN" ]]; then
+            SOURCE_RUN="$(jq -r '.sourceRun // empty' .dyrygent/android-smoke-request.json)"
+          fi
           [[ -n "$SOURCE_RUN" ]] || { echo "source_run is required"; exit 1; }
           RUN_JSON="$(gh api "repos/${GITHUB_REPOSITORY}/actions/runs/${SOURCE_RUN}")"
           NAME="$(jq -r '.name' <<<"$RUN_JSON")"
