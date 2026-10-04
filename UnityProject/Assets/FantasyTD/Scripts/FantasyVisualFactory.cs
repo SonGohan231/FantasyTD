@@ -35,23 +35,23 @@ namespace FantasyTD.MapA
             switch (kind)
             {
                 case EnemyKind.Runner:
-                    targetHeight = 1.02f;
+                    targetHeight = 1.22f;
                     offset = new Vector2(0f, -0.40f);
                     break;
                 case EnemyKind.Brute:
-                    targetHeight = 1.55f;
+                    targetHeight = 1.78f;
                     offset = new Vector2(0f, -0.55f);
                     break;
                 case EnemyKind.Armored:
-                    targetHeight = 1.20f;
+                    targetHeight = 1.42f;
                     offset = new Vector2(0f, -0.45f);
                     break;
                 case EnemyKind.Boss:
-                    targetHeight = 2.05f;
+                    targetHeight = 2.35f;
                     offset = new Vector2(0f, -0.70f);
                     break;
                 default:
-                    targetHeight = 1.16f;
+                    targetHeight = 1.36f;
                     offset = new Vector2(0f, -0.44f);
                     break;
             }
@@ -71,7 +71,7 @@ namespace FantasyTD.MapA
             GameObject root = new GameObject("PortalCore");
             root.transform.position = new Vector3(position.x, position.y, -0.18f);
             // Spawn is exactly on the top route boundary; keep the portal art inside the camera.
-            AddHiggsfieldVisual(root.transform, sprite, 1.85f, new Vector2(0.20f, -2.48f), 18);
+            AddHiggsfieldVisual(root.transform, sprite, 2.10f, new Vector2(0.20f, -2.35f), 18);
             return root;
         }
 
@@ -84,7 +84,7 @@ namespace FantasyTD.MapA
             root.transform.position = new Vector3(position.x, position.y, -0.18f);
             // The route ends at the lower-right boundary; pull presentation art inward
             // without changing authoritative enemy movement geometry.
-            AddHiggsfieldVisual(root.transform, sprite, 2.05f, new Vector2(-1.78f, 1.36f), 20);
+            AddHiggsfieldVisual(root.transform, sprite, 2.55f, new Vector2(-1.72f, 1.45f), 20);
             return root;
         }
 
@@ -95,6 +95,18 @@ namespace FantasyTD.MapA
             Vector2 localPosition,
             int sortingOrder)
         {
+            float height = Mathf.Max(0.001f, sprite.bounds.size.y);
+            float scale = targetHeight / height;
+
+            GameObject shadow = new GameObject("HiggsfieldDropShadow");
+            shadow.transform.SetParent(root, false);
+            shadow.transform.localPosition = new Vector3(localPosition.x + 0.08f, localPosition.y - 0.10f, 0.01f);
+            shadow.transform.localScale = new Vector3(scale * 0.98f, scale * 0.98f, 1f);
+            SpriteRenderer shadowRenderer = shadow.AddComponent<SpriteRenderer>();
+            shadowRenderer.sprite = sprite;
+            shadowRenderer.sortingOrder = sortingOrder - 1;
+            shadowRenderer.color = new Color(0.02f, 0.05f, 0.01f, 0.28f);
+
             GameObject visual = new GameObject("HiggsfieldVisual");
             visual.transform.SetParent(root, false);
             visual.transform.localPosition = new Vector3(localPosition.x, localPosition.y, 0f);
@@ -103,9 +115,6 @@ namespace FantasyTD.MapA
             renderer.sprite = sprite;
             renderer.sortingOrder = sortingOrder;
             renderer.color = Color.white;
-
-            float height = Mathf.Max(0.001f, sprite.bounds.size.y);
-            float scale = targetHeight / height;
             visual.transform.localScale = new Vector3(scale, scale, 1f);
             return renderer;
         }
