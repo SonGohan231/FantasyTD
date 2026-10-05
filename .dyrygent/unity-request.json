@@ -1,5 +1,5 @@
 {
-  "requestId": "t0012-release-hardening-gate-20261004-1940",
-  "mode": "release-gate",
-  "note": "Run every required FantasyTD validation after release-hardening commit: updated approved balance regression contracts, MAP-A integrity landscape applicability, and mobile HUD EnemyCount separation. Keep gameplay/input/wave/boss/pad gates strict and build a fresh Android APK only if the configured release-gate workflow reaches it."
+  "requestId": "fantasytd-fullprod-phase1-tests-20261005-0654",
+  "mode": "tests",
+  "note": "FULL PRODUCTION Phase 1 fresh Unity test gate on authoritative PR #14 branch. Preserve existing gameplay; collect exact-head compile/test evidence before further implementation claims."
 }
