@@ -1,0 +1,9 @@
+{
+  "generation_id": "map4-abyssal-hot-bubble-event-20261002-001",
+  "model_path": "bytedance/seedance-2.5/text-to-video",
+  "request_id": "a2ed7d0a-6905-48f5-b61d-0b0bf0c76a7f",
+  "status": "completed",
+  "files": [
+    "asset_01.mp4"
+  ]
+}

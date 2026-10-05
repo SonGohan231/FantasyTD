@@ -1,0 +1,9 @@
+{
+  "sourceArchiveSha256": "97dd89997f93195bf9040985d6260438e89b54f12fec7901ebae2391211e4f3a",
+  "sourceMemberSha256": "b3ba60a2080c5a8f2c32036d88beb5d76a9f0ce9f07041b76eed8c2c43cf1ed8",
+  "derivation": "ffmpeg final frame; -sseof -0.05; no authored pixels generated",
+  "runtimePath": "UnityProject/Assets/FantasyTD/Resources/Higgsfield/Maps/MAP4_SHRINE_OPEN_FINAL.png",
+  "runtimeSha256": "8d622e2400499186c9ae61b8377dc8400c52a54dd033df1f8645c25df5b30e63",
+  "frameCount": 1,
+  "isFullAnimation": false
+}

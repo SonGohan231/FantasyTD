@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace FantasyTD.MapA
@@ -6,138 +7,123 @@ namespace FantasyTD.MapA
     {
         public static GameObject CreatePlant(PlantKind kind, Vector2 position)
         {
+            Sprite sprite = HiggsfieldSpriteFactory.Plant(kind);
+            Require(sprite, Balance.DisplayName(kind));
+
             GameObject root = new GameObject(Balance.DisplayName(kind));
             root.transform.position = new Vector3(position.x, position.y, -0.25f);
-            root.AddComponent<OrganicBob>();
 
-            switch (kind)
-            {
-                case PlantKind.SeedShooter:
-                    SeedShooter(root.transform);
-                    break;
-                case PlantKind.EssenceFlower:
-                    EssenceFlower(root.transform);
-                    break;
-                case PlantKind.OakGuardian:
-                    OakGuardian(root.transform);
-                    break;
-                case PlantKind.FrostBud:
-                    FrostBud(root.transform);
-                    break;
-            }
+            float height = kind == PlantKind.OakGuardian ? 1.92f : 1.72f;
+
+            SpriteRenderer renderer = AddHiggsfieldVisual(
+                root.transform, sprite, height, new Vector2(0f, -0.49f), 24);
+            root.AddComponent<HiggsfieldUnitAnimation>().Initialize(renderer, height);
 
             return root;
         }
 
         public static GameObject CreateEnemy(EnemyKind kind)
         {
+            Sprite sprite = HiggsfieldSpriteFactory.Enemy(kind);
+            Require(sprite, Balance.EnemyName(kind));
+
             GameObject root = new GameObject(Balance.EnemyName(kind));
-            root.AddComponent<OrganicBob>();
+
+            float targetHeight;
+            Vector2 offset;
 
             switch (kind)
             {
-                case EnemyKind.Wanderer:
-                    Creature(root.transform, new Color(0.38f,0.62f,0.18f), 0.62f, false, false);
-                    break;
                 case EnemyKind.Runner:
-                    Creature(root.transform, new Color(0.63f,0.30f,0.64f), 0.52f, true, false);
+                    targetHeight = 1.22f;
+                    offset = new Vector2(0f, -0.40f);
                     break;
                 case EnemyKind.Brute:
-                    Creature(root.transform, new Color(0.40f,0.32f,0.17f), 0.92f, false, false);
+                    targetHeight = 1.78f;
+                    offset = new Vector2(0f, -0.55f);
                     break;
                 case EnemyKind.Armored:
-                    Creature(root.transform, new Color(0.32f,0.56f,0.22f), 0.68f, false, true);
+                    targetHeight = 1.42f;
+                    offset = new Vector2(0f, -0.45f);
                     break;
                 case EnemyKind.Boss:
-                    Creature(root.transform, new Color(0.25f,0.43f,0.12f), 1.30f, false, true);
-                    Crown(root.transform);
+                    targetHeight = 2.35f;
+                    offset = new Vector2(0f, -0.70f);
+                    break;
+                default:
+                    targetHeight = 1.36f;
+                    offset = new Vector2(0f, -0.44f);
                     break;
             }
 
+
+            SpriteRenderer renderer = AddHiggsfieldVisual(root.transform, sprite, targetHeight, offset, 24);
+            root.AddComponent<HiggsfieldUnitAnimation>().Initialize(
+                renderer, targetHeight, kind == EnemyKind.Wanderer ? HiggsfieldSpriteFactory.WandererWalk : null);
             return root;
         }
 
-        private static void SeedShooter(Transform root)
+        public static GameObject CreatePortal(Vector2 position)
         {
-            RuntimeArt.SpriteObject("Stem", root, new Vector2(0f,-0.18f), new Vector2(0.18f,0.60f), new Color(0.16f,0.46f,0.13f), 11, false);
-            RuntimeArt.SpriteObject("LeafL", root, new Vector2(-0.22f,-0.28f), new Vector2(0.42f,0.20f), new Color(0.21f,0.60f,0.16f), 12);
-            RuntimeArt.SpriteObject("LeafR", root, new Vector2(0.20f,-0.36f), new Vector2(0.38f,0.18f), new Color(0.18f,0.53f,0.14f), 12);
-            RuntimeArt.SpriteObject("Head", root, new Vector2(0f,0.20f), new Vector2(0.64f,0.58f), new Color(0.31f,0.74f,0.20f), 13);
-            RuntimeArt.SpriteObject("Muzzle", root, new Vector2(0.32f,0.20f), new Vector2(0.30f,0.28f), new Color(0.22f,0.58f,0.15f), 14);
-            Eyes(root, new Vector2(-0.10f,0.27f), 15);
+            Sprite sprite = HiggsfieldSpriteFactory.Portal;
+            Require(sprite, "Portal");
+
+            GameObject root = new GameObject("PortalCore");
+            root.transform.position = new Vector3(position.x, position.y, -0.18f);
+            // Spawn is exactly on the top route boundary; keep the portal art inside the camera.
+            AddHiggsfieldVisual(root.transform, sprite, 2.10f, new Vector2(0.20f, -2.35f), 18);
+            return root;
         }
 
-        private static void EssenceFlower(Transform root)
+        public static GameObject CreateHomeTree(Vector2 position)
         {
-            RuntimeArt.SpriteObject("Stem", root, new Vector2(0f,-0.22f), new Vector2(0.16f,0.64f), new Color(0.20f,0.48f,0.13f), 11, false);
-            for (int i = 0; i < 8; i++)
-            {
-                float a = i * Mathf.PI * 2f / 8f;
-                Vector2 p = new Vector2(Mathf.Cos(a), Mathf.Sin(a)) * 0.27f + new Vector2(0f,0.18f);
-                RuntimeArt.SpriteObject("Petal", root, p, new Vector2(0.28f,0.20f), new Color(1f,0.76f,0.12f), 12);
-            }
-            RuntimeArt.SpriteObject("Core", root, new Vector2(0f,0.18f), new Vector2(0.42f,0.42f), new Color(0.67f,0.32f,0.08f), 13);
-            Eyes(root, new Vector2(0f,0.22f), 14);
+            Sprite sprite = HiggsfieldSpriteFactory.HomeTree;
+            Require(sprite, "Baza-drzewo");
+
+            GameObject root = new GameObject("HomeTree_Higgsfield");
+            root.transform.position = new Vector3(position.x, position.y, -0.18f);
+            // The route ends at the lower-right boundary; pull presentation art inward
+            // without changing authoritative enemy movement geometry.
+            AddHiggsfieldVisual(root.transform, sprite, 2.55f, new Vector2(-1.72f, 1.45f), 20);
+            return root;
         }
 
-        private static void OakGuardian(Transform root)
+        private static SpriteRenderer AddHiggsfieldVisual(
+            Transform root,
+            Sprite sprite,
+            float targetHeight,
+            Vector2 localPosition,
+            int sortingOrder)
         {
-            RuntimeArt.SpriteObject("Trunk", root, new Vector2(0f,-0.05f), new Vector2(0.66f,0.86f), new Color(0.43f,0.25f,0.10f), 12);
-            RuntimeArt.SpriteObject("Crown", root, new Vector2(0f,0.35f), new Vector2(0.92f,0.58f), new Color(0.16f,0.43f,0.12f), 13);
-            RuntimeArt.SpriteObject("BranchL", root, new Vector2(-0.38f,0.05f), new Vector2(0.36f,0.14f), new Color(0.36f,0.20f,0.09f), 11);
-            RuntimeArt.SpriteObject("BranchR", root, new Vector2(0.38f,0.05f), new Vector2(0.36f,0.14f), new Color(0.36f,0.20f,0.09f), 11);
-            Eyes(root, new Vector2(0f,0.05f), 14);
+            float height = Mathf.Max(0.001f, sprite.bounds.size.y);
+            float scale = targetHeight / height;
+
+            GameObject shadow = new GameObject("HiggsfieldDropShadow");
+            shadow.transform.SetParent(root, false);
+            shadow.transform.localPosition = new Vector3(localPosition.x + 0.08f, localPosition.y - 0.10f, 0.01f);
+            shadow.transform.localScale = new Vector3(scale * 0.98f, scale * 0.98f, 1f);
+            SpriteRenderer shadowRenderer = shadow.AddComponent<SpriteRenderer>();
+            shadowRenderer.sprite = sprite;
+            shadowRenderer.sortingOrder = sortingOrder - 1;
+            shadowRenderer.color = new Color(0.02f, 0.05f, 0.01f, 0.28f);
+
+            GameObject visual = new GameObject("HiggsfieldVisual");
+            visual.transform.SetParent(root, false);
+            visual.transform.localPosition = new Vector3(localPosition.x, localPosition.y, 0f);
+
+            SpriteRenderer renderer = visual.AddComponent<SpriteRenderer>();
+            renderer.sprite = sprite;
+            renderer.sortingOrder = sortingOrder;
+            renderer.color = Color.white;
+            visual.transform.localScale = new Vector3(scale, scale, 1f);
+            return renderer;
         }
 
-        private static void FrostBud(Transform root)
+        private static void Require(Sprite sprite, string label)
         {
-            RuntimeArt.SpriteObject("Stem", root, new Vector2(0f,-0.20f), new Vector2(0.16f,0.62f), new Color(0.18f,0.48f,0.36f), 11, false);
-            for (int i = 0; i < 6; i++)
-            {
-                float a = i * Mathf.PI * 2f / 6f;
-                Vector2 p = new Vector2(Mathf.Cos(a), Mathf.Sin(a)) * 0.25f + new Vector2(0f,0.20f);
-                RuntimeArt.SpriteObject("IcePetal", root, p, new Vector2(0.24f,0.38f), new Color(0.48f,0.85f,1f), 12);
-            }
-            RuntimeArt.SpriteObject("Bud", root, new Vector2(0f,0.20f), new Vector2(0.44f,0.44f), new Color(0.18f,0.55f,0.82f), 13);
-            Eyes(root, new Vector2(0f,0.23f), 14);
-        }
-
-        private static void Creature(Transform root, Color body, float size, bool longLegs, bool armor)
-        {
-            RuntimeArt.SpriteObject("Body", root, new Vector2(0f,0f), new Vector2(size, size * 0.92f), body, 20);
-            RuntimeArt.SpriteObject("EarL", root, new Vector2(-size*0.38f, size*0.22f), new Vector2(size*0.25f,size*0.38f), body*0.85f, 19);
-            RuntimeArt.SpriteObject("EarR", root, new Vector2(size*0.38f, size*0.22f), new Vector2(size*0.25f,size*0.38f), body*0.85f, 19);
-            float legY = -size*0.52f;
-            float legH = longLegs ? size*0.52f : size*0.34f;
-            RuntimeArt.SpriteObject("LegL", root, new Vector2(-size*0.20f,legY), new Vector2(size*0.14f,legH), body*0.75f, 18, false);
-            RuntimeArt.SpriteObject("LegR", root, new Vector2(size*0.20f,legY), new Vector2(size*0.14f,legH), body*0.75f, 18, false);
-
-            RuntimeArt.SpriteObject("EyeL", root, new Vector2(-size*0.14f,size*0.10f), new Vector2(size*0.12f,size*0.14f), Color.white, 22);
-            RuntimeArt.SpriteObject("EyeR", root, new Vector2(size*0.14f,size*0.10f), new Vector2(size*0.12f,size*0.14f), Color.white, 22);
-            RuntimeArt.SpriteObject("PupilL", root, new Vector2(-size*0.12f,size*0.10f), new Vector2(size*0.05f,size*0.07f), new Color(0.08f,0.06f,0.04f), 23);
-            RuntimeArt.SpriteObject("PupilR", root, new Vector2(size*0.16f,size*0.10f), new Vector2(size*0.05f,size*0.07f), new Color(0.08f,0.06f,0.04f), 23);
-
-            if (armor)
-            {
-                RuntimeArt.SpriteObject("Helmet", root, new Vector2(0f,size*0.30f), new Vector2(size*0.78f,size*0.30f), new Color(0.32f,0.34f,0.32f), 24);
-                RuntimeArt.SpriteObject("HelmetBand", root, new Vector2(0f,size*0.20f), new Vector2(size*0.85f,size*0.10f), new Color(0.18f,0.19f,0.18f), 25, false);
-            }
-        }
-
-        private static void Crown(Transform root)
-        {
-            RuntimeArt.SpriteObject("CrownBase", root, new Vector2(0f,0.82f), new Vector2(0.72f,0.20f), new Color(0.75f,0.52f,0.08f), 30, false);
-            RuntimeArt.SpriteObject("CrownTip1", root, new Vector2(-0.24f,1.00f), new Vector2(0.20f,0.38f), new Color(0.85f,0.62f,0.10f), 29);
-            RuntimeArt.SpriteObject("CrownTip2", root, new Vector2(0f,1.06f), new Vector2(0.20f,0.46f), new Color(0.92f,0.68f,0.10f), 29);
-            RuntimeArt.SpriteObject("CrownTip3", root, new Vector2(0.24f,1.00f), new Vector2(0.20f,0.38f), new Color(0.85f,0.62f,0.10f), 29);
-        }
-
-        private static void Eyes(Transform root, Vector2 center, int order)
-        {
-            RuntimeArt.SpriteObject("EyeL", root, center + new Vector2(-0.10f,0f), new Vector2(0.11f,0.14f), Color.white, order);
-            RuntimeArt.SpriteObject("EyeR", root, center + new Vector2(0.10f,0f), new Vector2(0.11f,0.14f), Color.white, order);
-            RuntimeArt.SpriteObject("PupilL", root, center + new Vector2(-0.08f,0f), new Vector2(0.045f,0.065f), new Color(0.05f,0.05f,0.04f), order+1);
-            RuntimeArt.SpriteObject("PupilR", root, center + new Vector2(0.12f,0f), new Vector2(0.045f,0.065f), new Color(0.05f,0.05f,0.04f), order+1);
+            if (sprite == null)
+                throw new InvalidOperationException(
+                    "T0012 requires Higgsfield production art for: " + label);
         }
     }
 }

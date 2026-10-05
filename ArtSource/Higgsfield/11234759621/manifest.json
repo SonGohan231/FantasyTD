@@ -1,0 +1,9 @@
+{
+  "generation_id": "map5-fungal-lab-open-anim-20261002-001",
+  "model_path": "bytedance/seedance-2.5/image-to-video",
+  "request_id": "aecd17cf-f3b4-40a3-9e36-427dfd4f775f",
+  "status": "completed",
+  "files": [
+    "asset_01.mp4"
+  ]
+}

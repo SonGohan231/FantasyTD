@@ -5,7 +5,8 @@ namespace FantasyTD.MapA
         SeedShooter,
         EssenceFlower,
         OakGuardian,
-        FrostBud
+        FrostBud,
+        MutationTower
     }
 
     public enum EnemyKind
@@ -26,14 +27,15 @@ namespace FantasyTD.MapA
 
     public static class Balance
     {
-        public const int StartEssence = 300;
+        public const int StartEssence = 375;
         public const int BaseHp = 20;
 
         public static int Cost(PlantKind kind)
         {
             switch (kind)
             {
-                case PlantKind.SeedShooter: return 100;
+                case PlantKind.SeedShooter:
+                case PlantKind.MutationTower: return 100;
                 case PlantKind.EssenceFlower: return 100;
                 case PlantKind.OakGuardian: return 100;
                 case PlantKind.FrostBud: return 150;
@@ -49,6 +51,7 @@ namespace FantasyTD.MapA
                 case PlantKind.EssenceFlower: return "Kwiat Esencji";
                 case PlantKind.OakGuardian: return "Dębowy Strażnik";
                 case PlantKind.FrostBud: return "Mroźny Pąk";
+                case PlantKind.MutationTower: return "Mutacyjny Pąk";
                 default: return kind.ToString();
             }
         }

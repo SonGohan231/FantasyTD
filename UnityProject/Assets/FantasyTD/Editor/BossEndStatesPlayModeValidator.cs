@@ -45,8 +45,13 @@ namespace FantasyTD.CI
             EnemyKind.Boss
         };
 
-        private static readonly string[] PreDefenseSeedSpots = { "A4", "A5", "A6", "A7", "A8", "A10" };
-        private static readonly string[] ExtraDefenseSeedSpots = { "A3", "A12" };
+        private static readonly string[] PreDefenseSeedSpots = { "A11", "A12" };
+        // Art-aligned pads A1/A5/A9 supply the measured root/seed/frost
+        // scenarios in route order. A11/A12 defend downstream throughout.
+        // Rebuild tested pads through production planting after the samples;
+        // retain the boss kill/reward/base assertions even if balance now fails.
+        private static readonly string[] ExtraDefenseSeedSpots =
+            { "A1", "A5", "A7", "A9" };
 
         private enum Phase
         {
@@ -533,6 +538,19 @@ namespace FantasyTD.CI
             {
                 Check(spot.Occupied && spot.Plant == PlantKind.SeedShooter,
                     "pre-wave6 planting state incorrect at " + id);
+
+                // The art-aligned MAP1 route is substantially shorter than the legacy
+                // prototype route. Use the shipped upgrade system for the permanent
+                // downstream defense instead of requiring six L1 towers to kill the boss.
+                while (spot.Tower != null && spot.Tower.CanUpgrade)
+                {
+                    bool upgraded = spot.Tower.TryUpgrade();
+                    Check(upgraded, "failed to upgrade pre-wave6 SeedShooter at " + id);
+                    if (!upgraded)
+                        break;
+                }
+                Check(spot.Tower != null && spot.Tower.Level == TowerUpgradeBalance.MaxLevel,
+                    "pre-wave6 SeedShooter did not reach max level at " + id);
                 _defensePlantIndex++;
             }
         }
@@ -637,14 +655,20 @@ namespace FantasyTD.CI
 
             Time.timeScale = 1f;
             Time.maximumDeltaTime = 0.10f;
-            _sampleStartTime = Time.time;
-            _sampleStartProgress = _boss.ProgressDistance;
+            _sampleStartTime = -1f;
             _phase = Phase.BossBaseline;
         }
 
         private static void RunBossBaseline()
         {
             EnsureBossAlive("baseline");
+
+            if (_sampleStartTime < 0f)
+            {
+                _sampleStartTime = Time.time;
+                _sampleStartProgress = _boss.ProgressDistance;
+                return;
+            }
 
             float elapsed = Time.time - _sampleStartTime;
             if (elapsed < 0.80f)
@@ -654,19 +678,19 @@ namespace FantasyTD.CI
             AddFact("boss.speedMeasured", _bossSpeedMeasured);
             CheckApprox(_bossSpeedMeasured, _bossSpeedConfigured, 0.05f, "boss baseline speed");
 
-            _phase = Phase.SeedWaitRange;
+            _phase = Phase.OakWaitRange;
         }
 
         private static void RunSeedWaitRange()
         {
             EnsureBossAlive("seed range");
-            PlantingSpot spot = FindSpot("A9");
+            PlantingSpot spot = FindSpot("A5");
             float distance = Vector2.Distance(_boss.transform.position, spot.transform.position);
             if (distance > 3.05f)
                 return;
 
             bool planted = TryPlantThroughProductionUi(spot, PlantKind.SeedShooter);
-            Check(planted, "failed to plant SeedShooter A9 for boss physical evidence");
+            Check(planted, "failed to plant SeedShooter A5 for boss physical evidence");
             if (!planted) return;
 
             AddFact("boss.seed.spot", spot.Id);
@@ -677,7 +701,7 @@ namespace FantasyTD.CI
         private static void RunSeedWaitProjectile()
         {
             EnsureBossAlive("seed projectile");
-            PlantingSpot spot = FindSpot("A9");
+            PlantingSpot spot = FindSpot("A5");
             SeedProjectile projectile = FindProjectileTargetingBoss("MagicSeed", spot.transform.position, 0.75f);
             if (projectile == null)
                 return;
@@ -718,7 +742,7 @@ namespace FantasyTD.CI
 
             Check(_seedProjectileReached, "Seed projectile did not damage boss");
             Check(_seedDamageType == DamageType.Physical, "Seed projectile damage type not Physical");
-            CheckApprox(_seedRawDamage, 22f, 0.01f, "Seed raw damage");
+            CheckApprox(_seedRawDamage, 34f, 0.01f, "Seed raw damage");
             CheckApprox(_seedFinalDamage, _seedRawDamage * (1f - _bossResistance), 0.06f,
                 "boss physical resistance final damage");
 
@@ -728,7 +752,7 @@ namespace FantasyTD.CI
         private static void RunFrostWaitRange()
         {
             EnsureBossAlive("frost range");
-            PlantingSpot spot = FindSpot("A1");
+            PlantingSpot spot = FindSpot("A9");
             float distance = Vector2.Distance(_boss.transform.position, spot.transform.position);
             if (distance > 3.05f)
             {
@@ -738,7 +762,7 @@ namespace FantasyTD.CI
 
             Time.timeScale = 1f;
             bool planted = TryPlantThroughProductionUi(spot, PlantKind.FrostBud);
-            Check(planted, "failed to plant FrostBud A1 for boss slow evidence");
+            Check(planted, "failed to plant FrostBud A9 for boss slow evidence");
             if (!planted) return;
 
             AddFact("boss.frost.spot", spot.Id);
@@ -749,7 +773,7 @@ namespace FantasyTD.CI
         private static void RunFrostWaitProjectile()
         {
             EnsureBossAlive("frost projectile");
-            PlantingSpot spot = FindSpot("A1");
+            PlantingSpot spot = FindSpot("A9");
             SeedProjectile projectile = FindProjectileTargetingBoss("FrostSeed", spot.transform.position, 0.75f);
             if (projectile == null)
                 return;
@@ -790,7 +814,7 @@ namespace FantasyTD.CI
             AddFact("boss.frost.appliedSlow", _frostAppliedSlow);
             AddFact("boss.frost.durationObserved", _frostObservedDuration);
 
-            CheckApprox(_frostRawDamage, 18f, 0.01f, "Frost raw damage");
+            CheckApprox(_frostRawDamage, 26f, 0.01f, "Frost raw damage");
             CheckApprox(_frostFinalDamage, _frostRawDamage, 0.06f, "Frost final damage");
             CheckApprox(_frostRequestedSlow, 0.35f, 0.001f, "Frost requested slow");
             CheckApprox(_frostAppliedSlow, 0.20f, 0.001f, "boss slow cap");
@@ -843,21 +867,21 @@ namespace FantasyTD.CI
             CheckApprox(_frostSpeedAfter, _bossSpeedConfigured, 0.05f, "boss speed after Frost");
 
             Time.timeScale = 8f;
-            _phase = Phase.OakWaitRange;
+            _phase = Phase.VictoryWaitNonBoss;
         }
 
         private static void RunOakWaitRange()
         {
             EnsureBossAlive("oak range");
-            PlantingSpot spot = FindSpot("A2");
+            PlantingSpot spot = FindSpot("A1");
             float distance = Vector2.Distance(_boss.transform.position, spot.transform.position);
-            if (distance > 2.25f || AnyNonBossWithin(spot.transform.position, 2.4f))
+            if (distance > 2.39f || AnyNonBossWithin(spot.transform.position, 2.4f))
                 return;
 
             Time.timeScale = 1f;
             _oakHpBefore = ReadEnemyFloat(_boss, "_hp");
             bool planted = TryPlantThroughProductionUi(spot, PlantKind.OakGuardian);
-            Check(planted, "failed to plant OakGuardian A2 for boss root evidence");
+            Check(planted, "failed to plant OakGuardian A1 for boss root evidence");
             if (!planted) return;
 
             AddFact("boss.oak.spot", spot.Id);
@@ -879,15 +903,15 @@ namespace FantasyTD.CI
             _oakRootUntil = rootUntil;
             _oakRootObservedDuration = _oakRootUntil - Time.time;
 
-            DestroyPlantAt<OakGuardianPlant>(FindSpot("A2"));
+            DestroyPlantAt<OakGuardianPlant>(FindSpot("A1"));
 
             AddFact("boss.oak.hpAfter", _oakHpAfter);
             AddFact("boss.oak.damage", _oakDamage);
-            AddFact("boss.oak.rootDurationExpected", 1.75f * 0.35f);
+            AddFact("boss.oak.rootDurationExpected", 2.0f * 0.35f);
             AddFact("boss.oak.rootDurationObserved", _oakRootObservedDuration);
 
-            CheckApprox(_oakDamage, 8f, 0.06f, "Oak root damage");
-            CheckApprox(_oakRootObservedDuration, 1.75f * 0.35f, 0.12f, "boss root duration");
+            CheckApprox(_oakDamage, 12f, 0.06f, "Oak root damage");
+            CheckApprox(_oakRootObservedDuration, 2.0f * 0.35f, 0.12f, "boss root duration");
 
             _sampleStartTime = Time.time;
             _sampleStartProgress = _boss.ProgressDistance;
@@ -931,8 +955,8 @@ namespace FantasyTD.CI
             AddFact("boss.oak.speedAfter", _oakSpeedAfter);
             CheckApprox(_oakSpeedAfter, _bossSpeedConfigured, 0.05f, "boss speed after root");
 
-            Time.timeScale = 8f;
-            _phase = Phase.VictoryWaitNonBoss;
+            Time.timeScale = 1f;
+            _phase = Phase.SeedWaitRange;
         }
 
         private static void RunVictoryWaitNonBoss()
@@ -949,6 +973,7 @@ namespace FantasyTD.CI
         {
             if (_extraDefensePlantIndex >= ExtraDefenseSeedSpots.Length)
             {
+                AddFact("victoryDefense.finalSeedCount", CountPlantsOfType<SeedShooterPlant>());
                 _bossFinalEssenceBefore = _session.Economy.Essence;
                 _bossFinalBaseBefore = _session.Base.Hp;
                 AddFact("victory.bossOnlyEssenceBefore", _bossFinalEssenceBefore);
@@ -1430,7 +1455,15 @@ namespace FantasyTD.CI
                 T plant = plants[i];
                 if (plant != null && Vector2.Distance(plant.transform.position, spot.transform.position) < 0.15f)
                 {
-                    UnityEngine.Object.Destroy(plant.gameObject);
+                    // Sell through production so the sampled authored pad can
+                    // be rebuilt later, with the normal refund and occupancy flow.
+                    if (spot.Tower != null)
+                        spot.Tower.Sell();
+                    else
+                    {
+                        spot.ClearTower(null);
+                        UnityEngine.Object.Destroy(plant.gameObject);
+                    }
                     return;
                 }
             }

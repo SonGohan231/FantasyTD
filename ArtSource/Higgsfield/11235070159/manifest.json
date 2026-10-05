@@ -1,0 +1,9 @@
+{
+  "generation_id": "map4-abyssal-ambient-loop-20261002-001",
+  "model_path": "bytedance/seedance-2.5/text-to-video",
+  "request_id": "17fee233-28cd-404c-b6c9-546fe5ba1370",
+  "status": "completed",
+  "files": [
+    "asset_01.mp4"
+  ]
+}

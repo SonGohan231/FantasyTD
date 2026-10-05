@@ -1,0 +1,75 @@
+name: FantasyTD Android product smoke
+
+on:
+  push:
+    branches:
+      - recovery/t0012-higgsfield-product-completeness
+    paths:
+      - .dyrygent/android-smoke-request.json
+      - .github/scripts/android-product-smoke.sh
+      - .github/workflows/android-product-smoke.yml
+  workflow_dispatch:
+    inputs:
+      source_run:
+        description: Successful Dyrygent Unity Executor run containing the APK
+        required: true
+        type: string
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  android-smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - name: Resolve exact Unity candidate
+        id: candidate
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SOURCE_RUN: ${{ inputs.source_run }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -z "$SOURCE_RUN" ]]; then
+            SOURCE_RUN="$(jq -r '.sourceRun // empty' .dyrygent/android-smoke-request.json)"
+          fi
+          [[ -n "$SOURCE_RUN" ]] || { echo "source_run is required"; exit 1; }
+          RUN_JSON="$(gh api "repos/${GITHUB_REPOSITORY}/actions/runs/${SOURCE_RUN}")"
+          NAME="$(jq -r '.name' <<<"$RUN_JSON")"
+          CONCLUSION="$(jq -r '.conclusion' <<<"$RUN_JSON")"
+          HEAD_SHA="$(jq -r '.head_sha' <<<"$RUN_JSON")"
+          [[ "$NAME" == "Dyrygent Unity Executor" ]] || { echo "Unexpected source workflow: $NAME"; exit 1; }
+          [[ "$CONCLUSION" == "success" ]] || { echo "Source Unity run is not successful: $CONCLUSION"; exit 1; }
+          echo "run=$SOURCE_RUN" >> "$GITHUB_OUTPUT"
+          echo "artifact=fantasy-td-android-$SOURCE_RUN" >> "$GITHUB_OUTPUT"
+          echo "head_sha=$HEAD_SHA" >> "$GITHUB_OUTPUT"
+      - name: Download exact T0012 candidate APK
+        uses: actions/download-artifact@v4
+        with:
+          run-id: ${{ steps.candidate.outputs.run }}
+          name: ${{ steps.candidate.outputs.artifact }}
+          path: ${{ runner.temp }}/fantasytd-candidate
+          github-token: ${{ github.token }}
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - name: Boot Android and exercise product flow
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 35
+          target: google_apis
+          arch: x86_64
+          profile: pixel_7_pro
+          script: bash .github/scripts/android-product-smoke.sh "${{ runner.temp }}/fantasytd-candidate" "$GITHUB_WORKSPACE/AndroidSmoke" "${{ steps.candidate.outputs.run }}" "${{ steps.candidate.outputs.artifact }}" "${{ steps.candidate.outputs.head_sha }}"
+      - name: Upload runtime evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: fantasytd-android-product-smoke-${{ github.run_id }}
+          if-no-files-found: warn
+          path: AndroidSmoke/**

@@ -215,3 +215,120 @@ Purpose:
 Use actual runtime evidence to revise only the MAP-A vertical-slice balance.
 
 Do not expand the roster.
+
+---
+
+# T0011 — MAP-A Visual Production Pass + Release APK
+
+Status: **DONE**
+
+Purpose:
+Replace prototype-looking MAP-A visuals with a cohesive original organic-fantasy production pass while preserving validated gameplay, balance, path geometry, planting coordinates, touch behavior, wave flow and combat values.
+
+Scope:
+- authored-looking terrain/path dressing without changing gameplay geometry,
+- polished silhouettes for all 4 plants,
+- polished silhouettes for all 4 basic enemies and Król Cierni,
+- readable projectile/control VFX,
+- cohesive HUD, radial menu, planting indicators and victory/defeat presentation,
+- retain Android landscape support at 16:9 and 20:9,
+- add ticket-specific render-capable Play Mode visual smoke validation when practical,
+- create a final Android APK from the final T0011 head.
+
+Constraints:
+- no balance changes,
+- no wave changes,
+- no map-coordinate/path/spot changes,
+- no new gameplay roster or upgrade systems,
+- no T0009 device smoke test,
+- no T0010 balance pass,
+- no automatic merge.
+
+Acceptance:
+- gameplay invariants remain unchanged,
+- all plants/enemies/boss are visually distinct and readable,
+- MAP-A no longer reads as debug/prototype geometry,
+- UI remains touch-safe and unclipped,
+- Unity compile/Play Mode validation passes with no introduced errors,
+- final Android BuildReport succeeds on Unity 6000.0.26f1,
+- final APK artifact is downloadable with recorded checksum.
+
+Completion evidence:
+- render-capable mobile layout regression: run `37059744377` — PASS,
+- post-fix MAP-A integrity: runs `37061361432` and `37104978893` — PASS,
+- plant behavior regression after VFX integration: run `37062061398` — PASS,
+- boss/victory/defeat/restart regression: run `37105044037` — PASS,
+- Android candidate build: run `37060044752` — BuildReport Succeeded, 0 errors, 0 warnings,
+- final Android build is requested only after these documentation commits so the APK evidence comes from the final branch HEAD,
+- T0009 and T0010 remain PLANNED and were not implemented.
+
+
+## T0011 completion evidence
+
+- render-capable mobile layout regression: run `37059744377` — PASS at 1920×1080, 2400×1080 and synthetic safe area
+- corrected MAP-A geometry regression: run `37104978893` — PASS
+- four plant behaviors after VFX integration: run `37062061398` — PASS
+- boss / victory / defeat / restart regression: run `37105044037` — PASS
+- corrected Android build: run `37105211817` — PASS
+- corrected Android build head: `98539046e3cab8ff24572d6b401cd61579f895b0`
+- Unity: `6000.0.26f1`
+- BuildReport: `Succeeded`, errors `0`, warnings `0`
+- APK: `Builds/Android/FantasyTD_MAP_A_v2.apk`
+- APK bytes: `18888441`
+- APK SHA-256: `aaccb09c2e8a358eeaf814a4f07d110e770ebf7bb5d8d547dc3d54f52673b6f1`
+- artifact: `fantasy-td-android-37105211817` (ID `11267512151`)
+- T0009 device/emulator smoke: **NOT RUN**
+- T0010 balance pass: **NOT STARTED**
+- no automatic merge
+
+
+---
+
+# T0012 — MAP-A Actual Playable Release
+
+Status: **ACTIVE**
+
+## User continuation 2026-10-03
+
+The user explicitly authorizes autonomous implementation and parallel Codex work coordinated by Dyrygent, toward the full FantasyTD campaign APK. TO99 is obsolete. No new image/video generation or paid art procurement is authorized. Existing approved media must be imported and connected to real gameplay. MAP-A completion remains the immediate release gate; subsequent campaign integrations must use verified sources and locked topology rather than unlock placeholder entries. Source preservation, animation hookup and removal of procedural decorative art are included in this active recovery scope. User validation is not required between these reversible implementation/test steps. A full-game completion claim still requires actual campaign and Android evidence.
+
+Purpose:
+Replace the rejected tech-demo presentation with the real Higgsfield MAP-A artwork and complete the minimum gameplay interactions expected from a playable tower-defense level.
+
+Authorized by user after direct APK review.
+
+Scope:
+- bundle and render the existing Higgsfield MAP-A environment from run `36991331980`, artifact `11219593382`,
+- align the invisible enemy route and 12 active planting zones to the visible road/soil patches in that artwork,
+- keep the map grid invisible,
+- add readable HP bars to every enemy and a larger boss bar,
+- add visible slow/root state cues,
+- tapping an occupied tower opens a tower panel,
+- tower panel shows name, level, concise stats, upgrade cost and sell refund,
+- add exactly three tower levels for the four existing plants; L1 keeps existing validated base values,
+- add tower selling with 70% floor refund of total Essence invested,
+- selling clears the planting spot and allows rebuilding,
+- upgrade immediately affects production behavior and updates a visible level marker,
+- use existing Higgsfield character assets where available and materialize them through the same build pipeline; missing character art may be generated through the existing prepaid Higgsfield API bridge,
+- add T0012 Play Mode validation for HP UI, tower selection, upgrade, sell/refund and rebuild,
+- rerun affected existing gameplay/layout regressions,
+- create a final Android APK from final T0012 head.
+
+T0012 upgrade values:
+- Pędostrzał: L1 22 dmg / 1.0 s; L2 30 dmg / 1.0 s; L3 40 dmg / 0.85 s; range 3.2
+- Kwiat Esencji: L1 +20 / 20 s; L2 +25 / 20 s; L3 +30 / 18 s
+- Dębowy Strażnik: L1 8 dmg / 1.75 s root / 5.0 s; L2 12 / 1.9 / 5.0; L3 16 / 2.1 / 4.5; range 2.4
+- Mroźny Pąk: L1 18 dmg / 35% slow / 1.0 s; L2 24 / 37.5% / 1.0; L3 30 / 40% / 0.9; slow duration 2.5 s; range 3.2
+- L1→L2 upgrade cost = nearest 25 to 75% of base cost
+- L2→L3 upgrade cost = nearest 25 to 100% of base cost
+- sell refund = floor(70% × total Essence invested)
+
+Explicitly allowed geometry change:
+The old prototype MAP-A route/spot coordinates may be replaced only as needed to align gameplay with the visible Higgsfield road and planting patches. This is an art-to-gameplay alignment correction, not T0010 balance tuning.
+
+Constraints:
+- no new plant/enemy roster,
+- no branch/final upgrade tree,
+- no T0009 device-smoke implementation,
+- no T0010 balance-playtest pass,
+- no automatic merge.

@@ -1,0 +1,9 @@
+{
+  "generation_id": "map5-fungal-psychedelic-surge-20261002-001",
+  "model_path": "bytedance/seedance-2.5/text-to-video",
+  "request_id": "c6f33456-d463-47cb-8836-a5d449fce122",
+  "status": "completed",
+  "files": [
+    "asset_01.mp4"
+  ]
+}

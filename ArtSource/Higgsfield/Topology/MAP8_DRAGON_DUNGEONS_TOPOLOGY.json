@@ -1,0 +1,298 @@
+{
+  "map_id": "MAP8_DRAGON_DUNGEONS",
+  "title": "Lochy Smoka",
+  "logical_size": {
+    "width": 32,
+    "height": 18
+  },
+  "difficulty": "Hard+",
+  "target_build_spots": 13,
+  "topology_description": "Four initial dungeon corridors collapse into three mid routes. Two scripted dragon flyovers change bridge/gate states exactly twice, producing three deterministic route states A->B->C before a shared final vault approach.",
+  "spawns": [
+    {
+      "id": "north",
+      "x": 0,
+      "y": 15
+    },
+    {
+      "id": "mid_north",
+      "x": 0,
+      "y": 11
+    },
+    {
+      "id": "mid_south",
+      "x": 0,
+      "y": 7
+    },
+    {
+      "id": "south",
+      "x": 0,
+      "y": 3
+    }
+  ],
+  "route_state_A": {
+    "north": [
+      [
+        0,
+        15
+      ],
+      [
+        5,
+        15
+      ],
+      [
+        9,
+        14
+      ],
+      [
+        13,
+        13
+      ],
+      [
+        17,
+        13
+      ],
+      [
+        21,
+        12
+      ]
+    ],
+    "mid_north": [
+      [
+        0,
+        11
+      ],
+      [
+        5,
+        11
+      ],
+      [
+        9,
+        11
+      ],
+      [
+        13,
+        12
+      ],
+      [
+        17,
+        13
+      ],
+      [
+        21,
+        12
+      ]
+    ],
+    "mid_south": [
+      [
+        0,
+        7
+      ],
+      [
+        5,
+        7
+      ],
+      [
+        9,
+        7
+      ],
+      [
+        13,
+        6
+      ],
+      [
+        17,
+        6
+      ],
+      [
+        21,
+        7
+      ]
+    ],
+    "south": [
+      [
+        0,
+        3
+      ],
+      [
+        5,
+        3
+      ],
+      [
+        9,
+        4
+      ],
+      [
+        13,
+        5
+      ],
+      [
+        17,
+        6
+      ],
+      [
+        21,
+        7
+      ]
+    ],
+    "final": [
+      [
+        21,
+        12
+      ],
+      [
+        24,
+        10
+      ],
+      [
+        26,
+        9
+      ],
+      [
+        29,
+        9
+      ],
+      [
+        32,
+        9
+      ]
+    ],
+    "lower_final": [
+      [
+        21,
+        7
+      ],
+      [
+        24,
+        8
+      ],
+      [
+        26,
+        9
+      ],
+      [
+        29,
+        9
+      ],
+      [
+        32,
+        9
+      ]
+    ]
+  },
+  "dynamic_changes": [
+    {
+      "id": "ROUTE_CHANGE_1",
+      "trigger": "dragon_flyover_1",
+      "effects": [
+        "north bridge collapses after telegraph",
+        "crystal gate opens a new north-center connector",
+        "one minecart tunnel closes"
+      ],
+      "result_state": "B"
+    },
+    {
+      "id": "ROUTE_CHANGE_2",
+      "trigger": "dragon_flyover_2",
+      "effects": [
+        "lower drawbridge raises",
+        "central lava bridge cools and opens",
+        "vault-side gate reroutes two lanes"
+      ],
+      "result_state": "C"
+    }
+  ],
+  "build_spots": [
+    {
+      "id": "D1",
+      "x": 2.5,
+      "y": 16.8,
+      "zone": "north_early"
+    },
+    {
+      "id": "D2",
+      "x": 5.8,
+      "y": 13.3,
+      "zone": "north"
+    },
+    {
+      "id": "D3",
+      "x": 3,
+      "y": 9.3,
+      "zone": "mid_north"
+    },
+    {
+      "id": "D4",
+      "x": 8,
+      "y": 12.2,
+      "zone": "mid_north"
+    },
+    {
+      "id": "D5",
+      "x": 3,
+      "y": 5.2,
+      "zone": "mid_south"
+    },
+    {
+      "id": "D6",
+      "x": 8,
+      "y": 5.8,
+      "zone": "mid_south"
+    },
+    {
+      "id": "D7",
+      "x": 2.5,
+      "y": 1.3,
+      "zone": "south_early"
+    },
+    {
+      "id": "D8",
+      "x": 11.5,
+      "y": 15.5,
+      "zone": "north_mid"
+    },
+    {
+      "id": "D9",
+      "x": 12.3,
+      "y": 2.8,
+      "zone": "south_mid"
+    },
+    {
+      "id": "D10",
+      "x": 17.5,
+      "y": 9.7,
+      "zone": "central_dynamic"
+    },
+    {
+      "id": "D11",
+      "x": 21.5,
+      "y": 14.5,
+      "zone": "late_north"
+    },
+    {
+      "id": "D12",
+      "x": 21.5,
+      "y": 4,
+      "zone": "late_south"
+    },
+    {
+      "id": "D13",
+      "x": 27.3,
+      "y": 6.6,
+      "zone": "vault_approach"
+    }
+  ],
+  "secret": {
+    "id": "dragon_vault",
+    "miniboss": "Young Hoard Dragon or Treasure Guardian",
+    "unlock": "Dragon-fire tower or permanent economy upgrade"
+  },
+  "constraints": [
+    "Exactly two route-change events per level.",
+    "Each event must be telegraphed before route geometry changes.",
+    "Enemies already on a closing segment must be safely transferred or allowed to finish segment.",
+    "No build spot covers all four early corridors.",
+    "Dynamic route changes must not cause unavoidable loss.",
+    "Exact topology is deterministic Unity data, not image-generation output."
+  ]
+}

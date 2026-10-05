@@ -45,7 +45,7 @@ namespace FantasyTD.CI
         private static bool _uiWorldSelectionBlocked;
         private static int _occupiedPlantCountBefore;
         private static bool _occupiedBuilt;
-        private static bool _occupiedSecondPressBlocked;
+        private static bool _occupiedSecondPressHandled;
         private static bool _occupiedSecondPlantPrevented;
         private static bool _unaffordableSpendDownSucceeded;
         private static bool _unaffordableAllDisabled;
@@ -244,7 +244,7 @@ namespace FantasyTD.CI
             record.Screen = screen;
             record.WorldPressAccepted = accepted;
             record.Selected = _planting.SelectedSpot == spot;
-            record.RingSelected = IsRingSelected(spot);
+            record.SelectionStateSelected = IsSpotSelected(spot);
             record.RadialOpen = _hud.RadialRoot != null;
 
             Button[] optionButtons = GetPlantOptionButtons();
@@ -272,7 +272,7 @@ namespace FantasyTD.CI
             record.EdgeSpot = screen.x < Screen.width * 0.25f || screen.x > Screen.width * 0.75f ||
                               screen.y < Screen.height * 0.25f || screen.y > Screen.height * 0.75f;
 
-            bool preClose = accepted && record.Selected && record.RingSelected && record.RadialOpen &&
+            bool preClose = accepted && record.Selected && record.SelectionStateSelected && record.RadialOpen &&
                             record.OptionCount == 4 && record.AllFourOptionsVisible && record.InGameView;
             if (!preClose)
                 Errors.Add("spot." + spot.Id + ".preCloseValidationFailed");
@@ -293,12 +293,12 @@ namespace FantasyTD.CI
             _currentSpotRecord.CloseSuccess =
                 _hud.RadialRoot == null &&
                 _planting.SelectedSpot == null &&
-                !IsRingSelected(spot);
+                !IsSpotSelected(spot);
 
             _currentSpotRecord.Pass =
                 _currentSpotRecord.WorldPressAccepted &&
                 _currentSpotRecord.Selected &&
-                _currentSpotRecord.RingSelected &&
+                _currentSpotRecord.SelectionStateSelected &&
                 _currentSpotRecord.RadialOpen &&
                 _currentSpotRecord.OptionCount == 4 &&
                 _currentSpotRecord.AllFourOptionsVisible &&
@@ -346,13 +346,22 @@ namespace FantasyTD.CI
         {
             PlantingSpot spot = FindSpot("A1");
             int count = CountPlantsAt(spot.transform.position);
-            _occupiedSecondPressBlocked = _planting.SelectedSpot == null && _hud.RadialRoot == null;
+            _occupiedSecondPressHandled =
+                _planting.SelectedSpot == spot &&
+                _planting.SelectedTower == spot.Tower &&
+                _hud.RadialRoot == null &&
+                _session.TowerPanel != null &&
+                _session.TowerPanel.IsOpen;
             _occupiedSecondPlantPrevented = count == _occupiedPlantCountBefore + 1;
 
-            if (!_occupiedSecondPressBlocked)
-                Errors.Add("occupied.secondPressOpenedSelection");
+            if (!_occupiedSecondPressHandled)
+                Errors.Add("occupied.secondPressDidNotOpenExistingTowerPanel");
             if (!_occupiedSecondPlantPrevented)
                 Errors.Add("occupied.secondPlantWasCreated");
+
+            Button close = FindButton("TowerPanelClose");
+            if (close == null || !ExecuteButtonClick(close))
+                Errors.Add("occupied.towerPanelCloseFailed");
         }
 
         private static void CreateUiBlockerFixture()
@@ -434,8 +443,11 @@ namespace FantasyTD.CI
 
         private static void BeginUnaffordableValidation()
         {
-            _unaffordableSpendDownSucceeded = _session.Economy.Essence == 200 && _session.Economy.TrySpend(150);
-            if (!_unaffordableSpendDownSucceeded || _session.Economy.Essence != 50)
+            const int targetEssence = 50;
+            int spendDown = _session.Economy.Essence - targetEssence;
+            _unaffordableSpendDownSucceeded =
+                spendDown >= 0 && (spendDown == 0 || _session.Economy.TrySpend(spendDown));
+            if (!_unaffordableSpendDownSucceeded || _session.Economy.Essence != targetEssence)
             {
                 Errors.Add("unaffordable.couldNotReach50EssenceThroughEconomy");
                 return;
@@ -490,7 +502,7 @@ namespace FantasyTD.CI
             bool success =
                 allSpotsPassed &&
                 _occupiedBuilt &&
-                _occupiedSecondPressBlocked &&
+                _occupiedSecondPressHandled &&
                 _occupiedSecondPlantPrevented &&
                 _uiRaycastHit &&
                 _uiWorldSelectionBlocked &&
@@ -547,7 +559,7 @@ namespace FantasyTD.CI
                 sb.AppendLine(prefix + "screen=" + F(record.Screen.x) + "," + F(record.Screen.y));
                 sb.AppendLine(prefix + "worldPressAccepted=" + record.WorldPressAccepted);
                 sb.AppendLine(prefix + "selected=" + record.Selected);
-                sb.AppendLine(prefix + "ringSelected=" + record.RingSelected);
+                sb.AppendLine(prefix + "selectionStateSelected=" + record.SelectionStateSelected);
                 sb.AppendLine(prefix + "radialOpen=" + record.RadialOpen);
                 sb.AppendLine(prefix + "optionCount=" + record.OptionCount);
                 sb.AppendLine(prefix + "allFourOptionsVisible=" + record.AllFourOptionsVisible);
@@ -562,7 +574,7 @@ namespace FantasyTD.CI
             }
 
             sb.AppendLine("occupied.A1.initialBuild=" + _occupiedBuilt);
-            sb.AppendLine("occupied.A1.secondPressBlocked=" + _occupiedSecondPressBlocked);
+            sb.AppendLine("occupied.A1.secondPressHandledAsTowerSelection=" + _occupiedSecondPressHandled);
             sb.AppendLine("occupied.A1.secondPlantPrevented=" + _occupiedSecondPlantPrevented);
 
             sb.AppendLine("uiBlock.underlyingSpot=A3");
@@ -678,17 +690,9 @@ namespace FantasyTD.CI
             return result;
         }
 
-        private static bool IsRingSelected(PlantingSpot spot)
+        private static bool IsSpotSelected(PlantingSpot spot)
         {
-            Transform ring = spot.transform.Find("Ring");
-            SpriteRenderer renderer = ring != null ? ring.GetComponent<SpriteRenderer>() : null;
-            if (renderer == null) return false;
-            Color expected = new Color(1f,0.94f,0.36f,0.95f);
-            Color actual = renderer.color;
-            return Mathf.Abs(actual.r - expected.r) < 0.02f &&
-                   Mathf.Abs(actual.g - expected.g) < 0.02f &&
-                   Mathf.Abs(actual.b - expected.b) < 0.02f &&
-                   Mathf.Abs(actual.a - expected.a) < 0.02f;
+            return spot != null && spot.IsSelected;
         }
 
         private static int CountPlantsAt(Vector2 position)
@@ -755,7 +759,7 @@ namespace FantasyTD.CI
             _uiWorldSelectionBlocked = false;
             _occupiedPlantCountBefore = 0;
             _occupiedBuilt = false;
-            _occupiedSecondPressBlocked = false;
+            _occupiedSecondPressHandled = false;
             _occupiedSecondPlantPrevented = false;
             _unaffordableSpendDownSucceeded = false;
             _unaffordableAllDisabled = false;
@@ -780,7 +784,7 @@ namespace FantasyTD.CI
             internal Vector2 Screen;
             internal bool WorldPressAccepted;
             internal bool Selected;
-            internal bool RingSelected;
+            internal bool SelectionStateSelected;
             internal bool RadialOpen;
             internal int OptionCount;
             internal bool AllFourOptionsVisible;

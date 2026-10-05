@@ -1,0 +1,70 @@
+{
+  "map": "MAP8",
+  "artifactId": 11222684271,
+  "runId": 36999345781,
+  "generationId": "map-dungeon-api-20261002-001",
+  "archiveSha256": "f49c3690e6e9ff678c59e3a1c391d279cdad8fef186f566d1b69ba879a7fcf63",
+  "archiveBytes": 4054996,
+  "members": [
+    {
+      "path": "asset_01.png",
+      "bytes": 4053170,
+      "sha256": "97f95d513a5da7de7b75389e79680d9738e9aa46fd61b1c99cc2f6c6f2455590"
+    },
+    {
+      "path": "final.json",
+      "bytes": 451,
+      "sha256": "49a8c88a3c9fe9886f19fc57e2af00141921a00cb0ffacf1f547bccbbf89c35b"
+    },
+    {
+      "path": "manifest.json",
+      "bytes": 221,
+      "sha256": "aa3abaabfdbdb7605e845a918588ffd2fa55008204301b34149e1e09abb76bd3"
+    },
+    {
+      "path": "submit.json",
+      "bytes": 286,
+      "sha256": "05bd6a6ff4e468b053e90aed68b2d8d5486a0f68246a025048d8daafc25db3df"
+    }
+  ],
+  "sourceApproved": false,
+  "oldLayoutStatus": "REJECTED_AS_FINAL_LAYOUT",
+  "compositionStatus": "CANDIDATE_REQUIRES_UNITY_QA",
+  "resource": "Higgsfield/Maps/MAP8_RECOVERED_CONCEPT",
+  "sourceSize": [
+    2048,
+    1152
+  ],
+  "generationAllowed": false,
+  "wholeConceptRendered": false,
+  "cropsTopLeft": {
+    "ground": [
+      1590,
+      730,
+      50,
+      50
+    ],
+    "roadStone": [
+      720,
+      481,
+      50,
+      22
+    ],
+    "emptyBuildPad": [
+      1110,
+      453,
+      146,
+      112
+    ],
+    "vaultDoor": [
+      650,
+      747,
+      213,
+      371
+    ]
+  },
+  "topology": "ArtSource/Higgsfield/Topology/MAP8_DRAGON_DUNGEONS_TOPOLOGY.json",
+  "implemented": "Four complete initial routes and thirteen planting pads; source-cropped decorations and persistent treasury discovery, without economy reward or additional boss.",
+  "notImplemented": "Two dynamic route transitions; authored dragon animation; map-specific boss profile; complete natural campaign validation.",
+  "cropInspection": "Ground crop changed after pixel inspection: original proposed rectangle intersected baked road. Selected source-only floor patch mean RGB 156.1/170.2/97.5, per-channel deviation 5.2/5.2/4.7. All source rectangles inside image bounds; final compositing visual QA pending."
+}

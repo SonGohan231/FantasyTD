@@ -1,0 +1,9 @@
+{
+  "generation_id": "map4-abyssal-aquatic-tower-fold-deactivation-20261002-001",
+  "model_path": "bytedance/seedance-2.5/image-to-video",
+  "request_id": "1e62e605-f05c-44f8-ba42-805462f45ee8",
+  "status": "completed",
+  "files": [
+    "asset_01.mp4"
+  ]
+}

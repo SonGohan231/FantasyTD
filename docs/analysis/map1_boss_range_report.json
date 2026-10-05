@@ -1,0 +1,270 @@
+{
+  "status": "STATIC_MODEL_ONLY_UNITY_UNVERIFIED",
+  "geometrySourceSha256": "9122af0adbe7a9c763b139df423bb96b815ac807bfe17c04da3fbf69f8d4cb57",
+  "plan": {
+    "A1": "Frost",
+    "A5": "Frost",
+    "A9": "Frost",
+    "A11": "Frost",
+    "A12": "Frost"
+  },
+  "unchangedParameters": {
+    "bossHp": 2200,
+    "bossSpeed": 0.3,
+    "bossPhysicalResistance": 0.2,
+    "bossSlowCap": 0.2,
+    "bossRootDurationMultiplier": 0.35,
+    "frostL3Damage": 30,
+    "frostL3Cooldown": 0.9,
+    "slowDuration": 2.5,
+    "projectileSpeed": 7,
+    "hitDistance": 0.1
+  },
+  "assumptions": [
+    "Single isolated boss; no competing wave targets.",
+    "All five towers already purchased and genuinely upgraded to L3.",
+    "Movement, tower updates, then projectiles; newborn projectiles update in the same modeled frame.",
+    "Fine step 0.005 game seconds approximates timing; it is not an exact Unity simulation.",
+    "4x/60fps uses 0.0666667 game seconds per frame and unchanged production cooldown assignment.",
+    "Budget continues a counterfactual alive target after 2200 damage; real gameplay stops on the actual kill.",
+    "No extra pad, currency, damage, victory or boss-stat changes are applied to the project."
+  ],
+  "minimumPadDistanceToRouteRu": {
+    "A1": 2.304124,
+    "A2": 4.007972,
+    "A3": 4.850548,
+    "A4": 4.831198,
+    "A5": 2.91219,
+    "A6": 4.675424,
+    "A7": 3.246888,
+    "A8": 5.240364,
+    "A9": 2.915537,
+    "A10": 6.292282,
+    "A11": 2.81898,
+    "A12": 2.792836
+  },
+  "rangeCases": [
+    {
+      "rangeRu": 3.2,
+      "newAttackReachablePadsVs3_2": [],
+      "fineStep": {
+        "gameStepSeconds": 0.005,
+        "hypotheticalL3Range": 3.2,
+        "counterfactualFullRouteDamageBudget": 2130,
+        "budgetMarginAbove2200Hp": -70,
+        "predictedDamageKill": false,
+        "predictedKillGameSeconds": null,
+        "predictedKillRouteProgressRu": null,
+        "damageOnKillingFrame": null,
+        "counterfactualTravelGameSeconds": 102.45,
+        "counterfactualShots": {
+          "A1": 20,
+          "A5": 11,
+          "A9": 13,
+          "A11": 13,
+          "A12": 14
+        },
+        "counterfactualDamageByTower": {
+          "A1": 600,
+          "A5": 330,
+          "A9": 390,
+          "A11": 390,
+          "A12": 420
+        }
+      },
+      "fourTimesAt60Fps": {
+        "gameStepSeconds": 0.06666666666666667,
+        "hypotheticalL3Range": 3.2,
+        "counterfactualFullRouteDamageBudget": 2040,
+        "budgetMarginAbove2200Hp": -160,
+        "predictedDamageKill": false,
+        "predictedKillGameSeconds": null,
+        "predictedKillRouteProgressRu": null,
+        "damageOnKillingFrame": null,
+        "counterfactualTravelGameSeconds": 102.467,
+        "counterfactualShots": {
+          "A1": 20,
+          "A5": 11,
+          "A9": 12,
+          "A11": 12,
+          "A12": 13
+        },
+        "counterfactualDamageByTower": {
+          "A1": 600,
+          "A5": 330,
+          "A9": 360,
+          "A11": 360,
+          "A12": 390
+        }
+      }
+    },
+    {
+      "rangeRu": 3.4,
+      "newAttackReachablePadsVs3_2": [
+        "A7"
+      ],
+      "fineStep": {
+        "gameStepSeconds": 0.005,
+        "hypotheticalL3Range": 3.4,
+        "counterfactualFullRouteDamageBudget": 2610,
+        "budgetMarginAbove2200Hp": 410,
+        "predictedDamageKill": true,
+        "predictedKillGameSeconds": 88.61,
+        "predictedKillRouteProgressRu": 22.606,
+        "damageOnKillingFrame": 2220.0,
+        "counterfactualTravelGameSeconds": 104.8,
+        "counterfactualShots": {
+          "A1": 23,
+          "A5": 14,
+          "A9": 17,
+          "A11": 16,
+          "A12": 17
+        },
+        "counterfactualDamageByTower": {
+          "A1": 690,
+          "A5": 420,
+          "A9": 510,
+          "A11": 480,
+          "A12": 510
+        }
+      },
+      "fourTimesAt60Fps": {
+        "gameStepSeconds": 0.06666666666666667,
+        "hypotheticalL3Range": 3.4,
+        "counterfactualFullRouteDamageBudget": 2490,
+        "budgetMarginAbove2200Hp": 290,
+        "predictedDamageKill": true,
+        "predictedKillGameSeconds": 91.267,
+        "predictedKillRouteProgressRu": 23.3,
+        "damageOnKillingFrame": 2220.0,
+        "counterfactualTravelGameSeconds": 104.733,
+        "counterfactualShots": {
+          "A1": 22,
+          "A5": 13,
+          "A9": 16,
+          "A11": 15,
+          "A12": 17
+        },
+        "counterfactualDamageByTower": {
+          "A1": 660,
+          "A5": 390,
+          "A9": 480,
+          "A11": 450,
+          "A12": 510
+        }
+      }
+    },
+    {
+      "rangeRu": 3.5,
+      "newAttackReachablePadsVs3_2": [
+        "A7"
+      ],
+      "fineStep": {
+        "gameStepSeconds": 0.005,
+        "hypotheticalL3Range": 3.5,
+        "counterfactualFullRouteDamageBudget": 2820,
+        "budgetMarginAbove2200Hp": 620,
+        "predictedDamageKill": true,
+        "predictedKillGameSeconds": 87.43,
+        "predictedKillRouteProgressRu": 22.163,
+        "damageOnKillingFrame": 2220.0,
+        "counterfactualTravelGameSeconds": 105.7,
+        "counterfactualShots": {
+          "A1": 24,
+          "A5": 15,
+          "A9": 18,
+          "A11": 18,
+          "A12": 19
+        },
+        "counterfactualDamageByTower": {
+          "A1": 720,
+          "A5": 450,
+          "A9": 540,
+          "A11": 540,
+          "A12": 570
+        }
+      },
+      "fourTimesAt60Fps": {
+        "gameStepSeconds": 0.06666666666666667,
+        "hypotheticalL3Range": 3.5,
+        "counterfactualFullRouteDamageBudget": 2730,
+        "budgetMarginAbove2200Hp": 530,
+        "predictedDamageKill": true,
+        "predictedKillGameSeconds": 88.0,
+        "predictedKillRouteProgressRu": 22.264,
+        "damageOnKillingFrame": 2220.0,
+        "counterfactualTravelGameSeconds": 105.8,
+        "counterfactualShots": {
+          "A1": 23,
+          "A5": 15,
+          "A9": 18,
+          "A11": 17,
+          "A12": 18
+        },
+        "counterfactualDamageByTower": {
+          "A1": 690,
+          "A5": 450,
+          "A9": 540,
+          "A11": 510,
+          "A12": 540
+        }
+      }
+    },
+    {
+      "rangeRu": 3.6,
+      "newAttackReachablePadsVs3_2": [
+        "A7"
+      ],
+      "fineStep": {
+        "gameStepSeconds": 0.005,
+        "hypotheticalL3Range": 3.6,
+        "counterfactualFullRouteDamageBudget": 3060,
+        "budgetMarginAbove2200Hp": 860,
+        "predictedDamageKill": true,
+        "predictedKillGameSeconds": 85.02,
+        "predictedKillRouteProgressRu": 21.355,
+        "damageOnKillingFrame": 2220.0,
+        "counterfactualTravelGameSeconds": 106.71,
+        "counterfactualShots": {
+          "A1": 26,
+          "A5": 17,
+          "A9": 20,
+          "A11": 19,
+          "A12": 20
+        },
+        "counterfactualDamageByTower": {
+          "A1": 780,
+          "A5": 510,
+          "A9": 600,
+          "A11": 570,
+          "A12": 600
+        }
+      },
+      "fourTimesAt60Fps": {
+        "gameStepSeconds": 0.06666666666666667,
+        "hypotheticalL3Range": 3.6,
+        "counterfactualFullRouteDamageBudget": 2940,
+        "budgetMarginAbove2200Hp": 740,
+        "predictedDamageKill": true,
+        "predictedKillGameSeconds": 86.2,
+        "predictedKillRouteProgressRu": 21.676,
+        "damageOnKillingFrame": 2220.0,
+        "counterfactualTravelGameSeconds": 106.733,
+        "counterfactualShots": {
+          "A1": 25,
+          "A5": 16,
+          "A9": 19,
+          "A11": 18,
+          "A12": 20
+        },
+        "counterfactualDamageByTower": {
+          "A1": 750,
+          "A5": 480,
+          "A9": 570,
+          "A11": 540,
+          "A12": 600
+        }
+      }
+    }
+  ]
+}

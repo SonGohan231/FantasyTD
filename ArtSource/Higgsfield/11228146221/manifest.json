@@ -1,0 +1,9 @@
+{
+  "generation_id": "map2-postapo-salvage-tower-activation-20261002-001",
+  "model_path": "bytedance/seedance-2.5/image-to-video",
+  "request_id": "f4c44aa7-bfa3-4aaa-b583-e957f0898705",
+  "status": "completed",
+  "files": [
+    "asset_01.mp4"
+  ]
+}

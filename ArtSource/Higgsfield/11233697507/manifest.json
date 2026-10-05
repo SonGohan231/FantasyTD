@@ -1,0 +1,9 @@
+{
+  "generation_id": "map3-twilight-moon-gate-open-20261002-001",
+  "model_path": "bytedance/seedance-2.5/image-to-video",
+  "request_id": "faa0a677-0436-4833-b57d-3de1b3f98f51",
+  "status": "completed",
+  "files": [
+    "asset_01.mp4"
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "generation_id": "map6-bamboo-ambient-loop-20261002-001",
+  "model_path": "bytedance/seedance-2.5/text-to-video",
+  "request_id": "801b3aef-f1e4-451f-b83d-2c3954e568b3",
+  "status": "completed",
+  "files": [
+    "asset_01.mp4"
+  ]
+}

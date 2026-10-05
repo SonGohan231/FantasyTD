@@ -153,14 +153,14 @@ namespace FantasyTD.CI
             yield return null;
 
             AddFact("seed.rangeRU", 3.2f);
-            AddFact("seed.expectedRawDamage", 22f);
+            AddFact("seed.expectedRawDamage", 34f);
             AddFact("seed.expectedProjectileSpeed", 7f);
             AddFact("seed.targetPriority", "First");
 
-            Vector2 plantPos = new Vector2(2.5f, 10f);
-            EnemyUnit front = SpawnFixtureEnemy(EnemyKind.Wanderer, new Vector2(4.5f, 11f), 4.5f, 0f, "T0004_Seed_Front");
-            EnemyUnit back = SpawnFixtureEnemy(EnemyKind.Wanderer, new Vector2(1.5f, 11f), 1.5f, 0f, "T0004_Seed_Back");
-            EnemyUnit outside = SpawnFixtureEnemy(EnemyKind.Wanderer, new Vector2(6f, 11f), 10f, 0f, "T0004_Seed_Outside");
+            Vector2 plantPos = PadPosition("A1");
+            EnemyUnit front = SpawnFixtureEnemy(EnemyKind.Wanderer, 4.5f, 0f, "T0004_Seed_Front");
+            EnemyUnit back = SpawnFixtureEnemy(EnemyKind.Wanderer, 1.5f, 0f, "T0004_Seed_Back");
+            EnemyUnit outside = SpawnFixtureEnemy(EnemyKind.Wanderer, 10f, 0f, "T0004_Seed_Outside");
 
             float frontBefore = ReadEnemyFloat(front, "_hp");
             float backBefore = ReadEnemyFloat(back, "_hp");
@@ -212,7 +212,7 @@ namespace FantasyTD.CI
             Check(backDistance <= 3.2f + 0.001f, "seed back target fixture is not in range");
             Check(outsideDistance > 3.2f, "seed outside target fixture is not outside range");
             Check(projectileTarget == front, "seed First/range targeting did not choose highest-progress in-range enemy");
-            CheckApprox(rawDamage, 22f, 0.01f, "seed raw projectile damage");
+            CheckApprox(rawDamage, 34f, 0.01f, "seed raw projectile damage");
             CheckApprox(projectileSpeed, 7f, 0.01f, "seed projectile speed");
 
             UnityEngine.Object.Destroy(plant.gameObject);
@@ -237,7 +237,7 @@ namespace FantasyTD.CI
             AddFact("seed.targeting.finalDamage", finalDamage);
 
             Check(reached, "seed projectile did not reach/damage intended target");
-            CheckApprox(finalDamage, 22f, 0.05f, "seed unarmored final damage");
+            CheckApprox(finalDamage, 34f, 0.05f, "seed unarmored final damage");
             CheckApprox(backAfter, backBefore, 0.01f, "seed back enemy should remain undamaged");
             CheckApprox(outsideAfter, outsideBefore, 0.01f, "seed out-of-range enemy should remain undamaged");
 
@@ -245,10 +245,10 @@ namespace FantasyTD.CI
             yield return null;
             yield return null;
 
-            EnemyUnit armored = SpawnFixtureEnemy(EnemyKind.Armored, new Vector2(3f, 11f), 3f, 0f, "T0004_Seed_Armored");
+            EnemyUnit armored = SpawnFixtureEnemy(EnemyKind.Armored, 3f, 0f, "T0004_Seed_Armored");
             float armoredBefore = ReadEnemyFloat(armored, "_hp");
             float resistance = ReadEnemyFloat(armored, "_physicalResistance");
-            SeedShooterPlant armoredPlant = SpawnPlant<SeedShooterPlant>(PlantKind.SeedShooter, new Vector2(2.5f, 10f));
+            SeedShooterPlant armoredPlant = SpawnPlant<SeedShooterPlant>(PlantKind.SeedShooter, PadPosition("A1"));
 
             projectile = null;
             deadline = Time.time + 1.5f;
@@ -294,8 +294,8 @@ namespace FantasyTD.CI
             Check(armoredDistance <= 3.2f + 0.001f, "seed armored fixture outside range");
             CheckApprox(armoredBefore, 260f, 0.05f, "armored initial HP");
             CheckApprox(resistance, 0.15f, 0.001f, "armored physical resistance");
-            CheckApprox(rawDamage, 22f, 0.01f, "seed armored raw damage");
-            CheckApprox(armoredFinalDamage, 18.7f, 0.05f, "seed armored final damage");
+            CheckApprox(rawDamage, 34f, 0.01f, "seed armored raw damage");
+            CheckApprox(armoredFinalDamage, 28.9f, 0.05f, "seed armored final damage");
             Check(armoredFinalDamage < rawDamage, "physical resistance did not reduce seed damage");
 
             AddFact("seed.result", Errors.Count == startErrors ? "PASS" : "FAIL");
@@ -314,7 +314,7 @@ namespace FantasyTD.CI
             yield return null;
 
             int before = _session.Economy.Essence;
-            EssenceFlowerPlant flower = SpawnPlant<EssenceFlowerPlant>(PlantKind.EssenceFlower, new Vector2(8f, 8f));
+            EssenceFlowerPlant flower = SpawnPlant<EssenceFlowerPlant>(PlantKind.EssenceFlower, PadPosition("A2"));
             float startGameTime = Time.time;
             Time.timeScale = 8f;
 
@@ -366,7 +366,7 @@ namespace FantasyTD.CI
             yield return null;
             yield return null;
 
-            EnemyUnit enemy = SpawnFixtureEnemy(EnemyKind.Wanderer, new Vector2(1f, 11f), 1f, null, "T0004_Oak_Normal");
+            EnemyUnit enemy = SpawnFixtureEnemy(EnemyKind.Wanderer, 3f, null, "T0004_Oak_Normal");
             float hpBefore = ReadEnemyFloat(enemy, "_hp");
             float speedBefore = 0f;
 
@@ -375,7 +375,7 @@ namespace FantasyTD.CI
             while (Time.time - t0 < 0.35f) yield return null;
             speedBefore = (enemy.ProgressDistance - p0) / Mathf.Max(0.001f, Time.time - t0);
 
-            Vector2 plantPos = new Vector2(enemy.transform.position.x, 9f);
+            Vector2 plantPos = PadPosition("A1");
             float initialDistance = Vector2.Distance(plantPos, enemy.transform.position);
             OakGuardianPlant plant = SpawnPlant<OakGuardianPlant>(PlantKind.OakGuardian, plantPos);
 
@@ -405,9 +405,9 @@ namespace FantasyTD.CI
             AddFact("oak.normal.distanceAtPlantRU", initialDistance);
             AddFact("oak.normal.hpBefore", hpBefore);
             AddFact("oak.normal.hpAfter", hpAfter);
-            AddFact("oak.normal.rawDamage", 8f);
+            AddFact("oak.normal.rawDamage", 12f);
             AddFact("oak.normal.finalDamage", finalDamage);
-            AddFact("oak.normal.rootDurationConfiguredSec", 1.75f);
+            AddFact("oak.normal.rootDurationConfiguredSec", 2.0f);
             AddFact("oak.normal.rootDurationObservedSec", rootDurationObserved);
             AddFact("oak.normal.speedBefore", speedBefore);
             AddFact("oak.normal.speedDuringRoot", speedDuring);
@@ -416,8 +416,8 @@ namespace FantasyTD.CI
 
             Check(initialDistance <= 2.4f + 0.001f, "oak normal enemy was outside range at plant creation");
             CheckApprox(hpBefore, 170f, 0.05f, "oak normal initial HP");
-            CheckApprox(finalDamage, 8f, 0.05f, "oak normal damage");
-            CheckApprox(rootDurationObserved, 1.75f, 0.12f, "oak normal root duration");
+            CheckApprox(finalDamage, 12f, 0.05f, "oak normal damage");
+            CheckApprox(rootDurationObserved, 2.0f, 0.12f, "oak normal root duration");
             CheckApprox(speedBefore, 0.8f, 0.08f, "oak normal speed before root");
             Check(Mathf.Abs(speedDuring) <= 0.05f, "oak normal enemy moved during root");
             CheckApprox(speedAfter, 0.8f, 0.08f, "oak normal speed after root");
@@ -437,7 +437,7 @@ namespace FantasyTD.CI
             yield return null;
             yield return null;
 
-            EnemyUnit boss = SpawnFixtureEnemy(EnemyKind.Boss, new Vector2(1f, 11f), 1f, null, "T0004_Oak_Boss");
+            EnemyUnit boss = SpawnFixtureEnemy(EnemyKind.Boss, 3f, null, "T0004_Oak_Boss");
             float hpBefore = ReadEnemyFloat(boss, "_hp");
 
             float t0 = Time.time;
@@ -445,7 +445,7 @@ namespace FantasyTD.CI
             while (Time.time - t0 < 0.35f) yield return null;
             float speedBefore = (boss.ProgressDistance - p0) / Mathf.Max(0.001f, Time.time - t0);
 
-            Vector2 plantPos = new Vector2(boss.transform.position.x, 9f);
+            Vector2 plantPos = PadPosition("A1");
             float initialDistance = Vector2.Distance(plantPos, boss.transform.position);
             OakGuardianPlant plant = SpawnPlant<OakGuardianPlant>(PlantKind.OakGuardian, plantPos);
 
@@ -475,10 +475,10 @@ namespace FantasyTD.CI
             AddFact("oak.boss.distanceAtPlantRU", initialDistance);
             AddFact("oak.boss.hpBefore", hpBefore);
             AddFact("oak.boss.hpAfter", hpAfter);
-            AddFact("oak.boss.rawDamage", 8f);
+            AddFact("oak.boss.rawDamage", 12f);
             AddFact("oak.boss.finalDamage", finalDamage);
             AddFact("oak.boss.rootReductionMultiplier", 0.35f);
-            AddFact("oak.boss.rootDurationExpectedSec", 1.75f * 0.35f);
+            AddFact("oak.boss.rootDurationExpectedSec", 2.0f * 0.35f);
             AddFact("oak.boss.rootDurationObservedSec", rootDurationObserved);
             AddFact("oak.boss.speedBefore", speedBefore);
             AddFact("oak.boss.speedDuringRoot", speedDuring);
@@ -487,7 +487,7 @@ namespace FantasyTD.CI
 
             Check(initialDistance <= 2.4f + 0.001f, "oak boss was outside range at plant creation");
             CheckApprox(hpBefore, 2200f, 0.05f, "oak boss initial HP");
-            CheckApprox(finalDamage, 8f, 0.05f, "oak boss damage");
+            CheckApprox(finalDamage, 12f, 0.05f, "oak boss damage");
             CheckApprox(rootDurationObserved, 0.6125f, 0.10f, "oak boss root duration");
             CheckApprox(speedBefore, 0.30f, 0.05f, "oak boss speed before root");
             Check(Mathf.Abs(speedDuring) <= 0.04f, "oak boss moved during root");
@@ -508,7 +508,7 @@ namespace FantasyTD.CI
             yield return null;
             yield return null;
 
-            EnemyUnit enemy = SpawnFixtureEnemy(EnemyKind.Wanderer, new Vector2(1f, 11f), 1f, null, "T0004_Frost_Normal");
+            EnemyUnit enemy = SpawnFixtureEnemy(EnemyKind.Wanderer, 3f, null, "T0004_Frost_Normal");
             float hpBefore = ReadEnemyFloat(enemy, "_hp");
 
             float t0 = Time.time;
@@ -516,7 +516,7 @@ namespace FantasyTD.CI
             while (Time.time - t0 < 0.35f) yield return null;
             float speedBefore = (enemy.ProgressDistance - p0) / Mathf.Max(0.001f, Time.time - t0);
 
-            Vector2 plantPos = new Vector2(enemy.transform.position.x, 9f);
+            Vector2 plantPos = PadPosition("A1");
             float shotDistanceFixture = Vector2.Distance(plantPos, enemy.transform.position);
             FrostBudPlant plant = SpawnPlant<FrostBudPlant>(PlantKind.FrostBud, plantPos);
 
@@ -585,8 +585,8 @@ namespace FantasyTD.CI
 
             Check(shotDistanceFixture <= 3.2f + 0.001f, "frost normal fixture outside range");
             CheckApprox(hpBefore, 170f, 0.05f, "frost normal initial HP");
-            CheckApprox(rawDamage, 18f, 0.01f, "frost normal raw damage");
-            CheckApprox(finalDamage, 18f, 0.05f, "frost normal final damage");
+            CheckApprox(rawDamage, 26f, 0.01f, "frost normal raw damage");
+            CheckApprox(finalDamage, 26f, 0.05f, "frost normal final damage");
             CheckApprox(requestedSlow, 0.35f, 0.001f, "frost normal requested slow");
             CheckApprox(slowStrength, 0.35f, 0.001f, "frost normal applied slow");
             CheckApprox(slowDurationObserved, 2.5f, 0.15f, "frost normal slow duration");
@@ -610,7 +610,7 @@ namespace FantasyTD.CI
             yield return null;
             yield return null;
 
-            EnemyUnit boss = SpawnFixtureEnemy(EnemyKind.Boss, new Vector2(1f, 11f), 1f, null, "T0004_Frost_Boss");
+            EnemyUnit boss = SpawnFixtureEnemy(EnemyKind.Boss, 3f, null, "T0004_Frost_Boss");
             float hpBefore = ReadEnemyFloat(boss, "_hp");
             float physicalResistance = ReadEnemyFloat(boss, "_physicalResistance");
 
@@ -619,7 +619,7 @@ namespace FantasyTD.CI
             while (Time.time - t0 < 0.35f) yield return null;
             float speedBefore = (boss.ProgressDistance - p0) / Mathf.Max(0.001f, Time.time - t0);
 
-            Vector2 plantPos = new Vector2(boss.transform.position.x, 9f);
+            Vector2 plantPos = PadPosition("A1");
             float shotDistanceFixture = Vector2.Distance(plantPos, boss.transform.position);
             FrostBudPlant plant = SpawnPlant<FrostBudPlant>(PlantKind.FrostBud, plantPos);
 
@@ -690,8 +690,8 @@ namespace FantasyTD.CI
 
             Check(shotDistanceFixture <= 3.2f + 0.001f, "frost boss fixture outside range");
             CheckApprox(hpBefore, 2200f, 0.05f, "frost boss initial HP");
-            CheckApprox(rawDamage, 18f, 0.01f, "frost boss raw damage");
-            CheckApprox(finalDamage, 18f, 0.05f, "frost boss final damage");
+            CheckApprox(rawDamage, 26f, 0.01f, "frost boss raw damage");
+            CheckApprox(finalDamage, 26f, 0.05f, "frost boss final damage");
             CheckApprox(physicalResistance, 0.20f, 0.001f, "boss physical resistance");
             CheckApprox(requestedSlow, 0.35f, 0.001f, "frost boss requested slow");
             CheckApprox(slowStrength, 0.20f, 0.001f, "frost boss applied slow");
@@ -711,23 +711,49 @@ namespace FantasyTD.CI
 
         private static EnemyUnit SpawnFixtureEnemy(
             EnemyKind kind,
-            Vector2 position,
             float progress,
             float? speedOverride,
             string name)
         {
             EnemyUnit enemy = _session.SpawnEnemy(kind);
             enemy.gameObject.name = name;
+            int segment;
+            Vector2 position = RoutePosition(progress, out segment);
             enemy.transform.position = new Vector3(position.x, position.y, -0.20f);
-            SetEnemyInt(enemy, "_segmentIndex", 0);
+            SetEnemyInt(enemy, "_segmentIndex", segment);
             SetEnemyFloat(enemy, "_progressDistance", progress);
             if (speedOverride.HasValue)
                 SetEnemyFloat(enemy, "_speed", speedOverride.Value);
             return enemy;
         }
 
+        private static Vector2 PadPosition(string id)
+        {
+            foreach (PlantingSpotDefinition spot in MapAData.PlantingSpots)
+                if (spot.Id == id)
+                    return spot.Position;
+            throw new InvalidOperationException("Required authored planting pad missing: " + id);
+        }
+
+        private static Vector2 RoutePosition(float progress, out int segment)
+        {
+            float remaining = progress;
+            for (segment = 0; segment < MapAData.Waypoints.Length - 1; segment++)
+            {
+                Vector2 start = MapAData.Waypoints[segment];
+                Vector2 end = MapAData.Waypoints[segment + 1];
+                float length = Vector2.Distance(start, end);
+                if (remaining <= length)
+                    return Vector2.Lerp(start, end, remaining / Mathf.Max(0.001f, length));
+                remaining -= length;
+            }
+            throw new ArgumentOutOfRangeException(nameof(progress), "Fixture progress exceeds the production route.");
+        }
+
         private static T SpawnPlant<T>(PlantKind kind, Vector2 position) where T : PlantBehaviour
         {
+            Check(Array.Exists(MapAData.PlantingSpots, s => Vector2.Distance(s.Position, position) <= 0.001f),
+                "component-test tower must be located on an authored planting pad");
             GameObject go = FantasyVisualFactory.CreatePlant(kind, position);
             T behavior = go.AddComponent<T>();
             behavior.Initialize(_session);

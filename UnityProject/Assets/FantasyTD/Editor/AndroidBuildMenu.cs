@@ -2,6 +2,7 @@
 using System;
 using System.IO;
 using System.Linq;
+using FantasyTD.Product.Editor;
 using UnityEditor;
 using UnityEditor.Build.Reporting;
 using UnityEngine;
@@ -21,29 +22,29 @@ namespace FantasyTD.MapA.Editor
                 throw new InvalidOperationException("Unity Android Build Support is not available.");
 
             MapAEditorSetup.ConfigureAndroid();
-            MapAEditorSetup.OpenMap();
+            ProductFlowEditorSetup.EnsureProductScenes();
 
             if (EditorUserBuildSettings.activeBuildTarget != BuildTarget.Android)
             {
                 bool switched = EditorUserBuildSettings.SwitchActiveBuildTarget(
                     BuildTargetGroup.Android,BuildTarget.Android);
                 if (!switched || EditorUserBuildSettings.activeBuildTarget != BuildTarget.Android)
-                    throw new InvalidOperationException(
-                        "Could not switch the active build target to Android.");
+                    throw new InvalidOperationException("Could not switch the active build target to Android.");
             }
 
-            EditorBuildSettingsScene mapScene = EditorBuildSettings.scenes
-                .FirstOrDefault(scene => scene.path == MapAEditorSetup.ScenePath);
-            if (mapScene == null || !mapScene.enabled)
-                throw new InvalidOperationException(
-                    "MAP-A scene is missing or disabled in Build Settings: " +
-                    MapAEditorSetup.ScenePath);
+            foreach (string required in ProductFlowEditorSetup.ReleaseScenePaths)
+            {
+                EditorBuildSettingsScene scene = EditorBuildSettings.scenes
+                    .FirstOrDefault(item => item.path == required);
+                if (scene == null || !scene.enabled)
+                    throw new InvalidOperationException("Required release scene is missing or disabled: " + required);
+            }
 
             Directory.CreateDirectory("Builds/Android");
             if (File.Exists(ApkPath))
                 File.Delete(ApkPath);
 
-            LastBuildScenes = new[] { MapAEditorSetup.ScenePath };
+            LastBuildScenes = ProductFlowEditorSetup.ReleaseScenePaths;
             BuildPlayerOptions options = new BuildPlayerOptions
             {
                 scenes = LastBuildScenes,

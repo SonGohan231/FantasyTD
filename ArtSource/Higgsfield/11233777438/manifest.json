@@ -1,0 +1,9 @@
+{
+  "generation_id": "map3-twilight-bat-swarm-overlay-20261002-001",
+  "model_path": "bytedance/seedance-2.5/text-to-video",
+  "request_id": "07ff1870-0121-4114-8afd-ad873e77de45",
+  "status": "completed",
+  "files": [
+    "asset_01.mp4"
+  ]
+}

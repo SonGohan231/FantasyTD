@@ -566,4 +566,59 @@ Do not activate automatically:
 - decide whether generated scene/package-lock state should be committed once workflows are proven,
 - validate exact Android SDK/NDK/JDK configuration during the Android build ticket,
 - split assemblies only if project growth creates a measurable need,
-- replace procedural placeholder art only after gameplay vertical slice works.
+- continue art/content expansion only as a separately activated future ticket; the MAP-A prototype-art replacement was completed in T0011.
+
+
+---
+
+## T0011 verified evidence — visual production pass
+
+Status: **RESOLVED / PASS**
+
+T0011 replaced the earlier prototype-style presentation with original procedural organic-fantasy runtime art. No external paid asset generation was used because the connected Higgsfield account rejected generation with `Requires basic plan or higher`.
+
+Regression evidence:
+- mobile layout / safe area: `37059744377` — PASS,
+- MAP-A geometry after final visual anchor correction: `37061361432`, `37104978893` — PASS,
+- four plant behaviors after VFX integration: `37062061398` — PASS,
+- boss, victory, natural defeat, restart: `37105044037` — PASS,
+- Android candidate build: `37060044752` — SUCCESS, BuildReport 0 errors / 0 warnings.
+
+One issue was found and resolved during T0011:
+- the decorative HomeTrunk sprite had been moved from the historically validated route-end visual anchor by 0.10 RU,
+- only that presentation offset was restored,
+- MapAData path and planting coordinates were never changed.
+
+No new known gameplay defect was introduced by T0011 evidence.
+
+T0009 device smoke and T0010 balance remain intentionally outside T0011.
+
+
+---
+
+## T0011 — Visual production follow-up status
+
+Status: **NO OPEN T0011 BLOCKER**
+
+Observed during validation:
+- the first MAP-A integrity regression after visual dressing caught a HomeTree presentation anchor offset from the authoritative route endpoint;
+- the visual anchor was corrected without changing `MapAData`;
+- corrected MAP-A integrity then passed in run `37104978893`;
+- plant behavior regression passed in run `37062061398`;
+- boss/victory/defeat/restart regression passed in run `37105044037`;
+- corrected Android BuildReport passed in run `37105211817` with 0 errors and 0 warnings.
+
+External generation:
+Higgsfield asset generation was unavailable on the connected account (`Requires basic plan or higher`). This is not a runtime/release blocker because T0011's original visual pass is implemented in-project with cached procedural sprites and lightweight VFX.
+
+Remaining planned work is outside T0011:
+- T0009 Android install/launch smoke test,
+- T0010 balance v1.1 playtest pass.
+## Recovery findings 2026-10-03
+
+- Approved source checklist on `visual/higgsfield-api-bridge` records MAP7 artwork blocked by insufficient credits and MAP8 not produced, despite topology specifications. No generation is authorized now; full seven-map artwork remains unconfirmed.
+- MAP2–6 backgrounds are road-free terrain plates, with unfinished BASE_COMPOSITE_IN_UNITY stages and incomplete animation sets. Preserved source files are not playable-map evidence.
+- Four approved artifact IDs are shared between maps; identity needs visual verification before gameplay import.
+- MAP-A genuine soil-pad alignment leaves only A1 within Oak Guardian's 2.4 RU range of the authored road. Other distant pads support Essence Flower but may provide poor combat utility. Balance is unchanged; this must be playtested before final acceptance.
+- Chochlik source walk poses overlap on a concept sheet and lack complete attack/death frames. Candidate authored walk crops require rendered review; no limbs or new frames were invented.
+- Functional UI now uses standard uGUI rectangles/text and approved portraits. A complete approved decorative UI art pack is not present in the verified MAP-A sources.

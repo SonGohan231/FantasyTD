@@ -1,0 +1,9 @@
+{
+  "sourceArchiveSha256": "f10a7d28d32050a5cfaf2f515bda17c08b828b6114d666994c47fb1e7aa35dec",
+  "sourceMemberSha256": "e3dfdfe8869fdf8d9f625f62ecd69fb4eb58f832c0d681b9c54ccfb47b442ef6",
+  "derivation": "ffmpeg final frame; -sseof -0.05; no authored pixels generated",
+  "runtimePath": "UnityProject/Assets/FantasyTD/Resources/Higgsfield/Maps/MAP5_LAB_OPEN_FINAL.png",
+  "runtimeSha256": "2234841a0a75153976025db6e6ce8312b88bc9724402aaf9f43e651a1ff14100",
+  "frameCount": 1,
+  "isFullAnimation": false
+}

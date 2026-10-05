@@ -1,0 +1,252 @@
+{
+  "map_id": "MAP4_ABYSSAL_SEAFLOOR",
+  "logical_size": {
+    "width": 24,
+    "height": 14
+  },
+  "difficulty_step": 4,
+  "topology_type": "shared_entry_split_two_routes_shared_mid_chokepoint_resplit_late_merge",
+  "shared_entry": [
+    [
+      0,
+      7
+    ],
+    [
+      2.5,
+      7
+    ]
+  ],
+  "first_split": [
+    2.5,
+    7
+  ],
+  "upper_route_a": [
+    [
+      2.5,
+      7
+    ],
+    [
+      5.5,
+      10.2
+    ],
+    [
+      9,
+      11
+    ],
+    [
+      11.2,
+      8.2
+    ],
+    [
+      12,
+      7
+    ]
+  ],
+  "lower_route_a": [
+    [
+      2.5,
+      7
+    ],
+    [
+      5.5,
+      3.8
+    ],
+    [
+      9,
+      3
+    ],
+    [
+      11.2,
+      5.8
+    ],
+    [
+      12,
+      7
+    ]
+  ],
+  "shared_mid": [
+    [
+      12,
+      7
+    ],
+    [
+      14,
+      7
+    ]
+  ],
+  "second_split": [
+    14,
+    7
+  ],
+  "upper_route_b": [
+    [
+      14,
+      7
+    ],
+    [
+      17,
+      9.6
+    ],
+    [
+      20,
+      10
+    ],
+    [
+      22,
+      7
+    ]
+  ],
+  "lower_route_b": [
+    [
+      14,
+      7
+    ],
+    [
+      17,
+      4.4
+    ],
+    [
+      20,
+      4
+    ],
+    [
+      22,
+      7
+    ]
+  ],
+  "late_merge": [
+    22,
+    7
+  ],
+  "shared_exit": [
+    [
+      22,
+      7
+    ],
+    [
+      24,
+      7
+    ]
+  ],
+  "build_spots": [
+    {
+      "id": "A1",
+      "pos": [
+        1.3,
+        9.1
+      ],
+      "zone": "pre_split"
+    },
+    {
+      "id": "A2",
+      "pos": [
+        1.6,
+        4.9
+      ],
+      "zone": "pre_split"
+    },
+    {
+      "id": "A3",
+      "pos": [
+        5.2,
+        8.1
+      ],
+      "zone": "upper_a"
+    },
+    {
+      "id": "A4",
+      "pos": [
+        8.1,
+        9
+      ],
+      "zone": "upper_a"
+    },
+    {
+      "id": "A5",
+      "pos": [
+        10.2,
+        12.2
+      ],
+      "zone": "upper_a"
+    },
+    {
+      "id": "A6",
+      "pos": [
+        5.2,
+        5.9
+      ],
+      "zone": "lower_a"
+    },
+    {
+      "id": "A7",
+      "pos": [
+        8.1,
+        5
+      ],
+      "zone": "lower_a"
+    },
+    {
+      "id": "A8",
+      "pos": [
+        10.2,
+        1.8
+      ],
+      "zone": "lower_a"
+    },
+    {
+      "id": "A9",
+      "pos": [
+        13,
+        9.7
+      ],
+      "zone": "shared_mid_support"
+    },
+    {
+      "id": "A10",
+      "pos": [
+        17.4,
+        11.6
+      ],
+      "zone": "upper_b"
+    },
+    {
+      "id": "A11",
+      "pos": [
+        20.2,
+        8.3
+      ],
+      "zone": "upper_b"
+    },
+    {
+      "id": "A12",
+      "pos": [
+        17.4,
+        2.4
+      ],
+      "zone": "lower_b"
+    },
+    {
+      "id": "A13",
+      "pos": [
+        20.2,
+        5.7
+      ],
+      "zone": "lower_b"
+    }
+  ],
+  "hazard_design": {
+    "name": "hydrothermal_bubbles",
+    "rule": "large hot bubbles drift across projectile lanes and absorb projectiles before bursting",
+    "compensation": "13 build spots; bubbles never block all projectile routes simultaneously"
+  },
+  "constraints": {
+    "required_build_spot_count": 13,
+    "one_entry": true,
+    "one_exit": true,
+    "two_branch_phases": true,
+    "shared_mid_chokepoint": true,
+    "no_unavoidable_loss_hazard": true,
+    "no_camera_scroll": true,
+    "unity_is_authoritative": true
+  }
+}

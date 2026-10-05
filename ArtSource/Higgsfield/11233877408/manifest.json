@@ -1,0 +1,9 @@
+{
+  "generation_id": "map3-twilight-ambient-loop-20261002-001",
+  "model_path": "bytedance/seedance-2.5/text-to-video",
+  "request_id": "546a17f3-73dc-4be9-9da0-15729b66200d",
+  "status": "completed",
+  "files": [
+    "asset_01.mp4"
+  ]
+}

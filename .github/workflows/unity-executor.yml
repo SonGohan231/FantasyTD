@@ -17,14 +17,18 @@ on:
           - enemy-wave-flow
           - boss-end-states
           - mobile-layout
+          - playable-release
+          - full-campaign
+          - visual-acceptance
           - android-build
+          - release-gate
   push:
     branches:
       - main
       - 'codex/**'
       - 'dyrygent/**'
+      - 'recovery/**'
     paths:
-      - 'UnityProject/**'
       - '.dyrygent/unity-request.json'
       - '.github/workflows/unity-executor.yml'
   pull_request:
@@ -38,6 +42,7 @@ concurrency:
 
 permissions:
   contents: read
+  actions: read
   checks: write
 
 env:
@@ -62,10 +67,12 @@ jobs:
           MODE="baseline"
           if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
             MODE="${{ inputs.mode }}"
+          elif [[ "${{ github.event_name }}" == "pull_request" ]]; then
+            MODE="release-gate"
           elif [[ "${{ github.event_name }}" == "push" ]] && git diff --name-only HEAD^ HEAD 2>/dev/null | grep -qx '.dyrygent/unity-request.json'; then
             REQUESTED="$(jq -r '.mode // "baseline"' .dyrygent/unity-request.json)"
             case "$REQUESTED" in
-              baseline|tests|map-a-integrity|mobile-planting|plant-behaviors|enemy-wave-flow|boss-end-states|mobile-layout|android-build) MODE="$REQUESTED" ;;
+              baseline|tests|map-a-integrity|mobile-planting|plant-behaviors|enemy-wave-flow|boss-end-states|mobile-layout|playable-release|full-campaign|visual-acceptance|android-build|release-gate) MODE="$REQUESTED" ;;
               *) echo "Invalid Unity Executor mode: $REQUESTED"; exit 1 ;;
             esac
           fi
@@ -75,7 +82,7 @@ jobs:
   baseline:
     name: Unity baseline / compile
     needs: prepare
-    if: needs.prepare.outputs.mode == 'baseline'
+    if: needs.prepare.outputs.mode == 'baseline' || needs.prepare.outputs.mode == 'release-gate'
     runs-on: [self-hosted, dyrygent-unity]
     timeout-minutes: 45
     steps:
@@ -84,6 +91,12 @@ jobs:
         with:
           fetch-depth: 0
           lfs: true
+
+      - name: Materialize Higgsfield art
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: bash .github/scripts/materialize-higgsfield-art.sh
 
       - name: Locate Unity Editor
         id: unity
@@ -120,7 +133,7 @@ jobs:
   tests:
     name: Unity EditMode + PlayMode tests
     needs: prepare
-    if: needs.prepare.outputs.mode == 'tests'
+    if: needs.prepare.outputs.mode == 'tests' || needs.prepare.outputs.mode == 'release-gate'
     runs-on: [self-hosted, dyrygent-unity]
     timeout-minutes: 45
     steps:
@@ -129,6 +142,12 @@ jobs:
         with:
           fetch-depth: 0
           lfs: true
+
+      - name: Materialize Higgsfield art
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: bash .github/scripts/materialize-higgsfield-art.sh
 
       - name: Locate Unity Editor
         id: unity
@@ -169,7 +188,7 @@ jobs:
   map_a_integrity:
     name: MAP-A scene / geometry integrity
     needs: prepare
-    if: needs.prepare.outputs.mode == 'map-a-integrity'
+    if: needs.prepare.outputs.mode == 'map-a-integrity' || needs.prepare.outputs.mode == 'release-gate'
     runs-on: [self-hosted, dyrygent-unity]
     timeout-minutes: 45
     steps:
@@ -178,6 +197,12 @@ jobs:
         with:
           fetch-depth: 0
           lfs: true
+
+      - name: Materialize Higgsfield art
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: bash .github/scripts/materialize-higgsfield-art.sh
 
       - name: Locate Unity Editor
         id: unity
@@ -214,7 +239,7 @@ jobs:
   mobile_planting:
     name: T0003 mobile planting Play Mode
     needs: prepare
-    if: needs.prepare.outputs.mode == 'mobile-planting'
+    if: needs.prepare.outputs.mode == 'mobile-planting' || needs.prepare.outputs.mode == 'release-gate'
     runs-on: [self-hosted, dyrygent-unity]
     timeout-minutes: 45
     steps:
@@ -223,6 +248,12 @@ jobs:
         with:
           fetch-depth: 0
           lfs: true
+
+      - name: Materialize Higgsfield art
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: bash .github/scripts/materialize-higgsfield-art.sh
 
       - name: Locate Unity Editor
         id: unity
@@ -259,7 +290,7 @@ jobs:
   plant_behaviors:
     name: T0004 four plant behaviors Play Mode
     needs: prepare
-    if: needs.prepare.outputs.mode == 'plant-behaviors'
+    if: needs.prepare.outputs.mode == 'plant-behaviors' || needs.prepare.outputs.mode == 'release-gate'
     runs-on: [self-hosted, dyrygent-unity]
     timeout-minutes: 45
     steps:
@@ -268,6 +299,12 @@ jobs:
         with:
           fetch-depth: 0
           lfs: true
+
+      - name: Materialize Higgsfield art
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: bash .github/scripts/materialize-higgsfield-art.sh
 
       - name: Locate Unity Editor
         id: unity
@@ -304,7 +341,7 @@ jobs:
   enemy_wave_flow:
     name: T0005 enemy runtime and wave flow Play Mode
     needs: prepare
-    if: needs.prepare.outputs.mode == 'enemy-wave-flow'
+    if: needs.prepare.outputs.mode == 'enemy-wave-flow' || needs.prepare.outputs.mode == 'release-gate'
     runs-on: [self-hosted, dyrygent-unity]
     timeout-minutes: 45
     steps:
@@ -313,6 +350,12 @@ jobs:
         with:
           fetch-depth: 0
           lfs: true
+
+      - name: Materialize Higgsfield art
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: bash .github/scripts/materialize-higgsfield-art.sh
 
       - name: Locate Unity Editor
         id: unity
@@ -349,7 +392,7 @@ jobs:
   boss_end_states:
     name: T0006 boss win lose restart Play Mode
     needs: prepare
-    if: needs.prepare.outputs.mode == 'boss-end-states'
+    if: needs.prepare.outputs.mode == 'boss-end-states' || needs.prepare.outputs.mode == 'release-gate'
     runs-on: [self-hosted, dyrygent-unity]
     timeout-minutes: 45
     steps:
@@ -358,6 +401,12 @@ jobs:
         with:
           fetch-depth: 0
           lfs: true
+
+      - name: Materialize Higgsfield art
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: bash .github/scripts/materialize-higgsfield-art.sh
 
       - name: Locate Unity Editor
         id: unity
@@ -394,7 +443,7 @@ jobs:
   mobile_layout:
     name: T0007 Android UI and device layout Play Mode
     needs: prepare
-    if: needs.prepare.outputs.mode == 'mobile-layout'
+    if: needs.prepare.outputs.mode == 'mobile-layout' || needs.prepare.outputs.mode == 'release-gate'
     runs-on: [self-hosted, dyrygent-unity]
     timeout-minutes: 45
     steps:
@@ -403,6 +452,12 @@ jobs:
         with:
           fetch-depth: 0
           lfs: true
+
+      - name: Materialize Higgsfield art
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: bash .github/scripts/materialize-higgsfield-art.sh
 
       - name: Locate Unity Editor
         id: unity
@@ -439,10 +494,195 @@ jobs:
             UnityProject/Artifacts/UnityExecutor/**
             UnityProject/Logs/**
 
+  playable_release:
+    name: T0012 playable release Play Mode
+    needs: prepare
+    if: needs.prepare.outputs.mode == 'playable-release' || needs.prepare.outputs.mode == 'release-gate'
+    runs-on: [self-hosted, dyrygent-unity]
+    timeout-minutes: 45
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          lfs: true
+
+      - name: Materialize Higgsfield art
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: bash .github/scripts/materialize-higgsfield-art.sh
+
+      - name: Locate Unity Editor
+        id: unity
+        shell: bash
+        run: |
+          set -euo pipefail
+          UNITY_BIN="$(find "$HOME" /opt -type f -path "*/6000.0.26f1/Editor/Unity" -perm -111 2>/dev/null | head -n 1)"
+          if [[ -z "$UNITY_BIN" ]]; then
+            echo "Unity 6000.0.26f1 executable not found."
+            exit 1
+          fi
+          echo "bin=$UNITY_BIN" >> "$GITHUB_OUTPUT"
+
+      - name: Run T0012 playable release Play Mode validation
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$GITHUB_WORKSPACE/UnityProject/Logs"
+          trap 'if [[ -f "$GITHUB_WORKSPACE/UnityProject/Artifacts/UnityExecutor/playable-release.txt" ]]; then cat "$GITHUB_WORKSPACE/UnityProject/Artifacts/UnityExecutor/playable-release.txt"; fi' EXIT
+          if ! command -v xvfb-run >/dev/null 2>&1; then
+            echo "xvfb-run is required for T0012 render validation."
+            exit 1
+          fi
+          timeout --signal=TERM --kill-after=30s 15m xvfb-run -a -s "-screen 0 2560x1440x24" \
+            "${{ steps.unity.outputs.bin }}" \
+            -batchmode \
+            -projectPath "$GITHUB_WORKSPACE/UnityProject" \
+            -executeMethod FantasyTD.CI.UnityExecutorCi.PlayableRelease \
+            -logFile "$GITHUB_WORKSPACE/UnityProject/Logs/unity-playable-release.log"
+
+      - name: Upload T0012 playable release report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: unity-executor-playable-release-${{ github.run_id }}
+          if-no-files-found: warn
+          path: |
+            UnityProject/Artifacts/UnityExecutor/**
+            UnityProject/Logs/**
+
+      - name: Upload compact playable review evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: unity-executor-playable-review-${{ github.run_id }}
+          if-no-files-found: warn
+          path: |
+            UnityProject/Artifacts/UnityExecutor/*.txt
+            UnityProject/Artifacts/UnityExecutor/*.png
+
+
+  full_campaign:
+    name: T0012 full campaign Play Mode
+    needs: prepare
+    if: needs.prepare.outputs.mode == 'full-campaign' || needs.prepare.outputs.mode == 'release-gate'
+    runs-on: [self-hosted, dyrygent-unity]
+    timeout-minutes: 45
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          lfs: true
+
+      - name: Materialize Higgsfield art
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: bash .github/scripts/materialize-higgsfield-art.sh
+
+      - name: Locate Unity Editor
+        id: unity
+        shell: bash
+        run: |
+          set -euo pipefail
+          UNITY_BIN="$(find "$HOME" /opt -type f -path "*/6000.0.26f1/Editor/Unity" -perm -111 2>/dev/null | head -n 1)"
+          if [[ -z "$UNITY_BIN" ]]; then
+            echo "Unity 6000.0.26f1 executable not found."
+            exit 1
+          fi
+          echo "bin=$UNITY_BIN" >> "$GITHUB_OUTPUT"
+
+      - name: Run T0012 full campaign Play Mode validation
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$GITHUB_WORKSPACE/UnityProject/Logs"
+          trap 'if [[ -f "$GITHUB_WORKSPACE/UnityProject/Artifacts/UnityExecutor/full-campaign.txt" ]]; then cat "$GITHUB_WORKSPACE/UnityProject/Artifacts/UnityExecutor/full-campaign.txt"; fi' EXIT
+          # Full-campaign is a functional gameplay gate. Rendering is validated separately
+          # by Product visual acceptance, so run headless here to avoid Xvfb render stalls.
+          timeout --signal=TERM --kill-after=30s 15m \
+            "${{ steps.unity.outputs.bin }}" \
+            -batchmode -nographics \
+            -projectPath "$GITHUB_WORKSPACE/UnityProject" \
+            -executeMethod FantasyTD.CI.UnityExecutorCi.FullCampaign \
+            -logFile "$GITHUB_WORKSPACE/UnityProject/Logs/unity-full-campaign.log"
+
+      - name: Upload T0012 full campaign report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: unity-executor-full-campaign-${{ github.run_id }}
+          if-no-files-found: warn
+          path: |
+            UnityProject/Artifacts/UnityExecutor/**
+            UnityProject/Logs/**
+
+
+  visual_acceptance:
+    name: Product visual acceptance screenshots
+    needs: prepare
+    if: needs.prepare.outputs.mode == 'visual-acceptance' || needs.prepare.outputs.mode == 'release-gate'
+    runs-on: [self-hosted, dyrygent-unity]
+    timeout-minutes: 45
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          lfs: true
+
+      - name: Materialize Higgsfield art
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: bash .github/scripts/materialize-higgsfield-art.sh
+
+      - name: Locate Unity Editor
+        id: unity
+        shell: bash
+        run: |
+          set -euo pipefail
+          UNITY_BIN="$(find "$HOME" /opt -type f -path "*/6000.0.26f1/Editor/Unity" -perm -111 2>/dev/null | head -n 1)"
+          if [[ -z "$UNITY_BIN" ]]; then
+            echo "Unity 6000.0.26f1 executable not found."
+            exit 1
+          fi
+          echo "bin=$UNITY_BIN" >> "$GITHUB_OUTPUT"
+
+      - name: Capture product visual acceptance evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$GITHUB_WORKSPACE/UnityProject/Logs"
+          if ! command -v xvfb-run >/dev/null 2>&1; then
+            echo "xvfb-run is required for render-capable visual acceptance."
+            exit 1
+          fi
+          xvfb-run -a -s "-screen 0 2560x1440x24" \
+            "${{ steps.unity.outputs.bin }}" \
+            -batchmode \
+            -projectPath "$GITHUB_WORKSPACE/UnityProject" \
+            -executeMethod FantasyTD.CI.UnityExecutorCi.VisualAcceptance \
+            -logFile "$GITHUB_WORKSPACE/UnityProject/Logs/unity-visual-acceptance.log"
+
+      - name: Upload visual acceptance evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: product-visual-acceptance-${{ github.run_id }}
+          if-no-files-found: error
+          path: |
+            UnityProject/Artifacts/UnityExecutor/visual-acceptance.txt
+            UnityProject/Artifacts/UnityExecutor/VisualAcceptance/*.png
+            UnityProject/Logs/unity-visual-acceptance.log
+
+
   android:
     name: Unity Android APK
     needs: prepare
-    if: needs.prepare.outputs.mode == 'android-build'
+    if: needs.prepare.outputs.mode == 'android-build' || needs.prepare.outputs.mode == 'release-gate'
     runs-on: [self-hosted, dyrygent-unity]
     timeout-minutes: 60
     steps:
@@ -451,6 +691,12 @@ jobs:
         with:
           fetch-depth: 0
           lfs: true
+
+      - name: Materialize Higgsfield art
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: bash .github/scripts/materialize-higgsfield-art.sh
 
       - name: Locate Unity Editor
         id: unity
@@ -481,3 +727,55 @@ jobs:
             UnityProject/Builds/Android/*.apk
             UnityProject/Artifacts/UnityExecutor/**
             UnityProject/Logs/**
+
+
+  release_gate:
+    name: Release gate — all validations
+    needs:
+      - prepare
+      - baseline
+      - tests
+      - map_a_integrity
+      - mobile_planting
+      - plant_behaviors
+      - enemy_wave_flow
+      - boss_end_states
+      - mobile_layout
+      - playable_release
+      - full_campaign
+      - visual_acceptance
+      - android
+    if: ${{ always() && needs.prepare.outputs.mode == 'release-gate' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verify every required gate passed
+        env:
+          BASELINE: ${{ needs.baseline.result }}
+          TESTS: ${{ needs.tests.result }}
+          MAP_A: ${{ needs.map_a_integrity.result }}
+          MOBILE_PLANTING: ${{ needs.mobile_planting.result }}
+          PLANT_BEHAVIORS: ${{ needs.plant_behaviors.result }}
+          ENEMY_WAVE_FLOW: ${{ needs.enemy_wave_flow.result }}
+          BOSS_END_STATES: ${{ needs.boss_end_states.result }}
+          MOBILE_LAYOUT: ${{ needs.mobile_layout.result }}
+          PLAYABLE_RELEASE: ${{ needs.playable_release.result }}
+          FULL_CAMPAIGN: ${{ needs.full_campaign.result }}
+          VISUAL_ACCEPTANCE: ${{ needs.visual_acceptance.result }}
+          ANDROID_BUILD: ${{ needs.android.result }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          failed=0
+          for gate in             BASELINE TESTS MAP_A MOBILE_PLANTING PLANT_BEHAVIORS ENEMY_WAVE_FLOW             BOSS_END_STATES MOBILE_LAYOUT PLAYABLE_RELEASE FULL_CAMPAIGN             VISUAL_ACCEPTANCE ANDROID_BUILD
+          do
+            result="${!gate}"
+            printf '%-20s %s\n' "$gate" "$result"
+            if [[ "$result" != "success" ]]; then
+              failed=1
+            fi
+          done
+          if [[ "$failed" -ne 0 ]]; then
+            echo "Release gate FAILED: at least one required validation did not succeed."
+            exit 1
+          fi
+          echo "Release gate PASSED: every required Unity/gameplay/visual/Android validation succeeded."

@@ -1,0 +1,121 @@
+name: Recover existing Unity playable evidence
+
+on:
+  push:
+    paths:
+      - '.github/workflows/unity-evidence-recovery.yml'
+
+permissions:
+  actions: read
+
+jobs:
+  recover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Download original evidence from completed Unity run
+        uses: actions/download-artifact@v4
+        with:
+          name: unity-executor-playable-release-37179137740
+          run-id: 37179137740
+          github-token: ${{ github.token }}
+          path: original-evidence
+
+      - name: Extract reports and unchanged screenshots
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import hashlib
+          import json
+          import re
+          import shutil
+          from pathlib import Path
+
+          source = Path('original-evidence')
+          output = Path('recovered-evidence')
+          output.mkdir()
+          reports = sorted(source.rglob('*.txt'))
+          screenshots = sorted(source.rglob('*.png'))
+          if not any(path.name == 'playable-release.txt' for path in reports):
+              raise SystemExit('Original playable-release.txt is missing; recovery cannot establish the result.')
+
+          manifest = {
+              'sourceRunId': 37179137740,
+              'sourceArtifact': 'unity-executor-playable-release-37179137740',
+              'notice': 'Recovery only. Original status and error counts are preserved. Repeated errors retain their first original index; gaps do not indicate missing distinct errors. Screenshots are byte-for-byte copies. This workflow does not rerun or pass Unity validation.',
+              'reports': [],
+              'screenshots': [],
+          }
+
+          def sha256(path):
+              digest = hashlib.sha256()
+              with path.open('rb') as stream:
+                  for chunk in iter(lambda: stream.read(1024 * 1024), b''):
+                      digest.update(chunk)
+              return digest.hexdigest()
+
+          error_pattern = re.compile(r'^validationError\.\d+=(.*)$')
+          for path in reports:
+              relative = path.relative_to(source)
+              target = output / relative
+              target.parent.mkdir(parents=True, exist_ok=True)
+              seen = set()
+              removed = {'validationError': 0, 'timeout': 0, 'playModeEntered': 0}
+              original_lines = 0
+              kept_lines = 0
+              with path.open('r', encoding='utf-8', errors='strict') as incoming, target.open('w', encoding='utf-8', newline='\n') as outgoing:
+                  for raw in incoming:
+                      original_lines += 1
+                      line = raw.rstrip('\r\n')
+                      match = error_pattern.match(line)
+                      kind = None
+                      key = None
+                      if match:
+                          kind, key = 'validationError', ('validationError', match.group(1))
+                      elif line.startswith('timeout='):
+                          kind, key = 'timeout', ('timeout', line)
+                      elif line.startswith('playModeEntered='):
+                          # Keep each distinct value, including false followed by true.
+                          kind, key = 'playModeEntered', ('playModeEntered', line)
+                      if key is not None:
+                          if key in seen:
+                              removed[kind] += 1
+                              continue
+                          seen.add(key)
+                      outgoing.write(line + '\n')
+                      kept_lines += 1
+              manifest['reports'].append({
+                  'path': relative.as_posix(),
+                  'sourceSha256': sha256(path),
+                  'recoveredSha256': sha256(target),
+                  'originalBytes': path.stat().st_size,
+                  'recoveredBytes': target.stat().st_size,
+                  'originalLines': original_lines,
+                  'keptLines': kept_lines,
+                  'removedExactRepeats': removed,
+              })
+              print(f'{relative}: {original_lines} original lines; {kept_lines} retained; exact repeats removed: {removed}')
+
+          for path in screenshots:
+              relative = path.relative_to(source)
+              target = output / relative
+              target.parent.mkdir(parents=True, exist_ok=True)
+              shutil.copyfile(path, target)
+              manifest['screenshots'].append({
+                  'path': relative.as_posix(),
+                  'bytes': path.stat().st_size,
+                  'sha256': sha256(path),
+              })
+          (output / 'recovery-manifest.json').write_text(json.dumps(manifest, indent=2) + '\n', encoding='utf-8')
+          print(f'Copied {len(screenshots)} unchanged screenshots; excluded Unity log files.')
+          print(f'Recovered package: {sum(path.stat().st_size for path in output.rglob("*") if path.is_file())} uncompressed bytes.')
+          PY
+
+      - name: Upload recovered review evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: unity-recovered-playable-review
+          path: recovered-evidence/**
+          if-no-files-found: error
+          compression-level: 9
+          retention-days: 14
