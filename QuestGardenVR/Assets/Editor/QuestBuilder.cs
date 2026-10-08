@@ -31,6 +31,9 @@ namespace QuestGardenVR
             PlayerSettings.Android.targetArchitectures=AndroidArchitecture.ARM64;
             PlayerSettings.Android.minSdkVersion=AndroidSdkVersions.AndroidApiLevel29;
             PlayerSettings.defaultInterfaceOrientation=UIOrientation.LandscapeLeft;
+            PlayerSettings.colorSpace=ColorSpace.Linear;
+            PlayerSettings.SetUseDefaultGraphicsAPIs(BuildTarget.Android,false);
+            PlayerSettings.SetGraphicsAPIs(BuildTarget.Android,new[]{UnityEngine.Rendering.GraphicsDeviceType.Vulkan});
             XRGeneralSettingsPerBuildTarget store;
             if (!EditorBuildSettings.TryGetConfigObject(XRGeneralSettings.k_SettingsKey, out store)) store = null;
             if(store==null)
