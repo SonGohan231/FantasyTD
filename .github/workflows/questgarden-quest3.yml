@@ -1,0 +1,47 @@
+name: Quest Garden VR Android
+on:
+  push:
+    branches: ["quest3/pvz-garden-vr-build"]
+    paths:
+      - "QuestGardenVR/**"
+      - ".github/workflows/questgarden-quest3.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  android-vr:
+    runs-on: [self-hosted, dyrygent-unity]
+    timeout-minutes: 75
+    steps:
+      - uses: actions/checkout@v4
+      - name: Discover Unity 6.0.26f1
+        id: editor
+        shell: bash
+        run: |
+          UNITY_BIN="$(find "$HOME" /opt -type f -path "*/6000.0.26f1/Editor/Unity" -perm -111 2>/dev/null | head -n 1)"
+          test -n "$UNITY_BIN" || { echo "::error::Unity 6000.0.26f1 not installed on self-hosted runner"; exit 1; }
+          echo "unity_bin=$UNITY_BIN" >> "$GITHUB_OUTPUT"
+      - name: Compile immersive Android APK
+        shell: bash
+        run: |
+          mkdir -p QuestGardenVR/Logs
+          "${{ steps.editor.outputs.unity_bin }}" -batchmode -nographics -quit \
+            -projectPath "$GITHUB_WORKSPACE/QuestGardenVR" \
+            -buildTarget Android \
+            -executeMethod QuestGardenVR.QuestBuilder.Build \
+            -logFile "$GITHUB_WORKSPACE/QuestGardenVR/Logs/build.log"
+      - name: Validate APK artifact
+        shell: bash
+        run: |
+          test -s QuestGardenVR/Builds/QuestGardenVR.apk
+          unzip -t QuestGardenVR/Builds/QuestGardenVR.apk | tail -1
+          sha256sum QuestGardenVR/Builds/QuestGardenVR.apk > QuestGardenVR/Builds/SHA256SUMS.txt
+      - name: Upload APK and logs
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: questgarden-quest3-prototype-${{ github.run_id }}
+          path: |
+            QuestGardenVR/Builds/**
+            QuestGardenVR/Logs/**
+          if-no-files-found: warn
