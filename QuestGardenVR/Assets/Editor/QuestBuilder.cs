@@ -30,7 +30,8 @@ namespace QuestGardenVR
             PlayerSettings.Android.targetArchitectures=AndroidArchitecture.ARM64;
             PlayerSettings.Android.minSdkVersion=AndroidSdkVersions.AndroidApiLevel29;
             PlayerSettings.defaultInterfaceOrientation=UIOrientation.LandscapeLeft;
-            var store=XRGeneralSettingsPerBuildTarget.Instance;
+            XRGeneralSettingsPerBuildTarget store;
+            if (!EditorBuildSettings.TryGetConfigObject(XRGeneralSettings.k_SettingsKey, out store)) store = null;
             if(store==null)
             {
                 Directory.CreateDirectory("Assets/XR");
