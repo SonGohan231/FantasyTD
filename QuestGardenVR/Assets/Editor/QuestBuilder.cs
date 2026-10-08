@@ -6,6 +6,7 @@ using UnityEditor.Build;
 using UnityEditor.SceneManagement;
 using UnityEditor.XR.Management;
 using UnityEditor.XR.Management.Metadata;
+using UnityEditor.XR.OpenXR.Features;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.XR.Management;
@@ -51,6 +52,7 @@ namespace QuestGardenVR
             foreach(var l in xr.Manager.activeLoaders)if(l is OpenXRLoader)loader=true;
             if(!loader)throw new Exception("Android OpenXRLoader not installed; refuse non-VR APK");
             xr.InitManagerOnStart=true;
+            FeatureHelpers.RefreshFeatures(BuildTargetGroup.Android);
             var openxr=OpenXRSettings.GetSettingsForBuildTargetGroup(BuildTargetGroup.Android);
             if(openxr==null)throw new Exception("Android OpenXR config missing");
             bool touch=false;
@@ -59,7 +61,7 @@ namespace QuestGardenVR
                 if(feature.GetType().Name=="OculusTouchControllerProfile")
                 {feature.enabled=true;touch=true;EditorUtility.SetDirty(feature);}
             }
-            if(!touch)throw new Exception("OculusTouchControllerProfile unavailable");
+            if(!touch)throw new Exception("OculusTouchControllerProfile unavailable after FeatureHelpers.RefreshFeatures(Android). Installed: "+string.Join(", ", System.Array.ConvertAll(openxr.GetFeatures(), f => f.GetType().Name)));
             EditorUtility.SetDirty(store);EditorUtility.SetDirty(xr);EditorUtility.SetDirty(xr.Manager);EditorUtility.SetDirty(openxr);
             AssetDatabase.SaveAssets();
             Directory.CreateDirectory("Builds");
