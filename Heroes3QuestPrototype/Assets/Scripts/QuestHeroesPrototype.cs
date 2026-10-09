@@ -231,25 +231,10 @@ namespace Heroes3QuestPrototype
             else UpdateStatus("Exploring. Reach the red patrol for a sample tactical battle.");
         }
 
-        private int GetTraversableDistance(Vector2Int from,Vector2Int to)
+        private int GetTraversableDistance(Vector2Int from, Vector2Int to)
         {
-            var seen = new HashSet<Vector2Int>{from};
-            var queue = new Queue<Vector2Int>();
-            var depth = new Dictionary<Vector2Int,int>{{from,0}};
-            queue.Enqueue(from);
-            while(queue.Count>0)
-            {
-                var current=queue.Dequeue();
-                if(current==to) return depth[current];
-                foreach(var delta in AxialNeighbors)
-                {
-                    var next=current+delta;
-                    if(seen.Contains(next) || !tiles.TryGetValue(next,out var tile) || tile.Blocked || next==enemyCoord)
-                        continue;
-                    seen.Add(next);depth[next]=depth[current]+1;queue.Enqueue(next);
-                }
-            }
-            return -1;
+            return HexNavigation.ShortestPathLength(from, to, next =>
+                tiles.TryGetValue(next, out var tile) && !tile.Blocked && next != enemyCoord);
         }
 
         private static int HexDistance(Vector2Int a, Vector2Int b)
