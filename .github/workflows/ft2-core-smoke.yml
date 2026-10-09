@@ -27,15 +27,16 @@ jobs:
     runs-on: [self-hosted, dyrygent-unity]
     timeout-minutes: 10
     env:
-      # GitHub self-hosted runner is unprivileged; never write into /usr/share/dotnet.
-      DOTNET_INSTALL_DIR: ${{ runner.temp }}/ft2-dotnet
-      DOTNET_ROOT: ${{ runner.temp }}/ft2-dotnet
       DOTNET_CLI_TELEMETRY_OPTOUT: '1'
     steps:
       - uses: actions/checkout@v4
-      - name: Create writable .NET SDK directory
+      - name: Configure writable .NET SDK directory
         shell: bash
-        run: mkdir -p "$DOTNET_INSTALL_DIR"
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/ft2-dotnet"
+          echo "DOTNET_INSTALL_DIR=$RUNNER_TEMP/ft2-dotnet" >> "$GITHUB_ENV"
+          echo "DOTNET_ROOT=$RUNNER_TEMP/ft2-dotnet" >> "$GITHUB_ENV"
       - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '8.0.x'
