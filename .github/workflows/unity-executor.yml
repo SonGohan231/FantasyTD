@@ -18,11 +18,13 @@ on:
           - boss-end-states
           - mobile-layout
           - android-build
+          - map01-visual
   push:
     branches:
       - main
       - 'codex/**'
       - 'dyrygent/**'
+      - 'feat/**'
     paths:
       - 'UnityProject/**'
       - '.dyrygent/unity-request.json'
@@ -47,7 +49,9 @@ env:
 jobs:
   prepare:
     name: Resolve executor mode
-    runs-on: ubuntu-latest
+    # Private-repo hosted runner allocation can fail before any step starts.
+    # Use the same registered local Unity runner for the lightweight prepare job.
+    runs-on: [self-hosted, dyrygent-unity]
     outputs:
       mode: ${{ steps.resolve.outputs.mode }}
     steps:
@@ -62,10 +66,10 @@ jobs:
           MODE="baseline"
           if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
             MODE="${{ inputs.mode }}"
-          elif [[ "${{ github.event_name }}" == "push" ]] && git diff --name-only HEAD^ HEAD 2>/dev/null | grep -qx '.dyrygent/unity-request.json'; then
+          elif [[ "${{ github.event_name }}" == "pull_request" ]] || ([[ "${{ github.event_name }}" == "push" ]] && git diff --name-only HEAD^ HEAD 2>/dev/null | grep -qx '.dyrygent/unity-request.json'); then
             REQUESTED="$(jq -r '.mode // "baseline"' .dyrygent/unity-request.json)"
             case "$REQUESTED" in
-              baseline|tests|map-a-integrity|mobile-planting|plant-behaviors|enemy-wave-flow|boss-end-states|mobile-layout|android-build) MODE="$REQUESTED" ;;
+              baseline|tests|map-a-integrity|mobile-planting|plant-behaviors|enemy-wave-flow|boss-end-states|mobile-layout|android-build|map01-visual) MODE="$REQUESTED" ;;
               *) echo "Invalid Unity Executor mode: $REQUESTED"; exit 1 ;;
             esac
           fi
@@ -391,6 +395,62 @@ jobs:
             UnityProject/Logs/**
 
 
+  map01_visual:
+    name: MAP-01 real Unity screenshots and GIF
+    needs: prepare
+    if: needs.prepare.outputs.mode == 'map01-visual'
+    runs-on: [self-hosted, dyrygent-unity]
+    timeout-minutes: 45
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          lfs: true
+      - name: Locate Unity Editor
+        id: unity
+        shell: bash
+        run: |
+          set -euo pipefail
+          UNITY_BIN="$(find "$HOME" /opt -type f -path "*/6000.0.26f1/Editor/Unity" -perm -111 2>/dev/null | head -n 1)"
+          test -n "$UNITY_BIN"
+          echo "bin=$UNITY_BIN" >> "$GITHUB_OUTPUT"
+      - name: Capture real gameplay with graphics-enabled Unity Play Mode
+        shell: bash
+        run: |
+          set -euo pipefail
+          command -v xvfb-run
+          mkdir -p UnityProject/Logs
+          xvfb-run -a -s "-screen 0 2560x1440x24" "${{ steps.unity.outputs.bin }}" \
+            -batchmode \
+            -projectPath "$GITHUB_WORKSPACE/UnityProject" \
+            -executeMethod FantasyTD.CI.Map01VisualEvidence.Start \
+            -logFile "$GITHUB_WORKSPACE/UnityProject/Logs/unity-map01-visual.log"
+          test -s UnityProject/Artifacts/UnityExecutor/Map01Visual/map01-gameplay-045.png
+          test -s UnityProject/Artifacts/UnityExecutor/Map01Visual/map01-gameplay-090.png
+          test -s UnityProject/Artifacts/UnityExecutor/Map01Visual/map01-gameplay-135.png
+      - name: Encode actual Unity screenshots as GIF
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd UnityProject/Artifacts/UnityExecutor/Map01Visual
+          if command -v ffmpeg >/dev/null 2>&1; then
+            ffmpeg -y -v warning -framerate 2 -pattern_type glob -i "map01-gameplay-*.png" \
+              -vf "fps=2,scale=960:-1:flags=lanczos" -loop 0 map01-gameplay.gif
+          elif python3 -c "import PIL.Image" >/dev/null 2>&1; then
+            python3 -c 'from PIL import Image; import glob; a=[Image.open(x).convert("RGB") for x in sorted(glob.glob("map01-gameplay-*.png"))]; a[0].save("map01-gameplay.gif",save_all=True,append_images=a[1:],duration=500,loop=0)'
+          else
+            echo "::warning::No ffmpeg/Pillow on runner; raw Unity PNG evidence uploaded."
+          fi
+      - name: Upload actual Unity visual evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: fantasytd-map01-real-gameplay-${{ github.run_id }}
+          if-no-files-found: warn
+          path: |
+            UnityProject/Artifacts/UnityExecutor/Map01Visual/**
+            UnityProject/Logs/unity-map01-visual.log
   mobile_layout:
     name: T0007 Android UI and device layout Play Mode
     needs: prepare

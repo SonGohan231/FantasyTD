@@ -9,6 +9,7 @@ using FantasyTD.MapA;
 using FantasyTD.MapA.Editor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Tilemaps;
 
 namespace FantasyTD.CI
 {
@@ -90,6 +91,7 @@ namespace FantasyTD.CI
                 ValidateRouteEnds(result);
                 ValidatePlantingSpots(result);
                 ValidateGridAbsence(result);
+                ValidatePlayableTilemap(result);
                 ValidateCameraFraming(result);
 
                 result.Fact("runtimeGeometrySource", "MapABootstrap.BuildCamera+BuildMap+BuildPlantingSpots");
@@ -267,8 +269,55 @@ namespace FantasyTD.CI
 
             result.Fact("gridComponentCount", gridComponents);
             result.Fact("namedVisibleGridRendererCount", namedVisibleGridRenderers);
-            result.Check("noGameplayGridVisible", gridComponents == 0 && namedVisibleGridRenderers == 0,
-                "A gameplay Grid/GridLayout or visible Grid-named renderer exists in MAP-A.");
+            result.Check("noGameplayGridVisible", gridComponents == 1 && namedVisibleGridRenderers == 0,
+                "MAP-A needs one hidden logical tilemap Grid and no visible grid-line renderer.");
+        }
+
+
+        private static void ValidatePlayableTilemap(Result result)
+        {
+            string[] layerNames =
+            {
+                "Ground_Tilemap", "PathEdge_Tilemap", "Foliage_Tilemap", "SolidObstacles_Tilemap"
+            };
+            int valid = 0;
+            for (int i = 0; i < layerNames.Length; i++)
+            {
+                GameObject go = GameObject.Find(layerNames[i]);
+                Tilemap map = go != null ? go.GetComponent<Tilemap>() : null;
+                if (map != null)
+                    valid++;
+            }
+            result.Fact("tilemapLayerCount", valid);
+            result.Check("fourTilemapLayers", valid == layerNames.Length,
+                "Expected ground, path edge, foliage and solid obstacle Tilemaps.");
+
+            GameObject groundObject = GameObject.Find("Ground_Tilemap");
+            Tilemap ground = groundObject != null ? groundObject.GetComponent<Tilemap>() : null;
+            int populated = 0;
+            if (ground != null)
+                for (int y = 0; y < MapATilemapLayers.HeightCells; y++)
+                    for (int x = 0; x < MapATilemapLayers.WidthCells; x++)
+                        if (ground.HasTile(new Vector3Int(x,y,0)))
+                            populated++;
+            result.Fact("groundTileCount", populated);
+            result.Check("groundTilesCoverMap", populated == 336,
+                "Expected 24x14 populated ground tiles.");
+
+            GameObject solidsObject = GameObject.Find("SolidObstacles_Tilemap");
+            TilemapCollider2D collision = solidsObject != null
+                ? solidsObject.GetComponent<TilemapCollider2D>() : null;
+            result.Check("solidObstacleCollisionPresent", collision != null && collision.enabled,
+                "The obstacles require an active TilemapCollider2D.");
+
+            string failure;
+            bool navigable = MapATilemapLayers.ValidateNavigation(out failure);
+            result.Fact("navigationFailure", failure);
+            result.Check("enemyRouteAndBuildPositionsClear", navigable,
+                "Route/build-position clearance failed: " + failure);
+
+            GameObject sessionObject = GameObject.Find("GameSession");
+            result.Fact("gameSessionExistsOutsidePlayMode", sessionObject != null);
         }
 
         private static void ValidateCameraFraming(Result result)

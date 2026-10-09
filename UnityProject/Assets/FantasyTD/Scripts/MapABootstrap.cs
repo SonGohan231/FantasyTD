@@ -53,6 +53,9 @@ namespace FantasyTD.MapA
             CreateRoad("Road",1.03f,new Color(0.73f,0.52f,0.26f),-19);
             CreateRoad("RoadDust",0.76f,new Color(0.82f,0.63f,0.34f),-18);
 
+            // Structured render/collision layers, shared with navigation checks.
+            MapATilemapLayers.Build();
+
             // fantasy scenery
             Pond(new Vector2(18.5f,10.5f),1.5f);
             RockCluster(new Vector2(2.2f,6.5f),1.0f);

@@ -25,7 +25,7 @@ namespace FantasyTD.CI
         private const float TimeoutSeconds = 600f;
         private const float ValidationTimeScale = 16f;
         private const float ValidationMaximumDeltaTime = 0.20f;
-        private const float SpeedSampleGameSeconds = 0.50f;
+        private const float SpeedSampleGameSeconds = 2.50f; // Reduce single-frame bias in 16x time-scale CI sampling.
 
         private static readonly BindingFlags PrivateInstance = BindingFlags.Instance | BindingFlags.NonPublic;
         private static readonly List<string> Facts = new List<string>();

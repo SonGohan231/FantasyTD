@@ -1,5 +1,5 @@
 {
-  "requestId": "agentos-b-retry-54819699-a14f-4208-a328-0ad2603e4212",
-  "mode": "android-build",
-  "note": "Agent OS execution-dispatcher verification for existing FantasyTD mission task B. Real GitHub Actions run ID is required before Agent OS marks the run as running."
+  "requestId": "map01-boss-endstates-20261009-0004",
+  "mode": "boss-end-states",
+  "note": "Verify Unity Play Mode wave 6, boss, victory, defeat, restart on latest MAP01 Tilemaps."
 }
