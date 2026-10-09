@@ -20,7 +20,7 @@ namespace Heroes3QuestPrototype.Editor
         public static void ConfigureForQuest()
         {
             const BuildTargetGroup group = BuildTargetGroup.Android;
-            var general = XRGeneralSettingsPerBuildTarget.SettingsForBuildTarget(BuildTarget.Android);
+            var general = XRGeneralSettingsPerBuildTarget.SettingsForBuildTarget(BuildTargetGroup.Android);
             if (general == null || general.AssignedSettings == null)
                 throw new InvalidOperationException(
                     "XR Management Android settings missing. Open Edit > Project Settings > XR Plug-in Management and configure Android first.");
