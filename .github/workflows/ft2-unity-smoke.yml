@@ -48,6 +48,18 @@ jobs:
             -projectPath "$GITHUB_WORKSPACE/UnityProject" \
             -executeMethod FantasyTD.V2.Editor.Forest01Smoke.RunSmoke \
             -logFile "$GITHUB_WORKSPACE/UnityProject/Logs/ft2-forest01-smoke.log"
+      - name: Require explicit scene PASS marker
+        shell: bash
+        run: |
+          set -euo pipefail
+          LOG="UnityProject/Logs/ft2-forest01-smoke.log"
+          test -s "$LOG"
+          if ! grep -Fq "FantasyTD FT2-003 Forest01: PASS" "$LOG"; then
+            echo "::error::Unity process returned, but Forest01 PASS marker is absent."
+            tail -n 160 "$LOG"
+            exit 1
+          fi
+          echo "Verified real Unity Editor Forest01 PASS marker."
       - name: Archive actual Editor log
         if: always()
         uses: actions/upload-artifact@v4
