@@ -17,6 +17,7 @@ namespace FantasyTD.CI
     {
         private const string Active = "FantasyTD.Map01.VisualEvidence.Active";
         private const string Stage = "FantasyTD.Map01.VisualEvidence.Stage";
+        private const string FailedKey = "FantasyTD.Map01.VisualEvidence.Failed";
         private const string Output = "Artifacts/UnityExecutor/Map01Visual";
         private const int CaptureWidth = 1280;
         private const int CaptureHeight = 720;
@@ -36,6 +37,7 @@ namespace FantasyTD.CI
             Directory.CreateDirectory(Output);
             SessionState.SetBool(Active, true);
             SessionState.SetString(Stage, "play");
+            SessionState.SetBool(FailedKey, false);
             _frames = 0;
             _count = 0;
             _started = false;
@@ -61,7 +63,7 @@ namespace FantasyTD.CI
                 if (!EditorApplication.isPlaying && !EditorApplication.isPlayingOrWillChangePlaymode)
                 {
                     SessionState.SetBool(Active, false);
-                    EditorApplication.Exit(_failed ? 1 : 0);
+                    EditorApplication.Exit(SessionState.GetBool(FailedKey, true) ? 1 : 0);
                 }
                 return;
             }
@@ -142,6 +144,7 @@ namespace FantasyTD.CI
         {
             if (SessionState.GetString(Stage, "") == "exit") return;
             _failed = !successful;
+            SessionState.SetBool(FailedKey, !successful);
             string report =
                 "MAP01 REAL UNITY RENDER EVIDENCE\n" +
                 "timestampUtc=" + DateTime.UtcNow.ToString("O") + "\n" +
@@ -157,7 +160,7 @@ namespace FantasyTD.CI
             else
             {
                 SessionState.SetBool(Active, false);
-                EditorApplication.Exit(_failed ? 1 : 0);
+                EditorApplication.Exit(SessionState.GetBool(FailedKey, true) ? 1 : 0);
             }
         }
     }
