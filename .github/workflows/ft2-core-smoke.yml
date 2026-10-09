@@ -26,10 +26,20 @@ jobs:
     name: Compile and run V2 core smoke (.NET 8)
     runs-on: [self-hosted, dyrygent-unity]
     timeout-minutes: 10
+    env:
+      # GitHub self-hosted runner is unprivileged; never write into /usr/share/dotnet.
+      DOTNET_INSTALL_DIR: ${{ runner.temp }}/ft2-dotnet
+      DOTNET_ROOT: ${{ runner.temp }}/ft2-dotnet
+      DOTNET_CLI_TELEMETRY_OPTOUT: '1'
     steps:
       - uses: actions/checkout@v4
+      - name: Create writable .NET SDK directory
+        shell: bash
+        run: mkdir -p "$DOTNET_INSTALL_DIR"
       - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '8.0.x'
+      - name: Check exact .NET SDK
+        run: dotnet --info
       - name: Compile and replay first forest wave
         run: dotnet run --project tests/V2CoreSmoke/V2CoreSmoke.csproj --configuration Release
