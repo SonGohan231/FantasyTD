@@ -1,0 +1,57 @@
+name: FT2 Unity scene smoke
+
+on:
+  push:
+    branches:
+      - 'codex/**'
+      - main
+    paths:
+      - 'UnityProject/Assets/FantasyTD/V2/**'
+      - '.github/workflows/ft2-unity-smoke.yml'
+  pull_request:
+    paths:
+      - 'UnityProject/Assets/FantasyTD/V2/**'
+      - '.github/workflows/ft2-unity-smoke.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  forest01-scene:
+    name: Unity 6 Forest01 scene + first-wave smoke
+    runs-on: [self-hosted, dyrygent-unity]
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          lfs: true
+      - name: Locate real Unity 6 installation
+        id: unity
+        shell: bash
+        run: |
+          set -euo pipefail
+          UNITY_BIN="$(find "$HOME" /opt -type f -path '*/6000.0.26f1/Editor/Unity' -perm -111 2>/dev/null | head -n 1 || true)"
+          if [[ -z "$UNITY_BIN" ]]; then
+            echo "::error::Unity Editor 6000.0.26f1 is not present on dyrygent-unity."
+            exit 1
+          fi
+          echo "bin=$UNITY_BIN" >> "$GITHUB_OUTPUT"
+          "$UNITY_BIN" -version
+      - name: Import project and execute Forest01 smoke
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p UnityProject/Logs
+          "${{ steps.unity.outputs.bin }}" -batchmode -nographics -quit \
+            -projectPath "$GITHUB_WORKSPACE/UnityProject" \
+            -executeMethod FantasyTD.V2.Editor.Forest01Smoke.RunSmoke \
+            -logFile "$GITHUB_WORKSPACE/UnityProject/Logs/ft2-forest01-smoke.log"
+      - name: Archive actual Editor log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ft2-forest01-smoke-${{ github.run_id }}
+          if-no-files-found: warn
+          path: UnityProject/Logs/ft2-forest01-smoke.log
