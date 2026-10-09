@@ -59,3 +59,65 @@ jobs:
           if-no-files-found: warn
           path: |
             Heroes3QuestPrototype/Logs/**
+
+  android-apk:
+    name: Unity Quest Android APK candidate
+    needs: unity-source-qa
+    runs-on: [self-hosted, dyrygent-unity]
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - name: Locate Unity
+        id: unity
+        shell: bash
+        run: |
+          set -euo pipefail
+          UNITY_BIN="$(find "$HOME" /opt -type f -path "*/6000.0.26f1/Editor/Unity" -perm -111 2>/dev/null | head -n 1)"
+          test -n "$UNITY_BIN"
+          echo "path=$UNITY_BIN" >> "$GITHUB_OUTPUT"
+      - name: Configure Android ARM64 IL2CPP
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p Heroes3QuestPrototype/Logs
+          "${{ steps.unity.outputs.path }}" -batchmode -nographics -quit \
+            -buildTarget Android -projectPath "$GITHUB_WORKSPACE/Heroes3QuestPrototype" \
+            -executeMethod Heroes3QuestPrototype.Editor.QuestProjectSetup.ConfigurePlayer \
+            -logFile "$GITHUB_WORKSPACE/Heroes3QuestPrototype/Logs/android-setup.log"
+      - name: Enable Quest OpenXR and Oculus Touch
+        shell: bash
+        run: |
+          set -euo pipefail
+          "${{ steps.unity.outputs.path }}" -batchmode -nographics -quit \
+            -buildTarget Android -projectPath "$GITHUB_WORKSPACE/Heroes3QuestPrototype" \
+            -executeMethod Heroes3QuestPrototype.Editor.QuestOpenXRSetup.ConfigureForQuest \
+            -logFile "$GITHUB_WORKSPACE/Heroes3QuestPrototype/Logs/openxr-setup.log"
+          grep -q 'QUEST_OPENXR_CONFIGURED' Heroes3QuestPrototype/Logs/openxr-setup.log
+      - name: Create scene and build Android APK
+        shell: bash
+        run: |
+          set -euo pipefail
+          "${{ steps.unity.outputs.path }}" -batchmode -nographics -quit \
+            -buildTarget Android -projectPath "$GITHUB_WORKSPACE/Heroes3QuestPrototype" \
+            -executeMethod Heroes3QuestPrototype.Editor.QuestProjectSetup.CreatePrototypeScene \
+            -logFile "$GITHUB_WORKSPACE/Heroes3QuestPrototype/Logs/android-scene.log"
+          "${{ steps.unity.outputs.path }}" -batchmode -nographics -quit \
+            -buildTarget Android -projectPath "$GITHUB_WORKSPACE/Heroes3QuestPrototype" \
+            -executeMethod Heroes3QuestPrototype.Editor.QuestProjectSetup.BuildQuestApk \
+            -logFile "$GITHUB_WORKSPACE/Heroes3QuestPrototype/Logs/android-build.log"
+          test -s Heroes3QuestPrototype/Builds/Heroes3Quest-Prototype.apk
+      - name: Preserve Android build logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: heroes3quest-android-logs-${{ github.run_id }}
+          if-no-files-found: warn
+          path: |
+            Heroes3QuestPrototype/Logs/**
+      - name: Upload installable APK (if built)
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: heroes3quest-prototype-apk-${{ github.run_id }}
+          if-no-files-found: error
+          path: Heroes3QuestPrototype/Builds/Heroes3Quest-Prototype.apk
