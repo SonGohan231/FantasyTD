@@ -30,6 +30,7 @@ namespace Heroes3QuestPrototype.Editor
             PlayerSettings.companyName = "HeroesQuestPrototype";
             PlayerSettings.productName = "Heroes3 Quest 2.5D Technical Prototype";
             PlayerSettings.SetApplicationIdentifier(NamedBuildTarget.Android, "org.somaskan.heroes3quest.prototype");
+            PlayerSettings.SetScriptingBackend(NamedBuildTarget.Android, ScriptingImplementation.IL2CPP);
             PlayerSettings.Android.targetArchitectures = AndroidArchitecture.ARM64;
             PlayerSettings.Android.minSdkVersion = AndroidSdkVersions.AndroidApiLevel29;
             PlayerSettings.defaultInterfaceOrientation = UIOrientation.LandscapeLeft;
