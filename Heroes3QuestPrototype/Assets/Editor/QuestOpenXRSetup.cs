@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEditor;
 using UnityEditor.XR.Management;
 using UnityEditor.XR.Management.Metadata;
+using UnityEditor.XR.OpenXR.Features;
 using UnityEngine;
 using UnityEngine.XR.OpenXR;
 using UnityEngine.XR.OpenXR.Features;
@@ -50,6 +51,8 @@ namespace Heroes3QuestPrototype.Editor
                 throw new InvalidOperationException(
                     "OpenXRLoader assignment failed. Verify the com.unity.xr.openxr package in the manifest.");
 
+            // Newly created XR loader settings may have an empty feature inventory in batch mode.
+            FeatureHelpers.RefreshFeatures(group);
             var openXR = OpenXRSettings.GetSettingsForBuildTargetGroup(group);
             if (openXR == null)
                 throw new InvalidOperationException(
@@ -60,6 +63,7 @@ namespace Heroes3QuestPrototype.Editor
             foreach(var feature in openXR.GetFeatures<OpenXRFeature>())
             {
                 var name=feature.GetType().Name;
+                Debug.Log("QUEST_OPENXR_FEATURE: " + name);
                 if (name == "MetaQuestFeature" || name == "MetaQuestSupport")
                 {
                     feature.enabled = true;
