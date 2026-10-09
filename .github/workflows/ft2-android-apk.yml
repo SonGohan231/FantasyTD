@@ -1,0 +1,60 @@
+name: FT2 Forest01 Android debug APK
+
+on:
+  pull_request:
+    paths:
+      - 'UnityProject/Assets/FantasyTD/V2/**'
+      - '.github/workflows/ft2-android-apk.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  forest01-apk:
+    name: Build real Forest01 Android APK with Unity 6
+    runs-on: [self-hosted, dyrygent-unity]
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          lfs: true
+      - name: Locate Unity 6000.0.26f1
+        id: unity
+        shell: bash
+        run: |
+          set -euo pipefail
+          UNITY_BIN="$(find "$HOME" /opt -type f -path '*/6000.0.26f1/Editor/Unity' -perm -111 2>/dev/null | head -n 1 || true)"
+          test -x "$UNITY_BIN"
+          "$UNITY_BIN" -version
+          echo "bin=$UNITY_BIN" >> "$GITHUB_OUTPUT"
+      - name: Build Forest01 on Android target
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p UnityProject/Logs
+          "${{ steps.unity.outputs.bin }}" -batchmode -nographics -quit -buildTarget Android \
+            -projectPath "$GITHUB_WORKSPACE/UnityProject" \
+            -executeMethod FantasyTD.V2.Editor.Forest01AndroidBuild.BuildApk \
+            -logFile "$GITHUB_WORKSPACE/UnityProject/Logs/ft2-forest01-android-build.log"
+      - name: Verify actual APK bytes and build marker
+        shell: bash
+        run: |
+          set -euo pipefail
+          APK="UnityProject/Builds/Android/FantasyTD_FT2_Forest01_Debug.apk"
+          LOG="UnityProject/Logs/ft2-forest01-android-build.log"
+          test -s "$APK"
+          test -s "$LOG"
+          grep -Fq "FT2 Forest01 DEBUG APK built:" "$LOG"
+          sha256sum "$APK"
+          ls -lh "$APK"
+      - name: Archive APK and build logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: FantasyTD-FT2-Forest01-Debug-APK-${{ github.run_id }}
+          if-no-files-found: warn
+          path: |
+            UnityProject/Builds/Android/FantasyTD_FT2_Forest01_Debug.apk
+            UnityProject/Logs/ft2-forest01-android-build.log

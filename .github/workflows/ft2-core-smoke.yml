@@ -1,0 +1,46 @@
+name: FantasyTD V2 core smoke
+
+on:
+  push:
+    branches:
+      - 'codex/**'
+      - 'main'
+    paths:
+      - 'UnityProject/Assets/FantasyTD/V2/Core/**'
+      - 'UnityProject/Assets/FantasyTD/V2/Content/**'
+      - 'tests/V2CoreSmoke/**'
+      - '.github/workflows/ft2-core-smoke.yml'
+  pull_request:
+    paths:
+      - 'UnityProject/Assets/FantasyTD/V2/Core/**'
+      - 'UnityProject/Assets/FantasyTD/V2/Content/**'
+      - 'tests/V2CoreSmoke/**'
+      - '.github/workflows/ft2-core-smoke.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  core-smoke:
+    name: Compile and run V2 core smoke (.NET 8)
+    runs-on: [self-hosted, dyrygent-unity]
+    timeout-minutes: 10
+    env:
+      DOTNET_CLI_TELEMETRY_OPTOUT: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - name: Configure writable .NET SDK directory
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/ft2-dotnet"
+          echo "DOTNET_INSTALL_DIR=$RUNNER_TEMP/ft2-dotnet" >> "$GITHUB_ENV"
+          echo "DOTNET_ROOT=$RUNNER_TEMP/ft2-dotnet" >> "$GITHUB_ENV"
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+      - name: Check exact .NET SDK
+        run: dotnet --info
+      - name: Compile and replay first forest wave
+        run: dotnet run --project tests/V2CoreSmoke/V2CoreSmoke.csproj --configuration Release
