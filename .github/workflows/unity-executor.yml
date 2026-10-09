@@ -48,7 +48,9 @@ env:
 jobs:
   prepare:
     name: Resolve executor mode
-    runs-on: ubuntu-latest
+    # Private-repo hosted runner allocation can fail before any step starts.
+    # Use the same registered local Unity runner for the lightweight prepare job.
+    runs-on: [self-hosted, dyrygent-unity]
     outputs:
       mode: ${{ steps.resolve.outputs.mode }}
     steps:
