@@ -1,0 +1,35 @@
+name: FantasyTD V2 core smoke
+
+on:
+  push:
+    branches:
+      - 'codex/**'
+      - 'main'
+    paths:
+      - 'UnityProject/Assets/FantasyTD/V2/Core/**'
+      - 'UnityProject/Assets/FantasyTD/V2/Content/**'
+      - 'tests/V2CoreSmoke/**'
+      - '.github/workflows/ft2-core-smoke.yml'
+  pull_request:
+    paths:
+      - 'UnityProject/Assets/FantasyTD/V2/Core/**'
+      - 'UnityProject/Assets/FantasyTD/V2/Content/**'
+      - 'tests/V2CoreSmoke/**'
+      - '.github/workflows/ft2-core-smoke.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  core-smoke:
+    name: Compile and run V2 core smoke (.NET 8)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+      - name: Compile and replay first forest wave
+        run: dotnet run --project tests/V2CoreSmoke/V2CoreSmoke.csproj --configuration Release
