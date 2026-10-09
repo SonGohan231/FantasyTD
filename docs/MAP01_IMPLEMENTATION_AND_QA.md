@@ -41,11 +41,11 @@ These are responsibilities; Agent OS actually routed only the available qualifie
 |---|---|---|
 | Branch and source commits | GitHub commit SHA and changed C# diff | PRESENT |
 | Draft PR | live GitHub PR with actual source diff | PRESENT: #20 |
-| Unity compile | successful Unity Executor baseline job on this head | PENDING |
-| Layer integrity | successful map-a-integrity on this head, machine-readable report | PENDING |
-| Gameplay | genuine PlayMode waves 1–3+, tower attack, 2+ enemy types, victory/defeat/restart | PENDING |
+| Unity compile | Unity Executor baseline run 37889510605 | PASS on preceding source head; rerun if critical code changes |
+| Layer integrity | Unity MAP-A integrity run 37889816351 | PASS |
+| Gameplay | Unity PlayMode waves 1–5 run 37890751455; plant combat, victory/defeat separately | PARTIAL: WAVES 1–5 PASS, OTHER GATES PENDING |
 | Android | successful Android build on this head | PENDING |
-| Screenshots/GIF | PNG/GIF captured from real Unity Game View/runner; no mockups | PENDING |
+| Screenshots/GIF | Unity rendered 3 PNG frames in Play Mode, run 37891025944; GIF assembled from authentic frames, provided in conversation | 3 PNG PASS; GIF produced as separate ChatGPT attachment |
 | Physical device | device install/touch QA | OPTIONAL, PENDING |
 
 ## Known risks and limitations
@@ -54,3 +54,17 @@ These are responsibilities; Agent OS actually routed only the available qualifie
 - Real on-device screenshot/GIF may require a display-capable Unity runner rather than `-nographics` batchmode.
 - CI logs, artifacts, screenshots and GIF have not yet been verified on this branch. The first PR workflow invocation failed in its prepare job before Unity and requires investigation.
 - Leave this PR in DRAFT, do not merge or mark mission DONE while any mandatory gate is missing.
+
+## Verified workflow evidence on feature branch
+
+- Unity baseline/compile PASS — https://github.com/SonGohan231/FantasyTD/actions/runs/37889510605 — artifact `unity-executor-baseline-37889510605`.
+- Unity Tilemap/geometry/collision/route checks PASS — https://github.com/SonGohan231/FantasyTD/actions/runs/37889816351 — artifact `unity-executor-map-a-integrity-37889816351`.
+- Unity Play Mode wave flow first run FAILED on Wanderer measured speed 0.885 versus 0.8 ± 0.08 — https://github.com/SonGohan231/FantasyTD/actions/runs/37890091178. Five waves spawned and completed; test measurement window (0.5 game-seconds at 16x speed) was too short. Increased test sampling to 2.5 game-seconds, no gameplay balance changes.
+- Unity Play Mode enemy flow waves 1–5 PASS after fix — https://github.com/SonGohan231/FantasyTD/actions/runs/37890751455.
+- Real in-engine GPU frame captures PASS — https://github.com/SonGohan231/FantasyTD/actions/runs/37891025944 — artifact `fantasytd-map01-real-gameplay-37891025944`, 3 × actual 1280×720 PNG screenshots captured in Unity 6 Play Mode under Xvfb. The GIF is assembled from these three frames externally and made available as a ChatGPT download; continuous live-video evidence is not claimed.
+
+## Pending acceptance
+
+- Boss wave 6, win/lose/restart validation and Android APK build on final head.
+- Mobile/tower behavior regression on this branch; historical T0003/T0004 on older heads are not substitutes.
+- Final PR independent review; keep PR **DRAFT** and Agent OS mission not DONE unless all required evidence exists.
