@@ -4,6 +4,7 @@ using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEditor.Build;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace Heroes3QuestPrototype.Editor
 {
@@ -33,6 +34,10 @@ namespace Heroes3QuestPrototype.Editor
             PlayerSettings.SetScriptingBackend(NamedBuildTarget.Android, ScriptingImplementation.IL2CPP);
             PlayerSettings.Android.targetArchitectures = AndroidArchitecture.ARM64;
             PlayerSettings.Android.minSdkVersion = AndroidSdkVersions.AndroidApiLevel29;
+            // OpenXR project validation rejects Gamma color space on OpenGLES.
+            PlayerSettings.colorSpace = ColorSpace.Linear;
+            PlayerSettings.SetUseDefaultGraphicsAPIs(BuildTarget.Android, false);
+            PlayerSettings.SetGraphicsAPIs(BuildTarget.Android, new[] { GraphicsDeviceType.Vulkan });
             PlayerSettings.defaultInterfaceOrientation = UIOrientation.LandscapeLeft;
             EditorUserBuildSettings.buildAppBundle = false;
             Debug.Log("Configured Android ARM64 player. OPENXR AND META QUEST SUPPORT MUST BE ENABLED MANUALLY in XR Plug-in Management.");
