@@ -1,5 +1,5 @@
 {
-  "requestId": "map01-wave-smoke-20261009-0002",
-  "mode": "enemy-wave-flow",
-  "note": "Run real Unity Play Mode enemy movement and waves 1-5 checks on MAP-A with new layered Tilemap."
+  "requestId": "map01-visual-proof-20261009-0003",
+  "mode": "map01-visual",
+  "note": "Generate actual Unity GPU rendered screenshots/GIF with wave 1 enemies; upload evidence, not mockups."
 }
