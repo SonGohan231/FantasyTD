@@ -2,6 +2,7 @@
 using System.IO;
 using UnityEditor;
 using UnityEditor.SceneManagement;
+using UnityEditor.Build;
 using UnityEngine;
 
 namespace Heroes3QuestPrototype.Editor
