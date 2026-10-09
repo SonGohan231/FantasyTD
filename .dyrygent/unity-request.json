@@ -1,5 +1,5 @@
 {
-  "requestId": "map01-layer-integrity-20261009-0001",
-  "mode": "map-a-integrity",
-  "note": "Verify actual layered Tilemaps, collider and path in Unity 6 on feature branch; no pass without successful real job."
+  "requestId": "map01-wave-smoke-20261009-0002",
+  "mode": "enemy-wave-flow",
+  "note": "Run real Unity Play Mode enemy movement and waves 1-5 checks on MAP-A with new layered Tilemap."
 }
