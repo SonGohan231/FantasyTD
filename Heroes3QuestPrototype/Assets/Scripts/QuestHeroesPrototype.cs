@@ -59,6 +59,7 @@ namespace Heroes3QuestPrototype
             boardRoot.position = new Vector3(-.63f, .82f, -.08f);
             CreateTitle();
             BuildWorld();
+            CreateVCMIPortal();
         }
 
         private void CreateTitle()
@@ -73,6 +74,29 @@ namespace Heroes3QuestPrototype
             statusText.color = Color.white;
             label.transform.localScale = Vector3.one * .8f;
             statusText.text = "Heroes III Quest - XR prototype";
+        }
+
+        private void CreateVCMIPortal()
+        {
+            // This is an OS app handoff, not a game-state bridge.
+            var portal = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            portal.name = "OPEN REAL VCMI (Android application)";
+            portal.transform.SetParent(boardRoot, false);
+            portal.transform.localPosition = new Vector3(1.15f, .22f, -.35f);
+            portal.transform.localScale = new Vector3(.47f, .26f, .045f);
+            portal.GetComponent<Renderer>().material.color = new Color(.12f, .32f, .81f);
+            portal.AddComponent<VCMIPortalTarget>();
+            var caption = new GameObject("VCMI portal label").AddComponent<TextMesh>();
+            caption.transform.SetParent(portal.transform, false);
+            caption.transform.localPosition = new Vector3(0f, 0f, -1f);
+            caption.transform.localRotation = Quaternion.Euler(0f, 180f, 0f);
+            caption.transform.localScale = new Vector3(2.1f, 3.85f, 1f);
+            caption.anchor = TextAnchor.MiddleCenter;
+            caption.alignment = TextAlignment.Center;
+            caption.characterSize = .032f;
+            caption.fontSize = 32;
+            caption.color = Color.white;
+            caption.text = "OPEN REAL VCMI" + "\n" + "(2D Android panel)";
         }
 
         private void ClearBoard()
@@ -187,8 +211,14 @@ namespace Heroes3QuestPrototype
                 Ray targetRay = mouseClick ? head.ScreenPointToRay(Input.mousePosition) : pointer;
                 if (Physics.Raycast(targetRay, out var hit, 20f))
                 {
-                    var tile=hit.collider.GetComponent<HexTarget>();
-                    if(tile != null) SelectHex(tile.Coord);
+                    var portal = hit.collider.GetComponent<VCMIPortalTarget>();
+                    if (portal != null)
+                        UpdateStatus(VCMIAndroidLauncher.TryLaunch());
+                    else
+                    {
+                        var tile=hit.collider.GetComponent<HexTarget>();
+                        if(tile != null) SelectHex(tile.Coord);
+                    }
                 }
             }
             lastTrigger=trigger;lastMouse=mouseClick;
@@ -250,6 +280,8 @@ namespace Heroes3QuestPrototype
                 " | Gameplay is placeholder, NOT connected to VCMI.";
         }
     }
+
+    public sealed class VCMIPortalTarget : MonoBehaviour { }
 
     public sealed class HexTarget:MonoBehaviour
     {
