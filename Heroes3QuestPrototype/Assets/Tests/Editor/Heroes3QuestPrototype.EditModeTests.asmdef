@@ -1,0 +1,22 @@
+{
+  "name": "Heroes3QuestPrototype.EditModeTests",
+  "rootNamespace": "Heroes3QuestPrototype.Tests",
+  "references": [
+    "Heroes3QuestPrototype.Runtime"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": true,
+  "precompiledReferences": [
+    "nunit.framework.dll"
+  ],
+  "autoReferenced": false,
+  "versionDefines": [],
+  "noEngineReferences": false,
+  "optionalUnityReferences": [
+    "TestAssemblies"
+  ]
+}
