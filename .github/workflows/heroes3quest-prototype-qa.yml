@@ -1,0 +1,61 @@
+name: Heroes3Quest Prototype - Unity XR source QA
+
+on:
+  pull_request:
+    paths:
+      - 'Heroes3QuestPrototype/**'
+      - '.github/workflows/heroes3quest-prototype-qa.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: heroes3quest-qa-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  unity-source-qa:
+    runs-on: [self-hosted, dyrygent-unity]
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - name: Locate Unity 6000.0.26f1
+        id: unity
+        shell: bash
+        run: |
+          set -euo pipefail
+          UNITY_BIN="$(find "$HOME" /opt -type f -path "*/6000.0.26f1/Editor/Unity" -perm -111 2>/dev/null | head -n 1)"
+          if [[ -z "$UNITY_BIN" ]]; then
+            echo "BLOCKED: Unity Editor 6000.0.26f1 missing from runner" >&2
+            exit 1
+          fi
+          echo "path=$UNITY_BIN" >> "$GITHUB_OUTPUT"
+      - name: Import project and generate bootstrap scene
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p Heroes3QuestPrototype/Logs
+          "${{ steps.unity.outputs.path }}" -batchmode -nographics -quit \
+            -projectPath "$GITHUB_WORKSPACE/Heroes3QuestPrototype" \
+            -executeMethod Heroes3QuestPrototype.Editor.QuestProjectSetup.CreatePrototypeScene \
+            -logFile "$GITHUB_WORKSPACE/Heroes3QuestPrototype/Logs/create-scene.log"
+          grep -q 'Quest prototype scene created' Heroes3QuestPrototype/Logs/create-scene.log
+      - name: NUnit EditMode tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          "${{ steps.unity.outputs.path }}" -batchmode -nographics -runTests \
+            -projectPath "$GITHUB_WORKSPACE/Heroes3QuestPrototype" \
+            -testPlatform EditMode \
+            -testResults "$GITHUB_WORKSPACE/Heroes3QuestPrototype/Logs/editmode.xml" \
+            -logFile "$GITHUB_WORKSPACE/Heroes3QuestPrototype/Logs/editmode.log"
+          test -s Heroes3QuestPrototype/Logs/editmode.xml
+      - name: Upload source validation evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: heroes3quest-unity-validation-${{ github.run_id }}
+          if-no-files-found: warn
+          path: |
+            Heroes3QuestPrototype/Logs/**
