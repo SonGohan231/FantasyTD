@@ -1,0 +1,14 @@
+{
+  "name": "Heroes3QuestPrototype.Runtime",
+  "rootNamespace": "Heroes3QuestPrototype",
+  "references": [],
+  "includePlatforms": [],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": true,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": false
+}
