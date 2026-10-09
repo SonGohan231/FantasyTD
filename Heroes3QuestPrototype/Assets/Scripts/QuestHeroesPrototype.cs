@@ -143,6 +143,7 @@ namespace Heroes3QuestPrototype
             pawn.transform.localScale = new Vector3(.09f, .12f, .09f);
             pawn.transform.localPosition = HexCenter(coord) + Vector3.up * .20f;
             pawn.GetComponent<Renderer>().material.color = color;
+            pawn.GetComponent<Collider>().enabled = false; // pointer must reach the underlying selectable tile
             pieces.Add(pawn);
             return pawn.transform;
         }
