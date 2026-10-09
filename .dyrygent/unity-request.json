@@ -1,5 +1,5 @@
 {
-  "requestId": "agentos-b-retry-54819699-a14f-4208-a328-0ad2603e4212",
-  "mode": "android-build",
-  "note": "Agent OS execution-dispatcher verification for existing FantasyTD mission task B. Real GitHub Actions run ID is required before Agent OS marks the run as running."
+  "requestId": "map01-layer-integrity-20261009-0001",
+  "mode": "map-a-integrity",
+  "note": "Verify actual layered Tilemaps, collider and path in Unity 6 on feature branch; no pass without successful real job."
 }
