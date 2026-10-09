@@ -23,6 +23,7 @@ on:
       - main
       - 'codex/**'
       - 'dyrygent/**'
+      - 'feat/**'
     paths:
       - 'UnityProject/**'
       - '.dyrygent/unity-request.json'
