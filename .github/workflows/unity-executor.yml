@@ -65,7 +65,7 @@ jobs:
           MODE="baseline"
           if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
             MODE="${{ inputs.mode }}"
-          elif [[ "${{ github.event_name }}" == "push" ]] && git diff --name-only HEAD^ HEAD 2>/dev/null | grep -qx '.dyrygent/unity-request.json'; then
+          elif [[ "${{ github.event_name }}" == "pull_request" ]] || ([[ "${{ github.event_name }}" == "push" ]] && git diff --name-only HEAD^ HEAD 2>/dev/null | grep -qx '.dyrygent/unity-request.json'); then
             REQUESTED="$(jq -r '.mode // "baseline"' .dyrygent/unity-request.json)"
             case "$REQUESTED" in
               baseline|tests|map-a-integrity|mobile-planting|plant-behaviors|enemy-wave-flow|boss-end-states|mobile-layout|android-build) MODE="$REQUESTED" ;;
