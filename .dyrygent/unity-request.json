@@ -1,5 +1,5 @@
 {
-  "requestId": "agentos-b-retry-54819699-a14f-4208-a328-0ad2603e4212",
-  "mode": "android-build",
-  "note": "Agent OS execution-dispatcher verification for existing FantasyTD mission task B. Real GitHub Actions run ID is required before Agent OS marks the run as running."
+  "requestId": "ft2-002-baseline-20261009-2f8a0bfa-92d8-4bbb-b5bb-88ab2f454c31",
+  "mode": "baseline",
+  "note": "V2 FT2-002 independent Unity import and compile evidence for PR #19 on codex/ft2-002-v2-simulation-core; must not certify without workflow logs."
 }
