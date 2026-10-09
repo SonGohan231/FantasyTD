@@ -1,5 +1,5 @@
 {
-  "requestId": "map01-visual-proof-20261009-0003",
-  "mode": "map01-visual",
-  "note": "Generate actual Unity GPU rendered screenshots/GIF with wave 1 enemies; upload evidence, not mockups."
+  "requestId": "map01-boss-endstates-20261009-0004",
+  "mode": "boss-end-states",
+  "note": "Verify Unity Play Mode wave 6, boss, victory, defeat, restart on latest MAP01 Tilemaps."
 }
