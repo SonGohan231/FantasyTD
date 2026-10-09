@@ -163,7 +163,7 @@ namespace Heroes3QuestPrototype
                 var v=vertices[i+1]; vertices.Add(new Vector3(v.x,0f,v.z));
             }
             var indices = new List<int>();
-            for(int i=0;i<6;i++) {indices.Add(0);indices.Add(1+i);indices.Add(1+(i+1)%6);}
+            for(int i=0;i<6;i++) {indices.Add(0);indices.Add(1+(i+1)%6);indices.Add(1+i);}
             for(int i=0;i<6;i++)
             {
                 int top=1+i,next=1+(i+1)%6,bottom=7+i,bottomNext=7+(i+1)%6;
@@ -255,7 +255,7 @@ namespace Heroes3QuestPrototype
         private static int HexDistance(Vector2Int a, Vector2Int b)
         {
             int dq=a.x-b.x, dr=a.y-b.y;
-            return (Math.Abs(dq)+Math.Abs(dr)+Math.Abs(dq+dr))/2;
+            return HexNavigation.Distance(a,b);
         }
 
         private void UpdateStatus(string msg)
