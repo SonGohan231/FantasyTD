@@ -1,0 +1,51 @@
+name: Quest 3 Test Bench Windows CI
+on:
+  pull_request:
+    paths:
+      - 'tools/quest3-testbench/**'
+      - '.github/workflows/quest3-testbench-windows.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'tools/quest3-testbench/**'
+      - '.github/workflows/quest3-testbench-windows.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test-and-build:
+    runs-on: windows-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile Python
+        run: python -m compileall -q tools/quest3-testbench
+      - name: Offline regression tests (mock ADB)
+        run: python -m unittest discover -s tools/quest3-testbench/tests -p "test_*.py" -v
+      - name: Install packager
+        run: python -m pip install pyinstaller==6.16.0
+      - name: Build Windows portable EXE
+        run: pyinstaller --clean --noconfirm --onefile --windowed --name Quest3VRTestBench tools/quest3-testbench/app.py
+      - name: Check package and SHA256
+        shell: pwsh
+        run: |
+          if (-not (Test-Path dist/Quest3VRTestBench.exe)) { throw "Missing EXE" }
+          Get-FileHash dist/Quest3VRTestBench.exe -Algorithm SHA256 |
+            ForEach-Object { "$($_.Hash.ToLower()) *Quest3VRTestBench.exe" } |
+            Set-Content dist/SHA256SUMS.txt
+          Get-Item dist/Quest3VRTestBench.exe | Select-Object Name,Length
+      - name: Upload Windows EXE evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: Quest3VRTestBench-Windows-portable
+          path: |
+            dist/Quest3VRTestBench.exe
+            dist/SHA256SUMS.txt
+          if-no-files-found: error
