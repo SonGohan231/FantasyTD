@@ -7,6 +7,7 @@ using UnityEditor.XR.Management.Metadata;
 using UnityEngine;
 using UnityEngine.XR.OpenXR;
 using UnityEngine.XR.OpenXR.Features;
+using UnityEngine.XR.Management;
 
 namespace Heroes3QuestPrototype.Editor
 {
@@ -20,10 +21,29 @@ namespace Heroes3QuestPrototype.Editor
         public static void ConfigureForQuest()
         {
             const BuildTargetGroup group = BuildTargetGroup.Android;
-            var general = XRGeneralSettingsPerBuildTarget.XRGeneralSettingsForBuildTarget(BuildTargetGroup.Android);
+            var general = XRGeneralSettingsPerBuildTarget.XRGeneralSettingsForBuildTarget(group);
             if (general == null || general.AssignedSettings == null)
-                throw new InvalidOperationException(
-                    "XR Management Android settings missing. Open Edit > Project Settings > XR Plug-in Management and configure Android first.");
+            {
+                XRGeneralSettingsPerBuildTarget collection;
+                if (!EditorBuildSettings.TryGetConfigObject<XRGeneralSettingsPerBuildTarget>(
+                        XRGeneralSettings.k_SettingsKey, out collection) || collection == null)
+                {
+                    if (!AssetDatabase.IsValidFolder("Assets/XR"))
+                        AssetDatabase.CreateFolder("Assets", "XR");
+                    collection = ScriptableObject.CreateInstance<XRGeneralSettingsPerBuildTarget>();
+                    AssetDatabase.CreateAsset(collection, "Assets/XR/XRGeneralSettingsPerBuildTarget.asset");
+                    AssetDatabase.SaveAssets();
+                    EditorBuildSettings.AddConfigObject(XRGeneralSettings.k_SettingsKey, collection, true);
+                }
+                if (collection.SettingsForBuildTarget(group) == null)
+                    collection.CreateDefaultSettingsForBuildTarget(group);
+                if (!collection.HasManagerSettingsForBuildTarget(group))
+                    collection.CreateDefaultManagerSettingsForBuildTarget(group);
+                AssetDatabase.SaveAssets();
+                general = XRGeneralSettingsPerBuildTarget.XRGeneralSettingsForBuildTarget(group);
+            }
+            if (general == null || general.AssignedSettings == null)
+                throw new InvalidOperationException("Android XR Manager settings could not be created.");
 
             const string loader = "UnityEngine.XR.OpenXR.OpenXRLoader";
             if (!XRPackageMetadataStore.AssignLoader(general.AssignedSettings, loader, group))
