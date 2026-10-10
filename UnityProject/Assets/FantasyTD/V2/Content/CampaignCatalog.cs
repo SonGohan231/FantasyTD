@@ -71,7 +71,8 @@ namespace FantasyTD.V2.Content
         public static string LevelId(int oneBasedLevel)
         {
             ValidateIndex(oneBasedLevel);
-            return "FT2-CAMPAIGN-" + oneBasedLevel.ToString("D2");
+            return oneBasedLevel == 1 ? StarterLevel.Id
+                : "FT2-CAMPAIGN-" + oneBasedLevel.ToString("D2");
         }
 
         public static string WorldName(int oneBasedLevel)
