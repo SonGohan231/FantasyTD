@@ -17,6 +17,7 @@ namespace FantasyTD.V2.Runtime
     public sealed class ForestBattlefield : MonoBehaviour
     {
         private const float SecondsPerTick = 1f / BattleSimulator.TicksPerSecond;
+        private const string CampaignSaveKey = "FantasyTD.V2.UnlockedStage.v1";
         private static readonly Color Grass = new Color(.11f, .25f, .17f);
         private static readonly Color PathOuter = new Color(.26f, .18f, .13f);
         private static readonly Color PathInner = new Color(.57f, .42f, .28f);
@@ -38,13 +39,19 @@ namespace FantasyTD.V2.Runtime
         private Text _stats;
         private Text _prompt;
         private Button _nextWave;
+        private Button _previousStageButton;
+        private Button _nextStageButton;
         private Button[] _towerButtons;
+        private int _currentStage;
+        private bool _victoryRecorded;
         private string _selectedSite;
         private float _tickAccumulator;
 
         private void Awake()
         {
             Application.targetFrameRate = 60;
+            _currentStage = Mathf.Clamp(PlayerPrefs.GetInt(CampaignSaveKey, 1),
+                1, CampaignCatalog.LevelCount);
             SetupCamera();
             SetupCanvas();
             RestartBattle();
@@ -122,6 +129,20 @@ namespace FantasyTD.V2.Runtime
             Position((RectTransform)_nextWave.transform, new Vector2(.5f, 0f),
                 new Vector2(590f, 90f), new Vector2(330f, 110f));
             _nextWave.onClick.AddListener(AdvanceOrRestart);
+
+            _previousStageButton = RuntimeArt.CreateButton(_hud.transform,
+                "< Poprzedni", new Color(.21f, .30f, .38f), 27);
+            Position((RectTransform)_previousStageButton.transform,
+                new Vector2(0f, 1f), new Vector2(175f, -155f),
+                new Vector2(300f, 75f));
+            _previousStageButton.onClick.AddListener(() => ChangeStage(-1));
+
+            _nextStageButton = RuntimeArt.CreateButton(_hud.transform,
+                "Następny >", new Color(.21f, .30f, .38f), 27);
+            Position((RectTransform)_nextStageButton.transform,
+                new Vector2(1f, 1f), new Vector2(-175f, -155f),
+                new Vector2(300f, 75f));
+            _nextStageButton.onClick.AddListener(() => ChangeStage(1));
         }
 
         private static void Position(RectTransform rect, Vector2 anchor,
@@ -141,7 +162,8 @@ namespace FantasyTD.V2.Runtime
             _siteMarkers.Clear();
             _selectedSite = null;
             _tickAccumulator = 0f;
-            _level = StarterLevel.Create();
+            _victoryRecorded = false;
+            _level = CampaignCatalog.CreateLevel(_currentStage);
             _battle = new BattleSimulator(_level);
             _world = new GameObject("V2 World");
             DrawTerrainAndPath();
@@ -228,6 +250,7 @@ namespace FantasyTD.V2.Runtime
             if (_tickAccumulator >= SecondsPerTick)
                 _tickAccumulator = 0f;
             SyncEnemyViews();
+            RecordVictoryIfNeeded();
             RefreshHud();
         }
 
@@ -361,10 +384,42 @@ namespace FantasyTD.V2.Runtime
             return new EnemyView { Root = root, HealthFill = hp.transform };
         }
 
+        private void RecordVictoryIfNeeded()
+        {
+            if (_victoryRecorded || _battle.Result != BattleResult.Victory)
+                return;
+            _victoryRecorded = true;
+            int highest = Mathf.Clamp(PlayerPrefs.GetInt(CampaignSaveKey, 1),
+                1, CampaignCatalog.LevelCount);
+            int next = Mathf.Min(CampaignCatalog.LevelCount, _currentStage + 1);
+            if (next > highest)
+            {
+                PlayerPrefs.SetInt(CampaignSaveKey, next);
+                PlayerPrefs.Save();
+            }
+        }
+
+        private void ChangeStage(int offset)
+        {
+            if (_battle == null || _battle.WaveActive) return;
+            int unlocked = Mathf.Clamp(PlayerPrefs.GetInt(CampaignSaveKey, 1),
+                1, CampaignCatalog.LevelCount);
+            int target = _currentStage + offset;
+            if (target < 1 || target > unlocked) return;
+            _currentStage = target;
+            RestartBattle();
+        }
+
         private void AdvanceOrRestart()
         {
             if (_battle.Result != BattleResult.InProgress)
             {
+                if (_battle.Result == BattleResult.Victory &&
+                    _currentStage < CampaignCatalog.LevelCount)
+                {
+                    RecordVictoryIfNeeded();
+                    _currentStage++;
+                }
                 RestartBattle();
                 return;
             }
@@ -377,7 +432,9 @@ namespace FantasyTD.V2.Runtime
         private void RefreshHud()
         {
             if (_stats == null || _battle == null) return;
-            _stats.text = "LAS 1/30  |  Esencja " + _battle.Essence +
+            _stats.text = CampaignCatalog.WorldName(_currentStage) + "  " +
+                _currentStage + "/" + CampaignCatalog.LevelCount +
+                "  |  Esencja " + _battle.Essence +
                 "  |  Życie " + _battle.BaseHp +
                 "  |  Fala " + _battle.WaveNumber + "/" + _battle.TotalWaves +
                 "  |  Pokonani " + _battle.Kills;
@@ -386,12 +443,18 @@ namespace FantasyTD.V2.Runtime
             foreach (Button button in _towerButtons)
                 button.interactable = !gameOver && _selectedSite != null;
             _nextWave.interactable = gameOver || _battle.CanStartWave;
+            int unlocked = Mathf.Clamp(PlayerPrefs.GetInt(CampaignSaveKey, 1),
+                1, CampaignCatalog.LevelCount);
+            _previousStageButton.interactable = !_battle.WaveActive && _currentStage > 1;
+            _nextStageButton.interactable = !_battle.WaveActive && _currentStage < unlocked;
             Text label = _nextWave.GetComponentInChildren<Text>();
-            if (label != null) label.text = gameOver ? "Zagraj ponownie" : "Następna fala";
+            if (label != null) label.text = _battle.Result == BattleResult.Victory &&
+                _currentStage < CampaignCatalog.LevelCount ? "Następny poziom"
+                : gameOver ? "Zagraj ponownie" : "Następna fala";
             if (_battle.Result == BattleResult.Victory)
-                _prompt.text = "ZWYCIĘSTWO! Las został obroniony.";
+                _prompt.text = "ZWYCIĘSTWO! Ukończony etap " + _currentStage + ".";
             else if (_battle.Result == BattleResult.Defeat)
-                _prompt.text = "PORAŻKA. Wróć do lasu i zmień strategię.";
+                _prompt.text = "PORAŻKA. Spróbuj ponownie lub wybierz etap.";
         }
     }
 }
