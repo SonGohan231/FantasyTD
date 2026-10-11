@@ -1,5 +1,5 @@
 {
-  "requestId": "agentos-b-retry-54819699-a14f-4208-a328-0ad2603e4212",
-  "mode": "android-build",
-  "note": "Agent OS execution-dispatcher verification for existing FantasyTD mission task B. Real GitHub Actions run ID is required before Agent OS marks the run as running."
+  "requestId": "tpl002-53445ebb-cf91-465a-9829-511f15798aa5",
+  "mode": "baseline",
+  "note": "Independent on-demand representative AgentOS template TPL-002 Unity editor compile smoke; isolated branch; no APK or final product claimed."
 }
