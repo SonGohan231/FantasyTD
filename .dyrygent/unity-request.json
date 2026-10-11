@@ -1,5 +1,5 @@
 {
-  "requestId": "tpl002-53445ebb-cf91-465a-9829-511f15798aa5",
-  "mode": "baseline",
-  "note": "Independent on-demand representative AgentOS template TPL-002 Unity editor compile smoke; isolated branch; no APK or final product claimed."
+  "requestId": "tpl002-android-b33b8090-2df7-4519-8a94-1c5fd90b5b6e",
+  "mode": "android-build",
+  "note": "Representative AgentOS template TPL-002 Android APK build verification in isolated branch after successful Unity baseline; no install or gameplay pass claim without artifacts."
 }
