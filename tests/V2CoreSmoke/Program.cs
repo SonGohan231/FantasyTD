@@ -14,6 +14,7 @@ internal static class Program
             VerifyBattleFeedbackCues();
             VerifyCompleteForestSession();
             VerifyPauseResume();
+            VerifyForestArtGeometry();
             Console.WriteLine("V2CoreSmoke PASS: first forest simulation and all 30 campaign definitions.");
             return 0;
         }
@@ -252,6 +253,28 @@ internal static class Program
         gate.Reset();
         Require(gate.CanAdvance, "restart must clear pause state");
         Console.WriteLine("PauseResume PASS: freeze, resume and reset.");
+    }
+
+    private static void VerifyForestArtGeometry()
+    {
+        // MAP-A original art anchor data normalized from its 24x14 layout.
+        // FT2 renders the same approved source at 29x16 centered on (0,0).
+        // Gameplay route must match the road on the actual image.
+        LevelDefinition level = StarterLevel.Create();
+        Require(level.Path.Count == 14,
+            "Forest01 path must follow all 14 approved road bends");
+        Require(level.Path[0].X == -1081 && level.Path[0].Y == 800,
+            "Forest01 spawn must align with artwork north gate");
+        MapPoint destination = level.Path[level.Path.Count - 1];
+        Require(destination.X == 1450 && destination.Y == -783,
+            "Forest01 exit must align with artwork southeast gate");
+        Require(level.Sites["a01"].X == -1131 &&
+                level.Sites["a01"].Y == 321,
+            "A01 build anchor must match visible soil patch");
+        Require(level.Sites["a12"].X == 1372 &&
+                level.Sites["a12"].Y == -297,
+            "A12 build anchor must match visible soil patch");
+        Console.WriteLine("ForestArtGeometry PASS: 14 road points, both gates, build anchors.");
     }
 
     private static void Require(bool ok, string message)
