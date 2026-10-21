@@ -26,6 +26,11 @@ namespace FantasyTD.V2.Editor
             Require(level.Waves.Count >= 3, "At least three waves required.");
             Require(level.PathLength > 2000, "Path is unexpectedly short.");
 
+            Texture2D mapArtwork = AssetDatabase.LoadAssetAtPath<Texture2D>(
+                "Assets/Resources/FT2/Forest01Art.png");
+            Require(mapArtwork != null && mapArtwork.width >= 512,
+                "Recovered source artwork must import as a real texture.");
+
             SceneAsset asset = AssetDatabase.LoadAssetAtPath<SceneAsset>(ScenePath);
             Require(asset != null, "Tracked forest scene failed to import.");
 
@@ -60,7 +65,7 @@ namespace FantasyTD.V2.Editor
             Require(battle.Result != BattleResult.Defeat,
                 "One wave must not exhaust all 15 lives.");
             Require(battle.CanStartWave, "Second wave should be available.");
-            Debug.Log("FantasyTD FT2-003 Forest01: PASS (scene import, bootstrap, " +
+            Debug.Log("FantasyTD FT2-003 Forest01: PASS (source art import, scene, bootstrap, " +
                       "12 sites, 3 defenders, 3 waves, placement, spawn and clear).");
         }
 
