@@ -72,7 +72,7 @@ namespace FantasyTD.V2.Runtime
                 cam = cameraObject.AddComponent<Camera>();
             }
             cam.orthographic = true;
-            cam.orthographicSize = 7.75f;
+            cam.orthographicSize = 8.35f;
             cam.transform.position = new Vector3(0f, 0f, -10f);
             cam.backgroundColor = Grass;
             cam.clearFlags = CameraClearFlags.SolidColor;

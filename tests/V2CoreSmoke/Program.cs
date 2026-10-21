@@ -173,7 +173,7 @@ internal static class Program
         LevelDefinition level = StarterLevel.Create();
         string[] strategicPositions =
         {
-            "a01", "a04", "a07", "a10", "a02", "a05", "a08", "a11", "a12"
+            "a01", "a05", "a07", "a11", "a09", "a12", "a02", "a06", "a08"
         };
         var defended = new BattleSimulator(level);
         int nextPosition = 0;
