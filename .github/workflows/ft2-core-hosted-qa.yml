@@ -2,18 +2,15 @@ name: FT2 portable gameplay regression
 on:
   push:
     branches:
-      - 'codex/ft2-qa-001-*'
+      - 'codex/**'
     paths:
       - 'UnityProject/Assets/FantasyTD/V2/Core/**'
       - 'UnityProject/Assets/FantasyTD/V2/Content/**'
       - 'tests/V2CoreSmoke/**'
       - '.github/workflows/ft2-core-hosted-qa.yml'
   pull_request:
-    paths:
-      - 'UnityProject/Assets/FantasyTD/V2/Core/**'
-      - 'UnityProject/Assets/FantasyTD/V2/Content/**'
-      - 'tests/V2CoreSmoke/**'
-      - '.github/workflows/ft2-core-hosted-qa.yml'
+    # Run the portable baseline on every FT2 implementation PR, including
+    # art/importer-only changes, to catch unexpected gameplay regressions.
   workflow_dispatch:
 
 permissions:
