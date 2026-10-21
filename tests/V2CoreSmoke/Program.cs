@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using FantasyTD.V2.Content;
 using FantasyTD.V2.Core;
 
@@ -15,6 +16,7 @@ internal static class Program
             VerifyCompleteForestSession();
             VerifyPauseResume();
             VerifyForestArtGeometry();
+            VerifyGeneratedSpriteAssets();
             Console.WriteLine("V2CoreSmoke PASS: first forest simulation and all 30 campaign definitions.");
             return 0;
         }
@@ -275,6 +277,41 @@ internal static class Program
                 level.Sites["a12"].Y == -297,
             "A12 build anchor must match visible soil patch");
         Console.WriteLine("ForestArtGeometry PASS: 14 road points, both gates, build anchors.");
+    }
+
+
+    private static void VerifyGeneratedSpriteAssets()
+    {
+        // Portable regression: new artwork must be complete RGBA sprites,
+        // not an accidental concept sheet or corrupted image upload.
+        string[] names = {
+            "ThornbloomRanger", "FrostbudOracle", "EssenceAlchemist",
+            "MushroomMortar", "VineGuardian", "SunseedDruid",
+            "BrambleGoblin", "SlimeSnail", "EmberBeetle", "HollowRootOgre"
+        };
+        var pngHeader = new byte[] { 137, 80, 78, 71, 13, 10, 26, 10 };
+        string root = Path.Combine("UnityProject", "Assets", "Resources",
+            "FT2", "NewUnits");
+        foreach (string name in names)
+        {
+            string file = Path.Combine(root, name + ".png");
+            Require(File.Exists(file), "missing generated sprite " + name);
+            var png = File.ReadAllBytes(file);
+            Require(png.Length > 30000 && png.Length < 750000,
+                "sprite must be optimized for Android: " + name);
+            for (int i = 0; i < pngHeader.Length; i++)
+                Require(png[i] == pngHeader[i],
+                    "corrupt PNG signature " + name);
+            int width = (png[16] << 24) | (png[17] << 16) |
+                (png[18] << 8) | png[19];
+            int height = (png[20] << 24) | (png[21] << 16) |
+                (png[22] << 8) | png[23];
+            Require(width == 512 && height == 512,
+                "expected 512x512 transparent sprite: " + name);
+            Require(png[25] == 6,
+                "expected RGBA PNG with alpha channel: " + name);
+        }
+        Console.WriteLine("GeneratedSprites PASS: ten 512px RGBA assets.");
     }
 
     private static void Require(bool ok, string message)
