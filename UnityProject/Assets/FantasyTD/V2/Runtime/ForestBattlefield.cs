@@ -41,6 +41,8 @@ namespace FantasyTD.V2.Runtime
         private Text _stats;
         private Text _prompt;
         private Button _nextWave;
+        private Button _pauseButton;
+        private readonly BattlePauseGate _pauseGate = new BattlePauseGate();
         private Button _previousStageButton;
         private Button _nextStageButton;
         private Button[] _towerButtons;
@@ -153,6 +155,13 @@ namespace FantasyTD.V2.Runtime
                 new Vector2(1f, 1f), new Vector2(-175f, -155f),
                 new Vector2(300f, 75f));
             _nextStageButton.onClick.AddListener(() => ChangeStage(1));
+
+            _pauseButton = RuntimeArt.CreateButton(_hud.transform,
+                "Pauza", new Color(.26f, .32f, .23f), 27);
+            Position((RectTransform)_pauseButton.transform,
+                new Vector2(1f, 1f), new Vector2(-170f, -255f),
+                new Vector2(270f, 76f));
+            _pauseButton.onClick.AddListener(TogglePause);
         }
 
         private void CreateHudPanel(string name, Vector2 anchor,
@@ -186,6 +195,7 @@ namespace FantasyTD.V2.Runtime
             _siteMarkers.Clear();
             _selectedSite = null;
             _tickAccumulator = 0f;
+            _pauseGate.Reset();
             _victoryRecorded = false;
             _level = CampaignCatalog.CreateLevel(_currentStage);
             _battle = new BattleSimulator(_level);
@@ -317,9 +327,26 @@ namespace FantasyTD.V2.Runtime
             _feedback.Show(evt, location);
         }
 
+        private void TogglePause()
+        {
+            if (_battle == null || _battle.Result != BattleResult.InProgress) return;
+            _pauseGate.Toggle();
+            _tickAccumulator = 0f;
+            _prompt.text = _pauseGate.IsPaused
+                ? "PAUZA — dotknij Wznów, aby kontynuować."
+                : "Wznowiono obronę.";
+            RefreshHud();
+        }
+
         private void Update()
         {
             if (_battle == null) return;
+            if (_pauseGate.IsPaused)
+            {
+                _tickAccumulator = 0f;
+                RefreshHud();
+                return;
+            }
             HandleBattlefieldTouch();
             _tickAccumulator += Mathf.Min(Time.deltaTime, .25f);
             int maxSteps = 5;
@@ -524,14 +551,21 @@ namespace FantasyTD.V2.Runtime
             bool gameOver = _battle.Result != BattleResult.InProgress;
             for (int i = 0; i < _towerButtons.Length; i++)
                 _towerButtons[i].interactable = !gameOver &&
-                    _selectedSite != null &&
+                    _selectedSite != null && !_pauseGate.IsPaused &&
                     _level.Towers.ContainsKey(TowerIds[i]) &&
                     _battle.Essence >= _level.Towers[TowerIds[i]].Cost;
-            _nextWave.interactable = gameOver || _battle.CanStartWave;
+            _nextWave.interactable = !_pauseGate.IsPaused &&
+                (gameOver || _battle.CanStartWave);
             int unlocked = Mathf.Clamp(PlayerPrefs.GetInt(CampaignSaveKey, 1),
                 1, CampaignCatalog.LevelCount);
-            _previousStageButton.interactable = !_battle.WaveActive && _currentStage > 1;
-            _nextStageButton.interactable = !_battle.WaveActive && _currentStage < unlocked;
+            _previousStageButton.interactable = !_pauseGate.IsPaused &&
+                !_battle.WaveActive && _currentStage > 1;
+            _nextStageButton.interactable = !_pauseGate.IsPaused &&
+                !_battle.WaveActive && _currentStage < unlocked;
+            _pauseButton.interactable = !gameOver;
+            Text pauseLabel = _pauseButton.GetComponentInChildren<Text>();
+            if (pauseLabel != null)
+                pauseLabel.text = _pauseGate.IsPaused ? "Wznów" : "Pauza";
             Text label = _nextWave.GetComponentInChildren<Text>();
             if (label != null) label.text = _battle.Result == BattleResult.Victory &&
                 _currentStage < CampaignCatalog.LevelCount ? "Następny poziom"
