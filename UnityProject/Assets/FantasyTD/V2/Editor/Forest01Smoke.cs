@@ -27,6 +27,7 @@ namespace FantasyTD.V2.Editor
             Require(level.PathLength > 2000, "Path is unexpectedly short.");
 
             const string artworkPath = "Assets/Resources/FT2/Forest01Art.png";
+            Forest01ArtworkImporter.EnsureSpriteImported(artworkPath);
             // Regression: source art was present and imported, but the old test
             // insisted on Texture2D and failed for a Sprite-imported PNG.
             TextureImporter importer = AssetImporter.GetAtPath(artworkPath)
@@ -41,6 +42,12 @@ namespace FantasyTD.V2.Editor
                 "Forest01 sprite must resolve through Resources.Load at runtime.");
             // Every illustrated unit selected by the first three-wave slice
             // must resolve as a real Sprite without procedural fallbacks.
+            foreach (string unitFile in new[] {
+                "ThornShooter", "FrostBud", "EssenceFlower",
+                "Wanderer", "Runner", "Armored"
+            })
+                Forest01ArtworkImporter.EnsureSpriteImported(
+                    "Assets/Resources/FT2/Units/" + unitFile + ".png");
             foreach (string defenderId in new[] { "thorn", "frost", "bloom" })
                 Require(ForestUnitArtwork.Defender(defenderId) != null,
                     "Missing authored FT2 defender sprite: " + defenderId);
