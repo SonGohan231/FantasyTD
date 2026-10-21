@@ -49,6 +49,42 @@ jobs:
           grep -Fq "FT2 Forest01 DEBUG APK built:" "$LOG"
           sha256sum "$APK"
           ls -lh "$APK"
+      - name: Install and launch on connected Android device
+        shell: bash
+        run: |
+          set -euo pipefail
+          APK="UnityProject/Builds/Android/FantasyTD_FT2_Forest01_Debug.apk"
+          mkdir -p UnityProject/Logs
+          STATUS="UnityProject/Logs/ft2-device-launch-status.txt"
+          if ! command -v adb >/dev/null 2>&1; then
+            echo "NOT_TESTED: adb is unavailable on this runner" | tee "$STATUS"
+            echo "::warning::No ADB tool. APK exists, but no device launch was performed."
+            exit 0
+          fi
+          adb devices -l
+          if ! adb devices | awk 'NR>1 && $2=="device" {found=1} END {exit !found}'; then
+            echo "NOT_TESTED: no connected Android device or emulator" | tee "$STATUS"
+            echo "::warning::No Android device attached. Do not claim on-device PASS."
+            exit 0
+          fi
+          PACKAGE="com.indie.fantasytd"
+          if command -v aapt >/dev/null 2>&1; then
+            EXTRACTED="$(aapt dump badging "$APK" | sed -n "s/^package: name='\([^']*\)'.*/\1/p" | head -1)"
+            if [[ -n "$EXTRACTED" ]]; then PACKAGE="$EXTRACTED"; fi
+          fi
+          adb install -r -t "$APK"
+          adb shell monkey -p "$PACKAGE" -c android.intent.category.LAUNCHER 1
+          sleep 7
+          if ! adb shell pidof "$PACKAGE" | tr -d '\r' | grep -q '[0-9]'; then
+            echo "FAIL: Android player terminated on launch" | tee "$STATUS"
+            adb logcat -d -t 300 > UnityProject/Logs/ft2-device-logcat.txt || true
+            exit 1
+          fi
+          adb exec-out screencap -p > UnityProject/Logs/ft2-device-first-frame.png
+          test -s UnityProject/Logs/ft2-device-first-frame.png
+          adb logcat -d -t 300 > UnityProject/Logs/ft2-device-logcat.txt || true
+          echo "PASS: installed, launched and captured actual Android frame: $PACKAGE" | tee "$STATUS"
+
       - name: Archive APK and build logs
         if: always()
         uses: actions/upload-artifact@v4
@@ -58,3 +94,6 @@ jobs:
           path: |
             UnityProject/Builds/Android/FantasyTD_FT2_Forest01_Debug.apk
             UnityProject/Logs/ft2-forest01-android-build.log
+            UnityProject/Logs/ft2-device-launch-status.txt
+            UnityProject/Logs/ft2-device-logcat.txt
+            UnityProject/Logs/ft2-device-first-frame.png

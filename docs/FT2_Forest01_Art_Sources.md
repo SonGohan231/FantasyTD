@@ -21,3 +21,18 @@ Ten recovered previously approved image sources have been **reused by original G
 - These are illustrated source sheets: runtime must crop/isolate subjects; no polished rigged animations are claimed.
 - The **ten newly generated** character concept sheets are delivered as a separate `FantasyTD_10_Concept_Art.zip` in the conversation and are **not yet present in GitHub**. They need further cropping and approval before replacing the existing source artwork.
 - Keep PR draft until scene import, APK and physical Android evidence.
+
+## New generated set — October 21, 2026
+
+Added the **ten user-generated character illustrations** from this conversation,
+separately from the ten older, approved MAP1 pictures. Source files:
+`Assets/Resources/FT2/NewUnits/{ThornbloomRanger,FrostbudOracle,EssenceAlchemist,MushroomMortar,VineGuardian,SunseedDruid,BrambleGoblin,SlimeSnail,EmberBeetle,HollowRootOgre}.png`.
+
+- Runtime maps `thorn/frost/bloom` to Thornbloom Ranger, Frostbud Oracle and Essence Alchemist.
+- Initial `imp/runner/armored` enemies use Bramble Goblin, Ember Beetle and Slime Snail.
+- Vine Guardian, Mushroom Mortar and Sunseed Druid have **art only**; no new combat rules or promised units.
+- Hollow Root Ogre has an optional boss mapping; this is not a new boss encounter.
+- All ten are visible from the **Atlas postaci** button in Forest01.
+- The ten `NewUnits/*.png` assets are **transparent 512×512 RGBA sprites** pre-cropped from the original full concept sheets, with no right-side panels. Their detailed original concept sheets remain available in the conversation art pack. Runtime uses them directly, without costly texture readbacks or repeated alpha cutting.
+- Existing sources remain available as runtime fallbacks. Legacy MAP-A untouched.
+- Recheck Android performance and cutout quality in device screenshots. Static 2D sprites do not constitute rigged animation or new combat behaviors.

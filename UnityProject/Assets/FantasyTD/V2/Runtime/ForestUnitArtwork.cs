@@ -8,20 +8,48 @@ namespace FantasyTD.V2.Runtime
     /// Uses existing approved forest illustration sources. Generates a
     /// cached alpha-masked, main-character cutout instead of rendering an
     /// entire beige concept sheet (and its detail panels) as a game unit.
-    /// Source images are capped at 1024 pixels by the dedicated FT2 importer.
+    /// Old source sheets are capped at 1024px; new transparent sprite cutouts
+    /// are 512x512, isolated in FT2/NewUnits and do not touch MAP-A.
     /// </summary>
     public static class ForestUnitArtwork
     {
         private static readonly Dictionary<string, Sprite> Cache =
             new Dictionary<string, Sprite>();
 
+        // New images are user-created, pre-cut RGBA 512x512 sprites.
+        // The earlier approved art remains a fallback. This only changes presentation.
+        private static readonly string[] NewConceptFiles = {
+            "ThornbloomRanger", "FrostbudOracle", "EssenceAlchemist",
+            "MushroomMortar", "VineGuardian", "SunseedDruid",
+            "BrambleGoblin", "SlimeSnail", "EmberBeetle", "HollowRootOgre"
+        };
+        private static readonly string[] NewConceptLabels = {
+            "Łucznik cierni", "Wyrocznia mrozu", "Alchemik Esencji",
+            "Grzybowa armata", "Strażnik pnączy", "Słoneczna druidka",
+            "Goblin cierni", "Ślimak bagienny", "Żarzący chrząszcz", "Ogr korzeni"
+        };
+        public static int ConceptCount { get { return NewConceptFiles.Length; } }
+        public static string ConceptFileAt(int i) { return NewConceptFiles[i]; }
+        public static string ConceptLabelAt(int i) { return NewConceptLabels[i]; }
+        public static Sprite ConceptAt(int i) {
+            if (i < 0 || i >= NewConceptFiles.Length) return null;
+            return Get("New/" + NewConceptFiles[i], .745f);
+        }
+
         public static Sprite Defender(string id)
         {
             switch (id)
             {
-                case "thorn": return Get("ThornShooter", .515f);
-                case "frost": return Get("FrostBud", 1f);
-                case "bloom": return Get("EssenceFlower", 1f);
+                case "thorn": return Get("New/ThornbloomRanger", .745f)
+                    ?? Get("ThornShooter", .515f);
+                case "frost": return Get("New/FrostbudOracle", .745f)
+                    ?? Get("FrostBud", 1f);
+                case "bloom": return Get("New/EssenceAlchemist", .745f)
+                    ?? Get("EssenceFlower", 1f);
+                case "oak": return Get("New/VineGuardian", .745f)
+                    ?? Get("OakGuardian", 1f);
+                case "mushroom": return Get("New/MushroomMortar", .745f);
+                case "sun": return Get("New/SunseedDruid", .745f);
                 default: return null;
             }
         }
@@ -30,9 +58,17 @@ namespace FantasyTD.V2.Runtime
         {
             switch (id)
             {
-                case "imp": return Get("Wanderer", .455f);
-                case "runner": return Get("Runner", 1f);
-                case "armored": return Get("Armored", 1f);
+                case "imp": return Get("New/BrambleGoblin", .745f)
+                    ?? Get("Wanderer", .455f);
+                case "runner": return Get("New/EmberBeetle", .745f)
+                    ?? Get("Runner", 1f);
+                case "armored": return Get("New/SlimeSnail", .745f)
+                    ?? Get("Armored", 1f);
+                case "boss":
+                case "root-king":
+                case "thorn-king":
+                    return Get("New/HollowRootOgre", .745f)
+                        ?? Get("ForestBoss", 1f);
                 default: return null;
             }
         }
@@ -42,12 +78,23 @@ namespace FantasyTD.V2.Runtime
             Sprite cached;
             if (Cache.TryGetValue(name, out cached)) return cached;
 
-            string path = "FT2/Units/" + name;
+            string path = name.StartsWith("New/", StringComparison.Ordinal)
+                ? "FT2/NewUnits/" + name.Substring(4)
+                : "FT2/Units/" + name;
             Sprite source = Resources.Load<Sprite>(path);
             if (source == null)
             {
                 Debug.LogWarning("FT2 optional visual missing: Resources/" + path);
                 return null;
+            }
+
+            // New concepts were pre-cut into transparent, size-capped sprites.
+            // Render them directly; do not re-matte or truncate a quarter of
+            // their silhouette and do not duplicate pixel arrays on Android.
+            if (name.StartsWith("New/", StringComparison.Ordinal))
+            {
+                Cache[name] = source;
+                return source;
             }
 
             Texture2D texture = source.texture;

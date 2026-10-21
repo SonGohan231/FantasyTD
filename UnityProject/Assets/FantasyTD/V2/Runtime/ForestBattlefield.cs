@@ -42,6 +42,9 @@ namespace FantasyTD.V2.Runtime
         private Text _prompt;
         private Button _nextWave;
         private Button _pauseButton;
+        private Button _galleryButton;
+        private GameObject _galleryPanel;
+        private bool _galleryOpen;
         private readonly BattlePauseGate _pauseGate = new BattlePauseGate();
         private Button _previousStageButton;
         private Button _nextStageButton;
@@ -162,6 +165,82 @@ namespace FantasyTD.V2.Runtime
                 new Vector2(1f, 1f), new Vector2(-170f, -255f),
                 new Vector2(270f, 76f));
             _pauseButton.onClick.AddListener(TogglePause);
+
+            _galleryButton = RuntimeArt.CreateButton(_hud.transform,
+                "Atlas postaci", new Color(.28f, .40f, .31f), 27);
+            Position((RectTransform)_galleryButton.transform,
+                new Vector2(.5f, 1f), new Vector2(0f, -176f),
+                new Vector2(260f, 78f));
+            _galleryButton.onClick.AddListener(ToggleGallery);
+        }
+
+        private void ToggleGallery()
+        {
+            if (_galleryPanel == null) CreateGalleryPanel();
+            _galleryOpen = !_galleryOpen;
+            _galleryPanel.SetActive(_galleryOpen);
+            _tickAccumulator = 0f;
+            RefreshHud();
+        }
+
+        private void CreateGalleryPanel()
+        {
+            _galleryPanel = new GameObject("Atlas 10 postaci",
+                typeof(RectTransform), typeof(CanvasRenderer), typeof(Image));
+            _galleryPanel.transform.SetParent(_hud.transform, false);
+            RectTransform cover = (RectTransform)_galleryPanel.transform;
+            cover.anchorMin = Vector2.zero;
+            cover.anchorMax = Vector2.one;
+            cover.offsetMin = Vector2.zero;
+            cover.offsetMax = Vector2.zero;
+            Image backdrop = _galleryPanel.GetComponent<Image>();
+            backdrop.sprite = RuntimeArt.White;
+            backdrop.color = new Color(.025f, .08f, .065f, .98f);
+            backdrop.raycastTarget = true;
+
+            Text title = RuntimeArt.CreateText(_galleryPanel.transform,
+                "Atlas - tytuł", 48, TextAnchor.MiddleCenter, Color.white);
+            title.text = "ATLAS POSTACI · FANTASY TD";
+            Position(title.rectTransform, new Vector2(.5f, 1f),
+                new Vector2(0f, -73f), new Vector2(1400f, 100f));
+
+            Button close = RuntimeArt.CreateButton(_galleryPanel.transform,
+                "Zamknij", new Color(.62f, .27f, .23f), 27);
+            Position((RectTransform)close.transform, new Vector2(1f, 1f),
+                new Vector2(-170f, -81f), new Vector2(270f, 85f));
+            close.onClick.AddListener(ToggleGallery);
+
+            for (int i = 0; i < ForestUnitArtwork.ConceptCount; i++)
+            {
+                int column = i % 5;
+                int row = i / 5;
+                GameObject card = new GameObject("Character " + i,
+                    typeof(RectTransform), typeof(CanvasRenderer), typeof(Image));
+                card.transform.SetParent(_galleryPanel.transform, false);
+                Image panel = card.GetComponent<Image>();
+                panel.sprite = RuntimeArt.White;
+                panel.color = new Color(.105f, .20f, .16f, 1f);
+                panel.raycastTarget = false;
+                Position((RectTransform)card.transform, new Vector2(.5f, .5f),
+                    new Vector2((column - 2) * 342f, row == 0 ? 185f : -205f),
+                    new Vector2(305f, 366f));
+
+                GameObject portrait = new GameObject("Portrait " + i,
+                    typeof(RectTransform), typeof(CanvasRenderer), typeof(Image));
+                portrait.transform.SetParent(card.transform, false);
+                Image portraitImage = portrait.GetComponent<Image>();
+                portraitImage.sprite = ForestUnitArtwork.ConceptAt(i);
+                portraitImage.preserveAspect = true;
+                portraitImage.raycastTarget = false;
+                Position((RectTransform)portrait.transform, new Vector2(.5f, .5f),
+                    new Vector2(0f, 32f), new Vector2(265f, 288f));
+                Text label = RuntimeArt.CreateText(card.transform,
+                    "Name " + i, 24, TextAnchor.MiddleCenter, Color.white);
+                label.text = ForestUnitArtwork.ConceptLabelAt(i);
+                Position(label.rectTransform, new Vector2(.5f, 0f),
+                    new Vector2(0f, 32f), new Vector2(282f, 58f));
+            }
+            _galleryPanel.SetActive(false);
         }
 
         private void CreateHudPanel(string name, Vector2 anchor,
@@ -195,6 +274,8 @@ namespace FantasyTD.V2.Runtime
             _siteMarkers.Clear();
             _selectedSite = null;
             _tickAccumulator = 0f;
+            if (_galleryPanel != null) _galleryPanel.SetActive(false);
+            _galleryOpen = false;
             _pauseGate.Reset();
             _victoryRecorded = false;
             _level = CampaignCatalog.CreateLevel(_currentStage);
@@ -355,6 +436,11 @@ namespace FantasyTD.V2.Runtime
         private void Update()
         {
             if (_battle == null) return;
+            if (_galleryOpen)
+            {
+                _tickAccumulator = 0f;
+                return;
+            }
             if (_pauseGate.IsPaused)
             {
                 _tickAccumulator = 0f;
