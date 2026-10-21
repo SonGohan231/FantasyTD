@@ -55,6 +55,19 @@ namespace FantasyTD.V2.Editor
                 Require(ForestUnitArtwork.Enemy(enemyId) != null,
                     "Missing authored FT2 enemy sprite: " + enemyId);
 
+            // Regression gate: all ten newly created concept images must import
+            // and isolate into a runtime-ready sprite before editor smoke passes.
+            Require(ForestUnitArtwork.ConceptCount == 10,
+                "Generated concept catalog must contain exactly 10 entries.");
+            for (int i = 0; i < ForestUnitArtwork.ConceptCount; i++)
+            {
+                string conceptFile = ForestUnitArtwork.ConceptFileAt(i);
+                Forest01ArtworkImporter.EnsureSpriteImported(
+                    "Assets/Resources/FT2/NewUnits/" + conceptFile + ".png");
+                Require(ForestUnitArtwork.ConceptAt(i) != null,
+                    "Missing user-created character sprite: " + conceptFile);
+            }
+
             SceneAsset asset = AssetDatabase.LoadAssetAtPath<SceneAsset>(ScenePath);
             Require(asset != null, "Tracked forest scene failed to import.");
 

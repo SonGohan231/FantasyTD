@@ -32,6 +32,15 @@ namespace FantasyTD.V2.Editor
                 Forest01ArtworkImporter.EnsureSpriteImported(
                     "Assets/Resources/FT2/Units/" + unitFile + ".png");
 
+            for (int i = 0; i < FantasyTD.V2.Runtime.ForestUnitArtwork.ConceptCount; i++)
+            {
+                string file = FantasyTD.V2.Runtime.ForestUnitArtwork.ConceptFileAt(i);
+                Forest01ArtworkImporter.EnsureSpriteImported(
+                    "Assets/Resources/FT2/NewUnits/" + file + ".png");
+                if (FantasyTD.V2.Runtime.ForestUnitArtwork.ConceptAt(i) == null)
+                    throw new InvalidOperationException("New unit art did not load: " + file);
+            }
+
             SceneAsset scene = AssetDatabase.LoadAssetAtPath<SceneAsset>(ScenePath);
             if (scene == null)
                 throw new InvalidOperationException("Forest01 scene not imported.");

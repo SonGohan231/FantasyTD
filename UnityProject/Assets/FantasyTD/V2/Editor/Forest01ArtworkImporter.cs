@@ -23,7 +23,8 @@ namespace FantasyTD.V2.Editor
                 importer.textureType = TextureImporterType.Sprite;
                 importer.spriteImportMode = SpriteImportMode.Single;
                 importer.mipmapEnabled = false;
-                importer.isReadable = artworkPath.Contains("/FT2/Units/");
+                importer.isReadable = artworkPath.Contains("/FT2/Units/") ||
+                    artworkPath.Contains("/FT2/NewUnits/");
                 importer.SaveAndReimport();
             }
 
@@ -55,8 +56,10 @@ namespace FantasyTD.V2.Editor
             importer.spriteImportMode = SpriteImportMode.Single;
             importer.mipmapEnabled = false;
             importer.alphaIsTransparency = true;
-            importer.isReadable = assetPath.StartsWith("Assets/Resources/FT2/Units/");
-            importer.maxTextureSize = assetPath.StartsWith("Assets/Resources/FT2/Units/") ? 1024 : 2048;
+            bool oldUnit = assetPath.StartsWith("Assets/Resources/FT2/Units/");
+            bool newUnit = assetPath.StartsWith("Assets/Resources/FT2/NewUnits/");
+            importer.isReadable = oldUnit || newUnit;
+            importer.maxTextureSize = newUnit ? 512 : oldUnit ? 1024 : 2048;
         }
     }
 }
