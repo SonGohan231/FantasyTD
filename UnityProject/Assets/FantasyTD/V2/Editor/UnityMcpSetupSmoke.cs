@@ -1,7 +1,7 @@
 #if UNITY_EDITOR
 using System;
 using UnityEditor;
-using UnityEditor.PackageManager;
+using MpcPackageInfo = UnityEditor.PackageManager.PackageInfo;
 using UnityEngine;
 
 namespace FantasyTD.V2.Editor
@@ -15,8 +15,8 @@ namespace FantasyTD.V2.Editor
     {
         public static void Run()
         {
-            PackageInfo installed = null;
-            foreach (PackageInfo package in PackageInfo.GetAllRegisteredPackages())
+            MpcPackageInfo installed = null;
+            foreach (MpcPackageInfo package in MpcPackageInfo.GetAllRegisteredPackages())
                 if (package.name == "com.coplaydev.unity-mcp")
                 {
                     installed = package;
