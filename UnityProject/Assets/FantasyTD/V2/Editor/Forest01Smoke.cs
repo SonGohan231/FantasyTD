@@ -39,6 +39,14 @@ namespace FantasyTD.V2.Editor
                 "Recovered source artwork must be a loadable Sprite with >=512px width.");
             Require(UnityEngine.Resources.Load<Sprite>("FT2/Forest01Art") != null,
                 "Forest01 sprite must resolve through Resources.Load at runtime.");
+            // Every illustrated unit selected by the first three-wave slice
+            // must resolve as a real Sprite without procedural fallbacks.
+            foreach (string defenderId in new[] { "thorn", "frost", "bloom" })
+                Require(ForestUnitArtwork.Defender(defenderId) != null,
+                    "Missing authored FT2 defender sprite: " + defenderId);
+            foreach (string enemyId in new[] { "imp", "runner", "armored" })
+                Require(ForestUnitArtwork.Enemy(enemyId) != null,
+                    "Missing authored FT2 enemy sprite: " + enemyId);
 
             SceneAsset asset = AssetDatabase.LoadAssetAtPath<SceneAsset>(ScenePath);
             Require(asset != null, "Tracked forest scene failed to import.");

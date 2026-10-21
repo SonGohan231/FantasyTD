@@ -441,6 +441,17 @@ namespace FantasyTD.V2.Runtime
 
         private void DrawDefender(string site, string type, Vector2 pos)
         {
+            Sprite character = ForestUnitArtwork.Defender(type);
+            if (character != null)
+            {
+                var art = Sprite("Illustrated defender " + site, pos,
+                    Vector2.one, Color.white, 5, false);
+                art.sprite = character;
+                float scale = 1.55f / Mathf.Max(.01f, character.bounds.size.y);
+                art.transform.localScale = new Vector3(scale, scale, 1f);
+                art.transform.localPosition = new Vector3(pos.x, pos.y - .36f, 0f);
+                return;
+            }
             Color tint = type == "frost" ? new Color(.56f, .83f, 1f)
                 : type == "bloom" ? new Color(1f, .81f, .32f)
                 : new Color(.38f, .71f, .30f);
@@ -495,10 +506,26 @@ namespace FantasyTD.V2.Runtime
             Color tint = enemy.Definition.Id == "runner" ? new Color(.91f, .49f, .25f)
                 : enemy.Definition.Id == "armored" ? new Color(.46f, .46f, .62f)
                 : new Color(.44f, .74f, .32f);
-            RuntimeArt.SpriteObject("Body", root.transform, Vector2.zero,
-                new Vector2(.85f, .85f), tint, 15, true);
-            RuntimeArt.SpriteObject("Eyes", root.transform, new Vector2(.14f, .16f),
-                new Vector2(.25f, .12f), Color.white, 16, false);
+            Sprite illustratedEnemy = ForestUnitArtwork.Enemy(enemy.Definition.Id);
+            if (illustratedEnemy != null)
+            {
+                var art = RuntimeArt.SpriteObject("Illustrated enemy",
+                    root.transform, new Vector2(0f, -.35f), Vector2.one,
+                    Color.white, 16, false).GetComponent<SpriteRenderer>();
+                art.sprite = illustratedEnemy;
+                float visualHeight = enemy.Definition.Id == "armored" ? 1.32f : 1.12f;
+                float scale = visualHeight /
+                    Mathf.Max(.01f, illustratedEnemy.bounds.size.y);
+                art.transform.localScale = new Vector3(scale, scale, 1f);
+            }
+            else
+            {
+                RuntimeArt.SpriteObject("Body", root.transform, Vector2.zero,
+                    new Vector2(.85f, .85f), tint, 15, true);
+                RuntimeArt.SpriteObject("Eyes", root.transform,
+                    new Vector2(.14f, .16f),
+                    new Vector2(.25f, .12f), Color.white, 16, false);
+            }
             RuntimeArt.SpriteObject("HP background", root.transform, new Vector2(0f, .64f),
                 new Vector2(.90f, .13f), new Color(.15f, .14f, .15f), 17, false);
             GameObject hp = RuntimeArt.SpriteObject("HP fill", root.transform,
