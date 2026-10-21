@@ -18,8 +18,10 @@ namespace FantasyTD.V2.Editor
                 throw new System.InvalidOperationException(
                     "FT2 artwork is missing a TextureImporter: " + artworkPath);
             if (importer.textureType != TextureImporterType.Sprite ||
+                importer.textureShape != TextureImporterShape.Texture2D ||
                 importer.spriteImportMode != SpriteImportMode.Single)
             {
+                importer.textureShape = TextureImporterShape.Texture2D;
                 importer.textureType = TextureImporterType.Sprite;
                 importer.spriteImportMode = SpriteImportMode.Single;
                 importer.mipmapEnabled = false;
@@ -50,6 +52,7 @@ namespace FantasyTD.V2.Editor
             Texture2D original = AssetDatabase.LoadAssetAtPath<Texture2D>(artworkPath);
             Debug.Log("FT2 art inspect: " + artworkPath +
                 " importer=" + importer.textureType +
+                " shape=" + importer.textureShape +
                 " Sprite=" + (art == null ? "null" : art.name) +
                 " Texture2D=" + (original == null ? "null" : original.name));
             if (art == null)
@@ -70,6 +73,9 @@ namespace FantasyTD.V2.Editor
         {
             if (!assetPath.StartsWith("Assets/Resources/FT2/")) return;
             var importer = (TextureImporter)assetImporter;
+            // Guard against importer metadata producing Cubemap main assets
+            // even when TextureImporterType visually reads as Sprite.
+            importer.textureShape = TextureImporterShape.Texture2D;
             importer.textureType = TextureImporterType.Sprite;
             importer.spriteImportMode = SpriteImportMode.Single;
             importer.mipmapEnabled = false;
