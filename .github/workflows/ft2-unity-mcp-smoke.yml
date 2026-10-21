@@ -1,0 +1,54 @@
+name: FT2 Unity MCP 10.3 import smoke
+
+on:
+  pull_request:
+    paths:
+      - 'UnityProject/Packages/manifest.json'
+      - 'UnityProject/Assets/FantasyTD/V2/Editor/UnityMcpSetupSmoke.cs'
+      - '.github/workflows/ft2-unity-mcp-smoke.yml'
+  push:
+    branches:
+      - 'codex/ft2-unity-mcp-*'
+    paths:
+      - 'UnityProject/Packages/manifest.json'
+      - 'UnityProject/Assets/FantasyTD/V2/Editor/UnityMcpSetupSmoke.cs'
+      - '.github/workflows/ft2-unity-mcp-smoke.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify-package:
+    name: Real Unity 6 package import — MCP 10.3.0
+    runs-on: [self-hosted, dyrygent-unity]
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          lfs: true
+      - name: Locate Unity
+        id: unity
+        shell: bash
+        run: |
+          set -euo pipefail
+          UNITY_BIN="$(find "$HOME" /opt -type f -path '*/6000.0.26f1/Editor/Unity' -perm -111 2>/dev/null | head -n 1 || true)"
+          test -x "$UNITY_BIN"
+          echo "bin=$UNITY_BIN" >> "$GITHUB_OUTPUT"
+          "$UNITY_BIN" -version
+      - name: Import package and inspect real registered package version
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p UnityProject/Logs
+          command -v xvfb-run >/dev/null
+          xvfb-run -a -s "-screen 0 2560x1440x24" "${{ steps.unity.outputs.bin }}"             -batchmode -quit -projectPath "$GITHUB_WORKSPACE/UnityProject"             -executeMethod FantasyTD.V2.Editor.UnityMcpSetupSmoke.Run             -logFile "$GITHUB_WORKSPACE/UnityProject/Logs/unity-mcp-import.log"
+          grep -Fq "FT2 Unity MCP 10.3.0: PACKAGE IMPORT PASS"             UnityProject/Logs/unity-mcp-import.log
+      - name: Archive Editor evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ft2-unity-mcp-import-${{ github.run_id }}
+          if-no-files-found: warn
+          path: UnityProject/Logs/unity-mcp-import.log
