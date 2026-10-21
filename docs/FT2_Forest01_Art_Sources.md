@@ -33,6 +33,6 @@ separately from the ten older, approved MAP1 pictures. Source files:
 - Vine Guardian, Mushroom Mortar and Sunseed Druid have **art only**; no new combat rules or promised units.
 - Hollow Root Ogre has an optional boss mapping; this is not a new boss encounter.
 - All ten are visible from the **Atlas postaci** button in Forest01.
-- Imported source sheets crop their left 74.5% and apply a soft alpha matte; do not render weapon/detail panels on the field.
+- The ten `NewUnits/*.png` assets are **transparent 512×512 RGBA sprites** pre-cropped from the original full concept sheets, with no right-side panels. Their detailed original concept sheets remain available in the conversation art pack. Runtime uses them directly, without costly texture readbacks or repeated alpha cutting.
 - Existing sources remain available as runtime fallbacks. Legacy MAP-A untouched.
-- Recheck Android performance and the cutout quality in a device screenshot. Concept illustrations do not constitute rigged animation sprites.
+- Recheck Android performance and cutout quality in device screenshots. Static 2D sprites do not constitute rigged animation or new combat behaviors.

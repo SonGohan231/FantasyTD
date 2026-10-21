@@ -58,7 +58,7 @@ namespace FantasyTD.V2.Editor
             importer.alphaIsTransparency = true;
             bool oldUnit = assetPath.StartsWith("Assets/Resources/FT2/Units/");
             bool newUnit = assetPath.StartsWith("Assets/Resources/FT2/NewUnits/");
-            importer.isReadable = oldUnit || newUnit;
+            importer.isReadable = oldUnit; // new sprites are prebaked RGBA cutouts
             importer.maxTextureSize = newUnit ? 512 : oldUnit ? 1024 : 2048;
         }
     }

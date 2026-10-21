@@ -8,17 +8,16 @@ namespace FantasyTD.V2.Runtime
     /// Uses existing approved forest illustration sources. Generates a
     /// cached alpha-masked, main-character cutout instead of rendering an
     /// entire beige concept sheet (and its detail panels) as a game unit.
-    /// Old source images are capped at 1024px; new concepts at 512px. The ten
-    /// new originals are isolated under FT2/NewUnits and do not touch MAP-A.
+    /// Old source sheets are capped at 1024px; new transparent sprite cutouts
+    /// are 512x512, isolated in FT2/NewUnits and do not touch MAP-A.
     /// </summary>
     public static class ForestUnitArtwork
     {
         private static readonly Dictionary<string, Sprite> Cache =
             new Dictionary<string, Sprite>();
 
-        // New images are user-approved concept sheets. Their right-side callouts
-        // are intentionally cropped from battlefield visuals; prior sprites remain
-        // available as fallback. No gameplay definition or balance is changed.
+        // New images are user-created, pre-cut RGBA 512x512 sprites.
+        // The earlier approved art remains a fallback. This only changes presentation.
         private static readonly string[] NewConceptFiles = {
             "ThornbloomRanger", "FrostbudOracle", "EssenceAlchemist",
             "MushroomMortar", "VineGuardian", "SunseedDruid",
@@ -87,6 +86,15 @@ namespace FantasyTD.V2.Runtime
             {
                 Debug.LogWarning("FT2 optional visual missing: Resources/" + path);
                 return null;
+            }
+
+            // New concepts were pre-cut into transparent, size-capped sprites.
+            // Render them directly; do not re-matte or truncate a quarter of
+            // their silhouette and do not duplicate pixel arrays on Android.
+            if (name.StartsWith("New/", StringComparison.Ordinal))
+            {
+                Cache[name] = source;
+                return source;
             }
 
             Texture2D texture = source.texture;

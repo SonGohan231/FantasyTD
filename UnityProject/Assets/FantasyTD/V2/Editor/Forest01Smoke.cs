@@ -64,8 +64,10 @@ namespace FantasyTD.V2.Editor
                 string conceptFile = ForestUnitArtwork.ConceptFileAt(i);
                 Forest01ArtworkImporter.EnsureSpriteImported(
                     "Assets/Resources/FT2/NewUnits/" + conceptFile + ".png");
-                Require(ForestUnitArtwork.ConceptAt(i) != null,
-                    "Missing user-created character sprite: " + conceptFile);
+                Sprite portrait = ForestUnitArtwork.ConceptAt(i);
+                Require(portrait != null && portrait.texture != null &&
+                        portrait.texture.width <= 512,
+                    "Missing/oversize optimized character sprite: " + conceptFile);
             }
 
             SceneAsset asset = AssetDatabase.LoadAssetAtPath<SceneAsset>(ScenePath);
