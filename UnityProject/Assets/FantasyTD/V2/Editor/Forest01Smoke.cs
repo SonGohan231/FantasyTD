@@ -26,10 +26,19 @@ namespace FantasyTD.V2.Editor
             Require(level.Waves.Count >= 3, "At least three waves required.");
             Require(level.PathLength > 2000, "Path is unexpectedly short.");
 
-            Texture2D mapArtwork = AssetDatabase.LoadAssetAtPath<Texture2D>(
-                "Assets/Resources/FT2/Forest01Art.png");
-            Require(mapArtwork != null && mapArtwork.width >= 512,
-                "Recovered source artwork must import as a real texture.");
+            const string artworkPath = "Assets/Resources/FT2/Forest01Art.png";
+            // Regression: source art was present and imported, but the old test
+            // insisted on Texture2D and failed for a Sprite-imported PNG.
+            TextureImporter importer = AssetImporter.GetAtPath(artworkPath)
+                as TextureImporter;
+            Require(importer != null,
+                "Recovered forest artwork has no TextureImporter.");
+            Sprite mapArtwork = AssetDatabase.LoadAssetAtPath<Sprite>(artworkPath);
+            Require(mapArtwork != null && mapArtwork.texture != null &&
+                    mapArtwork.texture.width >= 512,
+                "Recovered source artwork must be a loadable Sprite with >=512px width.");
+            Require(UnityEngine.Resources.Load<Sprite>("FT2/Forest01Art") != null,
+                "Forest01 sprite must resolve through Resources.Load at runtime.");
 
             SceneAsset asset = AssetDatabase.LoadAssetAtPath<SceneAsset>(ScenePath);
             Require(asset != null, "Tracked forest scene failed to import.");

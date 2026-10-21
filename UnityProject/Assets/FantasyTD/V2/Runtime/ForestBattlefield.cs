@@ -214,23 +214,33 @@ namespace FantasyTD.V2.Runtime
                 new Vector2(29f, 16f), Grass, -30, false);
             // Existing MAP1 approved artwork, recovered by SHA from the archived
             // visual branch. Route and build sites remain driven by gameplay data.
-            Texture2D art = Resources.Load<Texture2D>("FT2/Forest01Art");
-            if (art != null)
+            // Unity imports the authored forest PNG as a Sprite. Loading it as a
+            // Texture2D alone may return null even though the PNG exists.
+            Sprite artSprite = Resources.Load<Sprite>("FT2/Forest01Art");
+            if (artSprite == null)
             {
-                if (_forestBackdrop == null)
-                    _forestBackdrop = UnityEngine.Sprite.Create(art,
-                        new Rect(0, 0, art.width, art.height),
+                Texture2D fallbackTexture = Resources.Load<Texture2D>("FT2/Forest01Art");
+                if (fallbackTexture != null && _forestBackdrop == null)
+                    _forestBackdrop = UnityEngine.Sprite.Create(fallbackTexture,
+                        new Rect(0, 0, fallbackTexture.width, fallbackTexture.height),
                         new Vector2(.5f, .5f), 100f);
+                artSprite = _forestBackdrop;
+            }
+            else _forestBackdrop = artSprite;
+            if (artSprite != null)
+            {
                 SpriteRenderer background = Sprite("Recovered forest art",
                     Vector2.zero, Vector2.one, Color.white, -29, false);
-                background.sprite = _forestBackdrop;
-                background.color = new Color(.86f, .94f, .84f, .43f);
+                background.sprite = artSprite;
+                background.color = Color.white;
+                Vector2 bounds = artSprite.bounds.size;
                 background.transform.localScale = new Vector3(
-                    29f / (art.width / 100f),
-                    16f / (art.height / 100f), 1f);
+                    29f / Mathf.Max(.01f, bounds.x),
+                    16f / Mathf.Max(.01f, bounds.y), 1f);
             }
+            else Debug.LogError("FT2: Forest01Art missing from Resources/FT2.");
             // Flat procedural placeholders maintain legible background/route layering.
-            for (int i = 0; i < 48; i++)
+            for (int i = 0; i < (artSprite == null ? 48 : 0); i++)
             {
                 float x = Mathf.Sin(i * 17.17f) * 12.8f;
                 float y = Mathf.Cos(i * 9.3f) * 6.2f;
@@ -246,9 +256,13 @@ namespace FantasyTD.V2.Runtime
                 Vector2 center = (a + b) * .5f;
                 float angle = Mathf.Atan2(offset.y, offset.x) * Mathf.Rad2Deg;
                 SpriteRenderer rim = Sprite("Path border " + i, center,
-                    new Vector2(offset.magnitude + .72f, 1.36f), PathOuter, -21, false);
+                    new Vector2(offset.magnitude + .72f, 1.36f),
+                    artSprite != null ? new Color(.20f, .17f, .10f, .26f) : PathOuter,
+                    -21, false);
                 SpriteRenderer surface = Sprite("Walkable path " + i, center,
-                    new Vector2(offset.magnitude + .44f, 1.07f), PathInner, -20, false);
+                    new Vector2(offset.magnitude + .44f, 1.07f),
+                    artSprite != null ? new Color(.71f, .55f, .34f, .21f) : PathInner,
+                    -20, false);
                 rim.transform.rotation = Quaternion.Euler(0f, 0f, angle);
                 surface.transform.rotation = Quaternion.Euler(0f, 0f, angle);
             }
