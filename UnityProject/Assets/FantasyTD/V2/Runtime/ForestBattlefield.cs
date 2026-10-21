@@ -18,6 +18,8 @@ namespace FantasyTD.V2.Runtime
     {
         private const float SecondsPerTick = 1f / BattleSimulator.TicksPerSecond;
         private const string CampaignSaveKey = "FantasyTD.V2.UnlockedStage.v1";
+        private static readonly string[] TowerIds = { "thorn", "frost", "bloom" };
+        private static Sprite _forestBackdrop;
         private static readonly Color Grass = new Color(.11f, .25f, .17f);
         private static readonly Color PathOuter = new Color(.26f, .18f, .13f);
         private static readonly Color PathInner = new Color(.57f, .42f, .28f);
@@ -42,6 +44,7 @@ namespace FantasyTD.V2.Runtime
         private Button _previousStageButton;
         private Button _nextStageButton;
         private Button[] _towerButtons;
+        private BattleFeedbackPresenter _feedback;
         private int _currentStage;
         private bool _victoryRecorded;
         private string _selectedSite;
@@ -91,6 +94,14 @@ namespace FantasyTD.V2.Runtime
             scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
             scaler.referenceResolution = new Vector2(1920f, 1080f);
             scaler.matchWidthOrHeight = .5f;
+            CreateHudPanel("Top status panel", new Vector2(.5f, 1f),
+                new Vector2(0f, -73f), new Vector2(1800f, 135f),
+                new Color(.08f, .16f, .12f, .86f));
+            CreateHudPanel("Bottom controls panel", new Vector2(.5f, 0f),
+                new Vector2(0f, 94f), new Vector2(1860f, 164f),
+                new Color(.09f, .17f, .12f, .84f));
+            _feedback = canvasObject.AddComponent<BattleFeedbackPresenter>();
+            _feedback.Initialize(_hud, Camera.main);
 
             _stats = RuntimeArt.CreateText(_hud.transform, "Battle stats", 37,
                 TextAnchor.MiddleCenter, Color.white);
@@ -102,7 +113,6 @@ namespace FantasyTD.V2.Runtime
             Position(_prompt.rectTransform, new Vector2(.5f, 0f),
                 new Vector2(0f, 220f), new Vector2(1600f, 70f));
 
-            string[] ids = { "thorn", "frost", "bloom" };
             string[] captions = {
                 "Pędostrzał · 55", "Mroźny Pąk · 75", "Kwiat Esencji · 45"
             };
@@ -111,10 +121,10 @@ namespace FantasyTD.V2.Runtime
                 new Color(.24f, .48f, .64f),
                 new Color(.67f, .48f, .19f)
             };
-            _towerButtons = new Button[ids.Length];
-            for (int i = 0; i < ids.Length; i++)
+            _towerButtons = new Button[TowerIds.Length];
+            for (int i = 0; i < TowerIds.Length; i++)
             {
-                string towerId = ids[i];
+                string towerId = TowerIds[i];
                 _towerButtons[i] = RuntimeArt.CreateButton(_hud.transform,
                     captions[i], colors[i], 32);
                 Position((RectTransform)_towerButtons[i].transform,
@@ -145,6 +155,20 @@ namespace FantasyTD.V2.Runtime
             _nextStageButton.onClick.AddListener(() => ChangeStage(1));
         }
 
+        private void CreateHudPanel(string name, Vector2 anchor,
+            Vector2 position, Vector2 size, Color tint)
+        {
+            GameObject panel = new GameObject(name,
+                typeof(RectTransform), typeof(CanvasRenderer), typeof(Image));
+            panel.transform.SetParent(_hud.transform, false);
+            panel.transform.SetAsFirstSibling();
+            Image image = panel.GetComponent<Image>();
+            image.sprite = RuntimeArt.White;
+            image.color = tint;
+            image.raycastTarget = false;
+            Position((RectTransform)panel.transform, anchor, position, size);
+        }
+
         private static void Position(RectTransform rect, Vector2 anchor,
             Vector2 position, Vector2 size)
         {
@@ -165,7 +189,9 @@ namespace FantasyTD.V2.Runtime
             _victoryRecorded = false;
             _level = CampaignCatalog.CreateLevel(_currentStage);
             _battle = new BattleSimulator(_level);
+            _battle.EventRaised += OnBattleEvent;
             _world = new GameObject("V2 World");
+            if (_feedback != null) _feedback.BindWorld(_world.transform);
             DrawTerrainAndPath();
             DrawBuildSites();
             _prompt.text = "Wybierz świecące miejsce, posadź obrońcę i uruchom falę.";
@@ -176,6 +202,23 @@ namespace FantasyTD.V2.Runtime
         {
             Sprite("Moss meadow", new Vector2(0f, 0f),
                 new Vector2(29f, 16f), Grass, -30, false);
+            // Existing MAP1 approved artwork, recovered by SHA from the archived
+            // visual branch. Route and build sites remain driven by gameplay data.
+            Texture2D art = Resources.Load<Texture2D>("FT2/Forest01Art");
+            if (art != null)
+            {
+                if (_forestBackdrop == null)
+                    _forestBackdrop = UnityEngine.Sprite.Create(art,
+                        new Rect(0, 0, art.width, art.height),
+                        new Vector2(.5f, .5f), 100f);
+                SpriteRenderer background = Sprite("Recovered forest art",
+                    Vector2.zero, Vector2.one, Color.white, -29, false);
+                background.sprite = _forestBackdrop;
+                background.color = new Color(.86f, .94f, .84f, .43f);
+                background.transform.localScale = new Vector3(
+                    29f / (art.width / 100f),
+                    16f / (art.height / 100f), 1f);
+            }
             // Flat procedural placeholders maintain legible background/route layering.
             for (int i = 0; i < 48; i++)
             {
@@ -233,6 +276,45 @@ namespace FantasyTD.V2.Runtime
         private static Vector2 Point(MapPoint point)
         {
             return new Vector2(point.X / 100f, point.Y / 100f);
+        }
+
+        private void OnBattleEvent(BattleEvent evt)
+        {
+            if (_feedback == null) return;
+            Vector3 location = Vector3.zero;
+            if (evt.EntityId > 0)
+            {
+                EnemyView view;
+                if (_enemyViews.TryGetValue(evt.EntityId, out view) && view.Root != null)
+                    location = view.Root.transform.position;
+                else
+                {
+                    foreach (EnemyState enemy in _battle.Enemies)
+                        if (enemy.InstanceId == evt.EntityId)
+                        {
+                            Vector2 p = Point(_level.AtDistance(enemy.Distance));
+                            location = new Vector3(p.x, p.y, 0f);
+                            break;
+                        }
+                }
+            }
+            else if (evt.Kind == BattleEventKind.TowerPlaced &&
+                _selectedSite != null && _level.Sites.ContainsKey(_selectedSite))
+            {
+                Vector2 p = Point(_level.Sites[_selectedSite]);
+                location = new Vector3(p.x, p.y, 0f);
+            }
+            else if (evt.Kind == BattleEventKind.Income)
+            {
+                foreach (TowerState tower in _battle.PlacedTowers.Values)
+                {
+                    if (tower.Definition.Id != evt.ContentId) continue;
+                    Vector2 p = Point(tower.Position);
+                    location = new Vector3(p.x, p.y, 0f);
+                    break;
+                }
+            }
+            _feedback.Show(evt, location);
         }
 
         private void Update()
@@ -440,8 +522,11 @@ namespace FantasyTD.V2.Runtime
                 "  |  Pokonani " + _battle.Kills;
 
             bool gameOver = _battle.Result != BattleResult.InProgress;
-            foreach (Button button in _towerButtons)
-                button.interactable = !gameOver && _selectedSite != null;
+            for (int i = 0; i < _towerButtons.Length; i++)
+                _towerButtons[i].interactable = !gameOver &&
+                    _selectedSite != null &&
+                    _level.Towers.ContainsKey(TowerIds[i]) &&
+                    _battle.Essence >= _level.Towers[TowerIds[i]].Cost;
             _nextWave.interactable = gameOver || _battle.CanStartWave;
             int unlocked = Mathf.Clamp(PlayerPrefs.GetInt(CampaignSaveKey, 1),
                 1, CampaignCatalog.LevelCount);
