@@ -27,6 +27,25 @@ namespace FantasyTD.V2.Editor
                 importer.SaveAndReimport();
             }
 
+            // Diagnostic probe: compare importer data with on-disk PNG header
+            // and actual AssetDatabase subassets, not only the importer type.
+            string absolutePath = System.IO.Path.Combine(
+                System.IO.Directory.GetParent(Application.dataPath).FullName,
+                artworkPath);
+            var raw = System.IO.File.ReadAllBytes(absolutePath);
+            string signature = System.BitConverter.ToString(raw, 0,
+                System.Math.Min(raw.Length, 24));
+            var objects = AssetDatabase.LoadAllAssetsAtPath(artworkPath);
+            string objectTypes = objects == null ? "null" :
+                string.Join(", ", System.Array.ConvertAll(objects,
+                    x => x == null ? "null" : x.GetType().Name));
+            Debug.Log("FT2 asset source inspect: " + artworkPath +
+                " fileBytes=" + raw.Length +
+                " header=" + signature +
+                " allAssets=[" + objectTypes + "]" +
+                " mainType=" + AssetDatabase.GetMainAssetTypeAtPath(artworkPath) +
+                " guid=" + AssetDatabase.AssetPathToGUID(artworkPath));
+
             Sprite art = AssetDatabase.LoadAssetAtPath<Sprite>(artworkPath);
             Texture2D original = AssetDatabase.LoadAssetAtPath<Texture2D>(artworkPath);
             Debug.Log("FT2 art inspect: " + artworkPath +

@@ -27,6 +27,10 @@ namespace FantasyTD.V2.Editor
             Require(level.PathLength > 2000, "Path is unexpectedly short.");
 
             const string artworkPath = "Assets/Resources/FT2/Forest01Art.png";
+            // Known-valid 64x64 RGBA PNG control: if this also fails,
+            // investigate Unity's import/load pipeline rather than source pixels.
+            Forest01ArtworkImporter.EnsureSpriteImported(
+                "Assets/Resources/FT2/ImportProbe.png");
             Forest01ArtworkImporter.EnsureSpriteImported(artworkPath);
             // Regression: source art was present and imported, but the old test
             // insisted on Texture2D and failed for a Sprite-imported PNG.
