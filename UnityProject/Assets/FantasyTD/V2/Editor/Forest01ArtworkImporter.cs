@@ -17,14 +17,23 @@ namespace FantasyTD.V2.Editor
             if (importer == null)
                 throw new System.InvalidOperationException(
                     "FT2 artwork is missing a TextureImporter: " + artworkPath);
-            if (importer.textureType != TextureImporterType.Sprite ||
-                importer.spriteImportMode != SpriteImportMode.Single)
+            // Cubemap regression: Sprite type alone is insufficient in Unity 6.
+            bool legacyUnit = artworkPath.StartsWith("Assets/Resources/FT2/Units/");
+            bool newUnit = artworkPath.StartsWith("Assets/Resources/FT2/NewUnits/");
+            int expectedMaxSize = newUnit ? 512 : legacyUnit ? 1024 : 2048;
+            if (importer.textureShape != TextureImporterShape.Texture2D ||
+                importer.textureType != TextureImporterType.Sprite ||
+                importer.spriteImportMode != SpriteImportMode.Single ||
+                importer.isReadable != legacyUnit ||
+                importer.maxTextureSize != expectedMaxSize)
             {
+                importer.textureShape = TextureImporterShape.Texture2D;
                 importer.textureType = TextureImporterType.Sprite;
                 importer.spriteImportMode = SpriteImportMode.Single;
                 importer.mipmapEnabled = false;
-                importer.isReadable = artworkPath.Contains("/FT2/Units/") ||
-                    artworkPath.Contains("/FT2/NewUnits/");
+                importer.alphaIsTransparency = true;
+                importer.isReadable = legacyUnit;
+                importer.maxTextureSize = expectedMaxSize;
                 importer.SaveAndReimport();
             }
 
@@ -32,6 +41,7 @@ namespace FantasyTD.V2.Editor
             Texture2D original = AssetDatabase.LoadAssetAtPath<Texture2D>(artworkPath);
             Debug.Log("FT2 art inspect: " + artworkPath +
                 " importer=" + importer.textureType +
+                " shape=" + importer.textureShape +
                 " Sprite=" + (art == null ? "null" : art.name) +
                 " Texture2D=" + (original == null ? "null" : original.name));
             if (art == null)
@@ -43,15 +53,21 @@ namespace FantasyTD.V2.Editor
                     ImportAssetOptions.ForceUpdate);
                 art = AssetDatabase.LoadAssetAtPath<Sprite>(artworkPath);
             }
-            if (art == null || art.texture == null)
+            if (importer.textureShape != TextureImporterShape.Texture2D ||
+                art == null || art.texture == null ||
+                original == null)
                 throw new System.InvalidOperationException(
-                    "FT2 artwork cannot be loaded as Sprite: " + artworkPath);
+                    "FT2 artwork failed Texture2D/Sprite validation: " + artworkPath +
+                    " shape=" + importer.textureShape +
+                    " Sprite=" + (art == null ? "null" : art.name) +
+                    " Texture2D=" + (original == null ? "null" : original.name));
         }
 
         private void OnPreprocessTexture()
         {
             if (!assetPath.StartsWith("Assets/Resources/FT2/")) return;
             var importer = (TextureImporter)assetImporter;
+            importer.textureShape = TextureImporterShape.Texture2D;
             importer.textureType = TextureImporterType.Sprite;
             importer.spriteImportMode = SpriteImportMode.Single;
             importer.mipmapEnabled = false;

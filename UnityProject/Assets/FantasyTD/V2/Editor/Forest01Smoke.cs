@@ -28,6 +28,9 @@ namespace FantasyTD.V2.Editor
 
             const string artworkPath = "Assets/Resources/FT2/Forest01Art.png";
             Forest01ArtworkImporter.EnsureSpriteImported(artworkPath);
+            Require(((TextureImporter)AssetImporter.GetAtPath(artworkPath)).textureShape ==
+                    TextureImporterShape.Texture2D,
+                "Forest01 map must import as Texture2D, not Cubemap.");
             // Regression: source art was present and imported, but the old test
             // insisted on Texture2D and failed for a Sprite-imported PNG.
             TextureImporter importer = AssetImporter.GetAtPath(artworkPath)
@@ -62,8 +65,15 @@ namespace FantasyTD.V2.Editor
             for (int i = 0; i < ForestUnitArtwork.ConceptCount; i++)
             {
                 string conceptFile = ForestUnitArtwork.ConceptFileAt(i);
-                Forest01ArtworkImporter.EnsureSpriteImported(
-                    "Assets/Resources/FT2/NewUnits/" + conceptFile + ".png");
+                string conceptPath = "Assets/Resources/FT2/NewUnits/" + conceptFile + ".png";
+                Forest01ArtworkImporter.EnsureSpriteImported(conceptPath);
+                TextureImporter conceptImporter =
+                    AssetImporter.GetAtPath(conceptPath) as TextureImporter;
+                Require(conceptImporter != null &&
+                        conceptImporter.textureShape == TextureImporterShape.Texture2D &&
+                        conceptImporter.textureType == TextureImporterType.Sprite &&
+                        AssetDatabase.LoadAssetAtPath<Texture2D>(conceptPath) != null,
+                    "Generated art imported as Cubemap/non-2D: " + conceptFile);
                 Sprite portrait = ForestUnitArtwork.ConceptAt(i);
                 Require(portrait != null && portrait.texture != null &&
                         portrait.texture.width <= 512,

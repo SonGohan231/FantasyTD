@@ -44,7 +44,8 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p UnityProject/Logs
-          "${{ steps.unity.outputs.bin }}" -batchmode -nographics -quit \
+          command -v xvfb-run >/dev/null 2>&1 || { echo '::error::Missing xvfb-run'; exit 1; }
+          xvfb-run -a -s "-screen 0 2560x1440x24" "${{ steps.unity.outputs.bin }}" -batchmode -quit \
             -projectPath "$GITHUB_WORKSPACE/UnityProject" \
             -executeMethod FantasyTD.V2.Editor.Forest01Smoke.RunSmoke \
             -logFile "$GITHUB_WORKSPACE/UnityProject/Logs/ft2-forest01-smoke.log"
