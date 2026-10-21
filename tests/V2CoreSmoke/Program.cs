@@ -13,6 +13,7 @@ internal static class Program
             VerifyCampaignRegistry();
             VerifyBattleFeedbackCues();
             VerifyCompleteForestSession();
+            VerifyPauseResume();
             Console.WriteLine("V2CoreSmoke PASS: first forest simulation and all 30 campaign definitions.");
             return 0;
         }
@@ -226,6 +227,31 @@ internal static class Program
                 retry.TryPlaceTower("a01", "thorn"),
                 "restart must reset combat and economy state");
         Console.WriteLine("ForestSession PASS: three-wave victory, real defeat, clean restart.");
+    }
+
+
+    private static void VerifyPauseResume()
+    {
+        LevelDefinition level = StarterLevel.Create();
+        var battle = new BattleSimulator(level);
+        var gate = new BattlePauseGate();
+        Require(gate.CanAdvance, "new battle starts unpaused");
+        Require(battle.StartNextWave(), "paused scenario starts its wave");
+        battle.Step();
+        int before = battle.TotalTicks;
+        gate.Toggle();
+        Require(gate.IsPaused && !gate.CanAdvance, "pause blocks simulation");
+        for (int i = 0; i < 50; i++)
+            if (gate.CanAdvance) battle.Step();
+        Require(battle.TotalTicks == before, "time must not advance while paused");
+        gate.Toggle();
+        Require(gate.CanAdvance && !gate.IsPaused, "resume restores simulation");
+        if (gate.CanAdvance) battle.Step();
+        Require(battle.TotalTicks == before + 1, "resume advances exactly one tick");
+        gate.Toggle();
+        gate.Reset();
+        Require(gate.CanAdvance, "restart must clear pause state");
+        Console.WriteLine("PauseResume PASS: freeze, resume and reset.");
     }
 
     private static void Require(bool ok, string message)
