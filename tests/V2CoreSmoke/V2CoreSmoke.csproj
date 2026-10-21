@@ -11,6 +11,7 @@
     <Compile Include="../../UnityProject/Assets/FantasyTD/V2/Core/BattleContent.cs" />
     <Compile Include="../../UnityProject/Assets/FantasyTD/V2/Core/BattleSimulator.cs" />
     <Compile Include="../../UnityProject/Assets/FantasyTD/V2/Core/BattleFeedbackCatalog.cs" />
+    <Compile Include="../../UnityProject/Assets/FantasyTD/V2/Core/BattlePauseGate.cs" />
     <Compile Include="../../UnityProject/Assets/FantasyTD/V2/Content/StarterLevel.cs" />
     <Compile Include="../../UnityProject/Assets/FantasyTD/V2/Content/CampaignCatalog.cs" />
   </ItemGroup>
