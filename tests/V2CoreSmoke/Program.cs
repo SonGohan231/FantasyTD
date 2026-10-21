@@ -12,6 +12,7 @@ internal static class Program
             VerifyStarterLevel();
             VerifyCampaignRegistry();
             VerifyBattleFeedbackCues();
+            VerifyCompleteForestSession();
             Console.WriteLine("V2CoreSmoke PASS: first forest simulation and all 30 campaign definitions.");
             return 0;
         }
@@ -162,6 +163,69 @@ internal static class Program
             new BattleEvent(BattleEventKind.Defeat, 0, "forest", 0, 3))
             .Kind == FeedbackKind.Defeat, "defeat cue missing");
         Console.WriteLine("BattleFeedback PASS: plant, hit, kill, leak, income, wave, result.");
+    }
+
+
+    private static void VerifyCompleteForestSession()
+    {
+        LevelDefinition level = StarterLevel.Create();
+        string[] strategicPositions =
+        {
+            "a01", "a04", "a07", "a10", "a02", "a05", "a08", "a11", "a12"
+        };
+        var defended = new BattleSimulator(level);
+        int nextPosition = 0;
+        while (nextPosition < 4)
+            Require(defended.TryPlaceTower(strategicPositions[nextPosition++], "thorn"),
+                "starter defender placement must be affordable");
+
+        for (int wave = 1; wave <= 3; wave++)
+        {
+            Require(defended.StartNextWave(), "start defended wave " + wave);
+            int ticks = 0;
+            while (defended.WaveActive && defended.Result == BattleResult.InProgress &&
+                   ticks < 4000)
+            {
+                if (ticks % 20 == 0 && nextPosition < strategicPositions.Length &&
+                    defended.Essence >= level.Towers["thorn"].Cost)
+                    Require(defended.TryPlaceTower(strategicPositions[nextPosition++], "thorn"),
+                        "reinforcement placement failed");
+                defended.Step();
+                ticks++;
+            }
+            Require(!defended.WaveActive, "defended wave " + wave + " did not end");
+            Require(defended.Result != BattleResult.Defeat,
+                "a well-funded defensive strategy must survive wave " + wave);
+        }
+        Require(defended.Result == BattleResult.Victory,
+            "defended full Forest01 session must reach victory");
+        Require(defended.Kills >= 1, "defended session must actually fight enemies");
+        Require(!defended.CanStartWave, "completed level must block extra wave");
+        Require(!defended.TryPlaceTower("a06", "thorn"),
+            "completed level must reject further placements");
+
+        // An undefended base must fail through actual enemy leaks.
+        var undefended = new BattleSimulator(level);
+        for (int wave = 1; wave <= 3 &&
+             undefended.Result == BattleResult.InProgress; wave++)
+        {
+            Require(undefended.StartNextWave(),
+                "start undefended wave " + wave);
+            int ticks = 0;
+            while (undefended.WaveActive && ticks++ < 4000)
+                undefended.Step();
+            Require(!undefended.WaveActive, "undefended wave timeout");
+        }
+        Require(undefended.Result == BattleResult.Defeat,
+            "undefended Forest01 must lead to defeat, not accidental victory");
+
+        var retry = new BattleSimulator(level);
+        Require(retry.Essence == level.StartingEssence &&
+                retry.BaseHp == level.StartingBaseHp && retry.WaveNumber == 0 &&
+                retry.Result == BattleResult.InProgress &&
+                retry.TryPlaceTower("a01", "thorn"),
+                "restart must reset combat and economy state");
+        Console.WriteLine("ForestSession PASS: three-wave victory, real defeat, clean restart.");
     }
 
     private static void Require(bool ok, string message)
