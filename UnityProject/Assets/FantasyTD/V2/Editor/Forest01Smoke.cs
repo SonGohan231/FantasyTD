@@ -26,6 +26,39 @@ namespace FantasyTD.V2.Editor
             Require(level.Waves.Count >= 3, "At least three waves required.");
             Require(level.PathLength > 2000, "Path is unexpectedly short.");
 
+            const string artworkPath = "Assets/Resources/FT2/Forest01Art.png";
+            // Known-valid 64x64 RGBA PNG control: if this also fails,
+            // investigate Unity's import/load pipeline rather than source pixels.
+            Forest01ArtworkImporter.EnsureSpriteImported(
+                "Assets/Resources/FT2/ImportProbe.png");
+            Forest01ArtworkImporter.EnsureSpriteImported(artworkPath);
+            // Regression: source art was present and imported, but the old test
+            // insisted on Texture2D and failed for a Sprite-imported PNG.
+            TextureImporter importer = AssetImporter.GetAtPath(artworkPath)
+                as TextureImporter;
+            Require(importer != null,
+                "Recovered forest artwork has no TextureImporter.");
+            Sprite mapArtwork = AssetDatabase.LoadAssetAtPath<Sprite>(artworkPath);
+            Require(mapArtwork != null && mapArtwork.texture != null &&
+                    mapArtwork.texture.width >= 512,
+                "Recovered source artwork must be a loadable Sprite with >=512px width.");
+            Require(UnityEngine.Resources.Load<Sprite>("FT2/Forest01Art") != null,
+                "Forest01 sprite must resolve through Resources.Load at runtime.");
+            // Every illustrated unit selected by the first three-wave slice
+            // must resolve as a real Sprite without procedural fallbacks.
+            foreach (string unitFile in new[] {
+                "ThornShooter", "FrostBud", "EssenceFlower",
+                "Wanderer", "Runner", "Armored"
+            })
+                Forest01ArtworkImporter.EnsureSpriteImported(
+                    "Assets/Resources/FT2/Units/" + unitFile + ".png");
+            foreach (string defenderId in new[] { "thorn", "frost", "bloom" })
+                Require(ForestUnitArtwork.Defender(defenderId) != null,
+                    "Missing authored FT2 defender sprite: " + defenderId);
+            foreach (string enemyId in new[] { "imp", "runner", "armored" })
+                Require(ForestUnitArtwork.Enemy(enemyId) != null,
+                    "Missing authored FT2 enemy sprite: " + enemyId);
+
             SceneAsset asset = AssetDatabase.LoadAssetAtPath<SceneAsset>(ScenePath);
             Require(asset != null, "Tracked forest scene failed to import.");
 
@@ -60,7 +93,7 @@ namespace FantasyTD.V2.Editor
             Require(battle.Result != BattleResult.Defeat,
                 "One wave must not exhaust all 15 lives.");
             Require(battle.CanStartWave, "Second wave should be available.");
-            Debug.Log("FantasyTD FT2-003 Forest01: PASS (scene import, bootstrap, " +
+            Debug.Log("FantasyTD FT2-003 Forest01: PASS (source art import, scene, bootstrap, " +
                       "12 sites, 3 defenders, 3 waves, placement, spawn and clear).");
         }
 

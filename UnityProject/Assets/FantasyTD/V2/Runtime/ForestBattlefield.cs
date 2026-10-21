@@ -18,6 +18,8 @@ namespace FantasyTD.V2.Runtime
     {
         private const float SecondsPerTick = 1f / BattleSimulator.TicksPerSecond;
         private const string CampaignSaveKey = "FantasyTD.V2.UnlockedStage.v1";
+        private static readonly string[] TowerIds = { "thorn", "frost", "bloom" };
+        private static Sprite _forestBackdrop;
         private static readonly Color Grass = new Color(.11f, .25f, .17f);
         private static readonly Color PathOuter = new Color(.26f, .18f, .13f);
         private static readonly Color PathInner = new Color(.57f, .42f, .28f);
@@ -39,9 +41,12 @@ namespace FantasyTD.V2.Runtime
         private Text _stats;
         private Text _prompt;
         private Button _nextWave;
+        private Button _pauseButton;
+        private readonly BattlePauseGate _pauseGate = new BattlePauseGate();
         private Button _previousStageButton;
         private Button _nextStageButton;
         private Button[] _towerButtons;
+        private BattleFeedbackPresenter _feedback;
         private int _currentStage;
         private bool _victoryRecorded;
         private string _selectedSite;
@@ -67,7 +72,7 @@ namespace FantasyTD.V2.Runtime
                 cam = cameraObject.AddComponent<Camera>();
             }
             cam.orthographic = true;
-            cam.orthographicSize = 7.75f;
+            cam.orthographicSize = 8.35f;
             cam.transform.position = new Vector3(0f, 0f, -10f);
             cam.backgroundColor = Grass;
             cam.clearFlags = CameraClearFlags.SolidColor;
@@ -91,6 +96,14 @@ namespace FantasyTD.V2.Runtime
             scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
             scaler.referenceResolution = new Vector2(1920f, 1080f);
             scaler.matchWidthOrHeight = .5f;
+            CreateHudPanel("Top status panel", new Vector2(.5f, 1f),
+                new Vector2(0f, -73f), new Vector2(1800f, 135f),
+                new Color(.08f, .16f, .12f, .86f));
+            CreateHudPanel("Bottom controls panel", new Vector2(.5f, 0f),
+                new Vector2(0f, 94f), new Vector2(1860f, 164f),
+                new Color(.09f, .17f, .12f, .84f));
+            _feedback = canvasObject.AddComponent<BattleFeedbackPresenter>();
+            _feedback.Initialize(_hud, Camera.main);
 
             _stats = RuntimeArt.CreateText(_hud.transform, "Battle stats", 37,
                 TextAnchor.MiddleCenter, Color.white);
@@ -102,7 +115,6 @@ namespace FantasyTD.V2.Runtime
             Position(_prompt.rectTransform, new Vector2(.5f, 0f),
                 new Vector2(0f, 220f), new Vector2(1600f, 70f));
 
-            string[] ids = { "thorn", "frost", "bloom" };
             string[] captions = {
                 "Pędostrzał · 55", "Mroźny Pąk · 75", "Kwiat Esencji · 45"
             };
@@ -111,10 +123,10 @@ namespace FantasyTD.V2.Runtime
                 new Color(.24f, .48f, .64f),
                 new Color(.67f, .48f, .19f)
             };
-            _towerButtons = new Button[ids.Length];
-            for (int i = 0; i < ids.Length; i++)
+            _towerButtons = new Button[TowerIds.Length];
+            for (int i = 0; i < TowerIds.Length; i++)
             {
-                string towerId = ids[i];
+                string towerId = TowerIds[i];
                 _towerButtons[i] = RuntimeArt.CreateButton(_hud.transform,
                     captions[i], colors[i], 32);
                 Position((RectTransform)_towerButtons[i].transform,
@@ -143,6 +155,27 @@ namespace FantasyTD.V2.Runtime
                 new Vector2(1f, 1f), new Vector2(-175f, -155f),
                 new Vector2(300f, 75f));
             _nextStageButton.onClick.AddListener(() => ChangeStage(1));
+
+            _pauseButton = RuntimeArt.CreateButton(_hud.transform,
+                "Pauza", new Color(.26f, .32f, .23f), 27);
+            Position((RectTransform)_pauseButton.transform,
+                new Vector2(1f, 1f), new Vector2(-170f, -255f),
+                new Vector2(270f, 76f));
+            _pauseButton.onClick.AddListener(TogglePause);
+        }
+
+        private void CreateHudPanel(string name, Vector2 anchor,
+            Vector2 position, Vector2 size, Color tint)
+        {
+            GameObject panel = new GameObject(name,
+                typeof(RectTransform), typeof(CanvasRenderer), typeof(Image));
+            panel.transform.SetParent(_hud.transform, false);
+            panel.transform.SetAsFirstSibling();
+            Image image = panel.GetComponent<Image>();
+            image.sprite = RuntimeArt.White;
+            image.color = tint;
+            image.raycastTarget = false;
+            Position((RectTransform)panel.transform, anchor, position, size);
         }
 
         private static void Position(RectTransform rect, Vector2 anchor,
@@ -162,10 +195,13 @@ namespace FantasyTD.V2.Runtime
             _siteMarkers.Clear();
             _selectedSite = null;
             _tickAccumulator = 0f;
+            _pauseGate.Reset();
             _victoryRecorded = false;
             _level = CampaignCatalog.CreateLevel(_currentStage);
             _battle = new BattleSimulator(_level);
+            _battle.EventRaised += OnBattleEvent;
             _world = new GameObject("V2 World");
+            if (_feedback != null) _feedback.BindWorld(_world.transform);
             DrawTerrainAndPath();
             DrawBuildSites();
             _prompt.text = "Wybierz świecące miejsce, posadź obrońcę i uruchom falę.";
@@ -176,8 +212,35 @@ namespace FantasyTD.V2.Runtime
         {
             Sprite("Moss meadow", new Vector2(0f, 0f),
                 new Vector2(29f, 16f), Grass, -30, false);
+            // Existing MAP1 approved artwork, recovered by SHA from the archived
+            // visual branch. Route and build sites remain driven by gameplay data.
+            // Unity imports the authored forest PNG as a Sprite. Loading it as a
+            // Texture2D alone may return null even though the PNG exists.
+            Sprite artSprite = Resources.Load<Sprite>("FT2/Forest01Art");
+            if (artSprite == null)
+            {
+                Texture2D fallbackTexture = Resources.Load<Texture2D>("FT2/Forest01Art");
+                if (fallbackTexture != null && _forestBackdrop == null)
+                    _forestBackdrop = UnityEngine.Sprite.Create(fallbackTexture,
+                        new Rect(0, 0, fallbackTexture.width, fallbackTexture.height),
+                        new Vector2(.5f, .5f), 100f);
+                artSprite = _forestBackdrop;
+            }
+            else _forestBackdrop = artSprite;
+            if (artSprite != null)
+            {
+                SpriteRenderer background = Sprite("Recovered forest art",
+                    Vector2.zero, Vector2.one, Color.white, -29, false);
+                background.sprite = artSprite;
+                background.color = Color.white;
+                Vector2 bounds = artSprite.bounds.size;
+                background.transform.localScale = new Vector3(
+                    29f / Mathf.Max(.01f, bounds.x),
+                    16f / Mathf.Max(.01f, bounds.y), 1f);
+            }
+            else Debug.LogError("FT2: Forest01Art missing from Resources/FT2.");
             // Flat procedural placeholders maintain legible background/route layering.
-            for (int i = 0; i < 48; i++)
+            for (int i = 0; i < (artSprite == null ? 48 : 0); i++)
             {
                 float x = Mathf.Sin(i * 17.17f) * 12.8f;
                 float y = Mathf.Cos(i * 9.3f) * 6.2f;
@@ -193,9 +256,13 @@ namespace FantasyTD.V2.Runtime
                 Vector2 center = (a + b) * .5f;
                 float angle = Mathf.Atan2(offset.y, offset.x) * Mathf.Rad2Deg;
                 SpriteRenderer rim = Sprite("Path border " + i, center,
-                    new Vector2(offset.magnitude + .72f, 1.36f), PathOuter, -21, false);
+                    new Vector2(offset.magnitude + .72f, 1.36f),
+                    artSprite != null ? new Color(.20f, .17f, .10f, .26f) : PathOuter,
+                    -21, false);
                 SpriteRenderer surface = Sprite("Walkable path " + i, center,
-                    new Vector2(offset.magnitude + .44f, 1.07f), PathInner, -20, false);
+                    new Vector2(offset.magnitude + .44f, 1.07f),
+                    artSprite != null ? new Color(.71f, .55f, .34f, .21f) : PathInner,
+                    -20, false);
                 rim.transform.rotation = Quaternion.Euler(0f, 0f, angle);
                 surface.transform.rotation = Quaternion.Euler(0f, 0f, angle);
             }
@@ -235,9 +302,65 @@ namespace FantasyTD.V2.Runtime
             return new Vector2(point.X / 100f, point.Y / 100f);
         }
 
+        private void OnBattleEvent(BattleEvent evt)
+        {
+            if (_feedback == null) return;
+            Vector3 location = Vector3.zero;
+            if (evt.EntityId > 0)
+            {
+                EnemyView view;
+                if (_enemyViews.TryGetValue(evt.EntityId, out view) && view.Root != null)
+                    location = view.Root.transform.position;
+                else
+                {
+                    foreach (EnemyState enemy in _battle.Enemies)
+                        if (enemy.InstanceId == evt.EntityId)
+                        {
+                            Vector2 p = Point(_level.AtDistance(enemy.Distance));
+                            location = new Vector3(p.x, p.y, 0f);
+                            break;
+                        }
+                }
+            }
+            else if (evt.Kind == BattleEventKind.TowerPlaced &&
+                _selectedSite != null && _level.Sites.ContainsKey(_selectedSite))
+            {
+                Vector2 p = Point(_level.Sites[_selectedSite]);
+                location = new Vector3(p.x, p.y, 0f);
+            }
+            else if (evt.Kind == BattleEventKind.Income)
+            {
+                foreach (TowerState tower in _battle.PlacedTowers.Values)
+                {
+                    if (tower.Definition.Id != evt.ContentId) continue;
+                    Vector2 p = Point(tower.Position);
+                    location = new Vector3(p.x, p.y, 0f);
+                    break;
+                }
+            }
+            _feedback.Show(evt, location);
+        }
+
+        private void TogglePause()
+        {
+            if (_battle == null || _battle.Result != BattleResult.InProgress) return;
+            _pauseGate.Toggle();
+            _tickAccumulator = 0f;
+            _prompt.text = _pauseGate.IsPaused
+                ? "PAUZA — dotknij Wznów, aby kontynuować."
+                : "Wznowiono obronę.";
+            RefreshHud();
+        }
+
         private void Update()
         {
             if (_battle == null) return;
+            if (_pauseGate.IsPaused)
+            {
+                _tickAccumulator = 0f;
+                RefreshHud();
+                return;
+            }
             HandleBattlefieldTouch();
             _tickAccumulator += Mathf.Min(Time.deltaTime, .25f);
             int maxSteps = 5;
@@ -318,6 +441,17 @@ namespace FantasyTD.V2.Runtime
 
         private void DrawDefender(string site, string type, Vector2 pos)
         {
+            Sprite character = ForestUnitArtwork.Defender(type);
+            if (character != null)
+            {
+                var art = Sprite("Illustrated defender " + site, pos,
+                    Vector2.one, Color.white, 5, false);
+                art.sprite = character;
+                float scale = 1.55f / Mathf.Max(.01f, character.bounds.size.y);
+                art.transform.localScale = new Vector3(scale, scale, 1f);
+                art.transform.localPosition = new Vector3(pos.x, pos.y - .36f, 0f);
+                return;
+            }
             Color tint = type == "frost" ? new Color(.56f, .83f, 1f)
                 : type == "bloom" ? new Color(1f, .81f, .32f)
                 : new Color(.38f, .71f, .30f);
@@ -372,10 +506,26 @@ namespace FantasyTD.V2.Runtime
             Color tint = enemy.Definition.Id == "runner" ? new Color(.91f, .49f, .25f)
                 : enemy.Definition.Id == "armored" ? new Color(.46f, .46f, .62f)
                 : new Color(.44f, .74f, .32f);
-            RuntimeArt.SpriteObject("Body", root.transform, Vector2.zero,
-                new Vector2(.85f, .85f), tint, 15, true);
-            RuntimeArt.SpriteObject("Eyes", root.transform, new Vector2(.14f, .16f),
-                new Vector2(.25f, .12f), Color.white, 16, false);
+            Sprite illustratedEnemy = ForestUnitArtwork.Enemy(enemy.Definition.Id);
+            if (illustratedEnemy != null)
+            {
+                var art = RuntimeArt.SpriteObject("Illustrated enemy",
+                    root.transform, new Vector2(0f, -.35f), Vector2.one,
+                    Color.white, 16, false).GetComponent<SpriteRenderer>();
+                art.sprite = illustratedEnemy;
+                float visualHeight = enemy.Definition.Id == "armored" ? 1.32f : 1.12f;
+                float scale = visualHeight /
+                    Mathf.Max(.01f, illustratedEnemy.bounds.size.y);
+                art.transform.localScale = new Vector3(scale, scale, 1f);
+            }
+            else
+            {
+                RuntimeArt.SpriteObject("Body", root.transform, Vector2.zero,
+                    new Vector2(.85f, .85f), tint, 15, true);
+                RuntimeArt.SpriteObject("Eyes", root.transform,
+                    new Vector2(.14f, .16f),
+                    new Vector2(.25f, .12f), Color.white, 16, false);
+            }
             RuntimeArt.SpriteObject("HP background", root.transform, new Vector2(0f, .64f),
                 new Vector2(.90f, .13f), new Color(.15f, .14f, .15f), 17, false);
             GameObject hp = RuntimeArt.SpriteObject("HP fill", root.transform,
@@ -440,13 +590,23 @@ namespace FantasyTD.V2.Runtime
                 "  |  Pokonani " + _battle.Kills;
 
             bool gameOver = _battle.Result != BattleResult.InProgress;
-            foreach (Button button in _towerButtons)
-                button.interactable = !gameOver && _selectedSite != null;
-            _nextWave.interactable = gameOver || _battle.CanStartWave;
+            for (int i = 0; i < _towerButtons.Length; i++)
+                _towerButtons[i].interactable = !gameOver &&
+                    _selectedSite != null && !_pauseGate.IsPaused &&
+                    _level.Towers.ContainsKey(TowerIds[i]) &&
+                    _battle.Essence >= _level.Towers[TowerIds[i]].Cost;
+            _nextWave.interactable = !_pauseGate.IsPaused &&
+                (gameOver || _battle.CanStartWave);
             int unlocked = Mathf.Clamp(PlayerPrefs.GetInt(CampaignSaveKey, 1),
                 1, CampaignCatalog.LevelCount);
-            _previousStageButton.interactable = !_battle.WaveActive && _currentStage > 1;
-            _nextStageButton.interactable = !_battle.WaveActive && _currentStage < unlocked;
+            _previousStageButton.interactable = !_pauseGate.IsPaused &&
+                !_battle.WaveActive && _currentStage > 1;
+            _nextStageButton.interactable = !_pauseGate.IsPaused &&
+                !_battle.WaveActive && _currentStage < unlocked;
+            _pauseButton.interactable = !gameOver;
+            Text pauseLabel = _pauseButton.GetComponentInChildren<Text>();
+            if (pauseLabel != null)
+                pauseLabel.text = _pauseGate.IsPaused ? "Wznów" : "Pauza";
             Text label = _nextWave.GetComponentInChildren<Text>();
             if (label != null) label.text = _battle.Result == BattleResult.Victory &&
                 _currentStage < CampaignCatalog.LevelCount ? "Następny poziom"

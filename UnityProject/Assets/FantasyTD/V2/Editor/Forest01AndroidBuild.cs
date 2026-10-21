@@ -22,6 +22,16 @@ namespace FantasyTD.V2.Editor
                     BuildTargetGroup.Android, BuildTarget.Android))
                 throw new InvalidOperationException("Unity Android Build Support missing.");
 
+            // Validate and repair tracked legacy .meta files before Android packaging.
+            Forest01ArtworkImporter.EnsureSpriteImported(
+                "Assets/Resources/FT2/Forest01Art.png");
+            foreach (string unitFile in new[] {
+                "ThornShooter", "FrostBud", "EssenceFlower",
+                "Wanderer", "Runner", "Armored"
+            })
+                Forest01ArtworkImporter.EnsureSpriteImported(
+                    "Assets/Resources/FT2/Units/" + unitFile + ".png");
+
             SceneAsset scene = AssetDatabase.LoadAssetAtPath<SceneAsset>(ScenePath);
             if (scene == null)
                 throw new InvalidOperationException("Forest01 scene not imported.");
