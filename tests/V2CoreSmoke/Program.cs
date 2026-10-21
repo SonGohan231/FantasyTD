@@ -11,6 +11,7 @@ internal static class Program
         {
             VerifyStarterLevel();
             VerifyCampaignRegistry();
+            VerifyBattleFeedbackCues();
             Console.WriteLine("V2CoreSmoke PASS: first forest simulation and all 30 campaign definitions.");
             return 0;
         }
@@ -116,6 +117,51 @@ internal static class Program
             "24 enemy IDs, 6 bosses, 6 boss encounters, validated wave spawns.");
         // This test validates data and basic spawning, NOT balanced difficulty,
         // boss phase mechanics, artwork, save system, or actual device play.
+    }
+
+
+    private static void VerifyBattleFeedbackCues()
+    {
+        var placement = BattleFeedbackCatalog.Map(
+            new BattleEvent(BattleEventKind.TowerPlaced, 0, "thorn", -55, 1));
+        Require(placement.Kind == FeedbackKind.Plant &&
+                placement.Message == "-55" && placement.Audible,
+                "placing a defender must give distinct feedback");
+
+        var damaged = BattleFeedbackCatalog.Map(
+            new BattleEvent(BattleEventKind.EnemyDamaged, 7, "thorn", 24, 1));
+        Require(damaged.Kind == FeedbackKind.Hit &&
+                damaged.Message == "-24" && damaged.Audible,
+                "hits must have readable damage and sound");
+
+        var killed = BattleFeedbackCatalog.Map(
+            new BattleEvent(BattleEventKind.EnemyKilled, 7, "imp", 20, 1));
+        Require(killed.Kind == FeedbackKind.Kill &&
+                killed.Message == "+20" && killed.Audible,
+                "kills must be visually distinct and show reward");
+
+        var leaked = BattleFeedbackCatalog.Map(
+            new BattleEvent(BattleEventKind.EnemyLeaked, 8, "runner", 2, 1));
+        Require(leaked.Kind == FeedbackKind.Leak &&
+                leaked.Message == "-2" && leaked.Audible,
+                "base damage must give urgent feedback");
+
+        var income = BattleFeedbackCatalog.Map(
+            new BattleEvent(BattleEventKind.Income, 0, "bloom", 15, 1));
+        Require(income.Kind == FeedbackKind.Income &&
+                income.Message == "+15" && !income.Audible,
+                "income cue must be distinct and not spam audio");
+
+        Require(BattleFeedbackCatalog.Map(
+            new BattleEvent(BattleEventKind.WaveStarted, 0, "forest", 1, 1))
+            .Kind == FeedbackKind.Wave, "wave start cue missing");
+        Require(BattleFeedbackCatalog.Map(
+            new BattleEvent(BattleEventKind.Victory, 0, "forest", 10, 3))
+            .Kind == FeedbackKind.Victory, "victory cue missing");
+        Require(BattleFeedbackCatalog.Map(
+            new BattleEvent(BattleEventKind.Defeat, 0, "forest", 0, 3))
+            .Kind == FeedbackKind.Defeat, "defeat cue missing");
+        Console.WriteLine("BattleFeedback PASS: plant, hit, kill, leak, income, wave, result.");
     }
 
     private static void Require(bool ok, string message)
