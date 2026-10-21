@@ -1,0 +1,35 @@
+name: FT2 portable gameplay regression
+on:
+  push:
+    branches:
+      - 'codex/ft2-qa-001-*'
+    paths:
+      - 'UnityProject/Assets/FantasyTD/V2/Core/**'
+      - 'UnityProject/Assets/FantasyTD/V2/Content/**'
+      - 'tests/V2CoreSmoke/**'
+      - '.github/workflows/ft2-core-hosted-qa.yml'
+  pull_request:
+    paths:
+      - 'UnityProject/Assets/FantasyTD/V2/Core/**'
+      - 'UnityProject/Assets/FantasyTD/V2/Content/**'
+      - 'tests/V2CoreSmoke/**'
+      - '.github/workflows/ft2-core-hosted-qa.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  portable-v2-smoke:
+    name: .NET 8 — full Forest01 win / loss / retry
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      DOTNET_CLI_TELEMETRY_OPTOUT: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+      - name: Compile and exercise core scenarios
+        run: dotnet run --project tests/V2CoreSmoke/V2CoreSmoke.csproj --configuration Release
