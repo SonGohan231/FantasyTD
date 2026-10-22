@@ -96,5 +96,19 @@ class Forest01TerrainLayoutTests(unittest.TestCase):
         self.assertIn('different < 10', GENERATOR)
         self.assertIn('Unity camera output is blank/uniform', GENERATOR)
 
+    def test_site_component_has_its_own_unity_script_asset(self):
+        """The Unity scene must retain each build-site MonoBehaviour after serialization/reload."""
+        scripts = ROOT / "UnityProject/Assets/FantasyTD/V2/Terrain"
+        site_file = scripts / "Forest01TerrainBuildSite.cs"
+        self.assertTrue(site_file.is_file(),
+                        "Unity cannot persist Forest01TerrainBuildSite without its own matching C# script asset")
+        self.assertRegex(site_file.read_text(encoding="utf-8"),
+                         r"class\s+Forest01TerrainBuildSite\s*:\s*MonoBehaviour")
+        interaction = (scripts / "Forest01TerrainInteraction.cs").read_text(encoding="utf-8")
+        self.assertNotIn("class Forest01TerrainBuildSite", interaction,
+                         "Only Forest01TerrainInteraction should be defined in its script asset")
+        meta = (scripts / "Forest01TerrainBuildSite.cs.meta").read_text(encoding="utf-8")
+        self.assertRegex(meta, r"(?m)^guid: [0-9a-f]{32}$")
+
 if __name__ == "__main__":
     unittest.main()
