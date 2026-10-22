@@ -1,0 +1,37 @@
+name: FantasyTD Forest01 Quality Gate
+on:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: forest-quality-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  portable-gameplay:
+    name: Geometry, core gameplay and secret checks (no Unity Editor)
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+      - name: Forest01 deterministic geometry regression
+        run: python3 -m unittest discover -s tests -p 'test_forest01_terrain_layout.py' -v
+      - name: Portable complete Forest01 core gameplay smoke
+        run: dotnet run --project tests/V2CoreSmoke/V2CoreSmoke.csproj --configuration Release
+      - name: Check new diff lines for credential leaks
+        env:
+          PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: |
+          set -euo pipefail
+          BASE="${PR_BASE_SHA:-HEAD^}"
+          python3 scripts/hook-guards/diff_secrets.py --base "$BASE"
+      - name: Explain Unity Editor verification boundary
+        if: always()
+        run: |
+          echo 'Portable tests do NOT prove Unity Editor Play Mode, rendered PNG or Android device behavior.' >> "$GITHUB_STEP_SUMMARY"
+          echo 'Use the separate actual Unity runner once a compatible editor and license are available.' >> "$GITHUB_STEP_SUMMARY"
