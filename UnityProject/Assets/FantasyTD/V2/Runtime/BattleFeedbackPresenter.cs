@@ -109,7 +109,8 @@ namespace FantasyTD.V2.Runtime
 
             SpriteRenderer flash = null;
             if (_world != null &&
-                (cue.Kind == FeedbackKind.Plant || cue.Kind == FeedbackKind.Hit ||
+                (cue.Kind == FeedbackKind.Plant || cue.Kind == FeedbackKind.Upgrade ||
+                 cue.Kind == FeedbackKind.Hit ||
                  cue.Kind == FeedbackKind.Kill || cue.Kind == FeedbackKind.Leak))
             {
                 GameObject ring = RuntimeArt.SpriteObject(
@@ -165,6 +166,7 @@ namespace FantasyTD.V2.Runtime
                 case FeedbackKind.Kill: return new Color(.69f, 1f, .48f);
                 case FeedbackKind.Income: return new Color(.96f, .86f, .40f);
                 case FeedbackKind.Plant: return new Color(.6f, 1f, .6f);
+                case FeedbackKind.Upgrade: return new Color(.55f, .92f, 1f);
                 case FeedbackKind.Leak:
                 case FeedbackKind.Defeat: return new Color(1f, .36f, .31f);
                 case FeedbackKind.Victory: return new Color(.98f, .83f, .28f);

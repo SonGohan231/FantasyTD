@@ -1,0 +1,97 @@
+name: Forest01 Android APK on hosted x64 Unity
+
+on:
+  push:
+    branches:
+      - codex/forest01-integrated-20261022
+    paths:
+      - 'UnityProject/**'
+      - 'tests/test_forest01_*.py'
+      - '.github/workflows/ft2-android-apk-hosted.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: forest01-android-hosted-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  forest01-apk:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 90
+    env:
+      UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+      UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+      UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+      UNITY_SERIAL: ${{ secrets.UNITY_SERIAL }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+          persist-credentials: false
+      - name: Record source revision and check license
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p UnityProject/Logs
+          git rev-parse HEAD | tee UnityProject/Logs/forest01-build-commit.txt
+          if [[ -z "$UNITY_LICENSE" && ( -z "$UNITY_EMAIL" || -z "$UNITY_PASSWORD" ) ]]; then
+            echo '::error::Configure UNITY_LICENSE or UNITY_EMAIL and UNITY_PASSWORD as repository secrets.'
+            exit 1
+          fi
+      - name: Run Forest01 source contracts
+        run: python3 -m unittest tests.test_forest01_integrated_gameplay tests.test_forest01_terrain_layout -v
+      - name: Import project and run Unity Editor scene smoke
+        uses: game-ci/unity-builder@v4
+        with:
+          unityVersion: 6000.0.26f1
+          projectPath: UnityProject
+          targetPlatform: Android
+          buildMethod: FantasyTD.V2.Editor.Forest01Smoke.RunSmoke
+          allowDirtyBuild: true
+      - name: Import project and run real Play Mode smoke
+        uses: game-ci/unity-builder@v4
+        with:
+          unityVersion: 6000.0.26f1
+          projectPath: UnityProject
+          targetPlatform: Android
+          buildMethod: FantasyTD.V2.Editor.Forest01PlayModeSmoke.RunSmokeAndRender
+          manualExit: true
+          allowDirtyBuild: true
+      - name: Require Play Mode report
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s UnityProject/Logs/forest01-playmode-integration.txt
+          grep -Fxq 'status=PASS' UnityProject/Logs/forest01-playmode-integration.txt
+          grep -Fxq 'playModeEntered=True' UnityProject/Logs/forest01-playmode-integration.txt
+          test -s UnityProject/Logs/Forest01_PlayMode_1600x900.png
+      - name: Build signed Android ARM64 debug APK
+        uses: game-ci/unity-builder@v4
+        with:
+          unityVersion: 6000.0.26f1
+          projectPath: UnityProject
+          targetPlatform: Android
+          androidExportType: androidPackage
+          buildMethod: FantasyTD.V2.Editor.Forest01AndroidBuild.BuildApk
+          versioning: None
+          allowDirtyBuild: true
+      - name: Verify APK bytes
+        shell: bash
+        run: |
+          set -euo pipefail
+          apk=UnityProject/Builds/Android/FantasyTD_FT2_Forest01_Debug.apk
+          test -s "$apk"
+          file "$apk" | tee UnityProject/Logs/forest01-apk-file.txt
+          sha256sum "$apk" | tee UnityProject/Logs/forest01-apk-sha256.txt
+      - name: Upload APK, test report and logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: forest01-android-${{ github.run_id }}
+          if-no-files-found: warn
+          path: |
+            UnityProject/Builds/Android/FantasyTD_FT2_Forest01_Debug.apk
+            UnityProject/Logs/

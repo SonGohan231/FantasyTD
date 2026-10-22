@@ -5,6 +5,7 @@ using FantasyTD.V2.Terrain;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 
@@ -313,10 +314,10 @@ namespace FantasyTD.V2.Editor
                 && RenderFrame(camera, 1600, 720, "Forest01_TerrainTest_Preview_20x9.png");
         }
 
-        private static bool RenderFrame(Camera camera, int width, int height, string fileName)
+        public static bool RenderFrame(Camera camera, int width, int height, string fileName)
         {
             var target = new RenderTexture(width, height, 24, RenderTextureFormat.ARGB32);
-            var screenshot = new Texture2D(width, height, TextureFormat.RGB24, false);
+            var screenshot = new Texture2D(width, height, TextureFormat.RGBA32, false);
             RenderTexture previous = RenderTexture.active;
             RenderTexture oldCamera = camera.targetTexture;
             float oldAspect = camera.aspect;
@@ -328,10 +329,17 @@ namespace FantasyTD.V2.Editor
                 camera.aspect = (float)width / height;
                 camera.Render();
 
-                // Camera.Render may change the active target: restore it explicitly
-                // before the GPU readback, rather than capturing an unrelated buffer.
-                RenderTexture.active = target;
-                screenshot.ReadPixels(new Rect(0, 0, width, height), 0, 0);
+                // ReadPixels aborts inside the Vulkan driver when Unity runs through
+                // FEX on the ARM64 development host. AsyncGPUReadback still reads the
+                // real Camera.Render target, but uses Unity's supported Vulkan transfer
+                // path instead of the crashing framebuffer readback path.
+                AsyncGPUReadbackRequest readback = AsyncGPUReadback.Request(
+                    target, 0, TextureFormat.RGBA32);
+                readback.WaitForCompletion();
+                if (readback.hasError)
+                    throw new InvalidOperationException(
+                        "Unity camera GPU readback failed: " + fileName);
+                screenshot.LoadRawTextureData(readback.GetData<byte>());
                 screenshot.Apply(false);
 
                 Color32 baseline = (Color32)screenshot.GetPixel(0, 0);

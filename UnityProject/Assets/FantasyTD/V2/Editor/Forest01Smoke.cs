@@ -20,10 +20,10 @@ namespace FantasyTD.V2.Editor
         public static void RunSmoke()
         {
             LevelDefinition level = StarterLevel.Create();
-            Require(level.Sites.Count == 12, "Exactly 12 build sites required.");
-            Require(level.Towers.Count >= 3, "At least three defenders required.");
-            Require(level.Enemies.Count >= 2, "At least two enemies required.");
-            Require(level.Waves.Count >= 3, "At least three waves required.");
+            Require(level.Sites.Count == 10, "Exactly 10 Forest01 build sites required.");
+            Require(level.Towers.Count == 4, "Exactly four Forest01 defenders required.");
+            Require(level.Enemies.Count >= 5, "Four enemies and the Forest01 boss are required.");
+            Require(level.Waves.Count == 6, "Forest01 requires six waves.");
             Require(level.PathLength > 2000, "Path is unexpectedly short.");
 
             const string artworkPath = "Assets/Resources/FT2/Forest01Art.png";
@@ -47,15 +47,15 @@ namespace FantasyTD.V2.Editor
             // Every illustrated unit selected by the first three-wave slice
             // must resolve as a real Sprite without procedural fallbacks.
             foreach (string unitFile in new[] {
-                "ThornShooter", "FrostBud", "EssenceFlower",
-                "Wanderer", "Runner", "Armored"
+                "ThornShooter", "FrostBud", "EssenceFlower", "OakGuardian",
+                "Wanderer", "Runner", "Armored", "ForestBoss"
             })
                 Forest01ArtworkImporter.EnsureSpriteImported(
                     "Assets/Resources/FT2/Units/" + unitFile + ".png");
-            foreach (string defenderId in new[] { "thorn", "frost", "bloom" })
+            foreach (string defenderId in new[] { "thorn", "frost", "bloom", "oak" })
                 Require(ForestUnitArtwork.Defender(defenderId) != null,
                     "Missing authored FT2 defender sprite: " + defenderId);
-            foreach (string enemyId in new[] { "imp", "runner", "armored" })
+            foreach (string enemyId in new[] { "imp", "runner", "armored", "root-warden" })
                 Require(ForestUnitArtwork.Enemy(enemyId) != null,
                     "Missing authored FT2 enemy sprite: " + enemyId);
 
@@ -77,12 +77,19 @@ namespace FantasyTD.V2.Editor
             }
 
             BattleSimulator battle = new BattleSimulator(level);
-            Require(battle.TryPlaceTower("a01", "thorn"),
+            Require(battle.TryPlaceTower("B01", "thorn"),
                 "First defender placement rejected.");
-            Require(!battle.TryPlaceTower("a01", "frost"),
+            Require(!battle.TryPlaceTower("B01", "frost"),
                 "Overlapping defenders must be rejected.");
             Require(!battle.TryPlaceTower("invalid-site", "thorn"),
                 "Unknown sites must be rejected.");
+            int beforeUpgrade = battle.Essence;
+            Require(battle.TryUpgradeTower("B01"), "Level-two upgrade rejected.");
+            Require(battle.PlacedTowers["B01"].Level == 2 &&
+                    battle.PlacedTowers["B01"].Damage >
+                    battle.PlacedTowers["B01"].Definition.Damage &&
+                    battle.Essence < beforeUpgrade,
+                "Upgrade must spend Essence and improve the defender.");
             Require(battle.StartNextWave(), "Wave 1 must start.");
             battle.Step();
             Require(battle.Enemies.Count == 1, "Expected a real first enemy.");
@@ -91,10 +98,10 @@ namespace FantasyTD.V2.Editor
                 battle.Step();
             Require(!battle.WaveActive, "First wave did not resolve in time.");
             Require(battle.Result != BattleResult.Defeat,
-                "One wave must not exhaust all 15 lives.");
+                "One wave must not exhaust all 20 lives.");
             Require(battle.CanStartWave, "Second wave should be available.");
-            Debug.Log("FantasyTD FT2-003 Forest01: PASS (source art import, scene, bootstrap, " +
-                      "12 sites, 3 defenders, 3 waves, placement, spawn and clear).");
+            Debug.Log("FantasyTD Forest01 integration: PASS (source art, scene, bootstrap, " +
+                      "10 sites, 4 defenders, upgrades, 6 waves, placement, spawn and clear).");
         }
 
         private static void Require(bool condition, string message)

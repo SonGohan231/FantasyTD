@@ -1,20 +1,32 @@
 name: FT2 Forest01 Android debug APK
 
 on:
+  push:
+    branches:
+      - 'codex/forest01-integrated-20261022'
+    paths:
+      - 'UnityProject/**'
+      - 'tests/test_forest01_*.py'
+      - '.github/workflows/ft2-android-apk.yml'
   pull_request:
     paths:
       - 'UnityProject/Assets/FantasyTD/V2/**'
       - '.github/workflows/ft2-android-apk.yml'
   workflow_dispatch:
 
+concurrency:
+  group: forest01-integration-${{ github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: read
 
 jobs:
   forest01-apk:
+    if: false # Superseded by ft2-android-apk-hosted.yml; this runner is not authorized.
     name: Build real Forest01 Android APK with Unity 6
     runs-on: [self-hosted, dyrygent-unity]
-    timeout-minutes: 60
+    timeout-minutes: 90
     steps:
       - uses: actions/checkout@v4
         with:
@@ -29,6 +41,52 @@ jobs:
           test -x "$UNITY_BIN"
           "$UNITY_BIN" -version
           echo "bin=$UNITY_BIN" >> "$GITHUB_OUTPUT"
+      - name: Record exact Android toolchain
+        shell: bash
+        run: |
+          set -euo pipefail
+          UNITY_BIN="${{ steps.unity.outputs.bin }}"
+          UNITY_ROOT="$(cd "$(dirname "$UNITY_BIN")" && pwd)"
+          ANDROID="$UNITY_ROOT/Data/PlaybackEngines/AndroidPlayer"
+          LOG="UnityProject/Logs/android-toolchain.txt"
+          mkdir -p UnityProject/Logs
+          test -d "$ANDROID"
+          {
+            echo "unity=$($UNITY_BIN -version)"
+            echo "androidPlayer=$ANDROID"
+            find "$ANDROID" -maxdepth 3 -type f \( -name source.properties -o -name release -o -name adb -o -name gradle \) -print | sort
+            test -f "$ANDROID/NDK/source.properties" && cat "$ANDROID/NDK/source.properties"
+            test -f "$ANDROID/OpenJDK/release" && cat "$ANDROID/OpenJDK/release"
+            test -x "$ANDROID/SDK/platform-tools/adb" && file "$ANDROID/SDK/platform-tools/adb"
+          } | tee "$LOG"
+      - name: Fast Forest01 contracts
+        shell: bash
+        run: python3 -m unittest tests.test_forest01_integrated_gameplay tests.test_forest01_terrain_layout -v
+      - name: Import, Edit Mode smoke and terrain render
+        shell: bash
+        run: |
+          set -euo pipefail
+          xvfb-run -a -s "-screen 0 2560x1440x24" "${{ steps.unity.outputs.bin }}" -batchmode -quit \
+            -projectPath "$GITHUB_WORKSPACE/UnityProject" \
+            -executeMethod FantasyTD.V2.Editor.Forest01Smoke.RunSmoke \
+            -logFile "$GITHUB_WORKSPACE/UnityProject/Logs/ft2-forest01-edit-smoke.log"
+          xvfb-run -a -s "-screen 0 2560x1440x24" "${{ steps.unity.outputs.bin }}" -batchmode -quit \
+            -projectPath "$GITHUB_WORKSPACE/UnityProject" \
+            -executeMethod FantasyTD.V2.Editor.Forest01TerrainSmoke.RunSmoke \
+            -logFile "$GITHUB_WORKSPACE/UnityProject/Logs/ft2-forest01-terrain-smoke.log"
+          grep -Fq "FantasyTD Forest01 integration: PASS" UnityProject/Logs/ft2-forest01-edit-smoke.log
+          grep -Fq "FT2 Forest01 Terrain 28x20: PASS" UnityProject/Logs/ft2-forest01-terrain-smoke.log
+      - name: Real Forest01 Play Mode and HUD render
+        shell: bash
+        run: |
+          set -euo pipefail
+          xvfb-run -a -s "-screen 0 2560x1440x24" "${{ steps.unity.outputs.bin }}" -batchmode \
+            -projectPath "$GITHUB_WORKSPACE/UnityProject" \
+            -executeMethod FantasyTD.V2.Editor.Forest01PlayModeSmoke.RunSmokeAndRender \
+            -logFile "$GITHUB_WORKSPACE/UnityProject/Logs/ft2-forest01-playmode.log"
+          grep -Fq "FT2 Forest01 PLAY MODE: PASS" UnityProject/Logs/ft2-forest01-playmode.log
+          grep -Fq "status=PASS" UnityProject/Logs/forest01-playmode-integration.txt
+          test -s UnityProject/Logs/Forest01_PlayMode_1600x900.png
       - name: Build Forest01 on Android target
         shell: bash
         run: |
@@ -58,4 +116,4 @@ jobs:
           if-no-files-found: warn
           path: |
             UnityProject/Builds/Android/FantasyTD_FT2_Forest01_Debug.apk
-            UnityProject/Logs/ft2-forest01-android-build.log
+            UnityProject/Logs/

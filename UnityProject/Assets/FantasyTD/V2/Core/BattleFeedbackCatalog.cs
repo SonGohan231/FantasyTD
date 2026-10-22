@@ -4,7 +4,7 @@ namespace FantasyTD.V2.Core
 {
     public enum FeedbackKind
     {
-        None, Plant, Hit, Kill, Leak, Income, Wave, WaveCleared, Victory, Defeat
+        None, Plant, Upgrade, Hit, Kill, Leak, Income, Wave, WaveCleared, Victory, Defeat
     }
 
     /// <summary>
@@ -34,6 +34,9 @@ namespace FantasyTD.V2.Core
                 case BattleEventKind.TowerPlaced:
                     return new FeedbackCue(FeedbackKind.Plant,
                         battleEvent.Value.ToString(), true);
+                case BattleEventKind.TowerUpgraded:
+                    return new FeedbackCue(FeedbackKind.Upgrade,
+                        "ULEPSZENIE " + battleEvent.Value, true);
                 case BattleEventKind.EnemyDamaged:
                     return new FeedbackCue(FeedbackKind.Hit,
                         "-" + battleEvent.Value, true);
