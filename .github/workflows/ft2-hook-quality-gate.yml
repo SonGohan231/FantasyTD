@@ -21,6 +21,10 @@ jobs:
           dotnet-version: '8.0.x'
       - name: Forest01 deterministic geometry regression
         run: python3 -m unittest discover -s tests -p 'test_forest01_terrain_layout.py' -v
+      - name: Install visual review dependency
+        run: python3 -m pip install --disable-pip-version-check Pillow==11.3.0
+      - name: Test visual comparison edge cases
+        run: python3 -m unittest discover -s scripts/hook-guards -p 'test_visual_review.py' -v
       - name: Portable complete Forest01 core gameplay smoke
         run: dotnet run --project tests/V2CoreSmoke/V2CoreSmoke.csproj --configuration Release
       - name: Check new diff lines for credential leaks
