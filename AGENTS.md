@@ -12,6 +12,16 @@ This file is repository-level law for coding agents.
 
 Dyrygent reviews are advisory. Do not change scope only because Astra suggests something. Scope changes require the active ticket or an explicit user/PM decision.
 
+## ComputerMCP — primary execution path for this game
+
+For FantasyTD implementation requests issued from ChatGPT:
+- Use **ComputerMCP** as the preferred live Linux executor for file inspection, Git, tests, Unity/FEX diagnostics and permitted build commands. Do not involve AgentOS unless the user explicitly asks.
+- The owner configured a persistent local ComputerMCP Desktop Bridge on 2026-10-22. Its code supports `permissions.set` over `desktop_control/inbox/*.json`, with developer mode enabled by default on bridge restart. The local `AGENTS.md` at `~/ComputerMCP/workspace/AGENTS.md` and `COMPUTERMCP_AUTOMATION_RUNBOOK.md` contain the verified operational contract.
+- The bridge and the main ComputerMCP MCP server are separate. **Never** claim their permissions or health are interchangeable. If the MCP connector reports `Session terminated`, log the blocker and use the project's approved GitHub/Unity x64 runner as a fallback.
+- Only work inside approved roots and repositories. Respect system approvals and keep checkpoint/rollback capability. Do not expose the local control token.
+- Real Unity 6 Editor/Android proof must be obtained on a compatible x86_64 runner, not inferred from the ARM64 Chromebook terminal.
+- ChatGPT may orchestrate tasks but cannot claim background actions will continue after the conversation unless a real durable service/workflow/job is running.
+
 ## One-ticket rule
 
 Implement exactly one active ticket at a time.
