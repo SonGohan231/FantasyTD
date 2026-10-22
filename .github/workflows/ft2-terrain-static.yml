@@ -1,0 +1,31 @@
+name: FT2 Forest01 terrain geometry contract
+
+on:
+  push:
+    branches:
+      - 'codex/**'
+    paths:
+      - 'UnityProject/Assets/FantasyTD/V2/Terrain/**'
+      - 'UnityProject/Assets/FantasyTD/V2/Editor/Forest01Terrain*.cs'
+      - 'tests/test_forest01_terrain_layout.py'
+      - '.github/workflows/ft2-terrain-static.yml'
+  pull_request:
+    paths:
+      - 'UnityProject/Assets/FantasyTD/V2/Terrain/**'
+      - 'UnityProject/Assets/FantasyTD/V2/Editor/Forest01Terrain*.cs'
+      - 'tests/test_forest01_terrain_layout.py'
+      - '.github/workflows/ft2-terrain-static.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  geometry:
+    name: Check 28x20 route, sites and layer integrity
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Standard-library geometry tests
+        run: python3 -m unittest discover -s tests -p 'test_forest01_terrain_layout.py' -v
