@@ -1,0 +1,47 @@
+name: FantasyTD Forest01 Quality Gate
+on:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: forest-quality-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  portable-gameplay:
+    name: Geometry, core gameplay and secret checks (no Unity Editor)
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9 # v4
+        with:
+          dotnet-version: '8.0.x'
+      - name: Forest01 deterministic geometry regression
+        run: python3 -m unittest discover -s tests -p 'test_forest01_terrain_layout.py' -v
+      - name: Install visual review dependency
+        run: python3 -m pip install --disable-pip-version-check Pillow==11.3.0
+      - name: Test secret and visual guard edge cases
+        run: python3 -m unittest discover -s scripts/hook-guards -p 'test_*.py' -v
+      - name: Portable complete Forest01 core gameplay smoke
+        run: dotnet run --project tests/V2CoreSmoke/V2CoreSmoke.csproj --configuration Release
+      - name: Check new diff lines for credential leaks
+        env:
+          PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: |
+          set -euo pipefail
+          BASE="${PR_BASE_SHA:-HEAD^}"
+          python3 scripts/hook-guards/diff_secrets.py --base "$BASE"
+      - name: Gitleaks defense-in-depth scan
+        uses: gitleaks/gitleaks-action@e0c47f4f8be36e29cdc102c57e68cb5cbf0e8d1e # v3.0.0, Node 24
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITLEAKS_ENABLE_COMMENTS: "false"
+          GITLEAKS_ENABLE_UPLOAD_ARTIFACT: "false"
+      - name: Explain Unity Editor verification boundary
+        if: always()
+        run: |
+          echo 'Portable tests do NOT prove Unity Editor Play Mode, rendered PNG or Android device behavior.' >> "$GITHUB_STEP_SUMMARY"
+          echo 'Use the separate actual Unity runner once a compatible editor and license are available.' >> "$GITHUB_STEP_SUMMARY"
