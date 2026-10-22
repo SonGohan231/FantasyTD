@@ -1,36 +1,52 @@
-# STATE — FantasyTD / Forest01 integration
-Date: 2026-10-22. Status: PARTIAL, no product-release approval.
+# STATE — FantasyTD / Forest01 and Hook Architect
 
-## Working baseline
-- New clean worktree: /home/adambrdon/Repos/FTD/FantasyTD-Forest01-Synced
-- Branch: codex/forest01-integrated-20261022 (forked from PR #34 commit 03ed60f).
-- Covers both PR #33 (terrain) and PR #34 (portable CI/gates).
-- Main branch remains unchanged. Existing worktrees were not touched.
-- Previous local dirty changes backed up at /home/adambrdon/Repos/FTD/.sync-backups/FantasyTD-before-sync-20261022-1945.tar.gz.
-- Primary project core: docs/CORE_FantasyTD_PELNA_EKSTRAKCJA_KR_PVZ_2026-10-22.md
-- Visual scope: docs/FT2_Forest01_Approved_Production_Spec.md
-- Geometry scope: docs/FT2_Forest01_28x20_Layout.md
+Updated: 2026-10-22. Status: PARTIAL; no product-release approval.
 
-## Actual Unity evidence
-- Unity 6000.0.26f1 via FEX successfully compiled and generated/opened a separate Forest01_TerrainTest.unity (~278 kB) in the old Codex worktree.
-- Smoke failed after scene reopening: InvalidOperationException: Forest01 Terrain: Exactly 10 separate build objects.
-- No 16:9 or 20:9 Unity camera PNG was produced, no TERR-01 PASS.
-- Ten GameObjects were serialized, but build-site C# MonoBehaviour was defined in a file named for the interaction controller.
-- Integration fix separates both components into matching script assets with stable meta GUIDs.
-- Static regression first FAILED, then Python Forest01 geometry/source tests 7/7 PASS. Real Unity retest NOT RUN after the fix.
+## Current branch
 
-## GitHub branches reviewed
-- main 17689b8 — no merge.
-- PR #33 155b95c — separate 28x20 terrain code and CORE.
-- PR #34 03ed60f — advisory and portable quality gates, not Unity proof.
-- PR #28 b85a1fe and PR #31 8110d57 — separate art/import stack, not integrated.
-- Local historical MAP1 91a625a and terrain 604200f retained.
+- GitHub PR #34 branch: `codex/forest01-hook-gates-20261022`.
+- Reconciliation baseline: `774fb9cc8f710b938b888b614db24810aa9c02d0`.
+- The branch contains the PR #33 terrain baseline, the serialized build-site
+  component repair, Unity metadata integrity checks, and Hook Architect gates.
+- Main and the user's existing dirty worktrees were not modified.
 
-## Known boundaries and next actions
-1. Run real Unity scene validation on the exact integration commit: count ten persistent build site components, collect explicit PASS, scene and two genuine camera PNGs.
-2. Keep old 12-site Forest01 and MAP-A stable; connect 10-site terrain to BattleSimulator only after TERR-01.
-3. Replace procedural terrain placeholders with approved editable production assets.
-4. Implement production build/upgrade/sell, full gameplay UI loop, play mode regression tests.
-5. Build a new Android APK, install and test touch/render/performance on physical hardware.
-6. Review PR #28/#31 only when terrain is verified; no automatic merge to main.
-7. Hosted macOS render remains blocked by Unity license secrets; dyrygent-unity runner is excluded by owner request.
+## Verified evidence
+
+- GitHub Actions at `774fb9c`: portable Forest01 quality run 39830436186
+  succeeded; Unity asset-integrity run 39830436441 succeeded.
+- The quality job ran geometry tests, synthetic visual edge-case tests, the
+  portable .NET gameplay smoke, and the heuristic added-line secret scan.
+- The metadata job ran five positive/negative validator tests and reported
+  `UNITY_META_PASS` for 24 tracked metadata files and four changed assets.
+- Hook hardening adds secret positive/negative/redaction tests, a pinned
+  Gitleaks defense-in-depth scan, and pinned revisions for introduced actions.
+- Global Codex Context Recovery, Dangerous Command, Regression Test and
+  Definition of Done hooks were tested in real Codex sessions. Their files live
+  under `~/.codex/hook-architect/`, outside this repository.
+- ComputerMCP 1.30.0 initialized with 84 tools; both configured tunnels were
+  healthy at the audit checkpoint.
+
+## Actual Unity and visual evidence
+
+- Unity 6000.0.26f1 previously compiled and opened a separate generated
+  `Forest01_TerrainTest.unity`, then failed after reopening because the ten
+  build-site components were not persisted.
+- The source/meta fix is present and static regression tests pass, but a real
+  Unity retest after that fix has not run.
+- No valid 16:9 or 20:9 camera PNG and no approved actual-render baseline exist.
+  Synthetic PNG comparator tests prove edge-case behavior only, not Forest01
+  graphic quality.
+- Hosted real Unity remains blocked by missing license material. The manual
+  workflow fails its preflight explicitly; `dyrygent-unity` is excluded.
+
+## Safety boundaries and next action
+
+- Do not merge, deploy, change branch protection, use `dyrygent-unity`, or
+  claim a product/visual PASS from portable or synthetic tests.
+- Run the manual real-Unity workflow only when authorized license material is
+  available. Require ten persisted build sites, explicit smoke PASS, editor
+  logs, and genuine camera PNG artifacts.
+- Feed those PNG artifacts to the advisory visual workflow and compare them
+  with an approved actual-render baseline.
+- Required-check configuration is only prepared by stable job names; repository
+  branch/ruleset settings were intentionally not changed.

@@ -3,7 +3,9 @@
 import argparse,re,subprocess,sys
 PATTERNS=[
 ("private key",re.compile(r"-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----")),
-("provider token",re.compile(r"(?:sk-proj-|ghp_|gho_|ghu_|github_pat_|xox[baprs]-)[A-Za-z0-9_-]{16,}")),
+("provider token",re.compile(r"(?:sk-proj-[A-Za-z0-9_-]{20,}|ghp_[A-Za-z0-9]{36}|(?:gho_|ghu_)[A-Za-z0-9]{30,}|github_pat_[A-Za-z0-9_]{20,}|xox[baprs]-[A-Za-z0-9-]{16,})")),
+("AWS access key",re.compile(r"(?:AKIA|ASIA)[A-Z0-9]{16}")),
+("Google API key",re.compile(r"AIza[0-9A-Za-z_-]{35}")),
 ("hardcoded credential",re.compile(r"(?i)\b(?:password|passwd|api_key|auth_token|secret_key)\b\s*[:=]\s*['\"][^'\"]{12,}['\"]"))]
 def findings(diff):
     name=""
