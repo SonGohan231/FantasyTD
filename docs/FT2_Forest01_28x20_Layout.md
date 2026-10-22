@@ -2,6 +2,8 @@
 
 Status: **projekt układu / osobna scena testowa**. Nie zastępuje grywalnej sceny `V2/Scenes/Forest01.unity` ani 12 stanowisk i trzech fal z wcześniejszego prototypu.
 
+**Zatwierdzony kierunek wizualny i plan wdrożenia:** [`FT2_Forest01_Approved_Production_Spec.md`](FT2_Forest01_Approved_Production_Spec.md). Ta strona definiuje współrzędne oraz geometryczne kryteria, a zaakceptowane wizualizacje definiują docelowy styl. Kafelki proceduralne nie są ostateczną grafiką.
+
 ## Kontrakt
 - Grid: `GridLayout.CellLayout.Isometric`, szerokość 28, wysokość 20, 560 komórek (x=0…27, y=0…19).
 - W pełni pokryta powierzchnia trawy: osobna Tilemap, każda komórka ma edytowalny `Tile`.
