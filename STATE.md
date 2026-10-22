@@ -5,21 +5,26 @@ Updated: 2026-10-22. Status: PARTIAL; no product-release approval.
 ## Current branch
 
 - GitHub PR #34 branch: `codex/forest01-hook-gates-20261022`.
-- Reconciliation baseline: `774fb9cc8f710b938b888b614db24810aa9c02d0`.
+- Hook-hardened PR checkpoint: `8316f4075a0ddc0945306c13979cf900748321b0`
+  (parent reconciliation baseline `774fb9cc8f710b938b888b614db24810aa9c02d0`).
 - The branch contains the PR #33 terrain baseline, the serialized build-site
   component repair, Unity metadata integrity checks, and Hook Architect gates.
 - Main and the user's existing dirty worktrees were not modified.
 
 ## Verified evidence
 
-- GitHub Actions at `774fb9c`: portable Forest01 quality run 39830436186
-  succeeded; Unity asset-integrity run 39830436441 succeeded.
+- GitHub Actions at `8316f40`: portable Forest01 quality run 39832972070,
+  Unity asset-integrity run 39832972187, and terrain geometry run 39832971988
+  succeeded.
 - The quality job ran geometry tests, synthetic visual edge-case tests, the
   portable .NET gameplay smoke, and the heuristic added-line secret scan.
 - The metadata job ran five positive/negative validator tests and reported
   `UNITY_META_PASS` for 24 tracked metadata files and four changed assets.
 - Hook hardening adds secret positive/negative/redaction tests, a pinned
   Gitleaks defense-in-depth scan, and pinned revisions for introduced actions.
+- On the reconciled local tree, 12 hook-guard tests and 7 Forest01 geometry
+  tests passed. Local .NET is unavailable, so the portable gameplay executable
+  is evidenced by GitHub run 39832972070 rather than a local rerun.
 - Global Codex Context Recovery, Dangerous Command, Regression Test and
   Definition of Done hooks were tested in real Codex sessions. Their files live
   under `~/.codex/hook-architect/`, outside this repository.
