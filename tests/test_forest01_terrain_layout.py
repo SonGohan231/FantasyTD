@@ -84,5 +84,17 @@ class Forest01TerrainLayoutTests(unittest.TestCase):
         self.assertNotIn("Resources/FT2/Forest01Art.png", GENERATOR)
         self.assertNotIn("ScenePath = \"Assets/FantasyTD/V2/Scenes/Forest01.unity\"", GENERATOR)
 
+    def test_camera_capture_has_real_render_readback_order(self):
+        """Static contract: Unity camera must render before reading the correct RT."""
+        self.assertIn('Forest01_TerrainTest_Preview.png', GENERATOR)
+        self.assertIn('Forest01_TerrainTest_Preview_20x9.png', GENERATOR)
+        render = GENERATOR.index('camera.Render();')
+        activate = GENERATOR.index('RenderTexture.active = target;', render)
+        readback = GENERATOR.index('screenshot.ReadPixels(', activate)
+        self.assertLess(render, activate)
+        self.assertLess(activate, readback)
+        self.assertIn('different < 10', GENERATOR)
+        self.assertIn('Unity camera output is blank/uniform', GENERATOR)
+
 if __name__ == "__main__":
     unittest.main()
