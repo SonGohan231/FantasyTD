@@ -12,6 +12,26 @@ This file is repository-level law for coding agents.
 
 Dyrygent reviews are advisory. Do not change scope only because Astra suggests something. Scope changes require the active ticket or an explicit user/PM decision.
 
+## ComputerMCP — primary execution path for this game
+
+For FantasyTD implementation requests issued from ChatGPT:
+- Use **ComputerMCP** as the preferred live Linux executor for file inspection, Git, tests, Unity/FEX diagnostics and permitted build commands. Do not involve AgentOS unless the user explicitly asks.
+- The owner configured a persistent local ComputerMCP Desktop Bridge on 2026-10-22. Its code supports `permissions.set` over `desktop_control/inbox/*.json`, with developer mode enabled by default on bridge restart. The local `AGENTS.md` at `~/ComputerMCP/workspace/AGENTS.md` and `COMPUTERMCP_AUTOMATION_RUNBOOK.md` contain the verified operational contract.
+- The bridge and the main ComputerMCP MCP server are separate. **Never** claim their permissions or health are interchangeable. If the MCP connector reports `Session terminated`, log the blocker and use the project's approved GitHub/Unity x64 runner as a fallback.
+- Only work inside approved roots and repositories. Respect system approvals and keep checkpoint/rollback capability. Do not expose the local control token.
+- Real Unity 6 Editor/Android proof must be obtained on a compatible x86_64 runner, not inferred from the ARM64 Chromebook terminal.
+- ChatGPT may orchestrate tasks but cannot claim background actions will continue after the conversation unless a real durable service/workflow/job is running.
+
+## Forest01 — approved visual/terrain production specification (2026-10-22)
+
+The user explicitly approved the three Forest01 concept views in ChatGPT (clean forest layout, annotated technical view, in-game illustration) and requested production implementation. **Within Forest01 TERR-01…TERR-07 tickets, the authoritative art acceptance specification is `docs/FT2_Forest01_Approved_Production_Spec.md`; the authoritative exact coordinates are `docs/FT2_Forest01_28x20_Layout.md` and `Forest01TerrainLayout.cs`.**
+
+- Preserve 28×20=560 grass cells, one continuous 40-cell sandy path, 10 sites, 18 water cells, two gates, bridge and editable vegetation. A painting may illustrate but does not replace actual asset files, tiled geometry, or gameplay tests.
+- Reproduce the **approved organic isometric fantasy-forest style** as separate original sprites, Tilemaps and prefabs; do not present today's procedural color placeholders as finished art.
+- The older 12-site gameplay `Forest01.unity` remains intact until an independently validated 10-site adapter is built.
+- Current work is a separate draft PR; static tests passed, Unity scene generation and Android test require **real** completed evidence. Do not invent it or automatically merge.
+- This explicitly approved Forest01 ticket is a scoped exception to the older MAP-A-only wording below; it does **not** authorize unrelated campaign expansion.
+
 ## One-ticket rule
 
 Implement exactly one active ticket at a time.

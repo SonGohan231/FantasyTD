@@ -1,0 +1,83 @@
+name: FT2 Forest01 isometric terrain scene
+
+on:
+  push:
+    branches:
+      - 'codex/**'
+    paths:
+      - 'UnityProject/Assets/FantasyTD/V2/Terrain/**'
+      - 'UnityProject/Assets/FantasyTD/V2/Editor/Forest01Terrain*.cs'
+      - 'UnityProject/Packages/manifest.json'
+      - '.github/workflows/ft2-terrain-smoke.yml'
+  pull_request:
+    paths:
+      - 'UnityProject/Assets/FantasyTD/V2/Terrain/**'
+      - 'UnityProject/Assets/FantasyTD/V2/Editor/Forest01Terrain*.cs'
+      - 'UnityProject/Packages/manifest.json'
+      - '.github/workflows/ft2-terrain-smoke.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  terrain-scene:
+    name: Unity 6 generate/validate 28x20 terrain and preview
+    runs-on: [self-hosted, dyrygent-unity]
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          lfs: true
+      - name: Find Unity 6
+        id: unity
+        shell: bash
+        run: |
+          set -euo pipefail
+          UNITY_BIN="$(find "$HOME" /opt -type f -path '*/6000.0.26f1/Editor/Unity' -perm -111 2>/dev/null | head -n 1 || true)"
+          if [[ -z "$UNITY_BIN" ]]; then
+            echo "::error::Unity 6000.0.26f1 missing on x64 runner"
+            exit 1
+          fi
+          echo "bin=$UNITY_BIN" >> "$GITHUB_OUTPUT"
+          "$UNITY_BIN" -version
+      - name: Generate scene and render preview in real Unity
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p UnityProject/Logs
+          command -v xvfb-run >/dev/null 2>&1 || { echo "::error::xvfb-run missing"; exit 1; }
+          xvfb-run -a -s "-screen 0 2560x1440x24" "${{ steps.unity.outputs.bin }}" -batchmode -quit             -projectPath "$GITHUB_WORKSPACE/UnityProject"             -executeMethod FantasyTD.V2.Editor.Forest01TerrainSmoke.RunSmoke             -logFile "$GITHUB_WORKSPACE/UnityProject/Logs/ft2-forest01-terrain-smoke.log"
+      - name: Require explicit PASS, scene and screenshot
+        shell: bash
+        run: |
+          set -euo pipefail
+          LOG="UnityProject/Logs/ft2-forest01-terrain-smoke.log"
+          SCENE="UnityProject/Assets/FantasyTD/V2/Scenes/Forest01_TerrainTest.unity"
+          PNG="UnityProject/Logs/Forest01_TerrainTest_Preview.png"
+          PNG_WIDE="UnityProject/Logs/Forest01_TerrainTest_Preview_20x9.png"
+          test -s "$LOG"
+          grep -Fq "FT2 Forest01 Terrain 28x20: PASS" "$LOG" || {
+            tail -n 200 "$LOG"
+            exit 1
+          }
+          test -s "$SCENE"
+          test -s "$PNG"
+          test -s "$PNG_WIDE"
+          file "$PNG"
+          file "$PNG_WIDE"
+          echo "Validated Unity scene, 16:9 and 20:9 real-camera previews."
+      - name: Upload generated editable scene, tile sources and preview
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ft2-terrain-28x20-${{ github.run_id }}
+          if-no-files-found: warn
+          path: |
+            UnityProject/Logs/ft2-forest01-terrain-smoke.log
+            UnityProject/Logs/Forest01_TerrainTest_Preview.png
+            UnityProject/Logs/Forest01_TerrainTest_Preview_20x9.png
+            UnityProject/Assets/FantasyTD/V2/Scenes/Forest01_TerrainTest.unity
+            UnityProject/Assets/FantasyTD/V2/Scenes/Forest01_TerrainTest.unity.meta
+            UnityProject/Assets/FantasyTD/V2/TerrainTest/Generated/

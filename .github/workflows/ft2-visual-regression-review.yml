@@ -1,0 +1,70 @@
+name: Forest01 Visual Regression Reviewer (advisory)
+on:
+  workflow_run:
+    workflows:
+      - FT2 Forest01 actual Unity 6 render - hosted Mac
+    types: [completed]
+  workflow_dispatch:
+    inputs:
+      render_run_id:
+        description: Run ID of an actual Unity render workflow with PNG artifacts
+        required: true
+        type: string
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: visual-review-${{ github.event.workflow_run.id || inputs.render_run_id || github.run_id }}
+  cancel-in-progress: true
+jobs:
+  visual-review:
+    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - name: Download actual Unity rendering artifacts, without executing artifact contents
+        id: download
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TARGET_RUN: ${{ github.event.workflow_run.id || inputs.render_run_id }}
+        run: |
+          set -euo pipefail
+          test -n "$TARGET_RUN"
+          gh run download "$TARGET_RUN" --name "ft2-forest01-real-unity-${TARGET_RUN}" --dir render-evidence
+      - name: Install image comparison dependency
+        if: steps.download.outcome == 'success'
+        run: python3 -m pip install --disable-pip-version-check Pillow==11.3.0
+      - name: Verify visual regression evidence
+        id: review
+        if: steps.download.outcome == 'success'
+        continue-on-error: true
+        run: |
+          python3 -m unittest discover -s scripts/hook-guards -p 'test_visual_review.py' -v
+          python3 scripts/hook-guards/visual_review.py \
+            --actual render-evidence/UnityProject/Logs/Forest01_TerrainTest_Preview.png \
+            --baseline art/baselines/Forest01_Approved_ActualUnity.png \
+            --report qa-artifacts/visual-review.json --threshold 0.035
+      - name: Explicitly record evidence status
+        if: always()
+        env:
+          DOWNLOADED: ${{ steps.download.outcome }}
+          REVIEWED: ${{ steps.review.outcome }}
+        run: |
+          mkdir -p qa-artifacts
+          if [ "$DOWNLOADED" != success ]; then
+            echo 'NOT VERIFIED: Real Unity PNG artifact unavailable or download failed.' | tee -a "$GITHUB_STEP_SUMMARY"
+          elif [ "$REVIEWED" != success ]; then
+            echo 'REVIEW REQUIRED/NOT VERIFIED: image differs, missing approved baseline, or visual script failed. Inspect visual-review.json.' | tee -a "$GITHUB_STEP_SUMMARY"
+          else
+            echo 'Pixel metric within threshold; manual art acceptance still REQUIRED.' | tee -a "$GITHUB_STEP_SUMMARY"
+          fi
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        if: always()
+        with:
+          name: forest01-visual-review
+          path: |
+            qa-artifacts/visual-review.json
+            render-evidence/UnityProject/Logs/Forest01_TerrainTest_Preview.png
+          if-no-files-found: warn

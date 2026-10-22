@@ -1,0 +1,99 @@
+name: FT2 Forest01 actual Unity 6 render - hosted Mac
+
+on:
+  push:
+    branches:
+      - 'codex/ft2-forest01-isometric-terrain-20261022'
+    paths:
+      - '.github/workflows/ft2-terrain-hosted-render.yml'
+      - 'UnityProject/Assets/FantasyTD/V2/Terrain/**'
+      - 'UnityProject/Assets/FantasyTD/V2/Editor/Forest01Terrain*.cs'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  license-preflight:
+    name: Check Unity license for independent runner
+    runs-on: ubuntu-latest
+    outputs:
+      license_ready: ${{ steps.check.outputs.ready }}
+    env:
+      HAS_UNITY_LICENSE: ${{ secrets.UNITY_LICENSE != '' }}
+      HAS_UNITY_EMAIL: ${{ secrets.UNITY_EMAIL != '' }}
+      HAS_UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD != '' }}
+    steps:
+      - name: Check required secrets without revealing values
+        id: check
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ "$HAS_UNITY_LICENSE" == "true" ]] ||
+             { [[ "$HAS_UNITY_EMAIL" == "true" ]] && [[ "$HAS_UNITY_PASSWORD" == "true" ]]; }; then
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+            echo "Unity activation material available."
+          else
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+            echo "::error::FOREST01_UNITY_RENDER_BLOCKED: provide UNITY_LICENSE or UNITY_EMAIL plus UNITY_PASSWORD in GitHub Actions secrets; no real Unity renderer was run."
+            exit 1
+          fi
+
+  real-unity-render:
+    name: Real Unity 6000.0.26f1 render (not Dyrygent)
+    needs: license-preflight
+    if: needs.license-preflight.outputs.license_ready == 'true'
+    runs-on: macos-15
+    timeout-minutes: 40
+    steps:
+      - name: Checkout exact FantasyTD commit
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          lfs: true
+      - name: Run Unity Editor and render terrain camera
+        uses: game-ci/unity-builder@v4
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+          UNITY_SERIAL: ${{ secrets.UNITY_SERIAL }}
+        with:
+          unityVersion: 6000.0.26f1
+          projectPath: UnityProject
+          targetPlatform: StandaloneOSX
+          buildMethod: FantasyTD.V2.Editor.Forest01TerrainSmoke.RunSmoke
+          enableGpu: true
+          versioning: None
+      - name: Verify real Unity landscape screenshots
+        shell: bash
+        run: |
+          set -euo pipefail
+          PNG="UnityProject/Logs/Forest01_TerrainTest_Preview.png"
+          PNG_WIDE="UnityProject/Logs/Forest01_TerrainTest_Preview_20x9.png"
+          SCENE="UnityProject/Assets/FantasyTD/V2/Scenes/Forest01_TerrainTest.unity"
+          test -s "$PNG"
+          test -s "$PNG_WIDE"
+          test -s "$SCENE"
+          python3 - "$PNG" "$PNG_WIDE" <<'PY'
+          import struct, sys
+          for path, expected in zip(sys.argv[1:], [(1280, 720), (1600, 720)]):
+              with open(path, "rb") as f:
+                  header = f.read(24)
+              assert header[:8] == bytes.fromhex("89504e470d0a1a0a"), f"Not PNG: {path}"
+              size = struct.unpack(">II", header[16:24])
+              assert size == expected, f"Wrong dimensions {path}: {size} != {expected}"
+              print(f"Unity camera PNG verified: {path}: {size}")
+          PY
+      - name: Upload Unity render and editable scene
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ft2-forest01-real-unity-${{ github.run_id }}
+          if-no-files-found: warn
+          path: |
+            UnityProject/Logs/Forest01_TerrainTest_Preview.png
+            UnityProject/Logs/Forest01_TerrainTest_Preview_20x9.png
+            UnityProject/Logs/*.log
+            UnityProject/Assets/FantasyTD/V2/Scenes/Forest01_TerrainTest.unity
+            UnityProject/Assets/FantasyTD/V2/TerrainTest/Generated/

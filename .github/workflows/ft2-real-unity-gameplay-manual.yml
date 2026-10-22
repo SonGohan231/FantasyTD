@@ -1,0 +1,55 @@
+name: Forest01 Real Unity Gameplay Validation (manual, no Dyrygent)
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: forest01-manual-unity-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  license:
+    runs-on: ubuntu-latest
+    outputs:
+      ready: ${{ steps.check.outputs.ready }}
+    env:
+      HAS_FILE: ${{ secrets.UNITY_LICENSE != '' }}
+      HAS_CREDENTIALS: ${{ secrets.UNITY_EMAIL != '' && secrets.UNITY_PASSWORD != '' }}
+    steps:
+      - id: check
+        run: |
+          if [ "$HAS_FILE" = true ] || [ "$HAS_CREDENTIALS" = true ]; then
+            echo 'ready=true' >> "$GITHUB_OUTPUT"
+          else
+            echo 'ready=false' >> "$GITHUB_OUTPUT"
+            echo '::error::NOT VERIFIED: Unity license material not configured.'
+            exit 1
+          fi
+  real-editor-smoke:
+    needs: license
+    if: needs.license.outputs.ready == 'true'
+    runs-on: macos-15
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          lfs: true
+      - name: Actual Unity 6 game scene validation
+        uses: game-ci/unity-builder@4423ee75828dff56037d1d1cfdac6b68e3a6ba00 # v4
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+          UNITY_SERIAL: ${{ secrets.UNITY_SERIAL }}
+        with:
+          unityVersion: 6000.0.26f1
+          projectPath: UnityProject
+          targetPlatform: StandaloneOSX
+          buildMethod: FantasyTD.V2.Editor.Forest01Smoke.RunSmoke
+          versioning: None
+      - name: Preserve actual Unity logs
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: real-unity-gameplay-${{ github.run_id }}
+          path: UnityProject/Logs/
+          if-no-files-found: warn
