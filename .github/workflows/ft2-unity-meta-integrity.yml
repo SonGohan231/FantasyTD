@@ -1,0 +1,30 @@
+name: FantasyTD Unity Asset Integrity
+on:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: ft2-meta-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  unity-meta-integrity:
+    name: Validate Unity GUID and tracked metadata
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Test validator positive and negative fixtures
+        run: python3 -m unittest discover -s scripts/hook-guards -p 'test_unity_meta_integrity.py' -v
+      - name: Reject GUID collisions and missing tracked metadata
+        env:
+          PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: |
+          set -euo pipefail
+          if [ -n "${PR_BASE_SHA:-}" ]; then
+            python3 scripts/hook-guards/unity_meta_integrity.py --base "$PR_BASE_SHA"
+          else
+            python3 scripts/hook-guards/unity_meta_integrity.py
+          fi
