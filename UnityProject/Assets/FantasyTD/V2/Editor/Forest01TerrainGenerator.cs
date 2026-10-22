@@ -300,36 +300,73 @@ namespace FantasyTD.V2.Editor
             return Color.clear;
         }
 
-        /// <summary>Produces a screenshot artifact from the actual Unity scene camera.</summary>
+        /// <summary>
+        /// Capture the actual Unity camera in landscape 16:9 and 20:9.
+        /// A PNG is not accepted if it renders as an empty/flat frame.
+        /// </summary>
         public static bool RenderPreview(Scene scene)
         {
             if (!scene.IsValid() || !scene.isLoaded) return false;
             Camera camera = UnityEngine.Object.FindFirstObjectByType<Camera>();
             if (camera == null) return false;
-            RenderTexture target = new RenderTexture(1280, 720, 24);
-            Texture2D screenshot = new Texture2D(1280, 720,
-                TextureFormat.RGB24, false);
+            return RenderFrame(camera, 1280, 720, "Forest01_TerrainTest_Preview.png")
+                && RenderFrame(camera, 1600, 720, "Forest01_TerrainTest_Preview_20x9.png");
+        }
+
+        private static bool RenderFrame(Camera camera, int width, int height, string fileName)
+        {
+            var target = new RenderTexture(width, height, 24, RenderTextureFormat.ARGB32);
+            var screenshot = new Texture2D(width, height, TextureFormat.RGB24, false);
             RenderTexture previous = RenderTexture.active;
             RenderTexture oldCamera = camera.targetTexture;
+            float oldAspect = camera.aspect;
             try
             {
+                if (!target.Create())
+                    throw new InvalidOperationException("RenderTexture.Create failed: " + fileName);
                 camera.targetTexture = target;
-                RenderTexture.active = target;
+                camera.aspect = (float)width / height;
                 camera.Render();
-                screenshot.ReadPixels(new Rect(0, 0, 1280, 720), 0, 0);
+
+                // Camera.Render may change the active target: restore it explicitly
+                // before the GPU readback, rather than capturing an unrelated buffer.
+                RenderTexture.active = target;
+                screenshot.ReadPixels(new Rect(0, 0, width, height), 0, 0);
                 screenshot.Apply(false);
+
+                Color32 baseline = (Color32)screenshot.GetPixel(0, 0);
+                int different = 0;
+                for (int sy = 0; sy < 12; sy++)
+                    for (int sx = 0; sx < 20; sx++)
+                    {
+                        Color32 c = (Color32)screenshot.GetPixel(
+                            (sx * (width - 1)) / 19, (sy * (height - 1)) / 11);
+                        int rgbDistance = Math.Abs(c.r - baseline.r)
+                                        + Math.Abs(c.g - baseline.g)
+                                        + Math.Abs(c.b - baseline.b);
+                        if (rgbDistance > 24) different++;
+                    }
+                if (different < 10)
+                    throw new InvalidOperationException(
+                        "Unity camera output is blank/uniform: " + fileName);
+
                 byte[] png = screenshot.EncodeToPNG();
-                string logs = Path.Combine(Directory.GetParent(
-                    Application.dataPath).FullName, "Logs");
+                if (png == null || png.Length < 4096)
+                    throw new InvalidOperationException(
+                        "Unity camera output PNG is unexpectedly small: " + fileName);
+                string logs = Path.Combine(Directory.GetParent(Application.dataPath).FullName, "Logs");
                 Directory.CreateDirectory(logs);
-                File.WriteAllBytes(Path.Combine(logs, "Forest01_TerrainTest_Preview.png"), png);
-                Debug.Log("Forest01 terrain preview bytes=" + png.Length);
-                return png.Length > 2048;
+                File.WriteAllBytes(Path.Combine(logs, fileName), png);
+                Debug.Log("Forest01 real Unity camera preview: " + fileName
+                          + " (" + width + "x" + height + ", " + png.Length + " bytes)");
+                return true;
             }
             finally
             {
                 camera.targetTexture = oldCamera;
+                camera.aspect = oldAspect;
                 RenderTexture.active = previous;
+                target.Release();
                 UnityEngine.Object.DestroyImmediate(target);
                 UnityEngine.Object.DestroyImmediate(screenshot);
             }
