@@ -35,7 +35,8 @@ jobs:
             echo "Unity activation material available."
           else
             echo "ready=false" >> "$GITHUB_OUTPUT"
-            echo "::notice::Hosted render is blocked: configure UNITY_LICENSE (and possibly UNITY_EMAIL/UNITY_PASSWORD) via GitHub Actions secrets; no Unity runner has been started."
+            echo "::error::FOREST01_UNITY_RENDER_BLOCKED: provide UNITY_LICENSE or UNITY_EMAIL plus UNITY_PASSWORD in GitHub Actions secrets; no real Unity renderer was run."
+            exit 1
           fi
 
   real-unity-render:
@@ -64,21 +65,25 @@ jobs:
           buildMethod: FantasyTD.V2.Editor.Forest01TerrainSmoke.RunSmoke
           enableGpu: true
           versioning: None
-      - name: Verify real Unity 1280x720 scene screenshot
+      - name: Verify real Unity landscape screenshots
         shell: bash
         run: |
           set -euo pipefail
           PNG="UnityProject/Logs/Forest01_TerrainTest_Preview.png"
+          PNG_WIDE="UnityProject/Logs/Forest01_TerrainTest_Preview_20x9.png"
           SCENE="UnityProject/Assets/FantasyTD/V2/Scenes/Forest01_TerrainTest.unity"
           test -s "$PNG"
+          test -s "$PNG_WIDE"
           test -s "$SCENE"
-          python3 - "$PNG" <<'PY'
-          import sys,struct
-          with open(sys.argv[1],"rb") as f: h=f.read(24)
-          assert h[:8]==b"\x89PNG\r\n\x1a\n", "not PNG"
-          w,h=struct.unpack(">II",h[16:24])
-          assert (w,h)==(1280,720),f"wrong dimensions: {(w,h)}"
-          print("Genuine Unity camera screenshot verified: 1280x720")
+          python3 - "$PNG" "$PNG_WIDE" <<'PY'
+          import struct, sys
+          for path, expected in zip(sys.argv[1:], [(1280, 720), (1600, 720)]):
+              with open(path, "rb") as f:
+                  header = f.read(24)
+              assert header[:8] == bytes.fromhex("89504e470d0a1a0a"), f"Not PNG: {path}"
+              size = struct.unpack(">II", header[16:24])
+              assert size == expected, f"Wrong dimensions {path}: {size} != {expected}"
+              print(f"Unity camera PNG verified: {path}: {size}")
           PY
       - name: Upload Unity render and editable scene
         if: always()
@@ -88,6 +93,7 @@ jobs:
           if-no-files-found: warn
           path: |
             UnityProject/Logs/Forest01_TerrainTest_Preview.png
+            UnityProject/Logs/Forest01_TerrainTest_Preview_20x9.png
             UnityProject/Logs/*.log
             UnityProject/Assets/FantasyTD/V2/Scenes/Forest01_TerrainTest.unity
             UnityProject/Assets/FantasyTD/V2/TerrainTest/Generated/
