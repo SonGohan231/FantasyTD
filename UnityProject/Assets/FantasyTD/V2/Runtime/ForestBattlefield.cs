@@ -53,6 +53,7 @@ namespace FantasyTD.V2.Runtime
         private int _currentStage;
         private bool _victoryRecorded;
         private string _selectedSite;
+        private SpriteRenderer _selectionRing;
         private float _tickAccumulator;
 
         public int RuntimeSiteCount { get { return _level == null ? 0 : _level.Sites.Count; } }
@@ -65,6 +66,14 @@ namespace FantasyTD.V2.Runtime
         public int RuntimeKills { get { return _battle == null ? 0 : _battle.Kills; } }
         public bool RuntimeWaveActive { get { return _battle != null && _battle.WaveActive; } }
         public BattleResult RuntimeResult { get { return _battle == null ? BattleResult.InProgress : _battle.Result; } }
+
+        public bool RuntimeUpgradeButtonInteractable { get { return _upgradeButton != null && _upgradeButton.interactable; } }
+
+        public void ClickUpgradeForValidation()
+        {
+            if (_upgradeButton != null && _upgradeButton.interactable)
+                _upgradeButton.onClick.Invoke();
+        }
 
         public int RuntimeTowerLevel(string siteId)
         {
@@ -224,6 +233,7 @@ namespace FantasyTD.V2.Runtime
             if (_world != null) Destroy(_world);
             _enemyViews.Clear();
             _siteMarkers.Clear();
+            _selectionRing = null;
             _defenderViews.Clear();
             _selectedSite = null;
             _tickAccumulator = 0f;
@@ -320,6 +330,9 @@ namespace FantasyTD.V2.Runtime
                 Sprite("Site seed " + kv.Key, pos, new Vector2(.20f, .20f),
                     new Color(.92f, .81f, .38f), -5, true);
             }
+            _selectionRing = Sprite("Tower selection halo", Vector2.zero,
+                new Vector2(1.65f, 1.65f), new Color(.95f, .82f, .24f, .68f), 4, true);
+            _selectionRing.enabled = false;
         }
 
         private SpriteRenderer Sprite(string name, Vector2 pos, Vector2 size,
@@ -434,16 +447,27 @@ namespace FantasyTD.V2.Runtime
             Camera camera = Camera.main;
             if (camera == null) return;
             Vector3 world = camera.ScreenToWorldPoint(screen);
+            TrySelectAtWorldPoint(new Vector2(world.x, world.y));
+        }
+
+        // Both mobile input and Play Mode tests use this exact hit-test.
+        // Rendered defenders extend beyond the smaller empty-plot marker.
+        public bool TrySelectAtWorldPoint(Vector2 worldPoint)
+        {
+            if (_level == null || _battle == null || _battle.Result != BattleResult.InProgress)
+                return false;
             string closest = null;
-            float distance = .68f;
+            float bestDistance = float.PositiveInfinity;
             foreach (var site in _level.Sites)
             {
-                float d = Vector2.Distance(new Vector2(world.x, world.y), Point(site.Value));
-                if (d >= distance) continue;
+                bool occupied = _battle.PlacedTowers.ContainsKey(site.Key);
+                float hitRadius = occupied ? 1.05f : .68f;
+                float distance = Vector2.Distance(worldPoint, Point(site.Value));
+                if (distance > hitRadius || distance >= bestDistance) continue;
                 closest = site.Key;
-                distance = d;
+                bestDistance = distance;
             }
-            SelectSite(closest);
+            return SelectSite(closest);
         }
 
         public bool SelectSite(string siteId)
@@ -474,8 +498,19 @@ namespace FantasyTD.V2.Runtime
             foreach (var marker in _siteMarkers)
                 marker.Value.color = marker.Key == _selectedSite
                     ? new Color(1f, .93f, .51f) : new Color(.50f, .80f, .49f);
+            if (_selectionRing != null)
+            {
+                bool occupied = _selectedSite != null && _battle != null &&
+                    _battle.PlacedTowers.ContainsKey(_selectedSite);
+                _selectionRing.enabled = occupied;
+                if (occupied)
+                {
+                    Vector2 point = Point(_level.Sites[_selectedSite]);
+                    _selectionRing.transform.localPosition = new Vector3(point.x, point.y, 0f);
+                }
+            }
             if (_selectedSite == null && _prompt != null)
-                _prompt.text = "Dotknij miejsca budowy.";
+                _prompt.text = "Dotknij miejsca budowy lub postawionego obrońcy.";
         }
 
         private void Build(string towerId)
@@ -499,7 +534,8 @@ namespace FantasyTD.V2.Runtime
             DrawDefender(_selectedSite, towerId, pos);
             _siteMarkers[_selectedSite].gameObject.SetActive(false);
             _selectedSite = null;
-            _prompt.text = "Obrońca posadzony. Przygotuj kolejną jednostkę lub falę.";
+            _prompt.text = "Obrońca posadzony. Dotknij obrońcy, aby go ulepszyć.";
+            RefreshSiteSelection();
             RefreshHud();
             return true;
         }
