@@ -28,17 +28,17 @@ internal static class Program
     private static void VerifyStarterLevel()
     {
         var level = StarterLevel.Create();
-        Require(level.Sites.Count == 12, "starter has 12 sites");
-        Require(level.Enemies.Count >= 2, "starter has at least 2 enemies");
-        Require(level.Waves.Count == 3, "starter has 3 waves");
-        Require(level.Towers.Count == 3, "starter has 3 towers");
-        Require(level.StartingBaseHp == 15, "starter begins with 15 HP");
+        Require(level.Sites.Count == 10, "approved Forest01 has 10 build sites");
+        Require(level.Enemies.Count == 5, "Forest01 has four enemies and one boss");
+        Require(level.Waves.Count == 6, "Forest01 has 6 waves");
+        Require(level.Towers.Count == 4, "Forest01 has four defenders");
+        Require(level.StartingBaseHp == 20, "Forest01 begins with 20 HP");
 
         var battle = new BattleSimulator(level);
-        Require(battle.TryPlaceTower("a01", "thorn"), "place thorn");
-        Require(!battle.TryPlaceTower("a01", "frost"), "no site overlap");
+        Require(battle.TryPlaceTower("B01", "thorn"), "place thorn");
+        Require(!battle.TryPlaceTower("B01", "frost"), "no site overlap");
         Require(!battle.TryPlaceTower("bad", "thorn"), "reject invalid site");
-        Require(battle.Essence == 175, "tower cost");
+        Require(battle.Essence == 245, "first thorn deducts 55 of 300 Essence");
         Require(battle.StartNextWave(), "start wave 1");
         Require(!battle.StartNextWave(), "no overlapping waves");
         battle.Step();
@@ -49,7 +49,7 @@ internal static class Program
         Require(battle.CanStartWave, "second wave available");
 
         var replay = new BattleSimulator(level);
-        Require(replay.TryPlaceTower("a01", "thorn"), "replay placement");
+        Require(replay.TryPlaceTower("B01", "thorn"), "replay placement");
         Require(replay.StartNextWave(), "replay starts");
         for (int i = 0; i < battle.TotalTicks; i++) replay.Step();
         Require(replay.TotalTicks == battle.TotalTicks, "deterministic ticks");
@@ -83,7 +83,7 @@ internal static class Program
             Require(ids.Add(level.Id), "duplicate ID " + level.Id);
             Require(level.PathLength >= 1000, "too-short level path");
             Require(level.Path.Count >= 8, "path needs actual turns");
-            Require(level.Sites.Count == 12, "12 planting sites required");
+            Require(level.Sites.Count == (levelNumber == 1 ? 10 : 12), "Forest01 has 10, campaign definitions have 12 sites");
             Require(level.Waves.Count >= 3, "at least 3 waves");
             Require(level.Towers.Count >= 3, "at least 3 accessible towers");
             Require(level.StartingBaseHp > 0, "base health must be positive");
@@ -100,7 +100,7 @@ internal static class Program
                     for (int b = 0; b < CampaignCatalog.BossIds.Length; b++)
                         if (order.EnemyId == CampaignCatalog.BossIds[b]) hasBoss = true;
             }
-            Require(hasBoss == CampaignCatalog.IsBossStage(levelNumber),
+            Require(hasBoss == (levelNumber == 1 || CampaignCatalog.IsBossStage(levelNumber)),
                 "boss appears on wrong stage: " + levelNumber);
             if (levelNumber > 1)
             {
@@ -173,7 +173,7 @@ internal static class Program
         LevelDefinition level = StarterLevel.Create();
         string[] strategicPositions =
         {
-            "a01", "a05", "a07", "a11", "a09", "a12", "a02", "a06", "a08"
+            "B01", "B05", "B07", "B09", "B02", "B06", "B08", "B10", "B03", "B04"
         };
         var defended = new BattleSimulator(level);
         int nextPosition = 0;
@@ -181,7 +181,7 @@ internal static class Program
             Require(defended.TryPlaceTower(strategicPositions[nextPosition++], "thorn"),
                 "starter defender placement must be affordable");
 
-        for (int wave = 1; wave <= 3; wave++)
+        for (int wave = 1; wave <= 6; wave++)
         {
             Require(defended.StartNextWave(), "start defended wave " + wave);
             int ticks = 0;
@@ -203,12 +203,12 @@ internal static class Program
             "defended full Forest01 session must reach victory");
         Require(defended.Kills >= 1, "defended session must actually fight enemies");
         Require(!defended.CanStartWave, "completed level must block extra wave");
-        Require(!defended.TryPlaceTower("a06", "thorn"),
+        Require(!defended.TryPlaceTower("B06", "thorn"),
             "completed level must reject further placements");
 
         // An undefended base must fail through actual enemy leaks.
         var undefended = new BattleSimulator(level);
-        for (int wave = 1; wave <= 3 &&
+        for (int wave = 1; wave <= 6 &&
              undefended.Result == BattleResult.InProgress; wave++)
         {
             Require(undefended.StartNextWave(),
@@ -225,9 +225,9 @@ internal static class Program
         Require(retry.Essence == level.StartingEssence &&
                 retry.BaseHp == level.StartingBaseHp && retry.WaveNumber == 0 &&
                 retry.Result == BattleResult.InProgress &&
-                retry.TryPlaceTower("a01", "thorn"),
+                retry.TryPlaceTower("B01", "thorn"),
                 "restart must reset combat and economy state");
-        Console.WriteLine("ForestSession PASS: three-wave victory, real defeat, clean restart.");
+        Console.WriteLine("ForestSession PASS: six-wave victory, real defeat, clean restart.");
     }
 
 
@@ -257,24 +257,23 @@ internal static class Program
 
     private static void VerifyForestArtGeometry()
     {
-        // MAP-A original art anchor data normalized from its 24x14 layout.
-        // FT2 renders the same approved source at 29x16 centered on (0,0).
-        // Gameplay route must match the road on the actual image.
+        // Current approved Forest01 adapter: 28x20 terrain, 12 routed waypoints,
+        // ten fixed B01..B10 sites. This validates model geometry, not pixels.
         LevelDefinition level = StarterLevel.Create();
-        Require(level.Path.Count == 14,
-            "Forest01 path must follow all 14 approved road bends");
-        Require(level.Path[0].X == -1081 && level.Path[0].Y == 800,
+        Require(level.Path.Count == 12,
+            "Forest01 path must follow all 12 approved waypoints");
+        Require(level.Path[0].X == -1350 && level.Path[0].Y == 280,
             "Forest01 spawn must align with artwork north gate");
         MapPoint destination = level.Path[level.Path.Count - 1];
-        Require(destination.X == 1450 && destination.Y == -783,
+        Require(destination.X == 1350 && destination.Y == -40,
             "Forest01 exit must align with artwork southeast gate");
-        Require(level.Sites["a01"].X == -1131 &&
-                level.Sites["a01"].Y == 321,
-            "A01 build anchor must match visible soil patch");
-        Require(level.Sites["a12"].X == 1372 &&
-                level.Sites["a12"].Y == -297,
-            "A12 build anchor must match visible soil patch");
-        Console.WriteLine("ForestArtGeometry PASS: 14 road points, both gates, build anchors.");
+        Require(level.Sites["B01"].X == -1150 &&
+                level.Sites["B01"].Y == 520,
+            "B01 build anchor must match approved terrain");
+        Require(level.Sites["B10"].X == 1150 &&
+                level.Sites["B10"].Y == 200,
+            "B10 build anchor must match approved terrain");
+        Console.WriteLine("ForestArtGeometry PASS: 12 road points, both gates, B01/B10 anchors.");
     }
 
     private static void Require(bool ok, string message)
