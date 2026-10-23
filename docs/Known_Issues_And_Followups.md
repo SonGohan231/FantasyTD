@@ -567,3 +567,19 @@ Do not activate automatically:
 - validate exact Android SDK/NDK/JDK configuration during the Android build ticket,
 - split assemblies only if project growth creates a measurable need,
 - replace procedural placeholder art only after gameplay vertical slice works.
+# Forest01 integration environment blockers — 2026-10-22
+
+- **Local Unity render FAILED in FEX/Vulkan:** Unity 6000.0.26f1 successfully generated and reopened the 28x20 scene, retained 10 build-site components and selected a site, then aborted in `Camera.Render()` with `Missing Vulkan framebuffer attachment image`. The failure reproduces with both `ReadPixels` and `AsyncGPUReadback`; the crash precedes readback and is specific to the Virtio-GPU Venus (Mali-G52) Vulkan path. Real render evidence is delegated to the existing x86_64 GitHub runner.
+- **Local Android toolchain incomplete:** this Unity install has no `Editor/Data/PlaybackEngines/AndroidPlayer`. ComputerMCP contains Temurin JDK 17.0.20.1+1 (aarch64) and Android command-line tools 22.0 only; platforms, build-tools, NDK and ADB are absent. No components were installed without owner approval. APK generation must use the configured x86_64 runner unless the official Unity 6000.0.26f1 Android module is explicitly approved for local installation.
+- **Physical-device QA NOT VERIFIED:** no local ADB binary or connected device is available. APK install, launch, touch, audio and performance checks remain pending after a successful CI artifact exists.
+
+
+
+## FT2-UNIFY-001 (2026-10-23)
+- Wcześniejszy render lokalny Unity/FEX/Venus zakończył się błędem framebuffer; nie ma potwierdzonego PNG z bieżącej gałęzi.
+- Poprzedni `forest01-playmode-integration.txt` ma FAIL przy 10 build sites; wymagana nowa próba na aktualnej poprawce.
+- Na Chromebooku nie ma Android Build Support. Hosted runner z licencją Unity i Android modułem musi wygenerować APK na tym samym SHA.
+- Statyczny test zapisywania progresu PASS, ale fizyczny cold restart Android / UI nawigacji nie został sprawdzony.
+- Historyczna rozbieżność `origin/codex/forest01-integrated-20261022` vs lokalne `c8cfb7a`: nie scalać przez force-push.
+- Obecność plików graficznych i Unity Tilemap nie jest dowodem spójnego, zatwierdzonego renderu produkcyjnego.
+- Zadanie nadrzędne: https://github.com/SonGohan231/FantasyTD/issues/36

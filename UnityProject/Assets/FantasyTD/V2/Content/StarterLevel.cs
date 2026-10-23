@@ -13,45 +13,37 @@ namespace FantasyTD.V2.Content
 
         public static LevelDefinition Create()
         {
-            // Aligned to the recovered approved MAP1 texture's 24x14 authored geometry.
-            // Map coordinates scaled to FT2: (x / 24 * 29 - 14.5, y / 14 * 16 - 8).
+            // Production adapter for the approved 28x20 Forest01 terrain plan.
+            // X uses one world unit per cell; Y is scaled to the 16:9 battlefield.
             var path = new List<MapPoint>
             {
-                new MapPoint(-1081, 800),
-                new MapPoint(-990, 647),
-                new MapPoint(-905, 480),
-                new MapPoint(-806, 299),
-                new MapPoint(-678, 105),
-                new MapPoint(-487, -33),
-                new MapPoint(-246, -103),
-                new MapPoint(36, -144),
-                new MapPoint(320, -200),
-                new MapPoint(603, -256),
-                new MapPoint(872, -353),
-                new MapPoint(1098, -491),
-                new MapPoint(1283, -658),
-                new MapPoint(1450, -783)
+                new MapPoint(-1350, 280), new MapPoint(-950, 280),
+                new MapPoint(-950, 120), new MapPoint(-450, 120),
+                new MapPoint(-450, 280), new MapPoint(-50, 280),
+                new MapPoint(-50, -40), new MapPoint(450, -40),
+                new MapPoint(450, -200), new MapPoint(850, -200),
+                new MapPoint(850, -40), new MapPoint(1350, -40)
             };
             var sites = new Dictionary<string, MapPoint>
             {
-                {"a01", new MapPoint(-1131, 321)},
-                {"a02", new MapPoint(-459, 661)},
-                {"a03", new MapPoint(-48, 429)},
-                {"a04", new MapPoint(-1151, -218)},
-                {"a05", new MapPoint(-749, -263)},
-                {"a06", new MapPoint(362, 337)},
-                {"a07", new MapPoint(714, 100)},
-                {"a08", new MapPoint(-467, -665)},
-                {"a09", new MapPoint(285, -533)},
-                {"a10", new MapPoint(1318, 231)},
-                {"a11", new MapPoint(1090, -103)},
-                {"a12", new MapPoint(1372, -297)}
+                {"B01", new MapPoint(-1150, 520)},
+                {"B02", new MapPoint(-850, 440)},
+                {"B03", new MapPoint(-650, -40)},
+                {"B04", new MapPoint(-350, 520)},
+                {"B05", new MapPoint(-250, 40)},
+                {"B06", new MapPoint(150, 440)},
+                {"B07", new MapPoint(150, -200)},
+                {"B08", new MapPoint(650, 120)},
+                {"B09", new MapPoint(950, -360)},
+                {"B10", new MapPoint(1150, 200)}
             };
             var enemies = new Dictionary<string, EnemyDefinition>
             {
                 {"imp", new EnemyDefinition("imp", 90, 7, 0, 20, 1)},
                 {"runner", new EnemyDefinition("runner", 65, 12, 0, 18, 1)},
-                {"armored", new EnemyDefinition("armored", 180, 5, 40, 30, 2)}
+                {"armored", new EnemyDefinition("armored", 180, 5, 40, 30, 2)},
+                {"swarm", new EnemyDefinition("swarm", 48, 10, 0, 10, 1)},
+                {"root-warden", new EnemyDefinition("root-warden", 1100, 3, 30, 220, 6)}
             };
             var towers = new Dictionary<string, TowerDefinition>
             {
@@ -59,7 +51,9 @@ namespace FantasyTD.V2.Content
                 {"frost", new TowerDefinition("frost", 75, 16, Element.Frost, 600, 12,
                     slowPercent: 45, slowTicks: 30)},
                 {"bloom", new TowerDefinition("bloom", 45, 0, Element.Nature, 0, 1,
-                    incomeAmount: 15, incomeEveryTicks: 80)}
+                    incomeAmount: 15, incomeEveryTicks: 80)},
+                {"oak", new TowerDefinition("oak", 105, 42, Element.Physical, 480, 17,
+                    slowPercent: 20, slowTicks: 12)}
             };
             var waves = new List<WaveDefinition>
             {
@@ -89,10 +83,31 @@ namespace FantasyTD.V2.Content
                     new SpawnOrder("imp", 130),
                     new SpawnOrder("runner", 155),
                     new SpawnOrder("armored", 180)
+                }),
+                new WaveDefinition(new List<SpawnOrder>
+                {
+                    new SpawnOrder("swarm", 0), new SpawnOrder("swarm", 14),
+                    new SpawnOrder("runner", 30), new SpawnOrder("swarm", 44),
+                    new SpawnOrder("armored", 70), new SpawnOrder("runner", 95),
+                    new SpawnOrder("armored", 130)
+                }),
+                new WaveDefinition(new List<SpawnOrder>
+                {
+                    new SpawnOrder("armored", 0), new SpawnOrder("runner", 25),
+                    new SpawnOrder("armored", 50), new SpawnOrder("imp", 78),
+                    new SpawnOrder("armored", 105), new SpawnOrder("runner", 132),
+                    new SpawnOrder("armored", 165), new SpawnOrder("swarm", 190)
+                }),
+                new WaveDefinition(new List<SpawnOrder>
+                {
+                    new SpawnOrder("armored", 0), new SpawnOrder("runner", 22),
+                    new SpawnOrder("swarm", 44), new SpawnOrder("armored", 68),
+                    new SpawnOrder("runner", 92), new SpawnOrder("armored", 118),
+                    new SpawnOrder("root-warden", 170)
                 })
             };
             return new LevelDefinition(Id, path, sites, enemies, towers, waves,
-                startingEssence: 230, startingBaseHp: 15);
+                startingEssence: 300, startingBaseHp: 20);
         }
     }
 }

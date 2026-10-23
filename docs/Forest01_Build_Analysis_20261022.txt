@@ -1,0 +1,31 @@
+Forest01 execution analysis — 2026-10-22
+
+Scope: FantasyTD-Forest01-Synced, branch codex/forest01-integrated-20261022.
+This file records observed results. It is not an APK or release approval.
+
+Local checks
+- ComputerMCP Desktop Bridge returned status online and executed git status in this repository with exit code 0.
+- Unity Essentials workflow instructions were applied. No Unity MCP provider appears in the current project manifest or active tools; the older Unity MCP 10.3.0 setup note explicitly says its live server was not installed or verified.
+- Unity Editor executable: /home/adambrdon/Unity/Hub/Editor/6000.0.26f1/Editor/Unity, x86_64. It started under FEX on aarch64 and resolved licensing. Vulkan reported Virtio-GPU Venus (Mali-G52).
+- The first current Play Mode attempt failed during Editor compilation with four CS0103 errors for NamedBuildTarget in Forest01AndroidBuild.cs. The missing UnityEditor.Build import was added.
+- The follow-up Unity Editor compilation and Forest01Smoke.RunSmoke passed with exit code 0. Unity opened Forest01.unity and logged "FantasyTD Forest01 integration: PASS" after checking imported sprites, 10 sites, four defenders, placement, upgrade, spawn and the first wave. This is an Editor smoke, not a Play Mode or device result.
+- The first Play Mode run failed after the Unity Licensing Client timed out during Package Manager initialization, which left built-in UI and Audio packages unregistered. The retry restored 12 packages, rebuilt script references, opened Forest01.unity, entered real Play Mode and produced Logs/forest01-playmode-integration.txt with status=PASS and playModeEntered=True. The launcher exited 0. The validator checked 10 runtime sites, touch target sizes, tower placement and upgrade, Essence spending, combat kills, six-wave victory and unopposed defeat. This is automated Play Mode validation, not manual visual inspection or a device test.
+- Python Forest01 source/terrain contracts: 12 tests, exit 0 through /home/adambrdon/.codex/hook-architect/run_test.py. These are static checks, not Unity Play Mode or device tests.
+
+Android toolchain on this Chromebook
+- Unity's PlaybackEngines/AndroidPlayer directory is absent. Local Android Build Support is absent.
+- ComputerMCP SDK contains only cmdline-tools revision 22.0 at /home/adambrdon/ComputerMCP/workspace/.computermcp/android-sdk/cmdline-tools/latest.
+- OpenJDK is Temurin 17.0.20.1+1 (aarch64) at /home/adambrdon/ComputerMCP/workspace/.computermcp/jdk.
+- Android platforms, build-tools, NDK, Gradle and ADB were not detected in those installations.
+- No local APK or Android device test has been produced by this work.
+
+Build automation
+- .github/workflows/ft2-android-apk-hosted.yml is configured for a GitHub-hosted Ubuntu x86_64 runner, Unity 6000.0.26f1, Forest01 Editor and Play Mode smokes, Android APK build, and artifact upload.
+- The prior dyrygent-unity job in ft2-android-apk.yml is disabled because this runner is not authorized for this task.
+- The hosted workflow has not been executed. It requires Unity license credentials stored as GitHub repository secrets, and its exact commit must be pushed first.
+- The local and remote integrated branches have diverged; reconcile them without force push before publishing.
+
+Outstanding release evidence
+- Obtain a genuine Unity camera PNG and inspect it.
+- Run the hosted Android workflow and download an actual nonempty APK plus build logs for the exact commit.
+- If an Android device and ADB become available, install and launch the APK and verify touch, audio and performance.

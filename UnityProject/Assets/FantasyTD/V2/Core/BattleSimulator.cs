@@ -8,7 +8,7 @@ namespace FantasyTD.V2.Core
     public enum BattleEventKind
     {
         WaveStarted, WaveCleared, EnemySpawned, EnemyDamaged,
-        EnemyKilled, EnemyLeaked, TowerPlaced, Income, Victory, Defeat
+        EnemyKilled, EnemyLeaked, TowerPlaced, TowerUpgraded, Income, Victory, Defeat
     }
 
     public struct BattleEvent
@@ -46,15 +46,38 @@ namespace FantasyTD.V2.Core
 
     public sealed class TowerState
     {
+        public const int MaximumLevel = 3;
         public string SiteId { get; private set; }
         public TowerDefinition Definition { get; private set; }
         public MapPoint Position { get; private set; }
+        public int Level { get; internal set; }
+        public int UpgradeCost
+        {
+            get { return Level >= MaximumLevel ? 0 : Math.Max(20, Definition.Cost * Level / 2); }
+        }
+        public int Damage
+        {
+            get { return Definition.Damage * (100 + (Level - 1) * 45) / 100; }
+        }
+        public int RangeCentimeters
+        {
+            get { return Definition.RangeCentimeters + (Level - 1) * 35; }
+        }
+        public int CooldownTicks
+        {
+            get { return Math.Max(1, Definition.CooldownTicks - (Level - 1)); }
+        }
+        public int IncomeAmount
+        {
+            get { return Definition.IncomeAmount * (100 + (Level - 1) * 50) / 100; }
+        }
         internal int NextAttackTick;
         internal int NextIncomeTick;
 
         internal TowerState(string site, TowerDefinition def, MapPoint pos, int currentTick)
         {
             SiteId = site; Definition = def; Position = pos;
+            Level = 1;
             NextAttackTick = currentTick;
             NextIncomeTick = currentTick + def.IncomeEveryTicks;
         }
@@ -132,6 +155,22 @@ namespace FantasyTD.V2.Core
             return true;
         }
 
+        public bool TryUpgradeTower(string siteId)
+        {
+            TowerState tower;
+            if (Result != BattleResult.InProgress || string.IsNullOrEmpty(siteId) ||
+                !_occupied.TryGetValue(siteId, out tower) ||
+                tower.Level >= TowerState.MaximumLevel || Essence < tower.UpgradeCost)
+                return false;
+            int cost = tower.UpgradeCost;
+            Essence -= cost;
+            tower.Level++;
+            if (tower.Definition.Damage > 0)
+                tower.NextAttackTick = Math.Min(tower.NextAttackTick, TotalTicks);
+            Emit(BattleEventKind.TowerUpgraded, 0, tower.Definition.Id, -cost);
+            return true;
+        }
+
         public bool StartNextWave()
         {
             if (!CanStartWave) return false;
@@ -163,13 +202,13 @@ namespace FantasyTD.V2.Core
             for (int i = 0; i < _towerOrder.Count; i++)
             {
                 var tower = _towerOrder[i];
-                if (tower.Definition.IncomeAmount == 0) continue;
+                if (tower.IncomeAmount == 0) continue;
                 while (TotalTicks >= tower.NextIncomeTick)
                 {
-                    Essence += tower.Definition.IncomeAmount;
+                    Essence += tower.IncomeAmount;
                     tower.NextIncomeTick += tower.Definition.IncomeEveryTicks;
                     Emit(BattleEventKind.Income, 0, tower.Definition.Id,
-                        tower.Definition.IncomeAmount);
+                        tower.IncomeAmount);
                 }
             }
 
@@ -210,11 +249,10 @@ namespace FantasyTD.V2.Core
             for (int i = 0; i < _towerOrder.Count; i++)
             {
                 var tower = _towerOrder[i];
-                if (tower.Definition.Damage <= 0 || TotalTicks < tower.NextAttackTick)
+                if (tower.Damage <= 0 || TotalTicks < tower.NextAttackTick)
                     continue;
                 EnemyState target = null;
-                long radiusSq = (long)tower.Definition.RangeCentimeters *
-                                tower.Definition.RangeCentimeters;
+                long radiusSq = (long)tower.RangeCentimeters * tower.RangeCentimeters;
                 for (int j = 0; j < _enemies.Count; j++)
                 {
                     var e = _enemies[j];
@@ -229,12 +267,12 @@ namespace FantasyTD.V2.Core
                 }
                 if (target == null) continue;
 
-                int damage = tower.Definition.Damage;
+                int damage = tower.Damage;
                 if (tower.Definition.DamageElement == Element.Physical)
                     damage = Math.Max(1, damage *
                         (100 - target.Definition.PhysicalResistancePercent) / 100);
                 target.Health = Math.Max(0, target.Health - damage);
-                tower.NextAttackTick = TotalTicks + tower.Definition.CooldownTicks;
+                tower.NextAttackTick = TotalTicks + tower.CooldownTicks;
                 Emit(BattleEventKind.EnemyDamaged, target.InstanceId,
                     tower.Definition.Id, damage);
 

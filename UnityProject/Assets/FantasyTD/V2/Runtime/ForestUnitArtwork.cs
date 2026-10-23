@@ -22,6 +22,7 @@ namespace FantasyTD.V2.Runtime
                 case "thorn": return Get("ThornShooter", .515f);
                 case "frost": return Get("FrostBud", 1f);
                 case "bloom": return Get("EssenceFlower", 1f);
+                case "oak": return Get("OakGuardian", 1f);
                 default: return null;
             }
         }
@@ -33,6 +34,8 @@ namespace FantasyTD.V2.Runtime
                 case "imp": return Get("Wanderer", .455f);
                 case "runner": return Get("Runner", 1f);
                 case "armored": return Get("Armored", 1f);
+                case "swarm": return Get("Wanderer", .455f);
+                case "root-warden": return Get("ForestBoss", 1f);
                 default: return null;
             }
         }

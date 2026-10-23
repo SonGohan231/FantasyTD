@@ -18,7 +18,7 @@ namespace FantasyTD.V2.Runtime
     {
         private const float SecondsPerTick = 1f / BattleSimulator.TicksPerSecond;
         private const string CampaignSaveKey = "FantasyTD.V2.UnlockedStage.v1";
-        private static readonly string[] TowerIds = { "thorn", "frost", "bloom" };
+        private static readonly string[] TowerIds = { "thorn", "frost", "bloom", "oak" };
         private static Sprite _forestBackdrop;
         private static readonly Color Grass = new Color(.11f, .25f, .17f);
         private static readonly Color PathOuter = new Color(.26f, .18f, .13f);
@@ -27,6 +27,8 @@ namespace FantasyTD.V2.Runtime
             new Dictionary<string, SpriteRenderer>();
         private readonly Dictionary<int, EnemyView> _enemyViews =
             new Dictionary<int, EnemyView>();
+        private readonly Dictionary<string, GameObject> _defenderViews =
+            new Dictionary<string, GameObject>();
 
         private sealed class EnemyView
         {
@@ -41,6 +43,7 @@ namespace FantasyTD.V2.Runtime
         private Text _stats;
         private Text _prompt;
         private Button _nextWave;
+        private Button _upgradeButton;
         private Button _pauseButton;
         private readonly BattlePauseGate _pauseGate = new BattlePauseGate();
         private Button _previousStageButton;
@@ -52,11 +55,31 @@ namespace FantasyTD.V2.Runtime
         private string _selectedSite;
         private float _tickAccumulator;
 
+        public int RuntimeSiteCount { get { return _level == null ? 0 : _level.Sites.Count; } }
+        public int RuntimeTowerCount { get { return _battle == null ? 0 : _battle.PlacedTowers.Count; } }
+        public int RuntimeEnemyCount { get { return _battle == null ? 0 : _battle.Enemies.Count; } }
+        public int RuntimeEssence { get { return _battle == null ? 0 : _battle.Essence; } }
+        public int RuntimeBaseHp { get { return _battle == null ? 0 : _battle.BaseHp; } }
+        public int RuntimeWaveNumber { get { return _battle == null ? 0 : _battle.WaveNumber; } }
+        public int RuntimeTotalWaves { get { return _battle == null ? 0 : _battle.TotalWaves; } }
+        public int RuntimeKills { get { return _battle == null ? 0 : _battle.Kills; } }
+        public bool RuntimeWaveActive { get { return _battle != null && _battle.WaveActive; } }
+        public BattleResult RuntimeResult { get { return _battle == null ? BattleResult.InProgress : _battle.Result; } }
+
+        public int RuntimeTowerLevel(string siteId)
+        {
+            TowerState tower;
+            return _battle != null && _battle.PlacedTowers.TryGetValue(siteId, out tower)
+                ? tower.Level : 0;
+        }
+
         private void Awake()
         {
             Application.targetFrameRate = 60;
-            _currentStage = Mathf.Clamp(PlayerPrefs.GetInt(CampaignSaveKey, 1),
-                1, CampaignCatalog.LevelCount);
+            // Opening Forest01 always starts its own map, not the highest
+            // unlocked campaign stage. Keep CampaignSaveKey untouched so the
+            // player can still navigate to all previously unlocked stages.
+            _currentStage = 1;
             SetupCamera();
             SetupCanvas();
             RestartBattle();
@@ -116,12 +139,14 @@ namespace FantasyTD.V2.Runtime
                 new Vector2(0f, 220f), new Vector2(1600f, 70f));
 
             string[] captions = {
-                "Pędostrzał · 55", "Mroźny Pąk · 75", "Kwiat Esencji · 45"
+                "Pędostrzał · 55", "Mroźny Pąk · 75", "Kwiat Esencji · 45",
+                "Dębowy Strażnik · 105"
             };
             Color[] colors = {
                 new Color(.22f, .47f, .21f),
                 new Color(.24f, .48f, .64f),
-                new Color(.67f, .48f, .19f)
+                new Color(.67f, .48f, .19f),
+                new Color(.35f, .29f, .17f)
             };
             _towerButtons = new Button[TowerIds.Length];
             for (int i = 0; i < TowerIds.Length; i++)
@@ -131,15 +156,21 @@ namespace FantasyTD.V2.Runtime
                     captions[i], colors[i], 32);
                 Position((RectTransform)_towerButtons[i].transform,
                     new Vector2(.5f, 0f),
-                    new Vector2(-570f + i * 360f, 90f),
-                    new Vector2(333f, 110f));
+                    new Vector2(-700f + i * 280f, 90f),
+                    new Vector2(258f, 110f));
                 _towerButtons[i].onClick.AddListener(() => Build(towerId));
             }
+
+            _upgradeButton = RuntimeArt.CreateButton(_hud.transform,
+                "Ulepsz", new Color(.20f, .48f, .54f), 29);
+            Position((RectTransform)_upgradeButton.transform, new Vector2(.5f, 0f),
+                new Vector2(430f, 90f), new Vector2(250f, 110f));
+            _upgradeButton.onClick.AddListener(UpgradeSelected);
 
             _nextWave = RuntimeArt.CreateButton(_hud.transform,
                 "Następna fala", new Color(.53f, .24f, .21f), 32);
             Position((RectTransform)_nextWave.transform, new Vector2(.5f, 0f),
-                new Vector2(590f, 90f), new Vector2(330f, 110f));
+                new Vector2(735f, 90f), new Vector2(300f, 110f));
             _nextWave.onClick.AddListener(AdvanceOrRestart);
 
             _previousStageButton = RuntimeArt.CreateButton(_hud.transform,
@@ -193,6 +224,7 @@ namespace FantasyTD.V2.Runtime
             if (_world != null) Destroy(_world);
             _enemyViews.Clear();
             _siteMarkers.Clear();
+            _defenderViews.Clear();
             _selectedSite = null;
             _tickAccumulator = 0f;
             _pauseGate.Reset();
@@ -322,7 +354,8 @@ namespace FantasyTD.V2.Runtime
                         }
                 }
             }
-            else if (evt.Kind == BattleEventKind.TowerPlaced &&
+            else if ((evt.Kind == BattleEventKind.TowerPlaced ||
+                evt.Kind == BattleEventKind.TowerUpgraded) &&
                 _selectedSite != null && _level.Sites.ContainsKey(_selectedSite))
             {
                 Vector2 p = Point(_level.Sites[_selectedSite]);
@@ -405,38 +438,97 @@ namespace FantasyTD.V2.Runtime
             float distance = .68f;
             foreach (var site in _level.Sites)
             {
-                if (_battle.PlacedTowers.ContainsKey(site.Key)) continue;
                 float d = Vector2.Distance(new Vector2(world.x, world.y), Point(site.Value));
                 if (d >= distance) continue;
                 closest = site.Key;
                 distance = d;
             }
-            _selectedSite = closest;
+            SelectSite(closest);
+        }
+
+        public bool SelectSite(string siteId)
+        {
+            if (_battle == null || string.IsNullOrEmpty(siteId) ||
+                !_level.Sites.ContainsKey(siteId))
+            {
+                _selectedSite = null;
+                RefreshSiteSelection();
+                return false;
+            }
+            _selectedSite = siteId;
+            RefreshSiteSelection();
+            TowerState occupied;
+            if (_battle.PlacedTowers.TryGetValue(siteId, out occupied))
+                _prompt.text = occupied.Level >= TowerState.MaximumLevel
+                    ? siteId + " — maksymalny poziom " + occupied.Level + "."
+                    : siteId + " — poziom " + occupied.Level +
+                      ", ulepszenie: " + occupied.UpgradeCost + " Esencji.";
+            else
+                _prompt.text = "Wybrano " + siteId + " — wybierz obrońcę poniżej.";
+            RefreshHud();
+            return true;
+        }
+
+        private void RefreshSiteSelection()
+        {
             foreach (var marker in _siteMarkers)
                 marker.Value.color = marker.Key == _selectedSite
                     ? new Color(1f, .93f, .51f) : new Color(.50f, .80f, .49f);
-            _prompt.text = closest == null
-                ? "Dotknij wolnego miejsca budowy."
-                : "Wybrano " + closest + " — wybierz obrońcę poniżej.";
+            if (_selectedSite == null && _prompt != null)
+                _prompt.text = "Dotknij miejsca budowy.";
         }
 
         private void Build(string towerId)
         {
+            TryBuildSelected(towerId);
+        }
+
+        public bool TryBuildSelected(string towerId)
+        {
             if (string.IsNullOrEmpty(_selectedSite))
             {
                 _prompt.text = "Najpierw wskaż wolne miejsce na mapie.";
-                return;
+                return false;
             }
             if (!_battle.TryPlaceTower(_selectedSite, towerId))
             {
                 _prompt.text = "Nie można posadzić: za mało Esencji lub miejsce zajęte.";
-                return;
+                return false;
             }
             Vector2 pos = Point(_level.Sites[_selectedSite]);
             DrawDefender(_selectedSite, towerId, pos);
             _siteMarkers[_selectedSite].gameObject.SetActive(false);
             _selectedSite = null;
             _prompt.text = "Obrońca posadzony. Przygotuj kolejną jednostkę lub falę.";
+            RefreshHud();
+            return true;
+        }
+
+        private void UpgradeSelected()
+        {
+            TryUpgradeSelected();
+        }
+
+        public bool TryUpgradeSelected()
+        {
+            if (string.IsNullOrEmpty(_selectedSite) ||
+                !_battle.TryUpgradeTower(_selectedSite))
+            {
+                _prompt.text = "Ulepszenie niedostępne: wybierz wieżę, sprawdź poziom i koszt.";
+                RefreshHud();
+                return false;
+            }
+            TowerState tower = _battle.PlacedTowers[_selectedSite];
+            GameObject view;
+            if (_defenderViews.TryGetValue(_selectedSite, out view) && view != null)
+                view.transform.localScale *= 1.12f;
+            Vector2 pos = Point(tower.Position);
+            Sprite("Upgrade ring " + _selectedSite + " L" + tower.Level, pos,
+                Vector2.one * (1.15f + tower.Level * .12f),
+                new Color(.42f, .90f, 1f, .45f), 4, true);
+            _prompt.text = _selectedSite + " ulepszono do poziomu " + tower.Level + ".";
+            RefreshHud();
+            return true;
         }
 
         private void DrawDefender(string site, string type, Vector2 pos)
@@ -450,6 +542,7 @@ namespace FantasyTD.V2.Runtime
                 float scale = 1.55f / Mathf.Max(.01f, character.bounds.size.y);
                 art.transform.localScale = new Vector3(scale, scale, 1f);
                 art.transform.localPosition = new Vector3(pos.x, pos.y - .36f, 0f);
+                _defenderViews[site] = art.gameObject;
                 return;
             }
             Color tint = type == "frost" ? new Color(.56f, .83f, 1f)
@@ -464,8 +557,9 @@ namespace FantasyTD.V2.Runtime
                 Sprite("Petal " + site + "-" + i, pos + petal,
                     new Vector2(.48f, .48f), tint, 2, true);
             }
-            Sprite("Core " + site, pos, new Vector2(.48f, .48f),
+            SpriteRenderer core = Sprite("Core " + site, pos, new Vector2(.48f, .48f),
                 new Color(.93f, .96f, .67f), 3, true);
+            _defenderViews[site] = core.gameObject;
         }
 
         private void SyncEnemyViews()
@@ -473,6 +567,7 @@ namespace FantasyTD.V2.Runtime
             var seen = new HashSet<int>();
             foreach (EnemyState enemy in _battle.Enemies)
             {
+                if (enemy.Health <= 0) continue;
                 seen.Add(enemy.InstanceId);
                 EnemyView view;
                 if (!_enemyViews.TryGetValue(enemy.InstanceId, out view))
@@ -573,10 +668,28 @@ namespace FantasyTD.V2.Runtime
                 RestartBattle();
                 return;
             }
-            if (_battle.StartNextWave())
+            if (TryStartNextWave())
                 _prompt.text = "Fala " + _battle.WaveNumber + " rozpoczęta!";
             else
                 _prompt.text = "Najpierw zakończ obecną falę.";
+        }
+
+        public bool TryStartNextWave()
+        {
+            if (_battle == null || !_battle.StartNextWave()) return false;
+            RefreshHud();
+            return true;
+        }
+
+        public void StepTicksForValidation(int ticks)
+        {
+            if (_battle == null || ticks < 0)
+                throw new ArgumentOutOfRangeException("ticks");
+            for (int i = 0; i < ticks && _battle.WaveActive; i++)
+                _battle.Step();
+            SyncEnemyViews();
+            RecordVictoryIfNeeded();
+            RefreshHud();
         }
 
         private void RefreshHud()
@@ -593,8 +706,20 @@ namespace FantasyTD.V2.Runtime
             for (int i = 0; i < _towerButtons.Length; i++)
                 _towerButtons[i].interactable = !gameOver &&
                     _selectedSite != null && !_pauseGate.IsPaused &&
+                    !_battle.PlacedTowers.ContainsKey(_selectedSite) &&
                     _level.Towers.ContainsKey(TowerIds[i]) &&
                     _battle.Essence >= _level.Towers[TowerIds[i]].Cost;
+            TowerState selectedTower = null;
+            if (_selectedSite != null)
+                _battle.PlacedTowers.TryGetValue(_selectedSite, out selectedTower);
+            _upgradeButton.interactable = !gameOver && !_pauseGate.IsPaused &&
+                selectedTower != null && selectedTower.Level < TowerState.MaximumLevel &&
+                _battle.Essence >= selectedTower.UpgradeCost;
+            Text upgradeLabel = _upgradeButton.GetComponentInChildren<Text>();
+            if (upgradeLabel != null)
+                upgradeLabel.text = selectedTower == null ? "Ulepsz" :
+                    selectedTower.Level >= TowerState.MaximumLevel ? "Poziom MAX" :
+                    "Ulepsz L" + (selectedTower.Level + 1) + " · " + selectedTower.UpgradeCost;
             _nextWave.interactable = !_pauseGate.IsPaused &&
                 (gameOver || _battle.CanStartWave);
             int unlocked = Mathf.Clamp(PlayerPrefs.GetInt(CampaignSaveKey, 1),
