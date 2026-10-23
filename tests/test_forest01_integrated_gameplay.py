@@ -37,6 +37,25 @@ class Forest01IntegratedGameplayTests(unittest.TestCase):
         self.assertIn("public bool TryStartNextWave()", VIEW)
         self.assertIn('"Dębowy Strażnik · 105"', VIEW)
 
+    def test_forest01_scene_reopens_at_stage_one_after_unlock(self):
+        awake = VIEW.split("private void Awake()", 1)[1].split("private void SetupCamera()", 1)[0]
+        self.assertIn("_currentStage = 1;", awake)
+        self.assertNotIn("_currentStage = Mathf.Clamp(PlayerPrefs.GetInt", awake)
+        self.assertIn("PlayerPrefs.GetInt(CampaignSaveKey, 1)", VIEW)
+
+    def test_unlock_progress_remains_saved_and_accessible_after_cold_reopen(self):
+        awake = VIEW.split("private void Awake()", 1)[1].split("private void SetupCamera()", 1)[0]
+        victory = VIEW.split("private void RecordVictoryIfNeeded()", 1)[1].split("private void ChangeStage(", 1)[0]
+        navigation = VIEW.split("private void ChangeStage(", 1)[1].split("private void AdvanceOrRestart()", 1)[0]
+        self.assertNotIn("PlayerPrefs.SetInt", awake)
+        self.assertNotIn("PlayerPrefs.Delete", awake)
+        self.assertIn("PlayerPrefs.GetInt(CampaignSaveKey, 1)", victory)
+        self.assertIn("PlayerPrefs.SetInt(CampaignSaveKey, next)", victory)
+        self.assertIn("PlayerPrefs.Save()", victory)
+        self.assertIn("PlayerPrefs.GetInt(CampaignSaveKey, 1)", navigation)
+        self.assertIn("target > unlocked", navigation)
+        self.assertIn("_currentStage = target;", navigation)
+
     def test_android_build_enforces_release_shape(self):
         self.assertIn("ScriptingImplementation.IL2CPP", BUILD)
         self.assertIn("AndroidArchitecture.ARM64", BUILD)

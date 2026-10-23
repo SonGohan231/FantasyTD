@@ -1,3 +1,17 @@
+# STATE — 2026-10-23: FT2-UNIFY-001
+
+Aktywna gałąź: `codex/forest01-unified-20261023` w oddzielnym worktree `FantasyTD-Unified-20261023`.
+Jedyny ticket: https://github.com/SonGohan231/FantasyTD/issues/36.
+Wersja bazowa: `c8cfb7a`. Repozytoria i worktree użytkownika pozostają bez zmian.
+Naprawiono otwieranie Forest01 od etapu 1 bez kasowania `PlayerPrefs`.
+Aktualne testy źródłowe: Forest01 14/14 PASS; hook/QA 12/12 PASS; meta integrity PASS.
+**NIEZWERYFIKOWANE:** bieżący Play Mode (ostatni wcześniejszy log FAIL), realny render, APK Android, test na telefonie.
+Jedyny rejestr źródeł i dalszych bramek: `docs/FT2_Forest01_Unified_Integration_Register_20261023.md`.
+
+---
+
+## Poprzedni stan (2026-10-22) — archiwalne dane, nie aktualny werdykt
+
 # STATE — FantasyTD / Forest01 integration
 Date: 2026-10-22. Status: LOCAL EDITOR AND PLAY MODE TESTED; RENDER/APK NOT VERIFIED.
 

@@ -76,8 +76,10 @@ namespace FantasyTD.V2.Runtime
         private void Awake()
         {
             Application.targetFrameRate = 60;
-            _currentStage = Mathf.Clamp(PlayerPrefs.GetInt(CampaignSaveKey, 1),
-                1, CampaignCatalog.LevelCount);
+            // Opening Forest01 always starts its own map, not the highest
+            // unlocked campaign stage. Keep CampaignSaveKey untouched so the
+            // player can still navigate to all previously unlocked stages.
+            _currentStage = 1;
             SetupCamera();
             SetupCanvas();
             RestartBattle();
