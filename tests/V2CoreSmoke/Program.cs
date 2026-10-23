@@ -10,6 +10,7 @@ internal static class Program
         try
         {
             VerifyStarterLevel();
+            VerifyTowerUpgradeEconomy();
             VerifyCampaignRegistry();
             VerifyBattleFeedbackCues();
             VerifyCompleteForestSession();
@@ -57,6 +58,34 @@ internal static class Program
                 replay.Essence == battle.Essence && replay.BaseHp == battle.BaseHp,
                 "deterministic replay state");
         Console.WriteLine("StarterLevel PASS: planting, spawn, wave clear, replay.");
+    }
+
+    private static void VerifyTowerUpgradeEconomy()
+    {
+        var battle = new BattleSimulator(StarterLevel.Create());
+        int beginning = battle.Essence;
+        int upgradedEvents = 0;
+        battle.EventRaised += evt => { if (evt.Kind == BattleEventKind.TowerUpgraded) upgradedEvents++; };
+        Require(battle.TryPlaceTower("B01", "thorn"), "build first defender for upgrade test");
+        var tower = battle.PlacedTowers["B01"];
+        int originalDamage = tower.Damage;
+        int originalRange = tower.RangeCentimeters;
+        int firstUpgradeCost = tower.UpgradeCost;
+        Require(battle.TryUpgradeTower("B01"), "first level upgrade should succeed");
+        Require(tower.Level == 2 && battle.Essence == beginning - tower.Definition.Cost - firstUpgradeCost,
+            "first upgrade must change level and deduct exact Essence cost");
+        int secondUpgradeCost = tower.UpgradeCost;
+        Require(battle.TryUpgradeTower("B01"), "second level upgrade should succeed");
+        Require(tower.Level == TowerState.MaximumLevel &&
+            battle.Essence == beginning - tower.Definition.Cost - firstUpgradeCost - secondUpgradeCost,
+            "second upgrade must reach level cap and deduct exact cost");
+        Require(tower.Damage > originalDamage && tower.RangeCentimeters > originalRange,
+            "upgrades must improve authoritative combat statistics");
+        int cappedEssence = battle.Essence;
+        Require(!battle.TryUpgradeTower("B01") && !battle.TryUpgradeTower("not-a-site") &&
+            battle.Essence == cappedEssence && upgradedEvents == 2,
+            "MAX or invalid site must not charge Essence or produce upgrade events");
+        Console.WriteLine("TowerUpgrade PASS: L1 to L3, exact spending, stat increases, cap and events.");
     }
 
     private static void VerifyCampaignRegistry()
