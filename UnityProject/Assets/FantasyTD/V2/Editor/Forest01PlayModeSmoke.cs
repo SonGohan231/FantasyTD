@@ -108,10 +108,26 @@ namespace FantasyTD.V2.Editor
             int initialEssence = game.RuntimeEssence;
             Require(game.SelectSite("B01") && game.TryBuildSelected("thorn"),
                 "Could not build Pędostrzał on B01.");
-            Require(game.SelectSite("B01") && game.TryUpgradeSelected(),
-                "Could not upgrade B01.");
+            // Select from the same world-point path used by Android touch,
+            // deliberately tapping a visible defender away from its plot center.
+            Require(game.TrySelectAtWorldPoint(new Vector2(-11.5f, 4.3f)),
+                "Touch selection could not reselect occupied B01.");
+            Require(game.RuntimeUpgradeButtonInteractable,
+                "Upgrade button stayed disabled after tapping a placed tower.");
+            game.ClickUpgradeForValidation(); // Invoke the real UI button listener.
             Require(game.RuntimeTowerLevel("B01") == 2 && game.RuntimeEssence < initialEssence,
-                "Upgrade did not spend Essence or change level.");
+                "Button click did not spend Essence or upgrade to level two.");
+            int essenceBeforeLevelThree = game.RuntimeEssence;
+            Require(game.RuntimeUpgradeButtonInteractable,
+                "Upgrade button did not re-enable for level three.");
+            game.ClickUpgradeForValidation();
+            Require(game.RuntimeTowerLevel("B01") == TowerState.MaximumLevel &&
+                game.RuntimeEssence < essenceBeforeLevelThree,
+                "Second button click did not reach max tower level.");
+            int essenceAtMaximum = game.RuntimeEssence;
+            Require(!game.RuntimeUpgradeButtonInteractable && !game.TryUpgradeSelected() &&
+                game.RuntimeEssence == essenceAtMaximum,
+                "MAX level must disable button and reject additional spending.");
             Require(game.SelectSite("B02") && game.TryBuildSelected("bloom"),
                 "Could not build Kwiat Esencji on B02.");
             Require(game.SelectSite("B03") && game.TryBuildSelected("frost"),
