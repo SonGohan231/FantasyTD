@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   android-native:
@@ -69,6 +69,20 @@ jobs:
           cp "$src" "$dest"
           sha256sum "$dest" | tee forest01-android-native-sha256.txt
           ls -lh "$dest"
+      - name: Publish downloadable pre-release APK
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          tag="forest01-android-sdk-20261024-${GITHUB_SHA:0:7}"
+          gh release create "$tag" \
+            FantasyTD_Forest01_AndroidSDK_20261024.apk \
+            forest01-android-native-sha256.txt \
+            --target "$GITHUB_SHA" \
+            --title "FantasyTD Forest01 Android SDK — ${GITHUB_SHA:0:7}" \
+            --notes "Nowy natywny build Android z kodu gałęzi ${GITHUB_REF_NAME}. Forest01, 10 stanowisk, 4 obrońców, 6 fal i grafiki z repozytorium. Jest to port Android Java/Canvas, nie kompilacja Unity. APK debug podpisany automatycznie; test na fizycznym telefonie do wykonania." \
+            --prerelease
       - name: Upload fresh APK and checksum
         if: always()
         uses: actions/upload-artifact@v4
