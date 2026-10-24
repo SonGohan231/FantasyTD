@@ -1,0 +1,80 @@
+name: Forest01 Native Android SDK APK
+on:
+  push:
+    branches:
+      - build/forest01-android-sdk-20261024
+    paths:
+      - 'native-android/**'
+      - '.github/workflows/forest01-native-android.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  android-native:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout game source and original artwork
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+          persist-credentials: false
+      - name: Set up Android build JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Set up Gradle 8.9
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.9'
+      - name: Verify source assets and package Forest01 art
+        shell: bash
+        run: |
+          set -euo pipefail
+          src='UnityProject/Assets/Resources/FT2'
+          dest='native-android/app/src/main/assets'
+          mkdir -p "$dest"
+          cp "$src/Forest01Art.png" "$dest/"
+          for n in ThornShooter FrostBud EssenceFlower OakGuardian Wanderer Runner Armored ForestBoss HomeTree Portal; do
+            cp "$src/Units/$n.png" "$dest/"
+          done
+          test "$(find "$dest" -maxdepth 1 -name '*.png' | wc -l)" -eq 11
+          python3 - <<'PY'
+          import pathlib, struct
+          paths=list(pathlib.Path('native-android/app/src/main/assets').glob('*.png'))
+          for f in paths:
+              with f.open('rb') as source:
+                  header=source.read(24)
+              assert header[:8] == bytes.fromhex('89504e470d0a1a0a'), f
+              width,height=struct.unpack('>II',header[16:24])
+              assert width and height, f
+          print(f'Verified {len(paths)} original Forest01 PNG assets.')
+          PY
+      - name: Build new Forest01 debug APK using Android SDK
+        working-directory: native-android
+        run: gradle --no-daemon --stacktrace :app:assembleDebug
+      - name: Verify compiled APK contains actual game art
+        shell: bash
+        run: |
+          set -euo pipefail
+          src='native-android/app/build/outputs/apk/debug/app-debug.apk'
+          dest='FantasyTD_Forest01_AndroidSDK_20261024.apk'
+          test -s "$src"
+          for n in Forest01Art ThornShooter FrostBud EssenceFlower OakGuardian Wanderer Runner Armored ForestBoss HomeTree Portal; do
+            unzip -Z -1 "$src" | grep -Fxq "assets/$n.png"
+          done
+          cp "$src" "$dest"
+          sha256sum "$dest" | tee forest01-android-native-sha256.txt
+          ls -lh "$dest"
+      - name: Upload fresh APK and checksum
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: Forest01-AndroidSDK-${{ github.run_id }}
+          path: |
+            FantasyTD_Forest01_AndroidSDK_20261024.apk
+            forest01-android-native-sha256.txt
+          if-no-files-found: warn
