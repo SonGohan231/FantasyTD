@@ -5,6 +5,7 @@ on:
     branches:
       - codex/forest01-integrated-20261022
       - codex/forest01-unified-apk-20261023
+      - codex/forest01-touch-upgrade-on-unified-20261023
     paths:
       - 'UnityProject/**'
       - 'tests/test_forest01_*.py'
